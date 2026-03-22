@@ -606,7 +606,7 @@ function ResourcesTab({ data }: { data: any }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CANVAS WATER BACKGROUND — physics-based wave simulation
+// CANVAS WATER — Bahamas crystal-clear shallow water, top-down view
 // ─────────────────────────────────────────────────────────────────────────────
 function WaterCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -621,155 +621,200 @@ function WaterCanvas() {
     let animId: number;
     const ripples: { x: number; y: number; r: number; a: number }[] = [];
 
+    // Pre-generate stable sand grain positions
+    const GRAINS = Array.from({ length: 280 }, () => ({
+      x: Math.random(), y: Math.random(),
+      r: 0.4 + Math.random() * 1.8,
+      a: 0.025 + Math.random() * 0.07,
+    }));
+
     const resize = () => {
-      canvas.width = window.innerWidth;
+      canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resize();
     window.addEventListener('resize', resize);
 
     const onMove = (e: MouseEvent) => {
-      if (Math.random() < 0.06) ripples.push({ x: e.clientX, y: e.clientY, r: 0, a: 0.45 });
+      if (Math.random() < 0.07) ripples.push({ x: e.clientX, y: e.clientY, r: 0, a: 0.75 });
     };
     window.addEventListener('mousemove', onMove);
-
-    // Summed sine wave surface — multiple frequencies create realistic interference
-    const surf = (x: number, time: number, base: number) => {
-      let y = base;
-      y += Math.sin(x * 0.0055 + time * 0.65)  * 24;
-      y += Math.sin(x * 0.0120 - time * 0.50)  * 15;
-      y += Math.sin(x * 0.0230 + time * 0.85)  *  9;
-      y += Math.sin(x * 0.0450 - time * 1.10)  *  5;
-      y += Math.sin(x * 0.0900 + time * 1.70)  *  2.5;
-      y += Math.sin(x * 0.1700 - time * 2.40)  *  1.2;
-      return y;
-    };
 
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      t += 0.011;
+      t += 0.009;
 
-      // ── DEEP OCEAN BASE ──────────────────────────────────────────────────
-      const bg = ctx.createLinearGradient(0, 0, 0, H);
-      bg.addColorStop(0,   '#030c18');
-      bg.addColorStop(0.5, '#04101f');
-      bg.addColorStop(1,   '#020a15');
-      ctx.fillStyle = bg;
+      // ── 1. SANDY BOTTOM ──────────────────────────────────────────────────
+      // Warm Bahamas sand: pale cream to golden
+      const sand = ctx.createLinearGradient(0, 0, 0, H);
+      sand.addColorStop(0,    '#f0e2b8');
+      sand.addColorStop(0.35, '#e8d4a0');
+      sand.addColorStop(0.7,  '#ddc48a');
+      sand.addColorStop(1,    '#cdb070');
+      ctx.fillStyle = sand;
       ctx.fillRect(0, 0, W, H);
 
-      // ── CAUSTICS — dappled underwater light ──────────────────────────────
-      for (let i = 0; i < 14; i++) {
-        const ph  = (i / 14) * Math.PI * 2;
-        const cx  = W / 2 + Math.sin(t * 0.18 + ph) * W * 0.42 + Math.sin(t * 0.11 + ph * 1.6) * W * 0.09;
-        const cy  = H * 0.38 + Math.sin(t * 0.14 + ph * 1.2) * H * 0.38 + Math.cos(t * 0.09 + ph) * H * 0.08;
-        const rx  = 55 + Math.sin(t * 0.38 + i) * 28;
-        const ry  = 18 + Math.sin(t * 0.28 + i * 1.1) *  9;
-        const ang = Math.sin(t * 0.09 + i * 0.45) * Math.PI * 0.35;
-        const alpha = 0.022 + Math.sin(t * 1.1 + i * 0.7) * 0.009;
-
-        const cg = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
-        cg.addColorStop(0,   `rgba(6,182,212,${alpha})`);
-        cg.addColorStop(0.5, `rgba(8,145,178,${alpha * 0.5})`);
-        cg.addColorStop(1,   'rgba(8,145,178,0)');
-
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(ang);
-        ctx.scale(1, ry / rx);
+      // Sand ripple bedforms — gentle undulating bands from water current
+      ctx.save();
+      ctx.globalAlpha = 0.06;
+      for (let row = 0; row < 32; row++) {
+        const baseY = (row / 32) * H;
         ctx.beginPath();
-        ctx.arc(0, 0, rx, 0, Math.PI * 2);
-        ctx.fillStyle = cg;
-        ctx.fill();
-        ctx.restore();
-      }
-
-      // ── WAVE LAYERS ───────────────────────────────────────────────────────
-      const layers = [
-        { base: H * 0.88, speed: 1.00, r:  6, g: 182, b: 212, a: 0.07 },
-        { base: H * 0.82, speed: 0.72, r:  8, g: 145, b: 178, a: 0.08 },
-        { base: H * 0.76, speed: 0.55, r: 14, g: 116, b: 144, a: 0.09 },
-        { base: H * 0.70, speed: 1.25, r: 34, g: 211, b: 238, a: 0.06 },
-        { base: H * 0.65, speed: 0.90, r:  6, g: 182, b: 212, a: 0.10 },
-      ];
-
-      layers.forEach((lyr, li) => {
-        ctx.beginPath();
-        for (let x = 0; x <= W; x += 3) {
-          const y = surf(x, t * lyr.speed, lyr.base);
+        for (let x = 0; x <= W; x += 5) {
+          const y = baseY
+            + Math.sin(x * 0.011 + row * 0.55 + t * 0.18) * 5
+            + Math.sin(x * 0.023 - row * 0.28 + t * 0.12) * 2.5;
           x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
-        ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
-
-        const wg = ctx.createLinearGradient(0, lyr.base - 35, 0, H);
-        wg.addColorStop(0,   `rgba(${lyr.r},${lyr.g},${lyr.b},${lyr.a * 1.6})`);
-        wg.addColorStop(0.25,`rgba(${lyr.r},${lyr.g},${lyr.b},${lyr.a})`);
-        wg.addColorStop(1,   `rgba(${Math.round(lyr.r*0.4)},${Math.round(lyr.g*0.3)},${Math.round(lyr.b*0.25)},${lyr.a * 0.25})`);
-        ctx.fillStyle = wg;
-        ctx.fill();
-
-        // crest highlight line
-        ctx.beginPath();
-        for (let x = 0; x <= W; x += 3) {
-          const y = surf(x, t * lyr.speed, lyr.base);
-          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-        ctx.strokeStyle = `rgba(${lyr.r},${lyr.g},${lyr.b},${lyr.a * 2.8})`;
-        ctx.lineWidth = li < 2 ? 1.5 : 1;
+        ctx.strokeStyle = row % 4 === 0 ? 'rgba(100,72,30,1)' : 'rgba(160,115,55,1)';
+        ctx.lineWidth = 1.4;
         ctx.stroke();
+      }
+      ctx.restore();
+
+      // Sand grains (static scatter)
+      GRAINS.forEach(g => {
+        ctx.beginPath();
+        ctx.arc(g.x * W, g.y * H, g.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(130,92,40,${g.a})`;
+        ctx.fill();
       });
 
-      // ── FOAM / SPARKLES on crest peaks ───────────────────────────────────
-      const foamBase = H * 0.76;
-      for (let x = 15; x < W; x += 35) {
-        const y     = surf(x, t, foamBase);
-        const slope = surf(x + 3, t, foamBase) - surf(x - 3, t, foamBase);
-        const atCrest = Math.abs(slope) < 0.4;
-        if (atCrest) {
-          const pulse = Math.sin(t * 3.2 + x * 0.055);
-          if (pulse > 0.55) {
-            const a = (pulse - 0.55) / 0.45 * 0.18;
+      // ── 2. CAUSTICS — warm sun through clear water ───────────────────────
+      // Additive blending: overlapping bright blobs create the caustic web
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      const NC = 48;
+      for (let i = 0; i < NC; i++) {
+        const ph = (i / NC) * Math.PI * 6.2;
+        const s1 = 0.22 + (i % 7) * 0.065;
+        const s2 = 0.17 + (i % 5) * 0.075;
+
+        const cx = W * 0.5
+          + Math.sin(t * s1 + ph)        * W * 0.47
+          + Math.cos(t * s2 + ph * 0.58) * W * 0.13;
+        const cy = H * 0.5
+          + Math.cos(t * s2 + ph * 1.08) * H * 0.46
+          + Math.sin(t * s1 + ph * 0.44) * H * 0.11;
+
+        const r  = 28 + (i % 9) * 8 + Math.sin(t * 1.6 + i * 0.9) * 13;
+        const ia = 0.016 + (i % 6) * 0.004;
+
+        const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        // Warm yellow-white — like tropical sun rays through clear shallow water
+        cg.addColorStop(0,    `rgba(255, 250, 195, ${ia * 2.4})`);
+        cg.addColorStop(0.3,  `rgba(220, 255, 225, ${ia * 1.2})`);
+        cg.addColorStop(0.65, `rgba(80,  220, 200, ${ia * 0.5})`);
+        cg.addColorStop(1,    'rgba(0,0,0,0)');
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = cg;
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // ── 3. CRYSTAL-CLEAR TURQUOISE WATER OVERLAY ─────────────────────────
+      // Bahamas palette: bright aquamarine shallow → deeper teal
+      const water = ctx.createLinearGradient(0, 0, 0, H);
+      water.addColorStop(0,    'rgba(10,  215, 200, 0.48)');
+      water.addColorStop(0.28, 'rgba(0,   190, 185, 0.54)');
+      water.addColorStop(0.58, 'rgba(0,   155, 175, 0.60)');
+      water.addColorStop(1,    'rgba(0,    80, 148, 0.68)');
+      ctx.fillStyle = water;
+      ctx.fillRect(0, 0, W, H);
+
+      // Depth darkening at edges — simulates deeper water further from shore
+      const edge = ctx.createRadialGradient(W / 2, H / 2, H * 0.06, W / 2, H / 2, W * 0.74);
+      edge.addColorStop(0,   'rgba(0, 90, 170, 0)');
+      edge.addColorStop(0.65,'rgba(0, 55, 130, 0.10)');
+      edge.addColorStop(1,   'rgba(0, 20,  80, 0.36)');
+      ctx.fillStyle = edge;
+      ctx.fillRect(0, 0, W, H);
+
+      // ── 4. SURFACE REFRACTION LINES ───────────────────────────────────────
+      // The shimmering network of light/dark bands you see looking through water
+      ctx.save();
+      ctx.globalAlpha = 0.10;
+      for (let i = 0; i < 22; i++) {
+        const baseY = (i / 22) * H;
+        ctx.beginPath();
+        for (let x = 0; x <= W; x += 4) {
+          const y = baseY
+            + Math.sin(x * 0.013 + t * 1.05 + i * 0.68) * 7
+            + Math.sin(x * 0.027 - t * 0.62 + i * 1.15) * 3.5
+            + Math.sin(x * 0.055 + t * 1.80 + i * 0.40) * 1.5;
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = 'rgba(255,255,255,1)';
+        ctx.lineWidth = 0.6 + Math.sin(t * 0.8 + i) * 0.3;
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // ── 5. SUN SPARKLES with lens flare ──────────────────────────────────
+      for (let i = 0; i < 95; i++) {
+        const ph  = (i / 95) * Math.PI * 8.4;
+        const sx  = W * 0.025 + (i / 95) * W * 0.95 + Math.sin(t * 0.36 + ph) * 26;
+        const sy  = Math.sin(t * 0.43 + ph * 0.63) * H * 0.44 + H * 0.43;
+        const bri = (Math.sin(t * 3.9 + ph) + 1) / 2;
+
+        if (bri > 0.70) {
+          const ba = (bri - 0.70) / 0.30;
+          const sr = 1.0 + ba * 3.8;
+
+          const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr * 5);
+          sg.addColorStop(0,    `rgba(255,255,255,${ba * 0.95})`);
+          sg.addColorStop(0.2,  `rgba(230,252,255,${ba * 0.50})`);
+          sg.addColorStop(0.55, `rgba(180,240,240,${ba * 0.18})`);
+          sg.addColorStop(1,    'rgba(255,255,255,0)');
+          ctx.fillStyle = sg;
+          ctx.beginPath();
+          ctx.arc(sx, sy, sr * 5, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Star flare on brightest sparkles
+          if (ba > 0.60) {
+            ctx.save();
+            ctx.globalAlpha = ba * 0.38;
+            ctx.strokeStyle = 'rgba(255,255,255,1)';
+            ctx.lineWidth = 0.5;
+            const fl = sr * 11;
             ctx.beginPath();
-            ctx.arc(x + Math.sin(t * 1.5 + x) * 4, y - 1, 1.8 + pulse * 2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${a})`;
-            ctx.fill();
+            ctx.moveTo(sx - fl, sy); ctx.lineTo(sx + fl, sy);
+            ctx.moveTo(sx, sy - fl); ctx.lineTo(sx, sy + fl);
+            const fd = fl * 0.58;
+            ctx.moveTo(sx - fd, sy - fd); ctx.lineTo(sx + fd, sy + fd);
+            ctx.moveTo(sx + fd, sy - fd); ctx.lineTo(sx - fd, sy + fd);
+            ctx.stroke();
+            ctx.restore();
           }
         }
       }
 
-      // ── SURFACE SHEEN — horizontal light reflections ──────────────────────
-      for (let i = 0; i < 7; i++) {
-        const sy = H * 0.48 + Math.sin(t * 0.28 + i * 0.9) * H * 0.28;
-        const sx = ((t * 55 * (i % 2 ? 1 : -1) + i * W * 0.14) % W + W) % W;
-        const sw = 50 + Math.sin(t * 0.7 + i) * 25;
-        const sa = (Math.sin(t * 0.45 + i * 1.1) + 1) * 0.012;
-        const sg = ctx.createLinearGradient(sx, 0, sx + sw, 0);
-        sg.addColorStop(0,   'rgba(255,255,255,0)');
-        sg.addColorStop(0.5, `rgba(200,240,255,${sa})`);
-        sg.addColorStop(1,   'rgba(255,255,255,0)');
-        ctx.fillStyle = sg;
-        ctx.fillRect(sx, sy - 1.5, sw, 3);
-      }
-
-      // ── MOUSE RIPPLES — elliptical to simulate perspective ────────────────
+      // ── 6. MOUSE RIPPLES ─────────────────────────────────────────────────
       for (let i = ripples.length - 1; i >= 0; i--) {
         const rip = ripples[i];
-        rip.r += 4.5;
+        rip.r += 4.0;
         rip.a -= 0.016;
         if (rip.a <= 0) { ripples.splice(i, 1); continue; }
-        [1, 0.55].forEach((scale, si) => {
+
+        [1, 0.60, 0.30].forEach((scale, si) => {
+          if (rip.r * scale < 4) return;
           ctx.beginPath();
-          ctx.ellipse(rip.x, rip.y, rip.r * scale, rip.r * scale * 0.32, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(6,182,212,${rip.a * (si === 0 ? 1 : 0.45)})`;
-          ctx.lineWidth = si === 0 ? 1.5 : 1;
+          ctx.ellipse(rip.x, rip.y, rip.r * scale, rip.r * scale * 0.26, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255,255,255,${rip.a * (1 - si * 0.3)})`;
+          ctx.lineWidth = si === 0 ? 2 : 1;
           ctx.stroke();
         });
       }
 
-      // ── DEPTH VIGNETTE ────────────────────────────────────────────────────
-      const vig = ctx.createRadialGradient(W / 2, H * 0.55, H * 0.12, W / 2, H * 0.5, H * 0.85);
+      // ── 7. EDGE VIGNETTE ─────────────────────────────────────────────────
+      const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.16, W / 2, H / 2, W * 0.80);
       vig.addColorStop(0, 'rgba(0,0,0,0)');
-      vig.addColorStop(1, 'rgba(0,5,18,0.58)');
+      vig.addColorStop(1, 'rgba(0,18,45,0.52)');
       ctx.fillStyle = vig;
       ctx.fillRect(0, 0, W, H);
 
