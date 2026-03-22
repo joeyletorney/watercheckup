@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// REAL EPA SDWIS BACKEND — same domain, no CORS
+// CONFIG
 // ─────────────────────────────────────────────────────────────────────────────
+const TAG = 'watercheck-20';
+
 async function fetchWaterData(zip: string) {
   const res = await fetch(`/api/water?zip=${zip}`);
   const data = await res.json();
@@ -34,43 +36,22 @@ async function findInstallers(zip: string) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PRODUCT CATALOG — NSF/WQA Gold Seal, Real Amazon Links
+// PRODUCT CATALOG
 // ─────────────────────────────────────────────────────────────────────────────
-const TAG = 'watercheck-20';
-
 const PRODUCTS = [
-  // ── PITCHER ──
-  { id:1,  category:'pitcher',    name:'PUR PLUS 11-Cup Pitcher',       brand:'PUR',               type:'Pitcher Filter',                  price:42,  filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'],                                               certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','Chlorine','PFNA 96%'],       bestFor:['Lead','Arsenic','Uranium','Chromium-6'],          pros:['No install needed','Portable','Budget-friendly','Removes 70+ contaminants'],        img:'https://m.media-amazon.com/images/I/71Pg8yZLLfL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B07NMQNHPB?tag=${TAG}`,    pitcher:true },
-  { id:2,  category:'pitcher',    name:'Brita Standard 10-Cup Pitcher', brand:'Brita',             type:'Pitcher Filter',                  price:30,  filterCostPerYear:60,  rating:4.6, reviews:98000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'],                                               certColor:'#22d3ee', removes:['Chlorine taste & odor','Mercury','Cadmium','Copper'],          bestFor:['Chlorine','Copper','Mercury'],                    pros:['Most popular pitcher','Affordable filters','BPA-free','Slim design'],             img:'https://m.media-amazon.com/images/I/71gvUcpgVeL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/s?k=Brita+Standard+10+Cup+Pitcher&tag=${TAG}`,    pitcher:true },
-  { id:3,  category:'pitcher',    name:'ZeroWater 10-Cup Pitcher',      brand:'ZeroWater',         type:'Pitcher Filter — 5-Stage',        price:35,  filterCostPerYear:120, rating:4.4, reviews:31000, gpd:null, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 53'],                                               certColor:'#22d3ee', removes:['TDS 99.6%','Lead','Chromium','Fluoride','PFOA/PFOS'],        bestFor:['Lead','Fluoride','Chromium-6','TDS'],             pros:['Removes virtually all TDS','Includes TDS meter','5-stage ion exchange'],          img:'https://m.media-amazon.com/images/I/71qy7PBEX6L._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/s?k=ZeroWater+10+Cup+Pitcher&tag=${TAG}`,    pitcher:true },
-  // ── COUNTERTOP ──
-  { id:4,  category:'countertop', name:'Big Berkey Gravity Filter',     brand:'Berkey',            type:'Countertop Gravity Filter',       price:358, filterCostPerYear:30,  rating:4.8, reviews:12000, gpd:null, stages:2, cert:['NSF-equivalent tested'],                                                    certColor:'#d97706', removes:['Viruses >99.9%','Lead >99.9%','Chlorine','Fluoride (w/ add-on)','PFAS'], bestFor:['Lead','Viruses','Bacteria','Chlorine','PFAS'],    pros:['No electricity or plumbing','Off-grid ready','Filters 6,000 gallons','Stainless steel'], img:'https://m.media-amazon.com/images/I/61lAmfQPBaL._AC_SL1500_.jpg',     amazon:`https://www.amazon.com/s?k=Big+Berkey+Gravity+Water+Filter&tag=${TAG}`,    countertop:true },
-  { id:5,  category:'countertop', name:'Waterdrop Countertop RO',       brand:'Waterdrop',         type:'Countertop Reverse Osmosis',      price:299, filterCostPerYear:100, rating:4.7, reviews:5400,  gpd:400, stages:9, cert:['NSF/ANSI 42','NSF/ANSI 58'],                                               certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Arsenic','TDS'],          bestFor:['PFAS','Lead','Arsenic','Fluoride'],               pros:['No installation needed','400 GPD','Direct-drink dispenser','Compact'],            img:'https://m.media-amazon.com/images/I/61GRGiCFPdL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/s?k=Waterdrop+Countertop+RO+System&tag=${TAG}`,    countertop:true },
-  // ── UNDER-SINK RO ──
-  { id:6,  category:'undersink',  name:'APEC ROES-50',                  brand:'APEC Water Systems',type:'Under-Sink RO',                  price:219, filterCostPerYear:95,  rating:4.7, reviews:28400, gpd:50,  stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'],                                              certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','Easy DIY install','20yr track record'],          img:'https://m.media-amazon.com/images/I/61cF0FQEDBL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}`,    tankless:false, remineralize:false },
-  { id:7,  category:'undersink',  name:'iSpring RCC7AK',                brand:'iSpring',           type:'Under-Sink RO + Alkaline',        price:229, filterCostPerYear:80,  rating:4.7, reviews:14200, gpd:75,  stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'],                                 certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%','TDS >93%'], bestFor:['Lead','PFAS','Chromium-6','Copper','Nitrate'],   pros:['Remineralization stage','75 GPD fast','Triple NSF cert','pH balanced'],           img:'https://m.media-amazon.com/images/I/71RKD7DEYBL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`,    tankless:false, remineralize:true },
-  { id:8,  category:'undersink',  name:'Waterdrop G3P800',              brand:'Waterdrop',         type:'Tankless Under-Sink RO',          price:449, filterCostPerYear:170, rating:4.8, reviews:9800,  gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'],                  certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine','Heavy metals'],  bestFor:['PFAS','Lead','Arsenic','Chromium-6'],             pros:['No tank — compact','800 GPD ultra fast','Smart LED faucet','3:1 waste ratio'],    img:'https://m.media-amazon.com/images/I/61Y0jVJoVxL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,    tankless:true,  remineralize:false },
-  { id:9,  category:'undersink',  name:'Aquasana SmartFlow RO',         brand:'Aquasana',          type:'Under-Sink RO + Claryum',         price:449, filterCostPerYear:145, rating:4.7, reviews:2100,  gpd:50,  stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'],   certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'],  bestFor:['PFAS','Lead','Fluoride','Microplastics'],         pros:['Most certified','90 contaminants','Retains minerals'],                             img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B01AO49OAQ?tag=${TAG}`,    tankless:false, remineralize:true },
-  // ── WHOLE HOUSE ──
-  { id:10, category:'whole-house',name:'Pelican PC600',                  brand:'Pelican Water',     type:'Whole-House Carbon Filter',       price:899, filterCostPerYear:120, rating:4.7, reviews:1800,  gpd:null,stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'],                             certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'],       bestFor:['Chloramine','Chloroform','HAAs','VOCs'],          pros:['Whole house','No salt','6yr filter life','Low maintenance'],                       img:'https://m.media-amazon.com/images/I/81r1fLVQbwL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}`,    wholeHouse:true },
-  { id:11, category:'whole-house',name:'iSpring WGB32B',                 brand:'iSpring',           type:'Whole-House 3-Stage Filter',      price:189, filterCostPerYear:60,  rating:4.6, reviews:7200,  gpd:null,stages:3, cert:['NSF/ANSI 42'],                                                            certColor:'#22d3ee', removes:['Sediment','Chlorine','Herbicides','Pesticides','Iron'],      bestFor:['Chlorine','Iron','Sediment','VOCs'],              pros:['Budget whole-house','Easy filter swap','High flow rate','20" big blue filters'],   img:'https://m.media-amazon.com/images/I/81sB5VxJKRL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/s?k=iSpring+WGB32B+Whole+House+Water+Filter&tag=${TAG}`,    wholeHouse:true },
-  // ── SHOWER ──
-  { id:12, category:'shower',     name:'AquaBliss SF100',               brand:'AquaBliss',         type:'Shower Filter',                   price:26,  filterCostPerYear:52,  rating:4.4, reviews:64000, gpd:null,stages:1, cert:['Tested & verified'],                                                       certColor:'#22d3ee', removes:['Chlorine','Fluoride','Heavy metals','Bacteria','Sediment'],    bestFor:['Chlorine','Chloramine','Hard water'],             pros:['#1 bestseller','Easy install','Fits any showerhead','Softer skin & hair'],        img:'https://m.media-amazon.com/images/I/71F9EYDNTPL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/s?k=AquaBliss+SF100+High+Output+Shower+Filter&tag=${TAG}`,    shower:true },
-  { id:13, category:'shower',     name:'Aquasana AQ-4100NSH',           brand:'Aquasana',          type:'Premium Shower Filter + Head',    price:99,  filterCostPerYear:80,  rating:4.4, reviews:8900,  gpd:null,stages:2, cert:['NSF/ANSI 177'],                                                           certColor:'#d97706', removes:['Chlorine >91%','Chloramine','VOCs','Synthetic chemicals'],    bestFor:['Chlorine','Chloramine','VOCs'],                   pros:['NSF/ANSI 177 certified','Includes showerhead','6-month filter life','Spa-quality'], img:'https://m.media-amazon.com/images/I/51k14C7-dDL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/s?k=Aquasana+AQ-4100+Premium+Shower+Filter&tag=${TAG}`,    shower:true },
+  { id:1, name:'APEC ROES-50', brand:'APEC Water Systems', type:'Under-Sink RO', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','Easy DIY install','20yr track record'], img:'https://m.media-amazon.com/images/I/61cF0FQEDBL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}`, tankless:false, remineralize:false },
+  { id:2, name:'iSpring RCC7AK', brand:'iSpring', type:'Under-Sink RO + Alkaline', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%','TDS >93%'], bestFor:['Lead','PFAS','Chromium-6','Copper','Nitrate'], pros:['Remineralization stage','75 GPD fast','Triple NSF cert','pH balanced'], img:'https://m.media-amazon.com/images/I/71RKD7DEYBL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`, tankless:false, remineralize:true },
+  { id:3, name:'Waterdrop G3P800', brand:'Waterdrop', type:'Tankless Under-Sink RO', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine','Heavy metals'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank — compact','800 GPD ultra fast','Smart LED faucet','3:1 waste ratio'], img:'https://m.media-amazon.com/images/I/61Y0jVJoVxL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`, tankless:true, remineralize:false },
+  { id:4, name:'Home Master TMAFC', brand:'Home Master', type:'Under-Sink RO + Remineralization', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs','TDS'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio','Great taste'], img:'https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00B5GT45E?tag=${TAG}`, tankless:false, remineralize:true },
+  { id:5, name:'Aquasana SmartFlow RO', brand:'Aquasana', type:'Under-Sink RO + Claryum', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants','Retains minerals'], img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B01AO49OAQ?tag=${TAG}`, tankless:false, remineralize:true },
+  { id:6, name:'Pelican PC600', brand:'Pelican Water', type:'Whole-House POE', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], img:'https://m.media-amazon.com/images/I/81r1fLVQbwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}`, tankless:false, remineralize:false, wholeHouse:true },
+  { id:7, name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', type:'Pitcher Filter', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','Chlorine','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], img:'https://m.media-amazon.com/images/I/71Pg8yZLLfL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07NMQNHPB?tag=${TAG}`, tankless:false, remineralize:false, pitcher:true },
 ];
 
-const CATEGORIES = [
-  { id:'pitcher',    icon:'🥤', label:'Pitcher & Pour-Through',    desc:'No installation — perfect for renters & travel' },
-  { id:'countertop', icon:'🪣', label:'Countertop Filters',         desc:'Sit on your counter — no plumbing required' },
-  { id:'undersink',  icon:'🚰', label:'Under-Counter RO Systems',   desc:'Most powerful — removes 99%+ of contaminants' },
-  { id:'whole-house',icon:'🏠', label:'Whole House Systems',        desc:'Clean water at every tap, shower & appliance' },
-  { id:'shower',     icon:'🚿', label:'Shower Filters',             desc:'Remove chlorine & chemicals for healthier skin & hair' },
-];
-
-const SEV: Record<string, {color:string,label:string}> = {
-  low:      { color:'#22d3ee', label:'Within Limits' },
-  moderate: { color:'#f59e0b', label:'Elevated' },
-  high:     { color:'#ef4444', label:'Exceeds Limit' },
+const SEV: Record<string, { color: string; label: string }> = {
+  low:      { color: '#22d3ee', label: 'Within Limits' },
+  moderate: { color: '#f59e0b', label: 'Elevated' },
+  high:     { color: '#ef4444', label: 'Exceeds Limit' },
 };
 
 const STEPS = [
@@ -78,6 +59,8 @@ const STEPS = [
   'Finding water system for ZIP…',
   'Pulling violation records from SDWIS…',
   'Fetching Lead & Copper samples…',
+  'Cross-referencing UCMR5 PFAS database…',
+  'Loading EWG Tap Water Atlas…',
   'Building your report…',
 ];
 
@@ -166,6 +149,79 @@ function ProductCard({ p, highlight }: { p: any; highlight: boolean }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// CONTAMINANT ROW with expandable health context
+// ─────────────────────────────────────────────────────────────────────────────
+function ContaminantRow({ c }: { c: any }) {
+  const [expanded, setExpanded] = useState(false);
+  const sev = SEV[c.severity] || SEV.low;
+  const pct = c.level && c.limit ? Math.min((c.level / (c.limit * 1.5)) * 100, 100) : 0;
+  const hasCtx = c.healthEffects || c.healthSources || c.epaAction;
+
+  return (
+    <div style={{ marginBottom: 18 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap', gap: 6 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 15, fontWeight: 700 }}>{c.name}</span>
+          {c.source && (
+            <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#0e2233', color: '#475569', border: '1px solid #1e3a4a' }}>
+              {c.source}
+            </span>
+          )}
+          {c.isPFAS && (
+            <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#ef444415', color: '#ef4444', border: '1px solid #ef444430', fontWeight: 700 }}>
+              PFAS
+            </span>
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          {c.level != null && c.limit != null && (
+            <span style={{ fontSize: 13, color: '#475569' }}>{c.level} {c.unit} · limit {c.limit} {c.unit}</span>
+          )}
+          <span style={{ fontSize: 12, padding: '2px 8px', borderRadius: 4, background: sev.color + '22', color: sev.color }}>{sev.label}</span>
+          {hasCtx && (
+            <button onClick={() => setExpanded(x => !x)}
+              style={{ background: 'none', border: '1px solid #1e3a4a', borderRadius: 4, color: '#475569', fontSize: 11, cursor: 'pointer', padding: '2px 7px' }}>
+              {expanded ? 'Less ↑' : 'Health info ↓'}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {c.level != null && c.limit != null && (
+        <div style={{ height: 5, background: '#1e3a4a', borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}>
+          <div style={{ height: '100%', width: `${pct}%`, background: sev.color, borderRadius: 3, transition: 'width 1s ease', boxShadow: `0 0 8px ${sev.color}88` }} />
+        </div>
+      )}
+
+      {c.note && <div style={{ fontSize: 12, color: '#334155', marginTop: 3 }}>{c.note}</div>}
+
+      {expanded && hasCtx && (
+        <div style={{ marginTop: 10, padding: '12px 16px', background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {c.healthEffects && (
+            <div>
+              <div style={{ fontSize: 11, letterSpacing: 2, color: '#ef4444', marginBottom: 3, fontWeight: 700 }}>HEALTH EFFECTS</div>
+              <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>{c.healthEffects}</div>
+            </div>
+          )}
+          {c.healthSources && (
+            <div>
+              <div style={{ fontSize: 11, letterSpacing: 2, color: '#f59e0b', marginBottom: 3, fontWeight: 700 }}>COMMON SOURCES</div>
+              <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>{c.healthSources}</div>
+            </div>
+          )}
+          {c.epaAction && (
+            <div>
+              <div style={{ fontSize: 11, letterSpacing: 2, color: '#22d3ee', marginBottom: 3, fontWeight: 700 }}>EPA ACTION</div>
+              <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>{c.epaAction}</div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // PFAS HOMEPAGE AWARENESS BANNER
 // ─────────────────────────────────────────────────────────────────────────────
 function PFASAwarenessBanner() {
@@ -173,51 +229,25 @@ function PFASAwarenessBanner() {
   if (dismissed) return null;
   return (
     <div style={{ maxWidth: 680, margin: '22px auto 0', padding: '0 24px' }}>
-      <div style={{
-        background: 'linear-gradient(135deg, #1a0505 0%, #0d0f1a 100%)',
-        border: '1px solid #dc262644',
-        borderLeft: '4px solid #ef4444',
-        borderRadius: 10,
-        padding: '16px 20px',
-        display: 'flex',
-        gap: 14,
-        alignItems: 'flex-start',
-        position: 'relative',
-      }}>
-        <button
-          onClick={() => setDismissed(true)}
-          style={{ position: 'absolute', top: 10, right: 12, background: 'none', border: 'none', color: '#475569', fontSize: 16, cursor: 'pointer', lineHeight: 1, padding: 2 }}
-          aria-label="Dismiss"
-        >×</button>
-
-        <div style={{ fontSize: 24, flexShrink: 0, marginTop: 1 }}>☣️</div>
-
+      <div style={{ background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #dc262644', borderLeft: '4px solid #ef4444', borderRadius: 10, padding: '16px 20px', display: 'flex', gap: 14, alignItems: 'flex-start', position: 'relative' }}>
+        <button onClick={() => setDismissed(true)} style={{ position: 'absolute', top: 10, right: 12, background: 'none', border: 'none', color: '#475569', fontSize: 16, cursor: 'pointer' }}>×</button>
+        <div style={{ fontSize: 24, flexShrink: 0 }}>☣️</div>
         <div style={{ flex: 1, paddingRight: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 12, fontWeight: 800, color: '#ef4444', letterSpacing: 2 }}>NEW EPA PFAS RULE — 2024</span>
             <span style={{ fontSize: 11, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>ENFORCEABLE MCL</span>
           </div>
           <p style={{ margin: 0, fontSize: 14, color: '#94a3b8', lineHeight: 1.7 }}>
-            The EPA has set the first federal drinking water limits for PFAS — PFOA & PFOS at{' '}
-            <strong style={{ color: '#fbbf24' }}>4 ppt</strong>, the lowest measurable level.
-            An estimated <strong style={{ color: '#fbbf24' }}>45 million Americans</strong> have detectable
-            "forever chemicals" in their tap water. Enter your ZIP to check yours.
+            EPA set the first federal drinking water limits for PFAS — PFOA & PFOS at <strong style={{ color: '#fbbf24' }}>4 ppt</strong>, the lowest measurable level.
+            An estimated <strong style={{ color: '#fbbf24' }}>45 million Americans</strong> have detectable forever chemicals in their tap water. Enter your ZIP to check.
           </p>
-          <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a
-              href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 14px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.5 }}
-            >
+          <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <a href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`} target="_blank" rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 14px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>
               🛒 Best PFAS Filter — Waterdrop G3P800
             </a>
-            <a
-              href={`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 14px', background: 'transparent', border: '1px solid #dc262655', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}
-            >
+            <a href={`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`} target="_blank" rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 14px', background: 'transparent', border: '1px solid #dc262655', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>
               iSpring RCC7AK — $229 →
             </a>
           </div>
@@ -230,70 +260,42 @@ function PFASAwarenessBanner() {
 // ─────────────────────────────────────────────────────────────────────────────
 // PFAS IN-RESULTS ALERT
 // ─────────────────────────────────────────────────────────────────────────────
-function PFASResultAlert({ city, pfasLevel, unit }: { city: string; pfasLevel?: number; unit?: string }) {
+function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number }) {
   const [expanded, setExpanded] = useState(false);
-  const overLimit = pfasLevel != null && pfasLevel > 0.004;
-  const detected  = pfasLevel != null && pfasLevel > 0;
-  if (!detected) return null;
-
+  const overLimit = pfasLevel != null && pfasLevel > 4;
+  if (!pfasLevel || pfasLevel <= 0) return null;
   return (
-    <div style={{
-      background: overLimit ? 'linear-gradient(135deg,#200a0a,#0d0f1a)' : 'linear-gradient(135deg,#0d1208,#0d0f1a)',
-      border: `1px solid ${overLimit ? '#ef4444' : '#f59e0b'}`,
-      borderLeft: `4px solid ${overLimit ? '#ef4444' : '#f59e0b'}`,
-      borderRadius: 10,
-      padding: '16px 20px',
-      marginBottom: 20,
-    }}>
+    <div style={{ background: overLimit ? 'linear-gradient(135deg,#200a0a,#0d0f1a)' : 'linear-gradient(135deg,#0d1208,#0d0f1a)', border: `1px solid ${overLimit ? '#ef4444' : '#f59e0b'}`, borderLeft: `4px solid ${overLimit ? '#ef4444' : '#f59e0b'}`, borderRadius: 10, padding: '16px 20px', marginBottom: 20 }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-        <span style={{ fontSize: 20, flexShrink: 0 }}>{overLimit ? '🚨' : '⚠️'}</span>
+        <span style={{ fontSize: 20 }}>{overLimit ? '🚨' : '⚠️'}</span>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 13, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>
-              PFAS DETECTED — {city.toUpperCase()}
-            </span>
-            {overLimit && (
-              <span style={{ fontSize: 11, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>
-                EXCEEDS EPA MCL
-              </span>
-            )}
+            <span style={{ fontSize: 13, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>PFAS DETECTED — {city?.toUpperCase()}</span>
+            {overLimit && <span style={{ fontSize: 11, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>EXCEEDS EPA MCL</span>}
           </div>
-
           <p style={{ margin: '0 0 8px', fontSize: 14, color: '#94a3b8', lineHeight: 1.65 }}>
             {overLimit
-              ? <>PFAS measured at <strong style={{ color: '#fbbf24' }}>{(pfasLevel! * 1000).toFixed(2)} ppt</strong> — exceeds the EPA's 2024 limit of <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA/PFOS. Standard carbon filters do NOT remove PFAS. A certified reverse osmosis system is required.</>
-              : <>PFAS detected at <strong style={{ color: '#fbbf24' }}>{(pfasLevel! * 1000).toFixed(2)} ppt</strong> — below the 4 ppt EPA limit but above non-detect. These "forever chemicals" accumulate in the body over time. Filtration is recommended.</>
+              ? <>PFAS detected at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — exceeds the EPA 2024 limit of <strong style={{ color: '#fbbf24' }}>4 ppt</strong>. Standard carbon filters do NOT remove PFAS. A certified reverse osmosis system is required.</>
+              : <>PFAS detected at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — below the 4 ppt EPA limit but above non-detect. Forever chemicals accumulate in the body. Filtration is recommended.</>
             }
           </p>
-
           {expanded && (
-            <div style={{ marginBottom: 12, padding: '10px 14px', background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#64748b', lineHeight: 1.7 }}>
-              <strong style={{ color: '#94a3b8' }}>What are PFAS?</strong> Per- and polyfluoroalkyl substances (PFAS) are synthetic chemicals used in cookware coatings, firefighting foam, and food packaging. They don't break down naturally — earning the name "forever chemicals." Exposure has been linked to cancer, thyroid disruption, immune suppression, and developmental issues in children.
+            <div style={{ marginBottom: 10, padding: '10px 14px', background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#64748b', lineHeight: 1.7 }}>
+              <strong style={{ color: '#94a3b8' }}>What are PFAS?</strong> Per- and polyfluoroalkyl substances are synthetic chemicals that don't break down naturally — earning the name "forever chemicals." Linked to cancer, thyroid disruption, immune suppression, and developmental issues. They've been found in firefighting foam, non-stick cookware, food packaging, and industrial sites.
             </div>
           )}
-
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a
-              href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 14px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}
-            >
+            <a href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`} target="_blank" rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 14px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>
               🛒 Waterdrop G3P800 — PFAS &gt;99% →
             </a>
-            <a
-              href={`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 14px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}
-            >
+            <a href={`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`} target="_blank" rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 14px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>
               iSpring RCC7AK — PFAS &gt;96% →
             </a>
-            <button
-              onClick={() => setExpanded(x => !x)}
-              style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
-            >
-              {expanded ? 'Less info ↑' : 'What are PFAS? ↓'}
+            <button onClick={() => setExpanded(x => !x)}
+              style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>
+              {expanded ? 'Less ↑' : 'What are PFAS? ↓'}
             </button>
           </div>
         </div>
@@ -303,32 +305,137 @@ function PFASResultAlert({ city, pfasLevel, unit }: { city: string; pfasLevel?: 
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// DATA SOURCES BADGE BAR
+// ─────────────────────────────────────────────────────────────────────────────
+function DataSourcesBadges({ sources }: { sources: string[] }) {
+  const meta: Record<string, { color: string; icon: string }> = {
+    'EPA SDWIS':          { color: '#0891b2', icon: '🏛️' },
+    'EPA UCMR5 PFAS':     { color: '#ef4444', icon: '🧪' },
+    'EWG Tap Water Atlas':{ color: '#d97706', icon: '🌿' },
+    'USGS NWIS':          { color: '#7c3aed', icon: '💧' },
+    'UCMR5 Lithium':      { color: '#22d3ee', icon: '⚗️' },
+  };
+  return (
+    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 18 }}>
+      {sources.map(s => {
+        const m = meta[s] || { color: '#475569', icon: '📊' };
+        return (
+          <span key={s} style={{ fontSize: 11, padding: '3px 8px', borderRadius: 4, background: m.color + '15', border: `1px solid ${m.color}40`, color: m.color, fontWeight: 700 }}>
+            {m.icon} {s}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NATIONAL PERCENTILE BAR
+// ─────────────────────────────────────────────────────────────────────────────
+function NationalPercentile({ pct, score }: { pct: number; score: number }) {
+  const [anim, setAnim] = useState(0);
+  useEffect(() => { const t = setTimeout(() => setAnim(pct), 400); return () => clearTimeout(t); }, [pct]);
+  const color = pct >= 75 ? '#22d3ee' : pct >= 50 ? '#f59e0b' : '#ef4444';
+  return (
+    <div style={{ background: '#060e17', border: '1px solid #0e2233', borderRadius: 8, padding: '14px 18px', marginBottom: 20 }}>
+      <div style={{ fontSize: 11, letterSpacing: 2, color: '#475569', marginBottom: 8 }}>NATIONAL WATER QUALITY RANKING</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ height: 8, background: '#1e3a4a', borderRadius: 4, overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${anim}%`, background: `linear-gradient(90deg, #ef4444, #f59e0b, #22d3ee)`, borderRadius: 4, transition: 'width 1.2s ease', boxShadow: `0 0 10px ${color}66` }} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, fontSize: 11, color: '#334155' }}>
+            <span>Worst</span><span>Average</span><span>Best</span>
+          </div>
+        </div>
+        <div style={{ textAlign: 'right', minWidth: 90 }}>
+          <div style={{ fontSize: 22, fontWeight: 900, color }}>{anim}<span style={{ fontSize: 14, color: '#475569' }}>th %ile</span></div>
+          <div style={{ fontSize: 11, color: '#334155' }}>vs all US water</div>
+        </div>
+      </div>
+      <div style={{ marginTop: 10, fontSize: 13, color: '#475569', lineHeight: 1.6 }}>
+        {pct >= 80
+          ? '✅ Your water quality ranks in the top 20% nationally.'
+          : pct >= 60
+          ? '🟡 Your water ranks above average but has room for improvement.'
+          : pct >= 40
+          ? '🟠 Your water quality is below the national average.'
+          : '🔴 Your water ranks in the bottom 40% of US public water systems.'}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// UCMR5 PFAS BREAKDOWN PANEL
+// ─────────────────────────────────────────────────────────────────────────────
+function UCMRPanel({ ucmr5, pfasContaminants }: { ucmr5: any; pfasContaminants: any[] }) {
+  if (!ucmr5 || pfasContaminants.length === 0) return null;
+  return (
+    <div style={{ background: '#060e17', border: '1px solid #ef444430', borderRadius: 8, padding: '16px 18px', marginBottom: 20 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 12, letterSpacing: 2, color: '#ef4444', fontWeight: 700 }}>EPA UCMR5 — PFAS COMPOUND BREAKDOWN</span>
+        <span style={{ fontSize: 11, padding: '1px 6px', background: '#ef444415', border: '1px solid #ef444430', borderRadius: 3, color: '#ef4444' }}>
+          {ucmr5.totalAnalytes} analytes detected · {ucmr5.overMCL} over MCL
+        </span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {pfasContaminants.slice(0, 8).map((p: any) => {
+          const barPct = p.limit ? Math.min((p.level / (p.limit * 1.5)) * 100, 100) : Math.min(p.level / 50 * 100, 100);
+          const col = p.severity === 'high' ? '#ef4444' : p.severity === 'moderate' ? '#f59e0b' : '#22d3ee';
+          return (
+            <div key={p.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 140, fontSize: 11, color: p.severity === 'high' ? '#fca5a5' : '#94a3b8', flexShrink: 0, lineHeight: 1.3 }}>{p.analyteName || p.name}</div>
+              <div style={{ flex: 1, height: 4, background: '#1e3a4a', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${barPct}%`, background: col, borderRadius: 2 }} />
+              </div>
+              <div style={{ width: 70, fontSize: 11, color: col, textAlign: 'right', flexShrink: 0 }}>
+                {p.level} ppt{p.limit ? ` / ${p.limit}` : ''}
+              </div>
+              {p.severity === 'high' && (
+                <span style={{ fontSize: 10, color: '#ef4444', flexShrink: 0 }}>⚠ OVER MCL</span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {pfasContaminants.length > 8 && (
+        <div style={{ marginTop: 10, fontSize: 12, color: '#334155' }}>+ {pfasContaminants.length - 8} more PFAS compounds detected</div>
+      )}
+      <div style={{ marginTop: 12, fontSize: 12, color: '#334155' }}>
+        Source: EPA Unregulated Contaminant Monitoring Rule (UCMR5) 2023–2025 — covers systems serving 3,300+ people
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────────────
 export default function WaterCheckup() {
-  const [zip, setZip]               = useState('');
-  const [loading, setLoading]       = useState(false);
-  const [step, setStep]             = useState(0);
-  const [data, setData]             = useState<any>(null);
-  const [error, setError]           = useState<string | null>(null);
-  const [tab, setTab]               = useState('report');
-  const [showEmail, setShowEmail]   = useState(false);
-  const [email, setEmail]           = useState('');
-  const [emailAlert, setEmailAlert] = useState(false);
-  const [emailSent, setEmailSent]   = useState(false);
-  const [years, setYears]           = useState(5);
-  const [ppl, setPpl]               = useState(4);
-  const [ftype, setFtype]           = useState('iSpring RCC7AK');
-  const [installers, setInstallers] = useState<any[]>([]);
-  const [instLoading, setInstLoading] = useState(false);
+  const [zip, setZip]                   = useState('');
+  const [loading, setLoading]           = useState(false);
+  const [step, setStep]                 = useState(0);
+  const [data, setData]                 = useState<any>(null);
+  const [error, setError]               = useState<string | null>(null);
+  const [tab, setTab]                   = useState('report');
+  const [showEmail, setShowEmail]       = useState(false);
+  const [email, setEmail]               = useState('');
+  const [emailAlert, setEmailAlert]     = useState(false);
+  const [emailSent, setEmailSent]       = useState(false);
+  const [years, setYears]               = useState(5);
+  const [ppl, setPpl]                   = useState(4);
+  const [ftype, setFtype]               = useState('iSpring RCC7AK');
+  const [installers, setInstallers]     = useState<any[]>([]);
+  const [instLoading, setInstLoading]   = useState(false);
   const [productFilter, setProductFilter] = useState('all');
-  const [quoted, setQuoted]         = useState<Record<string, boolean>>({});
+  const [quoted, setQuoted]             = useState<Record<string, boolean>>({});
 
   const search = async () => {
     if (zip.length !== 5 || loading) return;
     setLoading(true); setError(null); setData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
     let s = 0;
-    const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 900);
+    const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 700);
     try {
       const result = await fetchWaterData(zip);
       clearInterval(tick);
@@ -345,12 +452,20 @@ export default function WaterCheckup() {
 
   const loadInstallers = async (z: string) => {
     setInstLoading(true);
-    try { const list = await findInstallers(z); setInstallers(list); } catch {}
+    try { setInstallers(await findInstallers(z)); } catch {}
     finally { setInstLoading(false); }
   };
 
-  // Always recommend one top pick per category — chlorine, taste & odor addressed in every category
-  const getRecommended = () => CATEGORIES.map(cat => PRODUCTS.find((p: any) => p.category === cat.id)).filter(Boolean);
+  const getRecommended = () => {
+    if (!data?.contaminants?.length) return PRODUCTS.filter((p: any) => !p.wholeHouse && !p.pitcher).slice(0, 3);
+    const names = data.contaminants.map((c: any) => c.name);
+    // Also check for PFAS keyword
+    const hasPFAS = data.contaminants.some((c: any) => c.isPFAS || c.name?.includes('PFAS') || c.name?.includes('PFOA') || c.name?.includes('PFOS'));
+    return PRODUCTS.map(p => ({
+      ...p,
+      m: p.bestFor.filter((b: string) => names.some((n: string) => n.includes(b))).length + (hasPFAS && p.bestFor.includes('PFAS') ? 2 : 0),
+    })).sort((a, b) => b.m - a.m).slice(0, 3);
+  };
 
   const prod = PRODUCTS.find(p => p.name === ftype) || PRODUCTS[1];
   const chartData = Array.from({ length: years + 1 }, (_, i) => ({
@@ -358,8 +473,8 @@ export default function WaterCheckup() {
     filter:  Math.round(prod.price + prod.filterCostPerYear * i),
     bottled: Math.round(ppl * 32 * 12 * i),
   }));
-  const recommended = getRecommended();
-  const filteredProducts = PRODUCTS.filter(p => {
+  const recommended   = getRecommended();
+  const filteredProds = PRODUCTS.filter(p => {
     if (productFilter === 'all') return true;
     if (productFilter === 'ro') return p.type.includes('RO') && !(p as any).wholeHouse;
     if (productFilter === 'tankless') return p.tankless;
@@ -369,84 +484,49 @@ export default function WaterCheckup() {
   });
   const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
 
-  // Detect PFAS in result contaminants
-  const pfasContaminant = data?.contaminants?.find((c: any) =>
-    c.name?.toUpperCase().includes('PFAS') ||
-    c.name?.toUpperCase().includes('PFOA') ||
-    c.name?.toUpperCase().includes('PFOS')
-  );
-  const pfasLevel = pfasContaminant?.level ?? data?.pfasLevel ?? null;
-  const pfasUnit  = pfasContaminant?.unit ?? 'μg/L';
+  // PFAS level for banner — use UCMR5 max if available, otherwise find in contaminants
+  const pfasLevel = data?.ucmr5?.maxPfasPpt ??
+    data?.contaminants?.find((c: any) => c.isPFAS || c.name?.includes('PFAS'))?.level ?? null;
+
+  const pfasContaminants = data?.contaminants?.filter((c: any) => c.isPFAS) ?? [];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#050e17', fontFamily: "inherit", color: '#e2e8f0', fontWeight: 400 }}>
+    <div style={{ minHeight: '100vh', background: '#050e17', fontFamily: "'Courier New', monospace", color: '#e2e8f0', fontWeight: 500 }}>
 
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid #0e2233', padding: '16px 28px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ width: 30, height: 30, borderRadius: 7, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>💧</div>
         <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: 2, color: '#22d3ee' }}>WATER<span style={{ color: '#e2e8f0' }}>CHECKUP</span></span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
-          <span style={{ fontSize: 12, padding: '2px 7px', borderRadius: 4, background: '#d97706', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>WQA GOLD SEAL</span>
-          <span style={{ fontSize: 12, padding: '2px 7px', borderRadius: 4, background: '#0891b2', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>NSF CERTIFIED</span>
-          <span style={{ fontSize: 12, color: '#334155', marginLeft: 4 }}>Live EPA SDWIS Data</span>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: '#d97706', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>WQA GOLD SEAL</span>
+          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: '#0891b2', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>NSF CERTIFIED</span>
+          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: '#7c3aed', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>EPA · EWG · USGS · UCMR5</span>
         </div>
       </div>
 
       {/* SEARCH */}
-      <div style={{ maxWidth: 720, margin: '52px auto 0', padding: '0 24px', textAlign: 'center' }}>
-
-        {/* Expert badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#07131e', border: '1px solid #0e2a3d', borderRadius: 30, padding: '6px 16px', marginBottom: 22 }}>
-          <span style={{ fontSize: 16 }}>🏅</span>
-          <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>Designed by a water expert with <strong style={{ color: '#22d3ee' }}>40+ years of experience</strong></span>
-        </div>
-
-        <h1 style={{ fontSize: 40, fontWeight: 900, margin: '0 0 16px', lineHeight: 1.15, color: '#f1f5f9' }}>
-          See What's Really in Your<br />
-          <span style={{ color: '#22d3ee' }}>Town's Tap Water</span>
-        </h1>
-
-        <p style={{ color: '#94a3b8', marginBottom: 12, fontSize: 18, fontWeight: 400, lineHeight: 1.7, maxWidth: 580, margin: '0 auto 16px' }}>
-          Get personalized recommendations on top-rated water filters for <strong style={{ color: '#e2e8f0' }}>drinking, whole-house & showering</strong> — plus find local installers near you. All in one place.
-        </p>
-
-        <p style={{ color: '#475569', fontSize: 14, marginBottom: 32, fontStyle: 'italic' }}>
-          The most comprehensive water quality resource ever built — free, instant, and powered by live EPA data.
-        </p>
-
-        {/* Feature pills */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginBottom: 32 }}>
-          {[
-            { icon: '🔬', text: 'Live EPA Water Data' },
-            { icon: '🚿', text: 'Drinking, Whole-House & Shower' },
-            { icon: '🛒', text: 'Top-Rated Certified Filters' },
-            { icon: '🔧', text: 'DIY or Local Installers' },
-          ].map(f => (
-            <div key={f.text} style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#07131e', border: '1px solid #0e2233', borderRadius: 20, padding: '6px 14px', fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>
-              <span>{f.icon}</span><span>{f.text}</span>
-            </div>
-          ))}
-        </div>
-
+      <div style={{ maxWidth: 680, margin: '44px auto 0', padding: '0 24px', textAlign: 'center' }}>
+        <div style={{ fontSize: 14, letterSpacing: 4, color: '#22d3ee', marginBottom: 10, fontWeight: 700 }}>EPA SDWIS · UCMR5 PFAS · EWG TAP WATER ATLAS · USGS NWIS</div>
+        <h1 style={{ fontSize: 34, fontWeight: 900, margin: '0 0 8px', lineHeight: 1.1 }}>Enter Your ZIP Code</h1>
+        <p style={{ color: '#94a3b8', marginBottom: 28, fontSize: 17, fontWeight: 600 }}>The most comprehensive water quality report in the US — 4 data sources, all 50 states</p>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input
             value={zip}
             onChange={e => setZip(e.target.value.replace(/\D/g, '').slice(0, 5))}
             onKeyDown={e => e.key === 'Enter' && search()}
-            placeholder="Enter ZIP Code"
+            placeholder="e.g. 02169"
             maxLength={5}
-            style={{ width: 180, padding: '14px 18px', fontSize: 22, letterSpacing: 4, background: '#0a1929', border: '2px solid #1e3a4a', borderRadius: 10, color: '#22d3ee', outline: 'none', textAlign: 'center', fontFamily: 'inherit' }}
+            style={{ width: 150, padding: '12px 16px', fontSize: 20, letterSpacing: 4, background: '#0a1929', border: '1px solid #1e3a4a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center' }}
           />
           <button onClick={search} disabled={zip.length !== 5 || loading} style={{
-            padding: '14px 28px', background: zip.length === 5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0e2233',
-            border: 'none', borderRadius: 10, color: zip.length === 5 && !loading ? '#fff' : '#334155',
-            fontSize: 16, fontWeight: 700, cursor: zip.length === 5 && !loading ? 'pointer' : 'default', transition: 'all 0.2s',
-            boxShadow: zip.length === 5 && !loading ? '0 4px 20px #0891b244' : 'none',
+            padding: '12px 24px', background: zip.length === 5 && !loading ? '#0891b2' : '#0e2233',
+            border: 'none', borderRadius: 8, color: zip.length === 5 && !loading ? '#fff' : '#334155',
+            fontSize: 15, fontWeight: 700, letterSpacing: 2, cursor: zip.length === 5 && !loading ? 'pointer' : 'default', transition: 'all 0.2s',
           }}>
-            {loading ? 'Checking your water…' : 'Check My Water →'}
+            {loading ? 'QUERYING…' : 'ANALYZE →'}
           </button>
         </div>
-        <div style={{ marginTop: 12, fontSize: 13, color: '#334155' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210</div>
+        <div style={{ marginTop: 10, fontSize: 13, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
 
         {error && (
           <div style={{ marginTop: 20, padding: '14px 18px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
@@ -456,80 +536,28 @@ export default function WaterCheckup() {
         )}
       </div>
 
-      {/* PRODUCT SHOWCASE — home screen only, categorized */}
+      {/* PFAS AWARENESS BANNER */}
+      {!data && !loading && <PFASAwarenessBanner />}
+
+      {/* DATA COVERAGE STATS — homepage only */}
       {!data && !loading && (
-        <div style={{ maxWidth: 1100, margin: '60px auto 60px', padding: '0 20px' }}>
-
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <div style={{ fontSize: 13, letterSpacing: 2, color: '#0891b2', fontWeight: 700, marginBottom: 10 }}>NSF & WQA GOLD SEAL CERTIFIED</div>
-            <div style={{ fontSize: 28, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Shop by Filter Type</div>
-            <div style={{ fontSize: 15, color: '#64748b', maxWidth: 520, margin: '0 auto' }}>
-              Browse our expert-curated picks across every category — enter your ZIP above to see which ones match your water quality
-            </div>
-          </div>
-
-          {CATEGORIES.map(cat => {
-            const catProducts = PRODUCTS.filter((p: any) => p.category === cat.id);
-            return (
-              <div key={cat.id} style={{ marginBottom: 52 }}>
-                {/* Category header */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: '1px solid #0e2233' }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 10, background: '#07131e', border: '1px solid #0e2233', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>{cat.icon}</div>
-                  <div>
-                    <div style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.2 }}>{cat.label}</div>
-                    <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{cat.desc}</div>
-                  </div>
-                </div>
-
-                {/* Product cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 16 }}>
-                  {catProducts.map((p: any, i: number) => (
-                    <div key={p.id} style={{ background: '#060e17', border: `1px solid ${i === 0 ? '#0891b244' : '#0e2233'}`, borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                      {/* Image */}
-                      <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
-                        <img
-                          src={p.img} alt={p.name}
-                          style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }}
-                          onError={(e: any) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-                        />
-                        <div style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: 40 }}>💧</div>
-                        {i === 0 && (
-                          <div style={{ position: 'absolute', top: 8, left: 8, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4, letterSpacing: 1 }}>TOP PICK</div>
-                        )}
-                      </div>
-
-                      {/* Info */}
-                      <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 5 }}>
-                        <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 1 }}>{p.brand.toUpperCase()}</div>
-                        <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.3 }}>{p.name}</div>
-                        <div style={{ fontSize: 12, color: '#64748b' }}>{p.type}</div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 2 }}>
-                          <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
-                          <span style={{ fontSize: 12, color: '#64748b' }}>{p.rating} ({p.reviews.toLocaleString()})</span>
-                        </div>
-                        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 2 }}>
-                          {p.removes.slice(0, 2).map((r: string) => (
-                            <span key={r} style={{ fontSize: 11, padding: '2px 6px', borderRadius: 4, background: '#051a0a', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>
-                          ))}
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 12, borderTop: '1px solid #0e2233' }}>
-                          <span style={{ fontSize: 22, fontWeight: 800, color: '#22d3ee' }}>${p.price}</span>
-                          <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#f59e0b', borderRadius: 7, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>
-                            Buy on Amazon →
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        <div style={{ maxWidth: 680, margin: '28px auto 0', padding: '0 24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(130px,1fr))', gap: 12 }}>
+            {[
+              { v: '6,151', l: 'Water Systems', s: 'EPA UCMR5 PFAS', c: '#ef4444' },
+              { v: '50', l: 'States Covered', s: 'EPA SDWIS', c: '#22d3ee' },
+              { v: '80+', l: 'Major Metro Areas', s: 'EWG Tap Water Atlas', c: '#d97706' },
+              { v: '29', l: 'PFAS Analytes', s: 'EPA UCMR5 2023–25', c: '#7c3aed' },
+            ].map(s => (
+              <div key={s.l} style={{ background: '#0a1929', border: `1px solid ${s.c}30`, borderRadius: 8, padding: '14px 16px', textAlign: 'center' }}>
+                <div style={{ fontSize: 24, fontWeight: 900, color: s.c }}>{s.v}</div>
+                <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>{s.l}</div>
+                <div style={{ fontSize: 10, color: '#334155', marginTop: 3 }}>{s.s}</div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       )}
-
-      {/* PFAS AWARENESS BANNER — shown on homepage when no results yet */}
-      {!data && !loading && <PFASAwarenessBanner />}
 
       {/* LOADER */}
       {loading && (
@@ -537,79 +565,85 @@ export default function WaterCheckup() {
           {STEPS.map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
               <span style={{ color: i < step ? '#22d3ee' : i === step ? '#f59e0b' : '#1e3a4a', fontSize: 16 }}>{i < step ? '✓' : i === step ? '▶' : '○'}</span>
-              <span style={{ fontSize: 15, color: i === step ? '#e2e8f0' : '#475569' }}>{s}</span>
+              <span style={{ fontSize: 14, color: i === step ? '#e2e8f0' : '#475569' }}>{s}</span>
             </div>
           ))}
-          <div style={{ marginTop: 12, padding: '8px 12px', background: '#060e17', borderRadius: 6, fontSize: 13, color: '#334155', textAlign: 'center' }}>
-            Live query to EPA Envirofacts — real data, no estimates
+          <div style={{ marginTop: 12, padding: '8px 12px', background: '#060e17', borderRadius: 6, fontSize: 12, color: '#334155', textAlign: 'center' }}>
+            Live query to EPA · UCMR5 PFAS database · EWG Tap Water Atlas
           </div>
         </div>
       )}
 
       {/* RESULTS */}
       {data && !loading && (
-        <div style={{ maxWidth: 900, margin: '36px auto 60px', padding: '0 20px' }}>
+        <div style={{ maxWidth: 960, margin: '36px auto 60px', padding: '0 20px' }}>
 
           {/* SUMMARY HEADER */}
           <div style={{ background: '#0a1929', border: '1px solid #0e2233', borderRadius: '12px 12px 0 0', padding: '22px 26px', display: 'flex', alignItems: 'flex-start', gap: 24, flexWrap: 'wrap' }}>
             <ScoreDial score={data.score} grade={data.grade} />
             <div style={{ flex: 1, minWidth: 220 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 19, fontWeight: 800 }}>{data.systemName}</span>
-                {data.openViolations > 0 && <span style={{ fontSize: 13, padding: '3px 8px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
+                <span style={{ fontSize: 18, fontWeight: 800 }}>{data.systemName}</span>
+                {data.openViolations > 0 && <span style={{ fontSize: 12, padding: '2px 8px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
+                {data.pfasAboveMcl > 0 && <span style={{ fontSize: 12, padding: '2px 8px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>PFAS ⚠</span>}
               </div>
-              <div style={{ fontSize: 15, color: '#475569', marginBottom: 2 }}>{data.city} · PWSID: {data.pwsid}</div>
-              <div style={{ fontSize: 14, color: '#334155', marginBottom: 10 }}>
-                {data.sourceType}{data.population ? ` · ${data.population} served` : ''} · {data.dataSource}
+              <div style={{ fontSize: 14, color: '#475569', marginBottom: 2 }}>{data.city} · PWSID: {data.pwsid}</div>
+              <div style={{ fontSize: 13, color: '#334155', marginBottom: 10 }}>
+                {data.sourceType}{data.population ? ` · Serves ${data.population}` : ''} · {data.stateCode}
               </div>
-              {data.summary && <div style={{ fontSize: 15, color: '#94a3b8', fontStyle: 'italic', marginBottom: 14, lineHeight: 1.6 }}>"{data.summary}"</div>}
-              <div style={{ display: 'flex', gap: 20 }}>
+              {data.summary && <div style={{ fontSize: 14, color: '#94a3b8', fontStyle: 'italic', marginBottom: 14, lineHeight: 1.6 }}>"{data.summary}"</div>}
+              <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
                 {[
                   { l: 'VIOLATIONS', v: data.totalViolations, c: data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
                   { l: 'OPEN',       v: data.openViolations,  c: data.openViolations  > 0 ? '#ef4444' : '#22d3ee' },
-                  { l: 'SCORE',      v: data.score,           c: scoreColor },
+                  { l: 'PFAS',       v: data.pfasCount || 0,  c: data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
+                  { l: 'SCORE',      v: data.score,            c: scoreColor },
                 ].map(s => (
                   <div key={s.l} style={{ textAlign: 'center' }}>
                     <div style={{ fontSize: 22, fontWeight: 800, color: s.c }}>{s.v}</div>
-                    <div style={{ fontSize: 12, color: '#334155', letterSpacing: 1 }}>{s.l}</div>
+                    <div style={{ fontSize: 11, color: '#334155', letterSpacing: 1 }}>{s.l}</div>
                   </div>
                 ))}
               </div>
             </div>
-            <button onClick={() => setShowEmail(true)} style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 14, letterSpacing: 1, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ GET REPORT</button>
+            <button onClick={() => setShowEmail(true)} style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 13, letterSpacing: 1, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ GET REPORT</button>
           </div>
 
           {/* TABS */}
           <div style={{ display: 'flex', background: '#07111a', borderLeft: '1px solid #0e2233', borderRight: '1px solid #0e2233', overflowX: 'auto' }}>
-            {[['report','📊 Water Report'],['products','🛒 Products'],['cost','💰 Cost Calc'],['installers','🔧 Installers']].map(([id, label]) => (
-              <button key={id} onClick={() => setTab(id)} style={{ padding: '11px 16px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab === id ? '2px solid #0891b2' : '2px solid transparent', color: tab === id ? '#22d3ee' : '#475569', fontSize: 14, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
+            {[['report','📊 Water Report'],['pfas','☣️ PFAS Detail'],['products','🛒 Products'],['cost','💰 Cost Calc'],['installers','🔧 Installers']].map(([id, label]) => (
+              <button key={id} onClick={() => setTab(id)} style={{ padding: '11px 16px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab === id ? '2px solid #0891b2' : '2px solid transparent', color: tab === id ? '#22d3ee' : '#475569', fontSize: 13, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
             ))}
           </div>
 
           {/* TAB: WATER REPORT */}
           {tab === 'report' && (
             <div style={{ background: '#0a1929', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, padding: '8px 14px', background: '#051a0a', border: '1px solid #22d3ee22', borderRadius: 6 }}>
-                <span style={{ fontSize: 15 }}>🟢</span>
-                <span style={{ fontSize: 14, color: '#22d3ee', fontWeight: 700 }}>LIVE EPA DATA</span>
-                <span style={{ fontSize: 13, color: '#475569' }}>Direct from EPA SDWIS Envirofacts API · Updated quarterly by EPA</span>
-              </div>
 
-              {/* PFAS IN-RESULTS ALERT */}
-              <PFASResultAlert city={data.city} pfasLevel={pfasLevel} unit={pfasUnit} />
+              {/* Data sources */}
+              {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
 
+              {/* National percentile */}
+              {data.nationalPercentile != null && (
+                <NationalPercentile pct={data.nationalPercentile} score={data.score} />
+              )}
+
+              {/* PFAS in-results alert */}
+              <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
+
+              {/* Violations */}
               {data.violations?.length > 0 ? (
                 <>
-                  <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', marginBottom: 12 }}>VIOLATION HISTORY — EPA SDWIS</div>
+                  <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2', marginBottom: 12 }}>VIOLATION HISTORY — EPA SDWIS</div>
                   <div style={{ background: '#060e17', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 26, overflow: 'hidden' }}>
                     {data.violations.map((v: any, i: number) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '10px 16px', borderBottom: i < data.violations.length - 1 ? '1px solid #0a1929' : 'none', gap: 12 }}>
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: 14, color: '#94a3b8' }}>{v.rule}</div>
-                          {v.contaminant && <div style={{ fontSize: 13, color: '#475569', marginTop: 2 }}>{v.contaminant}</div>}
+                          <div style={{ fontSize: 13, color: '#94a3b8' }}>{v.rule}</div>
+                          {v.contaminant && <div style={{ fontSize: 12, color: '#475569', marginTop: 2 }}>{v.contaminant}</div>}
                         </div>
-                        <div style={{ fontSize: 14, color: '#475569', minWidth: 36 }}>{v.year}</div>
-                        <div style={{ fontSize: 13, fontWeight: 700, color: v.statusColor || '#94a3b8', minWidth: 70, textAlign: 'right' }}>{v.status}</div>
+                        <div style={{ fontSize: 13, color: '#475569', minWidth: 36 }}>{v.year}</div>
+                        <div style={{ fontSize: 12, fontWeight: 700, color: v.statusColor || '#94a3b8', minWidth: 70, textAlign: 'right' }}>{v.status}</div>
                       </div>
                     ))}
                   </div>
@@ -618,59 +652,81 @@ export default function WaterCheckup() {
                 <div style={{ background: '#051a0a', border: '1px solid #22d3ee22', borderRadius: 8, padding: '14px 18px', marginBottom: 22, display: 'flex', gap: 12, alignItems: 'center' }}>
                   <span style={{ fontSize: 18 }}>✅</span>
                   <div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div>
-                    <div style={{ fontSize: 14, color: '#475569', marginTop: 2 }}>EPA SDWIS shows no violations for this water system.</div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div>
+                    <div style={{ fontSize: 13, color: '#475569', marginTop: 2 }}>EPA SDWIS shows no violations for this water system.</div>
                   </div>
                 </div>
               )}
 
+              {/* Contaminants with health context */}
               {data.contaminants?.length > 0 && (
                 <>
-                  <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', marginBottom: 16 }}>CONTAMINANT DATA — REAL SAMPLES</div>
-                  {data.contaminants.map((c: any) => {
-                    const sev = SEV[c.severity] || SEV.low;
-                    const pct = c.level && c.limit ? Math.min((c.level / (c.limit * 1.5)) * 100, 100) : 0;
-                    return (
-                      <div key={c.name} style={{ marginBottom: 20 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, flexWrap: 'wrap', gap: 6 }}>
-                          <span style={{ fontSize: 16, fontWeight: 700 }}>{c.name}</span>
-                          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                            {c.level && c.limit && <span style={{ fontSize: 14, color: '#475569' }}>{c.level} {c.unit} · limit {c.limit} {c.unit}</span>}
-                            <span style={{ fontSize: 13, padding: '2px 8px', borderRadius: 4, background: sev.color + '22', color: sev.color }}>{sev.label}</span>
-                          </div>
-                        </div>
-                        {c.level && c.limit && (
-                          <div style={{ height: 5, background: '#1e3a4a', borderRadius: 3, overflow: 'hidden' }}>
-                            <div style={{ height: '100%', width: `${pct}%`, background: sev.color, borderRadius: 3, transition: 'width 1s ease', boxShadow: `0 0 8px ${sev.color}88` }} />
-                          </div>
-                        )}
-                        {c.note && <div style={{ fontSize: 13, color: '#475569', marginTop: 4 }}>{c.note}</div>}
-                      </div>
-                    );
-                  })}
+                  <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2', marginBottom: 16 }}>CONTAMINANT ANALYSIS — CLICK ROWS FOR HEALTH INFO</div>
+                  {data.contaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
                 </>
               )}
 
-              <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', margin: '26px 0 6px' }}>RECOMMENDED FILTERS FOR YOUR WATER</div>
-              <div style={{ fontSize: 13, color: '#475569', marginBottom: 18 }}>Regardless of your results, every home benefits from protection against chlorine, taste & odor issues. Here's our top pick in each category:</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 14 }}>
-                {recommended.map((p: any) => {
-                  const cat = CATEGORIES.find(c => c.id === p.category);
-                  return (
-                    <div key={p.id}>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 5 }}>
-                        <span>{cat?.icon}</span><span>{cat?.label}</span>
-                      </div>
-                      <ProductCard p={p} highlight={false} />
+              {/* USGS source water data */}
+              {data.usgs?.sites?.length > 0 && (
+                <div style={{ background: '#060e17', border: '1px solid #7c3aed30', borderRadius: 8, padding: '14px 18px', marginBottom: 20 }}>
+                  <div style={{ fontSize: 11, letterSpacing: 2, color: '#7c3aed', marginBottom: 10, fontWeight: 700 }}>⚗️ USGS NWIS — SOURCE WATER CONDITIONS</div>
+                  {data.usgs.sites.map((s: any, i: number) => (
+                    <div key={i} style={{ fontSize: 13, color: '#64748b', marginBottom: 4 }}>
+                      <span style={{ color: '#94a3b8' }}>{s.name}:</span> {s.param} — <span style={{ color: '#22d3ee' }}>{s.value} {s.unit}</span>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
+              )}
+
+              {/* Recommended products */}
+              <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2', margin: '26px 0 14px' }}>RECOMMENDED FILTERS FOR YOUR WATER</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 14 }}>
+                {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} />)}
               </div>
               <div style={{ marginTop: 12, textAlign: 'center' }}>
-                <button onClick={() => setTab('products')} style={{ padding: '8px 18px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 14, cursor: 'pointer', letterSpacing: 1 }}>
+                <button onClick={() => setTab('products')} style={{ padding: '8px 18px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 13, cursor: 'pointer', letterSpacing: 1 }}>
                   View All 7 Products →
                 </button>
               </div>
+            </div>
+          )}
+
+          {/* TAB: PFAS DETAIL */}
+          {tab === 'pfas' && (
+            <div style={{ background: '#0a1929', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
+              <div style={{ marginBottom: 20, padding: '14px 18px', background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #ef444440', borderRadius: 8 }}>
+                <div style={{ fontSize: 12, letterSpacing: 3, color: '#ef4444', marginBottom: 8, fontWeight: 700 }}>☣️ ABOUT PFAS — FOREVER CHEMICALS</div>
+                <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>
+                  Per- and polyfluoroalkyl substances (PFAS) are a family of ~12,000 synthetic chemicals that don't break down in the environment or the human body. Linked to kidney cancer, testicular cancer, thyroid disease, immune suppression, elevated cholesterol, and developmental harm to fetuses. The EPA set the first federal MCL in 2024: <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA and PFOS — the lowest measurable level, signaling zero is the health goal.
+                </p>
+              </div>
+
+              {pfasContaminants.length === 0 ? (
+                <div style={{ padding: '24px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 24, marginBottom: 8 }}>✅</div>
+                  <div style={{ fontSize: 16, color: '#22d3ee', fontWeight: 700, marginBottom: 6 }}>No PFAS detected via UCMR5</div>
+                  <div style={{ fontSize: 14, color: '#475569' }}>This water system had no measurable PFAS in EPA's 2023–2025 monitoring. Note: UCMR5 covers systems serving 3,300+ people. Smaller systems were not required to test.</div>
+                </div>
+              ) : (
+                <>
+                  {data.ucmr5 && <UCMRPanel ucmr5={data.ucmr5} pfasContaminants={pfasContaminants} />}
+
+                  <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2', marginBottom: 16 }}>DETECTED PFAS COMPOUNDS — HEALTH CONTEXT</div>
+                  {pfasContaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
+
+                  <div style={{ marginTop: 20, padding: '14px 18px', background: '#060e17', border: '1px solid #f59e0b30', borderRadius: 8 }}>
+                    <div style={{ fontSize: 12, letterSpacing: 2, color: '#f59e0b', marginBottom: 8, fontWeight: 700 }}>⚗️ PFAS MIXTURE RULE — 2024</div>
+                    <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.7, margin: 0 }}>
+                      For PFNA, PFHxS, HFPO-DA, and PFBS together, EPA applies a Hazard Index rule: the sum of each compound's concentration divided by its MCL cannot exceed 1. Even if each is individually below its limit, combinations may still violate the standard.
+                    </p>
+                  </div>
+
+                  <div style={{ marginTop: 16, fontSize: 12, letterSpacing: 3, color: '#0891b2', marginBottom: 14 }}>PFAS-CERTIFIED FILTERS</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 14 }}>
+                    {PRODUCTS.filter(p => p.bestFor.includes('PFAS')).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 3} />)}
+                  </div>
+                </>
+              )}
             </div>
           )}
 
@@ -678,15 +734,15 @@ export default function WaterCheckup() {
           {tab === 'products' && (
             <div style={{ background: '#0a1929', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18, flexWrap: 'wrap', gap: 10 }}>
-                <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2' }}>NSF & WQA GOLD SEAL CERTIFIED — ON AMAZON</div>
+                <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2' }}>NSF & WQA GOLD SEAL CERTIFIED — AMAZON AFFILIATE</div>
                 <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                   {[['all','All'],['ro','Under-Sink RO'],['tankless','Tankless'],['whole','Whole House'],['pitcher','Pitcher']].map(([id, label]) => (
-                    <button key={id} onClick={() => setProductFilter(id)} style={{ padding: '4px 10px', background: productFilter === id ? '#0891b2' : '#060e17', border: `1px solid ${productFilter === id ? '#0891b2' : '#0e2233'}`, borderRadius: 4, color: productFilter === id ? '#fff' : '#475569', fontSize: 13, cursor: 'pointer', fontWeight: productFilter === id ? 700 : 400 }}>{label}</button>
+                    <button key={id} onClick={() => setProductFilter(id)} style={{ padding: '4px 10px', background: productFilter === id ? '#0891b2' : '#060e17', border: `1px solid ${productFilter === id ? '#0891b2' : '#0e2233'}`, borderRadius: 4, color: productFilter === id ? '#fff' : '#475569', fontSize: 12, cursor: 'pointer', fontWeight: productFilter === id ? 700 : 400 }}>{label}</button>
                   ))}
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 14 }}>
-                {filteredProducts.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} />)}
+                {filteredProds.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} />)}
               </div>
             </div>
           )}
@@ -694,11 +750,11 @@ export default function WaterCheckup() {
           {/* TAB: COST CALCULATOR */}
           {tab === 'cost' && (
             <div style={{ background: '#0a1929', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
-              <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', marginBottom: 18 }}>COST OF OWNERSHIP CALCULATOR</div>
+              <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2', marginBottom: 18 }}>COST OF OWNERSHIP CALCULATOR</div>
               <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 24, alignItems: 'flex-end' }}>
                 <div>
                   <div style={{ fontSize: 12, color: '#64748b', marginBottom: 5 }}>SYSTEM</div>
-                  <select value={ftype} onChange={e => setFtype(e.target.value)} style={{ background: '#060e17', border: '1px solid #1e3a4a', color: '#e2e8f0', padding: '7px 10px', borderRadius: 6, fontSize: 14 }}>
+                  <select value={ftype} onChange={e => setFtype(e.target.value)} style={{ background: '#060e17', border: '1px solid #1e3a4a', color: '#e2e8f0', padding: '7px 10px', borderRadius: 6, fontSize: 13 }}>
                     {PRODUCTS.map(p => <option key={p.name}>{p.name}</option>)}
                   </select>
                 </div>
@@ -719,9 +775,9 @@ export default function WaterCheckup() {
                       <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} /><stop offset="95%" stopColor="#ef4444" stopOpacity={0} /></linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#0e2233" />
-                    <XAxis dataKey="year" tick={{ fill: '#475569', fontSize: 13 }} />
-                    <YAxis tick={{ fill: '#475569', fontSize: 13 }} tickFormatter={v => `$${v}`} />
-                    <Tooltip contentStyle={{ background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 8 }} labelStyle={{ color: '#94a3b8', fontSize: 13 }} formatter={(v: any) => [`$${v}`, '']} />
+                    <XAxis dataKey="year" tick={{ fill: '#475569', fontSize: 12 }} />
+                    <YAxis tick={{ fill: '#475569', fontSize: 12 }} tickFormatter={(v: any) => `$${v}`} />
+                    <Tooltip contentStyle={{ background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 8 }} labelStyle={{ color: '#94a3b8', fontSize: 12 }} formatter={(v: any) => [`$${v}`, '']} />
                     <Area type="monotone" dataKey="filter"  name="Filter System" stroke="#0891b2" fill="url(#gF)" strokeWidth={2} />
                     <Area type="monotone" dataKey="bottled" name="Bottled Water"  stroke="#ef4444" fill="url(#gB)" strokeWidth={2} />
                   </AreaChart>
@@ -747,42 +803,39 @@ export default function WaterCheckup() {
           {tab === 'installers' && (
             <div style={{ background: '#0a1929', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap', gap: 10 }}>
-                <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2' }}>WATER TREATMENT INSTALLERS NEAR {data.city}</div>
-                <button onClick={() => loadInstallers(zip)} disabled={instLoading} style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #0e2233', borderRadius: 4, color: '#475569', fontSize: 13, cursor: 'pointer' }}>{instLoading ? 'Searching…' : '↻ Refresh'}</button>
+                <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2' }}>WATER TREATMENT INSTALLERS NEAR {data.city}</div>
+                <button onClick={() => loadInstallers(zip)} disabled={instLoading} style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #0e2233', borderRadius: 4, color: '#475569', fontSize: 12, cursor: 'pointer' }}>{instLoading ? 'Searching…' : '↻ Refresh'}</button>
               </div>
-
-              {instLoading && <div style={{ padding: '24px', textAlign: 'center', color: '#475569', fontSize: 15 }}>🔍 Searching for local water treatment installers…</div>}
-
+              {instLoading && <div style={{ padding: '24px', textAlign: 'center', color: '#475569' }}>🔍 Searching for local water treatment installers…</div>}
               {!instLoading && installers.map((c: any, i: number) => (
                 <div key={i} style={{ background: '#060e17', border: '1px solid #0e2233', borderRadius: 8, padding: '16px 20px', marginBottom: 12 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 14, fontWeight: 800, marginBottom: 3 }}>{c.name}</div>
-                      <div style={{ fontSize: 14, color: '#64748b', marginBottom: 2 }}>{c.address}</div>
-                      {c.specialty && <div style={{ fontSize: 13, color: '#475569', marginBottom: 4 }}>{c.specialty}</div>}
+                      <div style={{ fontSize: 13, color: '#64748b', marginBottom: 2 }}>{c.address}</div>
+                      {c.specialty && <div style={{ fontSize: 12, color: '#475569', marginBottom: 4 }}>{c.specialty}</div>}
                       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-                        {c.cert && <span style={{ fontSize: 12, padding: '2px 6px', borderRadius: 3, background: '#d9770622', color: '#d97706', border: '1px solid #d9770644', fontWeight: 700 }}>{c.cert}</span>}
-                        {c.rating && <span style={{ fontSize: 14, color: '#f59e0b' }}>{'★'.repeat(Math.round(c.rating))} <span style={{ color: '#64748b', fontSize: 13 }}>{c.rating}{c.reviews ? ` (${c.reviews})` : ''}</span></span>}
-                        {c.distance && <span style={{ fontSize: 13, color: '#334155' }}>📍 {c.distance}</span>}
+                        {c.cert && <span style={{ fontSize: 11, padding: '2px 6px', borderRadius: 3, background: '#d9770622', color: '#d97706', border: '1px solid #d9770644', fontWeight: 700 }}>{c.cert}</span>}
+                        {c.rating && <span style={{ fontSize: 13, color: '#f59e0b' }}>{'★'.repeat(Math.round(c.rating))} <span style={{ color: '#64748b', fontSize: 12 }}>{c.rating}{c.reviews ? ` (${c.reviews})` : ''}</span></span>}
+                        {c.distance && <span style={{ fontSize: 12, color: '#334155' }}>📍 {c.distance}</span>}
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                      {c.phone && <a href={`tel:${c.phone}`} style={{ padding: '7px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 13, textDecoration: 'none' }}>📞 {c.phone}</a>}
-                      {c.website && <a href={c.website} target="_blank" rel="noreferrer" style={{ padding: '7px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 13, textDecoration: 'none' }}>🌐</a>}
-                      <button onClick={() => setQuoted(q => ({ ...q, [c.name]: true }))} style={{ padding: '7px 14px', background: quoted[c.name] ? '#064e3b' : '#0891b2', border: 'none', borderRadius: 5, color: quoted[c.name] ? '#22d3ee' : '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+                      {c.phone && <a href={`tel:${c.phone}`} style={{ padding: '7px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 12, textDecoration: 'none' }}>📞 {c.phone}</a>}
+                      {c.website && <a href={c.website} target="_blank" rel="noreferrer" style={{ padding: '7px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 12, textDecoration: 'none' }}>🌐</a>}
+                      <button onClick={() => setQuoted(q => ({ ...q, [c.name]: true }))} style={{ padding: '7px 14px', background: quoted[c.name] ? '#064e3b' : '#0891b2', border: 'none', borderRadius: 5, color: quoted[c.name] ? '#22d3ee' : '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
                         {quoted[c.name] ? '✓ Sent' : 'Get Quote'}
                       </button>
                     </div>
                   </div>
                 </div>
               ))}
-
               {!instLoading && installers.length === 0 && (
-                <div style={{ padding: '24px', textAlign: 'center', color: '#475569', fontSize: 15 }}>
-                  <button onClick={() => loadInstallers(zip)} style={{ padding: '8px 18px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 14, cursor: 'pointer' }}>Search for Local Installers</button>
+                <div style={{ padding: '24px', textAlign: 'center', color: '#475569' }}>
+                  <button onClick={() => loadInstallers(zip)} style={{ padding: '8px 18px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 13, cursor: 'pointer' }}>Search for Local Installers</button>
                 </div>
               )}
-              <div style={{ marginTop: 14, fontSize: 13, color: '#334155', textAlign: 'center' }}>💡 Installer data sourced via live search. Always verify credentials and get multiple quotes.</div>
+              <div style={{ marginTop: 14, fontSize: 12, color: '#334155', textAlign: 'center' }}>💡 Always verify credentials and get multiple quotes.</div>
             </div>
           )}
         </div>
@@ -796,25 +849,25 @@ export default function WaterCheckup() {
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 34, marginBottom: 10 }}>✅</div>
                 <div style={{ fontSize: 15, fontWeight: 800, color: '#22d3ee' }}>Report sent!</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 5 }}>Check your inbox.</div>
+                <div style={{ fontSize: 13, color: '#64748b', marginTop: 5 }}>Check your inbox.</div>
               </div>
             ) : (
               <>
-                <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', marginBottom: 8 }}>FREE WATER REPORT</div>
+                <div style={{ fontSize: 12, letterSpacing: 3, color: '#0891b2', marginBottom: 8 }}>FREE WATER REPORT</div>
                 <div style={{ fontSize: 16, fontWeight: 800, marginBottom: 5 }}>Get your full analysis</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginBottom: 18 }}>Your {data.city} water quality report with NSF-certified filter recommendations.</div>
+                <div style={{ fontSize: 13, color: '#64748b', marginBottom: 18 }}>Your {data.city} water quality report — EPA + UCMR5 + EWG data with NSF-certified filter recommendations.</div>
                 <input value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" type="email"
-                  style={{ width: '100%', boxSizing: 'border-box', padding: '10px 13px', background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 15, marginBottom: 10, outline: 'none' }} />
+                  style={{ width: '100%', boxSizing: 'border-box', padding: '10px 13px', background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 14, marginBottom: 10, outline: 'none' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 16 }}>
                   <input type="checkbox" id="al" checked={emailAlert} onChange={e => setEmailAlert(e.target.checked)} style={{ accentColor: '#0891b2' }} />
-                  <label htmlFor="al" style={{ fontSize: 13, color: '#64748b', cursor: 'pointer' }}>Alert me when water quality changes</label>
+                  <label htmlFor="al" style={{ fontSize: 12, color: '#64748b', cursor: 'pointer' }}>Alert me if water quality violations are added</label>
                 </div>
                 <div style={{ display: 'flex', gap: 8 }}>
                   <button onClick={() => { if (email) { setEmailSent(true); setTimeout(() => setShowEmail(false), 1600); } }}
-                    style={{ flex: 1, padding: '10px', background: '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>
+                    style={{ flex: 1, padding: '10px', background: '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
                     Send Report →
                   </button>
-                  <button onClick={() => setShowEmail(false)} style={{ padding: '10px 14px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#475569', fontSize: 14, cursor: 'pointer' }}>Skip</button>
+                  <button onClick={() => setShowEmail(false)} style={{ padding: '10px 14px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#475569', fontSize: 13, cursor: 'pointer' }}>Skip</button>
                 </div>
               </>
             )}
