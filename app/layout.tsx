@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Free EPA water quality reports for any US ZIP code. Real contaminant data, expert filter picks, and local installers. Covers all 50 states.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/api/og',
         width: 1200,
         height: 630,
         alt: 'WaterCheckup — Real EPA Water Quality Data',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'WaterCheckup — See What\'s in Your Tap Water',
     description: 'Free EPA water quality reports for any US ZIP code. Real contaminant data, expert filter picks.',
-    images: ['/og-image.png'],
+    images: ['/api/og'],
     creator: '@watercheckup',
   },
   alternates: {

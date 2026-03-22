@@ -134,7 +134,23 @@ export default function ContaminantsPage() {
       {/* NAV */}
       <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#091825' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/logo.svg" alt="WaterCheckup" height={38} style={{ display: 'block' }} />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44">
+            <defs>
+              <linearGradient id="dg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0891b2"/>
+                <stop offset="100%" stopColor="#06b6d4"/>
+              </linearGradient>
+              <radialGradient id="dh" cx="38%" cy="28%" r="55%">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.4)"/>
+                <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
+              </radialGradient>
+            </defs>
+            <path d="M20 2 C20 2 6 15 6 24 C6 31.7 12.3 38 20 38 C27.7 38 34 31.7 34 24 C34 15 20 2 20 2Z" fill="url(#dg)"/>
+            <path d="M20 2 C20 2 6 15 6 24 C6 31.7 12.3 38 20 38 C27.7 38 34 31.7 34 24 C34 15 20 2 20 2Z" fill="url(#dh)"/>
+            <polyline points="12,24 18,31 28,18" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            <text x="42" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#f1f5f9">Water</text>
+            <text x="106" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#22d3ee">Checkup</text>
+          </svg>
         </a>
         <nav style={{ display: 'flex', gap: 4, marginLeft: 24 }}>
           {[['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']].map(([href, label]) => (
