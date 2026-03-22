@@ -377,28 +377,60 @@ export default function WaterCheckup() {
       </div>
 
       {/* SEARCH */}
-      <div style={{ maxWidth: 680, margin: '44px auto 0', padding: '0 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: 16, letterSpacing: 4, color: '#22d3ee', marginBottom: 10, fontWeight: 700 }}>LIVE EPA SDWIS · REAL VIOLATION HISTORY</div>
-        <h1 style={{ fontSize: 34, fontWeight: 900, margin: '0 0 8px', lineHeight: 1.1 }}>Enter Your ZIP Code</h1>
-        <p style={{ color: '#94a3b8', marginBottom: 28, fontSize: 18, fontWeight: 600 }}>Real EPA data · NSF & WQA certified products · Local installers</p>
+      <div style={{ maxWidth: 720, margin: '52px auto 0', padding: '0 24px', textAlign: 'center' }}>
+
+        {/* Expert badge */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#07131e', border: '1px solid #0e2a3d', borderRadius: 30, padding: '6px 16px', marginBottom: 22 }}>
+          <span style={{ fontSize: 16 }}>🏅</span>
+          <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>Designed by a water expert with <strong style={{ color: '#22d3ee' }}>40+ years of experience</strong></span>
+        </div>
+
+        <h1 style={{ fontSize: 40, fontWeight: 900, margin: '0 0 16px', lineHeight: 1.15, color: '#f1f5f9' }}>
+          See What's Really in Your<br />
+          <span style={{ color: '#22d3ee' }}>Town's Tap Water</span>
+        </h1>
+
+        <p style={{ color: '#94a3b8', marginBottom: 12, fontSize: 18, fontWeight: 400, lineHeight: 1.7, maxWidth: 580, margin: '0 auto 16px' }}>
+          Get personalized recommendations on top-rated water filters for <strong style={{ color: '#e2e8f0' }}>drinking, whole-house & showering</strong> — plus find local installers near you. All in one place.
+        </p>
+
+        <p style={{ color: '#475569', fontSize: 14, marginBottom: 32, fontStyle: 'italic' }}>
+          The most comprehensive water quality resource ever built — free, instant, and powered by live EPA data.
+        </p>
+
+        {/* Feature pills */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginBottom: 32 }}>
+          {[
+            { icon: '🔬', text: 'Live EPA Water Data' },
+            { icon: '🚿', text: 'Drinking, Whole-House & Shower' },
+            { icon: '🛒', text: 'Top-Rated Certified Filters' },
+            { icon: '🔧', text: 'DIY or Local Installers' },
+          ].map(f => (
+            <div key={f.text} style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#07131e', border: '1px solid #0e2233', borderRadius: 20, padding: '6px 14px', fontSize: 13, color: '#94a3b8', fontWeight: 500 }}>
+              <span>{f.icon}</span><span>{f.text}</span>
+            </div>
+          ))}
+        </div>
+
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input
             value={zip}
             onChange={e => setZip(e.target.value.replace(/\D/g, '').slice(0, 5))}
             onKeyDown={e => e.key === 'Enter' && search()}
-            placeholder="e.g. 02169"
+            placeholder="Enter ZIP Code"
             maxLength={5}
-            style={{ width: 150, padding: '12px 16px', fontSize: 20, letterSpacing: 4, background: '#0a1929', border: '1px solid #1e3a4a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center', fontFamily: 'inherit' }}
+            style={{ width: 180, padding: '14px 18px', fontSize: 22, letterSpacing: 4, background: '#0a1929', border: '2px solid #1e3a4a', borderRadius: 10, color: '#22d3ee', outline: 'none', textAlign: 'center', fontFamily: 'inherit' }}
           />
           <button onClick={search} disabled={zip.length !== 5 || loading} style={{
-            padding: '12px 24px', background: zip.length === 5 && !loading ? '#0891b2' : '#0e2233',
-            border: 'none', borderRadius: 8, color: zip.length === 5 && !loading ? '#fff' : '#334155',
-            fontSize: 15, fontWeight: 700, letterSpacing: 2, cursor: zip.length === 5 && !loading ? 'pointer' : 'default', transition: 'all 0.2s',
+            padding: '14px 28px', background: zip.length === 5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0e2233',
+            border: 'none', borderRadius: 10, color: zip.length === 5 && !loading ? '#fff' : '#334155',
+            fontSize: 16, fontWeight: 700, cursor: zip.length === 5 && !loading ? 'pointer' : 'default', transition: 'all 0.2s',
+            boxShadow: zip.length === 5 && !loading ? '0 4px 20px #0891b244' : 'none',
           }}>
-            {loading ? 'QUERYING EPA…' : 'ANALYZE →'}
+            {loading ? 'Checking your water…' : 'Check My Water →'}
           </button>
         </div>
-        <div style={{ marginTop: 10, fontSize: 13, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210</div>
+        <div style={{ marginTop: 12, fontSize: 13, color: '#334155' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210</div>
 
         {error && (
           <div style={{ marginTop: 20, padding: '14px 18px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
@@ -411,10 +443,10 @@ export default function WaterCheckup() {
       {/* PRODUCT SHOWCASE — home screen only */}
       {!data && !loading && (
         <div style={{ maxWidth: 900, margin: '56px auto 0', padding: '0 20px' }}>
-          <div style={{ textAlign: 'center', marginBottom: 24 }}>
-            <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 8 }}>NSF & WQA CERTIFIED</div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: '#e2e8f0', marginBottom: 6 }}>Top-Rated Water Filters</div>
-            <div style={{ fontSize: 15, color: '#64748b' }}>Enter your ZIP above to get personalized recommendations based on your water quality</div>
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
+            <div style={{ fontSize: 13, letterSpacing: 2, color: '#0891b2', fontWeight: 700, marginBottom: 10 }}>NSF & WQA GOLD SEAL CERTIFIED</div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Our Expert-Recommended Filters</div>
+            <div style={{ fontSize: 15, color: '#64748b', maxWidth: 480, margin: '0 auto' }}>Enter your ZIP code above and we'll match these to your exact water quality — or browse them all below</div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
             {PRODUCTS.filter((p: any) => !p.wholeHouse).slice(0, 6).map((p: any, i: number) => (
