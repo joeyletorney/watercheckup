@@ -12,6 +12,15 @@ async function epaGet(path: string) {
   try { return JSON.parse(text); } catch { return []; }
 }
 
+// ─── PWSID OVERRIDES ─────────────────────────────────────────────────────────
+// ZIPs that fail the ZIP_CODE/BEGINNING query — map directly to PWSID.
+const PWSID_OVERRIDES: Record<string, { pwsid: string; city: string; utility: string }> = {
+  '02190': { pwsid: 'MA3229000', city: 'South Weymouth, MA', utility: 'Town of Weymouth DPW · Water Division' },
+  '02189': { pwsid: 'MA3229000', city: 'East Weymouth, MA',  utility: 'Town of Weymouth DPW · Water Division' },
+  '02188': { pwsid: 'MA3229000', city: 'Weymouth, MA',       utility: 'Town of Weymouth DPW · Water Division' },
+  '02191': { pwsid: 'MA3229000', city: 'North Weymouth, MA', utility: 'Town of Weymouth DPW · Water Division' },
+};
+
 // EWG Tap Water Atlas supplemental data for major ZIPs
 const EWG: Record<string, { score?: number; contaminants: any[] }> = {
   '60601': { score: 58, contaminants: [
@@ -79,34 +88,65 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // 1. Find water systems — CWS first, then all active
-    let systems: any[] = await epaGet(
-      `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/rows/1:10/JSON`
-    ).catch(() => []);
+    let pwsid: string;
+    let pwsName: string;
+    let cityName: string;
+    let stateCode: string;
+    let popCount: string | null = null;
+    let srcCode = '';
 
-    if (!Array.isArray(systems) || !systems.length) {
-      systems = await epaGet(
-        `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/rows/1:10/JSON`
+    // ─── OVERRIDE PATH: direct PWSID lookup (bypasses unreliable ZIP query) ───
+    const override = PWSID_OVERRIDES[zip];
+    if (override) {
+      pwsid     = override.pwsid;
+      pwsName   = override.utility;
+      cityName  = override.city.split(',')[0].trim();
+      stateCode = 'MA';
+
+      // Verify system is still active — non-fatal if EPA is down
+      try {
+        const rows: any[] = await epaGet(
+          `WATER_SYSTEM/PWSID/${override.pwsid}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
+        );
+        if (rows?.length) {
+          pwsName  = f(rows[0], 'pws_name')  || pwsName;
+          srcCode  = f(rows[0], 'primary_source_code') || '';
+          popCount = f(rows[0], 'population_served_count');
+        }
+      } catch { /* keep hardcoded values */ }
+
+    } else {
+      // ─── STANDARD PATH: ZIP_CODE/BEGINNING query ───────────────────────────
+      let systems: any[] = await epaGet(
+        `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/rows/1:10/JSON`
       ).catch(() => []);
+
+      if (!Array.isArray(systems) || !systems.length) {
+        systems = await epaGet(
+          `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/rows/1:10/JSON`
+        ).catch(() => []);
+      }
+
+      if (!Array.isArray(systems) || !systems.length) {
+        return NextResponse.json(
+          { error: `No public water system found for ZIP ${zip}. This may be a private well area.` },
+          { status: 404, headers: H }
+        );
+      }
+
+      const sys = [...systems]
+        .sort((a, b) =>
+          (parseInt(f(b, 'population_served_count')) || 0) -
+          (parseInt(f(a, 'population_served_count')) || 0)
+        )[0];
+
+      pwsid     = f(sys, 'pwsid')    || f(sys, 'PWSID');
+      pwsName   = f(sys, 'pws_name') || f(sys, 'PWS_NAME')  || 'Unknown Water System';
+      cityName  = f(sys, 'city_name')|| f(sys, 'CITY_NAME') || '';
+      stateCode = f(sys, 'state_code')|| f(sys, 'STATE_CODE')|| f(sys, 'primacy_agency_code') || '';
+      popCount  = f(sys, 'population_served_count') || f(sys, 'POPULATION_SERVED_COUNT');
+      srcCode   = f(sys, 'primary_source_code')     || f(sys, 'PRIMARY_SOURCE_CODE') || '';
     }
-
-    if (!Array.isArray(systems) || !systems.length) {
-      return NextResponse.json(
-        { error: `No public water system found for ZIP ${zip}. This may be a private well area.` },
-        { status: 404, headers: H }
-      );
-    }
-
-    // Pick largest system
-    const sys = [...systems]
-      .sort((a, b) => (parseInt(f(b, 'population_served_count')) || 0) - (parseInt(f(a, 'population_served_count')) || 0))[0];
-
-    const pwsid    = f(sys, 'pwsid')    || f(sys, 'PWSID');
-    const pwsName  = f(sys, 'pws_name') || f(sys, 'PWS_NAME')  || 'Unknown Water System';
-    const cityName = f(sys, 'city_name')|| f(sys, 'CITY_NAME') || '';
-    const stateCode= f(sys, 'state_code')|| f(sys, 'STATE_CODE')|| f(sys, 'primacy_agency_code') || '';
-    const popCount = f(sys, 'population_served_count') || f(sys, 'POPULATION_SERVED_COUNT');
-    const srcCode  = f(sys, 'primary_source_code')     || f(sys, 'PRIMARY_SOURCE_CODE') || '';
 
     // 2. Parallel: violations + LCR samples
     const [violations, lcr] = await Promise.all([
