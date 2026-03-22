@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400','500','600','700','800','900'] })
 
 export const metadata: Metadata = {
   title: 'WaterCheckup — Real EPA Water Quality Data',
-  description: 'Look up your local water quality using live EPA SDWIS data.',
+  description: 'See what\'s in your tap water. Get expert-recommended water filters for drinking, whole house & shower. Powered by live EPA data.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.className}>
-      <body style={{ margin: 0, padding: 0, background: '#050e17' }}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

@@ -515,13 +515,23 @@ export default function WaterCheckup() {
     <div style={{ minHeight: '100vh', background: '#050e17', fontFamily: "'Courier New', monospace", color: '#e2e8f0', fontWeight: 500 }}>
 
       {/* HEADER */}
-      <div style={{ borderBottom: '1px solid #0e2233', padding: '16px 28px', display: 'flex', alignItems: 'center', gap: 12 }}>
-        <div style={{ width: 30, height: 30, borderRadius: 7, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>💧</div>
-        <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: 2, color: '#22d3ee' }}>WATER<span style={{ color: '#e2e8f0' }}>CHECKUP</span></span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: '#d97706', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>WQA GOLD SEAL</span>
-          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: '#0891b2', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>NSF CERTIFIED</span>
-          <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: '#7c3aed', color: '#fff', fontWeight: 800, letterSpacing: 1 }}>EPA · EWG · USGS · UCMR5</span>
+      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#040d14' }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
+          <span style={{ fontSize: 18, fontWeight: 800, color: '#22d3ee', letterSpacing: 1 }}>Water<span style={{ color: '#f1f5f9' }}>Checkup</span></span>
+        </a>
+        <nav style={{ display: 'flex', gap: 4, marginLeft: 24 }}>
+          {[['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']].map(([href, label]) => (
+            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: 500, color: '#64748b', transition: 'color 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#e2e8f0')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#64748b')}
+            >{label}</a>
+          ))}
+        </nav>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
+          <span style={{ fontSize: 11, padding: '3px 8px', borderRadius: 4, background: '#d9770622', color: '#d97706', border: '1px solid #d9770644', fontWeight: 700 }}>WQA Gold Seal</span>
+          <span style={{ fontSize: 11, padding: '3px 8px', borderRadius: 4, background: '#0891b222', color: '#22d3ee', border: '1px solid #0891b244', fontWeight: 700 }}>NSF Certified</span>
+          <span style={{ fontSize: 11, padding: '3px 8px', borderRadius: 4, background: '#7c3aed22', color: '#a78bfa', border: '1px solid #7c3aed44', fontWeight: 700 }}>Live EPA Data</span>
         </div>
       </div>
 
