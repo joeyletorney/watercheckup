@@ -129,10 +129,10 @@ export default function ContaminantsPage() {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#040d14', color: '#e2e8f0' }}>
+    <div style={{ minHeight: '100vh', background: '#091825', color: '#e2e8f0' }}>
 
       {/* NAV */}
-      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#040d14' }}>
+      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#091825' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
           <span style={{ fontSize: 18, fontWeight: 800, color: '#22d3ee', letterSpacing: 1 }}>Water<span style={{ color: '#f1f5f9' }}>Checkup</span></span>
@@ -155,7 +155,7 @@ export default function ContaminantsPage() {
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search contaminants (e.g. Lead, PFAS, Chlorine...)"
-          style={{ width: '100%', maxWidth: 460, padding: '14px 18px', background: '#071828', border: '1px solid #0f2d40', borderRadius: 10, color: '#f1f5f9', fontSize: 15, outline: 'none' }}
+          style={{ width: '100%', maxWidth: 460, padding: '14px 18px', background: '#0d2545', border: '1px solid #0f2d40', borderRadius: 10, color: '#f1f5f9', fontSize: 15, outline: 'none' }}
         />
       </div>
 
@@ -167,7 +167,7 @@ export default function ContaminantsPage() {
           const sev = SEV_COLORS[c.severity];
           const isOpen = open === c.name;
           return (
-            <div key={c.name} style={{ background: '#071220', border: '1px solid #0f2336', borderRadius: 14, marginBottom: 12, overflow: 'hidden', boxShadow: '0 2px 16px #00000044' }}>
+            <div key={c.name} style={{ background: '#0d2240', border: '1px solid #0f2336', borderRadius: 14, marginBottom: 12, overflow: 'hidden', boxShadow: '0 2px 16px #00000044' }}>
 
               {/* Summary row — always visible */}
               <button
@@ -217,7 +217,7 @@ export default function ContaminantsPage() {
                     </Section>
                   </div>
 
-                  <div style={{ marginTop: 18, padding: '12px 16px', background: '#040d14', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
+                  <div style={{ marginTop: 18, padding: '12px 16px', background: '#091825', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
                     <span style={{ fontSize: 13, color: '#475569' }}>Health goal (MCLG): <strong style={{ color: '#94a3b8' }}>{c.healthGoal}</strong></span>
                     <a href="/" style={{ padding: '8px 18px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 700 }}>
                       Check My Water for {c.name} →
@@ -235,7 +235,7 @@ export default function ContaminantsPage() {
 
 function Section({ title, color, children }: { title: string; color: string; children: React.ReactNode }) {
   return (
-    <div style={{ background: '#040d14', borderRadius: 10, padding: '14px 16px' }}>
+    <div style={{ background: '#091825', borderRadius: 10, padding: '14px 16px' }}>
       <div style={{ fontSize: 12, fontWeight: 700, color, letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase' }}>{title}</div>
       {children}
     </div>

@@ -88,10 +88,10 @@ export default function FAQPage() {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <div style={{ minHeight: '100vh', background: '#040d14', color: '#e2e8f0' }}>
+    <div style={{ minHeight: '100vh', background: '#091825', color: '#e2e8f0' }}>
 
       {/* NAV */}
-      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#040d14' }}>
+      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#091825' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
           <span style={{ fontSize: 18, fontWeight: 800, color: '#22d3ee', letterSpacing: 1 }}>Water<span style={{ color: '#f1f5f9' }}>Checkup</span></span>
@@ -123,7 +123,7 @@ export default function FAQPage() {
               {section.items.map(item => {
                 const isOpen = open === item.q;
                 return (
-                  <div key={item.q} style={{ background: '#071220', border: '1px solid #0f2336', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 12px #00000033' }}>
+                  <div key={item.q} style={{ background: '#0d2240', border: '1px solid #0f2336', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 12px #00000033' }}>
                     <button
                       onClick={() => setOpen(isOpen ? null : item.q)}
                       style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: '18px 22px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}

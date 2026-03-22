@@ -226,8 +226,8 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
       <path d={arc(210, 510)} fill="none" stroke="#1e3a4a" strokeWidth="10" strokeLinecap="round" />
       <path d={arc(210, 210 + 300 * (anim / 100))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
         style={{ transition: 'all 1.3s cubic-bezier(0.34,1.56,0.64,1)' }} filter={`drop-shadow(0 0 8px ${color}88)`} />
-      <text x={cx} y={cy + 8}  textAnchor="middle" fontSize="32" fontWeight="800" fill={color} fontFamily="monospace">{anim}</text>
-      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="13" fill="#94a3b8" fontFamily="monospace">Grade: {grade}</text>
+      <text x={cx} y={cy + 8}  textAnchor="middle" fontSize="32" fontWeight="800" fill={color} fontFamily="inherit">{anim}</text>
+      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="13" fill="#94a3b8" fontFamily="inherit">Grade: {grade}</text>
     </svg>
   );
 }
@@ -250,7 +250,7 @@ function ProductCard({ p, highlight, compact }: { p: any; highlight: boolean; co
           <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.2, marginBottom: 4 }}>{p.name}</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ fontSize: 12, color: diyColors[p.diyDiff] || '#22d3ee' }}>Install: {p.diyDiff}</span>
-            {p.removes.slice(0, 2).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051a0a', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
+            {p.removes.slice(0, 2).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051527', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
           </div>
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -286,7 +286,7 @@ function ProductCard({ p, highlight, compact }: { p: any; highlight: boolean; co
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 10, color: '#334155', letterSpacing: 1, marginBottom: 3 }}>REMOVES</div>
           <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-            {p.removes.slice(0, 3).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051a0a', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
+            {p.removes.slice(0, 3).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051527', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
           </div>
         </div>
         <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginBottom: 2 }}>
@@ -675,7 +675,7 @@ export default function WaterCheckup() {
   const contaminantNames = data?.contaminants?.map((c: any) => c.name) ?? [];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#091825', fontFamily: "'Courier New', monospace", color: '#e2e8f0', fontWeight: 500 }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1f35 0%, #091825 100%)', fontFamily: "inherit", color: '#e2e8f0' }}>
 
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid #0e2233', padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
@@ -799,7 +799,7 @@ export default function WaterCheckup() {
                   </div>
                 </>
               ) : (
-                <div style={{ background: '#051a0a', border: '1px solid #22d3ee22', borderRadius: 8, padding: '12px 16px', marginBottom: 18, display: 'flex', gap: 10, alignItems: 'center' }}>
+                <div style={{ background: '#051527', border: '1px solid #22d3ee22', borderRadius: 8, padding: '12px 16px', marginBottom: 18, display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 16 }}>✅</span>
                   <div><div style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 12, color: '#475569', marginTop: 1 }}>EPA SDWIS shows no violations for this water system.</div></div>
                 </div>
