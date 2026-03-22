@@ -678,13 +678,23 @@ export default function WaterCheckup() {
     <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1f35 0%, #091825 100%)', fontFamily: "inherit", color: '#e2e8f0' }}>
 
       {/* HEADER */}
-      <div style={{ borderBottom: '1px solid #0e2233', padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-        <div style={{ width: 28, height: 28, borderRadius: 6, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15 }}>💧</div>
-        <span style={{ fontSize: 16, fontWeight: 800, letterSpacing: 0.3, color: '#22d3ee' }}>WATER<span style={{ color: '#e2e8f0' }}>CHECKUP</span></span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: '#d97706', color: '#fff', fontWeight: 800 }}>WQA GOLD SEAL</span>
-          <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: '#0891b2', color: '#fff', fontWeight: 800 }}>NSF CERTIFIED</span>
-          <span style={{ fontSize: 10, padding: '2px 6px', borderRadius: 3, background: '#7c3aed', color: '#fff', fontWeight: 800 }}>4 DATA SOURCES · ALL 50 STATES</span>
+      <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12 }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
+          <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
+          <span style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8' }}>Water<span style={{ color: '#f1f9ff' }}>Checkup</span></span>
+        </a>
+        <nav style={{ display: 'flex', gap: 2, marginLeft: 20 }}>
+          {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']] as [string,string][]).map(([href, label]) => (
+            <a key={href} href={href} style={{ padding: '7px 14px', borderRadius: 7, fontSize: 14, fontWeight: 500, color: '#64748b', textDecoration: 'none' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#e2e8f0')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#64748b')}
+            >{label}</a>
+          ))}
+        </nav>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
+          <span style={{ fontSize: 11, padding: '3px 9px', borderRadius: 20, background: '#d9770620', color: '#d97706', border: '1px solid #d9770640', fontWeight: 700 }}>WQA Gold Seal</span>
+          <span style={{ fontSize: 11, padding: '3px 9px', borderRadius: 20, background: '#0891b220', color: '#38bdf8', border: '1px solid #0891b240', fontWeight: 700 }}>NSF Certified</span>
+          <span style={{ fontSize: 11, padding: '3px 9px', borderRadius: 20, background: '#7c3aed20', color: '#a78bfa', border: '1px solid #7c3aed40', fontWeight: 700 }}>Live EPA Data</span>
         </div>
       </div>
 
@@ -692,9 +702,9 @@ export default function WaterCheckup() {
       <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center' }}>
 
         {/* Expert credibility badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 30, padding: '7px 18px', marginBottom: 22 }}>
-          <span style={{ fontSize: 16 }}>🏅</span>
-          <span style={{ fontSize: 13, color: '#94a3b8' }}>Designed by a water expert with <strong style={{ color: '#38bdf8' }}>40+ years of experience</strong></span>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#0e2d4a,#0a2038)', border: '1px solid #2a5a8c', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 2px 16px #0891b233' }}>
+          <span style={{ fontSize: 18 }}>🏅</span>
+          <span style={{ fontSize: 14, color: '#94a3b8' }}>Designed by a water quality expert with <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40+ years of experience</strong></span>
         </div>
 
         <h1 style={{ fontSize: 38, fontWeight: 900, margin: '0 0 14px', lineHeight: 1.15, color: '#f1f9ff' }}>
