@@ -93,8 +93,7 @@ export default function FAQPage() {
       {/* NAV */}
       <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#091825' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
-          <span style={{ fontSize: 18, fontWeight: 800, color: '#22d3ee', letterSpacing: 1 }}>Water<span style={{ color: '#f1f5f9' }}>Checkup</span></span>
+          <img src="/logo.svg" alt="WaterCheckup" height={38} style={{ display: 'block' }} />
         </a>
         <nav style={{ display: 'flex', gap: 4, marginLeft: 24 }}>
           {[['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']].map(([href, label]) => (

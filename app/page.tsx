@@ -903,8 +903,7 @@ export default function WaterCheckup() {
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(6,15,30,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', position: 'sticky', top: 0, zIndex: 100 }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
-          <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
-          <span style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8' }}>Water<span style={{ color: '#f1f9ff' }}>Checkup</span></span>
+          <img src="/logo.svg" alt="WaterCheckup" height={38} style={{ display: 'block' }} />
         </a>
         <nav style={{ display: 'flex', gap: 2, marginLeft: 20 }}>
           {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']] as [string,string][]).map(([href, label]) => (
