@@ -349,11 +349,8 @@ export default function WaterCheckup() {
     finally { setInstLoading(false); }
   };
 
-  const getRecommended = () => {
-    if (!data || !data.contaminants?.length) return PRODUCTS.filter((p: any) => !p.wholeHouse && !p.pitcher).slice(0, 3);
-    const names = data.contaminants.map((c: any) => c.name);
-    return PRODUCTS.map(p => ({ ...p, m: p.bestFor.filter((b: string) => names.includes(b)).length })).sort((a, b) => b.m - a.m).slice(0, 3);
-  };
+  // Always recommend one top pick per category — chlorine, taste & odor addressed in every category
+  const getRecommended = () => CATEGORIES.map(cat => PRODUCTS.find((p: any) => p.category === cat.id)).filter(Boolean);
 
   const prod = PRODUCTS.find(p => p.name === ftype) || PRODUCTS[1];
   const chartData = Array.from({ length: years + 1 }, (_, i) => ({
@@ -654,9 +651,20 @@ export default function WaterCheckup() {
                 </>
               )}
 
-              <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', margin: '26px 0 14px' }}>RECOMMENDED FILTERS FOR YOUR WATER</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 14 }}>
-                {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} />)}
+              <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', margin: '26px 0 6px' }}>RECOMMENDED FILTERS FOR YOUR WATER</div>
+              <div style={{ fontSize: 13, color: '#475569', marginBottom: 18 }}>Regardless of your results, every home benefits from protection against chlorine, taste & odor issues. Here's our top pick in each category:</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 14 }}>
+                {recommended.map((p: any) => {
+                  const cat = CATEGORIES.find(c => c.id === p.category);
+                  return (
+                    <div key={p.id}>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <span>{cat?.icon}</span><span>{cat?.label}</span>
+                      </div>
+                      <ProductCard p={p} highlight={false} />
+                    </div>
+                  );
+                })}
               </div>
               <div style={{ marginTop: 12, textAlign: 'center' }}>
                 <button onClick={() => setTab('products')} style={{ padding: '8px 18px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 14, cursor: 'pointer', letterSpacing: 1 }}>
