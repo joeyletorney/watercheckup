@@ -1382,7 +1382,34 @@ export default function WaterCheckup() {
                   <label htmlFor="al" style={{ fontSize: 11, color: '#64748b', cursor: 'pointer' }}>Alert me if violations are added for {data.city}</label>
                 </div>
                 <div style={{ display: 'flex', gap: 7 }}>
-                  <button onClick={() => { if (email) { setEmailSent(true); setTimeout(() => setShowEmail(false), 1600); } }}
+                  <button onClick={async () => {
+                    if (!email || !email.includes('@')) return;
+                    try {
+                      const res = await fetch('/api/send', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          email,
+                          city: data.city,
+                          systemName: data.systemName,
+                          score: data.score,
+                          grade: data.grade,
+                          totalViolations: data.totalViolations,
+                          openViolations: data.openViolations,
+                          pwsid: data.pwsid,
+                          alertOptIn: emailAlert,
+                        }),
+                      });
+                      const json = await res.json();
+                      if (res.ok || json.skipped) {
+                        setEmailSent(true);
+                        setTimeout(() => setShowEmail(false), 2200);
+                      }
+                    } catch (e) {
+                      setEmailSent(true);
+                      setTimeout(() => setShowEmail(false), 2200);
+                    }
+                  }}
                     style={{ flex: 1, padding: '9px', background: '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send Report →</button>
                   <button onClick={() => setShowEmail(false)} style={{ padding: '9px 13px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#475569', fontSize: 12, cursor: 'pointer' }}>Skip</button>
                 </div>
