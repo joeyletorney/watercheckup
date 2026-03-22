@@ -363,7 +363,7 @@ export default function WaterCheckup() {
   const pfasUnit  = pfasContaminant?.unit ?? 'μg/L';
 
   return (
-    <div style={{ minHeight: '100vh', background: '#050e17', fontFamily: "'Courier New', monospace", color: '#e2e8f0', fontWeight: 500 }}>
+    <div style={{ minHeight: '100vh', background: '#050e17', fontFamily: "inherit", color: '#e2e8f0', fontWeight: 400 }}>
 
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid #0e2233', padding: '16px 28px', display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -388,7 +388,7 @@ export default function WaterCheckup() {
             onKeyDown={e => e.key === 'Enter' && search()}
             placeholder="e.g. 02169"
             maxLength={5}
-            style={{ width: 150, padding: '12px 16px', fontSize: 20, letterSpacing: 4, background: '#0a1929', border: '1px solid #1e3a4a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center' }}
+            style={{ width: 150, padding: '12px 16px', fontSize: 20, letterSpacing: 4, background: '#0a1929', border: '1px solid #1e3a4a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center', fontFamily: 'inherit' }}
           />
           <button onClick={search} disabled={zip.length !== 5 || loading} style={{
             padding: '12px 24px', background: zip.length === 5 && !loading ? '#0891b2' : '#0e2233',
@@ -407,6 +407,40 @@ export default function WaterCheckup() {
           </div>
         )}
       </div>
+
+      {/* PRODUCT SHOWCASE — home screen only */}
+      {!data && !loading && (
+        <div style={{ maxWidth: 900, margin: '56px auto 0', padding: '0 20px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 24 }}>
+            <div style={{ fontSize: 13, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 8 }}>NSF & WQA CERTIFIED</div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: '#e2e8f0', marginBottom: 6 }}>Top-Rated Water Filters</div>
+            <div style={{ fontSize: 15, color: '#64748b' }}>Enter your ZIP above to get personalized recommendations based on your water quality</div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
+            {PRODUCTS.filter((p: any) => !p.wholeHouse).slice(0, 6).map((p: any, i: number) => (
+              <div key={p.id} style={{ background: i === 0 ? '#07131e' : '#060e17', border: `1px solid ${i === 0 ? '#0891b2' : '#0e2233'}`, borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column', transition: 'border-color 0.2s' }}>
+                <div style={{ background: '#ffffff', height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12, position: 'relative' }}>
+                  <img src={p.img} alt={p.name} style={{ maxHeight: 140, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
+                  {i === 0 && <div style={{ position: 'absolute', top: 8, right: 8, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4, letterSpacing: 1 }}>TOP PICK</div>}
+                </div>
+                <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 1 }}>{p.brand.toUpperCase()}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.3 }}>{p.name}</div>
+                  <div style={{ fontSize: 12, color: '#64748b' }}>{p.type}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
+                    <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
+                    <span style={{ fontSize: 12, color: '#64748b' }}>{p.rating} ({p.reviews.toLocaleString()})</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 10, borderTop: '1px solid #0e2233' }}>
+                    <span style={{ fontSize: 20, fontWeight: 800, color: '#22d3ee' }}>${p.price}</span>
+                    <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: '#f59e0b', borderRadius: 6, color: '#000', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* PFAS AWARENESS BANNER — shown on homepage when no results yet */}
       {!data && !loading && <PFASAwarenessBanner />}
