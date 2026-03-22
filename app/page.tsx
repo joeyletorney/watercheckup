@@ -690,9 +690,24 @@ export default function WaterCheckup() {
 
       {/* SEARCH */}
       <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: 14, color: '#38bdf8', marginBottom: 10, fontWeight: 600, opacity: 0.8 }}>Live EPA · UCMR5 PFAS · EWG Tap Water Atlas · USGS</div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, margin: '0 0 6px', lineHeight: 1.1 }}>What's in your water?</h1>
-        <p style={{ color: '#94a3b8', marginBottom: 24, fontSize: 16, fontWeight: 600 }}>The most comprehensive US water quality database — free, real-time, all 50 states</p>
+
+        {/* Expert credibility badge */}
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 30, padding: '7px 18px', marginBottom: 22 }}>
+          <span style={{ fontSize: 16 }}>🏅</span>
+          <span style={{ fontSize: 13, color: '#94a3b8' }}>Designed by a water expert with <strong style={{ color: '#38bdf8' }}>40+ years of experience</strong></span>
+        </div>
+
+        <h1 style={{ fontSize: 38, fontWeight: 900, margin: '0 0 14px', lineHeight: 1.15, color: '#f1f9ff' }}>
+          See What's Really in Your<br /><span style={{ color: '#38bdf8' }}>Town's Tap Water</span>
+        </h1>
+
+        <p style={{ color: '#94a3b8', marginBottom: 10, fontSize: 17, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 10px' }}>
+          Get personalized recommendations on top-rated water filters for <strong style={{ color: '#e2e8f0' }}>drinking, whole-house & showering</strong> — plus find local installers near you. All in one place.
+        </p>
+
+        <p style={{ fontSize: 14, color: '#38bdf8', fontWeight: 600, marginBottom: 28, fontStyle: 'italic', opacity: 0.85 }}>
+          The most comprehensive water quality resource on the planet — free, instant, and powered by live EPA data.
+        </p>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code" maxLength={5}
             style={{ width: 140, padding: '12px 16px', fontSize: 20, letterSpacing: 0.3, background: '#0d2240', border: '1px solid #1e4a6a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center' }} />
