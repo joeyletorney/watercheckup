@@ -450,7 +450,7 @@ const EWG: Record<string, { score?: number; city?: string; contaminants: any[] }
     { name: 'PFAS (Total)', level: 14.7, limit: 4, unit: 'ppt', severity: 'high', note: 'EWG — Columbia Water — PFAS from Congaree River' },
     { name: 'Chloroform', level: 41, limit: 80, unit: 'ppb', severity: 'moderate', note: 'EWG' },
   ]},
-  '49201': { city: 'Jackson, MS', score: 38, contaminants: [
+  '39201': { city: 'Jackson, MS', score: 38, contaminants: [
     { name: 'Lead', level: 28, limit: 15, unit: 'ppb', severity: 'high', note: 'EWG — Jackson water crisis — aging infrastructure' },
     { name: 'PFAS (Total)', level: 9.4, limit: 4, unit: 'ppt', severity: 'high', note: 'EWG — Pearl River watershed' },
     { name: 'Chloroform', level: 51, limit: 80, unit: 'ppb', severity: 'moderate', note: 'EWG — treatment inconsistencies' },
@@ -538,7 +538,7 @@ async function getUsgsSourceWater(state: string, lat?: number, lng?: number): Pr
         param: s.variable?.variableDescription || '',
         value: s.values?.[0]?.value?.[0]?.value || null,
         unit: s.variable?.unit?.unitCode || '',
-      })).filter((s: any) => s.value !== null).slice(0, 3),
+      })).filter((s: any) => s.value !== null && s.value !== '-999999' && s.value !== -999999).slice(0, 3),
     };
   } catch {
     return null;
@@ -692,10 +692,12 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // Add PFAS from UCMR5
-    const hasEwgPfas = ewg?.contaminants.some(c => c.name.toLowerCase().includes('pfas'));
-    if (!hasEwgPfas) {
-      for (const p of pfasContaminants) contaminants.push(p);
+    // Add PFAS from UCMR5 — always show specific compounds (they're different from EWG's "PFAS Total")
+    for (const p of pfasContaminants) {
+      // Deduplicate: skip if a contaminant with exact same name already exists
+      if (!contaminants.find(c => c.name === p.name)) {
+        contaminants.push(p);
+      }
     }
 
     // Add EWG data
