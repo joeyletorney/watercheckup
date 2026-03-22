@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const TAG = 'watercheck-20';
@@ -606,52 +606,185 @@ function ResourcesTab({ data }: { data: any }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ANIMATED WATER BACKGROUND
+// CANVAS WATER BACKGROUND — physics-based wave simulation
 // ─────────────────────────────────────────────────────────────────────────────
-const BUBBLES = [
-  { left:'3%',  size:6,  delay:'0s',   dur:'12s' }, { left:'9%',  size:4,  delay:'3.5s', dur:'9s'  },
-  { left:'16%', size:10, delay:'1s',   dur:'15s' }, { left:'24%', size:5,  delay:'5s',   dur:'11s' },
-  { left:'33%', size:8,  delay:'2s',   dur:'13s' }, { left:'41%', size:3,  delay:'7s',   dur:'8s'  },
-  { left:'49%', size:9,  delay:'0.5s', dur:'14s' }, { left:'56%', size:6,  delay:'4s',   dur:'10s' },
-  { left:'63%', size:4,  delay:'6s',   dur:'9s'  }, { left:'71%', size:11, delay:'1.5s', dur:'12s' },
-  { left:'79%', size:5,  delay:'3s',   dur:'11s' }, { left:'87%', size:7,  delay:'2.5s', dur:'13s' },
-  { left:'93%', size:3,  delay:'8s',   dur:'9s'  }, { left:'21%', size:13, delay:'9s',   dur:'16s' },
-  { left:'58%', size:3,  delay:'4.5s', dur:'7s'  }, { left:'76%', size:8,  delay:'6s',   dur:'11s' },
-];
+function WaterCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-function WaterBackground() {
-  return (
-    <div style={{ position:'fixed', inset:0, pointerEvents:'none', zIndex:0, overflow:'hidden' }}>
-      {/* Deep navy base */}
-      <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg,#060f1e 0%,#091825 45%,#040e1a 100%)' }} />
-      {/* Animated underwater glow orbs */}
-      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 55% at 50% 115%,rgba(8,145,178,0.18) 0%,transparent 70%)', animation:'wcGlow 7s ease-in-out infinite' }} />
-      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 60% 40% at 18% 95%,rgba(6,182,212,0.12) 0%,transparent 60%)', animation:'wcGlow 9s ease-in-out infinite 2.5s' }} />
-      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 35% at 82% 100%,rgba(14,116,144,0.1) 0%,transparent 55%)', animation:'wcGlow 8s ease-in-out infinite 5s' }} />
-      {/* Rising bubbles */}
-      {BUBBLES.map((b,i) => (
-        <div key={i} style={{ position:'absolute', bottom:-20, left:b.left, width:b.size, height:b.size, borderRadius:'50%', background:'radial-gradient(circle at 35% 35%,rgba(6,182,212,0.65),rgba(8,145,178,0.15))', border:'1px solid rgba(6,182,212,0.35)', animation:`wcBubble ${b.dur} ${b.delay} ease-in infinite` }} />
-      ))}
-      {/* Wave layer 1 — slow cyan */}
-      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, overflow:'hidden', opacity:0.13 }}>
-        <div style={{ animation:'wcWaveL 15s linear infinite', width:'200%', height:'100%', display:'flex', alignItems:'flex-end' }}>
-          {[0,1].map(k=><svg key={k} viewBox="0 0 1440 200" style={{ width:'50%',height:'100%',flexShrink:0 }} preserveAspectRatio="none"><path fill="#06b6d4" d="M0,100 C360,35 720,165 1080,100 C1260,68 1360,128 1440,100 L1440,200 L0,200 Z"/></svg>)}
-        </div>
-      </div>
-      {/* Wave layer 2 — medium ocean blue */}
-      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:130, overflow:'hidden', opacity:0.1 }}>
-        <div style={{ animation:'wcWaveR 11s linear infinite', width:'200%', height:'100%', display:'flex', alignItems:'flex-end' }}>
-          {[0,1].map(k=><svg key={k} viewBox="0 0 1440 130" style={{ width:'50%',height:'100%',flexShrink:0 }} preserveAspectRatio="none"><path fill="#0891b2" d="M0,65 C240,12 480,118 720,65 C960,12 1200,118 1440,65 L1440,130 L0,130 Z"/></svg>)}
-        </div>
-      </div>
-      {/* Wave layer 3 — fast light cyan */}
-      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:75, overflow:'hidden', opacity:0.07 }}>
-        <div style={{ animation:'wcWaveL 7s linear infinite', width:'200%', height:'100%', display:'flex', alignItems:'flex-end' }}>
-          {[0,1].map(k=><svg key={k} viewBox="0 0 1440 75" style={{ width:'50%',height:'100%',flexShrink:0 }} preserveAspectRatio="none"><path fill="#22d3ee" d="M0,37 C180,6 360,68 540,37 C720,6 900,68 1080,37 C1260,6 1380,52 1440,37 L1440,75 L0,75 Z"/></svg>)}
-        </div>
-      </div>
-    </div>
-  );
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let t = 0;
+    let animId: number;
+    const ripples: { x: number; y: number; r: number; a: number }[] = [];
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const onMove = (e: MouseEvent) => {
+      if (Math.random() < 0.06) ripples.push({ x: e.clientX, y: e.clientY, r: 0, a: 0.45 });
+    };
+    window.addEventListener('mousemove', onMove);
+
+    // Summed sine wave surface — multiple frequencies create realistic interference
+    const surf = (x: number, time: number, base: number) => {
+      let y = base;
+      y += Math.sin(x * 0.0055 + time * 0.65)  * 24;
+      y += Math.sin(x * 0.0120 - time * 0.50)  * 15;
+      y += Math.sin(x * 0.0230 + time * 0.85)  *  9;
+      y += Math.sin(x * 0.0450 - time * 1.10)  *  5;
+      y += Math.sin(x * 0.0900 + time * 1.70)  *  2.5;
+      y += Math.sin(x * 0.1700 - time * 2.40)  *  1.2;
+      return y;
+    };
+
+    const draw = () => {
+      const W = canvas.width;
+      const H = canvas.height;
+      t += 0.011;
+
+      // ── DEEP OCEAN BASE ──────────────────────────────────────────────────
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0,   '#030c18');
+      bg.addColorStop(0.5, '#04101f');
+      bg.addColorStop(1,   '#020a15');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // ── CAUSTICS — dappled underwater light ──────────────────────────────
+      for (let i = 0; i < 14; i++) {
+        const ph  = (i / 14) * Math.PI * 2;
+        const cx  = W / 2 + Math.sin(t * 0.18 + ph) * W * 0.42 + Math.sin(t * 0.11 + ph * 1.6) * W * 0.09;
+        const cy  = H * 0.38 + Math.sin(t * 0.14 + ph * 1.2) * H * 0.38 + Math.cos(t * 0.09 + ph) * H * 0.08;
+        const rx  = 55 + Math.sin(t * 0.38 + i) * 28;
+        const ry  = 18 + Math.sin(t * 0.28 + i * 1.1) *  9;
+        const ang = Math.sin(t * 0.09 + i * 0.45) * Math.PI * 0.35;
+        const alpha = 0.022 + Math.sin(t * 1.1 + i * 0.7) * 0.009;
+
+        const cg = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+        cg.addColorStop(0,   `rgba(6,182,212,${alpha})`);
+        cg.addColorStop(0.5, `rgba(8,145,178,${alpha * 0.5})`);
+        cg.addColorStop(1,   'rgba(8,145,178,0)');
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(ang);
+        ctx.scale(1, ry / rx);
+        ctx.beginPath();
+        ctx.arc(0, 0, rx, 0, Math.PI * 2);
+        ctx.fillStyle = cg;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // ── WAVE LAYERS ───────────────────────────────────────────────────────
+      const layers = [
+        { base: H * 0.88, speed: 1.00, r:  6, g: 182, b: 212, a: 0.07 },
+        { base: H * 0.82, speed: 0.72, r:  8, g: 145, b: 178, a: 0.08 },
+        { base: H * 0.76, speed: 0.55, r: 14, g: 116, b: 144, a: 0.09 },
+        { base: H * 0.70, speed: 1.25, r: 34, g: 211, b: 238, a: 0.06 },
+        { base: H * 0.65, speed: 0.90, r:  6, g: 182, b: 212, a: 0.10 },
+      ];
+
+      layers.forEach((lyr, li) => {
+        ctx.beginPath();
+        for (let x = 0; x <= W; x += 3) {
+          const y = surf(x, t * lyr.speed, lyr.base);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+
+        const wg = ctx.createLinearGradient(0, lyr.base - 35, 0, H);
+        wg.addColorStop(0,   `rgba(${lyr.r},${lyr.g},${lyr.b},${lyr.a * 1.6})`);
+        wg.addColorStop(0.25,`rgba(${lyr.r},${lyr.g},${lyr.b},${lyr.a})`);
+        wg.addColorStop(1,   `rgba(${Math.round(lyr.r*0.4)},${Math.round(lyr.g*0.3)},${Math.round(lyr.b*0.25)},${lyr.a * 0.25})`);
+        ctx.fillStyle = wg;
+        ctx.fill();
+
+        // crest highlight line
+        ctx.beginPath();
+        for (let x = 0; x <= W; x += 3) {
+          const y = surf(x, t * lyr.speed, lyr.base);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = `rgba(${lyr.r},${lyr.g},${lyr.b},${lyr.a * 2.8})`;
+        ctx.lineWidth = li < 2 ? 1.5 : 1;
+        ctx.stroke();
+      });
+
+      // ── FOAM / SPARKLES on crest peaks ───────────────────────────────────
+      const foamBase = H * 0.76;
+      for (let x = 15; x < W; x += 35) {
+        const y     = surf(x, t, foamBase);
+        const slope = surf(x + 3, t, foamBase) - surf(x - 3, t, foamBase);
+        const atCrest = Math.abs(slope) < 0.4;
+        if (atCrest) {
+          const pulse = Math.sin(t * 3.2 + x * 0.055);
+          if (pulse > 0.55) {
+            const a = (pulse - 0.55) / 0.45 * 0.18;
+            ctx.beginPath();
+            ctx.arc(x + Math.sin(t * 1.5 + x) * 4, y - 1, 1.8 + pulse * 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${a})`;
+            ctx.fill();
+          }
+        }
+      }
+
+      // ── SURFACE SHEEN — horizontal light reflections ──────────────────────
+      for (let i = 0; i < 7; i++) {
+        const sy = H * 0.48 + Math.sin(t * 0.28 + i * 0.9) * H * 0.28;
+        const sx = ((t * 55 * (i % 2 ? 1 : -1) + i * W * 0.14) % W + W) % W;
+        const sw = 50 + Math.sin(t * 0.7 + i) * 25;
+        const sa = (Math.sin(t * 0.45 + i * 1.1) + 1) * 0.012;
+        const sg = ctx.createLinearGradient(sx, 0, sx + sw, 0);
+        sg.addColorStop(0,   'rgba(255,255,255,0)');
+        sg.addColorStop(0.5, `rgba(200,240,255,${sa})`);
+        sg.addColorStop(1,   'rgba(255,255,255,0)');
+        ctx.fillStyle = sg;
+        ctx.fillRect(sx, sy - 1.5, sw, 3);
+      }
+
+      // ── MOUSE RIPPLES — elliptical to simulate perspective ────────────────
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const rip = ripples[i];
+        rip.r += 4.5;
+        rip.a -= 0.016;
+        if (rip.a <= 0) { ripples.splice(i, 1); continue; }
+        [1, 0.55].forEach((scale, si) => {
+          ctx.beginPath();
+          ctx.ellipse(rip.x, rip.y, rip.r * scale, rip.r * scale * 0.32, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(6,182,212,${rip.a * (si === 0 ? 1 : 0.45)})`;
+          ctx.lineWidth = si === 0 ? 1.5 : 1;
+          ctx.stroke();
+        });
+      }
+
+      // ── DEPTH VIGNETTE ────────────────────────────────────────────────────
+      const vig = ctx.createRadialGradient(W / 2, H * 0.55, H * 0.12, W / 2, H * 0.5, H * 0.85);
+      vig.addColorStop(0, 'rgba(0,0,0,0)');
+      vig.addColorStop(1, 'rgba(0,5,18,0.58)');
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, W, H);
+
+      animId = requestAnimationFrame(draw);
+    };
+
+    draw();
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', onMove);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }} />;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -726,16 +859,6 @@ export default function WaterCheckup() {
   return (
     <div style={{ minHeight: '100vh', position: 'relative', zIndex: 1, fontFamily: 'inherit', color: '#e2e8f0' }}>
       <style>{`
-        @keyframes wcGlow { 0%,100%{opacity:.6} 50%{opacity:1} }
-        @keyframes wcBubble {
-          0%   { transform:translateY(0) translateX(0) scale(.8); opacity:0 }
-          8%   { opacity:.8 }
-          50%  { transform:translateY(-50vh) translateX(10px) scale(1) }
-          92%  { opacity:.25 }
-          100% { transform:translateY(-108vh) translateX(-5px) scale(.5); opacity:0 }
-        }
-        @keyframes wcWaveL { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-        @keyframes wcWaveR { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
         @keyframes wcGlowPulse {
           0%,100%{ box-shadow:0 0 18px rgba(8,145,178,.45),0 4px 22px rgba(6,182,212,.28) }
           50%   { box-shadow:0 0 55px rgba(8,145,178,.85),0 4px 45px rgba(6,182,212,.65),0 0 90px rgba(6,182,212,.18) }
@@ -770,7 +893,7 @@ export default function WaterCheckup() {
           animation: wcShimmer 3s linear infinite;
         }
       `}</style>
-      <WaterBackground />
+      <WaterCanvas />
 
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(6,15,30,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', position: 'sticky', top: 0, zIndex: 100 }}>
