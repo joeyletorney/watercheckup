@@ -645,19 +645,19 @@ function WaterCanvas() {
       const H = canvas.height;
       t += 0.009;
 
-      // ── 1. SANDY BOTTOM ──────────────────────────────────────────────────
-      // Warm Bahamas sand: pale cream to golden
+      // ── 1. DEEP WATER BASE ───────────────────────────────────────────────
+      // Dark rich navy-teal — deep clear Caribbean water
       const sand = ctx.createLinearGradient(0, 0, 0, H);
-      sand.addColorStop(0,    '#f0e2b8');
-      sand.addColorStop(0.35, '#e8d4a0');
-      sand.addColorStop(0.7,  '#ddc48a');
-      sand.addColorStop(1,    '#cdb070');
+      sand.addColorStop(0,    '#03111f');
+      sand.addColorStop(0.35, '#041828');
+      sand.addColorStop(0.7,  '#051d30');
+      sand.addColorStop(1,    '#030e1c');
       ctx.fillStyle = sand;
       ctx.fillRect(0, 0, W, H);
 
-      // Sand ripple bedforms — gentle undulating bands from water current
+      // Subtle underwater floor texture — very dark sand ripples
       ctx.save();
-      ctx.globalAlpha = 0.06;
+      ctx.globalAlpha = 0.04;
       for (let row = 0; row < 32; row++) {
         const baseY = (row / 32) * H;
         ctx.beginPath();
@@ -667,17 +667,17 @@ function WaterCanvas() {
             + Math.sin(x * 0.023 - row * 0.28 + t * 0.12) * 2.5;
           x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
-        ctx.strokeStyle = row % 4 === 0 ? 'rgba(100,72,30,1)' : 'rgba(160,115,55,1)';
-        ctx.lineWidth = 1.4;
+        ctx.strokeStyle = 'rgba(0,180,200,1)';
+        ctx.lineWidth = 1.2;
         ctx.stroke();
       }
       ctx.restore();
 
-      // Sand grains (static scatter)
+      // Subtle grain scatter — barely visible dark specks
       GRAINS.forEach(g => {
         ctx.beginPath();
         ctx.arc(g.x * W, g.y * H, g.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(130,92,40,${g.a})`;
+        ctx.fillStyle = `rgba(0,120,160,${g.a * 0.4})`;
         ctx.fill();
       });
 
@@ -700,13 +700,13 @@ function WaterCanvas() {
           + Math.sin(t * s1 + ph * 0.44) * H * 0.11;
 
         const r  = 28 + (i % 9) * 8 + Math.sin(t * 1.6 + i * 0.9) * 13;
-        const ia = 0.016 + (i % 6) * 0.004;
+        const ia = 0.010 + (i % 6) * 0.003;
 
         const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        // Warm yellow-white — like tropical sun rays through clear shallow water
-        cg.addColorStop(0,    `rgba(255, 250, 195, ${ia * 2.4})`);
-        cg.addColorStop(0.3,  `rgba(220, 255, 225, ${ia * 1.2})`);
-        cg.addColorStop(0.65, `rgba(80,  220, 200, ${ia * 0.5})`);
+        // Cool blue-white caustics — sunlight through deep clear water
+        cg.addColorStop(0,    `rgba(180, 240, 255, ${ia * 2.0})`);
+        cg.addColorStop(0.3,  `rgba(100, 210, 240, ${ia * 1.0})`);
+        cg.addColorStop(0.65, `rgba(0,  150, 200, ${ia * 0.4})`);
         cg.addColorStop(1,    'rgba(0,0,0,0)');
 
         ctx.beginPath();
@@ -716,21 +716,21 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // ── 3. CRYSTAL-CLEAR TURQUOISE WATER OVERLAY ─────────────────────────
-      // Bahamas palette: bright aquamarine shallow → deeper teal
+      // ── 3. DEEP BLUE WATER OVERLAY ───────────────────────────────────────
+      // Rich deep blue — like 30ft of clear Caribbean water
       const water = ctx.createLinearGradient(0, 0, 0, H);
-      water.addColorStop(0,    'rgba(10,  215, 200, 0.48)');
-      water.addColorStop(0.28, 'rgba(0,   190, 185, 0.54)');
-      water.addColorStop(0.58, 'rgba(0,   155, 175, 0.60)');
-      water.addColorStop(1,    'rgba(0,    80, 148, 0.68)');
+      water.addColorStop(0,    'rgba(0,  110, 180, 0.72)');
+      water.addColorStop(0.30, 'rgba(0,   85, 160, 0.78)');
+      water.addColorStop(0.65, 'rgba(0,   55, 130, 0.82)');
+      water.addColorStop(1,    'rgba(0,   25,  80, 0.88)');
       ctx.fillStyle = water;
       ctx.fillRect(0, 0, W, H);
 
-      // Depth darkening at edges — simulates deeper water further from shore
+      // Depth darkening at edges
       const edge = ctx.createRadialGradient(W / 2, H / 2, H * 0.06, W / 2, H / 2, W * 0.74);
-      edge.addColorStop(0,   'rgba(0, 90, 170, 0)');
-      edge.addColorStop(0.65,'rgba(0, 55, 130, 0.10)');
-      edge.addColorStop(1,   'rgba(0, 20,  80, 0.36)');
+      edge.addColorStop(0,   'rgba(0, 30, 80, 0)');
+      edge.addColorStop(0.65,'rgba(0, 15, 55, 0.18)');
+      edge.addColorStop(1,   'rgba(0,  5, 30, 0.50)');
       ctx.fillStyle = edge;
       ctx.fillRect(0, 0, W, H);
 
@@ -766,9 +766,9 @@ function WaterCanvas() {
           const sr = 1.0 + ba * 3.8;
 
           const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr * 5);
-          sg.addColorStop(0,    `rgba(255,255,255,${ba * 0.95})`);
-          sg.addColorStop(0.2,  `rgba(230,252,255,${ba * 0.50})`);
-          sg.addColorStop(0.55, `rgba(180,240,240,${ba * 0.18})`);
+          sg.addColorStop(0,    `rgba(200,240,255,${ba * 0.80})`);
+          sg.addColorStop(0.2,  `rgba(160,220,255,${ba * 0.38})`);
+          sg.addColorStop(0.55, `rgba(100,190,230,${ba * 0.14})`);
           sg.addColorStop(1,    'rgba(255,255,255,0)');
           ctx.fillStyle = sg;
           ctx.beginPath();
