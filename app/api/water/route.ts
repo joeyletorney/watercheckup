@@ -64,6 +64,37 @@ const PFAS_NAMES: Record<string, string> = {
   lithium: 'Lithium',
 };
 
+// ─── EWG Health Guidelines (stricter than EPA legal limits) ──────────────────
+// Sources: EWG Tap Water Database 2025 methodology, California PHGs, WHO guidelines
+const EWG_GUIDELINES: Record<string, { limit: number; unit: string; label: string }> = {
+  // Disinfection byproducts
+  'Total Trihalomethanes': { limit: 0.15,  unit: 'ppb',    label: 'EWG health guideline: 0.15 ppb' },
+  'Trihalomethanes':       { limit: 0.15,  unit: 'ppb',    label: 'EWG health guideline: 0.15 ppb' },
+  'Chloroform':            { limit: 0.4,   unit: 'ppb',    label: 'EWG health guideline: 0.4 ppb' },
+  'Bromodichloromethane':  { limit: 0.06,  unit: 'ppb',    label: 'EWG health guideline: 0.06 ppb' },
+  'Dibromochloromethane':  { limit: 0.1,   unit: 'ppb',    label: 'EWG health guideline: 0.1 ppb' },
+  'Bromoform':             { limit: 0.05,  unit: 'ppb',    label: 'EWG health guideline: 0.05 ppb' },
+  'Haloacetic Acids':      { limit: 0.1,   unit: 'ppb',    label: 'EWG health guideline: 0.1 ppb' },
+  'Haloacetic Acids (HAA5)': { limit: 0.1, unit: 'ppb',    label: 'EWG health guideline: 0.1 ppb' },
+  'Haloacetic Acids (HAA9)': { limit: 0.06,unit: 'ppb',    label: 'EWG health guideline: 0.06 ppb' },
+  'Dichloroacetic Acid':   { limit: 0.2,   unit: 'ppb',    label: 'EWG health guideline: 0.2 ppb' },
+  'Trichloroacetic Acid':  { limit: 0.4,   unit: 'ppb',    label: 'EWG health guideline: 0.4 ppb' },
+  // Metals & inorganics
+  'Arsenic':               { limit: 0.004, unit: 'ppb',    label: 'EWG health guideline: 0.004 ppb' },
+  'Lead':                  { limit: 0.0001,unit: 'ppb',    label: 'No safe level (EWG)' },
+  'Chromium-6':            { limit: 0.02,  unit: 'ppb',    label: 'California PHG: 0.02 ppb' },
+  'Hexavalent Chromium':   { limit: 0.02,  unit: 'ppb',    label: 'California PHG: 0.02 ppb' },
+  'Nitrate':               { limit: 5,     unit: 'mg/L',   label: 'EWG health guideline: 5 mg/L' },
+  'Nitrite':               { limit: 0.6,   unit: 'mg/L',   label: 'EWG health guideline: 0.6 mg/L' },
+  'Radium':                { limit: 0.05,  unit: 'pCi/L',  label: 'EWG health guideline: 0.05 pCi/L' },
+  'Uranium':               { limit: 0.43,  unit: 'ppb',    label: 'EWG health guideline: 0.43 ppb' },
+  // Pesticides
+  'Atrazine':              { limit: 0.1,   unit: 'ppb',    label: 'EWG health guideline: 0.1 ppb' },
+  // PFAS
+  'PFOA':                  { limit: 0.001, unit: 'ppt',    label: 'EWG health guideline: 0.001 ppt' },
+  'PFOS':                  { limit: 0.001, unit: 'ppt',    label: 'EWG health guideline: 0.001 ppt' },
+};
+
 // ─── Health context per contaminant ──────────────────────────────────────────
 const HEALTH_CONTEXT: Record<string, { effects: string; sources: string; epa_action: string }> = {
   Lead: {
@@ -661,6 +692,8 @@ export async function GET(req: NextRequest) {
       if (!hits.length) return;
       const val = Math.max(...hits.map(s => parseFloat(f(s, 'sample_measure')) || 0));
       const ctx = HEALTH_CONTEXT[name];
+      const ewgG = EWG_GUIDELINES[name];
+      const ewgTimesOver = ewgG && ewgG.limit > 0 && val > 0 ? +(val / ewgG.limit).toFixed(1) : null;
       contaminants.push({
         name, level: +val.toFixed(2), limit, unit,
         severity: val > limit ? 'high' : val > limit * 0.5 ? 'moderate' : 'low',
@@ -669,6 +702,9 @@ export async function GET(req: NextRequest) {
         healthEffects: ctx?.effects,
         healthSources: ctx?.sources,
         epaAction: ctx?.epa_action,
+        ewgGuideline: ewgG?.limit ?? null,
+        ewgGuidelineLabel: ewgG?.label ?? null,
+        ewgTimesOver,
       });
     };
     addC('Lead',   ['PB90', '1040'], 15,   'ppb');

@@ -39,29 +39,29 @@ async function findInstallers(zip: string) {
 // ─────────────────────────────────────────────────────────────────────────────
 const SITUATIONS = [
   { id: 'homeowner', icon: '🏠', label: 'Homeowner',         desc: 'You own your home and want full protection at every tap, shower, and appliance.',        tagline: 'Full-home water protection',    cats: ['whole-house','undersink','shower'] },
-  { id: 'renter',    icon: '🏢', label: 'Renter / Apartment',desc: 'You rent — no plumbing changes allowed. Clean water without drilling a single hole.', tagline: 'No installation required',      cats: ['countertop','pitcher','shower'] },
+  { id: 'renter',    icon: '🏢', label: 'Renter / Apartment',desc: 'You rent  --  no plumbing changes allowed. Clean water without drilling a single hole.', tagline: 'No installation required',      cats: ['countertop','pitcher','shower'] },
   { id: 'rv',        icon: '🚐', label: 'RV / Van Life',     desc: 'On the road and need reliable filtration wherever you park or hook up.',                 tagline: 'Portable filtration anywhere',  cats: ['countertop','pitcher'] },
-  { id: 'dorm',      icon: '🎓', label: 'College Dorm',      desc: 'Small space, shared facilities, tight budget — simple, affordable, plug-in-and-pour.',  tagline: 'Simple & affordable',           cats: ['pitcher'] },
+  { id: 'dorm',      icon: '🎓', label: 'College Dorm',      desc: 'Small space, shared facilities, tight budget  --  simple, affordable, plug-in-and-pour.',  tagline: 'Simple & affordable',           cats: ['pitcher'] },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FULL PRODUCT CATALOG — 22 products, 6 categories, all NSF/WQA certified
+// FULL PRODUCT CATALOG  --  22 products, 6 categories, all NSF/WQA certified
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO ──────────────────────────────────────────────────────────
   { id:1, cat:'undersink', catLabel:'Under-Sink RO', name:'APEC ROES-50', brand:'APEC Water Systems', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','DIY install ~2hrs'], diyDiff:'Medium', situations:['homeowner','family'], img:'https://www.apecwater.com/cdn/shop/files/APEC-ROES50_Image_1.jpg?v=1763754451&width=1024', amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}` },
   { id:2, cat:'undersink', catLabel:'Under-Sink RO', name:'iSpring RCC7AK', brand:'iSpring', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%'], bestFor:['Lead','PFAS','Chromium-6','Copper'], pros:['Remineralization stage','75 GPD fast','pH balanced'], diyDiff:'Medium', situations:['homeowner','family'], img:'https://www.ispringwatersystems.com/wp-content/uploads/2022/11/RCC7AK.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}` },
-  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}` },
+  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges  --  no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}` },
   { id:4, cat:'undersink', catLabel:'Under-Sink RO', name:'Home Master TMAFC', brand:'Home Master', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio'], diyDiff:'Medium', situations:['homeowner','family'], img:'https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00B5GT45E?tag=${TAG}` },
   { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B01AO49OAQ?tag=${TAG}` },
 
-  // ── COUNTERTOP / PORTABLE RO — no installation needed ──────────────────────
-  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://www.waterdropfilter.com/cdn/shop/products/wd-product-WD-D4-W-img1.png?v=1762268908', amazon:`https://www.amazon.com/dp/B0BV4BBQRD?tag=${TAG}` },
+  // ── COUNTERTOP / PORTABLE RO  --  no installation needed ──────────────────────
+  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter  --  zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://www.waterdropfilter.com/cdn/shop/products/wd-product-WD-D4-W-img1.png?v=1762268908', amazon:`https://www.amazon.com/dp/B0BV4BBQRD?tag=${TAG}` },
   { id:7, cat:'countertop', catLabel:'Countertop RO', name:'APEC RO-CTOP', brand:'APEC Water Systems', price:179, filterCostPerYear:80, rating:4.5, reviews:2900, gpd:90, stages:4, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride','Chloramine','TDS'], bestFor:['Lead','Arsenic','Fluoride','Nitrate'], pros:['No installation','Portable','Connects to faucet'], diyDiff:'None', situations:['renter','dorm'], img:'https://m.media-amazon.com/images/I/71jY+cEQGML._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00JWLMQZE?tag=${TAG}` },
   { id:8, cat:'countertop', catLabel:'Countertop RO', name:'Zero Installation Purifier ZIP-100', brand:'iSpring', price:159, filterCostPerYear:65, rating:4.4, reviews:1800, gpd:75, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98%','Arsenic >97%','Chlorine >99%','TDS','Heavy metals'], bestFor:['Lead','Arsenic','Copper','Chlorine'], pros:['Sits on countertop','No plumbing needed','Great for apartments'], diyDiff:'None', situations:['renter','dorm'], img:'https://m.media-amazon.com/images/I/71h7s9HDAPL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B01M0GXKL5?tag=${TAG}` },
 
   // ── PITCHER FILTERS ─────────────────────────────────────────────────────────
-  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Only pitcher on the market to remove PFAS at 99.9%. Certified against 365+ contaminants. Reviewers on Amazon consistently rank it best for lead and arsenic. Our top pick for renters and dorms.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', amazon:`https://www.amazon.com/dp/B083HVG9T8?tag=${TAG}` },
+  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS  --  rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Only pitcher on the market to remove PFAS at 99.9%. Certified against 365+ contaminants. Reviewers on Amazon consistently rank it best for lead and arsenic. Our top pick for renters and dorms.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', amazon:`https://www.amazon.com/dp/B083HVG9T8?tag=${TAG}` },
   { id:10, cat:'pitcher', catLabel:'Pitcher Filter', name:'ZeroWater 10-Cup Pitcher', brand:'ZeroWater', price:40, filterCostPerYear:100, rating:4.5, reviews:31000, gpd:null, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Chromium 100%','TDS to 0','Mercury','Arsenic'], bestFor:['Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes TDS to 0','Includes TDS meter','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://shop.culligan.com/cdn/shop/files/UMC_10C_White_Zoom_IAPMO.jpg?v=1769531157', amazon:`https://www.amazon.com/dp/B01I2I2R36?tag=${TAG}` },
   { id:11, cat:'pitcher', catLabel:'Pitcher Filter', name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://www.pur.com/wp-content/uploads/product_ppt111w_pour_digital.png', amazon:`https://www.amazon.com/dp/B07NMQNHPB?tag=${TAG}` },
   { id:12, cat:'pitcher', catLabel:'Pitcher Filter', name:'Brita Large 10-Cup Everyday', brand:'Brita', price:28, filterCostPerYear:65, rating:4.6, reviews:62000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Chlorine taste/odor','Mercury','Cadmium','Copper'], bestFor:['Chlorine','Copper','Mercury'], pros:['Most popular pitcher','Budget-friendly','Widely available'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://images.ctfassets.net/bugnyha6so6z/acBjvgL2C42mltLEu67e3/21192a304f339de2a3a278b90ed318e7/PDP_hero_-_denali_-_white_-_original_-_desktop_1x.webp', amazon:`https://www.amazon.com/dp/B00008WOPI?tag=${TAG}` },
@@ -80,7 +80,7 @@ const PRODUCTS: any[] = [
   { id:19, cat:'whole', catLabel:'Whole-House', name:'iSpring WGB32B Whole House 3-Stage', brand:'iSpring', price:189, filterCostPerYear:70, rating:4.6, reviews:7200, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Iron'], bestFor:['Chlorine','Chloramine','Sediment','Iron'], pros:['Most affordable whole-house','DIY-friendly','Large flow rate'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://m.media-amazon.com/images/I/71K9E39BPKL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B007QN8EEU?tag=${TAG}` },
 
   // ── SHOWER FILTERS ──────────────────────────────────────────────────────────
-  { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#475569', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','dorm'], expertPick:true, expertReason:'42,000+ Amazon reviews. Installs in 5 minutes — just screw it onto any showerhead. Removes chlorine that dries skin and damages hair. Best value shower filter on the market by far.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01N1I34SF?tag=${TAG}` },
+  { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#475569', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','dorm'], expertPick:true, expertReason:'42,000+ Amazon reviews. Installs in 5 minutes  --  just screw it onto any showerhead. Removes chlorine that dries skin and damages hair. Best value shower filter on the market by far.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01N1I34SF?tag=${TAG}` },
   { id:21, cat:'shower', catLabel:'Shower Filter', name:'Pelican PSF-1 Premium Shower', brand:'Pelican Water', price:70, filterCostPerYear:60, rating:4.6, reviews:3800, gpd:null, stages:3, cert:['NSF/ANSI 177','KDF-55'], certColor:'#d97706', removes:['Chlorine >96%','Chloramine','Scale','Hydrogen sulfide'], bestFor:['Chlorine','Chloramine','Scale'], pros:['NSF 177 certified','Better skin/hair','Lasts 15,000 gallons'], diyDiff:'Easy', situations:['homeowner','renter'], img:'https://plumbersparadise.net/cdn/shop/files/PSF1.jpg?v=1740643408', amazon:`https://www.amazon.com/dp/B00YM5MG14?tag=${TAG}` },
 
   // ── REFRIGERATOR / INLINE ───────────────────────────────────────────────────
@@ -101,36 +101,36 @@ const SITUATION_CONFIG: Record<string, {
     headline: 'Best filters for homeowners',
     description: 'You can install under-sink RO or a whole-house system. Under-sink gives the cleanest drinking water; whole-house protects every tap, shower, and appliance.',
     primaryCats: ['undersink','whole'],
-    avoid: 'Skip pitchers long-term — the per-gallon cost is 3x higher than RO.',
-    tip: 'Most under-sink RO systems take 2–3 hours to install with basic tools. Look for a WQA-certified installer if you\'re not comfortable with the plumbing connections.',
+    avoid: 'Skip pitchers long-term  --  the per-gallon cost is 3x higher than RO.',
+    tip: 'Most under-sink RO systems take 2-3 hours to install with basic tools. Look for a WQA-certified installer if you\'re not comfortable with the plumbing connections.',
   },
   renter: {
     headline: 'No-drill solutions for renters',
     description: 'You can\'t drill into cabinets or modify plumbing. Countertop RO systems connect to your existing faucet in minutes with zero permanent changes. Faucet-mount filters are even simpler.',
     primaryCats: ['countertop','faucet','pitcher'],
-    avoid: 'Avoid under-sink systems — they require drilling and permanent plumbing modifications that violate most leases.',
-    tip: 'The Waterdrop D4 Countertop RO is the best no-install option — it removes 99%+ PFAS and lead with no tools or landlord permission needed.',
+    avoid: 'Avoid under-sink systems  --  they require drilling and permanent plumbing modifications that violate most leases.',
+    tip: 'The Waterdrop D4 Countertop RO is the best no-install option  --  it removes 99%+ PFAS and lead with no tools or landlord permission needed.',
   },
   dorm: {
     headline: 'Dorm room & campus water solutions',
     description: 'Campus water often has aging pipes with lead risk. A pitcher filter or countertop RO on your desk handles drinking water. Get a filtered water bottle for the dining hall and class.',
     primaryCats: ['pitcher','bottle','countertop'],
-    avoid: 'Don\'t rely on the drinking fountains — campus water systems are often older buildings with lead service lines.',
-    tip: 'Clearly Filtered pitcher is the only pitcher that removes PFAS — worth the extra cost if your school\'s water tests positive.',
+    avoid: 'Don\'t rely on the drinking fountains  --  campus water systems are often older buildings with lead service lines.',
+    tip: 'Clearly Filtered pitcher is the only pitcher that removes PFAS  --  worth the extra cost if your school\'s water tests positive.',
   },
   family: {
     headline: 'Protecting your whole family',
     description: 'Children are more vulnerable to lead and PFAS. Under-sink RO handles cooking and drinking water at home. Add a filtered school bottle for kids on the go.',
     primaryCats: ['undersink','pitcher','bottle'],
-    avoid: 'Regular Brita pitchers don\'t remove PFAS or lead at high efficiency — for kids, get Clearly Filtered or an RO system.',
+    avoid: 'Regular Brita pitchers don\'t remove PFAS or lead at high efficiency  --  for kids, get Clearly Filtered or an RO system.',
     tip: 'The #1 priority for families with kids under 6: lead and PFAS removal. Both require RO or a specifically PFAS-certified pitcher (like Clearly Filtered).',
   },
   travel: {
     headline: 'Filtering water on the go',
     description: 'For hotel rooms, Airbnbs, and travel, a filtered water bottle is all you need. For longer stays or RVs, a countertop RO is a game-changer.',
     primaryCats: ['bottle','pitcher'],
-    avoid: 'Don\'t trust hotel tap water — aging building plumbing can have lead even when the municipal supply is clean.',
-    tip: 'The LifeStraw Go works on virtually any water source worldwide — perfect for international travel or outdoor adventures.',
+    avoid: 'Don\'t trust hotel tap water  --  aging building plumbing can have lead even when the municipal supply is clean.',
+    tip: 'The LifeStraw Go works on virtually any water source worldwide  --  perfect for international travel or outdoor adventures.',
   },
 };
 
@@ -234,7 +234,7 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // PRODUCT CARD
 // ─────────────────────────────────────────────────────────────────────────────
-function ProductCard({ p, highlight, compact }: { p: any; highlight: boolean; compact?: boolean }) {
+function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; highlight: boolean; compact?: boolean; detectedContaminants?: string[] }) {
   const [imgErr, setImgErr] = useState(false);
   const diyColors: Record<string, string> = { None: '#22d3ee', Easy: '#22d3ee', Medium: '#f59e0b', Hard: '#ef4444' };
 
@@ -287,6 +287,18 @@ function ProductCard({ p, highlight, compact }: { p: any; highlight: boolean; co
           <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
             {p.removes.slice(0, 3).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051527', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
           </div>
+          {detectedContaminants && detectedContaminants.length > 0 && (() => {
+            const matched = p.bestFor.filter((b: string) => detectedContaminants.some(d => d.toLowerCase().includes(b.toLowerCase()) || b.toLowerCase().includes(d.toLowerCase().split(' ')[0])));
+            if (!matched.length) return null;
+            return (
+              <div style={{ marginTop: 6, padding: '5px 8px', background: '#0a1f0a', border: '1px solid #22d3ee30', borderRadius: 5 }}>
+                <div style={{ fontSize: 9, color: '#22d3ee', letterSpacing: 1, marginBottom: 3, fontWeight: 700 }}>✓ TARGETS YOUR WATER</div>
+                <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+                  {matched.map((m: string) => <span key={m} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#22d3ee22', color: '#22d3ee', fontWeight: 700 }}>{m}</span>)}
+                </div>
+              </div>
+            );
+          })()}
         </div>
         <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginBottom: 2 }}>
           {p.pros.slice(0, 2).map((pro: string) => <div key={pro} style={{ fontSize: 11, color: '#64748b' }}>✓ {pro}</div>)}
@@ -319,8 +331,13 @@ function ContaminantRow({ c }: { c: any }) {
           {c.source && <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#0e2233', color: '#475569', border: '1px solid #1e3a4a' }}>{c.source}</span>}
           {c.isPFAS && <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#ef444415', color: '#ef4444', border: '1px solid #ef444430', fontWeight: 700 }}>PFAS</span>}
         </div>
-        <div style={{ display: 'flex', gap: 7, alignItems: 'center' }}>
-          {c.level != null && c.limit != null && <span style={{ fontSize: 12, color: '#475569' }}>{c.level} {c.unit} · limit {c.limit}</span>}
+        <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
+          {c.level != null && c.limit != null && <span style={{ fontSize: 12, color: '#475569' }}>{c.level} {c.unit} · legal limit {c.limit}</span>}
+          {c.ewgTimesOver != null && c.ewgTimesOver > 1 && (
+            <span title={c.ewgGuidelineLabel || 'EWG Health Guideline'} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: '#7c1d1d', color: '#fca5a5', fontWeight: 800, border: '1px solid #ef444440', cursor: 'help' }}>
+              {c.ewgTimesOver >= 10 ? Math.round(c.ewgTimesOver) : c.ewgTimesOver}× health guideline
+            </span>
+          )}
           <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: sev.color + '22', color: sev.color }}>{sev.label}</span>
           {hasCtx && <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: '1px solid #1e3a4a', borderRadius: 4, color: '#475569', fontSize: 11, cursor: 'pointer', padding: '2px 7px' }}>{expanded ? 'Less ↑' : 'Health info ↓'}</button>}
         </div>
@@ -355,7 +372,7 @@ function PFASAwarenessBanner() {
         <div style={{ fontSize: 22, flexShrink: 0 }}>☣️</div>
         <div style={{ flex: 1, paddingRight: 20 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 5, flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontSize: 12, fontWeight: 800, color: '#ef4444', letterSpacing: 0.3 }}>EPA PFAS RULE — 2024</span>
+            <span style={{ fontSize: 12, fontWeight: 800, color: '#ef4444', letterSpacing: 0.3 }}>EPA PFAS RULE  --  2024</span>
             <span style={{ fontSize: 10, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>ENFORCEABLE MCL</span>
           </div>
           <p style={{ margin: '0 0 10px', fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>
@@ -384,23 +401,316 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
         <span style={{ fontSize: 18 }}>{overLimit ? '🚨' : '⚠️'}</span>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 5, flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontSize: 12, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>PFAS DETECTED — {city?.toUpperCase()}</span>
+            <span style={{ fontSize: 12, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>PFAS DETECTED  --  {city?.toUpperCase()}</span>
             {overLimit && <span style={{ fontSize: 10, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>EXCEEDS EPA MCL</span>}
           </div>
           <p style={{ margin: '0 0 8px', fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
             {overLimit
-              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — exceeds EPA 2024 limit of 4 ppt. Standard carbon filters do NOT remove PFAS. Reverse osmosis required.</>
-              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — below 4 ppt limit but above non-detect. Forever chemicals accumulate in the body. RO or Clearly Filtered recommended.</>
+              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong>  --  exceeds EPA 2024 limit of 4 ppt. Standard carbon filters do NOT remove PFAS. Reverse osmosis required.</>
+              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong>  --  below 4 ppt limit but above non-detect. Forever chemicals accumulate in the body. RO or Clearly Filtered recommended.</>
             }
           </p>
           {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 12, color: '#64748b', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P800 — PFAS &gt;99%</a>
+            <a href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P800  --  PFAS &gt;99%</a>
             <a href={`https://www.amazon.com/dp/B083HVG9T8?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#94a3b8', fontSize: 11, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
             <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: 'none', color: '#475569', fontSize: 11, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>{expanded ? 'Less ↑' : 'What are PFAS? ↓'}</button>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DIY INSTALLATION GUIDES
+// ─────────────────────────────────────────────────────────────────────────────
+const DIY_GUIDES: Record<string, { time: string; difficulty: string; tools: string[]; steps: string[]; tips: string[]; youtubeQuery: string }> = {
+  undersink: {
+    time: '1.5-3 hours', difficulty: 'Medium',
+    tools: ['Adjustable wrench','Drill + 1.5" hole saw (for faucet)','Teflon tape','Bucket or towels','Safety glasses'],
+    steps: [
+      'Clear under the sink and turn off the cold water supply valve.',
+      'Mount the filter housing on the back wall of the cabinet using the included bracket and screws.',
+      'Use the hole saw to drill through the sink or countertop for the dedicated RO faucet.',
+      'Connect the cold water feed line to the system input using the push-fit connector and saddle valve.',
+      'Route the drain line to the drain pipe using the self-piercing drain saddle clamp.',
+      'Connect the output line to the RO faucet you installed in step 3.',
+      'If your system includes a storage tank, connect it with the tank valve and ball valve.',
+      'Turn the water supply back on slowly. Check every connection for leaks  --  tighten if needed.',
+      'Run 2-3 full tank cycles (fill and drain) to flush the new filters before drinking.',
+    ],
+    tips: [
+      'Use Teflon tape on all threaded connections  --  3 wraps clockwise.',
+      'Most systems come with color-coded tubing  --  follow the manual\'s color guide exactly.',
+      'The drain saddle clamp should go 6-12 inches above the P-trap to prevent backflow.',
+      'If water pressure is below 40 PSI you may need a booster pump (most systems include one).',
+      'Label your shutoff valves so you can find them quickly for filter changes.',
+    ],
+    youtubeQuery: 'under sink reverse osmosis installation DIY',
+  },
+  countertop: {
+    time: '5-10 minutes', difficulty: 'None',
+    tools: ['None  --  just your hands'],
+    steps: [
+      'Unbox the unit and remove all packing materials and protective films.',
+      'Install the filter cartridge(s) by twisting into place per the color-coded arrows.',
+      'Connect the included adapter to your existing faucet by unscrewing the aerator and screwing on the diverter valve.',
+      'Connect the RO unit\'s input tube to the diverter valve.',
+      'Place the unit on your countertop near the sink.',
+      'Turn on the faucet, flip the diverter to RO mode, and run water for 5 minutes to flush.',
+      'Your water is ready. Switch the diverter back to normal mode when not using.',
+    ],
+    tips: [
+      'If the adapter doesn\'t fit your faucet, most systems include multiple adapter sizes.',
+      'Keep the unit level for best performance  --  it should not be tilted.',
+      'Run a fresh flush cycle after the unit has sat unused for 24+ hours.',
+      'Countertop RO units make great travel companions  --  they pack up in minutes.',
+    ],
+    youtubeQuery: 'countertop reverse osmosis system setup installation',
+  },
+  pitcher: {
+    time: '2 minutes', difficulty: 'None',
+    tools: ['None'],
+    steps: [
+      'Remove the filter from its packaging.',
+      'For most filters: soak the new filter cartridge in cold water for 15 minutes.',
+      'Insert the filter into the reservoir by twisting until it locks into place.',
+      'Fill the top reservoir with cold tap water and let it filter through.',
+      'Discard the first 2-3 pitchers of filtered water (this flushes carbon fines).',
+      'Your pitcher is ready  --  store in the refrigerator.',
+    ],
+    tips: [
+      'Never use hot water in a pitcher filter  --  it can damage the media.',
+      'Most pitchers need filter replacement every 2-3 months (or 40 gallons). Set a phone reminder.',
+      'Clearly Filtered filters need no pre-soaking  --  just install and use.',
+      'Keep the pitcher in the fridge to inhibit bacterial growth.',
+    ],
+    youtubeQuery: 'water filter pitcher how to use setup',
+  },
+  faucet: {
+    time: '5-10 minutes', difficulty: 'Easy',
+    tools: ['None (hand-tighten only)'],
+    steps: [
+      'Turn off the faucet.',
+      'Unscrew the existing aerator from the faucet tip (turn counterclockwise).',
+      'Select the correct adapter from the included set  --  try threading each to find the right fit.',
+      'Screw the filter adapter onto the faucet tip, then attach the filter housing.',
+      'Turn the faucet on cold. Check for leaks around the connection.',
+      'Use the lever or button on the filter to switch between filtered and unfiltered mode.',
+    ],
+    tips: [
+      'Hand-tighten only  --  tools can crack the plastic housing.',
+      'If water sprays from the sides, try a different adapter size from the included set.',
+      'Pull-out and pull-down faucets are usually NOT compatible  --  check before buying.',
+      'Replace the filter cartridge every 100 gallons or 3 months, whichever comes first.',
+    ],
+    youtubeQuery: 'faucet mount water filter installation how to',
+  },
+  shower: {
+    time: '5 minutes', difficulty: 'Easy',
+    tools: ['Adjustable wrench or pliers','Teflon tape','Towel to clean threads'],
+    steps: [
+      'Turn off the shower water supply or just make sure the handle is off.',
+      'Unscrew the existing showerhead from the shower arm (turn counterclockwise  --  may need pliers).',
+      'Wrap the shower arm threads with 3 layers of Teflon tape clockwise.',
+      'Screw the filter housing onto the shower arm. Hand-tighten, then one more quarter-turn with pliers.',
+      'Attach the showerhead to the outlet of the filter housing.',
+      'Turn on the shower and run for 30 seconds to flush the new filter.',
+    ],
+    tips: [
+      'Don\'t overtighten  --  one quarter-turn past hand-tight is enough.',
+      'Most shower filters fit any standard 1/2" NPT shower arm  --  the US standard.',
+      'Replace the filter cartridge every 10,000-15,000 gallons (about every 6 months for a family of 4).',
+      'If you have a handheld showerhead, use the filter as an in-line connection between the hose and the wall mount.',
+    ],
+    youtubeQuery: 'shower filter installation how to replace',
+  },
+  whole: {
+    time: '2-4 hours', difficulty: 'Hard',
+    tools: ['Pipe cutter or hacksaw','Compression fittings or soldering kit','Adjustable wrenches (2)','Thread seal tape','Pipe brackets','Drill','Level','Bucket and towels'],
+    steps: [
+      'FIRST: Locate your main water shut-off valve and turn off water to the entire house. Open a faucet to relieve pressure.',
+      'Choose your installation location  --  ideally where the main supply enters the house, before the water heater.',
+      'Mark and cut the main supply line using a pipe cutter. This is the point of no return  --  measure twice.',
+      'Install bypass valves on both sides of the cut  --  this lets you service the filter without shutting off house water in the future.',
+      'Mount the filter housing bracket to the wall using a level. The housing must be vertical.',
+      'Connect the inlet and outlet ports to the supply line using compression fittings or sweat connections.',
+      'Install the filter cartridge(s) into the housing per the manual.',
+      'Slowly turn the main water supply back on. Walk through the house checking every connection for drips.',
+      'Open the bypass valves fully. Run all cold water taps for 5 minutes to flush the new filters.',
+    ],
+    tips: [
+      'If you\'re not comfortable cutting your main supply line, hire a licensed plumber  --  this is the one filter where it\'s often worth it.',
+      'Always install bypass valves  --  they\'ll save you hours during future filter changes.',
+      'The filter should go BEFORE the water softener if you have one.',
+      'Take photos of your plumbing before you start  --  invaluable if you need to explain anything to a plumber later.',
+      'Check local codes  --  some municipalities require a licensed plumber for main line work.',
+    ],
+    youtubeQuery: 'whole house water filter installation main line DIY',
+  },
+  bottle: {
+    time: '1 minute', difficulty: 'None',
+    tools: ['None'],
+    steps: [
+      'Remove the filter from packaging.',
+      'Insert the filter cartridge into the bottle per the included instructions.',
+      'Fill the bottle with tap water.',
+      'For first use: squeeze water through the filter and discard 2-3 times to flush carbon fines.',
+      'Your filtered water bottle is ready to use.',
+    ],
+    tips: [
+      'Never fill with hot water  --  it damages the filter media.',
+      'Rinse the bottle body weekly with soap and water.',
+      'Replace the filter per the manufacturer schedule  --  usually every 3 months or 100 gallons.',
+      'LifeStraw filters last up to 1,000 liters  --  mark the date on the bottle when you install.',
+    ],
+    youtubeQuery: 'filtered water bottle how to use Clearly Filtered LifeStraw',
+  },
+  fridge: {
+    time: '5 minutes', difficulty: 'Easy',
+    tools: ['Pipe cutter or scissors (for tubing)','Push-fit connectors (usually included)'],
+    steps: [
+      'Turn off the cold water supply valve behind or under your refrigerator.',
+      'Locate the inline position on the water supply tubing going to the fridge  --  ideally near the fridge for easy access.',
+      'Cut the supply tube at the chosen location.',
+      'Insert each cut end into the inline filter\'s push-fit connectors until they click.',
+      'Turn the water supply back on. Check both connections for drips.',
+      'Dispense and discard 1-2 gallons from the ice/water dispenser to flush the new filter.',
+    ],
+    tips: [
+      'Most inline filters fit 1/4" OD tubing  --  the standard for US refrigerators.',
+      'Install the filter outside the fridge near the wall for easier future replacements.',
+      'Replace every 6 months or 500 gallons  --  fridge water usage varies a lot.',
+      'Your ice maker water also passes through this filter  --  both will be cleaner.',
+    ],
+    youtubeQuery: 'inline refrigerator water filter installation DIY',
+  },
+};
+
+function DIYGuidePanel({ cat }: { cat: string }) {
+  const [open, setOpen] = useState(false);
+  const guide = DIY_GUIDES[cat] || DIY_GUIDES['undersink'];
+  const diffColor = { None: '#22d3ee', Easy: '#22d3ee', Medium: '#f59e0b', Hard: '#ef4444' }[guide.difficulty] || '#22d3ee';
+  return (
+    <div style={{ marginTop: 14, background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 10, overflow: 'hidden' }}>
+      <button onClick={() => setOpen(x => !x)} style={{ width: '100%', background: 'none', border: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', color: '#e2e8f0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontSize: 16 }}>🔧</span>
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ fontSize: 13, fontWeight: 700 }}>DIY Installation Guide</div>
+            <div style={{ fontSize: 11, color: '#64748b' }}>{guide.time} · {guide.tools.length} tools needed</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: diffColor + '22', color: diffColor, fontWeight: 700 }}>{guide.difficulty}</span>
+          <span style={{ color: '#475569', fontSize: 14 }}>{open ? '▲' : '▼'}</span>
+        </div>
+      </button>
+      {open && (
+        <div style={{ padding: '0 16px 16px', borderTop: '1px solid #0e2233' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: 12, marginTop: 14, marginBottom: 14 }}>
+            <div style={{ background: '#060e17', borderRadius: 8, padding: '10px 12px' }}>
+              <div style={{ fontSize: 10, color: '#475569', letterSpacing: 1, marginBottom: 6 }}>TOOLS NEEDED</div>
+              {guide.tools.map((t,i) => <div key={i} style={{ fontSize: 12, color: '#94a3b8', marginBottom: 3 }}>• {t}</div>)}
+            </div>
+            <div style={{ background: '#060e17', borderRadius: 8, padding: '10px 12px' }}>
+              <div style={{ fontSize: 10, color: '#f59e0b', letterSpacing: 1, marginBottom: 6 }}>PRO TIPS</div>
+              {guide.tips.map((t,i) => <div key={i} style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6, marginBottom: 4 }}>💡 {t}</div>)}
+            </div>
+          </div>
+          <div style={{ fontSize: 10, color: '#22d3ee', letterSpacing: 1, marginBottom: 10 }}>STEP-BY-STEP INSTALLATION</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {guide.steps.map((s, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <div style={{ minWidth: 24, height: 24, background: '#0891b2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0 }}>{i+1}</div>
+                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.6, paddingTop: 3 }}>{s}</div>
+              </div>
+            ))}
+          </div>
+          <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(guide.youtubeQuery)}`} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 14, padding: '8px 14px', background: '#dc2626', borderRadius: 6, color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>
+            ▶ Watch Video Tutorial on YouTube →
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COUNTY COMPARISON
+// ─────────────────────────────────────────────────────────────────────────────
+function CountyComparison({ pwsid }: { pwsid: string }) {
+  const [data, setData]       = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen]       = useState(false);
+
+  const load = async () => {
+    if (data || loading) { setOpen(x => !x); return; }
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/county?pwsid=${pwsid}`);
+      const json = await res.json();
+      setData(json);
+      setOpen(true);
+    } catch { setData({ utilities: [], county: 'Unknown' }); setOpen(true); }
+    setLoading(false);
+  };
+
+  const utils = data?.utilities || [];
+  return (
+    <div style={{ marginBottom: 18 }}>
+      <button onClick={load} style={{ width: '100%', background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 10, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', color: '#e2e8f0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontSize: 16 }}>🗺️</span>
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ fontSize: 13, fontWeight: 700 }}>Compare All Utilities in Your County</div>
+            <div style={{ fontSize: 11, color: '#64748b' }}>See how your water ranks against neighbors</div>
+          </div>
+        </div>
+        <span style={{ color: '#475569', fontSize: 14 }}>
+          {loading ? '⏳' : open ? '▲' : '▼'}
+        </span>
+      </button>
+      {open && data && (
+        <div style={{ background: '#060e17', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 10px 10px', padding: '12px 16px' }}>
+          {data.county && <div style={{ fontSize: 11, color: '#475569', letterSpacing: 1, marginBottom: 10 }}>{data.county.toUpperCase()}  --  {utils.length} PUBLIC WATER SYSTEMS</div>}
+          {utils.length === 0 ? (
+            <div style={{ fontSize: 13, color: '#475569', padding: '8px 0' }}>County data not available for this system.</div>
+          ) : (
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid #0e2233' }}>
+                    {['Utility','City','Population','Source','Open Violations','Total Violations'].map(h => (
+                      <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, color: '#475569', letterSpacing: 0.5, fontWeight: 700, whiteSpace: 'nowrap' }}>{h.toUpperCase()}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {utils.map((u: any, i: number) => (
+                    <tr key={i} style={{ background: u.isCurrent ? '#0e2545' : i % 2 === 0 ? '#0b1828' : 'transparent', borderBottom: '1px solid #0a1520' }}>
+                      <td style={{ padding: '8px 8px', color: u.isCurrent ? '#22d3ee' : '#e2e8f0', fontWeight: u.isCurrent ? 700 : 400, whiteSpace: 'nowrap' }}>
+                        {u.isCurrent ? '▶ ' : ''}{u.name.length > 30 ? u.name.slice(0,28)+'…' : u.name}
+                      </td>
+                      <td style={{ padding: '8px 8px', color: '#64748b' }}>{u.city}</td>
+                      <td style={{ padding: '8px 8px', color: '#64748b', textAlign: 'right' }}>{u.population.toLocaleString()}</td>
+                      <td style={{ padding: '8px 8px', color: '#64748b' }}>{u.sourceLabel}</td>
+                      <td style={{ padding: '8px 8px', textAlign: 'center' }}>
+                        <span style={{ color: u.openViolations > 0 ? '#ef4444' : '#22d3ee', fontWeight: 700 }}>{u.openViolations}</span>
+                      </td>
+                      <td style={{ padding: '8px 8px', textAlign: 'center' }}>
+                        <span style={{ color: u.totalViolations > 5 ? '#f59e0b' : '#64748b' }}>{u.totalViolations}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -506,20 +816,21 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
         <div key={cat} style={{ marginBottom: 22 }}>
           <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 12, fontWeight: 700 }}>{prods[0].catLabel.toUpperCase()}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {prods.slice(0, 3).map((p, i) => <ProductCard key={p.id} p={p} highlight={i === 0 && p.score > 0} compact={true} />)}
+            {prods.slice(0, 3).map((p, i) => <ProductCard key={p.id} p={p} highlight={i === 0 && p.score > 0} compact={true} detectedContaminants={contaminantNames} />)}
           </div>
+          <DIYGuidePanel cat={cat} />
         </div>
       ))}
 
       {/* Installation help */}
       <div style={{ background: 'linear-gradient(135deg,#0d2240,#0b1e36)', border: '1px solid #0891b230', borderRadius: 10, padding: '16px 18px', marginTop: 8 }}>
-        <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 10, fontWeight: 700 }}>🔧 INSTALLATION DIFFICULTY GUIDE</div>
+        <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 10, fontWeight: 700 }}>🔧 INSTALLATION QUICK REFERENCE</div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {[
-            { level: 'None', desc: 'Pitcher, water bottle, countertop — plug in and use', color: '#22d3ee' },
-            { level: 'Easy', desc: 'Faucet mount, shower filter — 5–15 min, no tools', color: '#22d3ee' },
-            { level: 'Medium', desc: 'Under-sink RO — 2–3 hrs, basic plumbing, shutoff valve', color: '#f59e0b' },
-            { level: 'Hard', desc: 'Whole-house — requires pipe work, hire a pro', color: '#ef4444' },
+            { level: 'None', desc: 'Pitcher, water bottle, countertop  --  plug in and use', color: '#22d3ee' },
+            { level: 'Easy', desc: 'Faucet mount, shower filter  --  5-15 min, no tools', color: '#22d3ee' },
+            { level: 'Medium', desc: 'Under-sink RO  --  2-3 hrs, basic plumbing, shutoff valve', color: '#f59e0b' },
+            { level: 'Hard', desc: 'Whole-house  --  requires pipe work, hire a pro', color: '#ef4444' },
           ].map(d => (
             <div key={d.level} style={{ flex: 1, minWidth: 140, background: '#0d2240', borderRadius: 6, padding: '10px 12px', border: `1px solid ${d.color}25` }}>
               <div style={{ fontSize: 12, fontWeight: 800, color: d.color, marginBottom: 3 }}>{d.level}</div>
@@ -543,20 +854,20 @@ function ResourcesTab({ data }: { data: any }) {
 
   const resources = [
     { cat: '🏛️ FEDERAL', items: [
-      { name: 'EPA SDWIS — Violation Search', url: `https://ofmpub.epa.gov/apex/sfdw/f?p=108:103::::::`, desc: 'Search violations for any water system nationwide' },
+      { name: 'EPA SDWIS  --  Violation Search', url: `https://ofmpub.epa.gov/apex/sfdw/f?p=108:103::::::`, desc: 'Search violations for any water system nationwide' },
       { name: 'EPA Safe Drinking Water Search', url: `https://www.epa.gov/sdwa/safe-drinking-water-hotline`, desc: 'Official EPA drinking water information' },
-      { name: 'EPA UCMR5 PFAS Data', url: 'https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule', desc: '2023–2025 PFAS monitoring — 6,000+ water systems' },
-      { name: `Your CCR Report (PWSID: ${data?.pwsid || '—'})`, url: ccrUrl, desc: 'Annual Consumer Confidence Report from your utility' },
+      { name: 'EPA UCMR5 PFAS Data', url: 'https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule', desc: '2023-2025 PFAS monitoring  --  6,000+ water systems' },
+      { name: `Your CCR Report (PWSID: ${data?.pwsid || ' -- '})`, url: ccrUrl, desc: 'Annual Consumer Confidence Report from your utility' },
       { name: 'EPA ECHO Enforcement', url: `https://echo.epa.gov/`, desc: 'Enforcement actions and inspection history' },
     ]},
     { cat: '🌿 EWG & ADVOCACY', items: [
       { name: 'EWG Tap Water Atlas', url: 'https://www.ewg.org/tapwater/', desc: 'EWG\'s national tap water contamination database' },
-      { name: 'PFAS Exchange — Industrial Sites', url: 'https://pfasproject.com/', desc: 'Map of PFAS contamination sources and industrial sites' },
+      { name: 'PFAS Exchange  --  Industrial Sites', url: 'https://pfasproject.com/', desc: 'Map of PFAS contamination sources and industrial sites' },
       { name: 'NRDC Drinking Water Report', url: 'https://www.nrdc.org/issues/drinking-water', desc: 'NRDC\'s national water safety resources' },
     ]},
     { cat: '⚗️ TESTING LABS', items: [
-      { name: 'National Testing Labs', url: 'https://www.ntllabs.com/', desc: 'Certified home water testing — PFAS, metals, bacteria' },
-      { name: 'SimpleLab Tap Score', url: 'https://mytapscore.com/', desc: 'Mail-in water test kits — comprehensive panels starting at $89' },
+      { name: 'National Testing Labs', url: 'https://www.ntllabs.com/', desc: 'Certified home water testing  --  PFAS, metals, bacteria' },
+      { name: 'SimpleLab Tap Score', url: 'https://mytapscore.com/', desc: 'Mail-in water test kits  --  comprehensive panels starting at $89' },
       { name: 'EPA Certified Lab Finder', url: 'https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water', desc: 'Find a state-certified lab in your state' },
     ]},
     { cat: '🔧 INSTALLER RESOURCES', items: [
@@ -597,7 +908,7 @@ function ResourcesTab({ data }: { data: any }) {
           This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test. Your municipal supply may be clean but your home's pipes could add lead or other contaminants.
         </p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <a href="https://mytapscore.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
+          <a href="https://mytapscore.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score  --  from $89 →</a>
           <a href="https://www.ntllabs.com/" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
         </div>
       </div>
@@ -606,7 +917,7 @@ function ResourcesTab({ data }: { data: any }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CANVAS WATER — Bahamas crystal-clear shallow water, top-down view
+// CANVAS WATER  --  Bahamas crystal-clear shallow water, top-down view
 // ─────────────────────────────────────────────────────────────────────────────
 function WaterCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -646,7 +957,7 @@ function WaterCanvas() {
       t += 0.009;
 
       // ── 1. DEEP WATER BASE ───────────────────────────────────────────────
-      // Dark rich navy-teal — deep clear Caribbean water
+      // Dark rich navy-teal  --  deep clear Caribbean water
       const sand = ctx.createLinearGradient(0, 0, 0, H);
       sand.addColorStop(0,    '#03111f');
       sand.addColorStop(0.35, '#041828');
@@ -655,7 +966,7 @@ function WaterCanvas() {
       ctx.fillStyle = sand;
       ctx.fillRect(0, 0, W, H);
 
-      // Subtle underwater floor texture — very dark sand ripples
+      // Subtle underwater floor texture  --  very dark sand ripples
       ctx.save();
       ctx.globalAlpha = 0.04;
       for (let row = 0; row < 32; row++) {
@@ -673,7 +984,7 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // Subtle grain scatter — barely visible dark specks
+      // Subtle grain scatter  --  barely visible dark specks
       GRAINS.forEach(g => {
         ctx.beginPath();
         ctx.arc(g.x * W, g.y * H, g.r, 0, Math.PI * 2);
@@ -681,7 +992,7 @@ function WaterCanvas() {
         ctx.fill();
       });
 
-      // ── 2. CAUSTICS — warm sun through clear water ───────────────────────
+      // ── 2. CAUSTICS  --  warm sun through clear water ───────────────────────
       // Additive blending: overlapping bright blobs create the caustic web
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
@@ -703,7 +1014,7 @@ function WaterCanvas() {
         const ia = 0.010 + (i % 6) * 0.003;
 
         const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        // Cool blue-white caustics — sunlight through deep clear water
+        // Cool blue-white caustics  --  sunlight through deep clear water
         cg.addColorStop(0,    `rgba(180, 240, 255, ${ia * 2.0})`);
         cg.addColorStop(0.3,  `rgba(100, 210, 240, ${ia * 1.0})`);
         cg.addColorStop(0.65, `rgba(0,  150, 200, ${ia * 0.4})`);
@@ -717,7 +1028,7 @@ function WaterCanvas() {
       ctx.restore();
 
       // ── 3. DEEP BLUE WATER OVERLAY ───────────────────────────────────────
-      // Rich deep blue — like 30ft of clear Caribbean water
+      // Rich deep blue  --  like 30ft of clear Caribbean water
       const water = ctx.createLinearGradient(0, 0, 0, H);
       water.addColorStop(0,    'rgba(0,  110, 180, 0.72)');
       water.addColorStop(0.30, 'rgba(0,   85, 160, 0.78)');
@@ -934,11 +1245,11 @@ export default function WaterCheckup() {
         </h1>
 
         <p style={{ color: '#94a3b8', marginBottom: 10, fontSize: 17, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 10px' }}>
-          Get personalized recommendations on top-rated water filters for <strong style={{ color: '#e2e8f0' }}>drinking, whole-house & showering</strong> — plus find local installers near you. All in one place.
+          Get personalized recommendations on top-rated water filters for <strong style={{ color: '#e2e8f0' }}>drinking, whole-house & showering</strong>  --  plus find local installers near you. All in one place.
         </p>
 
         <p style={{ fontSize: 14, color: '#38bdf8', fontWeight: 600, marginBottom: 28, fontStyle: 'italic', opacity: 0.85 }}>
-          The most comprehensive water quality resource on the planet — free, instant, and powered by live EPA data.
+          The most comprehensive water quality resource on the planet  --  free, instant, and powered by live EPA data.
         </p>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code" maxLength={5}
@@ -977,14 +1288,14 @@ export default function WaterCheckup() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Problem — What's in Your Water?</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Problem  --  What's in Your Water?</div>
                 <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
               {[
                 { icon: '🧪', title: 'PFAS "Forever Chemicals"', body: 'Found in 45% of US tap water. Linked to cancer & hormone disruption. Standard filters don\'t remove them.' },
-                { icon: '🔩', title: 'Lead', body: 'Leaches from old pipes in millions of homes. No safe level exists — especially dangerous for children.' },
+                { icon: '🔩', title: 'Lead', body: 'Leaches from old pipes in millions of homes. No safe level exists  --  especially dangerous for children.' },
                 { icon: '☁️', title: 'Chlorine & Chloramine', body: 'Added by every utility. Causes taste & odor issues and converts to cancer-linked byproducts (THMs).' },
                 { icon: '🌾', title: 'Nitrates & Arsenic', body: 'Common in agricultural regions. Nitrates are life-threatening for infants. Arsenic causes cancer.' },
               ].map(c => (
@@ -1005,8 +1316,8 @@ export default function WaterCheckup() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
               <div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95–99% of what's in your water. Here's what each type does.</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution  --  Water Filter Systems</div>
+                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95-99% of what's in your water. Here's what each type does.</div>
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
@@ -1059,7 +1370,7 @@ export default function WaterCheckup() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
                     <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>4</div>
                     <div>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Where to Buy — Our Top Picks for {sit.icon} {sit.label}s</div>
+                      <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Where to Buy  --  Our Top Picks for {sit.icon} {sit.label}s</div>
                       <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{sit.tagline} · All available on Amazon with free shipping</div>
                     </div>
                   </div>
@@ -1081,7 +1392,7 @@ export default function WaterCheckup() {
                           <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.65, flex: 1 }}>{p.expertReason}</div>
                           {p.quickChange && (
                             <div style={{ fontSize: 11, color: '#06b6d4', padding: '6px 10px', background: 'rgba(6,182,212,.08)', border: '1px solid rgba(6,182,212,.2)', borderRadius: 7 }}>
-                              ⚡ <strong>Quick-Change Filter</strong> — twist-off cartridge, no mess, no tools
+                              ⚡ <strong>Quick-Change Filter</strong>  --  twist-off cartridge, no mess, no tools
                             </div>
                           )}
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
@@ -1109,7 +1420,7 @@ export default function WaterCheckup() {
               <span style={{ fontSize: 13, color: i === step ? '#e2e8f0' : '#475569' }}>{s}</span>
             </div>
           ))}
-          <div style={{ marginTop: 10, padding: '7px 10px', background: '#0b1e36', borderRadius: 5, fontSize: 11, color: '#334155', textAlign: 'center' }}>EPA · UCMR5 · EWG · USGS — live data, no estimates</div>
+          <div style={{ marginTop: 10, padding: '7px 10px', background: '#0b1e36', borderRadius: 5, fontSize: 11, color: '#334155', textAlign: 'center' }}>EPA · UCMR5 · EWG · USGS  --  live data, no estimates</div>
         </div>
       )}
 
@@ -1159,10 +1470,11 @@ export default function WaterCheckup() {
               {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
               {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
+              {data.pwsid && <CountyComparison pwsid={data.pwsid} />}
 
               {data.violations?.length > 0 ? (
                 <>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>VIOLATION HISTORY — EPA SDWIS</div>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>VIOLATION HISTORY  --  EPA SDWIS</div>
                   <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 22, overflow: 'hidden' }}>
                     {data.violations.map((v: any, i: number) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '9px 14px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
@@ -1182,23 +1494,23 @@ export default function WaterCheckup() {
 
               {data.contaminants?.length > 0 && (
                 <>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>CONTAMINANT ANALYSIS — CLICK ROWS FOR HEALTH INFO</div>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>CONTAMINANT ANALYSIS  --  CLICK ROWS FOR HEALTH INFO</div>
                   {data.contaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
                 </>
               )}
 
               {data.usgs?.sites?.length > 0 && (
                 <div style={{ background: '#0b1e36', border: '1px solid #7c3aed30', borderRadius: 8, padding: '12px 16px', marginBottom: 18 }}>
-                  <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#7c3aed', marginBottom: 8, fontWeight: 700 }}>⚗️ USGS NWIS — SOURCE WATER CONDITIONS</div>
+                  <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#7c3aed', marginBottom: 8, fontWeight: 700 }}>⚗️ USGS NWIS  --  SOURCE WATER CONDITIONS</div>
                   {data.usgs.sites.map((s: any, i: number) => (
-                    <div key={i} style={{ fontSize: 12, color: '#64748b', marginBottom: 3 }}><span style={{ color: '#94a3b8' }}>{s.name}:</span> {s.param} — <span style={{ color: '#22d3ee' }}>{s.value} {s.unit}</span></div>
+                    <div key={i} style={{ fontSize: 12, color: '#64748b', marginBottom: 3 }}><span style={{ color: '#94a3b8' }}>{s.name}:</span> {s.param}  --  <span style={{ color: '#22d3ee' }}>{s.value} {s.unit}</span></div>
                   ))}
                 </div>
               )}
 
               <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', margin: '22px 0 12px' }}>TOP 3 RECOMMENDED FILTERS</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-                {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} />)}
+                {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} detectedContaminants={contaminantNames} />)}
               </div>
               <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
                 <button onClick={() => setTab('solutions')} style={{ padding: '7px 16px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 12, cursor: 'pointer', fontWeight: 700 }}>🏠 Find My Solution →</button>
@@ -1214,22 +1526,22 @@ export default function WaterCheckup() {
           {tab === 'pfas' && (
             <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22 }}>
               <div style={{ marginBottom: 18, padding: '14px 16px', background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #ef444440', borderRadius: 8 }}>
-                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#ef4444', marginBottom: 7, fontWeight: 700 }}>☣️ ABOUT PFAS — FOREVER CHEMICALS</div>
+                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#ef4444', marginBottom: 7, fontWeight: 700 }}>☣️ ABOUT PFAS  --  FOREVER CHEMICALS</div>
                 <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>PFAS are ~12,000 synthetic chemicals that don't break down in the environment or human body. Linked to kidney cancer, testicular cancer, thyroid disease, immune suppression, elevated cholesterol, and developmental harm. EPA set the first federal MCL in 2024: <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA and PFOS.</p>
               </div>
               {pfasContaminants.length === 0 ? (
                 <div style={{ padding: '24px', textAlign: 'center' }}>
                   <div style={{ fontSize: 22, marginBottom: 7 }}>✅</div>
                   <div style={{ fontSize: 15, color: '#22d3ee', fontWeight: 700, marginBottom: 5 }}>No PFAS detected via UCMR5</div>
-                  <div style={{ fontSize: 13, color: '#475569' }}>No measurable PFAS in EPA's 2023–2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
+                  <div style={{ fontSize: 13, color: '#475569' }}>No measurable PFAS in EPA's 2023-2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
                 </div>
               ) : (
                 <>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>DETECTED COMPOUNDS — HEALTH CONTEXT</div>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>DETECTED COMPOUNDS  --  HEALTH CONTEXT</div>
                   {pfasContaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
                   <div style={{ marginTop: 16, fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 12 }}>PFAS-CERTIFIED FILTERS</div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-                    {PRODUCTS.filter(p => p.bestFor.includes('PFAS')).slice(0,3).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id===3} />)}
+                    {PRODUCTS.filter(p => p.bestFor.includes('PFAS')).slice(0,3).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id===3} detectedContaminants={contaminantNames} />)}
                   </div>
                 </>
               )}
@@ -1248,7 +1560,7 @@ export default function WaterCheckup() {
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,1fr))', gap: 12 }}>
-                {filteredProds.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} />)}
+                {filteredProds.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} detectedContaminants={contaminantNames} />)}
               </div>
             </div>
           )}
@@ -1311,7 +1623,7 @@ export default function WaterCheckup() {
               {/* Questions to ask installer */}
               <div style={{ background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, padding: '14px 16px', marginBottom: 20 }}>
                 <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#0891b2', marginBottom: 10, fontWeight: 700 }}>WHAT TO ASK YOUR INSTALLER</div>
-                {['Are you WQA certified or licensed in this state?','What\'s included in the installation — faucet, shutoff valve, drain line?','Do you test the water before and after installation?','What\'s the filter replacement schedule and cost?','Is there a warranty on labor and parts?','Will you register the product with the manufacturer?'].map((q,i) => (
+                {['Are you WQA certified or licensed in this state?','What\'s included in the installation  --  faucet, shutoff valve, drain line?','Do you test the water before and after installation?','What\'s the filter replacement schedule and cost?','Is there a warranty on labor and parts?','Will you register the product with the manufacturer?'].map((q,i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 7, alignItems: 'flex-start' }}>
                     <span style={{ color: '#22d3ee', flexShrink: 0, fontSize: 12 }}>{i+1}.</span>
                     <span style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{q}</span>
@@ -1350,7 +1662,7 @@ export default function WaterCheckup() {
                   <button onClick={() => loadInstallers(zip)} style={{ padding: '7px 16px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 12, cursor: 'pointer' }}>Search Local Installers</button>
                 </div>
               )}
-              <div style={{ marginTop: 12, fontSize: 11, color: '#334155', textAlign: 'center' }}>💡 Always verify credentials and get at least 3 quotes. Average RO install cost: $150–$400.</div>
+              <div style={{ marginTop: 12, fontSize: 11, color: '#334155', textAlign: 'center' }}>💡 Always verify credentials and get at least 3 quotes. Average RO install cost: $150-$400.</div>
             </div>
           )}
 
@@ -1373,7 +1685,7 @@ export default function WaterCheckup() {
               <>
                 <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 7 }}>FREE WATER REPORT</div>
                 <div style={{ fontSize: 15, fontWeight: 800, marginBottom: 4 }}>Get your full analysis</div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>Your {data.city} report — EPA + UCMR5 + EWG + USGS data with personalized filter recommendations.</div>
+                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>Your {data.city} report  --  EPA + UCMR5 + EWG + USGS data with personalized filter recommendations.</div>
                 <input value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" type="email"
                   style={{ width: '100%', boxSizing: 'border-box', padding: '9px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, marginBottom: 9, outline: 'none' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
