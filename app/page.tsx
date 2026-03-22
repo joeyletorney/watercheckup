@@ -38,11 +38,10 @@ async function findInstallers(zip: string) {
 // LIVING SITUATIONS
 // ─────────────────────────────────────────────────────────────────────────────
 const SITUATIONS = [
-  { id: 'homeowner', icon: '🏠', label: 'Homeowner', sub: 'Full install options' },
-  { id: 'renter',    icon: '🏢', label: 'Renter / Apartment', sub: 'No-drill solutions' },
-  { id: 'dorm',      icon: '🎓', label: 'Dorm / Student', sub: 'Portable & pitcher' },
-  { id: 'family',    icon: '👨‍👩‍👧', label: 'Family with Kids', sub: 'School & home protection' },
-  { id: 'travel',    icon: '✈️', label: 'Travel / Temporary', sub: 'On-the-go filtering' },
+  { id: 'homeowner', icon: '🏠', label: 'Homeowner',         desc: 'You own your home and want full protection at every tap, shower, and appliance.',        tagline: 'Full-home water protection',    cats: ['whole-house','undersink','shower'] },
+  { id: 'renter',    icon: '🏢', label: 'Renter / Apartment',desc: 'You rent — no plumbing changes allowed. Clean water without drilling a single hole.', tagline: 'No installation required',      cats: ['countertop','pitcher','shower'] },
+  { id: 'rv',        icon: '🚐', label: 'RV / Van Life',     desc: 'On the road and need reliable filtration wherever you park or hook up.',                 tagline: 'Portable filtration anywhere',  cats: ['countertop','pitcher'] },
+  { id: 'dorm',      icon: '🎓', label: 'College Dorm',      desc: 'Small space, shared facilities, tight budget — simple, affordable, plug-in-and-pour.',  tagline: 'Simple & affordable',           cats: ['pitcher'] },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -627,6 +626,7 @@ export default function WaterCheckup() {
   const [instLoading, setInstLoading]   = useState(false);
   const [productFilter, setProductFilter] = useState('all');
   const [quoted, setQuoted]             = useState<Record<string, boolean>>({});
+  const [situation, setSituation]       = useState<string | null>(null);
 
   const search = async () => {
     if (zip.length !== 5 || loading) return;
@@ -729,26 +729,144 @@ export default function WaterCheckup() {
         {error && <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}><div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>⚠ Error</div><div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div></div>}
       </div>
 
-      {!data && !loading && <>
-        <PFASAwarenessBanner />
-        {/* Coverage stats */}
-        <div style={{ maxWidth: 720, margin: '24px auto 0', padding: '0 24px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(130px,1fr))', gap: 10 }}>
+      {!data && !loading && (
+        <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 20px 80px' }}>
+
+          {/* ── STEP INDICATOR ─────────────────────────────────────── */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, marginBottom: 56, flexWrap: 'wrap', rowGap: 12 }}>
             {[
-              { v:'6,151', l:'Water Systems', s:'EPA UCMR5 PFAS', c:'#ef4444' },
-              { v:'50', l:'States Covered', s:'All US states', c:'#22d3ee' },
-              { v:'80+', l:'Metro Areas', s:'EWG Tap Water Atlas', c:'#d97706' },
-              { v:'22', l:'Filter Types', s:'NSF/WQA certified', c:'#7c3aed' },
-            ].map(s => (
-              <div key={s.l} style={{ background: '#0d2240', border: `1px solid ${s.c}25`, borderRadius: 8, padding: '12px 14px', textAlign: 'center' }}>
-                <div style={{ fontSize: 22, fontWeight: 900, color: s.c }}>{s.v}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{s.l}</div>
-                <div style={{ fontSize: 10, color: '#334155', marginTop: 2 }}>{s.s}</div>
+              { n: 1, label: 'The Problem' },
+              { n: 2, label: 'The Solution' },
+              { n: 3, label: 'Your Situation' },
+              { n: 4, label: 'Where to Buy' },
+            ].map((s, i) => (
+              <div key={s.n} style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 800, color: '#fff', boxShadow: '0 0 12px #06b6d444', flexShrink: 0 }}>{s.n}</div>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: '#94a3b8' }}>{s.label}</span>
+                </div>
+                {i < 3 && <div style={{ width: 40, height: 1, background: '#1a3a5c', margin: '0 12px', flexShrink: 0 }} />}
               </div>
             ))}
           </div>
+
+          {/* ── STEP 1: THE PROBLEM ────────────────────────────────── */}
+          <div style={{ marginBottom: 64 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
+              <div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Problem — What's in Your Water?</div>
+                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+              {[
+                { icon: '🧪', title: 'PFAS "Forever Chemicals"', body: 'Found in 45% of US tap water. Linked to cancer & hormone disruption. Standard filters don\'t remove them.' },
+                { icon: '🔩', title: 'Lead', body: 'Leaches from old pipes in millions of homes. No safe level exists — especially dangerous for children.' },
+                { icon: '☁️', title: 'Chlorine & Chloramine', body: 'Added by every utility. Causes taste & odor issues and converts to cancer-linked byproducts (THMs).' },
+                { icon: '🌾', title: 'Nitrates & Arsenic', body: 'Common in agricultural regions. Nitrates are life-threatening for infants. Arsenic causes cancer.' },
+              ].map(c => (
+                <div key={c.title} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, padding: '18px 16px' }}>
+                  <div style={{ fontSize: 26, marginBottom: 8 }}>{c.icon}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{c.title}</div>
+                  <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{c.body}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 16, padding: '14px 18px', background: '#0a1e35', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#64748b', textAlign: 'center' }}>
+              Enter your ZIP code above ↑ to see exactly what EPA data shows for <strong style={{ color: '#38bdf8' }}>your water system</strong>
+            </div>
+          </div>
+
+          {/* ── STEP 2: THE SOLUTION ───────────────────────────────── */}
+          <div style={{ marginBottom: 64 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
+              <div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
+                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95–99% of what's in your water. Here's what each type does.</div>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
+              {[
+                { icon: '🥤', label: 'Pitcher Filter',       best: 'Chlorine, lead, taste', note: 'No install · Portable' },
+                { icon: '🪣', label: 'Countertop Filter',    best: 'Chlorine, PFAS, bacteria', note: 'No plumbing needed' },
+                { icon: '🚰', label: 'Under-Counter RO',     best: '99%+ of all contaminants', note: 'Most powerful option' },
+                { icon: '🏠', label: 'Whole House System',   best: 'Chlorine, chloramine, THMs', note: 'Every tap & shower' },
+                { icon: '🚿', label: 'Shower Filter',        best: 'Chlorine & chloramine', note: 'Healthier skin & hair' },
+              ].map(f => (
+                <div key={f.label} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, padding: '16px 14px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 28, marginBottom: 8 }}>{f.icon}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{f.label}</div>
+                  <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
+                  <div style={{ fontSize: 11, color: '#475569' }}>{f.note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── STEP 3: YOUR SITUATION ─────────────────────────────── */}
+          <div style={{ marginBottom: 48 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
+              <div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>What's Your Living Situation?</div>
+                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>We'll show you the right filters for your home type.</div>
+              </div>
+            </div>
+
+            {/* Situation selector */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 32 }}>
+              {SITUATIONS.map(s => (
+                <button key={s.id} onClick={() => setSituation(situation === s.id ? null : s.id)}
+                  style={{ background: situation === s.id ? 'linear-gradient(135deg,#0e3a6a,#0a2a50)' : '#0d2240', border: `2px solid ${situation === s.id ? '#38bdf8' : '#1a3a5c'}`, borderRadius: 14, padding: '20px 16px', cursor: 'pointer', textAlign: 'center', transition: 'all 0.2s' }}>
+                  <div style={{ fontSize: 30, marginBottom: 8 }}>{s.icon}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: situation === s.id ? '#38bdf8' : '#e2e8f0', marginBottom: 4 }}>{s.label}</div>
+                  <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{s.desc}</div>
+                </button>
+              ))}
+            </div>
+
+            {/* ── STEP 4: WHERE TO BUY ── shown when situation selected */}
+            {situation && (() => {
+              const sit = SITUATIONS.find(s => s.id === situation)!;
+              const sitProducts = PRODUCTS.filter((p: any) => sit.cats.includes(p.cat) && p.expertPick);
+              return (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>4</div>
+                    <div>
+                      <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Where to Buy — Our Top Picks for {sit.icon} {sit.label}s</div>
+                      <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{sit.tagline} · All available on Amazon with free shipping</div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
+                    {sitProducts.map((p: any) => (
+                      <div key={p.id} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 14, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ background: '#fff', height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12, position: 'relative' }}>
+                          <img src={p.img} alt={p.name} style={{ maxHeight: 140, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
+                          <div style={{ position: 'absolute', top: 8, left: 8, background: '#d97706', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4 }}>🏅 Expert Pick</div>
+                        </div>
+                        <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                          <div style={{ fontSize: 11, color: '#475569', fontWeight: 600 }}>{p.brand?.toUpperCase()}</div>
+                          <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f9ff', lineHeight: 1.3 }}>{p.name}</div>
+                          <div style={{ fontSize: 12, color: '#64748b' }}>{p.type}</div>
+                          <div style={{ fontSize: 13, color: '#64748b', fontStyle: 'italic', lineHeight: 1.5, flex: 1 }}>{p.expertReason?.slice(0, 90)}…</div>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 10, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
+                            <span style={{ fontSize: 22, fontWeight: 800, color: '#38bdf8' }}>${p.price}</span>
+                            <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '9px 18px', background: '#f59e0b', borderRadius: 8, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy on Amazon →</a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
         </div>
-      </>}
+      )}
 
       {/* LOADER */}
       {loading && (
