@@ -36,14 +36,16 @@ async function findInstallers(zip: string) {
 // ─────────────────────────────────────────────────────────────────────────────
 // PRODUCT CATALOG — NSF/WQA Gold Seal, Real Amazon Links
 // ─────────────────────────────────────────────────────────────────────────────
+const TAG = 'watercheck-20';
+
 const PRODUCTS = [
-  { id:1, name:'APEC ROES-50', brand:'APEC Water Systems', type:'Under-Sink RO', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','Easy DIY install','20yr track record'], img:'https://m.media-amazon.com/images/I/61cF0FQEDBL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B00I0ZGOZM', tankless:false, remineralize:false },
-  { id:2, name:'iSpring RCC7AK', brand:'iSpring', type:'Under-Sink RO + Alkaline', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%','TDS >93%'], bestFor:['Lead','PFAS','Chromium-6','Copper','Nitrate'], pros:['Remineralization stage','75 GPD fast','Triple NSF cert','pH balanced'], img:'https://m.media-amazon.com/images/I/71RKD7DEYBL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B005LJ8EXU', tankless:false, remineralize:true },
-  { id:3, name:'Waterdrop G3P800', brand:'Waterdrop', type:'Tankless Under-Sink RO', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine','Heavy metals'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank — compact','800 GPD ultra fast','Smart LED faucet','3:1 waste ratio'], img:'https://m.media-amazon.com/images/I/61Y0jVJoVxL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B07P1XFYJP', tankless:true, remineralize:false },
-  { id:4, name:'Home Master TMAFC', brand:'Home Master', type:'Under-Sink RO + Remineralization', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs','TDS'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio','Great taste'], img:'https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B00B5GT45E', tankless:false, remineralize:true },
-  { id:5, name:'Aquasana SmartFlow RO', brand:'Aquasana', type:'Under-Sink RO + Claryum', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants','Retains minerals'], img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B01AO49OAQ', tankless:false, remineralize:true },
-  { id:6, name:'Pelican PC600', brand:'Pelican Water', type:'Whole-House POE', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], img:'https://m.media-amazon.com/images/I/81r1fLVQbwL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B001JM5OQ0', tankless:false, remineralize:false, wholeHouse:true },
-  { id:7, name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', type:'Pitcher Filter', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','Chlorine','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], img:'https://m.media-amazon.com/images/I/71Pg8yZLLfL._AC_SL1500_.jpg', amazon:'https://www.amazon.com/dp/B07NMQNHPB', tankless:false, remineralize:false, pitcher:true },
+  { id:1, name:'APEC ROES-50', brand:'APEC Water Systems', type:'Under-Sink RO', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','Easy DIY install','20yr track record'], img:'https://m.media-amazon.com/images/I/61cF0FQEDBL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}`, tankless:false, remineralize:false },
+  { id:2, name:'iSpring RCC7AK', brand:'iSpring', type:'Under-Sink RO + Alkaline', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%','TDS >93%'], bestFor:['Lead','PFAS','Chromium-6','Copper','Nitrate'], pros:['Remineralization stage','75 GPD fast','Triple NSF cert','pH balanced'], img:'https://m.media-amazon.com/images/I/71RKD7DEYBL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`, tankless:false, remineralize:true },
+  { id:3, name:'Waterdrop G3P800', brand:'Waterdrop', type:'Tankless Under-Sink RO', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine','Heavy metals'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank — compact','800 GPD ultra fast','Smart LED faucet','3:1 waste ratio'], img:'https://m.media-amazon.com/images/I/61Y0jVJoVxL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`, tankless:true, remineralize:false },
+  { id:4, name:'Home Master TMAFC', brand:'Home Master', type:'Under-Sink RO + Remineralization', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs','TDS'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio','Great taste'], img:'https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00B5GT45E?tag=${TAG}`, tankless:false, remineralize:true },
+  { id:5, name:'Aquasana SmartFlow RO', brand:'Aquasana', type:'Under-Sink RO + Claryum', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants','Retains minerals'], img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B01AO49OAQ?tag=${TAG}`, tankless:false, remineralize:true },
+  { id:6, name:'Pelican PC600', brand:'Pelican Water', type:'Whole-House POE', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], img:'https://m.media-amazon.com/images/I/81r1fLVQbwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}`, tankless:false, remineralize:false, wholeHouse:true },
+  { id:7, name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', type:'Pitcher Filter', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','Chlorine','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], img:'https://m.media-amazon.com/images/I/71Pg8yZLLfL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07NMQNHPB?tag=${TAG}`, tankless:false, remineralize:false, pitcher:true },
 ];
 
 const SEV: Record<string, {color:string,label:string}> = {
@@ -145,6 +147,143 @@ function ProductCard({ p, highlight }: { p: any; highlight: boolean }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// PFAS HOMEPAGE AWARENESS BANNER
+// ─────────────────────────────────────────────────────────────────────────────
+function PFASAwarenessBanner() {
+  const [dismissed, setDismissed] = useState(false);
+  if (dismissed) return null;
+  return (
+    <div style={{ maxWidth: 680, margin: '22px auto 0', padding: '0 24px' }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #1a0505 0%, #0d0f1a 100%)',
+        border: '1px solid #dc262644',
+        borderLeft: '4px solid #ef4444',
+        borderRadius: 10,
+        padding: '16px 20px',
+        display: 'flex',
+        gap: 14,
+        alignItems: 'flex-start',
+        position: 'relative',
+      }}>
+        <button
+          onClick={() => setDismissed(true)}
+          style={{ position: 'absolute', top: 10, right: 12, background: 'none', border: 'none', color: '#475569', fontSize: 16, cursor: 'pointer', lineHeight: 1, padding: 2 }}
+          aria-label="Dismiss"
+        >×</button>
+
+        <div style={{ fontSize: 24, flexShrink: 0, marginTop: 1 }}>☣️</div>
+
+        <div style={{ flex: 1, paddingRight: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 12, fontWeight: 800, color: '#ef4444', letterSpacing: 2 }}>NEW EPA PFAS RULE — 2024</span>
+            <span style={{ fontSize: 11, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>ENFORCEABLE MCL</span>
+          </div>
+          <p style={{ margin: 0, fontSize: 14, color: '#94a3b8', lineHeight: 1.7 }}>
+            The EPA has set the first federal drinking water limits for PFAS — PFOA & PFOS at{' '}
+            <strong style={{ color: '#fbbf24' }}>4 ppt</strong>, the lowest measurable level.
+            An estimated <strong style={{ color: '#fbbf24' }}>45 million Americans</strong> have detectable
+            "forever chemicals" in their tap water. Enter your ZIP to check yours.
+          </p>
+          <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            <a
+              href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 14px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.5 }}
+            >
+              🛒 Best PFAS Filter — Waterdrop G3P800
+            </a>
+            <a
+              href={`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '6px 14px', background: 'transparent', border: '1px solid #dc262655', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}
+            >
+              iSpring RCC7AK — $229 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PFAS IN-RESULTS ALERT
+// ─────────────────────────────────────────────────────────────────────────────
+function PFASResultAlert({ city, pfasLevel, unit }: { city: string; pfasLevel?: number; unit?: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const overLimit = pfasLevel != null && pfasLevel > 0.004;
+  const detected  = pfasLevel != null && pfasLevel > 0;
+  if (!detected) return null;
+
+  return (
+    <div style={{
+      background: overLimit ? 'linear-gradient(135deg,#200a0a,#0d0f1a)' : 'linear-gradient(135deg,#0d1208,#0d0f1a)',
+      border: `1px solid ${overLimit ? '#ef4444' : '#f59e0b'}`,
+      borderLeft: `4px solid ${overLimit ? '#ef4444' : '#f59e0b'}`,
+      borderRadius: 10,
+      padding: '16px 20px',
+      marginBottom: 20,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+        <span style={{ fontSize: 20, flexShrink: 0 }}>{overLimit ? '🚨' : '⚠️'}</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 13, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>
+              PFAS DETECTED — {city.toUpperCase()}
+            </span>
+            {overLimit && (
+              <span style={{ fontSize: 11, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>
+                EXCEEDS EPA MCL
+              </span>
+            )}
+          </div>
+
+          <p style={{ margin: '0 0 8px', fontSize: 14, color: '#94a3b8', lineHeight: 1.65 }}>
+            {overLimit
+              ? <>PFAS measured at <strong style={{ color: '#fbbf24' }}>{(pfasLevel! * 1000).toFixed(2)} ppt</strong> — exceeds the EPA's 2024 limit of <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA/PFOS. Standard carbon filters do NOT remove PFAS. A certified reverse osmosis system is required.</>
+              : <>PFAS detected at <strong style={{ color: '#fbbf24' }}>{(pfasLevel! * 1000).toFixed(2)} ppt</strong> — below the 4 ppt EPA limit but above non-detect. These "forever chemicals" accumulate in the body over time. Filtration is recommended.</>
+            }
+          </p>
+
+          {expanded && (
+            <div style={{ marginBottom: 12, padding: '10px 14px', background: '#060e17', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#64748b', lineHeight: 1.7 }}>
+              <strong style={{ color: '#94a3b8' }}>What are PFAS?</strong> Per- and polyfluoroalkyl substances (PFAS) are synthetic chemicals used in cookware coatings, firefighting foam, and food packaging. They don't break down naturally — earning the name "forever chemicals." Exposure has been linked to cancer, thyroid disruption, immune suppression, and developmental issues in children.
+            </div>
+          )}
+
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            <a
+              href={`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 14px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}
+            >
+              🛒 Waterdrop G3P800 — PFAS &gt;99% →
+            </a>
+            <a
+              href={`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '7px 14px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}
+            >
+              iSpring RCC7AK — PFAS &gt;96% →
+            </a>
+            <button
+              onClick={() => setExpanded(x => !x)}
+              style={{ background: 'none', border: 'none', color: '#475569', fontSize: 12, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
+            >
+              {expanded ? 'Less info ↑' : 'What are PFAS? ↓'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────────────
 export default function WaterCheckup() {
@@ -214,6 +353,15 @@ export default function WaterCheckup() {
   });
   const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
 
+  // Detect PFAS in result contaminants
+  const pfasContaminant = data?.contaminants?.find((c: any) =>
+    c.name?.toUpperCase().includes('PFAS') ||
+    c.name?.toUpperCase().includes('PFOA') ||
+    c.name?.toUpperCase().includes('PFOS')
+  );
+  const pfasLevel = pfasContaminant?.level ?? data?.pfasLevel ?? null;
+  const pfasUnit  = pfasContaminant?.unit ?? 'μg/L';
+
   return (
     <div style={{ minHeight: '100vh', background: '#050e17', fontFamily: "'Courier New', monospace", color: '#e2e8f0', fontWeight: 500 }}>
 
@@ -259,6 +407,9 @@ export default function WaterCheckup() {
           </div>
         )}
       </div>
+
+      {/* PFAS AWARENESS BANNER — shown on homepage when no results yet */}
+      {!data && !loading && <PFASAwarenessBanner />}
 
       {/* LOADER */}
       {loading && (
@@ -323,6 +474,9 @@ export default function WaterCheckup() {
                 <span style={{ fontSize: 14, color: '#22d3ee', fontWeight: 700 }}>LIVE EPA DATA</span>
                 <span style={{ fontSize: 13, color: '#475569' }}>Direct from EPA SDWIS Envirofacts API · Updated quarterly by EPA</span>
               </div>
+
+              {/* PFAS IN-RESULTS ALERT */}
+              <PFASResultAlert city={data.city} pfasLevel={pfasLevel} unit={pfasUnit} />
 
               {data.violations?.length > 0 ? (
                 <>
