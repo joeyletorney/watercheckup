@@ -754,46 +754,6 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // ── 5. SUN SPARKLES with lens flare ──────────────────────────────────
-      for (let i = 0; i < 95; i++) {
-        const ph  = (i / 95) * Math.PI * 8.4;
-        const sx  = W * 0.025 + (i / 95) * W * 0.95 + Math.sin(t * 0.36 + ph) * 26;
-        const sy  = Math.sin(t * 0.43 + ph * 0.63) * H * 0.44 + H * 0.43;
-        const bri = (Math.sin(t * 3.9 + ph) + 1) / 2;
-
-        if (bri > 0.70) {
-          const ba = (bri - 0.70) / 0.30;
-          const sr = 1.0 + ba * 3.8;
-
-          const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr * 5);
-          sg.addColorStop(0,    `rgba(200,240,255,${ba * 0.80})`);
-          sg.addColorStop(0.2,  `rgba(160,220,255,${ba * 0.38})`);
-          sg.addColorStop(0.55, `rgba(100,190,230,${ba * 0.14})`);
-          sg.addColorStop(1,    'rgba(255,255,255,0)');
-          ctx.fillStyle = sg;
-          ctx.beginPath();
-          ctx.arc(sx, sy, sr * 5, 0, Math.PI * 2);
-          ctx.fill();
-
-          // Star flare on brightest sparkles
-          if (ba > 0.60) {
-            ctx.save();
-            ctx.globalAlpha = ba * 0.38;
-            ctx.strokeStyle = 'rgba(255,255,255,1)';
-            ctx.lineWidth = 0.5;
-            const fl = sr * 11;
-            ctx.beginPath();
-            ctx.moveTo(sx - fl, sy); ctx.lineTo(sx + fl, sy);
-            ctx.moveTo(sx, sy - fl); ctx.lineTo(sx, sy + fl);
-            const fd = fl * 0.58;
-            ctx.moveTo(sx - fd, sy - fd); ctx.lineTo(sx + fd, sy + fd);
-            ctx.moveTo(sx + fd, sy - fd); ctx.lineTo(sx - fd, sy + fd);
-            ctx.stroke();
-            ctx.restore();
-          }
-        }
-      }
-
       // ── 6. MOUSE RIPPLES ─────────────────────────────────────────────────
       for (let i = ripples.length - 1; i >= 0; i--) {
         const rip = ripples[i];
