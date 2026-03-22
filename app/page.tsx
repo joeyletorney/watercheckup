@@ -606,6 +606,55 @@ function ResourcesTab({ data }: { data: any }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ANIMATED WATER BACKGROUND
+// ─────────────────────────────────────────────────────────────────────────────
+const BUBBLES = [
+  { left:'3%',  size:6,  delay:'0s',   dur:'12s' }, { left:'9%',  size:4,  delay:'3.5s', dur:'9s'  },
+  { left:'16%', size:10, delay:'1s',   dur:'15s' }, { left:'24%', size:5,  delay:'5s',   dur:'11s' },
+  { left:'33%', size:8,  delay:'2s',   dur:'13s' }, { left:'41%', size:3,  delay:'7s',   dur:'8s'  },
+  { left:'49%', size:9,  delay:'0.5s', dur:'14s' }, { left:'56%', size:6,  delay:'4s',   dur:'10s' },
+  { left:'63%', size:4,  delay:'6s',   dur:'9s'  }, { left:'71%', size:11, delay:'1.5s', dur:'12s' },
+  { left:'79%', size:5,  delay:'3s',   dur:'11s' }, { left:'87%', size:7,  delay:'2.5s', dur:'13s' },
+  { left:'93%', size:3,  delay:'8s',   dur:'9s'  }, { left:'21%', size:13, delay:'9s',   dur:'16s' },
+  { left:'58%', size:3,  delay:'4.5s', dur:'7s'  }, { left:'76%', size:8,  delay:'6s',   dur:'11s' },
+];
+
+function WaterBackground() {
+  return (
+    <div style={{ position:'fixed', inset:0, pointerEvents:'none', zIndex:0, overflow:'hidden' }}>
+      {/* Deep navy base */}
+      <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg,#060f1e 0%,#091825 45%,#040e1a 100%)' }} />
+      {/* Animated underwater glow orbs */}
+      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 55% at 50% 115%,rgba(8,145,178,0.18) 0%,transparent 70%)', animation:'wcGlow 7s ease-in-out infinite' }} />
+      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 60% 40% at 18% 95%,rgba(6,182,212,0.12) 0%,transparent 60%)', animation:'wcGlow 9s ease-in-out infinite 2.5s' }} />
+      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 50% 35% at 82% 100%,rgba(14,116,144,0.1) 0%,transparent 55%)', animation:'wcGlow 8s ease-in-out infinite 5s' }} />
+      {/* Rising bubbles */}
+      {BUBBLES.map((b,i) => (
+        <div key={i} style={{ position:'absolute', bottom:-20, left:b.left, width:b.size, height:b.size, borderRadius:'50%', background:'radial-gradient(circle at 35% 35%,rgba(6,182,212,0.65),rgba(8,145,178,0.15))', border:'1px solid rgba(6,182,212,0.35)', animation:`wcBubble ${b.dur} ${b.delay} ease-in infinite` }} />
+      ))}
+      {/* Wave layer 1 — slow cyan */}
+      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:200, overflow:'hidden', opacity:0.13 }}>
+        <div style={{ animation:'wcWaveL 15s linear infinite', width:'200%', height:'100%', display:'flex', alignItems:'flex-end' }}>
+          {[0,1].map(k=><svg key={k} viewBox="0 0 1440 200" style={{ width:'50%',height:'100%',flexShrink:0 }} preserveAspectRatio="none"><path fill="#06b6d4" d="M0,100 C360,35 720,165 1080,100 C1260,68 1360,128 1440,100 L1440,200 L0,200 Z"/></svg>)}
+        </div>
+      </div>
+      {/* Wave layer 2 — medium ocean blue */}
+      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:130, overflow:'hidden', opacity:0.1 }}>
+        <div style={{ animation:'wcWaveR 11s linear infinite', width:'200%', height:'100%', display:'flex', alignItems:'flex-end' }}>
+          {[0,1].map(k=><svg key={k} viewBox="0 0 1440 130" style={{ width:'50%',height:'100%',flexShrink:0 }} preserveAspectRatio="none"><path fill="#0891b2" d="M0,65 C240,12 480,118 720,65 C960,12 1200,118 1440,65 L1440,130 L0,130 Z"/></svg>)}
+        </div>
+      </div>
+      {/* Wave layer 3 — fast light cyan */}
+      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:75, overflow:'hidden', opacity:0.07 }}>
+        <div style={{ animation:'wcWaveL 7s linear infinite', width:'200%', height:'100%', display:'flex', alignItems:'flex-end' }}>
+          {[0,1].map(k=><svg key={k} viewBox="0 0 1440 75" style={{ width:'50%',height:'100%',flexShrink:0 }} preserveAspectRatio="none"><path fill="#22d3ee" d="M0,37 C180,6 360,68 540,37 C720,6 900,68 1080,37 C1260,6 1380,52 1440,37 L1440,75 L0,75 Z"/></svg>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────────────
 export default function WaterCheckup() {
@@ -675,7 +724,53 @@ export default function WaterCheckup() {
   const contaminantNames = data?.contaminants?.map((c: any) => c.name) ?? [];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #0d1f35 0%, #091825 100%)', fontFamily: "inherit", color: '#e2e8f0' }}>
+    <div style={{ minHeight: '100vh', position: 'relative', zIndex: 1, fontFamily: 'inherit', color: '#e2e8f0' }}>
+      <style>{`
+        @keyframes wcGlow { 0%,100%{opacity:.6} 50%{opacity:1} }
+        @keyframes wcBubble {
+          0%   { transform:translateY(0) translateX(0) scale(.8); opacity:0 }
+          8%   { opacity:.8 }
+          50%  { transform:translateY(-50vh) translateX(10px) scale(1) }
+          92%  { opacity:.25 }
+          100% { transform:translateY(-108vh) translateX(-5px) scale(.5); opacity:0 }
+        }
+        @keyframes wcWaveL { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        @keyframes wcWaveR { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+        @keyframes wcGlowPulse {
+          0%,100%{ box-shadow:0 0 18px rgba(8,145,178,.45),0 4px 22px rgba(6,182,212,.28) }
+          50%   { box-shadow:0 0 55px rgba(8,145,178,.85),0 4px 45px rgba(6,182,212,.65),0 0 90px rgba(6,182,212,.18) }
+        }
+        @keyframes wcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        @keyframes wcFadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes wcShimmer {
+          0%{background-position:-200% center}
+          100%{background-position:200% center}
+        }
+        .wc-card { transition: transform .3s ease, box-shadow .3s ease; }
+        .wc-card:hover { transform: translateY(-8px); box-shadow: 0 22px 55px rgba(8,145,178,.22), 0 0 32px rgba(6,182,212,.12); }
+        .wc-sit  { transition: transform .25s ease, box-shadow .25s ease; }
+        .wc-sit:hover  { transform: scale(1.06); box-shadow: 0 10px 38px rgba(8,145,178,.32); }
+        .wc-buy  { transition: transform .15s ease, box-shadow .15s ease; }
+        .wc-buy:hover  { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(245,158,11,.55); }
+        .wc-badge { animation: wcFloat 4s ease-in-out infinite; }
+        .wc-analyze { animation: wcGlowPulse 2.6s ease-in-out infinite; transition: transform .15s ease; }
+        .wc-analyze:hover  { transform: scale(1.05); }
+        .wc-analyze:active { transform: scale(.97); }
+        .wc-step { animation: wcGlowPulse 3s ease-in-out infinite; }
+        .wc-fadein-1 { animation: wcFadeUp .7s ease-out .05s both; }
+        .wc-fadein-2 { animation: wcFadeUp .7s ease-out .15s both; }
+        .wc-fadein-3 { animation: wcFadeUp .7s ease-out .25s both; }
+        .wc-fadein-4 { animation: wcFadeUp .7s ease-out .35s both; }
+        .wc-shimmer {
+          background: linear-gradient(90deg, #0891b2 0%, #06b6d4 40%, #38bdf8 50%, #06b6d4 60%, #0891b2 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: wcShimmer 3s linear infinite;
+        }
+      `}</style>
+      <WaterBackground />
 
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -702,13 +797,13 @@ export default function WaterCheckup() {
       <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center' }}>
 
         {/* Expert credibility badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#0e2d4a,#0a2038)', border: '1px solid #2a5a8c', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 2px 16px #0891b233' }}>
+        <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#0e2d4a,#0a2038)', border: '1px solid #2a5a8c', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 4px 24px #0891b244' }}>
           <span style={{ fontSize: 18 }}>🏅</span>
           <span style={{ fontSize: 14, color: '#94a3b8' }}>Designed by a water quality expert with <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40+ years of experience</strong></span>
         </div>
 
         <h1 style={{ fontSize: 38, fontWeight: 900, margin: '0 0 14px', lineHeight: 1.15, color: '#f1f9ff' }}>
-          See What's Really in Your<br /><span style={{ color: '#38bdf8' }}>Town's Tap Water</span>
+          See What's Really in Your<br /><span className="wc-shimmer">Town's Tap Water</span>
         </h1>
 
         <p style={{ color: '#94a3b8', marginBottom: 10, fontSize: 17, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 10px' }}>
@@ -721,7 +816,7 @@ export default function WaterCheckup() {
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code" maxLength={5}
             style={{ width: 140, padding: '12px 16px', fontSize: 20, letterSpacing: 0.3, background: '#0d2240', border: '1px solid #1e4a6a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center' }} />
-          <button onClick={search} disabled={zip.length !== 5 || loading} style={{ padding: '12px 22px', background: zip.length===5 && !loading ? '#0891b2' : '#0e2233', border: 'none', borderRadius: 8, color: zip.length===5 && !loading ? '#fff' : '#334155', fontSize: 14, fontWeight: 700, letterSpacing: 0.3, cursor: zip.length===5 && !loading ? 'pointer' : 'default', transition: 'all 0.2s' }}>
+          <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '12px 22px', background: zip.length===5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0e2233', border: 'none', borderRadius: 8, color: zip.length===5 && !loading ? '#fff' : '#334155', fontSize: 14, fontWeight: 700, letterSpacing: 0.3, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
             {loading ? 'QUERYING…' : 'ANALYZE →'}
           </button>
         </div>
@@ -742,18 +837,18 @@ export default function WaterCheckup() {
             ].map((s, i) => (
               <div key={s.n} style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 800, color: '#fff', boxShadow: '0 0 12px #06b6d444', flexShrink: 0 }}>{s.n}</div>
+                  <div className="wc-step" style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 800, color: '#fff', flexShrink: 0 }}>{s.n}</div>
                   <span style={{ fontSize: 14, fontWeight: 600, color: '#94a3b8' }}>{s.label}</span>
                 </div>
-                {i < 3 && <div style={{ width: 40, height: 1, background: '#1a3a5c', margin: '0 12px', flexShrink: 0 }} />}
+                {i < 3 && <div style={{ width: 40, height: 1, background: 'linear-gradient(90deg,#1a3a5c,#0891b255,#1a3a5c)', margin: '0 12px', flexShrink: 0 }} />}
               </div>
             ))}
           </div>
 
           {/* ── STEP 1: THE PROBLEM ────────────────────────────────── */}
-          <div style={{ marginBottom: 64 }}>
+          <div className="wc-fadein-1" style={{ marginBottom: 64 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
+              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Problem — What's in Your Water?</div>
                 <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
@@ -766,22 +861,22 @@ export default function WaterCheckup() {
                 { icon: '☁️', title: 'Chlorine & Chloramine', body: 'Added by every utility. Causes taste & odor issues and converts to cancer-linked byproducts (THMs).' },
                 { icon: '🌾', title: 'Nitrates & Arsenic', body: 'Common in agricultural regions. Nitrates are life-threatening for infants. Arsenic causes cancer.' },
               ].map(c => (
-                <div key={c.title} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, padding: '18px 16px' }}>
-                  <div style={{ fontSize: 26, marginBottom: 8 }}>{c.icon}</div>
+                <div key={c.title} className="wc-card" style={{ background: 'linear-gradient(135deg,#0d2240,#091c35)', border: '1px solid #1a3a5c', borderRadius: 14, padding: '20px 16px' }}>
+                  <div style={{ fontSize: 30, marginBottom: 10 }}>{c.icon}</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{c.title}</div>
                   <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{c.body}</div>
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 16, padding: '14px 18px', background: '#0a1e35', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#64748b', textAlign: 'center' }}>
+            <div style={{ marginTop: 16, padding: '14px 18px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#64748b', textAlign: 'center' }}>
               Enter your ZIP code above ↑ to see exactly what EPA data shows for <strong style={{ color: '#38bdf8' }}>your water system</strong>
             </div>
           </div>
 
           {/* ── STEP 2: THE SOLUTION ───────────────────────────────── */}
-          <div style={{ marginBottom: 64 }}>
+          <div className="wc-fadein-2" style={{ marginBottom: 64 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
+              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
                 <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95–99% of what's in your water. Here's what each type does.</div>
@@ -789,15 +884,15 @@ export default function WaterCheckup() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
               {[
-                { icon: '🥤', label: 'Pitcher Filter',       best: 'Chlorine, lead, taste', note: 'No install · Portable' },
-                { icon: '🪣', label: 'Countertop Filter',    best: 'Chlorine, PFAS, bacteria', note: 'No plumbing needed' },
-                { icon: '🚰', label: 'Under-Counter RO',     best: '99%+ of all contaminants', note: 'Most powerful option' },
-                { icon: '🏠', label: 'Whole House System',   best: 'Chlorine, chloramine, THMs', note: 'Every tap & shower' },
-                { icon: '🚿', label: 'Shower Filter',        best: 'Chlorine & chloramine', note: 'Healthier skin & hair' },
+                { icon: '🥤', label: 'Pitcher Filter',     best: 'Chlorine, lead, taste',         note: 'No install · Portable' },
+                { icon: '🪣', label: 'Countertop Filter',  best: 'Chlorine, PFAS, bacteria',       note: 'No plumbing needed' },
+                { icon: '🚰', label: 'Under-Counter RO',   best: '99%+ of all contaminants',       note: 'Most powerful option' },
+                { icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs',      note: 'Every tap & shower' },
+                { icon: '🚿', label: 'Shower Filter',      best: 'Chlorine & chloramine',           note: 'Healthier skin & hair' },
               ].map(f => (
-                <div key={f.label} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, padding: '16px 14px', textAlign: 'center' }}>
-                  <div style={{ fontSize: 28, marginBottom: 8 }}>{f.icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{f.label}</div>
+                <div key={f.label} className="wc-card" style={{ background: 'linear-gradient(135deg,#0d2240,#091c35)', border: '1px solid #1a3a5c', borderRadius: 14, padding: '18px 14px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
                   <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
                   <div style={{ fontSize: 11, color: '#475569' }}>{f.note}</div>
                 </div>
@@ -806,9 +901,9 @@ export default function WaterCheckup() {
           </div>
 
           {/* ── STEP 3: YOUR SITUATION ─────────────────────────────── */}
-          <div style={{ marginBottom: 48 }}>
+          <div className="wc-fadein-3" style={{ marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
+              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>What's Your Living Situation?</div>
                 <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>We'll show you the right filters for your home type.</div>
@@ -819,9 +914,10 @@ export default function WaterCheckup() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 32 }}>
               {SITUATIONS.map(s => (
                 <button key={s.id} onClick={() => setSituation(situation === s.id ? null : s.id)}
-                  style={{ background: situation === s.id ? 'linear-gradient(135deg,#0e3a6a,#0a2a50)' : '#0d2240', border: `2px solid ${situation === s.id ? '#38bdf8' : '#1a3a5c'}`, borderRadius: 14, padding: '20px 16px', cursor: 'pointer', textAlign: 'center', transition: 'all 0.2s' }}>
-                  <div style={{ fontSize: 30, marginBottom: 8 }}>{s.icon}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: situation === s.id ? '#38bdf8' : '#e2e8f0', marginBottom: 4 }}>{s.label}</div>
+                  className="wc-sit"
+                  style={{ background: situation === s.id ? 'linear-gradient(135deg,#0e3a6a,#0a2a50)' : 'linear-gradient(135deg,#0d2240,#091c35)', border: `2px solid ${situation === s.id ? '#38bdf8' : '#1a3a5c'}`, borderRadius: 16, padding: '22px 18px', cursor: 'pointer', textAlign: 'center', boxShadow: situation === s.id ? '0 0 28px rgba(56,189,248,.3)' : 'none' }}>
+                  <div style={{ fontSize: 34, marginBottom: 10 }}>{s.icon}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: situation === s.id ? '#38bdf8' : '#e2e8f0', marginBottom: 5 }}>{s.label}</div>
                   <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{s.desc}</div>
                 </button>
               ))}
@@ -832,38 +928,38 @@ export default function WaterCheckup() {
               const sit = SITUATIONS.find(s => s.id === situation)!;
               const sitProducts = PRODUCTS.filter((p: any) => sit.cats.includes(p.cat) && p.expertPick);
               return (
-                <div>
+                <div style={{ animation: 'wcFadeUp .5s ease-out both' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>4</div>
+                    <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>4</div>
                     <div>
                       <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Where to Buy — Our Top Picks for {sit.icon} {sit.label}s</div>
                       <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{sit.tagline} · All available on Amazon with free shipping</div>
                     </div>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
                     {sitProducts.map((p: any) => (
-                      <div key={p.id} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 14, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ background: '#fff', height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12, position: 'relative' }}>
-                          <img src={p.img} alt={p.name} style={{ maxHeight: 140, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
-                          <div style={{ position: 'absolute', top: 8, left: 8, background: '#d97706', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4 }}>🏅 Expert Pick</div>
-                          {p.quickChange && <div style={{ position: 'absolute', top: 8, right: 8, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4 }}>⚡ Quick-Change</div>}
+                      <div key={p.id} className="wc-card" style={{ background: 'linear-gradient(160deg,#0e2848,#091c35)', border: '1px solid #1e4a6e', borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
+                          <img src={p.img} alt={p.name} style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
+                          <div style={{ position: 'absolute', top: 8, left: 8, background: 'linear-gradient(135deg,#d97706,#f59e0b)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #d9770655' }}>🏅 Expert Pick</div>
+                          {p.quickChange && <div style={{ position: 'absolute', top: 8, right: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #06b6d455' }}>⚡ Quick-Change</div>}
                         </div>
-                        <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                          <div style={{ fontSize: 11, color: '#475569', fontWeight: 600 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
-                          <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f9ff', lineHeight: 1.3 }}>{p.name}</div>
+                        <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
+                          <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 0.5 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
+                          <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                            <span style={{ color: '#f59e0b', fontSize: 12 }}>{'★'.repeat(Math.round(p.rating))}</span>
+                            <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
                             <span style={{ fontSize: 11, color: '#64748b' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
                           </div>
-                          <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, flex: 1 }}>{p.expertReason}</div>
+                          <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.65, flex: 1 }}>{p.expertReason}</div>
                           {p.quickChange && (
-                            <div style={{ fontSize: 11, color: '#0891b2', padding: '5px 8px', background: '#0891b215', border: '1px solid #0891b230', borderRadius: 6 }}>
-                              ⚡ <strong>Quick-Change Filter</strong> — twist-off sealed cartridge, no mess, no tools, no cross-contamination
+                            <div style={{ fontSize: 11, color: '#06b6d4', padding: '6px 10px', background: 'rgba(6,182,212,.08)', border: '1px solid rgba(6,182,212,.2)', borderRadius: 7 }}>
+                              ⚡ <strong>Quick-Change Filter</strong> — twist-off cartridge, no mess, no tools
                             </div>
                           )}
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 10, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
-                            <span style={{ fontSize: 22, fontWeight: 800, color: '#38bdf8' }}>${p.price}</span>
-                            <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '9px 18px', background: '#f59e0b', borderRadius: 8, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy on Amazon →</a>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
+                            <span style={{ fontSize: 24, fontWeight: 900, color: '#38bdf8' }}>${p.price}</span>
+                            <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '10px 20px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 9, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none', display: 'inline-block' }}>Buy on Amazon →</a>
                           </div>
                         </div>
                       </div>
