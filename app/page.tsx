@@ -39,13 +39,32 @@ async function findInstallers(zip: string) {
 const TAG = 'watercheck-20';
 
 const PRODUCTS = [
-  { id:1, name:'APEC ROES-50', brand:'APEC Water Systems', type:'Under-Sink RO', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','Easy DIY install','20yr track record'], img:'https://m.media-amazon.com/images/I/61cF0FQEDBL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}`, tankless:false, remineralize:false },
-  { id:2, name:'iSpring RCC7AK', brand:'iSpring', type:'Under-Sink RO + Alkaline', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%','TDS >93%'], bestFor:['Lead','PFAS','Chromium-6','Copper','Nitrate'], pros:['Remineralization stage','75 GPD fast','Triple NSF cert','pH balanced'], img:'https://m.media-amazon.com/images/I/71RKD7DEYBL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`, tankless:false, remineralize:true },
-  { id:3, name:'Waterdrop G3P800', brand:'Waterdrop', type:'Tankless Under-Sink RO', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine','Heavy metals'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank — compact','800 GPD ultra fast','Smart LED faucet','3:1 waste ratio'], img:'https://m.media-amazon.com/images/I/61Y0jVJoVxL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`, tankless:true, remineralize:false },
-  { id:4, name:'Home Master TMAFC', brand:'Home Master', type:'Under-Sink RO + Remineralization', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs','TDS'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio','Great taste'], img:'https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00B5GT45E?tag=${TAG}`, tankless:false, remineralize:true },
-  { id:5, name:'Aquasana SmartFlow RO', brand:'Aquasana', type:'Under-Sink RO + Claryum', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants','Retains minerals'], img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B01AO49OAQ?tag=${TAG}`, tankless:false, remineralize:true },
-  { id:6, name:'Pelican PC600', brand:'Pelican Water', type:'Whole-House POE', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], img:'https://m.media-amazon.com/images/I/81r1fLVQbwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}`, tankless:false, remineralize:false, wholeHouse:true },
-  { id:7, name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', type:'Pitcher Filter', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','Chlorine','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], img:'https://m.media-amazon.com/images/I/71Pg8yZLLfL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07NMQNHPB?tag=${TAG}`, tankless:false, remineralize:false, pitcher:true },
+  // ── PITCHER ──
+  { id:1,  category:'pitcher',    name:'PUR PLUS 11-Cup Pitcher',       brand:'PUR',               type:'Pitcher Filter',                  price:42,  filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'],                                               certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','Chlorine','PFNA 96%'],       bestFor:['Lead','Arsenic','Uranium','Chromium-6'],          pros:['No install needed','Portable','Budget-friendly','Removes 70+ contaminants'],        img:'https://m.media-amazon.com/images/I/71Pg8yZLLfL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B07NMQNHPB?tag=${TAG}`,    pitcher:true },
+  { id:2,  category:'pitcher',    name:'Brita Standard 10-Cup Pitcher', brand:'Brita',             type:'Pitcher Filter',                  price:30,  filterCostPerYear:60,  rating:4.6, reviews:98000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'],                                               certColor:'#22d3ee', removes:['Chlorine taste & odor','Mercury','Cadmium','Copper'],          bestFor:['Chlorine','Copper','Mercury'],                    pros:['Most popular pitcher','Affordable filters','BPA-free','Slim design'],             img:'https://m.media-amazon.com/images/I/71gvUcpgVeL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B00RXBIG1C?tag=${TAG}`,    pitcher:true },
+  { id:3,  category:'pitcher',    name:'ZeroWater 10-Cup Pitcher',      brand:'ZeroWater',         type:'Pitcher Filter — 5-Stage',        price:35,  filterCostPerYear:120, rating:4.4, reviews:31000, gpd:null, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 53'],                                               certColor:'#22d3ee', removes:['TDS 99.6%','Lead','Chromium','Fluoride','PFOA/PFOS'],        bestFor:['Lead','Fluoride','Chromium-6','TDS'],             pros:['Removes virtually all TDS','Includes TDS meter','5-stage ion exchange'],          img:'https://m.media-amazon.com/images/I/71qy7PBEX6L._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B00KLKJQNS?tag=${TAG}`,    pitcher:true },
+  // ── COUNTERTOP ──
+  { id:4,  category:'countertop', name:'Big Berkey Gravity Filter',     brand:'Berkey',            type:'Countertop Gravity Filter',       price:358, filterCostPerYear:30,  rating:4.8, reviews:12000, gpd:null, stages:2, cert:['NSF-equivalent tested'],                                                    certColor:'#d97706', removes:['Viruses >99.9%','Lead >99.9%','Chlorine','Fluoride (w/ add-on)','PFAS'], bestFor:['Lead','Viruses','Bacteria','Chlorine','PFAS'],    pros:['No electricity or plumbing','Off-grid ready','Filters 6,000 gallons','Stainless steel'], img:'https://m.media-amazon.com/images/I/61lAmfQPBaL._AC_SL1500_.jpg',     amazon:`https://www.amazon.com/dp/B00AXXQM0U?tag=${TAG}`,    countertop:true },
+  { id:5,  category:'countertop', name:'Waterdrop Countertop RO',       brand:'Waterdrop',         type:'Countertop Reverse Osmosis',      price:299, filterCostPerYear:100, rating:4.7, reviews:5400,  gpd:400, stages:9, cert:['NSF/ANSI 42','NSF/ANSI 58'],                                               certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Arsenic','TDS'],          bestFor:['PFAS','Lead','Arsenic','Fluoride'],               pros:['No installation needed','400 GPD','Direct-drink dispenser','Compact'],            img:'https://m.media-amazon.com/images/I/61GRGiCFPdL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B09TMKF4VB?tag=${TAG}`,    countertop:true },
+  // ── UNDER-SINK RO ──
+  { id:6,  category:'undersink',  name:'APEC ROES-50',                  brand:'APEC Water Systems',type:'Under-Sink RO',                  price:219, filterCostPerYear:95,  rating:4.7, reviews:28400, gpd:50,  stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'],                                              certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','Easy DIY install','20yr track record'],          img:'https://m.media-amazon.com/images/I/61cF0FQEDBL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}`,    tankless:false, remineralize:false },
+  { id:7,  category:'undersink',  name:'iSpring RCC7AK',                brand:'iSpring',           type:'Under-Sink RO + Alkaline',        price:229, filterCostPerYear:80,  rating:4.7, reviews:14200, gpd:75,  stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'],                                 certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%','TDS >93%'], bestFor:['Lead','PFAS','Chromium-6','Copper','Nitrate'],   pros:['Remineralization stage','75 GPD fast','Triple NSF cert','pH balanced'],           img:'https://m.media-amazon.com/images/I/71RKD7DEYBL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}`,    tankless:false, remineralize:true },
+  { id:8,  category:'undersink',  name:'Waterdrop G3P800',              brand:'Waterdrop',         type:'Tankless Under-Sink RO',          price:449, filterCostPerYear:170, rating:4.8, reviews:9800,  gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'],                  certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine','Heavy metals'],  bestFor:['PFAS','Lead','Arsenic','Chromium-6'],             pros:['No tank — compact','800 GPD ultra fast','Smart LED faucet','3:1 waste ratio'],    img:'https://m.media-amazon.com/images/I/61Y0jVJoVxL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,    tankless:true,  remineralize:false },
+  { id:9,  category:'undersink',  name:'Aquasana SmartFlow RO',         brand:'Aquasana',          type:'Under-Sink RO + Claryum',         price:449, filterCostPerYear:145, rating:4.7, reviews:2100,  gpd:50,  stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'],   certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'],  bestFor:['PFAS','Lead','Fluoride','Microplastics'],         pros:['Most certified','90 contaminants','Retains minerals'],                             img:'https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B01AO49OAQ?tag=${TAG}`,    tankless:false, remineralize:true },
+  // ── WHOLE HOUSE ──
+  { id:10, category:'whole-house',name:'Pelican PC600',                  brand:'Pelican Water',     type:'Whole-House Carbon Filter',       price:899, filterCostPerYear:120, rating:4.7, reviews:1800,  gpd:null,stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'],                             certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'],       bestFor:['Chloramine','Chloroform','HAAs','VOCs'],          pros:['Whole house','No salt','6yr filter life','Low maintenance'],                       img:'https://m.media-amazon.com/images/I/81r1fLVQbwL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}`,    wholeHouse:true },
+  { id:11, category:'whole-house',name:'iSpring WGB32B',                 brand:'iSpring',           type:'Whole-House 3-Stage Filter',      price:189, filterCostPerYear:60,  rating:4.6, reviews:7200,  gpd:null,stages:3, cert:['NSF/ANSI 42'],                                                            certColor:'#22d3ee', removes:['Sediment','Chlorine','Herbicides','Pesticides','Iron'],      bestFor:['Chlorine','Iron','Sediment','VOCs'],              pros:['Budget whole-house','Easy filter swap','High flow rate','20" big blue filters'],   img:'https://m.media-amazon.com/images/I/81sB5VxJKRL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B00EWKR0P6?tag=${TAG}`,    wholeHouse:true },
+  // ── SHOWER ──
+  { id:12, category:'shower',     name:'AquaBliss SF100',               brand:'AquaBliss',         type:'Shower Filter',                   price:26,  filterCostPerYear:52,  rating:4.4, reviews:64000, gpd:null,stages:1, cert:['Tested & verified'],                                                       certColor:'#22d3ee', removes:['Chlorine','Fluoride','Heavy metals','Bacteria','Sediment'],    bestFor:['Chlorine','Chloramine','Hard water'],             pros:['#1 bestseller','Easy install','Fits any showerhead','Softer skin & hair'],        img:'https://m.media-amazon.com/images/I/71F9EYDNTPL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B01MUBU7WN?tag=${TAG}`,    shower:true },
+  { id:13, category:'shower',     name:'Aquasana AQ-4100NSH',           brand:'Aquasana',          type:'Premium Shower Filter + Head',    price:99,  filterCostPerYear:80,  rating:4.4, reviews:8900,  gpd:null,stages:2, cert:['NSF/ANSI 177'],                                                           certColor:'#d97706', removes:['Chlorine >91%','Chloramine','VOCs','Synthetic chemicals'],    bestFor:['Chlorine','Chloramine','VOCs'],                   pros:['NSF/ANSI 177 certified','Includes showerhead','6-month filter life','Spa-quality'], img:'https://m.media-amazon.com/images/I/51k14C7-dDL._AC_SL1500_.jpg',           amazon:`https://www.amazon.com/dp/B000Y5KZFU?tag=${TAG}`,    shower:true },
+];
+
+const CATEGORIES = [
+  { id:'pitcher',    icon:'🥤', label:'Pitcher & Pour-Through',    desc:'No installation — perfect for renters & travel' },
+  { id:'countertop', icon:'🪣', label:'Countertop Filters',         desc:'Sit on your counter — no plumbing required' },
+  { id:'undersink',  icon:'🚰', label:'Under-Counter RO Systems',   desc:'Most powerful — removes 99%+ of contaminants' },
+  { id:'whole-house',icon:'🏠', label:'Whole House Systems',        desc:'Clean water at every tap, shower & appliance' },
+  { id:'shower',     icon:'🚿', label:'Shower Filters',             desc:'Remove chlorine & chemicals for healthier skin & hair' },
 ];
 
 const SEV: Record<string, {color:string,label:string}> = {
@@ -440,37 +459,75 @@ export default function WaterCheckup() {
         )}
       </div>
 
-      {/* PRODUCT SHOWCASE — home screen only */}
+      {/* PRODUCT SHOWCASE — home screen only, categorized */}
       {!data && !loading && (
-        <div style={{ maxWidth: 900, margin: '56px auto 0', padding: '0 20px' }}>
-          <div style={{ textAlign: 'center', marginBottom: 28 }}>
+        <div style={{ maxWidth: 1100, margin: '60px auto 60px', padding: '0 20px' }}>
+
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
             <div style={{ fontSize: 13, letterSpacing: 2, color: '#0891b2', fontWeight: 700, marginBottom: 10 }}>NSF & WQA GOLD SEAL CERTIFIED</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Our Expert-Recommended Filters</div>
-            <div style={{ fontSize: 15, color: '#64748b', maxWidth: 480, margin: '0 auto' }}>Enter your ZIP code above and we'll match these to your exact water quality — or browse them all below</div>
+            <div style={{ fontSize: 28, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Shop by Filter Type</div>
+            <div style={{ fontSize: 15, color: '#64748b', maxWidth: 520, margin: '0 auto' }}>
+              Browse our expert-curated picks across every category — enter your ZIP above to see which ones match your water quality
+            </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
-            {PRODUCTS.filter((p: any) => !p.wholeHouse).slice(0, 6).map((p: any, i: number) => (
-              <div key={p.id} style={{ background: i === 0 ? '#07131e' : '#060e17', border: `1px solid ${i === 0 ? '#0891b2' : '#0e2233'}`, borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column', transition: 'border-color 0.2s' }}>
-                <div style={{ background: '#ffffff', height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12, position: 'relative' }}>
-                  <img src={p.img} alt={p.name} style={{ maxHeight: 140, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
-                  {i === 0 && <div style={{ position: 'absolute', top: 8, right: 8, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4, letterSpacing: 1 }}>TOP PICK</div>}
+
+          {CATEGORIES.map(cat => {
+            const catProducts = PRODUCTS.filter((p: any) => p.category === cat.id);
+            return (
+              <div key={cat.id} style={{ marginBottom: 52 }}>
+                {/* Category header */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20, paddingBottom: 14, borderBottom: '1px solid #0e2233' }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 10, background: '#07131e', border: '1px solid #0e2233', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, flexShrink: 0 }}>{cat.icon}</div>
+                  <div>
+                    <div style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.2 }}>{cat.label}</div>
+                    <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{cat.desc}</div>
+                  </div>
                 </div>
-                <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 1 }}>{p.brand.toUpperCase()}</div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.3 }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: '#64748b' }}>{p.type}</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
-                    <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
-                    <span style={{ fontSize: 12, color: '#64748b' }}>{p.rating} ({p.reviews.toLocaleString()})</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 10, borderTop: '1px solid #0e2233' }}>
-                    <span style={{ fontSize: 20, fontWeight: 800, color: '#22d3ee' }}>${p.price}</span>
-                    <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: '#f59e0b', borderRadius: 6, color: '#000', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
-                  </div>
+
+                {/* Product cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 16 }}>
+                  {catProducts.map((p: any, i: number) => (
+                    <div key={p.id} style={{ background: '#060e17', border: `1px solid ${i === 0 ? '#0891b244' : '#0e2233'}`, borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                      {/* Image */}
+                      <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
+                        <img
+                          src={p.img} alt={p.name}
+                          style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }}
+                          onError={(e: any) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+                        />
+                        <div style={{ display: 'none', position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', fontSize: 40 }}>💧</div>
+                        {i === 0 && (
+                          <div style={{ position: 'absolute', top: 8, left: 8, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 8px', borderRadius: 4, letterSpacing: 1 }}>TOP PICK</div>
+                        )}
+                      </div>
+
+                      {/* Info */}
+                      <div style={{ padding: '14px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                        <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 1 }}>{p.brand.toUpperCase()}</div>
+                        <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.3 }}>{p.name}</div>
+                        <div style={{ fontSize: 12, color: '#64748b' }}>{p.type}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 2 }}>
+                          <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
+                          <span style={{ fontSize: 12, color: '#64748b' }}>{p.rating} ({p.reviews.toLocaleString()})</span>
+                        </div>
+                        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 2 }}>
+                          {p.removes.slice(0, 2).map((r: string) => (
+                            <span key={r} style={{ fontSize: 11, padding: '2px 6px', borderRadius: 4, background: '#051a0a', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>
+                          ))}
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: 12, borderTop: '1px solid #0e2233' }}>
+                          <span style={{ fontSize: 22, fontWeight: 800, color: '#22d3ee' }}>${p.price}</span>
+                          <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#f59e0b', borderRadius: 7, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>
+                            Buy on Amazon →
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       )}
 
