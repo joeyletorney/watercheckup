@@ -1751,6 +1751,47 @@ export default function WaterCheckup() {
                 </div>
               )}
 
+              {data.echo && (
+                <div style={{ background: '#0b1e36', border: '1px solid #ef444430', borderRadius: 8, padding: '14px 16px', marginBottom: 18 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
+                    <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#ef4444', fontWeight: 700 }}>⚖️ EPA ECHO — ENFORCEMENT & COMPLIANCE HISTORY</div>
+                    <a href={data.echo.echoUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#475569', textDecoration: 'none', border: '1px solid #1e3a4a', borderRadius: 3, padding: '1px 7px' }}>View full ECHO record →</a>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))', gap: 8 }}>
+                    {data.echo.formalActions > 0 && (
+                      <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444' }}>{data.echo.formalActions}</div>
+                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Formal Actions</div>
+                      </div>
+                    )}
+                    {data.echo.informalActions > 0 && (
+                      <div style={{ background: '#0b1e36', border: '1px solid #f59e0b30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 20, fontWeight: 900, color: '#f59e0b' }}>{data.echo.informalActions}</div>
+                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Informal Actions</div>
+                      </div>
+                    )}
+                    {data.echo.penaltiesFormatted && (
+                      <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 16, fontWeight: 900, color: '#ef4444' }}>{data.echo.penaltiesFormatted}</div>
+                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Total Penalties</div>
+                      </div>
+                    )}
+                    {data.echo.inspections > 0 && (
+                      <div style={{ background: '#0b1e36', border: '1px solid #22d3ee30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 20, fontWeight: 900, color: '#22d3ee' }}>{data.echo.inspections}</div>
+                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Inspections</div>
+                      </div>
+                    )}
+                  </div>
+                  {data.echo.lastInspection && (
+                    <div style={{ marginTop: 8, fontSize: 11, color: '#475569' }}>Last inspection: <span style={{ color: '#94a3b8' }}>{data.echo.lastInspection}</span></div>
+                  )}
+                  {data.echo.complianceStatus && (
+                    <div style={{ marginTop: 4, fontSize: 11, color: '#475569' }}>Compliance status: <span style={{ color: data.echo.formalActions > 0 ? '#ef4444' : '#22d3ee' }}>{data.echo.complianceStatus}</span></div>
+                  )}
+                </div>
+              )}
+
               <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', margin: '22px 0 12px' }}>TOP 3 RECOMMENDED FILTERS</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
                 {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} detectedContaminants={contaminantNames} />)}

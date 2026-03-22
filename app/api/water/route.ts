@@ -576,6 +576,44 @@ async function getUsgsSourceWater(state: string, lat?: number, lng?: number): Pr
   }
 }
 
+// ─── EPA ECHO Enforcement & Compliance ───────────────────────────────────────
+async function getEchoEnforcement(pwsid: string): Promise<any> {
+  try {
+    // ECHO SDWA enforcement actions for this facility
+    const url = `https://echodata.epa.gov/echo/sdw_rest_services.get_facility_info?output=JSON&p_pwsid=${encodeURIComponent(pwsid)}`;
+    const res = await fetch(url, { next: { revalidate: 86400 } });
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    const fac = data?.Results?.Facilities?.[0];
+    if (!fac) return null;
+
+    // Pull key enforcement fields
+    const formalActions  = parseInt(fac.FORMAL_ACTION_COUNT  || '0') || 0;
+    const informalActions= parseInt(fac.INFORMAL_ACTION_COUNT|| '0') || 0;
+    const penalties      = parseFloat(fac.TOTAL_PENALTY_AMT  || '0') || 0;
+    const lastInspection = fac.LAST_INSPECTION_DATE || null;
+    const inspections    = parseInt(fac.INSPECTION_COUNT     || '0') || 0;
+    const compStatus     = fac.SDWA_COMPLIANCE_STATUS || null;
+
+    if (!formalActions && !informalActions && !penalties && !inspections) return null;
+
+    return {
+      formalActions,
+      informalActions,
+      totalPenalties: penalties,
+      penaltiesFormatted: penalties > 0 ? `$${penalties.toLocaleString()}` : null,
+      lastInspection,
+      inspections,
+      complianceStatus: compStatus,
+      echoUrl: `https://echo.epa.gov/sdwa/facility-info?p_pwsid=${encodeURIComponent(pwsid)}`,
+    };
+  } catch {
+    return null;
+  }
+}
+
+
 export async function GET(req: NextRequest) {
   const H = {
     'Access-Control-Allow-Origin': '*',
@@ -638,10 +676,11 @@ export async function GET(req: NextRequest) {
     }
 
     // ─── Parallel data fetch ────────────────────────────────────────────────
-    const [violations, lcr, usgsData] = await Promise.all([
+    const [violations, lcr, usgsData, echoData] = await Promise.all([
       epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => []),
       epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:30/JSON`).catch(() => []),
       stateCode ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
+      getEchoEnforcement(pwsid),
     ]);
     const viols: any[]   = Array.isArray(violations) ? violations : [];
     const samples: any[] = Array.isArray(lcr) ? lcr : [];
@@ -806,6 +845,7 @@ export async function GET(req: NextRequest) {
     if (ewg)           dataSources.push('EWG Tap Water Atlas');
     if (usgsData)      dataSources.push('USGS NWIS');
     if (lithiumVal)    dataSources.push('UCMR5 Lithium');
+    if (echoData)      dataSources.push('EPA ECHO Enforcement');
 
     const summary = openCount > 0
       ? `${pwsName} has ${openCount} open violation(s) on record with EPA.`
@@ -845,6 +885,7 @@ export async function GET(req: NextRequest) {
       usgs:             usgsData,
       contaminants,
       violations:       fmtViols,
+      echo:             echoData,
       summary,
       pfasSummary,
     }, { headers: H });
