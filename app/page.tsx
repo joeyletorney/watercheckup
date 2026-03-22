@@ -773,16 +773,16 @@ export default function WaterCheckup() {
       <WaterBackground />
 
       {/* HEADER */}
-      <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(6,15,30,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', position: 'sticky', top: 0, zIndex: 100 }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
           <div style={{ width: 34, height: 34, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, boxShadow: '0 0 14px #06b6d444' }}>💧</div>
           <span style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8' }}>Water<span style={{ color: '#f1f9ff' }}>Checkup</span></span>
         </a>
         <nav style={{ display: 'flex', gap: 2, marginLeft: 20 }}>
           {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']] as [string,string][]).map(([href, label]) => (
-            <a key={href} href={href} style={{ padding: '7px 14px', borderRadius: 7, fontSize: 14, fontWeight: 500, color: '#64748b', textDecoration: 'none' }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#e2e8f0')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#64748b')}
+            <a key={href} href={href} style={{ padding: '7px 14px', borderRadius: 7, fontSize: 14, fontWeight: 600, color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#38bdf8')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
             >{label}</a>
           ))}
         </nav>
@@ -794,7 +794,7 @@ export default function WaterCheckup() {
       </div>
 
       {/* SEARCH */}
-      <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center' }}>
+      <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         {/* Expert credibility badge */}
         <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#0e2d4a,#0a2038)', border: '1px solid #2a5a8c', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 4px 24px #0891b244' }}>
@@ -816,7 +816,7 @@ export default function WaterCheckup() {
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code" maxLength={5}
             style={{ width: 140, padding: '12px 16px', fontSize: 20, letterSpacing: 0.3, background: '#0d2240', border: '1px solid #1e4a6a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center' }} />
-          <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '12px 22px', background: zip.length===5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0e2233', border: 'none', borderRadius: 8, color: zip.length===5 && !loading ? '#fff' : '#334155', fontSize: 14, fontWeight: 700, letterSpacing: 0.3, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
+          <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '12px 22px', background: zip.length===5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 8, color: zip.length===5 && !loading ? '#fff' : '#475569', fontSize: 14, fontWeight: 700, letterSpacing: 0.3, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
             {loading ? 'QUERYING…' : 'ANALYZE →'}
           </button>
         </div>
