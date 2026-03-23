@@ -1648,7 +1648,7 @@ export default function WaterCheckup() {
         {/* Expert credibility badge */}
         <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(5,18,42,0.68)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(180,240,255,0.18)', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 8px 32px rgba(8,145,178,0.2), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
           <span style={{ fontSize: 18 }}>🏅</span>
-          <span style={{ fontSize: 14, color: '#94a3b8' }}>Designed by a water quality expert with <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40+ years of experience</strong></span>
+          <span style={{ fontSize: 14, color: '#94a3b8' }}>Designed & curated by the world's foremost water expert <strong style={{ color: '#38bdf8', fontWeight: 700 }}>J. Letorney</strong> with over <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40 years of experience</strong></span>
         </div>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 38, fontWeight: 900, margin: '0 0 14px', lineHeight: 1.15, color: '#f1f9ff' }}>
