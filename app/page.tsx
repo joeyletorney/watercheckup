@@ -1195,7 +1195,7 @@ function WaterCanvas() {
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
-      t += 0.009;
+      t += 0.006;
 
       // ── 1. DEEP WATER BASE ───────────────────────────────────────────────
       // Dark rich navy-teal — deep clear Caribbean water
@@ -1437,7 +1437,7 @@ export default function WaterCheckup() {
   const contaminantNames = data?.contaminants?.map((c: any) => c.name) ?? [];
 
   return (
-    <div style={{ minHeight: '100vh', position: 'relative', zIndex: 1, fontFamily: 'inherit', color: '#e2e8f0' }}>
+    <div style={{ minHeight: '100vh', position: 'relative', fontFamily: 'inherit', color: '#e2e8f0' }}>
       <style>{`
         /* ── keyframes ────────────────────────────────────────────────── */
         @keyframes wcGlowPulse {
