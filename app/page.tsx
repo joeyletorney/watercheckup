@@ -1703,17 +1703,89 @@ export default function WaterCheckup() {
                 <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+            {/* Alarming stat strip */}
+            <div style={{ display: 'flex', gap: 10, marginBottom: 18, flexWrap: 'wrap' }}>
               {[
-                { icon: '🧪', title: 'PFAS "Forever Chemicals"', body: 'Found in 45% of US tap water. Linked to cancer & hormone disruption. Standard filters don\'t remove them.' },
-                { icon: '🔩', title: 'Lead', body: 'Leaches from old pipes in millions of homes. No safe level exists — especially dangerous for children.' },
-                { icon: '☁️', title: 'Chlorine & Chloramine', body: 'Added by every utility. Causes taste & odor issues and converts to cancer-linked byproducts (THMs).' },
-                { icon: '🌾', title: 'Nitrates & Arsenic', body: 'Common in agricultural regions. Nitrates are life-threatening for infants. Arsenic causes cancer.' },
+                { stat: '45%', label: 'of US tap water contains PFAS' },
+                { stat: '400K+', label: 'miles of lead pipes still in use' },
+                { stat: '270M', label: 'Americans drink disinfection byproducts daily' },
+                { stat: '75%', label: 'of US water has detectable Chromium-6' },
+              ].map(s => (
+                <div key={s.stat} className="wc-card" style={{ flex: '1 1 140px', borderRadius: 10, padding: '12px 14px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: '#22d3ee', letterSpacing: -0.5 }}>{s.stat}</div>
+                  <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.45, marginTop: 3 }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+              {[
+                {
+                  icon: '☣️',
+                  title: 'PFAS "Forever Chemicals"',
+                  risk: 'Cancer · Hormones · Immunity',
+                  body: 'Found in 45% of US tap water (USGS, 2023). Linked to kidney & testicular cancer, thyroid disease, and immune suppression. They never break down — standard carbon filters do NOT remove them. Only RO or certified PFAS filters work.',
+                  color: '#ef4444',
+                },
+                {
+                  icon: '🔩',
+                  title: 'Lead',
+                  risk: 'Brain damage · No safe level',
+                  body: 'Over 400,000 miles of lead service lines still deliver water in the US. Lead causes permanent IQ loss and neurological damage — especially in children under 6. The EPA says there is no safe level. Comes from pipes, not the source.',
+                  color: '#f59e0b',
+                },
+                {
+                  icon: '⚗️',
+                  title: 'Chlorine & Disinfection Byproducts',
+                  risk: 'Probable carcinogen · THMs · HAAs',
+                  body: 'Every water utility adds chlorine or chloramine. These react with organic matter to form Trihalomethanes (THMs) and Haloacetic Acids (HAAs) — both classified as probable human carcinogens by the EPA. 270 million Americans drink them daily.',
+                  color: '#a78bfa',
+                },
+                {
+                  icon: '🌾',
+                  title: 'Nitrates',
+                  risk: 'Infant mortality · Agricultural runoff',
+                  body: 'The #1 contaminant in rural and agricultural America. Nitrates above 10 mg/L cause "blue baby syndrome" — life-threatening oxygen deprivation in infants. Comes from fertilizer runoff and livestock waste. Standard pitchers don't remove it.',
+                  color: '#84cc16',
+                },
+                {
+                  icon: '⚡',
+                  title: 'Arsenic',
+                  risk: 'Bladder · Lung · Skin cancer',
+                  body: 'Naturally occurring and odorless — you can't taste it. Chronic exposure is linked to bladder, lung, and skin cancers. Over 2 million Americans drink water above the EPA limit of 10 ppb, and the WHO considers that limit too high.',
+                  color: '#f97316',
+                },
+                {
+                  icon: '🏭',
+                  title: 'Chromium-6 (Hexavalent Chromium)',
+                  risk: 'Probable carcinogen · 75% of water',
+                  body: 'The Erin Brockovich chemical. Found in 75% of US drinking water systems at levels above health guidelines. The EPA's legal limit is for total chromium — Chromium-6 alone has no enforceable limit yet. Linked to gastrointestinal cancer.',
+                  color: '#06b6d4',
+                },
+                {
+                  icon: '🦠',
+                  title: 'Microplastics & Nanoplastics',
+                  risk: 'Emerging · Inflammation · Hormones',
+                  body: 'Found in virtually 100% of tap water samples worldwide. Recent studies detect them inside human blood, lungs, and placentas. Carry hormone-disrupting chemicals and heavy metals. Standard filters don't remove nanoplastics — only RO membranes do.',
+                  color: '#ec4899',
+                },
+                {
+                  icon: '💧',
+                  title: 'Hard Water (Calcium & Magnesium Scale)',
+                  risk: 'Pipe damage · Skin · Appliances',
+                  body: '85% of the US has hard water. Scale builds up in pipes, water heaters, and appliances — reducing efficiency by up to 48% and cutting appliance life in half. Hard water also strips moisture from skin and hair, worsening eczema and dryness.',
+                  color: '#94a3b8',
+                },
               ].map(c => (
-                <div key={c.title} className="wc-card" style={{ borderRadius: 14, padding: '20px 16px' }}>
-                  <div style={{ fontSize: 30, marginBottom: 10 }}>{c.icon}</div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{c.title}</div>
-                  <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{c.body}</div>
+                <div key={c.title} className="wc-card" style={{ borderRadius: 14, padding: '20px 16px', borderLeft: `2px solid ${c.color}33` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                    <span style={{ fontSize: 26 }}>{c.icon}</span>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.25 }}>{c.title}</div>
+                      <div style={{ fontSize: 10, fontWeight: 700, color: c.color, letterSpacing: 0.3, marginTop: 2 }}>{c.risk}</div>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.65 }}>{c.body}</div>
                 </div>
               ))}
             </div>
