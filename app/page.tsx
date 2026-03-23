@@ -278,7 +278,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
 
   if (compact) {
     return (
-      <div style={{ background: highlight ? '#0e2545' : '#0b1e36', border: `1px solid ${highlight ? '#0891b2' : '#0e2233'}`, borderRadius: 10, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 14 }}>
+      <div style={{ background: highlight ? 'rgba(8,40,90,0.68)' : 'rgba(4,14,32,0.65)', border: `1px solid ${highlight ? 'rgba(8,145,178,0.5)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${highlight ? 'rgba(6,182,212,0.6)' : 'rgba(255,255,255,0.13)'}`, borderRadius: 10, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 14, backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', boxShadow: highlight ? '0 8px 32px rgba(8,145,178,0.2), inset 0 1px 0 rgba(255,255,255,0.09)' : '0 8px 24px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.07)' }}>
         <div style={{ width: 60, height: 60, background: '#fff', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           {!imgErr ? <img src={p.img} alt={p.name} onError={() => setImgErr(true)} style={{ maxHeight: 55, maxWidth: 55, objectFit: 'contain' }} /> : <div style={{ fontSize: 20 }}>💧</div>}
         </div>
@@ -292,15 +292,15 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
           <div style={{ fontSize: 18, fontWeight: 900, color: '#22d3ee' }}>${p.price}</div>
-          <a href={p.amazon} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 6, padding: '5px 10px', background: '#f59e0b', borderRadius: 5, color: '#000', fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ display: 'inline-block', marginTop: 6, padding: '5px 10px', borderRadius: 5, fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{ background: highlight ? '#0e2545' : '#0b1e36', border: `1px solid ${highlight ? '#0891b2' : '#0e2233'}`, borderRadius: 10, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ background: '#fff', height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 10, position: 'relative' }}>
+    <div className="wc-card" style={{ borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column', ...(highlight ? { borderColor: 'rgba(8,145,178,0.45)', boxShadow: '0 16px 48px rgba(0,4,18,0.52), 0 0 30px rgba(8,145,178,0.15), inset 0 1px 0 rgba(255,255,255,0.11)' } : {}) }}>
+      <div style={{ background: 'rgba(248,252,255,0.96)', height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 10, position: 'relative' }}>
         {!imgErr ? <img src={p.img} alt={p.name} onError={() => setImgErr(true)} style={{ maxHeight: 120, maxWidth: '100%', objectFit: 'contain' }} /> : <div style={{ fontSize: 36 }}>💧</div>}
         {highlight && <div style={{ position: 'absolute', top: 6, right: 6, background: '#0891b2', color: '#fff', fontSize: 10, padding: '2px 6px', borderRadius: 3, fontWeight: 800 }}>TOP PICK</div>}
         {p.tankless && <div style={{ position: 'absolute', top: 6, left: 6, background: '#7c3aed', color: '#fff', fontSize: 10, padding: '2px 6px', borderRadius: 3, fontWeight: 800 }}>TANKLESS</div>}
@@ -346,7 +346,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
             <div style={{ fontSize: 19, fontWeight: 900, color: '#22d3ee' }}>${p.price}</div>
             {p.filterCostPerYear && <div style={{ fontSize: 10, color: '#334155' }}>${p.filterCostPerYear}/yr filters</div>}
           </div>
-          <a href={p.amazon} target="_blank" rel="noreferrer" style={{ padding: '7px 12px', background: '#f59e0b', borderRadius: 6, color: '#000', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '7px 12px', borderRadius: 6, fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
         </div>
       </div>
     </div>
@@ -369,7 +369,7 @@ function ContaminantRow({ c }: { c: any }) {
   const riskIcon = c.severity === 'high' ? '🔴' : c.severity === 'moderate' ? '🟡' : '🟢';
 
   return (
-    <div style={{ marginBottom: 16, background: '#0b1e36', border: `1px solid ${c.severity === 'high' ? '#ef444430' : c.severity === 'moderate' ? '#f59e0b20' : '#0e2233'}`, borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ marginBottom: 16, background: 'rgba(4,14,32,0.62)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: `1px solid ${c.severity === 'high' ? 'rgba(239,68,68,0.22)' : c.severity === 'moderate' ? 'rgba(245,158,11,0.16)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${c.severity === 'high' ? 'rgba(239,68,68,0.32)' : 'rgba(255,255,255,0.12)'}`, borderRadius: 10, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.07)' }}>
       {/* Header row */}
       <div style={{ padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1, minWidth: 0 }}>
@@ -469,7 +469,7 @@ function PFASAwarenessBanner() {
   if (dismissed) return null;
   return (
     <div style={{ maxWidth: 720, margin: '22px auto 0', padding: '0 24px' }}>
-      <div style={{ background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #dc262644', borderLeft: '4px solid #ef4444', borderRadius: 10, padding: '16px 20px', display: 'flex', gap: 14, position: 'relative' }}>
+      <div style={{ background: 'rgba(20,3,3,0.68)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: '1px solid rgba(220,38,38,0.28)', borderLeft: '4px solid #ef4444', borderTop: '1px solid rgba(239,68,68,0.32)', borderRadius: 10, padding: '16px 20px', display: 'flex', gap: 14, position: 'relative', boxShadow: '0 8px 32px rgba(20,3,3,0.5), inset 0 1px 0 rgba(255,255,255,0.06)' }}>
         <button onClick={() => setDismissed(true)} style={{ position: 'absolute', top: 10, right: 12, background: 'none', border: 'none', color: '#475569', fontSize: 16, cursor: 'pointer' }}>×</button>
         <div style={{ fontSize: 22, flexShrink: 0 }}>☣️</div>
         <div style={{ flex: 1, paddingRight: 20 }}>
@@ -886,12 +886,12 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
   }
 
   return (
-    <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
+    <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
       {/* Situation selector */}
       <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 14, fontWeight: 700 }}>I AM A / I LIVE IN A…</div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
         {SITUATIONS.map(s => (
-          <button key={s.id} onClick={() => setSituation(s.id)} style={{ padding: '8px 14px', background: situation === s.id ? '#0891b2' : '#0b1e36', border: `1px solid ${situation === s.id ? '#0891b2' : '#1e3a4a'}`, borderRadius: 8, color: situation === s.id ? '#fff' : '#475569', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button key={s.id} onClick={() => setSituation(s.id)} style={{ padding: '8px 14px', background: situation === s.id ? 'rgba(8,145,178,0.28)' : 'rgba(4,14,32,0.60)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: `1px solid ${situation === s.id ? 'rgba(6,182,212,0.55)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${situation === s.id ? 'rgba(180,240,255,0.45)' : 'rgba(255,255,255,0.12)'}`, borderRadius: 8, color: situation === s.id ? '#fff' : '#475569', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, boxShadow: situation === s.id ? '0 4px 20px rgba(8,145,178,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' : 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>
             <span>{s.icon}</span><span>{s.label}</span>
           </button>
         ))}
@@ -984,7 +984,7 @@ function ResourcesTab({ data }: { data: any }) {
   }
 
   return (
-    <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24 }}>
+    <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
       <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 20, fontWeight: 700 }}>OFFICIAL DATA SOURCES & RESOURCES</div>
       {resources.map(section => (
         <div key={section.cat} style={{ marginBottom: 22 }}>
@@ -1055,7 +1055,7 @@ function FilterCompareTab() {
   ];
 
   return (
-    <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: '22px 16px', overflowX: 'auto' }}>
+    <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: '22px 16px', overflowX: 'auto', boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
       <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 16 }}>SIDE-BY-SIDE FILTER COMPARISON — TOP PICKS</div>
       <table className="wc-compare-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, minWidth: 600 }}>
         <thead>
@@ -1129,7 +1129,7 @@ function ShareModal({ data, onClose }: { data: any; onClose: () => void }) {
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }} onClick={onClose}>
-      <div style={{ background: '#0d2240', border: '1px solid #1e4a6e', borderRadius: 16, padding: '28px 28px', maxWidth: 420, width: '92%' }} onClick={e => e.stopPropagation()}>
+      <div style={{ background: 'rgba(3,12,28,0.88)', backdropFilter: 'blur(28px)', WebkitBackdropFilter: 'blur(28px)', border: '1px solid rgba(255,255,255,0.09)', borderTop: '1px solid rgba(255,255,255,0.16)', borderRadius: 16, padding: '28px 28px', boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.09)', maxWidth: 420, width: '92%' }} onClick={e => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>Share Your Water Report</div>
           <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#475569', fontSize: 20, cursor: 'pointer', padding: 0, lineHeight: 1 }}>×</button>
@@ -1238,7 +1238,8 @@ function WaterCanvas() {
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
 
-      const NC = 48;
+      // Large structural caustic web
+      const NC = 64;
       for (let i = 0; i < NC; i++) {
         const ph = (i / NC) * Math.PI * 6.2;
         const s1 = 0.22 + (i % 7) * 0.065;
@@ -1251,14 +1252,13 @@ function WaterCanvas() {
           + Math.cos(t * s2 + ph * 1.08) * H * 0.46
           + Math.sin(t * s1 + ph * 0.44) * H * 0.11;
 
-        const r  = 28 + (i % 9) * 8 + Math.sin(t * 1.6 + i * 0.9) * 13;
-        const ia = 0.010 + (i % 6) * 0.003;
+        const r  = 26 + (i % 9) * 9 + Math.sin(t * 1.6 + i * 0.9) * 14;
+        const ia = 0.013 + (i % 6) * 0.004;
 
         const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        // Cool blue-white caustics — sunlight through deep clear water
-        cg.addColorStop(0,    `rgba(180, 240, 255, ${ia * 2.0})`);
-        cg.addColorStop(0.3,  `rgba(100, 210, 240, ${ia * 1.0})`);
-        cg.addColorStop(0.65, `rgba(0,  150, 200, ${ia * 0.4})`);
+        cg.addColorStop(0,    `rgba(205, 248, 255, ${ia * 3.0})`);
+        cg.addColorStop(0.28, `rgba(100, 220, 248, ${ia * 1.4})`);
+        cg.addColorStop(0.62, `rgba(0,   160, 210, ${ia * 0.5})`);
         cg.addColorStop(1,    'rgba(0,0,0,0)');
 
         ctx.beginPath();
@@ -1266,15 +1266,33 @@ function WaterCanvas() {
         ctx.fillStyle = cg;
         ctx.fill();
       }
+
+      // Micro caustics — fast bright highlights
+      const NM = 36;
+      for (let i = 0; i < NM; i++) {
+        const ph = (i / NM) * Math.PI * 9.1;
+        const mx = W * 0.5 + Math.sin(t * 0.8 + ph) * W * 0.42 + Math.cos(t * 1.1 + ph * 0.7) * W * 0.18;
+        const my = H * 0.5 + Math.cos(t * 0.9 + ph * 1.2) * H * 0.40 + Math.sin(t * 0.7 + ph * 0.5) * H * 0.14;
+        const mr = 7 + (i % 5) * 5 + Math.sin(t * 3.2 + i) * 4;
+        const ma = 0.020 + (i % 4) * 0.006;
+        const mcg = ctx.createRadialGradient(mx, my, 0, mx, my, mr);
+        mcg.addColorStop(0,   `rgba(235, 252, 255, ${ma * 2.5})`);
+        mcg.addColorStop(0.5, `rgba(120, 232, 255, ${ma * 0.8})`);
+        mcg.addColorStop(1,   'rgba(0,0,0,0)');
+        ctx.beginPath();
+        ctx.arc(mx, my, mr, 0, Math.PI * 2);
+        ctx.fillStyle = mcg;
+        ctx.fill();
+      }
       ctx.restore();
 
       // ── 3. DEEP BLUE WATER OVERLAY ───────────────────────────────────────
       // Rich deep blue — like 30ft of clear Caribbean water
       const water = ctx.createLinearGradient(0, 0, 0, H);
-      water.addColorStop(0,    'rgba(0,  110, 180, 0.72)');
-      water.addColorStop(0.30, 'rgba(0,   85, 160, 0.78)');
-      water.addColorStop(0.65, 'rgba(0,   55, 130, 0.82)');
-      water.addColorStop(1,    'rgba(0,   25,  80, 0.88)');
+      water.addColorStop(0,    'rgba(0,  100, 170, 0.60)');
+      water.addColorStop(0.30, 'rgba(0,   78, 150, 0.66)');
+      water.addColorStop(0.65, 'rgba(0,   50, 118, 0.72)');
+      water.addColorStop(1,    'rgba(0,   22,  72, 0.78)');
       ctx.fillStyle = water;
       ctx.fillRect(0, 0, W, H);
 
@@ -1421,44 +1439,175 @@ export default function WaterCheckup() {
   return (
     <div style={{ minHeight: '100vh', position: 'relative', zIndex: 1, fontFamily: 'inherit', color: '#e2e8f0' }}>
       <style>{`
+        /* ── keyframes ────────────────────────────────────────────────── */
         @keyframes wcGlowPulse {
-          0%,100%{ box-shadow:0 0 18px rgba(8,145,178,.45),0 4px 22px rgba(6,182,212,.28) }
-          50%   { box-shadow:0 0 55px rgba(8,145,178,.85),0 4px 45px rgba(6,182,212,.65),0 0 90px rgba(6,182,212,.18) }
+          0%,100%{ box-shadow:0 0 18px rgba(8,145,178,.35),0 4px 22px rgba(6,182,212,.22),inset 0 1px 0 rgba(180,240,255,.18) }
+          50%   { box-shadow:0 0 55px rgba(8,145,178,.72),0 4px 45px rgba(6,182,212,.52),0 0 90px rgba(6,182,212,.12),inset 0 1px 0 rgba(180,240,255,.28) }
         }
-        @keyframes wcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-        @keyframes wcFadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes wcShimmer {
-          0%{background-position:-200% center}
-          100%{background-position:200% center}
+        @keyframes wcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+        @keyframes wcFadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes wcShimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+        @keyframes wcReflect {
+          0%   { left:-65%; opacity:0 }
+          8%   { opacity:1 }
+          92%  { opacity:1 }
+          100% { left:120%; opacity:0 }
         }
-        .wc-card { transition: transform .3s ease, box-shadow .3s ease; }
-        .wc-card:hover { transform: translateY(-8px); box-shadow: 0 22px 55px rgba(8,145,178,.22), 0 0 32px rgba(6,182,212,.12); }
-        .wc-sit  { transition: transform .25s ease, box-shadow .25s ease; }
-        .wc-sit:hover  { transform: scale(1.06); box-shadow: 0 10px 38px rgba(8,145,178,.32); }
-        .wc-buy  { transition: transform .15s ease, box-shadow .15s ease; }
-        .wc-buy:hover  { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(245,158,11,.55); }
-        .wc-badge { animation: wcFloat 4s ease-in-out infinite; }
-        .wc-analyze { animation: wcGlowPulse 2.6s ease-in-out infinite; transition: transform .15s ease; }
-        .wc-analyze:hover  { transform: scale(1.05); }
+
+        /* ── glass utility ────────────────────────────────────────────── */
+        .wc-glass {
+          background: rgba(3,12,28,0.62) !important;
+          backdrop-filter: blur(22px) saturate(160%) !important;
+          -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+          border: 1px solid rgba(255,255,255,0.07) !important;
+          border-top-color: rgba(255,255,255,0.13) !important;
+          box-shadow: 0 24px 64px rgba(0,4,18,0.55), 0 8px 24px rgba(0,4,18,0.35),
+                      inset 0 1px 0 rgba(255,255,255,0.09) !important;
+        }
+
+        /* ── glass card — reflection sweep on hover ───────────────────── */
+        .wc-card {
+          position: relative;
+          overflow: hidden;
+          background: rgba(5,16,38,0.66) !important;
+          backdrop-filter: blur(20px) !important;
+          -webkit-backdrop-filter: blur(20px) !important;
+          border: 1px solid rgba(255,255,255,0.06) !important;
+          border-top-color: rgba(255,255,255,0.13) !important;
+          box-shadow: 0 16px 48px rgba(0,4,18,0.52), 0 4px 16px rgba(0,4,18,0.3),
+                      inset 0 1px 0 rgba(255,255,255,0.08) !important;
+          transition: transform .32s ease, box-shadow .32s ease !important;
+        }
+        .wc-card::before {
+          content: '';
+          position: absolute; inset: 0;
+          background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 55%);
+          pointer-events: none; z-index: 0;
+        }
+        .wc-card::after {
+          content: '';
+          position: absolute; top: 0; left: -65%; width: 38%; height: 100%;
+          background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+          pointer-events: none; z-index: 2; opacity: 0;
+        }
+        .wc-card:hover {
+          transform: translateY(-7px) !important;
+          box-shadow: 0 32px 72px rgba(0,4,18,0.65), 0 0 40px rgba(8,145,178,0.16),
+                      inset 0 1px 0 rgba(255,255,255,0.13) !important;
+        }
+        .wc-card:hover::after { animation: wcReflect .7s ease-out forwards; }
+
+        /* ── analyze (primary CTA) button ─────────────────────────────── */
+        .wc-analyze {
+          position: relative; overflow: hidden;
+          background: linear-gradient(160deg, rgba(8,145,178,0.88), rgba(6,182,212,0.92)) !important;
+          border: 1px solid rgba(180,240,255,0.5) !important;
+          border-top-color: rgba(255,255,255,0.45) !important;
+          box-shadow: 0 0 18px rgba(8,145,178,.42), 0 4px 22px rgba(6,182,212,.26),
+                      0 16px 48px rgba(8,145,178,.22),
+                      inset 0 1px 0 rgba(255,255,255,.32), inset 0 -1px 0 rgba(0,80,120,.28) !important;
+          animation: wcGlowPulse 2.6s ease-in-out infinite;
+          transition: transform .15s ease;
+          color: #fff !important;
+        }
+        .wc-analyze::after {
+          content: '';
+          position: absolute; top: 0; left: 0; right: 0; height: 50%;
+          background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 100%);
+          pointer-events: none;
+        }
+        .wc-analyze:hover  { transform: translateY(-2px) scale(1.04); }
         .wc-analyze:active { transform: scale(.97); }
-        .wc-step { animation: wcGlowPulse 3s ease-in-out infinite; }
+
+        /* ── glass secondary button ───────────────────────────────────── */
+        .wc-glass-btn {
+          position: relative; overflow: hidden;
+          background: rgba(8,145,178,0.12) !important;
+          backdrop-filter: blur(14px) !important;
+          -webkit-backdrop-filter: blur(14px) !important;
+          border: 1px solid rgba(6,182,212,0.32) !important;
+          border-top-color: rgba(180,240,255,0.40) !important;
+          box-shadow: 0 8px 32px rgba(8,145,178,.18), inset 0 1px 0 rgba(255,255,255,.16),
+                      inset 0 -1px 0 rgba(0,0,0,.14) !important;
+          color: #38bdf8 !important;
+          transition: all .2s ease !important;
+        }
+        .wc-glass-btn::after {
+          content: '';
+          position: absolute; top: 0; left: 0; right: 0; height: 46%;
+          background: linear-gradient(180deg, rgba(255,255,255,.11) 0%, transparent 100%);
+          pointer-events: none; border-radius: inherit;
+        }
+        .wc-glass-btn:hover {
+          background: rgba(8,145,178,0.26) !important;
+          box-shadow: 0 12px 48px rgba(8,145,178,.42), inset 0 1px 0 rgba(255,255,255,.22) !important;
+          transform: translateY(-1px); color: #fff !important;
+        }
+        .wc-glass-btn:active { transform: scale(.98) !important; }
+
+        /* ── buy / amber button ───────────────────────────────────────── */
+        .wc-buy {
+          position: relative; overflow: hidden;
+          background: linear-gradient(160deg, rgba(217,119,6,0.92), rgba(245,158,11,0.96)) !important;
+          border: 1px solid rgba(253,210,100,0.50) !important;
+          border-top-color: rgba(255,230,120,0.55) !important;
+          box-shadow: 0 4px 20px rgba(217,119,6,.38), inset 0 1px 0 rgba(255,255,255,.26),
+                      inset 0 -1px 0 rgba(120,60,0,.20) !important;
+          color: #000 !important;
+          transition: transform .15s ease, box-shadow .15s ease !important;
+        }
+        .wc-buy::after {
+          content: '';
+          position: absolute; top: 0; left: 0; right: 0; height: 50%;
+          background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 100%);
+          pointer-events: none;
+        }
+        .wc-buy:hover {
+          transform: translateY(-2px) !important;
+          box-shadow: 0 10px 32px rgba(245,158,11,.58), inset 0 1px 0 rgba(255,255,255,.30) !important;
+        }
+
+        /* ── situation selector buttons ───────────────────────────────── */
+        .wc-sit {
+          position: relative; overflow: hidden;
+          transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .wc-sit::before {
+          content: '';
+          position: absolute; top: 0; left: 0; right: 0; height: 40%;
+          background: linear-gradient(180deg, rgba(255,255,255,0.055) 0%, transparent 100%);
+          pointer-events: none;
+        }
+        .wc-sit:hover {
+          transform: translateY(-4px) scale(1.03) !important;
+          box-shadow: 0 16px 44px rgba(8,145,178,.28), inset 0 1px 0 rgba(255,255,255,.11) !important;
+        }
+
+        /* ── step circles ─────────────────────────────────────────────── */
+        .wc-step {
+          background: linear-gradient(145deg, rgba(8,145,178,0.9), rgba(6,182,212,0.95)) !important;
+          border: 1px solid rgba(180,240,255,0.32);
+          box-shadow: 0 0 18px rgba(8,145,178,.35), inset 0 1px 0 rgba(255,255,255,.24);
+          animation: wcGlowPulse 3s ease-in-out infinite;
+        }
+
+        /* ── misc ─────────────────────────────────────────────────────── */
+        .wc-badge { animation: wcFloat 4s ease-in-out infinite; }
         .wc-fadein-1 { animation: wcFadeUp .7s ease-out .05s both; }
         .wc-fadein-2 { animation: wcFadeUp .7s ease-out .15s both; }
         .wc-fadein-3 { animation: wcFadeUp .7s ease-out .25s both; }
         .wc-fadein-4 { animation: wcFadeUp .7s ease-out .35s both; }
         .wc-shimmer {
-          background: linear-gradient(90deg, #0891b2 0%, #06b6d4 40%, #38bdf8 50%, #06b6d4 60%, #0891b2 100%);
+          background: linear-gradient(90deg,#0891b2 0%,#06b6d4 38%,#a5f3fc 50%,#06b6d4 62%,#0891b2 100%);
           background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: wcShimmer 3s linear infinite;
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          background-clip: text; animation: wcShimmer 3.2s linear infinite;
         }
       `}</style>
       <WaterCanvas />
 
       {/* HEADER */}
-      <div style={{ borderBottom: '1px solid #1a3a5c', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(6,15,30,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', position: 'sticky', top: 0, zIndex: 100 }}>
+      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', borderBottomColor: 'rgba(6,182,212,0.12)', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(2,8,20,0.72)', backdropFilter: 'blur(28px) saturate(180%)', WebkitBackdropFilter: 'blur(28px) saturate(180%)', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 0 rgba(255,255,255,0.06), 0 4px 32px rgba(0,0,0,0.4)' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44">
             <defs>
@@ -1497,7 +1646,7 @@ export default function WaterCheckup() {
       <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         {/* Expert credibility badge */}
-        <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'linear-gradient(135deg,#0e2d4a,#0a2038)', border: '1px solid #2a5a8c', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 4px 24px #0891b244' }}>
+        <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(5,18,42,0.68)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(180,240,255,0.18)', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 8px 32px rgba(8,145,178,0.2), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
           <span style={{ fontSize: 18 }}>🏅</span>
           <span style={{ fontSize: 14, color: '#94a3b8' }}>Designed by a water quality expert with <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40+ years of experience</strong></span>
         </div>
@@ -1515,7 +1664,7 @@ export default function WaterCheckup() {
         </p>
         <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code" maxLength={5}
-            style={{ width: 140, padding: '12px 16px', fontSize: 20, letterSpacing: 0.3, background: '#0d2240', border: '1px solid #1e4a6a', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center' }} />
+            style={{ width: 140, padding: '12px 16px', fontSize: 20, letterSpacing: 0.3, background: 'rgba(6,20,48,0.70)', border: '1px solid rgba(6,182,212,0.28)', borderTop: '1px solid rgba(180,240,255,0.18)', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 2px 12px rgba(0,0,0,0.25)' }} />
           <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '12px 22px', background: zip.length===5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 8, color: zip.length===5 && !loading ? '#fff' : '#475569', fontSize: 14, fontWeight: 700, letterSpacing: 0.3, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
             {loading ? 'QUERYING…' : 'ANALYZE →'}
           </button>
@@ -1561,7 +1710,7 @@ export default function WaterCheckup() {
                 { icon: '☁️', title: 'Chlorine & Chloramine', body: 'Added by every utility. Causes taste & odor issues and converts to cancer-linked byproducts (THMs).' },
                 { icon: '🌾', title: 'Nitrates & Arsenic', body: 'Common in agricultural regions. Nitrates are life-threatening for infants. Arsenic causes cancer.' },
               ].map(c => (
-                <div key={c.title} className="wc-card" style={{ background: 'linear-gradient(135deg,#0d2240,#091c35)', border: '1px solid #1a3a5c', borderRadius: 14, padding: '20px 16px' }}>
+                <div key={c.title} className="wc-card" style={{ borderRadius: 14, padding: '20px 16px' }}>
                   <div style={{ fontSize: 30, marginBottom: 10 }}>{c.icon}</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{c.title}</div>
                   <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{c.body}</div>
@@ -1590,7 +1739,7 @@ export default function WaterCheckup() {
                 { icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs',      note: 'Every tap & shower' },
                 { icon: '🚿', label: 'Shower Filter',      best: 'Chlorine & chloramine',           note: 'Healthier skin & hair' },
               ].map(f => (
-                <div key={f.label} className="wc-card" style={{ background: 'linear-gradient(135deg,#0d2240,#091c35)', border: '1px solid #1a3a5c', borderRadius: 14, padding: '18px 14px', textAlign: 'center' }}>
+                <div key={f.label} className="wc-card" style={{ borderRadius: 14, padding: '18px 14px', textAlign: 'center' }}>
                   <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
                   <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
@@ -1615,7 +1764,7 @@ export default function WaterCheckup() {
               {SITUATIONS.map(s => (
                 <button key={s.id} onClick={() => setSituation(situation === s.id ? null : s.id)}
                   className="wc-sit"
-                  style={{ background: situation === s.id ? 'linear-gradient(135deg,#0e3a6a,#0a2a50)' : 'linear-gradient(135deg,#0d2240,#091c35)', border: `2px solid ${situation === s.id ? '#38bdf8' : '#1a3a5c'}`, borderRadius: 16, padding: '22px 18px', cursor: 'pointer', textAlign: 'center', boxShadow: situation === s.id ? '0 0 28px rgba(56,189,248,.3)' : 'none' }}>
+                  style={{ background: situation === s.id ? 'rgba(8,50,110,0.70)' : 'rgba(4,14,32,0.62)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: `1px solid ${situation === s.id ? 'rgba(8,145,178,0.55)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${situation === s.id ? 'rgba(6,182,212,0.65)' : 'rgba(255,255,255,0.13)'}`, borderRadius: 16, padding: '22px 18px', cursor: 'pointer', textAlign: 'center', boxShadow: situation === s.id ? '0 0 32px rgba(8,145,178,.28), 0 16px 40px rgba(0,4,18,.45), inset 0 1px 0 rgba(255,255,255,.12)' : '0 8px 24px rgba(0,4,18,.35), inset 0 1px 0 rgba(255,255,255,.07)' }}>
                   <div style={{ fontSize: 34, marginBottom: 10 }}>{s.icon}</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: situation === s.id ? '#38bdf8' : '#e2e8f0', marginBottom: 5 }}>{s.label}</div>
                   <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{s.desc}</div>
@@ -1638,7 +1787,7 @@ export default function WaterCheckup() {
                   </div>
                   <div className="wc-step4-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
                     {sitProducts.map((p: any) => (
-                      <div key={p.id} className="wc-card" style={{ background: 'linear-gradient(160deg,#0e2848,#091c35)', border: '1px solid #1e4a6e', borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                      <div key={p.id} className="wc-card" style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                         <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
                           <img src={p.img} alt={p.name} style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
                           <div style={{ position: 'absolute', top: 8, left: 8, background: 'linear-gradient(135deg,#d97706,#f59e0b)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #d9770655' }}>🏅 Expert Pick</div>
@@ -1659,7 +1808,7 @@ export default function WaterCheckup() {
                           )}
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
                             <span style={{ fontSize: 24, fontWeight: 900, color: '#38bdf8' }}>${p.price}</span>
-                            <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '10px 20px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 9, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none', display: 'inline-block' }}>Buy on Amazon →</a>
+                            <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '10px 20px', borderRadius: 9, fontSize: 13, fontWeight: 800, textDecoration: 'none', display: 'inline-block' }}>Buy on Amazon →</a>
                           </div>
                         </div>
                       </div>
@@ -1675,7 +1824,7 @@ export default function WaterCheckup() {
 
       {/* LOADER */}
       {loading && (
-        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: '#0d2240', border: '1px solid #0e2233', borderRadius: 12, position: 'relative', zIndex: 2 }}>
+        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.13)', borderRadius: 12, position: 'relative', zIndex: 2, boxShadow: '0 24px 56px rgba(0,4,18,0.5), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
           {STEPS.map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 9, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
               <span style={{ color: i < step ? '#22d3ee' : i === step ? '#f59e0b' : '#1e3a4a', fontSize: 14 }}>{i < step ? '✓' : i === step ? '▶' : '○'}</span>
@@ -1691,7 +1840,7 @@ export default function WaterCheckup() {
         <div ref={resultsRef} style={{ maxWidth: 1000, margin: '32px auto 60px', padding: '0 20px', position: 'relative', zIndex: 2 }}>
 
           {/* SUMMARY HEADER */}
-          <div className="wc-results-hdr" style={{ background: '#0d2240', border: '1px solid #0e2233', borderRadius: '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap' }}>
+          <div className="wc-results-hdr" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.13)', borderRadius: '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
             <ScoreDial score={data.score} grade={data.grade} />
             <div style={{ flex: 1, minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
@@ -1717,13 +1866,13 @@ export default function WaterCheckup() {
               </div>
             </div>
             <div style={{ display: 'flex', gap: 6, flexDirection: 'column' }}>
-              <button onClick={() => setShowEmail(true)} style={{ padding: '7px 14px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 12, letterSpacing: 1, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ GET REPORT</button>
-              <button onClick={() => setShowShare(true)} style={{ padding: '7px 14px', background: 'transparent', border: '1px solid #334155', borderRadius: 6, color: '#64748b', fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ SHARE</button>
+              <button onClick={() => setShowEmail(true)} className="wc-glass-btn" style={{ padding: '7px 14px', borderRadius: 6, fontSize: 12, letterSpacing: 1, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ GET REPORT</button>
+              <button onClick={() => setShowShare(true)} style={{ padding: '7px 14px', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.09)', borderTop: '1px solid rgba(255,255,255,0.14)', borderRadius: 6, color: '#64748b', fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>↗ SHARE</button>
             </div>
           </div>
 
           {/* TABS */}
-          <div className="wc-tab-bar" style={{ display: 'flex', background: '#07111a', borderLeft: '1px solid #0e2233', borderRight: '1px solid #0e2233', overflowX: 'auto' }}>
+          <div className="wc-tab-bar" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto' }}>
             {[['report','📊 Report'],['solutions','🏠 My Solution'],['pfas','☣️ PFAS'],['compare','📋 Compare'],['products','🛒 All Products'],['cost','💰 Cost Calc'],['installers','🔧 Installers'],['resources','🔗 Resources']].map(([id, label]) => (
               <button key={id} onClick={() => setTab(id)} style={{ padding: '10px 14px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#475569', fontSize: 12, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
             ))}
@@ -1731,7 +1880,7 @@ export default function WaterCheckup() {
 
           {/* TAB: WATER REPORT */}
           {tab === 'report' && (
-            <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22 }}>
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
               {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
@@ -1819,8 +1968,8 @@ export default function WaterCheckup() {
                 {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} detectedContaminants={contaminantNames} />)}
               </div>
               <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
-                <button onClick={() => setTab('solutions')} style={{ padding: '7px 16px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 12, cursor: 'pointer', fontWeight: 700 }}>🏠 Find My Solution →</button>
-                <button onClick={() => setTab('products')} style={{ padding: '7px 16px', background: 'transparent', border: '1px solid #0891b2', borderRadius: 6, color: '#22d3ee', fontSize: 12, cursor: 'pointer' }}>View All 22 Products →</button>
+                <button onClick={() => setTab('solutions')} className="wc-analyze" style={{ padding: '7px 16px', border: 'none', borderRadius: 6, fontSize: 12, cursor: 'pointer', fontWeight: 700 }}>Find My Solution →</button>
+                <button onClick={() => setTab('products')} className="wc-glass-btn" style={{ padding: '7px 16px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>View All 38 Products →</button>
               </div>
             </div>
           )}
@@ -1830,7 +1979,7 @@ export default function WaterCheckup() {
 
           {/* TAB: PFAS DETAIL */}
           {tab === 'pfas' && (
-            <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22 }}>
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               <div style={{ marginBottom: 18, padding: '14px 16px', background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #ef444440', borderRadius: 8 }}>
                 <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#ef4444', marginBottom: 7, fontWeight: 700 }}>☣️ ABOUT PFAS — FOREVER CHEMICALS</div>
                 <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>PFAS are ~12,000 synthetic chemicals that don't break down in the environment or human body. Linked to kidney cancer, testicular cancer, thyroid disease, immune suppression, elevated cholesterol, and developmental harm. EPA set the first federal MCL in 2024: <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA and PFOS.</p>
@@ -1859,7 +2008,7 @@ export default function WaterCheckup() {
 
           {/* TAB: ALL PRODUCTS */}
           {tab === 'products' && (
-            <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22 }}>
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
                 <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2' }}>38 PRODUCTS · ALL NSF/WQA CERTIFIED · AMAZON AFFILIATE</div>
                 <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
@@ -1876,7 +2025,7 @@ export default function WaterCheckup() {
 
           {/* TAB: COST CALCULATOR */}
           {tab === 'cost' && (
-            <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22 }}>
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 16 }}>COST OF OWNERSHIP CALCULATOR</div>
               {/* Payback period callout */}
               {(() => {
@@ -1935,7 +2084,7 @@ export default function WaterCheckup() {
 
           {/* TAB: INSTALLERS */}
           {tab === 'installers' && (
-            <div style={{ background: '#0d2240', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22 }}>
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               {/* Quick links */}
               <div style={{ marginBottom: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {[
