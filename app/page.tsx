@@ -270,6 +270,48 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// FEATURED SPOTLIGHT CARD
+// ─────────────────────────────────────────────────────────────────────────────
+function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent: string }) {
+  const [fImgErr, setFImgErr] = useState(false);
+  return (
+    <div className="wc-featured-card" style={{ display: 'flex', gap: 0, overflow: 'hidden' }}>
+      {/* Image */}
+      <div className="wc-img-wrap" style={{ width: 200, minWidth: 200, background: 'linear-gradient(160deg,#f8fbff,#eef4fb)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, position: 'relative', flexShrink: 0 }}>
+        {!fImgErr
+          ? <img src={p.img} alt={p.name} onError={() => setFImgErr(true)} className="wc-img-zoom" style={{ maxHeight: 160, maxWidth: '100%', objectFit: 'contain' }} />
+          : <div style={{ fontSize: 48 }}>💧</div>}
+        <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: 3, background: `linear-gradient(180deg, ${accent}, ${accent}55)` }} />
+        <div style={{ position: 'absolute', top: 10, right: 10, background: `linear-gradient(135deg,${accent}dd,${accent})`, color: '#fff', fontSize: 10, fontWeight: 900, padding: '3px 9px', borderRadius: 5, letterSpacing: 1 }}>#{idx + 1} PICK</div>
+      </div>
+      {/* Info */}
+      <div style={{ padding: '20px 24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ fontSize: 10, color: accent, fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>{p.brand?.toUpperCase()} · {p.catLabel?.toUpperCase()}</div>
+          <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f9ff', marginBottom: 6 }}>{p.name}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+            <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
+            <span style={{ fontSize: 12, color: '#94a3b8' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
+          </div>
+          <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, margin: 0, maxWidth: 480 }}>{p.expertReason}</p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+            {p.removes?.slice(0, 3).map((r: string) => (
+              <span key={r} style={{ fontSize: 10, padding: '2px 8px', borderRadius: 4, background: `${accent}12`, color: accent, border: `1px solid ${accent}33`, fontWeight: 700 }}>{r}</span>
+            ))}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
+            <span style={{ fontSize: 24, fontWeight: 900, color: '#f59e0b' }}>${p.price}</span>
+            <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '10px 22px', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap' }}>Shop on Amazon →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // PRODUCT CARD
 // ─────────────────────────────────────────────────────────────────────────────
 function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; highlight: boolean; compact?: boolean; detectedContaminants?: string[] }) {
@@ -299,54 +341,95 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
   }
 
   return (
-    <div className="wc-card" style={{ borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column', ...(highlight ? { borderColor: 'rgba(8,145,178,0.45)', boxShadow: '0 16px 48px rgba(0,4,18,0.52), 0 0 30px rgba(8,145,178,0.15), inset 0 1px 0 rgba(255,255,255,0.11)' } : {}) }}>
-      <div style={{ background: 'rgba(248,252,255,0.96)', height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 10, position: 'relative' }}>
-        {!imgErr ? <img src={p.img} alt={p.name} onError={() => setImgErr(true)} style={{ maxHeight: 120, maxWidth: '100%', objectFit: 'contain' }} /> : <div style={{ fontSize: 36 }}>💧</div>}
-        {highlight && <div style={{ position: 'absolute', top: 6, right: 6, background: '#0891b2', color: '#fff', fontSize: 10, padding: '2px 6px', borderRadius: 3, fontWeight: 800 }}>TOP PICK</div>}
-        {p.tankless && <div style={{ position: 'absolute', top: 6, left: 6, background: '#7c3aed', color: '#fff', fontSize: 10, padding: '2px 6px', borderRadius: 3, fontWeight: 800 }}>TANKLESS</div>}
-        <div style={{ position: 'absolute', bottom: 6, left: 6, background: diyColors[p.diyDiff] + '22', border: `1px solid ${diyColors[p.diyDiff]}44`, borderRadius: 3, padding: '1px 6px', fontSize: 10, color: diyColors[p.diyDiff], fontWeight: 700 }}>
-          Install: {p.diyDiff}
-        </div>
+    <div className="wc-card" style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column', ...(highlight ? { borderColor: 'rgba(8,145,178,0.5)', boxShadow: '0 16px 48px rgba(0,4,18,0.6), 0 0 40px rgba(8,145,178,0.18), inset 0 1px 0 rgba(255,255,255,0.13)' } : {}) }}>
+      {/* Image area */}
+      <div className="wc-img-wrap" style={{ background: 'linear-gradient(160deg,#f8fbff 0%,#eef4fb 100%)', height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16, position: 'relative' }}>
+        {!imgErr
+          ? <img src={p.img} alt={p.name} onError={() => setImgErr(true)} className="wc-img-zoom" style={{ maxHeight: 168, maxWidth: '90%', objectFit: 'contain' }} />
+          : <div style={{ fontSize: 48 }}>💧</div>}
+        {/* Badges */}
+        {highlight && (
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, background: 'linear-gradient(90deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 10, fontWeight: 900, letterSpacing: 1.5, textAlign: 'center', padding: '5px 0' }}>
+            🏅 EXPERT PICK
+          </div>
+        )}
+        {p.expertPick && !highlight && (
+          <div style={{ position: 'absolute', top: 8, left: 8, background: 'linear-gradient(135deg,#d97706,#f59e0b)', color: '#fff', fontSize: 9, fontWeight: 900, letterSpacing: 1, padding: '3px 8px', borderRadius: 5, boxShadow: '0 2px 8px rgba(217,119,6,0.5)' }}>
+            EXPERT PICK
+          </div>
+        )}
+        {p.tankless && (
+          <div style={{ position: 'absolute', top: highlight ? 30 : 8, right: 8, background: 'linear-gradient(135deg,#6d28d9,#7c3aed)', color: '#fff', fontSize: 9, fontWeight: 900, letterSpacing: 1, padding: '3px 8px', borderRadius: 5 }}>
+            TANKLESS
+          </div>
+        )}
+        {p.quickChange && (
+          <div style={{ position: 'absolute', bottom: 8, right: 8, background: 'rgba(6,182,212,0.15)', border: '1px solid rgba(6,182,212,0.4)', color: '#22d3ee', fontSize: 9, fontWeight: 800, padding: '2px 7px', borderRadius: 4 }}>
+            ⚡ QUICK-CHANGE
+          </div>
+        )}
       </div>
-      <div style={{ padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+
+      {/* Content */}
+      <div style={{ padding: '16px 16px 14px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
         <div>
-          <div style={{ fontSize: 11, color: '#475569', letterSpacing: 1, marginBottom: 1 }}>{p.brand.toUpperCase()} · {p.catLabel}</div>
-          <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.2 }}>{p.name}</div>
+          <div style={{ fontSize: 10, color: '#475569', letterSpacing: 1.5, fontWeight: 700, marginBottom: 3 }}>{p.brand.toUpperCase()} · {p.catLabel?.toUpperCase()}</div>
+          <div style={{ fontSize: 14, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
         </div>
+
+        {/* Stars */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
-          <span style={{ fontSize: 11, color: '#94a3b8' }}>{p.rating} ({p.reviews.toLocaleString()})</span>
+          <span style={{ color: '#f59e0b', fontSize: 14, letterSpacing: -1 }}>{'★'.repeat(Math.round(p.rating))}</span>
+          <span style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600 }}>{p.rating} <span style={{ color: '#334155' }}>({p.reviews?.toLocaleString()} reviews)</span></span>
         </div>
-        <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-          {p.cert.slice(0,2).map((c: string) => <span key={c} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: p.certColor + '22', color: p.certColor, border: `1px solid ${p.certColor}44`, fontWeight: 700 }}>{c}</span>)}
+
+        {/* Certifications */}
+        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+          {p.cert?.slice(0,2).map((c: string) => (
+            <span key={c} style={{ fontSize: 9, padding: '2px 7px', borderRadius: 4, background: p.certColor + '18', color: p.certColor, border: `1px solid ${p.certColor}44`, fontWeight: 800, letterSpacing: 0.5 }}>{c}</span>
+          ))}
         </div>
+
+        {/* Removes */}
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 10, color: '#334155', letterSpacing: 1, marginBottom: 3 }}>REMOVES</div>
+          <div style={{ fontSize: 9, color: '#334155', letterSpacing: 1.5, fontWeight: 700, marginBottom: 4 }}>REMOVES</div>
           <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-            {p.removes.slice(0, 3).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051527', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
+            {p.removes?.slice(0, 4).map((r: string) => (
+              <span key={r} style={{ fontSize: 10, padding: '2px 7px', borderRadius: 4, background: 'rgba(34,211,238,0.07)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.18)', fontWeight: 600 }}>{r}</span>
+            ))}
           </div>
           {detectedContaminants && detectedContaminants.length > 0 && (() => {
-            const matched = p.bestFor.filter((b: string) => detectedContaminants.some(d => d.toLowerCase().includes(b.toLowerCase()) || b.toLowerCase().includes(d.toLowerCase().split(' ')[0])));
-            if (!matched.length) return null;
+            const matched = p.bestFor?.filter((b: string) => detectedContaminants.some(d => d.toLowerCase().includes(b.toLowerCase()) || b.toLowerCase().includes(d.toLowerCase().split(' ')[0])));
+            if (!matched?.length) return null;
             return (
-              <div style={{ marginTop: 6, padding: '5px 8px', background: '#0a1f0a', border: '1px solid #22d3ee30', borderRadius: 5 }}>
-                <div style={{ fontSize: 9, color: '#22d3ee', letterSpacing: 1, marginBottom: 3, fontWeight: 700 }}>✓ TARGETS YOUR WATER</div>
+              <div style={{ marginTop: 8, padding: '6px 10px', background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.2)', borderRadius: 7 }}>
+                <div style={{ fontSize: 9, color: '#22d3ee', letterSpacing: 1.5, fontWeight: 800, marginBottom: 4 }}>✓ TARGETS YOUR WATER</div>
                 <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-                  {matched.map((m: string) => <span key={m} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#22d3ee22', color: '#22d3ee', fontWeight: 700 }}>{m}</span>)}
+                  {matched.map((m: string) => <span key={m} style={{ fontSize: 10, padding: '2px 6px', borderRadius: 4, background: 'rgba(34,211,238,0.12)', color: '#22d3ee', fontWeight: 700 }}>{m}</span>)}
                 </div>
               </div>
             );
           })()}
         </div>
-        <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap', marginBottom: 2 }}>
-          {p.pros.slice(0, 2).map((pro: string) => <div key={pro} style={{ fontSize: 11, color: '#64748b' }}>✓ {pro}</div>)}
+
+        {/* Pros */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {p.pros?.slice(0, 2).map((pro: string) => (
+            <div key={pro} style={{ fontSize: 11, color: '#64748b', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ color: '#22d3ee', fontWeight: 900, fontSize: 10 }}>✓</span> {pro}
+            </div>
+          ))}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 8, borderTop: '1px solid #0e2233' }}>
-          <div>
-            <div style={{ fontSize: 19, fontWeight: 900, color: '#22d3ee' }}>${p.price}</div>
-            {p.filterCostPerYear && <div style={{ fontSize: 10, color: '#334155' }}>${p.filterCostPerYear}/yr filters</div>}
+
+        {/* Price + Buy */}
+        <div style={{ paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: 4 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 10 }}>
+            <span style={{ fontSize: 26, fontWeight: 900, color: '#f59e0b', letterSpacing: -0.5 }}>${p.price}</span>
+            {p.filterCostPerYear && <span style={{ fontSize: 11, color: '#334155', fontWeight: 600 }}>+${p.filterCostPerYear}/yr filters</span>}
           </div>
-          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '7px 12px', borderRadius: 6, fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ display: 'block', textAlign: 'center', padding: '11px 0', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3 }}>
+            Shop on Amazon →
+          </a>
         </div>
       </div>
     </div>
@@ -1496,6 +1579,26 @@ export default function WaterCheckup() {
                       inset 0 1px 0 rgba(255,255,255,0.13) !important;
         }
         .wc-card:hover::after { animation: wcReflect .7s ease-out forwards; }
+        .wc-img-zoom { transition: transform .45s cubic-bezier(0.25,0.46,0.45,0.94) !important; }
+        .wc-img-zoom:hover { transform: scale(1.06) !important; }
+        .wc-img-wrap { overflow: hidden; }
+        .wc-featured-card {
+          position: relative; overflow: hidden;
+          background: rgba(4,14,36,0.72) !important;
+          backdrop-filter: blur(24px) !important;
+          -webkit-backdrop-filter: blur(24px) !important;
+          border: 1px solid rgba(255,255,255,0.07) !important;
+          border-top-color: rgba(255,255,255,0.14) !important;
+          box-shadow: 0 32px 80px rgba(0,4,18,0.6), 0 8px 32px rgba(0,4,18,0.4),
+                      inset 0 1px 0 rgba(255,255,255,0.10) !important;
+          transition: transform .35s ease, box-shadow .35s ease !important;
+          border-radius: 20px !important;
+        }
+        .wc-featured-card:hover {
+          transform: translateY(-6px) !important;
+          box-shadow: 0 48px 100px rgba(0,4,18,0.7), 0 0 60px rgba(8,145,178,0.18),
+                      inset 0 1px 0 rgba(255,255,255,0.14) !important;
+        }
 
         /* ── analyze (primary CTA) button ─────────────────────────────── */
         .wc-analyze {
@@ -1642,34 +1745,47 @@ export default function WaterCheckup() {
         </div>
       </div>
 
-      {/* SEARCH */}
-      <div style={{ maxWidth: 720, margin: '40px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      {/* SEARCH / HERO */}
+      <div style={{ maxWidth: 760, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         {/* Expert credibility badge */}
-        <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(5,18,42,0.68)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(180,240,255,0.18)', borderRadius: 30, padding: '9px 20px', marginBottom: 24, boxShadow: '0 8px 32px rgba(8,145,178,0.2), inset 0 1px 0 rgba(255,255,255,0.1)' }}>
+        <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(5,18,42,0.72)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.08)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 30, padding: '10px 22px', marginBottom: 32, boxShadow: '0 8px 40px rgba(8,145,178,0.22), inset 0 1px 0 rgba(255,255,255,0.12)' }}>
           <span style={{ fontSize: 18 }}>🏅</span>
-          <span style={{ fontSize: 14, color: '#94a3b8' }}>Designed & curated by the world's foremost water expert <strong style={{ color: '#38bdf8', fontWeight: 700 }}>J. Letorney</strong> with over <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40 years of experience</strong></span>
+          <span style={{ fontSize: 13, color: '#94a3b8' }}>Curated by the world&apos;s foremost water expert <strong style={{ color: '#38bdf8', fontWeight: 700 }}>J. Letorney</strong> · <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40+ years experience</strong></span>
         </div>
 
-        <h1 className="wc-hero-h1" style={{ fontSize: 38, fontWeight: 900, margin: '0 0 14px', lineHeight: 1.15, color: '#f1f9ff' }}>
-          See What's Really in Your<br /><span className="wc-shimmer">Town's Tap Water</span>
+        <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#f1f9ff', letterSpacing: -1 }}>
+          Know Exactly What&apos;s<br />in Your <span className="wc-shimmer">Tap Water</span>
         </h1>
 
-        <p style={{ color: '#94a3b8', marginBottom: 10, fontSize: 17, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 10px' }}>
-          Get personalized recommendations on top-rated water filters for <strong style={{ color: '#e2e8f0' }}>drinking, whole-house & showering</strong> — plus find local installers near you. All in one place.
+        <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 32px' }}>
+          Free EPA water quality report for any US ZIP code — plus <strong style={{ color: '#e2e8f0' }}>expert-curated filter recommendations</strong> and local installers. Instant results.
         </p>
 
-        <p style={{ fontSize: 14, color: '#38bdf8', fontWeight: 600, marginBottom: 28, fontStyle: 'italic', opacity: 0.85 }}>
-          The most comprehensive water quality resource on the planet — free, instant, and powered by live EPA data.
-        </p>
-        <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code" maxLength={5}
-            style={{ width: 140, padding: '12px 16px', fontSize: 20, letterSpacing: 0.3, background: 'rgba(6,20,48,0.70)', border: '1px solid rgba(6,182,212,0.28)', borderTop: '1px solid rgba(180,240,255,0.18)', borderRadius: 8, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 2px 12px rgba(0,0,0,0.25)' }} />
-          <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '12px 22px', background: zip.length===5 && !loading ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 8, color: zip.length===5 && !loading ? '#fff' : '#475569', fontSize: 14, fontWeight: 700, letterSpacing: 0.3, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
-            {loading ? 'QUERYING…' : 'ANALYZE →'}
+        {/* Search bar */}
+        <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 16 }}>
+          <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="Enter ZIP code" maxLength={5}
+            style={{ width: 190, padding: '15px 20px', fontSize: 20, letterSpacing: 2, background: 'rgba(6,20,48,0.75)', border: '1px solid rgba(6,182,212,0.32)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 12, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), inset 0 2px 16px rgba(0,0,0,0.3), 0 0 0 0 rgba(6,182,212,0)' }} />
+          <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '15px 32px', background: zip.length===5 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.length===5 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
+            {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
           </button>
         </div>
-        <div style={{ marginTop: 8, fontSize: 12, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
+
+        {/* Trust strip */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, flexWrap: 'wrap', marginBottom: 8 }}>
+          {[
+            { icon: '🔬', text: 'Live EPA Data' },
+            { icon: '✅', text: 'NSF-Certified Picks' },
+            { icon: '🛡️', text: '100% Free' },
+            { icon: '⚡', text: 'Instant Results' },
+          ].map(t => (
+            <div key={t.text} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ fontSize: 13 }}>{t.icon}</span>
+              <span style={{ fontSize: 12, color: '#475569', fontWeight: 600 }}>{t.text}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 6, fontSize: 12, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
 {error && <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}><div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>⚠ Error</div><div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div></div>}
       </div>
 
@@ -2081,14 +2197,59 @@ export default function WaterCheckup() {
           {/* TAB: ALL PRODUCTS */}
           {tab === 'products' && (
             <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
-                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2' }}>38 PRODUCTS · ALL NSF/WQA CERTIFIED · AMAZON AFFILIATE</div>
-                <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-                  {catFilters.map(id => (
-                    <button key={id} onClick={() => setProductFilter(id)} style={{ padding: '3px 9px', background: productFilter===id ? '#0891b2' : '#0b1e36', border: `1px solid ${productFilter===id ? '#0891b2' : '#0e2233'}`, borderRadius: 4, color: productFilter===id ? '#fff' : '#475569', fontSize: 11, cursor: 'pointer', fontWeight: productFilter===id ? 700 : 400 }}>{catLabels[id]}</button>
-                  ))}
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 22 }}>38 PRODUCTS · ALL NSF/WQA CERTIFIED · AMAZON AFFILIATE</div>
+
+          {/* ── FEATURED EXPERT PICKS SPOTLIGHT ────────────────────── */}
+          {(() => {
+            const featured = PRODUCTS.filter((p: any) => p.expertPick).slice(0, 3);
+            return (
+              <div style={{ marginBottom: 48 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+                  <div>
+                    <div style={{ fontSize: 11, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
+                    <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
+                  </div>
+                  <div style={{ fontSize: 12, color: '#475569' }}>Curated by J. Letorney · 40+ yrs expertise</div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {featured.map((p: any, idx: number) => {
+                    const accent = ['#06b6d4','#f59e0b','#a78bfa'][idx];
+                    return (
+                      <FeaturedSpotlightCard key={p.id} p={p} idx={idx} accent={accent} />
+                    );
+                  })}
                 </div>
               </div>
+            );
+          })()}
+
+          {/* Category filter */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
+            {catFilters.map(cat => {
+              const active = productFilter === cat;
+              const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
+              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', shower:'🚿', fridge:'❄️' };
+              return (
+                <button key={cat} onClick={() => setProductFilter(cat)}
+                  style={{
+                    padding: '8px 16px', borderRadius: 30, fontSize: 12, fontWeight: 700, cursor: 'pointer',
+                    border: `1px solid ${active ? 'rgba(6,182,212,0.6)' : 'rgba(255,255,255,0.07)'}`,
+                    borderTop: `1px solid ${active ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.12)'}`,
+                    background: active ? 'rgba(8,145,178,0.22)' : 'rgba(4,14,32,0.55)',
+                    backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                    color: active ? '#22d3ee' : '#475569',
+                    boxShadow: active ? '0 0 20px rgba(8,145,178,0.25), inset 0 1px 0 rgba(255,255,255,0.12)' : 'none',
+                    transition: 'all .2s ease',
+                    display: 'flex', alignItems: 'center', gap: 5,
+                  }}>
+                  <span style={{ fontSize: 13 }}>{icons[cat] || '•'}</span>
+                  <span>{catLabels[cat]}</span>
+                  <span style={{ fontSize: 10, opacity: 0.55, background: active ? 'rgba(6,182,212,0.2)' : 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '1px 5px' }}>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,1fr))', gap: 12 }}>
                 {filteredProds.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} detectedContaminants={contaminantNames} />)}
               </div>
