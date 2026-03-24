@@ -1479,13 +1479,13 @@ export default function WaterCheckup() {
           transition: transform .32s ease, box-shadow .32s ease !important;
         }
         .wc-card::before {
-          content: '';
+          content: "";
           position: absolute; inset: 0;
           background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 55%);
           pointer-events: none; z-index: 0;
         }
         .wc-card::after {
-          content: '';
+          content: "";
           position: absolute; top: 0; left: -65%; width: 38%; height: 100%;
           background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
           pointer-events: none; z-index: 2; opacity: 0;
@@ -1511,7 +1511,7 @@ export default function WaterCheckup() {
           color: #fff !important;
         }
         .wc-analyze::after {
-          content: '';
+          content: "";
           position: absolute; top: 0; left: 0; right: 0; height: 50%;
           background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 100%);
           pointer-events: none;
@@ -1533,7 +1533,7 @@ export default function WaterCheckup() {
           transition: all .2s ease !important;
         }
         .wc-glass-btn::after {
-          content: '';
+          content: "";
           position: absolute; top: 0; left: 0; right: 0; height: 46%;
           background: linear-gradient(180deg, rgba(255,255,255,.11) 0%, transparent 100%);
           pointer-events: none; border-radius: inherit;
@@ -1557,7 +1557,7 @@ export default function WaterCheckup() {
           transition: transform .15s ease, box-shadow .15s ease !important;
         }
         .wc-buy::after {
-          content: '';
+          content: "";
           position: absolute; top: 0; left: 0; right: 0; height: 50%;
           background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 100%);
           pointer-events: none;
@@ -1573,7 +1573,7 @@ export default function WaterCheckup() {
           transition: transform .25s ease, box-shadow .25s ease;
         }
         .wc-sit::before {
-          content: '';
+          content: "";
           position: absolute; top: 0; left: 0; right: 0; height: 40%;
           background: linear-gradient(180deg, rgba(255,255,255,0.055) 0%, transparent 100%);
           pointer-events: none;
