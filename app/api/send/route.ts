@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
-const TAG = process.env.AMAZON_AFFILIATE_TAG || 'watercheck-20';
+const TAG = process.env.AMAZON_AFFILIATE_TAG || 'watercheck20-20';
 
 async function resendFetch(path: string, method: string, body: object, apiKey: string) {
   return fetch(`https://api.resend.com${path}`, {

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const TAG = 'watercheck-20';
+const TAG = 'watercheck20-20';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // API
