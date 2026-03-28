@@ -413,10 +413,119 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
             <span style={{ fontSize: 24, fontWeight: 900, color: '#f59e0b' }}>${p.price}</span>
-            <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '10px 22px', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap' }}>Shop on Amazon →</a>
+            <BuyButtons p={p} />
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RETAILER LINKS — per product, keyed by product id
+// Pending affiliate approval: replace placeholder URLs with real affiliate links
+// HD = Home Depot (Impact), LW = Lowe's Creator, WM = Walmart (Impact),
+// CF = Clearly Filtered direct (Refersion), WD = Waterdrop direct, AQ = Aquasana direct
+// ─────────────────────────────────────────────────────────────────────────────
+const RETAILER_LINKS: Record<number, { store: string; url: string; color: string; label: string }[]> = {
+  // APEC ROES-50
+  1:  [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/APEC%20ROES-50', color: '#f97316', label: 'HD' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=APEC+ROES-50',  color: '#0071ce', label: 'WM' } ],
+  // iSpring RCC7AK
+  2:  [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/iSpring%20RCC7AK', color: '#f97316', label: 'HD' },
+        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=iSpring+RCC7AK", color: '#1a5c9e', label: 'LW' } ],
+  // Waterdrop G3P800
+  3:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' },
+        { store: 'Home Depot', url: 'https://www.homedepot.com/s/Waterdrop%20G3P800', color: '#f97316', label: 'HD' } ],
+  // Aquasana SmartFlow
+  5:  [ { store: 'Aquasana',   url: 'https://www.aquasana.com/under-sink-water-filters', color: '#0ea5e9', label: 'Brand' },
+        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Aquasana+under+sink", color: '#1a5c9e', label: 'LW' } ],
+  // Waterdrop D6
+  26: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' } ],
+  // Waterdrop D4 Countertop
+  6:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Waterdrop+D4+countertop', color: '#0071ce', label: 'WM' } ],
+  // Clearly Filtered Pitcher
+  9:  [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/clearly-filtered-pitcher', color: '#6366f1', label: 'Brand' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Clearly+Filtered+pitcher', color: '#0071ce', label: 'WM' } ],
+  // ZeroWater Pitcher
+  10: [ { store: 'Culligan ZeroWater', url: 'https://www.zerowater.com/collections/pitchers', color: '#0284c7', label: 'Brand' },
+        { store: 'Home Depot', url: 'https://www.homedepot.com/s/ZeroWater%20pitcher', color: '#f97316', label: 'HD' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=ZeroWater+pitcher', color: '#0071ce', label: 'WM' } ],
+  // PUR Pitcher
+  11: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/PUR%20pitcher%20filter', color: '#f97316', label: 'HD' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=PUR+PLUS+pitcher', color: '#0071ce', label: 'WM' } ],
+  // Brita
+  12: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Brita%20pitcher', color: '#f97316', label: 'HD' },
+        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Brita+pitcher", color: '#1a5c9e', label: 'LW' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Brita+pitcher', color: '#0071ce', label: 'WM' } ],
+  // PUR Faucet
+  13: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/PUR%20faucet%20filter', color: '#f97316', label: 'HD' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=PUR+faucet+filter', color: '#0071ce', label: 'WM' } ],
+  // Brita Faucet
+  14: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Brita%20faucet%20filter', color: '#f97316', label: 'HD' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Brita+faucet+filter', color: '#0071ce', label: 'WM' } ],
+  // Pelican Whole House
+  18: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Pelican%20whole%20house%20filter', color: '#f97316', label: 'HD' },
+        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Pelican+whole+house+filter", color: '#1a5c9e', label: 'LW' } ],
+  // iSpring WGB32B Whole House
+  19: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/iSpring%20WGB32B', color: '#f97316', label: 'HD' },
+        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=iSpring+whole+house", color: '#1a5c9e', label: 'LW' } ],
+  // Aquasana Rhino
+  32: [ { store: 'Aquasana',   url: 'https://www.aquasana.com/whole-house-water-filters', color: '#0ea5e9', label: 'Brand' },
+        { store: 'Home Depot', url: 'https://www.homedepot.com/s/Aquasana+whole+house', color: '#f97316', label: 'HD' } ],
+  // AquaBliss Shower
+  20: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/AquaBliss+shower+filter', color: '#f97316', label: 'HD' },
+        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=AquaBliss+shower+filter', color: '#0071ce', label: 'WM' } ],
+  // Clearly Filtered Water Bottle
+  15: [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/water-bottle', color: '#6366f1', label: 'Brand' } ],
+  // Frizzlife SK99
+  23: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Frizzlife+SK99', color: '#f97316', label: 'HD' } ],
+  // Waterdrop K19
+  30: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' } ],
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BUY BUTTONS — multi-retailer expandable button group
+// ─────────────────────────────────────────────────────────────────────────────
+function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const retailers = RETAILER_LINKS[p.id] || [];
+
+  return (
+    <div style={{ position: 'relative', display: block ? 'block' : 'inline-block' }}>
+      {/* Primary Amazon button */}
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+        <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy"
+          style={{ display: 'block', textAlign: 'center', padding: block ? '11px 0' : '10px 20px', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex: block ? 1 : undefined }}>
+          Amazon →
+        </a>
+        {retailers.length > 0 && (
+          <button onClick={() => setOpen(o => !o)}
+            style={{ padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: '#64748b', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#94a3b8'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#64748b'; }}>
+            {open ? '▲' : '▼'} More stores
+          </button>
+        )}
+      </div>
+
+      {/* Expanded retailer buttons */}
+      {open && retailers.length > 0 && (
+        <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          {retailers.map(r => (
+            <a key={r.store} href={r.url} target="_blank" rel="noreferrer"
+              style={{ padding: '7px 12px', borderRadius: 8, background: `${r.color}18`, border: `1px solid ${r.color}44`, color: r.color, fontSize: 11, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = `${r.color}28`; }}
+              onMouseLeave={e => { e.currentTarget.style.background = `${r.color}18`; }}>
+              {r.store === 'Home Depot' ? '🟠' : r.store === "Lowe's" ? '🔵' : r.store === 'Walmart' ? '🔷' : '🌐'} {r.store} →
+            </a>
+          ))}
+          <div style={{ width: '100%', fontSize: 10, color: '#1e3a4a', marginTop: 2 }}>
+            ⓘ Prices vary by retailer · Affiliate links support this site
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -444,7 +553,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
           <div style={{ fontSize: 18, fontWeight: 900, color: '#22d3ee' }}>${p.price}</div>
-          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ display: 'inline-block', marginTop: 6, padding: '5px 10px', borderRadius: 5, fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+          <BuyButtons p={p} />
         </div>
       </div>
     );
@@ -537,9 +646,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
             <span style={{ fontSize: 26, fontWeight: 900, color: '#f59e0b', letterSpacing: -0.5 }}>${p.price}</span>
             {p.filterCostPerYear && <span style={{ fontSize: 11, color: '#334155', fontWeight: 600 }}>+${p.filterCostPerYear}/yr filters</span>}
           </div>
-          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ display: 'block', textAlign: 'center', padding: '11px 0', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3 }}>
-            Shop on Amazon →
-          </a>
+          <BuyButtons p={p} block />
         </div>
       </div>
     </div>
@@ -2050,7 +2157,7 @@ export default function WaterCheckup() {
                           )}
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
                             <span style={{ fontSize: 24, fontWeight: 900, color: '#38bdf8' }}>${p.price}</span>
-                            <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy" style={{ padding: '10px 20px', borderRadius: 9, fontSize: 13, fontWeight: 800, textDecoration: 'none', display: 'inline-block' }}>Buy on Amazon →</a>
+                            <BuyButtons p={p} block />
                           </div>
                         </div>
                       </div>
