@@ -271,7 +271,9 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
       <path d={mkArc(210, 210 + 300 * (arc / 100))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
         style={{ transition: 'all 1.4s cubic-bezier(0.34,1.56,0.64,1)' }} filter={`drop-shadow(0 0 10px ${color}99)`} />
       <text x={cx} y={cy + 8}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{display}</text>
-      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#94a3b8" fontFamily="inherit">Grade: {grade}</text>
+      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#94a3b8" fontFamily="inherit">Grade: </text>
+      <text x={cx + 38} y={cy + 28} textAnchor="middle" fontSize="13" fontWeight="900" fill="#22d3ee" fontFamily="inherit"
+        style={{ filter: 'drop-shadow(0 0 6px rgba(34,211,238,0.8))' }}>{grade}</text>
     </svg>
   );
 }
@@ -1261,7 +1263,30 @@ function WaterCanvas() {
 
     let t = 0;
     let animId: number;
+    let scrollY = 0;
     const ripples: { x: number; y: number; r: number; a: number }[] = [];
+
+    // Bioluminescent orbs
+    const BIORBS = Array.from({ length: 18 }, (_, i) => ({
+      x: Math.random(), y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.0003,
+      vy: (Math.random() - 0.5) * 0.0002,
+      r: 18 + Math.random() * 40,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.4 + Math.random() * 0.8,
+      hue: i % 3 === 0 ? '139,92,246' : i % 3 === 1 ? '6,182,212' : '34,211,238',
+    }));
+
+    // God ray angles
+    const RAYS = Array.from({ length: 9 }, (_, i) => ({
+      angle: -0.35 + (i / 8) * 0.7,
+      width: 18 + Math.random() * 28,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.3 + Math.random() * 0.5,
+    }));
+
+    const onScroll = () => { scrollY = window.scrollY; };
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     // Pre-generate stable sand grain positions
     const GRAINS = Array.from({ length: 280 }, () => ({
@@ -1287,15 +1312,50 @@ function WaterCanvas() {
       const H = canvas.height;
       t += 0.006;
 
-      // ── 1. DEEP WATER BASE ───────────────────────────────────────────────
-      // Dark rich navy-teal — deep clear Caribbean water
+      // ── DEPTH GRADIENT — shifts darker as user scrolls down ──────────────
+      const depthFactor = Math.min(scrollY / 1200, 1);
+      const topR = Math.round(3 + depthFactor * 1);
+      const topG = Math.round(17 + depthFactor * 2);
+      const topB = Math.round(31 + depthFactor * 8);
+      const botR = Math.round(3 - depthFactor * 1);
+      const botG = Math.round(14 - depthFactor * 2);
+      const botB = Math.round(28 + depthFactor * 14);
+
       const sand = ctx.createLinearGradient(0, 0, 0, H);
-      sand.addColorStop(0,    '#03111f');
-      sand.addColorStop(0.35, '#041828');
-      sand.addColorStop(0.7,  '#051d30');
-      sand.addColorStop(1,    '#030e1c');
+      sand.addColorStop(0,    `rgb(${topR},${topG},${topB})`);
+      sand.addColorStop(0.35, `rgb(4,${Math.round(24+depthFactor*4)},${Math.round(40+depthFactor*10)})`);
+      sand.addColorStop(0.7,  `rgb(5,${Math.round(29+depthFactor*3)},${Math.round(48+depthFactor*8)})`);
+      sand.addColorStop(1,    `rgb(${botR},${botG},${botB})`);
       ctx.fillStyle = sand;
       ctx.fillRect(0, 0, W, H);
+
+      // ── GOD RAYS from surface ────────────────────────────────────────────
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      const rayOriginY = -H * 0.15;
+      RAYS.forEach(ray => {
+        const flicker = 0.25 + 0.3 * (0.5 + 0.5 * Math.sin(t * ray.speed + ray.phase));
+        const x0 = W * 0.5 + Math.sin(t * 0.08 + ray.phase) * W * 0.08;
+        const spread = H * 1.6;
+        const x1 = x0 + Math.sin(ray.angle) * spread - ray.width * 3;
+        const x2 = x0 + Math.sin(ray.angle) * spread + ray.width * 3;
+
+        const rg = ctx.createLinearGradient(x0, rayOriginY, (x1+x2)/2, H);
+        rg.addColorStop(0,   `rgba(186,230,253,${flicker * 0.22})`);
+        rg.addColorStop(0.3, `rgba(125,200,240,${flicker * 0.12})`);
+        rg.addColorStop(0.7, `rgba(60,150,210,${flicker * 0.05})`);
+        rg.addColorStop(1,   'rgba(0,80,150,0)');
+
+        ctx.beginPath();
+        ctx.moveTo(x0 - 8, rayOriginY);
+        ctx.lineTo(x0 + 8, rayOriginY);
+        ctx.lineTo(x2, H);
+        ctx.lineTo(x1, H);
+        ctx.closePath();
+        ctx.fillStyle = rg;
+        ctx.fill();
+      });
+      ctx.restore();
 
       // Subtle underwater floor texture — very dark sand ripples
       ctx.save();
@@ -1315,7 +1375,7 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // Subtle grain scatter — barely visible dark specks
+      // Subtle grain scatter
       GRAINS.forEach(g => {
         ctx.beginPath();
         ctx.arc(g.x * W, g.y * H, g.r, 0, Math.PI * 2);
@@ -1323,41 +1383,28 @@ function WaterCanvas() {
         ctx.fill();
       });
 
-      // ── 2. CAUSTICS — warm sun through clear water ───────────────────────
-      // Additive blending: overlapping bright blobs create the caustic web
+      // ── CAUSTICS ─────────────────────────────────────────────────────────
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
-
-      // Large structural caustic web
       const NC = 64;
       for (let i = 0; i < NC; i++) {
         const ph = (i / NC) * Math.PI * 6.2;
         const s1 = 0.22 + (i % 7) * 0.065;
         const s2 = 0.17 + (i % 5) * 0.075;
-
-        const cx = W * 0.5
-          + Math.sin(t * s1 + ph)        * W * 0.47
-          + Math.cos(t * s2 + ph * 0.58) * W * 0.13;
-        const cy = H * 0.5
-          + Math.cos(t * s2 + ph * 1.08) * H * 0.46
-          + Math.sin(t * s1 + ph * 0.44) * H * 0.11;
-
+        const cx = W * 0.5 + Math.sin(t * s1 + ph) * W * 0.47 + Math.cos(t * s2 + ph * 0.58) * W * 0.13;
+        const cy = H * 0.5 + Math.cos(t * s2 + ph * 1.08) * H * 0.46 + Math.sin(t * s1 + ph * 0.44) * H * 0.11;
         const r  = 26 + (i % 9) * 9 + Math.sin(t * 1.6 + i * 0.9) * 14;
         const ia = 0.013 + (i % 6) * 0.004;
-
         const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        cg.addColorStop(0,    `rgba(205, 248, 255, ${ia * 3.0})`);
-        cg.addColorStop(0.28, `rgba(100, 220, 248, ${ia * 1.4})`);
-        cg.addColorStop(0.62, `rgba(0,   160, 210, ${ia * 0.5})`);
+        cg.addColorStop(0,    `rgba(205,248,255,${ia * 3.0})`);
+        cg.addColorStop(0.28, `rgba(100,220,248,${ia * 1.4})`);
+        cg.addColorStop(0.62, `rgba(0,160,210,${ia * 0.5})`);
         cg.addColorStop(1,    'rgba(0,0,0,0)');
-
         ctx.beginPath();
         ctx.arc(cx, cy, r, 0, Math.PI * 2);
         ctx.fillStyle = cg;
         ctx.fill();
       }
-
-      // Micro caustics — fast bright highlights
       const NM = 36;
       for (let i = 0; i < NM; i++) {
         const ph = (i / NM) * Math.PI * 9.1;
@@ -1366,8 +1413,8 @@ function WaterCanvas() {
         const mr = 7 + (i % 5) * 5 + Math.sin(t * 3.2 + i) * 4;
         const ma = 0.020 + (i % 4) * 0.006;
         const mcg = ctx.createRadialGradient(mx, my, 0, mx, my, mr);
-        mcg.addColorStop(0,   `rgba(235, 252, 255, ${ma * 2.5})`);
-        mcg.addColorStop(0.5, `rgba(120, 232, 255, ${ma * 0.8})`);
+        mcg.addColorStop(0,   `rgba(235,252,255,${ma * 2.5})`);
+        mcg.addColorStop(0.5, `rgba(120,232,255,${ma * 0.8})`);
         mcg.addColorStop(1,   'rgba(0,0,0,0)');
         ctx.beginPath();
         ctx.arc(mx, my, mr, 0, Math.PI * 2);
@@ -1376,26 +1423,47 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // ── 3. DEEP BLUE WATER OVERLAY ───────────────────────────────────────
-      // Rich deep blue — like 30ft of clear Caribbean water
+      // ── BIOLUMINESCENT ORBS ──────────────────────────────────────────────
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      BIORBS.forEach(orb => {
+        orb.x += orb.vx;
+        orb.y += orb.vy;
+        if (orb.x < 0) orb.x = 1; if (orb.x > 1) orb.x = 0;
+        if (orb.y < 0) orb.y = 1; if (orb.y > 1) orb.y = 0;
+        const pulse = 0.5 + 0.5 * Math.sin(t * orb.speed + orb.phase);
+        const alpha = 0.08 + pulse * 0.14;
+        const cx = orb.x * W;
+        const cy = orb.y * H;
+        const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, orb.r * (1 + pulse * 0.3));
+        bg.addColorStop(0,   `rgba(${orb.hue},${alpha * 2.2})`);
+        bg.addColorStop(0.4, `rgba(${orb.hue},${alpha * 0.8})`);
+        bg.addColorStop(1,   `rgba(${orb.hue},0)`);
+        ctx.beginPath();
+        ctx.arc(cx, cy, orb.r * (1 + pulse * 0.3), 0, Math.PI * 2);
+        ctx.fillStyle = bg;
+        ctx.fill();
+      });
+      ctx.restore();
+
+      // ── DEEP WATER OVERLAY ───────────────────────────────────────────────
+      const waterAlpha = 0.58 + depthFactor * 0.12;
       const water = ctx.createLinearGradient(0, 0, 0, H);
-      water.addColorStop(0,    'rgba(0,  100, 170, 0.60)');
-      water.addColorStop(0.30, 'rgba(0,   78, 150, 0.66)');
-      water.addColorStop(0.65, 'rgba(0,   50, 118, 0.72)');
-      water.addColorStop(1,    'rgba(0,   22,  72, 0.78)');
+      water.addColorStop(0,    `rgba(0,100,170,${waterAlpha})`);
+      water.addColorStop(0.30, `rgba(0,78,150,${waterAlpha + 0.06})`);
+      water.addColorStop(0.65, `rgba(0,50,118,${waterAlpha + 0.1})`);
+      water.addColorStop(1,    `rgba(0,22,72,${waterAlpha + 0.14})`);
       ctx.fillStyle = water;
       ctx.fillRect(0, 0, W, H);
 
-      // Depth darkening at edges
-      const edge = ctx.createRadialGradient(W / 2, H / 2, H * 0.06, W / 2, H / 2, W * 0.74);
-      edge.addColorStop(0,   'rgba(0, 30, 80, 0)');
-      edge.addColorStop(0.65,'rgba(0, 15, 55, 0.18)');
-      edge.addColorStop(1,   'rgba(0,  5, 30, 0.50)');
+      const edge = ctx.createRadialGradient(W/2, H/2, H*0.06, W/2, H/2, W*0.74);
+      edge.addColorStop(0,    'rgba(0,30,80,0)');
+      edge.addColorStop(0.65, 'rgba(0,15,55,0.18)');
+      edge.addColorStop(1,    'rgba(0,5,30,0.50)');
       ctx.fillStyle = edge;
       ctx.fillRect(0, 0, W, H);
 
-      // ── 4. SURFACE REFRACTION LINES ───────────────────────────────────────
-      // The shimmering network of light/dark bands you see looking through water
+      // ── SURFACE REFRACTION LINES ─────────────────────────────────────────
       ctx.save();
       ctx.globalAlpha = 0.10;
       for (let i = 0; i < 22; i++) {
@@ -1414,13 +1482,12 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // ── 6. MOUSE RIPPLES ─────────────────────────────────────────────────
+      // ── MOUSE RIPPLES ────────────────────────────────────────────────────
       for (let i = ripples.length - 1; i >= 0; i--) {
         const rip = ripples[i];
         rip.r += 4.0;
         rip.a -= 0.016;
         if (rip.a <= 0) { ripples.splice(i, 1); continue; }
-
         [1, 0.60, 0.30].forEach((scale, si) => {
           if (rip.r * scale < 4) return;
           ctx.beginPath();
@@ -1431,10 +1498,10 @@ function WaterCanvas() {
         });
       }
 
-      // ── 7. EDGE VIGNETTE ─────────────────────────────────────────────────
-      const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.16, W / 2, H / 2, W * 0.80);
+      // ── EDGE VIGNETTE ────────────────────────────────────────────────────
+      const vig = ctx.createRadialGradient(W/2, H/2, H*0.16, W/2, H/2, W*0.80);
       vig.addColorStop(0, 'rgba(0,0,0,0)');
-      vig.addColorStop(1, 'rgba(0,18,45,0.52)');
+      vig.addColorStop(1, `rgba(0,18,45,${0.52 + depthFactor * 0.2})`);
       ctx.fillStyle = vig;
       ctx.fillRect(0, 0, W, H);
 
@@ -1446,6 +1513,7 @@ function WaterCanvas() {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
@@ -1584,7 +1652,7 @@ export default function WaterCheckup() {
         </div>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#f1f9ff', letterSpacing: -1 }}>
-          Know Exactly What&apos;s<br />in Your <span className="wc-shimmer">Tap Water</span>
+          Know Exactly What&apos;s<br />in Your <span className="wc-metal">Tap Water</span>
         </h1>
 
         <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 32px' }}>
@@ -1851,14 +1919,16 @@ export default function WaterCheckup() {
 
       {/* LOADER */}
       {loading && (
-        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.13)', borderRadius: 12, position: 'relative', zIndex: 2, boxShadow: '0 24px 56px rgba(0,4,18,0.5), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
+        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: 'rgba(6,14,10,0.92)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(34,197,94,0.2)', borderTop: '1px solid rgba(34,197,94,0.35)', borderRadius: 12, position: 'relative', zIndex: 2, boxShadow: '0 24px 56px rgba(0,4,18,0.5), 0 0 40px rgba(34,197,94,0.06), inset 0 1px 0 rgba(34,197,94,0.1)', fontFamily: "'Courier New', monospace" }}>
+          <div style={{ fontSize: 10, color: '#166534', letterSpacing: 2, marginBottom: 14 }}>$ watercheck --zip {zip} --live</div>
           {STEPS.map((s, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 9, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
-              <span style={{ color: i < step ? '#22d3ee' : i === step ? '#f59e0b' : '#1e3a4a', fontSize: 14 }}>{i < step ? '✓' : i === step ? '▶' : '○'}</span>
-              <span style={{ fontSize: 13, color: i === step ? '#e2e8f0' : '#475569' }}>{s}</span>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 7, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
+              <span style={{ fontSize: 13, color: i < step ? '#22c55e' : i === step ? '#86efac' : '#166534', minWidth: 14 }}>{i < step ? '✓' : i === step ? '▶' : '·'}</span>
+              <span style={{ fontSize: 12, color: i < step ? '#4ade80' : i === step ? '#86efac' : '#166534', letterSpacing: 0.3 }}>{s}</span>
+              {i === step && <span style={{ display: 'inline-block', width: 7, height: 13, background: '#22c55e', animation: 'wcBlink 1s step-end infinite', marginLeft: 2, verticalAlign: 'middle' }} />}
             </div>
           ))}
-          <div style={{ marginTop: 10, padding: '7px 10px', background: '#0b1e36', borderRadius: 5, fontSize: 11, color: '#334155', textAlign: 'center' }}>EPA · UCMR5 · EWG · USGS — live data, no estimates</div>
+          <div style={{ marginTop: 12, padding: '6px 10px', background: 'rgba(0,0,0,0.4)', borderRadius: 4, fontSize: 10, color: '#166534', textAlign: 'center', letterSpacing: 1 }}>EPA · UCMR5 · EWG · USGS — live data, no estimates</div>
         </div>
       )}
 
@@ -2011,14 +2081,13 @@ export default function WaterCheckup() {
               <div style={{ fontSize: 12, color: '#334155', marginBottom: 8 }}>{data.sourceType}{data.population ? ` · Serves ${data.population}` : ''}</div>
               {data.summary && <div style={{ fontSize: 13, color: '#94a3b8', fontStyle: 'italic', marginBottom: 12, lineHeight: 1.6 }}>"{data.summary}"</div>}
               <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
-                {[
-                  { l:'VIOLATIONS', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
+                {[\n                  { l:'VIOLATIONS', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
                   { l:'OPEN',       v:data.openViolations,  c:data.openViolations  > 0 ? '#ef4444' : '#22d3ee' },
                   { l:'PFAS',       v:data.pfasCount || 0,  c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
                   { l:'SCORE',      v:data.score,            c:scoreColor },
                 ].map(s => (
-                  <div key={s.l} style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: 20, fontWeight: 800, color: s.c }}>{s.v}</div>
+                  <div key={s.l} className={s.l === 'SCORE' ? 'wc-metal-border' : ''} style={{ textAlign: 'center', borderRadius: 8, padding: s.l === 'SCORE' ? '4px 10px' : undefined, background: s.l === 'SCORE' ? 'rgba(6,182,212,0.04)' : undefined }}>
+                    <div style={{ fontSize: 20, fontWeight: 800, color: s.c, filter: s.l === 'SCORE' ? 'drop-shadow(0 0 8px rgba(34,211,238,0.6))' : undefined }}>{s.v}</div>
                     <div style={{ fontSize: 10, color: '#334155', letterSpacing: 1 }}>{s.l}</div>
                   </div>
                 ))}
