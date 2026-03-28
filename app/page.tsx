@@ -15,6 +15,13 @@ async function fetchWaterData(zip: string) {
   return data;
 }
 
+async function fetchWellData(zip: string) {
+  const res = await fetch(`/api/well?zip=${zip}`);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+  return data;
+}
+
 async function findInstallers(zip: string) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -1453,6 +1460,8 @@ export default function WaterCheckup() {
   const [loading, setLoading]           = useState(false);
   const [step, setStep]                 = useState(0);
   const [data, setData]                 = useState<any>(null);
+  const [wellData, setWellData]         = useState<any>(null);
+  const [isWell, setIsWell]             = useState(false);
   const [error, setError]               = useState<string | null>(null);
   const [tab, setTab]                   = useState('report');
   const [showEmail, setShowEmail]       = useState(false);
@@ -1472,18 +1481,24 @@ export default function WaterCheckup() {
 
   const search = async () => {
     if (zip.length !== 5 || loading) return;
-    setLoading(true); setError(null); setData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
+    setLoading(true); setError(null); setData(null); setWellData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
     let s = 0;
     const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 650);
     try {
-      const result = await fetchWaterData(zip);
-      clearInterval(tick);
-      setData(result);
+      if (isWell) {
+        const result = await fetchWellData(zip);
+        clearInterval(tick);
+        setWellData(result);
+      } else {
+        const result = await fetchWaterData(zip);
+        clearInterval(tick);
+        setData(result);
+      }
       setTimeout(() => {
         setShowEmail(true);
         resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 200);
-      loadInstallers(zip);
+      if (!isWell) loadInstallers(zip);
     } catch (e: any) {
       clearInterval(tick);
       setError(e.message);
@@ -1582,6 +1597,16 @@ export default function WaterCheckup() {
             style={{ width: 280, padding: '15px 20px', fontSize: 20, letterSpacing: 2, background: 'rgba(6,20,48,0.75)', border: '1px solid rgba(6,182,212,0.32)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 12, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), inset 0 2px 16px rgba(0,0,0,0.3), 0 0 0 0 rgba(6,182,212,0)' }} />
           <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '15px 32px', background: zip.length===5 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.length===5 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
             {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
+          </button>
+        </div>
+
+        {/* Water source toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginBottom: 18 }}>
+          <button onClick={() => setIsWell(false)} style={{ padding: '7px 18px', borderRadius: 20, fontSize: 13, fontWeight: 700, cursor: 'pointer', border: '1px solid', transition: 'all 0.2s', background: !isWell ? 'rgba(6,182,212,0.15)' : 'transparent', borderColor: !isWell ? '#22d3ee' : '#1e3a4a', color: !isWell ? '#22d3ee' : '#475569' }}>
+            🏙️ City / Municipal Water
+          </button>
+          <button onClick={() => setIsWell(true)} style={{ padding: '7px 18px', borderRadius: 20, fontSize: 13, fontWeight: 700, cursor: 'pointer', border: '1px solid', transition: 'all 0.2s', background: isWell ? 'rgba(251,191,36,0.15)' : 'transparent', borderColor: isWell ? '#f59e0b' : '#1e3a4a', color: isWell ? '#f59e0b' : '#475569' }}>
+            🪣 Private Well Water
           </button>
         </div>
 
@@ -1834,6 +1859,138 @@ export default function WaterCheckup() {
             </div>
           ))}
           <div style={{ marginTop: 10, padding: '7px 10px', background: '#0b1e36', borderRadius: 5, fontSize: 11, color: '#334155', textAlign: 'center' }}>EPA · UCMR5 · EWG · USGS — live data, no estimates</div>
+        </div>
+      )}
+
+
+      {/* WELL WATER RESULTS */}
+      {wellData && !loading && (
+        <div ref={resultsRef} style={{ maxWidth: 1000, margin: '32px auto 60px', padding: '0 20px', position: 'relative', zIndex: 2 }}>
+
+          {/* WELL HEADER */}
+          <div style={{ background: 'rgba(3,12,28,0.82)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(245,158,11,0.25)', borderTop: '1px solid rgba(245,158,11,0.4)', borderRadius: '12px 12px 0 0', padding: '24px 28px', boxShadow: '0 8px 32px rgba(0,4,18,0.4)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+              <div style={{ textAlign: 'center', minWidth: 90 }}>
+                <div style={{ fontSize: 56, fontWeight: 900, color: '#f59e0b', lineHeight: 1 }}>🪣</div>
+                <div style={{ fontSize: 11, letterSpacing: 2, color: '#f59e0b', marginTop: 6, fontWeight: 700 }}>WELL WATER</div>
+              </div>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <div style={{ fontSize: 11, letterSpacing: 3, color: '#f59e0b', fontWeight: 700, marginBottom: 6 }}>PRIVATE WELL RISK PROFILE — ZIP {zip}</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Regional Risk Assessment · {wellData.state}</div>
+                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>{wellData.stateProfile?.notes}</div>
+              </div>
+              <div style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 10, padding: '12px 18px', textAlign: 'center', minWidth: 120 }}>
+                <div style={{ fontSize: 11, color: '#f59e0b', letterSpacing: 2, fontWeight: 700 }}>RISK SCORE</div>
+                <div style={{ fontSize: 44, fontWeight: 900, color: '#f59e0b', lineHeight: 1.1 }}>{wellData.score}</div>
+                <div style={{ fontSize: 11, color: '#94a3b8' }}>Unknown = Risk</div>
+              </div>
+            </div>
+          </div>
+
+          {/* DISCLAIMER BANNER */}
+          <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)', borderTop: 'none', padding: '12px 24px', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ fontSize: 18, flexShrink: 0 }}>⚠️</span>
+            <div style={{ fontSize: 12, color: '#b45309', lineHeight: 1.7 }}>
+              <strong style={{ color: '#f59e0b' }}>Private wells are not regulated by EPA or state authorities.</strong> No public violation data or testing records exist for your well. This profile is based on regional geology, land use, and known contamination sites in <strong style={{ color: '#f59e0b' }}>{wellData.state}</strong>. The only way to know what&apos;s in your water is to test it.
+            </div>
+          </div>
+
+          {/* PRIMARY CONCERNS */}
+          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px' }}>
+            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 14 }}>TOP CONCERNS FOR YOUR REGION</div>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {wellData.stateProfile?.primaryConcerns?.map((c: string, i: number) => (
+                <span key={i} style={{ padding: '6px 14px', borderRadius: 20, background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)', color: '#fca5a5', fontSize: 12, fontWeight: 700 }}>⚠ {c}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* CONTAMINANT RISK TABLE */}
+          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px' }}>
+            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 16 }}>CONTAMINANT RISK PROFILE</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {wellData.contaminants?.map((c: any) => {
+                const riskColor = c.risk === 'high' ? '#ef4444' : c.risk === 'moderate' ? '#f59e0b' : '#22d3ee';
+                const riskBg = c.risk === 'high' ? 'rgba(239,68,68,0.08)' : c.risk === 'moderate' ? 'rgba(245,158,11,0.08)' : 'rgba(34,211,238,0.05)';
+                return (
+                  <div key={c.key} style={{ background: riskBg, border: `1px solid ${riskColor}22`, borderLeft: `3px solid ${riskColor}`, borderRadius: 8, padding: '14px 16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: 15, fontWeight: 800, color: '#e2e8f0' }}>{c.name}</span>
+                      {c.isElevated && <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 10, background: `${riskColor}22`, color: riskColor, fontWeight: 700, border: `1px solid ${riskColor}44` }}>ELEVATED IN YOUR STATE</span>}
+                      <span style={{ marginLeft: 'auto', fontSize: 11, padding: '3px 10px', borderRadius: 10, background: `${riskColor}15`, color: riskColor, fontWeight: 800, border: `1px solid ${riskColor}33`, textTransform: 'uppercase', letterSpacing: 1 }}>{c.risk} risk</span>
+                    </div>
+                    <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.7, marginBottom: 6 }}>{c.why}</div>
+                    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', fontSize: 11, color: '#64748b' }}>
+                      <span><strong style={{ color: '#475569' }}>Health:</strong> {c.healthEffects}</span>
+                    </div>
+                    {(c.mcl || c.ewgGuideline) && (
+                      <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                        {c.mcl && <span style={{ fontSize: 11, padding: '3px 10px', borderRadius: 6, background: 'rgba(14,34,51,0.8)', color: '#475569', border: '1px solid #1e3a4a' }}>⚖️ {c.mcl}</span>}
+                        {c.ewgGuideline && <span style={{ fontSize: 11, padding: '3px 10px', borderRadius: 6, background: 'rgba(124,58,237,0.1)', color: '#a78bfa', border: '1px solid rgba(124,58,237,0.3)' }}>🔬 {c.ewgGuideline}</span>}
+                      </div>
+                    )}
+                    <div style={{ marginTop: 8, fontSize: 11, color: '#0891b2' }}>
+                      <strong>Test for:</strong> {c.testFor}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* LAB TEST KITS */}
+          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px' }}>
+            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 4 }}>STEP 1 — GET YOUR WELL TESTED FIRST</div>
+            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>Know exactly what&apos;s in your well before buying any filter. Certified lab kits — mail your sample, get results in days.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {wellData.labTests?.map((t: any, i: number) => (
+                <div key={i} style={{ background: t.recommended ? 'rgba(34,211,238,0.05)' : 'rgba(6,20,48,0.6)', border: `1px solid ${t.recommended ? 'rgba(34,211,238,0.25)' : '#0e2233'}`, borderRadius: 10, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+                  {t.recommended && <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 10, background: 'rgba(34,211,238,0.15)', color: '#22d3ee', fontWeight: 800, border: '1px solid rgba(34,211,238,0.3)', flexShrink: 0 }}>OUR PICK</span>}
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{t.name}</div>
+                    <div style={{ fontSize: 12, color: '#64748b' }}>{t.tests}</div>
+                    <div style={{ fontSize: 11, color: '#475569', marginTop: 3 }}>⏱ Results in {t.turnaround}</div>
+                  </div>
+                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                    <div style={{ fontSize: 22, fontWeight: 900, color: '#22d3ee', marginBottom: 6 }}>${t.price}</div>
+                    <a href={`https://www.amazon.com/dp/${t.asin}?tag=${t.tag}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '8px 16px', background: '#f59e0b', borderRadius: 7, color: '#000', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Order on Amazon →</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* WELL FILTER PRODUCTS */}
+          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px', borderRadius: '0 0 12px 12px' }}>
+            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 4 }}>STEP 2 — WELL WATER FILTER SYSTEMS</div>
+            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>NSF-certified filters designed specifically for private well water. Test first, then filter for exactly what you find.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {wellData.wellProducts?.map((p: any, i: number) => (
+                <div key={i} style={{ background: p.expertPick ? 'rgba(34,211,238,0.04)' : 'rgba(6,20,48,0.5)', border: `1px solid ${p.expertPick ? 'rgba(34,211,238,0.2)' : '#0e2233'}`, borderRadius: 10, padding: '16px', display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                  <div style={{ flex: 1, minWidth: 200 }}>
+                    {p.expertPick && <div style={{ fontSize: 10, color: '#22d3ee', fontWeight: 800, letterSpacing: 1, marginBottom: 6, padding: '2px 8px', background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.25)', borderRadius: 10, display: 'inline-block' }}>⭐ EXPERT PICK</div>}
+                    <div style={{ fontSize: 16, fontWeight: 800, color: '#e2e8f0', marginBottom: 4 }}>{p.name}</div>
+                    <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{p.brand} · {p.cert}</div>
+                    <div style={{ fontSize: 12, color: '#22d3ee', marginBottom: 8 }}><strong>Best for:</strong> {p.bestFor}</div>
+                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
+                      {p.removes?.map((r: string, ri: number) => (
+                        <span key={ri} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 6, background: 'rgba(34,211,238,0.08)', color: '#67e8f9', border: '1px solid rgba(34,211,238,0.15)' }}>{r}</span>
+                      ))}
+                    </div>
+                    {p.expertReason && <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', borderLeft: '2px solid #22d3ee44', paddingLeft: 10, lineHeight: 1.6 }}>{p.expertReason}</div>}
+                    <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
+                      {p.pros?.map((pr: string, pi: number) => <span key={pi} style={{ fontSize: 11, color: '#475569' }}>✓ {pr}</span>)}
+                    </div>
+                  </div>
+                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                    <div style={{ fontSize: 28, fontWeight: 900, color: '#22d3ee' }}>${p.price}</div>
+                    <div style={{ fontSize: 11, color: '#475569', marginBottom: 10 }}>⭐ {p.rating} ({p.reviews?.toLocaleString()} reviews)</div>
+                    <a href={`https://www.amazon.com/dp/${p.asin}?tag=${p.tag}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '10px 18px', background: '#f59e0b', borderRadius: 8, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy on Amazon →</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
