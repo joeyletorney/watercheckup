@@ -15,11 +15,12 @@ async function fetchWaterData(zip: string) {
   return data;
 }
 
-async function fetchWellData(zip: string) {
-  const res = await fetch(`/api/well?zip=${zip}`);
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
-  return data;
+async function fetchEwgData(zip: string) {
+  try {
+    const res = await fetch(`/api/ewg?zip=${zip}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
 }
 
 async function findInstallers(zip: string) {
@@ -57,9 +58,9 @@ const SITUATIONS = [
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO ──────────────────────────────────────────────────────────
   { id:1, cat:'undersink', catLabel:'Under-Sink RO', name:'APEC ROES-50', brand:'APEC Water Systems', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','DIY install ~2hrs'], diyDiff:'Medium', situations:['homeowner','family'], img:'https://www.apecwater.com/cdn/shop/files/APEC-ROES50_Image_1.jpg?v=1763754451&width=1024', amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}` },
-  { id:2, cat:'undersink', catLabel:'Under-Sink RO', name:'iSpring RCC7AK', brand:'iSpring', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%'], bestFor:['Lead','PFAS','Chromium-6','Copper'], pros:['Remineralization stage','75 GPD fast','pH balanced'], diyDiff:'Medium', situations:['homeowner','family'], img:'https://www.ispringwatersystems.com/wp-content/uploads/2022/11/RCC7AK.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}` },
+  { id:2, cat:'undersink', catLabel:'Under-Sink RO', name:'iSpring RCC7AK', brand:'iSpring', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%'], bestFor:['Lead','PFAS','Chromium-6','Copper'], pros:['Remineralization stage','75 GPD fast','pH balanced'], diyDiff:'Medium', situations:['homeowner','family'], remineralizes:true, img:'https://www.ispringwatersystems.com/wp-content/uploads/2022/11/RCC7AK.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}` },
   { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
-  { id:4, cat:'undersink', catLabel:'Under-Sink RO', name:'Home Master TMAFC', brand:'Home Master', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio'], diyDiff:'Medium', situations:['homeowner','family'], img:'/api/img?url=https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00B5GT45E?tag=${TAG}` },
+  { id:4, cat:'undersink', catLabel:'Under-Sink RO', name:'Home Master TMAFC', brand:'Home Master', price:379, filterCostPerYear:110, rating:4.6, reviews:3200, gpd:75, stages:7, cert:['NSF Certified','WQA tested'], certColor:'#d97706', removes:['Lead >99%','Chlorine >98%','PFAS','VOCs'], bestFor:['Lead','Chlorine','Iron','VOCs'], pros:['Dual remineralization','1:1 waste ratio'], diyDiff:'Medium', situations:['homeowner','family'], remineralizes:true, img:'/api/img?url=https://m.media-amazon.com/images/I/71b1VFe2VJL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B00B5GT45E?tag=${TAG}` },
   { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, img:'/api/img?url=https://m.media-amazon.com/images/I/71gFCKKMNwL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
   { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:`https://www.amazon.com/dp/B0CK42FM71?tag=${TAG}` },
   { id:27, cat:'undersink', catLabel:'Under-Sink RO', name:'Frizzlife PD1000-TAM4', brand:'Frizzlife', price:799, filterCostPerYear:160, rating:4.8, reviews:890, gpd:1000, stages:5, cert:['NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Chromium-6','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['1000 GPD fastest fill','Quick-change filters','Tankless compact'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/PD1000_81efd50c-480c-4ee6-b809-c2312525621a.png?v=1757987339', amazon:`https://www.amazon.com/dp/B0BK8ZRY2K?tag=${TAG}` },
@@ -110,6 +111,10 @@ const PRODUCTS: any[] = [
 
   // ── REFRIGERATOR / INLINE ───────────────────────────────────────────────────
   { id:22, cat:'fridge', catLabel:'Refrigerator / Inline', name:'GLACIER FRESH Inline Filter', brand:'Glacier Fresh', price:25, filterCostPerYear:50, rating:4.5, reviews:8900, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 99%','Chlorine 99%','Cysts','Fluoride 70%'], bestFor:['Lead','Chlorine','Cysts'], pros:['Universal fit','Works with most fridges','DIY 5 min'], diyDiff:'Easy', situations:['homeowner','renter','family'], img:'/api/img?url=https://m.media-amazon.com/images/I/61zGkmfBqmL._AC_SL1500_.jpg', amazon:`https://www.amazon.com/dp/B07CF5HLBQ?tag=${TAG}` },
+
+  // ── WELL WATER SPECIFIC ──────────────────────────────────────────────────────
+  { id:37, cat:'well-uv', catLabel:'UV Sterilizer', name:'HQUA-OWS-12 UV Sterilizer', brand:'HQUA', price:149, filterCostPerYear:45, rating:4.5, reviews:2800, gpd:null, stages:1, cert:['NSF/ANSI 55 Class B'], certColor:'#7c3aed', removes:['Bacteria 99.99%','Viruses 99.99%','Cysts','E. Coli','Giardia'], bestFor:['Bacteria','Coliform','Viruses','Cysts'], pros:['No chemicals','12 GPM whole-house flow','Kills 99.99% pathogens'], diyDiff:'Medium', situations:['homeowner'], well:true, expertPick:true, expertReason:'UV sterilization is the gold standard for private well bacteria — no chemicals, no taste change, and eliminates viruses, bacteria, and cysts that filters alone can\'t stop.', img:'/api/img?url=https://images-na.ssl-images-amazon.com/images/P/B07TPC9S4Y.01.LZZZZZZZ.jpg', amazon:`https://www.amazon.com/dp/B07TPC9S4Y?tag=${TAG}` },
+  { id:38, cat:'whole', catLabel:'Whole-House', name:'SpringWell WS4 Well Water Filter', brand:'SpringWell', price:899, filterCostPerYear:85, rating:4.8, reviews:1200, gpd:null, stages:3, cert:['NSF/ANSI 42','WQA tested'], certColor:'#d97706', removes:['Iron >99%','Manganese >99%','Hydrogen Sulfide','Sediment','Odor'], bestFor:['Iron','Manganese','Sulfur','Sediment'], pros:['Built for well water','Air injection — no chemicals','Removes rotten-egg smell'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, img:'/api/img?url=https://images-na.ssl-images-amazon.com/images/P/B09NGDLQT6.01.LZZZZZZZ.jpg', amazon:`https://www.amazon.com/dp/B09NGDLQT6?tag=${TAG}` },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -215,6 +220,104 @@ const STATE_DB: Record<string, { name: string; url: string }> = {
   WY: { name: 'WY DEQ Drinking Water', url: 'https://deq.wyoming.gov/wqd/safe-drinking-water/' },
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// WELL WATER RISK DATABASE — 50-state profiles (USGS / EPA groundwater data)
+// ─────────────────────────────────────────────────────────────────────────────
+type WellRisk = { name: string; sev: 'high'|'moderate'|'low'; why: string; fix: string; color: string };
+
+const WELL_RISKS: Record<string, WellRisk[]> = (() => {
+  const ne: WellRisk[] = [
+    { name:'Arsenic', sev:'high', why:'Naturally occurring in granite/bedrock. Northeast has among the highest US well arsenic rates.', fix:'RO removes >99%', color:'#ef4444' },
+    { name:'Radon', sev:'high', why:'Dissolves from granite into groundwater; volatilizes indoors during water use.', fix:'Aeration system or point-of-entry carbon', color:'#ef4444' },
+    { name:'Bacteria / Coliform', sev:'moderate', why:'Surface runoff, cracked well casings, or nearby septic systems.', fix:'UV sterilizer eliminates 99.99%', color:'#f59e0b' },
+    { name:'Uranium', sev:'moderate', why:'Occurs in bedrock — linked to kidney damage at elevated levels.', fix:'RO or strong-base anion exchange', color:'#f59e0b' },
+    { name:'Hardness', sev:'low', why:'Calcium/magnesium from limestone — scaling on pipes and appliances.', fix:'Water softener', color:'#22d3ee' },
+  ];
+  const se: WellRisk[] = [
+    { name:'Bacteria / Coliform', sev:'high', why:'Warm climate, shallow aquifers, high density of septic systems.', fix:'UV sterilizer + annual testing', color:'#ef4444' },
+    { name:'Nitrates', sev:'high', why:'Agricultural runoff and septic leach — dangerous for infants (blue baby syndrome).', fix:'RO removes >97%', color:'#ef4444' },
+    { name:'Iron & Manganese', sev:'moderate', why:'Naturally occurring — causes staining, metallic taste, pipe buildup.', fix:'Iron/oxidizing whole-house filter', color:'#f59e0b' },
+    { name:'Arsenic', sev:'moderate', why:'Present in coastal plain sediments across FL, SC, NC.', fix:'RO removes >99%', color:'#f59e0b' },
+    { name:'Hardness', sev:'low', why:'Limestone-heavy geology across Southeast produces hard water.', fix:'Water softener', color:'#22d3ee' },
+  ];
+  const mw: WellRisk[] = [
+    { name:'Nitrates', sev:'high', why:'#1 well contaminant in corn/soy belt. Infant risk — causes blue baby syndrome.', fix:'RO removes >97%', color:'#ef4444' },
+    { name:'Bacteria / Coliform', sev:'high', why:'Agricultural runoff and flooding contaminate shallow wells regularly.', fix:'UV sterilizer + annual testing', color:'#ef4444' },
+    { name:'Arsenic', sev:'moderate', why:'Naturally in glacial sediments across ND, SD, MN, WI, IA.', fix:'RO removes >99%', color:'#f59e0b' },
+    { name:'Radium', sev:'moderate', why:'Found in deep aquifers across IL, OH, IN — linked to bone cancer.', fix:'Water softener or RO', color:'#f59e0b' },
+    { name:'Hardness', sev:'moderate', why:'Among the highest hardness levels in the US from limestone aquifers.', fix:'Water softener', color:'#f59e0b' },
+  ];
+  const so: WellRisk[] = [
+    { name:'Bacteria / Coliform', sev:'high', why:'Warm temperatures and porous soils allow rapid contamination from surface sources.', fix:'UV sterilizer + shock chlorination', color:'#ef4444' },
+    { name:'Nitrates', sev:'high', why:'Heavy agriculture and livestock across TX, OK, AR, LA drive contamination.', fix:'RO removes >97%', color:'#ef4444' },
+    { name:'Iron & Manganese', sev:'moderate', why:'Common in red-clay aquifers — stains laundry, fixtures, and appliances.', fix:'Iron/oxidizing filter or SpringWell WS4', color:'#f59e0b' },
+    { name:'Total Dissolved Solids', sev:'moderate', why:'High mineral content from deep brackish aquifers, especially west TX.', fix:'RO dramatically reduces TDS', color:'#f59e0b' },
+    { name:'Sulfur / H₂S', sev:'low', why:'Rotten-egg smell from anaerobic bacteria in deep wells.', fix:'Aeration or oxidizing filter', color:'#22d3ee' },
+  ];
+  const mt: WellRisk[] = [
+    { name:'Arsenic', sev:'high', why:'Mountain West has the highest naturally occurring arsenic in the US — volcanic & geothermal geology.', fix:'RO removes >99%', color:'#ef4444' },
+    { name:'Uranium', sev:'high', why:'Widespread in western US geology — linked to kidney damage. MT, WY, CO, NM among highest.', fix:'RO or strong-base anion exchange', color:'#ef4444' },
+    { name:'Fluoride', sev:'moderate', why:'Naturally elevated in volcanic aquifers (NM, AZ, UT, NV) — dental/bone damage at high levels.', fix:'RO removes >96%', color:'#f59e0b' },
+    { name:'Selenium', sev:'moderate', why:'Found in sedimentary rocks across CO, WY, UT — toxic at elevated levels.', fix:'RO or strong-base anion exchange', color:'#f59e0b' },
+    { name:'Bacteria / Coliform', sev:'low', why:'Risk from livestock and wildlife near shallow wells.', fix:'UV sterilizer + annual testing', color:'#22d3ee' },
+  ];
+  const pac: WellRisk[] = [
+    { name:'Arsenic', sev:'moderate', why:'Volcanic geology in OR, WA, AK — elevated in parts of CA Central Valley.', fix:'RO removes >99%', color:'#f59e0b' },
+    { name:'Nitrates', sev:'moderate', why:'Agricultural zones in CA (Central Valley, Salinas) and OR/WA Willamette Valley.', fix:'RO removes >97%', color:'#f59e0b' },
+    { name:'Bacteria / Coliform', sev:'moderate', why:'Rural wells near livestock and wildfire-affected zones show higher coliform rates.', fix:'UV sterilizer + annual testing', color:'#f59e0b' },
+    { name:'Iron & Manganese', sev:'low', why:'Common in Pacific Northwest volcanic aquifers.', fix:'Iron filter or whole-house system', color:'#22d3ee' },
+    { name:'Radon', sev:'low', why:'Present in granite-heavy zones of WA, OR, AK.', fix:'Aeration system', color:'#22d3ee' },
+  ];
+  const base: Record<string, WellRisk[]> = {
+    ME:ne, NH:ne, VT:ne, MA:ne, RI:ne, CT:ne, NY:ne, NJ:ne, PA:ne,
+    MD:se, DE:se, VA:se, WV:se, NC:se, SC:se, GA:se, FL:se, AL:se, MS:se, TN:se, KY:se,
+    OH:mw, IN:mw, IL:mw, MI:mw, WI:mw, MN:mw, IA:mw, MO:mw, ND:mw, SD:mw, NE:mw, KS:mw,
+    TX:so, OK:so, AR:so, LA:so,
+    MT:mt, ID:mt, WY:mt, CO:mt, UT:mt, NV:mt, AZ:mt, NM:mt,
+    CA:pac, OR:pac, WA:pac, AK:pac, HI:pac,
+  };
+  const overrides: Record<string, WellRisk[]> = {
+    AZ:[
+      { name:'Arsenic', sev:'high', why:'AZ has the highest well arsenic rates in the US — volcanic geology and historic mining.', fix:'RO removes >99%', color:'#ef4444' },
+      { name:'Uranium', sev:'high', why:'Mining regions of AZ have elevated uranium in groundwater.', fix:'RO or anion exchange', color:'#ef4444' },
+      { name:'Fluoride', sev:'high', why:'Naturally very high in AZ volcanic aquifers — can cause dental fluorosis.', fix:'RO removes >96%', color:'#ef4444' },
+      { name:'Total Dissolved Solids', sev:'moderate', why:'Arid climate concentrates minerals in deep AZ wells.', fix:'RO dramatically reduces TDS', color:'#f59e0b' },
+      { name:'Bacteria / Coliform', sev:'low', why:'Seasonal monsoon flooding can contaminate shallow wells.', fix:'UV sterilizer', color:'#22d3ee' },
+    ],
+    CA:[
+      { name:'Arsenic', sev:'high', why:'Central Valley and Central Coast wells frequently exceed EPA limits — geothermal and agricultural sources.', fix:'RO removes >99%', color:'#ef4444' },
+      { name:'Nitrates', sev:'high', why:'Central Valley agriculture has contaminated thousands of rural CA wells above the MCL.', fix:'RO removes >97%', color:'#ef4444' },
+      { name:'Uranium', sev:'moderate', why:'San Joaquin Valley wells often exceed EPA action levels.', fix:'RO or anion exchange', color:'#f59e0b' },
+      { name:'Hexavalent Chromium', sev:'moderate', why:'Naturally occurring in CA geology — linked to cancer.', fix:'RO or strong-base anion exchange', color:'#f59e0b' },
+      { name:'Bacteria / Coliform', sev:'low', why:'Wildfire runoff and agricultural contamination affect shallow wells.', fix:'UV sterilizer + annual testing', color:'#22d3ee' },
+    ],
+    TX:[
+      { name:'Total Dissolved Solids', sev:'high', why:'West & south TX deep brackish aquifers have very high TDS — salty, mineral-heavy water.', fix:'RO dramatically reduces TDS', color:'#ef4444' },
+      { name:'Nitrates', sev:'high', why:'TX panhandle and Hill Country agriculture drive nitrate contamination.', fix:'RO removes >97%', color:'#ef4444' },
+      { name:'Arsenic', sev:'moderate', why:'West TX geology contains naturally elevated arsenic levels.', fix:'RO removes >99%', color:'#f59e0b' },
+      { name:'Iron & Manganese', sev:'moderate', why:'Red clay soils and deep aquifers in Central/East TX.', fix:'Iron filter or SpringWell WS4', color:'#f59e0b' },
+      { name:'Bacteria / Coliform', sev:'moderate', why:'Common in shallow East TX wells — heavy rainfall and livestock runoff.', fix:'UV sterilizer + annual testing', color:'#f59e0b' },
+    ],
+    FL:[
+      { name:'Bacteria / Coliform', sev:'high', why:"FL's porous limestone (karst) geology allows rapid surface contamination of wells.", fix:'UV sterilizer + annual testing', color:'#ef4444' },
+      { name:'Sulfur / H₂S', sev:'high', why:'FL wells are notorious for rotten-egg smell from hydrogen sulfide gas in the aquifer.', fix:'Aeration system or oxidizing filter', color:'#ef4444' },
+      { name:'Nitrates', sev:'high', why:'Heavy fertilizer use and very shallow water table across agricultural FL.', fix:'RO removes >97%', color:'#ef4444' },
+      { name:'Iron & Manganese', sev:'moderate', why:'Staining and taste issues common in FL well water.', fix:'Iron/oxidizing filter', color:'#f59e0b' },
+      { name:'Hardness', sev:'moderate', why:'FL limestone aquifer produces very hard water — scale on appliances.', fix:'Water softener', color:'#f59e0b' },
+    ],
+    NY:[
+      { name:'Arsenic', sev:'high', why:'Upstate NY granite bedrock has naturally elevated arsenic. Long Island wells also affected by industry.', fix:'RO removes >99%', color:'#ef4444' },
+      { name:'Radon', sev:'high', why:'High-radon granite geology across upstate NY.', fix:'Aeration or point-of-entry carbon', color:'#ef4444' },
+      { name:'PFAS', sev:'moderate', why:'Military bases and industrial sites have contaminated groundwater across NY state.', fix:'RO removes >99% PFAS', color:'#f59e0b' },
+      { name:'Bacteria / Coliform', sev:'moderate', why:'Dense rural population with aging wells and nearby septic systems.', fix:'UV sterilizer + annual testing', color:'#f59e0b' },
+      { name:'Uranium', sev:'low', why:'Present in Adirondack granite bedrock.', fix:'RO or anion exchange', color:'#22d3ee' },
+    ],
+  };
+  const result: Record<string, WellRisk[]> = {};
+  for (const state of Object.keys(base)) { result[state] = overrides[state] ?? base[state]; }
+  return result;
+})();
+
 const SEV: Record<string, { color: string; label: string }> = {
   low:      { color: '#22d3ee', label: 'Within Limits' },
   moderate: { color: '#f59e0b', label: 'Elevated' },
@@ -271,9 +374,7 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
       <path d={mkArc(210, 210 + 300 * (arc / 100))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
         style={{ transition: 'all 1.4s cubic-bezier(0.34,1.56,0.64,1)' }} filter={`drop-shadow(0 0 10px ${color}99)`} />
       <text x={cx} y={cy + 8}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{display}</text>
-      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#94a3b8" fontFamily="inherit">Grade: </text>
-      <text x={cx + 38} y={cy + 28} textAnchor="middle" fontSize="13" fontWeight="900" fill="#22d3ee" fontFamily="inherit"
-        style={{ filter: 'drop-shadow(0 0 6px rgba(34,211,238,0.8))' }}>{grade}</text>
+      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#94a3b8" fontFamily="inherit">Grade: {grade}</text>
     </svg>
   );
 }
@@ -961,13 +1062,14 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
   const cfg = SITUATION_CONFIG[situation];
   const diyColors: Record<string, string> = { None: '#22d3ee', Easy: '#22d3ee', Medium: '#f59e0b', Hard: '#ef4444' };
 
-  // Filter products by situation and optionally boost those matching contaminants
-  const situationProds = PRODUCTS.filter(p => p.situations?.includes(situation));
+  // Filter products by situation — exclude remineralizing systems, boost quick-change
+  const situationProds = PRODUCTS.filter(p => p.situations?.includes(situation) && !p.remineralizes);
   const hasPFAS = contaminantNames.some(n => n.toLowerCase().includes('pfas') || n.toLowerCase().includes('pfoa') || n.toLowerCase().includes('pfos'));
   const ranked = situationProds.map(p => ({
     ...p,
     score: p.bestFor.filter((b: string) => contaminantNames.some(n => n.includes(b))).length +
-           (hasPFAS && p.bestFor.includes('PFAS') ? 2 : 0),
+           (hasPFAS && p.bestFor.includes('PFAS') ? 2 : 0) +
+           (p.quickChange ? 2 : 0),
   })).sort((a, b) => b.score - a.score);
 
   // Group by category
@@ -1266,7 +1368,14 @@ function WaterCanvas() {
     let scrollY = 0;
     const ripples: { x: number; y: number; r: number; a: number }[] = [];
 
-    // Bioluminescent orbs
+    // Pre-generate stable sand grain positions
+    const GRAINS = Array.from({ length: 280 }, () => ({
+      x: Math.random(), y: Math.random(),
+      r: 0.4 + Math.random() * 1.8,
+      a: 0.025 + Math.random() * 0.07,
+    }));
+
+    // Bioluminescent orbs — floating glowing organisms
     const BIORBS = Array.from({ length: 18 }, (_, i) => ({
       x: Math.random(), y: Math.random(),
       vx: (Math.random() - 0.5) * 0.0003,
@@ -1277,7 +1386,7 @@ function WaterCanvas() {
       hue: i % 3 === 0 ? '139,92,246' : i % 3 === 1 ? '6,182,212' : '34,211,238',
     }));
 
-    // God ray angles
+    // God rays — light shafts from surface
     const RAYS = Array.from({ length: 9 }, (_, i) => ({
       angle: -0.35 + (i / 8) * 0.7,
       width: 18 + Math.random() * 28,
@@ -1287,13 +1396,6 @@ function WaterCanvas() {
 
     const onScroll = () => { scrollY = window.scrollY; };
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Pre-generate stable sand grain positions
-    const GRAINS = Array.from({ length: 280 }, () => ({
-      x: Math.random(), y: Math.random(),
-      r: 0.4 + Math.random() * 1.8,
-      a: 0.025 + Math.random() * 0.07,
-    }));
 
     const resize = () => {
       canvas.width  = window.innerWidth;
@@ -1312,24 +1414,17 @@ function WaterCanvas() {
       const H = canvas.height;
       t += 0.006;
 
-      // ── DEPTH GRADIENT — shifts darker as user scrolls down ──────────────
-      const depthFactor = Math.min(scrollY / 1200, 1);
-      const topR = Math.round(3 + depthFactor * 1);
-      const topG = Math.round(17 + depthFactor * 2);
-      const topB = Math.round(31 + depthFactor * 8);
-      const botR = Math.round(3 - depthFactor * 1);
-      const botG = Math.round(14 - depthFactor * 2);
-      const botB = Math.round(28 + depthFactor * 14);
-
+      // ── 1. DEPTH GRADIENT BASE — darkens as user scrolls down ───────────
+      const depth = Math.min(scrollY / 1200, 1);
       const sand = ctx.createLinearGradient(0, 0, 0, H);
-      sand.addColorStop(0,    `rgb(${topR},${topG},${topB})`);
-      sand.addColorStop(0.35, `rgb(4,${Math.round(24+depthFactor*4)},${Math.round(40+depthFactor*10)})`);
-      sand.addColorStop(0.7,  `rgb(5,${Math.round(29+depthFactor*3)},${Math.round(48+depthFactor*8)})`);
-      sand.addColorStop(1,    `rgb(${botR},${botG},${botB})`);
+      sand.addColorStop(0,    `rgb(${3+Math.round(depth)},${17+Math.round(depth*3)},${31+Math.round(depth*10)})`);
+      sand.addColorStop(0.35, `rgb(4,${24+Math.round(depth*4)},${40+Math.round(depth*10)})`);
+      sand.addColorStop(0.7,  `rgb(5,${29+Math.round(depth*3)},${48+Math.round(depth*8)})`);
+      sand.addColorStop(1,    `rgb(3,${14-Math.round(depth*2)},${28+Math.round(depth*14)})`);
       ctx.fillStyle = sand;
       ctx.fillRect(0, 0, W, H);
 
-      // ── GOD RAYS from surface ────────────────────────────────────────────
+      // ── 2. GOD RAYS — light shafts from the surface ─────────────────────
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       const rayOriginY = -H * 0.15;
@@ -1339,13 +1434,11 @@ function WaterCanvas() {
         const spread = H * 1.6;
         const x1 = x0 + Math.sin(ray.angle) * spread - ray.width * 3;
         const x2 = x0 + Math.sin(ray.angle) * spread + ray.width * 3;
-
-        const rg = ctx.createLinearGradient(x0, rayOriginY, (x1+x2)/2, H);
+        const rg = ctx.createLinearGradient(x0, rayOriginY, (x1 + x2) / 2, H);
         rg.addColorStop(0,   `rgba(186,230,253,${flicker * 0.22})`);
         rg.addColorStop(0.3, `rgba(125,200,240,${flicker * 0.12})`);
         rg.addColorStop(0.7, `rgba(60,150,210,${flicker * 0.05})`);
         rg.addColorStop(1,   'rgba(0,80,150,0)');
-
         ctx.beginPath();
         ctx.moveTo(x0 - 8, rayOriginY);
         ctx.lineTo(x0 + 8, rayOriginY);
@@ -1357,7 +1450,7 @@ function WaterCanvas() {
       });
       ctx.restore();
 
-      // Subtle underwater floor texture — very dark sand ripples
+      // ── 3. FLOOR TEXTURE ────────────────────────────────────────────────
       ctx.save();
       ctx.globalAlpha = 0.04;
       for (let row = 0; row < 32; row++) {
@@ -1375,7 +1468,6 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // Subtle grain scatter
       GRAINS.forEach(g => {
         ctx.beginPath();
         ctx.arc(g.x * W, g.y * H, g.r, 0, Math.PI * 2);
@@ -1383,7 +1475,7 @@ function WaterCanvas() {
         ctx.fill();
       });
 
-      // ── CAUSTICS ─────────────────────────────────────────────────────────
+      // ── 4. CAUSTICS ──────────────────────────────────────────────────────
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       const NC = 64;
@@ -1423,36 +1515,35 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // ── BIOLUMINESCENT ORBS ──────────────────────────────────────────────
+      // ── 5. BIOLUMINESCENT ORBS ───────────────────────────────────────────
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       BIORBS.forEach(orb => {
-        orb.x += orb.vx;
-        orb.y += orb.vy;
+        orb.x += orb.vx; orb.y += orb.vy;
         if (orb.x < 0) orb.x = 1; if (orb.x > 1) orb.x = 0;
         if (orb.y < 0) orb.y = 1; if (orb.y > 1) orb.y = 0;
         const pulse = 0.5 + 0.5 * Math.sin(t * orb.speed + orb.phase);
         const alpha = 0.08 + pulse * 0.14;
-        const cx = orb.x * W;
-        const cy = orb.y * H;
-        const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, orb.r * (1 + pulse * 0.3));
+        const ox = orb.x * W, oy = orb.y * H;
+        const or2 = orb.r * (1 + pulse * 0.3);
+        const bg = ctx.createRadialGradient(ox, oy, 0, ox, oy, or2);
         bg.addColorStop(0,   `rgba(${orb.hue},${alpha * 2.2})`);
         bg.addColorStop(0.4, `rgba(${orb.hue},${alpha * 0.8})`);
         bg.addColorStop(1,   `rgba(${orb.hue},0)`);
         ctx.beginPath();
-        ctx.arc(cx, cy, orb.r * (1 + pulse * 0.3), 0, Math.PI * 2);
+        ctx.arc(ox, oy, or2, 0, Math.PI * 2);
         ctx.fillStyle = bg;
         ctx.fill();
       });
       ctx.restore();
 
-      // ── DEEP WATER OVERLAY ───────────────────────────────────────────────
-      const waterAlpha = 0.58 + depthFactor * 0.12;
+      // ── 6. WATER OVERLAY ─────────────────────────────────────────────────
+      const wa = 0.58 + depth * 0.12;
       const water = ctx.createLinearGradient(0, 0, 0, H);
-      water.addColorStop(0,    `rgba(0,100,170,${waterAlpha})`);
-      water.addColorStop(0.30, `rgba(0,78,150,${waterAlpha + 0.06})`);
-      water.addColorStop(0.65, `rgba(0,50,118,${waterAlpha + 0.1})`);
-      water.addColorStop(1,    `rgba(0,22,72,${waterAlpha + 0.14})`);
+      water.addColorStop(0,    `rgba(0,100,170,${wa})`);
+      water.addColorStop(0.30, `rgba(0,78,150,${wa + 0.06})`);
+      water.addColorStop(0.65, `rgba(0,50,118,${wa + 0.10})`);
+      water.addColorStop(1,    `rgba(0,22,72,${wa + 0.14})`);
       ctx.fillStyle = water;
       ctx.fillRect(0, 0, W, H);
 
@@ -1463,7 +1554,7 @@ function WaterCanvas() {
       ctx.fillStyle = edge;
       ctx.fillRect(0, 0, W, H);
 
-      // ── SURFACE REFRACTION LINES ─────────────────────────────────────────
+      // ── 7. SURFACE REFRACTION ────────────────────────────────────────────
       ctx.save();
       ctx.globalAlpha = 0.10;
       for (let i = 0; i < 22; i++) {
@@ -1482,11 +1573,10 @@ function WaterCanvas() {
       }
       ctx.restore();
 
-      // ── MOUSE RIPPLES ────────────────────────────────────────────────────
+      // ── 8. MOUSE RIPPLES ─────────────────────────────────────────────────
       for (let i = ripples.length - 1; i >= 0; i--) {
         const rip = ripples[i];
-        rip.r += 4.0;
-        rip.a -= 0.016;
+        rip.r += 4.0; rip.a -= 0.016;
         if (rip.a <= 0) { ripples.splice(i, 1); continue; }
         [1, 0.60, 0.30].forEach((scale, si) => {
           if (rip.r * scale < 4) return;
@@ -1498,10 +1588,10 @@ function WaterCanvas() {
         });
       }
 
-      // ── EDGE VIGNETTE ────────────────────────────────────────────────────
+      // ── 9. VIGNETTE ──────────────────────────────────────────────────────
       const vig = ctx.createRadialGradient(W/2, H/2, H*0.16, W/2, H/2, W*0.80);
       vig.addColorStop(0, 'rgba(0,0,0,0)');
-      vig.addColorStop(1, `rgba(0,18,45,${0.52 + depthFactor * 0.2})`);
+      vig.addColorStop(1, `rgba(0,18,45,${0.52 + depth * 0.2})`);
       ctx.fillStyle = vig;
       ctx.fillRect(0, 0, W, H);
 
@@ -1521,6 +1611,68 @@ function WaterCanvas() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// WELL WATER PANEL
+// ─────────────────────────────────────────────────────────────────────────────
+function WellWaterPanel({ stateCode }: { stateCode: string }) {
+  const risks = WELL_RISKS[stateCode] ?? WELL_RISKS['OH'];
+  const sevLabel: Record<string, string> = { high:'High Risk', moderate:'Moderate Risk', low:'Lower Risk' };
+  const wellProducts = [
+    ...PRODUCTS.filter(p => p.well),
+    ...PRODUCTS.filter(p => !p.well && !p.remineralizes && p.cat === 'undersink' && p.bestFor.includes('Arsenic')).sort((a,b) => (b.quickChange ? 1 : 0) - (a.quickChange ? 1 : 0)).slice(0,2),
+  ];
+  return (
+    <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 20px 80px' }}>
+      {/* Header */}
+      <div style={{ marginBottom: 28, padding: '20px 24px', background: 'linear-gradient(135deg,rgba(5,18,42,0.9),rgba(2,8,20,0.95))', border: '1px solid rgba(120,80,255,0.3)', borderRadius: 12, boxShadow: '0 8px 32px rgba(120,80,255,0.15)' }}>
+        <div style={{ fontSize: 11, letterSpacing: 1.5, color: '#a78bfa', fontWeight: 800, marginBottom: 8 }}>PRIVATE WELL · {stateCode} STATE RISK PROFILE</div>
+        <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff', marginBottom: 8 }}>Well Water Risks in Your Area</div>
+        <p style={{ fontSize: 14, color: '#64748b', margin: 0, lineHeight: 1.7 }}>
+          Private wells are <strong style={{ color: '#e2e8f0' }}>not regulated by the EPA</strong> — you are responsible for your own testing and treatment. The risks below are based on USGS and EPA groundwater data for {stateCode}. Test your well annually.
+        </p>
+      </div>
+
+      {/* Risk cards */}
+      <div style={{ fontSize: 11, letterSpacing: 1.5, color: '#7c3aed', fontWeight: 800, marginBottom: 14 }}>COMMON CONTAMINANTS — {stateCode} WELL WATER</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+        {risks.map((r) => (
+          <div key={r.name} style={{ padding: '14px 18px', background: 'rgba(3,12,28,0.7)', border: `1px solid ${r.color}33`, borderLeft: `3px solid ${r.color}`, borderRadius: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+              <span style={{ fontSize: 13, fontWeight: 800, color: r.color }}>{r.name}</span>
+              <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: `${r.color}22`, color: r.color, border: `1px solid ${r.color}44` }}>{sevLabel[r.sev]}</span>
+            </div>
+            <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, marginBottom: 6 }}>{r.why}</div>
+            <div style={{ fontSize: 12, color: '#22d3ee', fontWeight: 600 }}>✓ {r.fix}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Lab test CTA */}
+      <div style={{ marginBottom: 32, padding: '18px 22px', background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 12 }}>
+        <div style={{ fontSize: 13, fontWeight: 800, color: '#a78bfa', marginBottom: 8 }}>⚗️ STEP 1 — TEST YOUR WELL FIRST</div>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 14px', lineHeight: 1.7 }}>
+          Before buying any filter, get a certified lab test. You need to know exactly what&apos;s in your water to choose the right treatment system.
+        </p>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
+          <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
+          <a href="https://www.ntllabs.com/well-water-testing/" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
+        </div>
+        <div style={{ fontSize: 11, color: '#475569', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <a href={`https://www.amazon.com/dp/B01LZMXS5P?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #47556955', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>🧪 Safe Home 200-Parameter Test — $30 →</a>
+          <a href={`https://www.amazon.com/dp/B00BPTYJMO?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #47556955', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>🧪 First Alert Bacteria Test — $15 →</a>
+        </div>
+      </div>
+
+      {/* Product recommendations */}
+      <div style={{ fontSize: 11, letterSpacing: 1.5, color: '#7c3aed', fontWeight: 800, marginBottom: 16 }}>STEP 2 — RECOMMENDED FILTERS FOR WELL WATER</div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 16 }}>
+        {wellProducts.map((p: any) => <ProductCard key={p.id} p={p} highlight={!!p.expertPick} detectedContaminants={risks.map(r => r.name)} />)}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────────────
 export default function WaterCheckup() {
@@ -1528,8 +1680,7 @@ export default function WaterCheckup() {
   const [loading, setLoading]           = useState(false);
   const [step, setStep]                 = useState(0);
   const [data, setData]                 = useState<any>(null);
-  const [wellData, setWellData]         = useState<any>(null);
-  const [isWell, setIsWell]             = useState(false);
+  const [ewgData, setEwgData]           = useState<any>(null);
   const [error, setError]               = useState<string | null>(null);
   const [tab, setTab]                   = useState('report');
   const [showEmail, setShowEmail]       = useState(false);
@@ -1545,28 +1696,24 @@ export default function WaterCheckup() {
   const [quoted, setQuoted]             = useState<Record<string, boolean>>({});
   const [situation, setSituation]       = useState<string | null>(null);
   const [showShare, setShowShare]       = useState(false);
+  const [wellMode, setWellMode]         = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const search = async () => {
     if (zip.length !== 5 || loading) return;
-    setLoading(true); setError(null); setData(null); setWellData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
+    setLoading(true); setError(null); setData(null); setEwgData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
     let s = 0;
     const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 650);
     try {
-      if (isWell) {
-        const result = await fetchWellData(zip);
-        clearInterval(tick);
-        setWellData(result);
-      } else {
-        const result = await fetchWaterData(zip);
-        clearInterval(tick);
-        setData(result);
-      }
+      const [result, ewg] = await Promise.all([fetchWaterData(zip), fetchEwgData(zip)]);
+      clearInterval(tick);
+      setData(result);
+      if (ewg && !ewg.error) setEwgData(ewg);
       setTimeout(() => {
         setShowEmail(true);
         resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 200);
-      if (!isWell) loadInstallers(zip);
+      loadInstallers(zip);
     } catch (e: any) {
       clearInterval(tick);
       setError(e.message);
@@ -1580,12 +1727,12 @@ export default function WaterCheckup() {
   };
 
   const getRecommended = () => {
-    if (!data?.contaminants?.length) return PRODUCTS.filter((p: any) => !p.wholeHouse && p.cat === 'undersink').slice(0, 3);
+    const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge' && !p.remineralizes);
+    if (!data?.contaminants?.length) return base.filter((p: any) => p.cat === 'undersink').slice(0, 3);
     const names = data.contaminants.map((c: any) => c.name);
     const hasPFAS = data.contaminants.some((c: any) => c.isPFAS || c.name?.includes('PFAS'));
-    return PRODUCTS
-      .filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge')
-      .map(p => ({ ...p, m: p.bestFor.filter((b: string) => names.some((n: string) => n.includes(b))).length + (hasPFAS && p.bestFor.includes('PFAS') ? 3 : 0) }))
+    return base
+      .map(p => ({ ...p, m: p.bestFor.filter((b: string) => names.some((n: string) => n.includes(b))).length + (hasPFAS && p.bestFor.includes('PFAS') ? 3 : 0) + (p.quickChange ? 2 : 0) }))
       .sort((a, b) => b.m - a.m).slice(0, 3);
   };
 
@@ -1603,8 +1750,9 @@ export default function WaterCheckup() {
   const contaminantNames = data?.contaminants?.map((c: any) => c.name) ?? [];
 
   return (
+    <>
+    <WaterCanvas />
     <div style={{ minHeight: '100vh', position: 'relative', fontFamily: 'inherit', color: '#e2e8f0' }}>
-            <WaterCanvas />
 
       {/* HEADER */}
       <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', borderBottomColor: 'rgba(6,182,212,0.12)', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(2,8,20,0.72)', backdropFilter: 'blur(28px) saturate(180%)', WebkitBackdropFilter: 'blur(28px) saturate(180%)', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 0 rgba(255,255,255,0.06), 0 4px 32px rgba(0,0,0,0.4)' }}>
@@ -1668,16 +1816,6 @@ export default function WaterCheckup() {
           </button>
         </div>
 
-        {/* Water source toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginBottom: 18 }}>
-          <button onClick={() => setIsWell(false)} style={{ padding: '7px 18px', borderRadius: 20, fontSize: 13, fontWeight: 700, cursor: 'pointer', border: '1px solid', transition: 'all 0.2s', background: !isWell ? 'rgba(6,182,212,0.15)' : 'transparent', borderColor: !isWell ? '#22d3ee' : '#1e3a4a', color: !isWell ? '#22d3ee' : '#475569' }}>
-            🏙️ City / Municipal Water
-          </button>
-          <button onClick={() => setIsWell(true)} style={{ padding: '7px 18px', borderRadius: 20, fontSize: 13, fontWeight: 700, cursor: 'pointer', border: '1px solid', transition: 'all 0.2s', background: isWell ? 'rgba(251,191,36,0.15)' : 'transparent', borderColor: isWell ? '#f59e0b' : '#1e3a4a', color: isWell ? '#f59e0b' : '#475569' }}>
-            🪣 Private Well Water
-          </button>
-        </div>
-
         {/* Trust strip */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, flexWrap: 'wrap', marginBottom: 8 }}>
           {[
@@ -1693,6 +1831,15 @@ export default function WaterCheckup() {
           ))}
         </div>
         <div style={{ marginTop: 6, fontSize: 12, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
+        {/* Well water toggle */}
+        <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center' }}>
+          <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 18px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#a78bfa' : '#475569', fontSize: 13, fontWeight: 700, cursor: 'pointer', transition: 'all .2s' }}>
+            <span style={{ width: 32, height: 18, borderRadius: 9, background: wellMode ? '#7c3aed' : '#1e3a4a', display: 'inline-flex', alignItems: 'center', transition: 'background .2s', flexShrink: 0, position: 'relative' }}>
+              <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#fff', position: 'absolute', left: wellMode ? 16 : 2, transition: 'left .2s' }} />
+            </span>
+            🏡 I&apos;m on Well Water
+          </button>
+        </div>
 {error && <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}><div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>⚠ Error</div><div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div></div>}
       </div>
 
@@ -1919,11 +2066,11 @@ export default function WaterCheckup() {
 
       {/* LOADER */}
       {loading && (
-        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: 'rgba(6,14,10,0.92)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(34,197,94,0.2)', borderTop: '1px solid rgba(34,197,94,0.35)', borderRadius: 12, position: 'relative', zIndex: 2, boxShadow: '0 24px 56px rgba(0,4,18,0.5), 0 0 40px rgba(34,197,94,0.06), inset 0 1px 0 rgba(34,197,94,0.1)', fontFamily: "'Courier New', monospace" }}>
+        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: 'rgba(6,14,10,0.92)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(34,197,94,0.2)', borderTop: '1px solid rgba(34,197,94,0.4)', borderRadius: 12, position: 'relative', zIndex: 2, boxShadow: '0 24px 56px rgba(0,4,18,0.5), 0 0 40px rgba(34,197,94,0.06), inset 0 1px 0 rgba(34,197,94,0.1)', fontFamily: "'Courier New', monospace" }}>
           <div style={{ fontSize: 10, color: '#166534', letterSpacing: 2, marginBottom: 14 }}>$ watercheck --zip {zip} --live</div>
           {STEPS.map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 7, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
-              <span style={{ fontSize: 13, color: i < step ? '#22c55e' : i === step ? '#86efac' : '#166534', minWidth: 14 }}>{i < step ? '✓' : i === step ? '▶' : '·'}</span>
+              <span style={{ color: i < step ? '#22c55e' : i === step ? '#86efac' : '#166534', fontSize: 13, minWidth: 14 }}>{i < step ? '✓' : i === step ? '▶' : '·'}</span>
               <span style={{ fontSize: 12, color: i < step ? '#4ade80' : i === step ? '#86efac' : '#166534', letterSpacing: 0.3 }}>{s}</span>
               {i === step && <span style={{ display: 'inline-block', width: 7, height: 13, background: '#22c55e', animation: 'wcBlink 1s step-end infinite', marginLeft: 2, verticalAlign: 'middle' }} />}
             </div>
@@ -1932,145 +2079,31 @@ export default function WaterCheckup() {
         </div>
       )}
 
-
-      {/* WELL WATER RESULTS */}
-      {wellData && !loading && (
-        <div ref={resultsRef} style={{ maxWidth: 1000, margin: '32px auto 60px', padding: '0 20px', position: 'relative', zIndex: 2 }}>
-
-          {/* WELL HEADER */}
-          <div style={{ background: 'rgba(3,12,28,0.82)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(245,158,11,0.25)', borderTop: '1px solid rgba(245,158,11,0.4)', borderRadius: '12px 12px 0 0', padding: '24px 28px', boxShadow: '0 8px 32px rgba(0,4,18,0.4)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-              <div style={{ textAlign: 'center', minWidth: 90 }}>
-                <div style={{ fontSize: 56, fontWeight: 900, color: '#f59e0b', lineHeight: 1 }}>🪣</div>
-                <div style={{ fontSize: 11, letterSpacing: 2, color: '#f59e0b', marginTop: 6, fontWeight: 700 }}>WELL WATER</div>
-              </div>
-              <div style={{ flex: 1, minWidth: 200 }}>
-                <div style={{ fontSize: 11, letterSpacing: 3, color: '#f59e0b', fontWeight: 700, marginBottom: 6 }}>PRIVATE WELL RISK PROFILE — ZIP {zip}</div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Regional Risk Assessment · {wellData.state}</div>
-                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>{wellData.stateProfile?.notes}</div>
-              </div>
-              <div style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 10, padding: '12px 18px', textAlign: 'center', minWidth: 120 }}>
-                <div style={{ fontSize: 11, color: '#f59e0b', letterSpacing: 2, fontWeight: 700 }}>RISK SCORE</div>
-                <div style={{ fontSize: 44, fontWeight: 900, color: '#f59e0b', lineHeight: 1.1 }}>{wellData.score}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8' }}>Unknown = Risk</div>
-              </div>
-            </div>
-          </div>
-
-          {/* DISCLAIMER BANNER */}
-          <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)', borderTop: 'none', padding: '12px 24px', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-            <span style={{ fontSize: 18, flexShrink: 0 }}>⚠️</span>
-            <div style={{ fontSize: 12, color: '#b45309', lineHeight: 1.7 }}>
-              <strong style={{ color: '#f59e0b' }}>Private wells are not regulated by EPA or state authorities.</strong> No public violation data or testing records exist for your well. This profile is based on regional geology, land use, and known contamination sites in <strong style={{ color: '#f59e0b' }}>{wellData.state}</strong>. The only way to know what&apos;s in your water is to test it.
-            </div>
-          </div>
-
-          {/* PRIMARY CONCERNS */}
-          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px' }}>
-            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 14 }}>TOP CONCERNS FOR YOUR REGION</div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {wellData.stateProfile?.primaryConcerns?.map((c: string, i: number) => (
-                <span key={i} style={{ padding: '6px 14px', borderRadius: 20, background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)', color: '#fca5a5', fontSize: 12, fontWeight: 700 }}>⚠ {c}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* CONTAMINANT RISK TABLE */}
-          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px' }}>
-            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 16 }}>CONTAMINANT RISK PROFILE</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {wellData.contaminants?.map((c: any) => {
-                const riskColor = c.risk === 'high' ? '#ef4444' : c.risk === 'moderate' ? '#f59e0b' : '#22d3ee';
-                const riskBg = c.risk === 'high' ? 'rgba(239,68,68,0.08)' : c.risk === 'moderate' ? 'rgba(245,158,11,0.08)' : 'rgba(34,211,238,0.05)';
-                return (
-                  <div key={c.key} style={{ background: riskBg, border: `1px solid ${riskColor}22`, borderLeft: `3px solid ${riskColor}`, borderRadius: 8, padding: '14px 16px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 15, fontWeight: 800, color: '#e2e8f0' }}>{c.name}</span>
-                      {c.isElevated && <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 10, background: `${riskColor}22`, color: riskColor, fontWeight: 700, border: `1px solid ${riskColor}44` }}>ELEVATED IN YOUR STATE</span>}
-                      <span style={{ marginLeft: 'auto', fontSize: 11, padding: '3px 10px', borderRadius: 10, background: `${riskColor}15`, color: riskColor, fontWeight: 800, border: `1px solid ${riskColor}33`, textTransform: 'uppercase', letterSpacing: 1 }}>{c.risk} risk</span>
-                    </div>
-                    <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.7, marginBottom: 6 }}>{c.why}</div>
-                    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', fontSize: 11, color: '#64748b' }}>
-                      <span><strong style={{ color: '#475569' }}>Health:</strong> {c.healthEffects}</span>
-                    </div>
-                    {(c.mcl || c.ewgGuideline) && (
-                      <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                        {c.mcl && <span style={{ fontSize: 11, padding: '3px 10px', borderRadius: 6, background: 'rgba(14,34,51,0.8)', color: '#475569', border: '1px solid #1e3a4a' }}>⚖️ {c.mcl}</span>}
-                        {c.ewgGuideline && <span style={{ fontSize: 11, padding: '3px 10px', borderRadius: 6, background: 'rgba(124,58,237,0.1)', color: '#a78bfa', border: '1px solid rgba(124,58,237,0.3)' }}>🔬 {c.ewgGuideline}</span>}
-                      </div>
-                    )}
-                    <div style={{ marginTop: 8, fontSize: 11, color: '#0891b2' }}>
-                      <strong>Test for:</strong> {c.testFor}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* LAB TEST KITS */}
-          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px' }}>
-            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 4 }}>STEP 1 — GET YOUR WELL TESTED FIRST</div>
-            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>Know exactly what&apos;s in your well before buying any filter. Certified lab kits — mail your sample, get results in days.</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {wellData.labTests?.map((t: any, i: number) => (
-                <div key={i} style={{ background: t.recommended ? 'rgba(34,211,238,0.05)' : 'rgba(6,20,48,0.6)', border: `1px solid ${t.recommended ? 'rgba(34,211,238,0.25)' : '#0e2233'}`, borderRadius: 10, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-                  {t.recommended && <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 10, background: 'rgba(34,211,238,0.15)', color: '#22d3ee', fontWeight: 800, border: '1px solid rgba(34,211,238,0.3)', flexShrink: 0 }}>OUR PICK</span>}
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{t.name}</div>
-                    <div style={{ fontSize: 12, color: '#64748b' }}>{t.tests}</div>
-                    <div style={{ fontSize: 11, color: '#475569', marginTop: 3 }}>⏱ Results in {t.turnaround}</div>
-                  </div>
-                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                    <div style={{ fontSize: 22, fontWeight: 900, color: '#22d3ee', marginBottom: 6 }}>${t.price}</div>
-                    <a href={`https://www.amazon.com/dp/${t.asin}?tag=${t.tag}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '8px 16px', background: '#f59e0b', borderRadius: 7, color: '#000', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>Order on Amazon →</a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* WELL FILTER PRODUCTS */}
-          <div style={{ background: 'rgba(3,12,28,0.7)', border: '1px solid rgba(255,255,255,0.07)', borderTop: 'none', padding: '20px 24px', borderRadius: '0 0 12px 12px' }}>
-            <div style={{ fontSize: 11, letterSpacing: 3, color: '#0891b2', fontWeight: 700, marginBottom: 4 }}>STEP 2 — WELL WATER FILTER SYSTEMS</div>
-            <div style={{ fontSize: 13, color: '#64748b', marginBottom: 16 }}>NSF-certified filters designed specifically for private well water. Test first, then filter for exactly what you find.</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {wellData.wellProducts?.map((p: any, i: number) => (
-                <div key={i} style={{ background: p.expertPick ? 'rgba(34,211,238,0.04)' : 'rgba(6,20,48,0.5)', border: `1px solid ${p.expertPick ? 'rgba(34,211,238,0.2)' : '#0e2233'}`, borderRadius: 10, padding: '16px', display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-                  <div style={{ flex: 1, minWidth: 200 }}>
-                    {p.expertPick && <div style={{ fontSize: 10, color: '#22d3ee', fontWeight: 800, letterSpacing: 1, marginBottom: 6, padding: '2px 8px', background: 'rgba(34,211,238,0.12)', border: '1px solid rgba(34,211,238,0.25)', borderRadius: 10, display: 'inline-block' }}>⭐ EXPERT PICK</div>}
-                    <div style={{ fontSize: 16, fontWeight: 800, color: '#e2e8f0', marginBottom: 4 }}>{p.name}</div>
-                    <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{p.brand} · {p.cert}</div>
-                    <div style={{ fontSize: 12, color: '#22d3ee', marginBottom: 8 }}><strong>Best for:</strong> {p.bestFor}</div>
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
-                      {p.removes?.map((r: string, ri: number) => (
-                        <span key={ri} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 6, background: 'rgba(34,211,238,0.08)', color: '#67e8f9', border: '1px solid rgba(34,211,238,0.15)' }}>{r}</span>
-                      ))}
-                    </div>
-                    {p.expertReason && <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', borderLeft: '2px solid #22d3ee44', paddingLeft: 10, lineHeight: 1.6 }}>{p.expertReason}</div>}
-                    <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
-                      {p.pros?.map((pr: string, pi: number) => <span key={pi} style={{ fontSize: 11, color: '#475569' }}>✓ {pr}</span>)}
-                    </div>
-                  </div>
-                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                    <div style={{ fontSize: 28, fontWeight: 900, color: '#22d3ee' }}>${p.price}</div>
-                    <div style={{ fontSize: 11, color: '#475569', marginBottom: 10 }}>⭐ {p.rating} ({p.reviews?.toLocaleString()} reviews)</div>
-                    <a href={`https://www.amazon.com/dp/${p.asin}?tag=${p.tag}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '10px 18px', background: '#f59e0b', borderRadius: 8, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy on Amazon →</a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* WELL WATER PANEL — shown when well mode is active and we have state data */}
+      {wellMode && data?.stateCode && !loading && (
+        <div ref={resultsRef} style={{ position: 'relative', zIndex: 2, marginTop: 32 }}>
+          <WellWaterPanel stateCode={data.stateCode} />
         </div>
       )}
 
       {/* RESULTS */}
-      {data && !loading && (
+      {data && !loading && !wellMode && (
         <div ref={resultsRef} style={{ maxWidth: 1000, margin: '32px auto 60px', padding: '0 20px', position: 'relative', zIndex: 2 }}>
 
+          {/* LIMITED DATA NOTICE */}
+          {data.limitedData && (
+            <div style={{ background: 'rgba(120,53,15,0.3)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '12px 12px 0 0', padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 0 }}>
+              <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 2 }}>Limited data for ZIP {data.zip}</div>
+                <div style={{ fontSize: 12, color: '#92400e', lineHeight: 1.5 }}>{data.limitedDataReason} Try a nearby ZIP or <a href="https://www.ewg.org/tapwater/" target="_blank" rel="noreferrer" style={{ color: '#f59e0b' }}>search EWG directly →</a></div>
+              </div>
+            </div>
+          )}
+
           {/* SUMMARY HEADER */}
-          <div className="wc-results-hdr" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: '1px solid rgba(255,255,255,0.13)', borderRadius: '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
-            <ScoreDial score={data.score} grade={data.grade} />
+          <div className="wc-results-hdr" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
+            {!data.limitedData && <ScoreDial score={data.score} grade={data.grade} />}
             <div style={{ flex: 1, minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 17, fontWeight: 800 }}>{data.systemName}</span>
@@ -2081,13 +2114,14 @@ export default function WaterCheckup() {
               <div style={{ fontSize: 12, color: '#334155', marginBottom: 8 }}>{data.sourceType}{data.population ? ` · Serves ${data.population}` : ''}</div>
               {data.summary && <div style={{ fontSize: 13, color: '#94a3b8', fontStyle: 'italic', marginBottom: 12, lineHeight: 1.6 }}>"{data.summary}"</div>}
               <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
-                {[\n                  { l:'VIOLATIONS', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
-                  { l:'OPEN',       v:data.openViolations,  c:data.openViolations  > 0 ? '#ef4444' : '#22d3ee' },
+                {[
+                  !data.limitedData && { l:'VIOLATIONS', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'OPEN',       v:data.openViolations,  c:data.openViolations  > 0 ? '#ef4444' : '#22d3ee' },
                   { l:'PFAS',       v:data.pfasCount || 0,  c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
-                  { l:'SCORE',      v:data.score,            c:scoreColor },
-                ].map(s => (
-                  <div key={s.l} className={s.l === 'SCORE' ? 'wc-metal-border' : ''} style={{ textAlign: 'center', borderRadius: 8, padding: s.l === 'SCORE' ? '4px 10px' : undefined, background: s.l === 'SCORE' ? 'rgba(6,182,212,0.04)' : undefined }}>
-                    <div style={{ fontSize: 20, fontWeight: 800, color: s.c, filter: s.l === 'SCORE' ? 'drop-shadow(0 0 8px rgba(34,211,238,0.6))' : undefined }}>{s.v}</div>
+                  !data.limitedData && { l:'SCORE',      v:data.score,            c:scoreColor },
+                ].filter(Boolean).map((s: any) => (
+                  <div key={s.l} style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 20, fontWeight: 800, color: s.c }}>{s.v}</div>
                     <div style={{ fontSize: 10, color: '#334155', letterSpacing: 1 }}>{s.l}</div>
                   </div>
                 ))}
@@ -2139,6 +2173,55 @@ export default function WaterCheckup() {
                   <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>CONTAMINANT ANALYSIS — CLICK ROWS FOR HEALTH INFO</div>
                   {data.contaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
                 </>
+              )}
+
+              {/* ── EWG TAP WATER ATLAS ─────────────────────────────────── */}
+              {ewgData && (
+                <div style={{ background: 'rgba(5,20,40,0.75)', border: '1px solid rgba(34,197,94,0.22)', borderRadius: 10, padding: '16px 18px', marginBottom: 18 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+                    <div>
+                      <div style={{ fontSize: 10, letterSpacing: 0.5, color: '#22c55e', fontWeight: 800, marginBottom: 3 }}>🌿 EWG TAP WATER ATLAS — HEALTH GUIDELINES</div>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{ewgData.systemName}</div>
+                    </div>
+                    <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22c55e', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 4, padding: '3px 9px', textDecoration: 'none', whiteSpace: 'nowrap' }}>View on EWG →</a>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 14 }}>
+                    {[
+                      { label: 'Contaminants detected', val: ewgData.totalDetected, color: '#94a3b8' },
+                      { label: 'Exceed EWG health limits', val: ewgData.exceedGuidelines, color: ewgData.exceedGuidelines > 0 ? '#f59e0b' : '#22c55e' },
+                      { label: 'Exceed legal limits', val: ewgData.exceedLegal, color: ewgData.exceedLegal > 0 ? '#ef4444' : '#22c55e' },
+                    ].map((stat, i) => (
+                      <div key={i} style={{ background: 'rgba(3,12,28,0.6)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 7, padding: '10px 12px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 22, fontWeight: 800, color: stat.color, lineHeight: 1 }}>{stat.val}</div>
+                        <div style={{ fontSize: 10, color: '#475569', marginTop: 3, lineHeight: 1.3 }}>{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {ewgData.contaminants?.length > 0 ? (
+                    <>
+                      <div style={{ fontSize: 10, letterSpacing: 0.4, color: '#475569', marginBottom: 8 }}>EWG HEALTH GUIDELINES ARE STRICTER THAN FEDERAL LEGAL LIMITS</div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 1, maxHeight: 280, overflowY: 'auto' }}>
+                        {ewgData.contaminants.slice(0, 20).map((c: any, i: number) => (
+                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', background: i % 2 === 0 ? 'rgba(3,12,28,0.4)' : 'transparent', borderRadius: 4, fontSize: 12 }}>
+                            <div style={{ flex: 1, color: c.exceedsGuideline ? '#fbbf24' : '#94a3b8', fontWeight: c.exceedsGuideline ? 600 : 400 }}>{c.name}</div>
+                            <div style={{ color: '#64748b', minWidth: 70, textAlign: 'right' }}>{c.detected}</div>
+                            {c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#7f1d1d', color: '#fca5a5', borderRadius: 3, fontWeight: 700 }}>OVER LIMIT</span>}
+                            {c.exceedsGuideline && !c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#78350f', color: '#fde68a', borderRadius: 3 }}>Health concern</span>}
+                          </div>
+                        ))}
+                        {ewgData.contaminants.length > 20 && (
+                          <div style={{ fontSize: 11, color: '#475569', textAlign: 'center', padding: '8px 0' }}>+{ewgData.contaminants.length - 20} more — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view all on EWG</a></div>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{ fontSize: 12, color: '#475569', textAlign: 'center', padding: '8px 0' }}>
+                      Contaminant detail not available — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view full EWG report →</a>
+                    </div>
+                  )}
+                </div>
               )}
 
               {data.usgs?.sites?.length > 0 && (
@@ -2482,5 +2565,6 @@ export default function WaterCheckup() {
         </div>
       )}
     </div>
+    </>
   );
 }
