@@ -435,15 +435,15 @@ const RETAILER_LINKS: Record<number, { store: string; url: string; color: string
   2:  [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/iSpring%20RCC7AK', color: '#f97316', label: 'HD' },
         { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=iSpring+RCC7AK", color: '#1a5c9e', label: 'LW' } ],
   // Waterdrop G3P800
-  3:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' },
+  3:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' },
         { store: 'Home Depot', url: 'https://www.homedepot.com/s/Waterdrop%20G3P800', color: '#f97316', label: 'HD' } ],
   // Aquasana SmartFlow
   5:  [ { store: 'Aquasana',   url: 'https://www.aquasana.com/under-sink-water-filters', color: '#0ea5e9', label: 'Brand' },
         { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Aquasana+under+sink", color: '#1a5c9e', label: 'LW' } ],
   // Waterdrop D6
-  26: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' } ],
+  26: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Waterdrop D4 Countertop
-  6:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' },
+  6:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' },
         { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Waterdrop+D4+countertop', color: '#0071ce', label: 'WM' } ],
   // Clearly Filtered Pitcher
   9:  [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/clearly-filtered-pitcher', color: '#6366f1', label: 'Brand' },
@@ -482,7 +482,7 @@ const RETAILER_LINKS: Record<number, { store: string; url: string; color: string
   // Frizzlife SK99
   23: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Frizzlife+SK99', color: '#f97316', label: 'HD' } ],
   // Waterdrop K19
-  30: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system', color: '#22d3ee', label: 'Brand' } ],
+  30: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
