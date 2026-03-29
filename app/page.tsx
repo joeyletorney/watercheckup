@@ -53,7 +53,23 @@ const SITUATIONS = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FULL PRODUCT CATALOG — 38 products, 10 categories, all NSF/WQA certified
+// WATER HARDNESS BY STATE — USGS groundwater data
+// ─────────────────────────────────────────────────────────────────────────────
+const HARDNESS: Record<string, 'very_hard' | 'hard' | 'moderate' | 'soft'> = {
+  AZ:'very_hard', NV:'very_hard', UT:'very_hard', CO:'very_hard',
+  TX:'very_hard', FL:'very_hard', KS:'very_hard', NE:'very_hard',
+  ND:'very_hard', SD:'very_hard',
+  CA:'hard', NM:'hard', IL:'hard', IN:'hard', OH:'hard', MO:'hard',
+  IA:'hard', MI:'hard', WI:'hard', MN:'hard', OK:'hard', AR:'hard',
+  PA:'hard', VA:'hard', WV:'hard', MD:'hard', WY:'hard', DE:'hard', NJ:'hard',
+  NC:'moderate', SC:'moderate', GA:'moderate', TN:'moderate', KY:'moderate',
+  AL:'moderate', MS:'moderate', LA:'moderate', NY:'moderate', MT:'moderate', ID:'moderate',
+  WA:'soft', OR:'soft', ME:'soft', VT:'soft', NH:'soft',
+  MA:'soft', RI:'soft', CT:'soft', HI:'soft', AK:'soft',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FULL PRODUCT CATALOG — 41 products, 11 categories, all NSF/WQA certified
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO ──────────────────────────────────────────────────────────
@@ -115,6 +131,11 @@ const PRODUCTS: any[] = [
   // ── WELL WATER SPECIFIC ──────────────────────────────────────────────────────
   { id:37, cat:'well-uv', catLabel:'UV Sterilizer', name:'HQUA-OWS-12 UV Sterilizer', brand:'HQUA', price:149, filterCostPerYear:45, rating:4.5, reviews:2800, gpd:null, stages:1, cert:['NSF/ANSI 55 Class B'], certColor:'#7c3aed', removes:['Bacteria 99.99%','Viruses 99.99%','Cysts','E. Coli','Giardia'], bestFor:['Bacteria','Coliform','Viruses','Cysts'], pros:['No chemicals','12 GPM whole-house flow','Kills 99.99% pathogens'], diyDiff:'Medium', situations:['homeowner'], well:true, expertPick:true, expertReason:'UV sterilization is the gold standard for private well bacteria — no chemicals, no taste change, and eliminates viruses, bacteria, and cysts that filters alone can\'t stop.', img:'', amazon:`https://www.amazon.com/dp/B07TPC9S4Y?tag=${TAG}` },
   { id:38, cat:'whole', catLabel:'Whole-House', name:'SpringWell WS4 Well Water Filter', brand:'SpringWell', price:899, filterCostPerYear:85, rating:4.8, reviews:1200, gpd:null, stages:3, cert:['NSF/ANSI 42','WQA tested'], certColor:'#d97706', removes:['Iron >99%','Manganese >99%','Hydrogen Sulfide','Sediment','Odor'], bestFor:['Iron','Manganese','Sulfur','Sediment'], pros:['Built for well water','Air injection — no chemicals','Removes rotten-egg smell'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, img:'', amazon:`https://www.amazon.com/dp/B09NGDLQT6?tag=${TAG}` },
+
+  // ── WATER SOFTENERS ─────────────────────────────────────────────────────────
+  { id:39, cat:'softener', catLabel:'Water Softener', name:'Fleck 5600SXT 48,000 Grain', brand:'Fleck', price:649, filterCostPerYear:40, rating:4.4, reviews:3200, gpd:null, stages:1, cert:['NSF/ANSI 44'], certColor:'#d97706', removes:['Hardness >99%','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Most trusted salt softener brand','48,000 grain capacity','Digital metered valve'], diyDiff:'Hard', situations:['homeowner'], softener:true, wholeHouse:true, img:'', amazon:`https://www.amazon.com/s?k=Fleck+5600SXT+48000+grain+water+softener&tag=${TAG}` },
+  { id:40, cat:'softener', catLabel:'Water Softener', name:'SpringWell Salt-Free SS1', brand:'SpringWell', price:999, filterCostPerYear:0, rating:4.8, reviews:890, gpd:null, stages:1, cert:['NSF/ANSI 61','WQA tested'], certColor:'#d97706', removes:['Hardness','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['No salt — no sodium added to water','No electricity or backwash needed','Lifetime warranty'], diyDiff:'Hard', situations:['homeowner'], softener:true, saltFree:true, wholeHouse:true, expertPick:true, expertReason:'Salt-free conditioners neutralize hardness minerals without adding sodium — better for health and the environment. SpringWell leads the category with a lifetime warranty and zero operating costs.', img:'', amazon:`https://www.amazon.com/s?k=SpringWell+SS1+salt+free+water+softener+conditioner&tag=${TAG}` },
+  { id:41, cat:'softener', catLabel:'Water Softener', name:'Aquasana SimplySoft Salt-Free', brand:'Aquasana', price:799, filterCostPerYear:50, rating:4.5, reviews:1400, gpd:null, stages:1, cert:['NSF/ANSI 61','WQA tested'], certColor:'#d97706', removes:['Hardness','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Salt-free — no sodium added','No backwash or drain needed','WQA tested'], diyDiff:'Hard', situations:['homeowner'], softener:true, saltFree:true, wholeHouse:true, img:'', amazon:`https://www.amazon.com/dp/B01E4OQURW?tag=${TAG}` },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1833,8 +1854,11 @@ export default function WaterCheckup() {
     finally { setInstLoading(false); }
   };
 
+  const hardnessLevel = HARDNESS[data?.stateCode] ?? null;
+  const isHardWater = hardnessLevel === 'very_hard' || hardnessLevel === 'hard';
+
   const getRecommended = () => {
-    const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge' && !p.remineralizes);
+    const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge' && !p.remineralizes && !p.softener);
     if (!data?.contaminants?.length) return base.filter((p: any) => p.cat === 'undersink').slice(0, 3);
     const names = data.contaminants.map((c: any) => c.name);
     const hasPFAS = data.contaminants.some((c: any) => c.isPFAS || c.name?.includes('PFAS'));
@@ -1848,8 +1872,8 @@ export default function WaterCheckup() {
     year: `Yr ${i}`, filter: Math.round(prod.price + (prod.filterCostPerYear || 80) * i), bottled: Math.round(ppl * 32 * 12 * i),
   }));
   const recommended = getRecommended();
-  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','pitcher','faucet','bottle','whole','shower','fridge'];
-  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', shower:'Shower', fridge:'Fridge/Inline' };
+  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','pitcher','faucet','bottle','whole','softener','shower','fridge'];
+  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', shower:'Shower', fridge:'Fridge/Inline' };
   const filteredProds = productFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === productFilter);
   const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
   const pfasLevel = data?.ucmr5?.maxPfasPpt ?? data?.contaminants?.find((c: any) => c.isPFAS || c.name?.includes('PFAS'))?.level ?? null;
@@ -2370,8 +2394,35 @@ export default function WaterCheckup() {
               </div>
               <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
                 <button onClick={() => setTab('solutions')} className="wc-analyze" style={{ padding: '7px 16px', border: 'none', borderRadius: 6, fontSize: 12, cursor: 'pointer', fontWeight: 700 }}>Find My Solution →</button>
-                <button onClick={() => setTab('products')} className="wc-glass-btn" style={{ padding: '7px 16px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>View All 38 Products →</button>
+                <button onClick={() => setTab('products')} className="wc-glass-btn" style={{ padding: '7px 16px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>View All 41 Products →</button>
               </div>
+
+              {/* HARD WATER BANNER */}
+              {isHardWater && (
+                <div style={{ marginTop: 24, padding: '18px 20px', background: 'linear-gradient(135deg,rgba(120,53,15,0.35),rgba(10,20,40,0.7))', border: '1px solid rgba(251,191,36,0.35)', borderTop: '1px solid rgba(253,224,100,0.4)', borderRadius: 12, backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                    <span style={{ fontSize: 22 }}>🪨</span>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#fbbf24', letterSpacing: 0.5 }}>
+                        {hardnessLevel === 'very_hard' ? 'Very Hard Water Area' : 'Hard Water Area'} — {data.stateCode}
+                      </div>
+                      <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>
+                        {hardnessLevel === 'very_hard'
+                          ? 'Among the highest mineral content in the US. Scale buildup shortens appliance life by up to 50%.'
+                          : 'Elevated calcium & magnesium cause scale on pipes, appliances, and fixtures.'}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 12, lineHeight: 1.6 }}>
+                    Hard water is not a health risk — but it destroys water heaters, dishwashers, and washing machines over time, and leaves white scale on faucets and showers.
+                    The fix: <strong style={{ color: '#fbbf24' }}>RO system for drinking water</strong> (already recommended above) + <strong style={{ color: '#fbbf24' }}>whole-house water softener</strong> for appliance protection.
+                  </div>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#b45309', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED SOFTENERS FOR HARD WATER</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
+                    {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 40} detectedContaminants={['Hardness','Scale']} />)}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -2410,7 +2461,7 @@ export default function WaterCheckup() {
           {/* TAB: ALL PRODUCTS */}
           {tab === 'products' && (
             <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 22 }}>38 PRODUCTS · ALL NSF/WQA CERTIFIED · AMAZON AFFILIATE</div>
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 22 }}>41 PRODUCTS · ALL NSF/WQA CERTIFIED · AMAZON AFFILIATE</div>
 
           {/* ── FEATURED EXPERT PICKS SPOTLIGHT ────────────────────── */}
           {(() => {
@@ -2441,7 +2492,7 @@ export default function WaterCheckup() {
             {catFilters.map(cat => {
               const active = productFilter === cat;
               const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
-              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', shower:'🚿', fridge:'❄️' };
+              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', shower:'🚿', fridge:'❄️' };
               return (
                 <button key={cat} onClick={() => setProductFilter(cat)}
                   style={{
