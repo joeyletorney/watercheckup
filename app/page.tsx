@@ -2079,37 +2079,10 @@ export default function WaterCheckup() {
             </div>
           </div>
 
-          {/* ── STEP 2: THE SOLUTION ───────────────────────────────── */}
-          <div className="wc-fadein-2" style={{ marginBottom: 64 }}>
+          {/* ── STEP 2: YOUR SITUATION ─────────────────────────────── */}
+          <div className="wc-fadein-2" style={{ marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
-              <div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market — curated by J. Letorney with 40+ years of water quality expertise.</div>
-              </div>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
-              {[
-                { icon: '🥤', label: 'Pitcher Filter',     best: 'Chlorine, lead, taste',         note: 'No install · Portable' },
-                { icon: '🪣', label: 'Countertop Filter',  best: 'Chlorine, PFAS, bacteria',       note: 'No plumbing needed' },
-                { icon: '🚰', label: 'Under-Counter RO',   best: '99%+ of all contaminants',       note: 'Most powerful option' },
-                { icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs',      note: 'Every tap & shower' },
-                { icon: '🚿', label: 'Shower Filter',      best: 'Chlorine & chloramine',           note: 'Healthier skin & hair' },
-              ].map(f => (
-                <div key={f.label} className="wc-card" style={{ borderRadius: 14, padding: '18px 14px', textAlign: 'center' }}>
-                  <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
-                  <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
-                  <div style={{ fontSize: 11, color: '#475569' }}>{f.note}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── STEP 3: YOUR SITUATION ─────────────────────────────── */}
-          <div className="wc-fadein-3" style={{ marginBottom: 48 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>What's Your Living Situation?</div>
                 <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>We'll show you the right filters for your home type.</div>
@@ -2174,6 +2147,33 @@ export default function WaterCheckup() {
                 </div>
               );
             })()}
+          </div>
+
+          {/* ── STEP 3: THE SOLUTION ───────────────────────────────── */}
+          <div className="wc-fadein-3" style={{ marginBottom: 64 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
+              <div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
+                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market — curated by J. Letorney with 40+ years of water quality expertise.</div>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
+              {[
+                { icon: '🥤', label: 'Pitcher Filter',     best: 'Chlorine, lead, taste',         note: 'No install · Portable' },
+                { icon: '🪣', label: 'Countertop Filter',  best: 'Chlorine, PFAS, bacteria',       note: 'No plumbing needed' },
+                { icon: '🚰', label: 'Under-Counter RO',   best: '99%+ of all contaminants',       note: 'Most powerful option' },
+                { icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs',      note: 'Every tap & shower' },
+                { icon: '🚿', label: 'Shower Filter',      best: 'Chlorine & chloramine',           note: 'Healthier skin & hair' },
+              ].map(f => (
+                <div key={f.label} className="wc-card" style={{ borderRadius: 14, padding: '18px 14px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
+                  <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
+                  <div style={{ fontSize: 11, color: '#475569' }}>{f.note}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
