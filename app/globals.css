@@ -168,26 +168,29 @@ p { margin: 0; }
   transform: translateY(-1px); color: #fff !important;
 }
 .wc-glass-btn:active { transform: scale(.98) !important; }
- /* ── buy / amber button ───────────────────────────────────────── */
+ /* ── buy / glassmorphism button ──────────────────────────────── */
 .wc-buy {
   position: relative; overflow: hidden;
-  background: linear-gradient(160deg, rgba(217,119,6,0.92), rgba(245,158,11,0.96)) !important;
-  border: 1px solid rgba(253,210,100,0.50) !important;
-  border-top-color: rgba(255,230,120,0.55) !important;
-  box-shadow: 0 4px 20px rgba(217,119,6,.38), inset 0 1px 0 rgba(255,255,255,.26),
-              inset 0 -1px 0 rgba(120,60,0,.20) !important;
-  color: #000 !important;
-  transition: transform .15s ease, box-shadow .15s ease !important;
+  background: rgba(6,182,212,0.18) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+  border: 1px solid rgba(165,243,252,0.30) !important;
+  border-top-color: rgba(224,255,255,0.45) !important;
+  box-shadow: 0 4px 24px rgba(6,182,212,.22), inset 0 1px 0 rgba(255,255,255,.20),
+              inset 0 -1px 0 rgba(6,182,212,.15) !important;
+  color: #e0f7fa !important;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease !important;
 }
 .wc-buy::after {
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,.22) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, transparent 100%);
   pointer-events: none;
 }
 .wc-buy:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 10px 32px rgba(245,158,11,.58), inset 0 1px 0 rgba(255,255,255,.30) !important;
+  background: rgba(6,182,212,0.30) !important;
+  box-shadow: 0 10px 36px rgba(6,182,212,.40), inset 0 1px 0 rgba(255,255,255,.28) !important;
 }
  /* ── situation selector buttons ───────────────────────────────── */
 .wc-sit {
