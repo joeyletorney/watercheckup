@@ -1970,7 +1970,7 @@ export default function WaterCheckup() {
             </span>
             🏡 I&apos;m on Well Water
           </button>
-          <div style={{ fontSize: 12, color: '#334155', fontStyle: 'italic' }}>It&apos;s Easy as 1, 2, 3</div>
+          <div style={{ fontSize: 16, fontWeight: 800, color: '#94a3b8' }}>It&apos;s Easy as 1, 2, 3</div>
         </div>
 {error && <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}><div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>⚠ Error</div><div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div></div>}
       </div>
