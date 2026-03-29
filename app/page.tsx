@@ -1964,9 +1964,9 @@ export default function WaterCheckup() {
         <div style={{ marginTop: 6, fontSize: 12, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
         {/* Well water toggle */}
         <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-          <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 18px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#a78bfa' : '#475569', fontSize: 13, fontWeight: 700, cursor: 'pointer', transition: 'all .2s' }}>
-            <span style={{ width: 32, height: 18, borderRadius: 9, background: wellMode ? '#7c3aed' : '#1e3a4a', display: 'inline-flex', alignItems: 'center', transition: 'background .2s', flexShrink: 0, position: 'relative' }}>
-              <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#fff', position: 'absolute', left: wellMode ? 16 : 2, transition: 'left .2s' }} />
+          <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 28px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#a78bfa' : '#94a3b8', fontSize: 17, fontWeight: 800, cursor: 'pointer', transition: 'all .2s' }}>
+            <span style={{ width: 38, height: 22, borderRadius: 11, background: wellMode ? '#7c3aed' : '#1e3a4a', display: 'inline-flex', alignItems: 'center', transition: 'background .2s', flexShrink: 0, position: 'relative' }}>
+              <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#fff', position: 'absolute', left: wellMode ? 19 : 3, transition: 'left .2s' }} />
             </span>
             🏡 I&apos;m on Well Water
           </button>
