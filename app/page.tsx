@@ -1953,23 +1953,6 @@ export default function WaterCheckup() {
       {!data && !loading && (
         <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 20px 80px' }}>
 
-          {/* ── STEP INDICATOR ─────────────────────────────────────── */}
-          <div className="wc-steps-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, marginBottom: 56, flexWrap: 'wrap', rowGap: 12 }}>
-            {[
-              { n: 1, label: 'The Problem' },
-              { n: 2, label: 'The Solution' },
-              { n: 3, label: 'Your Situation' },
-              { n: 4, label: 'Where to Buy' },
-            ].map((s, i) => (
-              <div key={s.n} style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div className="wc-step" style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 800, color: '#fff', flexShrink: 0 }}>{s.n}</div>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: '#94a3b8' }}>{s.label}</span>
-                </div>
-                {i < 3 && <div style={{ width: 40, height: 1, background: 'linear-gradient(90deg,#1a3a5c,#0891b255,#1a3a5c)', margin: '0 12px', flexShrink: 0 }} />}
-              </div>
-            ))}
-          </div>
 
           {/* ── STEP 1: THE PROBLEM ────────────────────────────────── */}
           <div className="wc-fadein-1" style={{ marginBottom: 64 }}>
