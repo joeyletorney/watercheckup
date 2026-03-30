@@ -20,26 +20,24 @@ const CITY_SLUGS = [
   'reno','chesapeake','gilbert','boise','spokane','fremont',
 ]
 
-// Static pages with known last-modified dates
-const STATIC_PAGES = [
-  { path: '',             priority: 1.0, changeFreq: 'daily'   as const, lastMod: '2025-03-29' },
-  { path: '/faq',         priority: 0.8, changeFreq: 'weekly'  as const, lastMod: '2025-03-29' },
-  { path: '/contaminants',priority: 0.8, changeFreq: 'weekly'  as const, lastMod: '2025-03-29' },
-]
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://watercheckup.com'
+  const now = new Date()
 
-  const staticEntries = STATIC_PAGES.map(p => ({
+  const staticEntries = [
+    { path: '',              priority: 1.0, changeFreq: 'daily'  as const },
+    { path: '/faq',          priority: 0.8, changeFreq: 'weekly' as const },
+    { path: '/contaminants', priority: 0.8, changeFreq: 'weekly' as const },
+  ].map(p => ({
     url: `${baseUrl}${p.path}`,
-    lastModified: new Date(p.lastMod),
+    lastModified: now,
     changeFrequency: p.changeFreq,
     priority: p.priority,
   }))
 
   const cityEntries = CITY_SLUGS.map(slug => ({
     url: `${baseUrl}/water/${slug}`,
-    lastModified: new Date('2025-03-29'),
+    lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
