@@ -1966,7 +1966,7 @@ export default function WaterCheckup() {
         </h1>
 
         <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 32px' }}>
-          Free EPA water quality report for any US ZIP code — plus <strong style={{ color: '#e2e8f0' }}>expert-curated filter recommendations</strong> and local installers. Instant results.
+          Free water quality report for any US ZIP code — plus <strong style={{ color: '#e2e8f0' }}>expert-curated filter recommendations</strong>. Instant results.
         </p>
 
         {/* Search bar */}
