@@ -1955,7 +1955,7 @@ export default function WaterCheckup() {
           ].map(t => (
             <div key={t.text} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ fontSize: 13 }}>{t.icon}</span>
-              <span style={{ fontSize: 12, color: '#475569', fontWeight: 600 }}>{t.text}</span>
+              <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 700 }}>{t.text}</span>
             </div>
           ))}
         </div>
