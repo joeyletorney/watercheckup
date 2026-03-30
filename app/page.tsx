@@ -84,12 +84,10 @@ const ACIDIC_STATES = new Set([
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FULL PRODUCT CATALOG — 43 products, 12 categories, all NSF/WQA certified
+// FULL PRODUCT CATALOG — 39 products, 12 categories, quick-change filters only
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
-  // ── UNDER-SINK RO ──────────────────────────────────────────────────────────
-  { id:1, cat:'undersink', catLabel:'Under-Sink RO', name:'APEC ROES-50', brand:'APEC Water Systems', price:219, filterCostPerYear:95, rating:4.7, reviews:28400, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride >96%','Chlorine >98%','TDS >93%'], bestFor:['Lead','Arsenic','Fluoride','Nitrate','Copper'], pros:['Made in USA','Budget-friendly','DIY install ~2hrs'], diyDiff:'Medium', situations:['homeowner','family'], expertPick:true, expertReason:'Best-value under-sink RO — WQA Gold Seal certified, made in the USA, and removes 99%+ lead, arsenic, and fluoride. Over 28,000 five-star reviews make it the most proven RO at this price point.', img:'https://www.apecwater.com/cdn/shop/files/APEC-ROES50_Image_1.jpg?v=1763754451&width=1024', amazon:`https://www.amazon.com/dp/B00I0ZGOZM?tag=${TAG}` },
-  { id:2, cat:'undersink', catLabel:'Under-Sink RO', name:'iSpring RCC7AK', brand:'iSpring', price:229, filterCostPerYear:80, rating:4.7, reviews:14200, gpd:75, stages:6, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98.9%','PFAS >96%','Chromium >99%','Fluoride >97%'], bestFor:['Lead','PFAS','Chromium-6','Copper'], pros:['Remineralization stage','75 GPD fast','pH balanced'], diyDiff:'Medium', situations:['homeowner','family'], remineralizes:true, img:'https://www.ispringwatersystems.com/wp-content/uploads/2022/11/RCC7AK.jpg', amazon:`https://www.amazon.com/dp/B005LJ8EXU?tag=${TAG}` },
+  // ── UNDER-SINK RO — quick-change only ─────────────────────────────────────
   { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
   { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, expertPick:true, expertReason:'Most certified RO on the market — WQA Gold Seal plus NSF/ANSI 42, 53, 58, and 401. Removes microplastics and 90+ contaminants. Best pick for maximum certification coverage and PFAS removal.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
   { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
@@ -103,8 +101,6 @@ const PRODUCTS: any[] = [
 
   // ── COUNTERTOP RO — no installation needed ──────────────────────────────────
   { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
-  { id:7, cat:'countertop', catLabel:'Countertop RO', name:'APEC RO-CTOP', brand:'APEC Water Systems', price:179, filterCostPerYear:80, rating:4.5, reviews:2900, gpd:90, stages:4, cert:['WQA Gold Seal','NSF/ANSI 58'], certColor:'#d97706', removes:['Lead >99%','Arsenic >99%','Fluoride','Chloramine','TDS'], bestFor:['Lead','Arsenic','Fluoride','Nitrate'], pros:['No installation','Portable','Connects to faucet'], diyDiff:'None', situations:['renter','dorm'], img:'', amazon:`https://www.amazon.com/dp/B00JWLMQZE?tag=${TAG}` },
-  { id:8, cat:'countertop', catLabel:'Countertop RO', name:'Zero Installation Purifier ZIP-100', brand:'iSpring', price:159, filterCostPerYear:65, rating:4.4, reviews:1800, gpd:75, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 58'], certColor:'#22d3ee', removes:['Lead >98%','Arsenic >97%','Chlorine >99%','TDS','Heavy metals'], bestFor:['Lead','Arsenic','Copper','Chlorine'], pros:['Sits on countertop','No plumbing needed','Great for apartments'], diyDiff:'None', situations:['renter','dorm'], img:'', amazon:`https://www.amazon.com/dp/B01M0GXKL5?tag=${TAG}` },
   { id:30, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19', brand:'Waterdrop', price:309, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Bacteria','Viruses','TDS'], bestFor:['PFAS','Lead','Bacteria','Viruses'], pros:['UV sterilization built-in','Quick-change filters','Zero install'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, img:'', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
   { id:31, cat:'countertop', catLabel:'Countertop RO', name:'AquaTru Classic', brand:'AquaTru', price:475, filterCostPerYear:130, rating:4.6, reviews:5200, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Fluoride','Radium'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['No installation required','Quick-change filters','NSF/ANSI 401 certified'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Premium countertop RO certified to NSF/ANSI 42, 53, 58, and 401 — removes PFAS, nitrates, fluoride, and radium. No installation required, and quick-change filters swap in seconds. Best premium option for the kitchen counter.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Classic-1-1_bd723f43-efb1-4f23-b772-9352d7d7179b.webp?v=1758659574', amazon:`https://www.amazon.com/dp/B0CQS3HQ8F?tag=${TAG}` },
 
@@ -466,8 +462,6 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 // LW = Lowe's Creator, CF = Clearly Filtered direct, WD = Waterdrop direct, AQ = Aquasana direct
 // ─────────────────────────────────────────────────────────────────────────────
 const RETAILER_LINKS: Record<number, { store: string; url: string; color: string; label: string }[]> = {
-  // iSpring RCC7AK
-  2:  [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=iSpring+RCC7AK", color: '#1a5c9e', label: 'LW' } ],
   // Waterdrop G3P800
   3:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Aquasana SmartFlow
@@ -1335,8 +1329,8 @@ function ResourcesTab({ data }: { data: any }) {
 function FilterCompareTab() {
   const cols = [
     { id: 3,  label: 'Waterdrop G3P800' },
-    { id: 1,  label: 'APEC ROES-50' },
-    { id: 2,  label: 'iSpring RCC7AK' },
+    { id: 5,  label: 'Aquasana SmartFlow' },
+    { id: 28, label: 'AquaTru Under-Sink' },
     { id: 6,  label: 'Waterdrop D4' },
     { id: 9,  label: 'Clearly Filtered' },
     { id: 18, label: 'Pelican PC600' },
@@ -1858,7 +1852,7 @@ export default function WaterCheckup() {
   const [emailSent, setEmailSent]       = useState(false);
   const [years, setYears]               = useState(5);
   const [ppl, setPpl]                   = useState(4);
-  const [ftype, setFtype]               = useState('iSpring RCC7AK');
+  const [ftype, setFtype]               = useState('Waterdrop G3P800');
   const [installers, setInstallers]     = useState<any[]>([]);
   const [instLoading, setInstLoading]   = useState(false);
   const [productFilter, setProductFilter] = useState('all');
