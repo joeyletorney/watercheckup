@@ -10,13 +10,13 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || ''
 export const metadata: Metadata = {
   metadataBase: new URL('https://watercheckup.com'),
   title: {
-    default: "WaterCheckup -- See What's in Your Tap Water",
+    default: "WaterCheckup — See What's in Your Tap Water",
     template: '%s | WaterCheckup',
   },
   description: 'Free water quality reports for any US ZIP code. Real EPA contaminant data, NSF-certified filter recommendations, and local installer referrals. Powered by live EPA SDWIS data.',
-  keywords: ['water quality', 'tap water', 'EPA water data', 'water filter', 'water contaminants', 'PFAS', 'lead in water', 'water quality report', 'NSF certified filter', 'water safety'],
-  authors: [{ name: 'WaterCheckup' }],
-  creator: 'WaterCheckup',
+  keywords: ['water quality', 'tap water', 'EPA water data', 'water filter', 'water contaminants', 'PFAS', 'lead in water', 'water quality report', 'NSF certified filter', 'water safety', 'tap water safety', 'drinking water quality', 'water quality by zip code'],
+  authors: [{ name: 'J. Letorney', url: 'https://watercheckup.com' }],
+  creator: 'J. Letorney',
   publisher: 'WaterCheckup',
   robots: {
     index: true,
@@ -54,6 +54,43 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://watercheckup.com/#website',
+      url: 'https://watercheckup.com',
+      name: 'WaterCheckup',
+      description: 'Free EPA water quality reports for any US ZIP code.',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: 'https://watercheckup.com/?zip={search_term_string}' },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://watercheckup.com/#organization',
+      name: 'WaterCheckup',
+      url: 'https://watercheckup.com',
+      logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/logo.svg' },
+      sameAs: ['https://twitter.com/watercheckup'],
+      founder: { '@type': 'Person', name: 'J. Letorney' },
+      description: 'Water quality reporting service powered by live EPA data, curated by J. Letorney — 40+ years in water treatment.',
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://watercheckup.com/#webpage',
+      url: 'https://watercheckup.com',
+      name: "WaterCheckup — See What's in Your Tap Water",
+      isPartOf: { '@id': 'https://watercheckup.com/#website' },
+      about: { '@id': 'https://watercheckup.com/#organization' },
+      description: 'Enter your ZIP code to get a free EPA water quality report with contaminant data and NSF-certified filter recommendations.',
+    },
+  ],
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.className}>
@@ -62,6 +99,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/logo.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {GA_ID && (
           <>
             <Script

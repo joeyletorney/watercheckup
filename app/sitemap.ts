@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 
 const CITY_SLUGS = [
+  // Top 50 metros
   'chicago','los-angeles','houston','new-york','phoenix','philadelphia',
   'san-antonio','dallas','miami','seattle','denver','boston','atlanta',
   'san-francisco','detroit','minneapolis','portland','las-vegas','nashville',
@@ -9,38 +10,39 @@ const CITY_SLUGS = [
   'st-louis','sacramento','salt-lake-city','albuquerque','tucson','jacksonville',
   'austin','san-diego','san-jose','washington-dc','cincinnati','milwaukee',
   'buffalo','anchorage','honolulu','baton-rouge','richmond',
+  // Additional high-value cities
+  'orlando','fort-worth','el-paso','fresno','virginia-beach','mesa',
+  'colorado-springs','long-beach','bakersfield','aurora','anaheim',
+  'santa-ana','corpus-christi','riverside','st-paul','lexington',
+  'stockton','henderson','greensboro','plano','newark','lincoln',
+  'durham','chandler','fort-wayne','madison','lubbock','glendale-az',
+  'norfolk','winston-salem','garland','scottsdale','hialeah','laredo',
+  'reno','chesapeake','gilbert','boise','spokane','fremont',
+]
+
+// Static pages with known last-modified dates
+const STATIC_PAGES = [
+  { path: '',             priority: 1.0, changeFreq: 'daily'   as const, lastMod: '2025-03-29' },
+  { path: '/faq',         priority: 0.8, changeFreq: 'weekly'  as const, lastMod: '2025-03-29' },
+  { path: '/contaminants',priority: 0.8, changeFreq: 'weekly'  as const, lastMod: '2025-03-29' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://watercheckup.com'
-  const now = new Date()
 
-  const cityPages = CITY_SLUGS.map(slug => ({
+  const staticEntries = STATIC_PAGES.map(p => ({
+    url: `${baseUrl}${p.path}`,
+    lastModified: new Date(p.lastMod),
+    changeFrequency: p.changeFreq,
+    priority: p.priority,
+  }))
+
+  const cityEntries = CITY_SLUGS.map(slug => ({
     url: `${baseUrl}/water/${slug}`,
-    lastModified: now,
+    lastModified: new Date('2025-03-29'),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: now,
-      changeFrequency: 'daily' as const,
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contaminants`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    ...cityPages,
-  ]
+  return [...staticEntries, ...cityEntries]
 }

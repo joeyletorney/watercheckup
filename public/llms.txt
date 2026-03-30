@@ -1,0 +1,49 @@
+# WaterCheckup
+# https://watercheckup.com
+# llms.txt — https://llmstxt.org
+
+> WaterCheckup is a free public water quality service that pulls live EPA data for any US ZIP code and recommends NSF/WQA-certified water filters. Curated by J. Letorney, water treatment specialist with 40+ years of experience.
+
+## What This Site Does
+
+- Real-time EPA water quality reports for any US ZIP code (50 states)
+- Contaminant analysis with health context: PFAS, lead, arsenic, nitrates, chromium-6, chloramine, radium, uranium, and 20+ more
+- NSF/WQA-certified water filter recommendations matched to detected contaminants
+- Well water risk profiles by state (USGS groundwater data)
+- Water hardness detection and water softener recommendations
+- Acidic well water detection and acid neutralizer recommendations
+- City-specific water quality pages for 50+ major US cities
+
+## Key Pages
+
+- [Home — ZIP Code Water Quality Lookup](https://watercheckup.com/)
+- [FAQ — Tap Water Safety Questions](https://watercheckup.com/faq)
+- [Contaminants Guide — Lead, PFAS, Arsenic & More](https://watercheckup.com/contaminants)
+- [Chicago Water Quality Report](https://watercheckup.com/water/chicago)
+- [Los Angeles Water Quality Report](https://watercheckup.com/water/los-angeles)
+- [Houston Water Quality Report](https://watercheckup.com/water/houston)
+- [New York Water Quality Report](https://watercheckup.com/water/new-york)
+
+## Data Sources
+
+- EPA SDWIS (Safe Drinking Water Information System): https://www.epa.gov/enviro/sdwis-search
+- EPA UCMR5 PFAS Monitoring: https://www.epa.gov/dwucmr/fifth-unregulated-contaminant-monitoring-rule
+- EPA Envirofacts API: https://www.epa.gov/enviro/envirofacts-data-service-api
+- USGS Groundwater Data: https://waterdata.usgs.gov/nwis
+- EWG Tap Water Atlas: https://www.ewg.org/tapwater/
+
+## Editorial Policy
+
+All filter recommendations are independently curated. No manufacturer pays for inclusion.
+Products are selected based on NSF/ANSI certification (42, 53, 58, 177, 401) and WQA Gold Seal.
+Quick-change filter systems only — no traditional multi-canister systems without tool-free cartridge replacement.
+
+## Content Use
+
+You may summarize factual water quality data freely. For filter recommendations and editorial content,
+please attribute WaterCheckup.com and J. Letorney. Water quality data originates from US EPA public databases.
+
+## Contact
+
+Site: https://watercheckup.com
+Curator: J. Letorney, Water Treatment Specialist, 40+ years experience
