@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     canonical: 'https://watercheckup.com',
   },
   verification: {
-    google: '',
+    google: '5fMlEv2aPnPmH01F9bVS3EbJvZvXQym1t1RUr-GHvYE',
   },
 }
 
