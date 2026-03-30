@@ -69,7 +69,22 @@ const HARDNESS: Record<string, 'very_hard' | 'hard' | 'moderate' | 'soft'> = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FULL PRODUCT CATALOG — 39 products, 11 categories, all NSF/WQA certified
+// ACIDIC WELL WATER BY STATE — USGS / EPA groundwater pH data
+// Granite/crystalline bedrock (NE), sandy/low-buffering soils (SE), volcanic (PNW)
+// ─────────────────────────────────────────────────────────────────────────────
+const ACIDIC_STATES = new Set([
+  // New England — granite bedrock, naturally low pH (5.5–6.5 common)
+  'ME','NH','VT','MA','CT','RI',
+  // Mid-Atlantic — old crystalline rock, corrosive to copper pipes
+  'NY','NJ','PA','MD','WV','VA','DE',
+  // Southeast — sandy soils, poor mineral buffering, high rainfall
+  'NC','SC','GA','AL','MS','TN',
+  // Pacific Northwest — volcanic/acidic soils
+  'WA','OR',
+]);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FULL PRODUCT CATALOG — 43 products, 12 categories, all NSF/WQA certified
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO ──────────────────────────────────────────────────────────
@@ -134,6 +149,10 @@ const PRODUCTS: any[] = [
   { id:39, cat:'softener', catLabel:'Water Softener', name:'Fleck 5600SXT 48,000 Grain', brand:'Fleck', price:649, filterCostPerYear:40, rating:4.4, reviews:3200, gpd:null, stages:1, cert:['NSF/ANSI 44'], certColor:'#d97706', removes:['Hardness >99%','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Most trusted salt softener brand','48,000 grain capacity','Digital metered valve'], diyDiff:'Hard', situations:['homeowner'], softener:true, wholeHouse:true, img:'', amazon:`https://www.amazon.com/s?k=Fleck+5600SXT+48000+grain+water+softener&tag=${TAG}` },
   { id:40, cat:'softener', catLabel:'Water Softener', name:'SpringWell Salt-Free SS1', brand:'SpringWell', price:999, filterCostPerYear:0, rating:4.8, reviews:890, gpd:null, stages:1, cert:['NSF/ANSI 61','WQA tested'], certColor:'#d97706', removes:['Hardness','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['No salt — no sodium added to water','No electricity or backwash needed','Lifetime warranty'], diyDiff:'Hard', situations:['homeowner'], softener:true, saltFree:true, wholeHouse:true, expertPick:true, expertReason:'Salt-free conditioners neutralize hardness minerals without adding sodium — better for health and the environment. SpringWell leads the category with a lifetime warranty and zero operating costs.', img:'', amazon:`https://www.amazon.com/s?k=SpringWell+SS1+salt+free+water+softener+conditioner&tag=${TAG}` },
   { id:41, cat:'softener', catLabel:'Water Softener', name:'Aquasana SimplySoft Salt-Free', brand:'Aquasana', price:799, filterCostPerYear:50, rating:4.5, reviews:1400, gpd:null, stages:1, cert:['NSF/ANSI 61','WQA tested'], certColor:'#d97706', removes:['Hardness','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Salt-free — no sodium added','No backwash or drain needed','WQA tested'], diyDiff:'Hard', situations:['homeowner'], softener:true, saltFree:true, wholeHouse:true, img:'', amazon:`https://www.amazon.com/dp/B01E4OQURW?tag=${TAG}` },
+
+  // ── ACID NEUTRALIZERS — well water low pH ───────────────────────────────────
+  { id:42, cat:'acid-neutralizer', catLabel:'Acid Neutralizer', name:'AFWFilters 1.5 cu.ft. Calcite Neutralizer', brand:'AFWFilters', price:459, filterCostPerYear:40, rating:4.5, reviews:780, gpd:null, stages:1, cert:['NSF/ANSI 61'], certColor:'#22d3ee', removes:['Low pH','Corrosive water','Copper leaching','Lead leaching from pipes'], bestFor:['Acidic pH','Corrosion','Blue-green staining'], pros:['Raises pH naturally — no chemicals','Whole-house point-of-entry','10+ yr calcite media life'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, acidNeutralizer:true, expertPick:true, expertReason:'Calcite media dissolves slowly to raise pH naturally — no pumps, chemicals, or electricity. Whole-house protection stops corrosive water from leaching copper and lead from pipes. Best value acid neutralizer for private wells.', img:'', amazon:`https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=${TAG}` },
+  { id:43, cat:'acid-neutralizer', catLabel:'Acid Neutralizer', name:'Fleck 5600SXT Calcite/Corosex System', brand:'Fleck', price:649, filterCostPerYear:50, rating:4.6, reviews:420, gpd:null, stages:1, cert:['NSF/ANSI 61'], certColor:'#22d3ee', removes:['Low pH','Corrosive water','Copper leaching','Lead leaching from pipes'], bestFor:['Acidic pH','Corrosion','Blue-green staining'], pros:['Digital metered valve — auto backwash','Calcite + Corosex blend for very low pH','30-yr Fleck valve warranty'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, acidNeutralizer:true, expertPick:true, expertReason:'The Fleck 5600SXT valve is the most trusted name in residential water treatment. The Calcite/Corosex blend handles even very acidic well water (pH 5.0–6.5). Automatic backwash keeps the bed clean. Best premium acid neutralizer.', img:'', amazon:`https://www.amazon.com/s?k=Fleck+5600SXT+calcite+acid+neutralizer&tag=${TAG}` },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -248,6 +267,7 @@ const WELL_RISKS: Record<string, WellRisk[]> = (() => {
   const ne: WellRisk[] = [
     { name:'Arsenic', sev:'high', why:'Naturally occurring in granite/bedrock. Northeast has among the highest US well arsenic rates.', fix:'RO removes >99%', color:'#ef4444' },
     { name:'Radon', sev:'high', why:'Dissolves from granite into groundwater; volatilizes indoors during water use.', fix:'Aeration system or point-of-entry carbon', color:'#ef4444' },
+    { name:'Low pH / Acidic Water', sev:'moderate', why:'Granite and crystalline bedrock provide little buffering — NE well water commonly tests pH 5.5–6.5. Corrosive to copper pipes and fixtures.', fix:'Whole-house calcite acid neutralizer raises pH naturally', color:'#f59e0b' },
     { name:'Bacteria / Coliform', sev:'moderate', why:'Surface runoff, cracked well casings, or nearby septic systems.', fix:'UV sterilizer eliminates 99.99%', color:'#f59e0b' },
     { name:'Uranium', sev:'moderate', why:'Occurs in bedrock — linked to kidney damage at elevated levels.', fix:'RO or strong-base anion exchange', color:'#f59e0b' },
     { name:'Hardness', sev:'low', why:'Calcium/magnesium from limestone — scaling on pipes and appliances.', fix:'Water softener', color:'#22d3ee' },
@@ -255,6 +275,7 @@ const WELL_RISKS: Record<string, WellRisk[]> = (() => {
   const se: WellRisk[] = [
     { name:'Bacteria / Coliform', sev:'high', why:'Warm climate, shallow aquifers, high density of septic systems.', fix:'UV sterilizer + annual testing', color:'#ef4444' },
     { name:'Nitrates', sev:'high', why:'Agricultural runoff and septic leach — dangerous for infants (blue baby syndrome).', fix:'RO removes >97%', color:'#ef4444' },
+    { name:'Low pH / Acidic Water', sev:'moderate', why:'Sandy, low-mineral soils across the Southeast provide little pH buffering — well water commonly tests pH 6.0–6.8. Corrodes copper plumbing and fixtures.', fix:'Whole-house calcite acid neutralizer raises pH naturally', color:'#f59e0b' },
     { name:'Iron & Manganese', sev:'moderate', why:'Naturally occurring — causes staining, metallic taste, pipe buildup.', fix:'Iron/oxidizing whole-house filter', color:'#f59e0b' },
     { name:'Arsenic', sev:'moderate', why:'Present in coastal plain sediments across FL, SC, NC.', fix:'RO removes >99%', color:'#f59e0b' },
     { name:'Hardness', sev:'low', why:'Limestone-heavy geology across Southeast produces hard water.', fix:'Water softener', color:'#22d3ee' },
@@ -1764,6 +1785,58 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 16 }}>
         {wellProducts.map((p: any) => <ProductCard key={p.id} p={p} highlight={!!p.expertPick} detectedContaminants={risks.map(r => r.name)} />)}
       </div>
+
+      {/* ACID NEUTRALIZER BANNER — acidic well water states */}
+      {ACIDIC_STATES.has(stateCode) && (
+        <div style={{ marginTop: 28, padding: '18px 20px', background: 'linear-gradient(135deg,rgba(5,38,20,0.5),rgba(10,20,40,0.7))', border: '1px solid rgba(34,197,94,0.35)', borderTop: '1px solid rgba(74,222,128,0.4)', borderRadius: 12, backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <span style={{ fontSize: 22 }}>⚗️</span>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 800, color: '#4ade80', letterSpacing: 0.5 }}>Acidic Well Water Alert — {stateCode}</div>
+              <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>
+                {stateCode && ['ME','NH','VT','MA','CT','RI','NY','NJ','PA','MD','WV','VA','DE'].includes(stateCode)
+                  ? 'Granite/crystalline bedrock in this region produces naturally low-pH water (commonly pH 5.5–6.5).'
+                  : 'Sandy, low-mineral soils in this region often yield acidic well water (commonly pH 6.0–6.8).'}
+              </div>
+            </div>
+          </div>
+          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 12, lineHeight: 1.6 }}>
+            Acidic water (pH below 7) is <strong style={{ color: '#4ade80' }}>corrosive to copper and lead pipes</strong> — it leaches those metals directly into your drinking water even if the aquifer itself is clean. Blue-green staining on fixtures is the telltale sign.
+            The fix: <strong style={{ color: '#4ade80' }}>whole-house calcite acid neutralizer</strong> installed at the point of entry. Calcite media dissolves slowly to raise pH naturally — no chemicals, no electricity.
+          </div>
+          <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#15803d', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED ACID NEUTRALIZERS FOR WELL WATER</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
+            {PRODUCTS.filter(p => p.acidNeutralizer).map((p: any) => <ProductCard key={p.id} p={p} highlight={true} detectedContaminants={['Low pH','Acidic Water']} />)}
+          </div>
+        </div>
+      )}
+
+      {/* HARD WATER SOFTENER BANNER — hard water states on well */}
+      {(HARDNESS[stateCode] === 'very_hard' || HARDNESS[stateCode] === 'hard') && (
+        <div style={{ marginTop: 20, padding: '18px 20px', background: 'linear-gradient(135deg,rgba(120,53,15,0.35),rgba(10,20,40,0.7))', border: '1px solid rgba(251,191,36,0.35)', borderTop: '1px solid rgba(253,224,100,0.4)', borderRadius: 12, backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <span style={{ fontSize: 22 }}>🪨</span>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 800, color: '#fbbf24', letterSpacing: 0.5 }}>
+                {HARDNESS[stateCode] === 'very_hard' ? 'Very Hard Water Area' : 'Hard Water Area'} — {stateCode}
+              </div>
+              <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>
+                {HARDNESS[stateCode] === 'very_hard'
+                  ? 'Among the highest mineral content in the US. Well water in this area commonly has very high calcium and magnesium.'
+                  : 'Elevated calcium and magnesium from limestone aquifers — scale buildup on appliances and fixtures.'}
+              </div>
+            </div>
+          </div>
+          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 12, lineHeight: 1.6 }}>
+            Hard well water destroys water heaters, dishwashers, and washing machines over time. A whole-house water softener protects every appliance, pipe, and fixture in your home.
+            For drinking water, pair with the <strong style={{ color: '#fbbf24' }}>RO system above</strong> — RO also removes hardness minerals from your drinking supply.
+          </div>
+          <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#b45309', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED SOFTENERS FOR HARD WELL WATER</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
+            {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 40} detectedContaminants={['Hardness','Scale']} />)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1842,8 +1915,8 @@ export default function WaterCheckup() {
     year: `Yr ${i}`, filter: Math.round(prod.price + (prod.filterCostPerYear || 80) * i), bottled: Math.round(ppl * 32 * 12 * i),
   }));
   const recommended = getRecommended();
-  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','pitcher','faucet','bottle','whole','softener','shower','fridge'];
-  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', shower:'Shower', fridge:'Fridge/Inline' };
+  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','pitcher','faucet','bottle','whole','softener','acid-neutralizer','shower','fridge'];
+  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower', fridge:'Fridge/Inline' };
   const filteredProds = productFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === productFilter);
   const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
   const pfasLevel = data?.ucmr5?.maxPfasPpt ?? data?.contaminants?.find((c: any) => c.isPFAS || c.name?.includes('PFAS'))?.level ?? null;
@@ -2530,7 +2603,7 @@ export default function WaterCheckup() {
             {catFilters.map(cat => {
               const active = productFilter === cat;
               const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
-              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', shower:'🚿', fridge:'❄️' };
+              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿', fridge:'❄️' };
               return (
                 <button key={cat} onClick={() => setProductFilter(cat)}
                   style={{
