@@ -1268,13 +1268,13 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'EPA ECHO Enforcement', url: `https://echo.epa.gov/`, desc: 'Enforcement actions and inspection history' },
     ]},
     { cat: '🌿 EWG & ADVOCACY', items: [
-      { name: 'EWG Tap Water Atlas', url: 'https://www.ewg.org/tapwater/', desc: 'EWG\'s national tap water contamination database' },
+      { name: 'EWG Tap Water Atlas', url: 'https://www.ewg.org/tapwater/?utm_source=watercheckup', desc: 'EWG\'s national tap water contamination database' },
       { name: 'PFAS Exchange — Industrial Sites', url: 'https://pfasproject.com/', desc: 'Map of PFAS contamination sources and industrial sites' },
       { name: 'NRDC Drinking Water Report', url: 'https://www.nrdc.org/issues/drinking-water', desc: 'NRDC\'s national water safety resources' },
     ]},
     { cat: '⚗️ TESTING LABS', items: [
-      { name: 'National Testing Labs', url: 'https://www.ntllabs.com/', desc: 'Certified home water testing — PFAS, metals, bacteria' },
-      { name: 'SimpleLab Tap Score', url: 'https://mytapscore.com/', desc: 'Mail-in water test kits — comprehensive panels starting at $89' },
+      { name: 'National Testing Labs', url: 'https://www.ntllabs.com/?utm_source=watercheckup', desc: 'Certified home water testing — PFAS, metals, bacteria' },
+      { name: 'SimpleLab Tap Score', url: 'https://mytapscore.com/?utm_source=watercheckup', desc: 'Mail-in water test kits — comprehensive panels starting at $89' },
       { name: 'EPA Certified Lab Finder', url: 'https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water', desc: 'Find a state-certified lab in your state' },
     ]},
     { cat: '🔧 INSTALLER RESOURCES', items: [
@@ -1316,7 +1316,7 @@ function ResourcesTab({ data }: { data: any }) {
         </p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <a href="https://mytapscore.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
-          <a href="https://www.ntllabs.com/" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
+          <a href="https://www.ntllabs.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
         </div>
       </div>
     </div>
@@ -1765,7 +1765,7 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
         </p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
           <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
-          <a href="https://www.ntllabs.com/well-water-testing/" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
+          <a href="https://www.ntllabs.com/well-water-testing/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
         </div>
         <div style={{ fontSize: 11, color: '#475569', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -2315,7 +2315,7 @@ export default function WaterCheckup() {
               <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 2 }}>Limited data for ZIP {data.zip}</div>
-                <div style={{ fontSize: 12, color: '#92400e', lineHeight: 1.5 }}>{data.limitedDataReason} Try a nearby ZIP or <a href="https://www.ewg.org/tapwater/" target="_blank" rel="noreferrer" style={{ color: '#f59e0b' }}>search EWG directly →</a></div>
+                <div style={{ fontSize: 12, color: '#92400e', lineHeight: 1.5 }}>{data.limitedDataReason} Try a nearby ZIP or <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#f59e0b' }}>search EWG directly →</a></div>
               </div>
             </div>
           )}
