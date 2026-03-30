@@ -1962,7 +1962,7 @@ export default function WaterCheckup() {
       <div style={{ maxWidth: 760, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#f1f9ff', letterSpacing: -1 }}>
-          Know Exactly What&apos;s<br />in Your <span className="wc-metal">Water</span>
+          Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
         </h1>
 
         <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 32px' }}>
