@@ -2443,14 +2443,6 @@ export default function WaterCheckup() {
                 </div>
               )}
 
-              {data.usgs?.sites?.length > 0 && (
-                <div style={{ background: '#0b1e36', border: '1px solid #7c3aed30', borderRadius: 8, padding: '12px 16px', marginBottom: 18 }}>
-                  <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#7c3aed', marginBottom: 8, fontWeight: 700 }}>⚗️ USGS NWIS — SOURCE WATER CONDITIONS</div>
-                  {data.usgs.sites.map((s: any, i: number) => (
-                    <div key={i} style={{ fontSize: 12, color: '#64748b', marginBottom: 3 }}><span style={{ color: '#94a3b8' }}>{s.name}:</span> {s.param} — <span style={{ color: '#22d3ee' }}>{s.value} {s.unit}</span></div>
-                  ))}
-                </div>
-              )}
 
               {data.echo && (
                 <div style={{ background: '#0b1e36', border: '1px solid #ef444430', borderRadius: 8, padding: '14px 16px', marginBottom: 18 }}>
