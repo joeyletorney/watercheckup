@@ -46,7 +46,7 @@ async function findInstallers(zip: string) {
 // LIVING SITUATIONS
 // ─────────────────────────────────────────────────────────────────────────────
 const SITUATIONS = [
-  { id: 'homeowner', icon: '🏠', label: 'Homeowner',         desc: 'You own your home and want full protection at every tap, shower, and appliance.',        tagline: 'Full-home water protection',    cats: ['whole-house','undersink','shower'] },
+  { id: 'homeowner', icon: '🏠', label: 'Homeowner',         desc: 'You own your home and want full protection at every tap, shower, and appliance.',        tagline: 'Full-home water protection',    cats: ['whole','undersink','shower'] },
   { id: 'renter',    icon: '🏢', label: 'Renter / Apartment',desc: 'You rent — no plumbing changes allowed. Clean water without drilling a single hole.', tagline: 'No installation required',      cats: ['countertop','pitcher','shower'] },
   { id: 'rv',        icon: '🚐', label: 'RV / Van Life',     desc: 'On the road and need reliable filtration wherever you park or hook up.',                 tagline: 'Portable filtration anywhere',  cats: ['countertop','pitcher'] },
   { id: 'dorm',      icon: '🎓', label: 'College Dorm',      desc: 'Small space, shared facilities, tight budget — simple, affordable, plug-in-and-pour.',  tagline: 'Simple & affordable',           cats: ['pitcher'] },
@@ -2153,6 +2153,35 @@ export default function WaterCheckup() {
             {situation && (() => {
               const sit = SITUATIONS.find(s => s.id === situation)!;
               const sitProducts = PRODUCTS.filter((p: any) => sit.cats.includes(p.cat) && p.expertPick);
+              const catOrder = sit.id === 'homeowner' ? ['undersink','whole','shower'] : sit.cats;
+              const catTitles: Record<string,string> = { undersink:'🚰 Drinking Water (Under-Sink RO)', whole:'🏠 Whole-House Protection', shower:'🚿 Shower Filters', countertop:'🪣 Countertop Filters', pitcher:'🥤 Pitcher Filters' };
+              const renderCard = (p: any) => (
+                <div key={p.id} className="wc-card" style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
+                    <img src={p.img} alt={p.name} style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
+                    <div style={{ position: 'absolute', top: 8, left: 8, background: 'linear-gradient(135deg,#d97706,#f59e0b)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #d9770655' }}>🏅 Expert Pick</div>
+                    {p.quickChange && <div style={{ position: 'absolute', top: 8, right: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #06b6d455' }}>⚡ Quick-Change</div>}
+                  </div>
+                  <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
+                    <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 0.5 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
+                      <span style={{ fontSize: 11, color: '#64748b' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
+                    </div>
+                    <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.65, flex: 1 }}>{p.expertReason}</div>
+                    {p.quickChange && (
+                      <div style={{ fontSize: 11, color: '#06b6d4', padding: '6px 10px', background: 'rgba(6,182,212,.08)', border: '1px solid rgba(6,182,212,.2)', borderRadius: 7 }}>
+                        ⚡ <strong>Quick-Change Filter</strong> — twist-off cartridge, no mess, no tools
+                      </div>
+                    )}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
+                      <span style={{ fontSize: 24, fontWeight: 900, color: '#38bdf8' }}>${p.price}</span>
+                      <BuyButtons p={p} block />
+                    </div>
+                  </div>
+                </div>
+              );
               return (
                 <div style={{ animation: 'wcFadeUp .5s ease-out both' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
@@ -2162,35 +2191,26 @@ export default function WaterCheckup() {
                       <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{sit.tagline} · All available on Amazon with free shipping</div>
                     </div>
                   </div>
-                  <div className="wc-step4-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
-                    {sitProducts.map((p: any) => (
-                      <div key={p.id} className="wc-card" style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
-                          <img src={p.img} alt={p.name} style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
-                          <div style={{ position: 'absolute', top: 8, left: 8, background: 'linear-gradient(135deg,#d97706,#f59e0b)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #d9770655' }}>🏅 Expert Pick</div>
-                          {p.quickChange && <div style={{ position: 'absolute', top: 8, right: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #06b6d455' }}>⚡ Quick-Change</div>}
-                        </div>
-                        <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
-                          <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 0.5 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
-                          <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                            <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
-                            <span style={{ fontSize: 11, color: '#64748b' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
-                          </div>
-                          <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.65, flex: 1 }}>{p.expertReason}</div>
-                          {p.quickChange && (
-                            <div style={{ fontSize: 11, color: '#06b6d4', padding: '6px 10px', background: 'rgba(6,182,212,.08)', border: '1px solid rgba(6,182,212,.2)', borderRadius: 7 }}>
-                              ⚡ <strong>Quick-Change Filter</strong> — twist-off cartridge, no mess, no tools
+                  {sit.id === 'homeowner' ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+                      {catOrder.map(cat => {
+                        const catProds = sitProducts.filter((p: any) => p.cat === cat);
+                        if (!catProds.length) return null;
+                        return (
+                          <div key={cat}>
+                            <div style={{ fontSize: 12, fontWeight: 800, color: '#0891b2', letterSpacing: 1, marginBottom: 12 }}>{catTitles[cat] || cat.toUpperCase()}</div>
+                            <div className="wc-step4-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
+                              {catProds.map(renderCard)}
                             </div>
-                          )}
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
-                            <span style={{ fontSize: 24, fontWeight: 900, color: '#38bdf8' }}>${p.price}</span>
-                            <BuyButtons p={p} block />
                           </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="wc-step4-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
+                      {sitProducts.map(renderCard)}
+                    </div>
+                  )}
                 </div>
               );
             })()}
