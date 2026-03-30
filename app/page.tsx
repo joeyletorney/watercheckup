@@ -2225,7 +2225,7 @@ export default function WaterCheckup() {
                     <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>4</div>
                     <div>
                       <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Where to Buy — Our Top Picks for {sit.icon} {sit.label}s</div>
-                      <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>{sit.tagline} · All available on Amazon with free shipping</div>
+                      <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>Curated by the world&apos;s foremost water authority, J. Letorney — 40+ years experience</div>
                     </div>
                   </div>
                   {sit.id === 'homeowner' ? (
