@@ -1961,14 +1961,8 @@ export default function WaterCheckup() {
       {/* SEARCH / HERO */}
       <div style={{ maxWidth: 760, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
-        {/* Expert credibility badge */}
-        <div className="wc-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(5,18,42,0.72)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.08)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 30, padding: '10px 22px', marginBottom: 32, boxShadow: '0 8px 40px rgba(8,145,178,0.22), inset 0 1px 0 rgba(255,255,255,0.12)' }}>
-          <span style={{ fontSize: 18 }}>🏅</span>
-          <span style={{ fontSize: 13, color: '#94a3b8' }}>Curated by the world&apos;s foremost water expert <strong style={{ color: '#38bdf8', fontWeight: 700 }}>J. Letorney</strong> · <strong style={{ color: '#38bdf8', fontWeight: 700 }}>40+ years experience</strong></span>
-        </div>
-
         <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#f1f9ff', letterSpacing: -1 }}>
-          Know Exactly What&apos;s<br />in Your <span className="wc-metal">Tap Water</span>
+          Know Exactly What&apos;s<br />in Your <span className="wc-metal">Water</span>
         </h1>
 
         <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 32px' }}>
