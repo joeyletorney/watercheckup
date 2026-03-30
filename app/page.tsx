@@ -442,66 +442,36 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 
 // ─────────────────────────────────────────────────────────────────────────────
 // RETAILER LINKS — per product, keyed by product id
-// Pending affiliate approval: replace placeholder URLs with real affiliate links
-// HD = Home Depot (Impact), LW = Lowe's Creator, WM = Walmart (Impact),
-// CF = Clearly Filtered direct (Refersion), WD = Waterdrop direct, AQ = Aquasana direct
+// LW = Lowe's Creator, CF = Clearly Filtered direct, WD = Waterdrop direct, AQ = Aquasana direct
 // ─────────────────────────────────────────────────────────────────────────────
 const RETAILER_LINKS: Record<number, { store: string; url: string; color: string; label: string }[]> = {
-  // APEC ROES-50
-  1:  [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/APEC%20ROES-50', color: '#f97316', label: 'HD' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=APEC+ROES-50',  color: '#0071ce', label: 'WM' } ],
   // iSpring RCC7AK
-  2:  [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/iSpring%20RCC7AK', color: '#f97316', label: 'HD' },
-        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=iSpring+RCC7AK", color: '#1a5c9e', label: 'LW' } ],
+  2:  [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=iSpring+RCC7AK", color: '#1a5c9e', label: 'LW' } ],
   // Waterdrop G3P800
-  3:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' },
-        { store: 'Home Depot', url: 'https://www.homedepot.com/s/Waterdrop%20G3P800', color: '#f97316', label: 'HD' } ],
+  3:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Aquasana SmartFlow
-  5:  [ { store: 'Aquasana',   url: 'https://www.aquasana.com/under-sink-water-filters', color: '#0ea5e9', label: 'Brand' },
-        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Aquasana+under+sink", color: '#1a5c9e', label: 'LW' } ],
+  5:  [ { store: 'Aquasana', url: 'https://www.aquasana.com/under-sink-water-filters', color: '#0ea5e9', label: 'Brand' },
+        { store: "Lowe's",   url: "https://www.lowes.com/search?searchTerm=Aquasana+under+sink", color: '#1a5c9e', label: 'LW' } ],
   // Waterdrop D6
-  26: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
+  26: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Waterdrop D4 Countertop
-  6:  [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Waterdrop+D4+countertop', color: '#0071ce', label: 'WM' } ],
+  6:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Clearly Filtered Pitcher
-  9:  [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/clearly-filtered-pitcher', color: '#6366f1', label: 'Brand' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Clearly+Filtered+pitcher', color: '#0071ce', label: 'WM' } ],
+  9:  [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/clearly-filtered-pitcher', color: '#6366f1', label: 'Brand' } ],
   // ZeroWater Pitcher
-  10: [ { store: 'Culligan ZeroWater', url: 'https://www.zerowater.com/collections/pitchers', color: '#0284c7', label: 'Brand' },
-        { store: 'Home Depot', url: 'https://www.homedepot.com/s/ZeroWater%20pitcher', color: '#f97316', label: 'HD' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=ZeroWater+pitcher', color: '#0071ce', label: 'WM' } ],
-  // PUR Pitcher
-  11: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/PUR%20pitcher%20filter', color: '#f97316', label: 'HD' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=PUR+PLUS+pitcher', color: '#0071ce', label: 'WM' } ],
+  10: [ { store: 'Culligan ZeroWater', url: 'https://www.zerowater.com/collections/pitchers', color: '#0284c7', label: 'Brand' } ],
   // Brita
-  12: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Brita%20pitcher', color: '#f97316', label: 'HD' },
-        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Brita+pitcher", color: '#1a5c9e', label: 'LW' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Brita+pitcher', color: '#0071ce', label: 'WM' } ],
-  // PUR Faucet
-  13: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/PUR%20faucet%20filter', color: '#f97316', label: 'HD' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=PUR+faucet+filter', color: '#0071ce', label: 'WM' } ],
-  // Brita Faucet
-  14: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Brita%20faucet%20filter', color: '#f97316', label: 'HD' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=Brita+faucet+filter', color: '#0071ce', label: 'WM' } ],
+  12: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=Brita+pitcher", color: '#1a5c9e', label: 'LW' } ],
   // Pelican Whole House
-  18: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Pelican%20whole%20house%20filter', color: '#f97316', label: 'HD' },
-        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=Pelican+whole+house+filter", color: '#1a5c9e', label: 'LW' } ],
+  18: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=Pelican+whole+house+filter", color: '#1a5c9e', label: 'LW' } ],
   // iSpring WGB32B Whole House
-  19: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/iSpring%20WGB32B', color: '#f97316', label: 'HD' },
-        { store: "Lowe's",     url: "https://www.lowes.com/search?searchTerm=iSpring+whole+house", color: '#1a5c9e', label: 'LW' } ],
+  19: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=iSpring+whole+house", color: '#1a5c9e', label: 'LW' } ],
   // Aquasana Rhino
-  32: [ { store: 'Aquasana',   url: 'https://www.aquasana.com/whole-house-water-filters', color: '#0ea5e9', label: 'Brand' },
-        { store: 'Home Depot', url: 'https://www.homedepot.com/s/Aquasana+whole+house', color: '#f97316', label: 'HD' } ],
-  // AquaBliss Shower
-  20: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/AquaBliss+shower+filter', color: '#f97316', label: 'HD' },
-        { store: 'Walmart',    url: 'https://www.walmart.com/search?q=AquaBliss+shower+filter', color: '#0071ce', label: 'WM' } ],
+  32: [ { store: 'Aquasana', url: 'https://www.aquasana.com/whole-house-water-filters', color: '#0ea5e9', label: 'Brand' } ],
   // Clearly Filtered Water Bottle
   15: [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/water-bottle', color: '#6366f1', label: 'Brand' } ],
-  // Frizzlife SK99
-  23: [ { store: 'Home Depot', url: 'https://www.homedepot.com/s/Frizzlife+SK99', color: '#f97316', label: 'HD' } ],
   // Waterdrop K19
-  30: [ { store: 'Waterdrop',  url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
+  30: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -537,7 +507,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
               style={{ padding: '7px 12px', borderRadius: 8, background: `${r.color}18`, border: `1px solid ${r.color}44`, color: r.color, fontSize: 11, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.background = `${r.color}28`; }}
               onMouseLeave={e => { e.currentTarget.style.background = `${r.color}18`; }}>
-              {r.store === 'Home Depot' ? '🟠' : r.store === "Lowe's" ? '🔵' : r.store === 'Walmart' ? '🔷' : '🌐'} {r.store} →
+              {r.store === "Lowe's" ? '🔵' : '🌐'} {r.store} →
             </a>
           ))}
           <div style={{ width: '100%', fontSize: 10, color: '#1e3a4a', marginTop: 2 }}>
