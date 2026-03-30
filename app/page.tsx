@@ -1821,6 +1821,8 @@ export default function WaterCheckup() {
   const [productFilter, setProductFilter] = useState('all');
   const [quoted, setQuoted]             = useState<Record<string, boolean>>({});
   const [situation, setSituation]       = useState<string | null>(null);
+  const [homePeople, setHomePeople]     = useState<string | null>(null);
+  const [homeBaths, setHomeBaths]       = useState<string | null>(null);
   const [showShare, setShowShare]       = useState(false);
   const [wellMode, setWellMode]         = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -2099,6 +2101,53 @@ export default function WaterCheckup() {
                 </button>
               ))}
             </div>
+
+            {/* ── HOMEOWNER DETAIL PANEL ── shown when homeowner selected */}
+            {situation === 'homeowner' && (
+              <div style={{ animation: 'wcFadeUp .4s ease-out both', marginBottom: 28, padding: '20px 22px', background: 'rgba(4,14,32,0.70)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: '1px solid rgba(6,182,212,0.18)', borderTop: '1px solid rgba(6,182,212,0.28)', borderRadius: 14, boxShadow: '0 8px 32px rgba(0,4,18,0.35)' }}>
+                <div style={{ fontSize: 11, letterSpacing: 1.5, color: '#0891b2', fontWeight: 800, marginBottom: 16 }}>TELL US ABOUT YOUR HOME</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                  {/* People */}
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 10 }}>👥 How many people live in your home?</div>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                      {['1','2','3','4','5','5+'].map(n => (
+                        <button key={n} onClick={() => setHomePeople(homePeople === n ? null : n)}
+                          style={{ padding: '8px 18px', borderRadius: 8, border: `1px solid ${homePeople === n ? 'rgba(6,182,212,0.7)' : 'rgba(255,255,255,0.1)'}`, borderTop: `1px solid ${homePeople === n ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.16)'}`, background: homePeople === n ? 'rgba(6,182,212,0.22)' : 'rgba(4,14,32,0.5)', color: homePeople === n ? '#22d3ee' : '#64748b', fontSize: 15, fontWeight: 800, cursor: 'pointer', transition: 'all .15s', boxShadow: homePeople === n ? '0 0 14px rgba(6,182,212,0.25)' : 'none' }}>
+                          {n}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Bathrooms */}
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 10 }}>🚿 How many bathrooms?</div>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                      {['1','1.5','2','2.5','3+'].map(n => (
+                        <button key={n} onClick={() => setHomeBaths(homeBaths === n ? null : n)}
+                          style={{ padding: '8px 18px', borderRadius: 8, border: `1px solid ${homeBaths === n ? 'rgba(6,182,212,0.7)' : 'rgba(255,255,255,0.1)'}`, borderTop: `1px solid ${homeBaths === n ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.16)'}`, background: homeBaths === n ? 'rgba(6,182,212,0.22)' : 'rgba(4,14,32,0.5)', color: homeBaths === n ? '#22d3ee' : '#64748b', fontSize: 15, fontWeight: 800, cursor: 'pointer', transition: 'all .15s', boxShadow: homeBaths === n ? '0 0 14px rgba(6,182,212,0.25)' : 'none' }}>
+                          {n}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Tip based on selections */}
+                  {(homePeople || homeBaths) && (
+                    <div style={{ padding: '12px 14px', background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>
+                      {(homePeople === '5+' || homePeople === '5') && homeBaths === '3+'
+                        ? '🏠 Large home — a high-flow whole-house system + under-sink RO for drinking is your best setup. Look for systems rated 15+ GPM.'
+                        : (homePeople === '5+' || homePeople === '5')
+                        ? '👨‍👩‍👧‍👦 Big family — prioritize a high-GPD tankless RO (800+ GPD) so you never wait for filtered water.'
+                        : (homeBaths === '3+' || homeBaths === '2.5')
+                        ? '🚿 Multiple bathrooms — consider adding shower filters to each. Chlorine exposure in the shower is often higher than from drinking water.'
+                        : (homePeople === '1' || homePeople === '2')
+                        ? '💧 Smaller household — a countertop or under-sink RO is plenty. No need for a large whole-house system.'
+                        : '✅ Enter your ZIP code above to get a full water quality report for your area.'}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* ── STEP 4: WHERE TO BUY ── shown when situation selected */}
             {situation && (() => {
