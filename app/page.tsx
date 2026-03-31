@@ -2252,7 +2252,7 @@ export default function WaterCheckup() {
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market — curated by J. Letorney with 40+ years of water quality expertise.</div>
+                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market.</div>
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
