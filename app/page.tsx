@@ -2054,17 +2054,9 @@ export default function WaterCheckup() {
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
         </h1>
 
-        <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 16px' }}>
-          Free water quality report for any US ZIP code — plus <strong style={{ color: '#e2e8f0' }}>expert-curated filter recommendations</strong>. Instant results.
+        <p style={{ color: '#94a3b8', fontSize: 17, lineHeight: 1.75, maxWidth: 620, margin: '0 auto 28px' }}>
+          <strong style={{ color: '#22d3ee' }}>The most complete free water quality resource in the US</strong> — look up any city or town, see real EPA contaminant data, PFAS levels, and violation history, and get a top-rated filter recommendation matched to your exact water problems. No signup. No paywall. Instant results.
         </p>
-
-        {/* Credibility statement */}
-        <div style={{ maxWidth: 640, margin: '0 auto 28px', padding: '16px 22px', background: 'rgba(8,145,178,0.07)', border: '1px solid rgba(8,145,178,0.2)', borderRadius: 12 }}>
-          <p style={{ fontSize: 14, color: '#94a3b8', margin: 0, lineHeight: 1.7 }}>
-            <strong style={{ color: '#22d3ee' }}>The most complete free water quality resource in the US.</strong>{' '}
-            Look up any city or town — see real EPA contaminant data, PFAS levels, and violation history. Then get a top-rated filter recommendation matched to your exact water problems. Free. No signup. No paywall.
-          </p>
-        </div>
 
         {/* 3-column why us */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28, maxWidth: 720, margin: '0 auto 28px' }}>
