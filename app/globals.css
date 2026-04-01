@@ -17,6 +17,16 @@ body {
     linear-gradient(170deg, #000f26 0%, #000b1d 38%, #000916 68%, #000710 100%);
 }
 
+/* Root-level safeguard: keep the original ocean background even if page-level styles are edited */
+body.wc-ocean-bg {
+  background-color: #000c1c !important;
+  background-image:
+    radial-gradient(ellipse 90% 55% at 18% 8%,  rgba(6, 110, 200, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 65% at 82% 88%, rgba(4, 140, 180, 0.20) 0%, transparent 58%),
+    radial-gradient(ellipse 120% 90% at 50% 0%,  rgba(2,  44, 110, 0.40) 0%, transparent 62%),
+    linear-gradient(170deg, #000f26 0%, #000b1d 38%, #000916 68%, #000710 100%) !important;
+}
+
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font-family: inherit; }
 h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2; }

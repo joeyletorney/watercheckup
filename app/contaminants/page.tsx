@@ -172,7 +172,7 @@ export default function ContaminantsPage() {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#091825', color: '#e2e8f0' }}>
+    <div style={{ minHeight: '100vh', color: '#e2e8f0' }}>
 
       {/* NAV */}
       <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 60, background: '#091825' }}>
