@@ -1993,6 +1993,18 @@ export default function WaterCheckup() {
           ))}
         </div>
         <div style={{ marginTop: 6, fontSize: 12, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
+
+        {/* Quiz CTA */}
+        <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <div style={{ height: 1, width: 48, background: 'rgba(255,255,255,0.06)' }} />
+          <span style={{ fontSize: 13, color: '#475569' }}>or</span>
+          <div style={{ height: 1, width: 48, background: 'rgba(255,255,255,0.06)' }} />
+        </div>
+        <div style={{ marginTop: 12 }}>
+          <a href="/quiz" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 24px', borderRadius: 30, border: '1px solid rgba(8,145,178,0.3)', background: 'rgba(8,145,178,0.08)', color: '#22d3ee', fontSize: 14, fontWeight: 700, textDecoration: 'none', transition: 'all 0.2s' }}>
+            🎯 Don&apos;t know your ZIP? Find your filter in 3 questions →
+          </a>
+        </div>
         {/* Well water toggle */}
         <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
           <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 28px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#a78bfa' : '#94a3b8', fontSize: 17, fontWeight: 800, cursor: 'pointer', transition: 'all .2s' }}>
