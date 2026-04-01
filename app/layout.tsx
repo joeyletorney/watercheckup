@@ -5,7 +5,7 @@ import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400','500','600','700','800','900'] })
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || ''
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-34ZFC3J521'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://watercheckup.com'),
