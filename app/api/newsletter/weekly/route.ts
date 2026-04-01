@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getSupabaseAdmin } from '@/lib/supabase-admin';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 
@@ -54,28 +55,57 @@ export async function GET(req: NextRequest) {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) return NextResponse.json({ success: true, skipped: true }, { headers: CORS });
 
+    const supabase = getSupabaseAdmin();
+    const byEmail = new Map<string, { email: string }>();
+
+    if (supabase) {
+      const { data: rows, error: dbErr } = await supabase
+        .from('newsletter_subscribers')
+        .select('email')
+        .eq('weekly_opt_in', true)
+        .eq('unsubscribed', false);
+      if (dbErr) return NextResponse.json({ success: false, error: dbErr.message }, { status: 500, headers: CORS });
+      for (const r of rows || []) {
+        const e = (r as { email?: string }).email?.trim().toLowerCase();
+        if (e?.includes('@')) byEmail.set(e, { email: (r as { email: string }).email.trim() });
+      }
+    }
+
     const audienceId = await getAudienceId(apiKey);
-    if (!audienceId) return NextResponse.json({ success: false, error: 'Audience not found' }, { status: 404, headers: CORS });
+    if (audienceId) {
+      const res = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+        headers: { Authorization: `Bearer ${apiKey}` },
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        const contacts = (payload.data || []).filter((c: any) => c?.email && c?.unsubscribed !== true);
+        const fromResend = contacts
+          .filter((c: any) => String(c?.data?.weekly_opt_in ?? 'true') !== 'false')
+          .map((c: any) => ({ email: String(c.email).trim() }));
+        for (const c of fromResend) {
+          const k = c.email.toLowerCase();
+          if (k.includes('@')) byEmail.set(k, c);
+        }
+      }
+    }
 
-    const res = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
-      headers: { Authorization: `Bearer ${apiKey}` },
-    });
-    if (!res.ok) return NextResponse.json({ success: false, error: 'Unable to fetch contacts' }, { status: 500, headers: CORS });
+    if (!supabase && !audienceId) {
+      return NextResponse.json({ success: false, error: 'Audience not found' }, { status: 404, headers: CORS });
+    }
 
-    const payload = await res.json();
-    const contacts = (payload.data || []).filter((c: any) => c?.email && c?.unsubscribed !== true);
-    const weekly = contacts.filter((c: any) => String(c?.data?.weekly_opt_in ?? 'true') !== 'false');
+    const weekly = Array.from(byEmail.values());
 
     if (!weekly.length) return NextResponse.json({ success: true, sent: 0 }, { headers: CORS });
 
     const html = buildWeeklyHtml();
+    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <reports@watercheckup.com>';
     let sent = 0;
     for (const c of weekly) {
       const r = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          from: 'WaterCheckup <reports@watercheckup.com>',
+          from,
           to: [c.email],
           subject: 'Your weekly WaterCheckup update',
           html,

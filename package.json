@@ -4,10 +4,13 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "dev:poll": "WATCHPACK_POLLING=true next dev -p 3000",
+    "clean": "rm -rf .next",
+    "dev:clean": "npm run clean && next dev -p 3000",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.101.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
