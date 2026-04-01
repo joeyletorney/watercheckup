@@ -1,16 +1,11 @@
-import type { Metadata } from 'next';
+'use client';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Water Quality Blog | WaterCheckup',
-  description: 'Expert guides on tap water safety, PFAS contamination, lead in water, EPA violations, and the best water filters. Powered by EPA data.',
-};
 
 const POSTS = [
   {
     slug: 'is-pfas-in-my-tap-water',
     title: 'Is PFAS in My Tap Water? What the EPA Data Actually Shows',
-    excerpt: 'PFAS "forever chemicals" have been found in 45% of US tap water. Here\'s how to find out if your water is affected — and what to do about it.',
+    excerpt: "PFAS \"forever chemicals\" have been found in 45% of US tap water. Here's how to find out if your water is affected — and what to do about it.",
     date: 'March 28, 2026',
     readTime: '8 min read',
     badge: 'PFAS',
@@ -19,7 +14,7 @@ const POSTS = [
   {
     slug: 'best-water-filter-for-lead-removal',
     title: 'Best Water Filters for Lead Removal in 2026 (NSF Certified)',
-    excerpt: 'There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.',
+    excerpt: "There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.",
     date: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',
@@ -28,7 +23,7 @@ const POSTS = [
   {
     slug: 'what-does-epa-water-violation-mean',
     title: 'What Does an EPA Water Violation Actually Mean for Your Health?',
-    excerpt: 'Your water utility sent a notice. Or you found a violation on EPA\'s database. Here\'s exactly what it means, what the risk is, and what to do.',
+    excerpt: "Your water utility sent a notice. Or you found a violation on EPA's database. Here's exactly what it means, what the risk is, and what to do.",
     date: 'March 30, 2026',
     readTime: '7 min read',
     badge: 'EPA',
@@ -39,7 +34,6 @@ const POSTS = [
 export default function BlogIndex() {
   return (
     <div style={{ minHeight: '100vh', background: '#040d14', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
-      {/* Nav */}
       <div style={{ borderBottom: '1px solid #0f2336', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>💧</div>
@@ -62,9 +56,7 @@ export default function BlogIndex() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {POSTS.map(post => (
             <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
-              <div style={{ padding: '28px 30px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, transition: 'border-color 0.2s', cursor: 'pointer' }}
-                onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = '#0891b2'}
-                onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = '#1a3a5c'}>
+              <div style={{ padding: '28px 30px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, cursor: 'pointer' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
                   <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
                     {post.badge}
