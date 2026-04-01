@@ -2007,21 +2007,33 @@ export default function WaterCheckup() {
   const [showWqaModal, setShowWqaModal] = useState(false);
   const [showNsfModal, setShowNsfModal] = useState(false);
   const [showEpaModal, setShowEpaModal] = useState(false);
+  const [showSample, setShowSample]       = useState(false);
+  const [sampleEmail, setSampleEmail]     = useState('');
+  const [sampleZip, setSampleZip]         = useState('');
+  const [sampleOptIn, setSampleOptIn]     = useState(true);
+  const [sampleSending, setSampleSending] = useState(false);
+  const [sampleSent, setSampleSent]       = useState(false);
+  const [sampleErr, setSampleErr]         = useState<string | null>(null);
+  const [heroNewsletterEmail, setHeroNewsletterEmail] = useState('');
+  const [heroNewsletterSending, setHeroNewsletterSending] = useState(false);
+  const [heroNewsletterSent, setHeroNewsletterSent] = useState(false);
+  const [heroNewsletterErr, setHeroNewsletterErr] = useState<string | null>(null);
   const [wellMode, setWellMode]         = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!showWqaModal && !showNsfModal && !showEpaModal) return;
+    if (!showWqaModal && !showNsfModal && !showEpaModal && !showSample) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setShowWqaModal(false);
         setShowNsfModal(false);
         setShowEpaModal(false);
+        setShowSample(false);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [showWqaModal, showNsfModal, showEpaModal]);
+  }, [showWqaModal, showNsfModal, showEpaModal, showSample]);
 
   const search = async () => {
     // City name lookup — if input isn't digits, check city map
@@ -2063,6 +2075,56 @@ export default function WaterCheckup() {
       clearInterval(tick);
       setError(e.message);
     } finally { setLoading(false); }
+  };
+
+  const subscribeSample = async () => {
+    if (!sampleEmail.includes('@') || sampleSending) return;
+    setSampleSending(true);
+    setSampleErr(null);
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: sampleEmail.trim(),
+          zip: sampleZip.trim(),
+          weekly: sampleOptIn,
+          source: 'sample-report-modal',
+        }),
+      });
+      const payload = await res.json();
+      if (!res.ok) throw new Error(payload.error || 'Subscription failed');
+      setSampleSent(true);
+    } catch (e: any) {
+      setSampleErr(e.message || 'Subscription failed');
+    } finally {
+      setSampleSending(false);
+    }
+  };
+
+  const subscribeHeroNewsletter = async () => {
+    if (!heroNewsletterEmail.includes('@') || heroNewsletterSending) return;
+    setHeroNewsletterSending(true);
+    setHeroNewsletterErr(null);
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: heroNewsletterEmail.trim(),
+          zip: zip.trim(),
+          weekly: true,
+          source: 'hero-newsletter',
+        }),
+      });
+      const payload = await res.json();
+      if (!res.ok) throw new Error(payload.error || 'Subscription failed');
+      setHeroNewsletterSent(true);
+    } catch (e: any) {
+      setHeroNewsletterErr(e.message || 'Subscription failed');
+    } finally {
+      setHeroNewsletterSending(false);
+    }
   };
 
   const loadInstallers = async (z: string) => {
@@ -2191,6 +2253,14 @@ export default function WaterCheckup() {
           <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''}`.trim()} style={{ padding: '18px 34px', minHeight: 58, background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 14, color: zip.trim().length >= 2 && !loading ? '#fff' : '#94a3b8', fontSize: 16, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default', alignSelf: 'stretch' }}>
             {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
           </button>
+          <button
+            type="button"
+            onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }}
+            className="wc-glass-btn"
+            style={{ padding: '18px 24px', minHeight: 58, borderRadius: 14, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}
+          >
+            View Sample Report
+          </button>
         </div>
 
         {/* Trust strip */}
@@ -2208,6 +2278,39 @@ export default function WaterCheckup() {
           ))}
         </div>
         <div style={{ marginTop: 6, fontSize: 12, color: '#94a3b8' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
+
+        {/* Hero newsletter signup */}
+        <div style={{ maxWidth: 620, margin: '14px auto 0', padding: '12px 14px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.08)', borderTop: '1px solid rgba(180,240,255,0.14)', background: 'rgba(4,14,32,0.52)' }}>
+          <div style={{ fontSize: 12, color: '#cbd5e1', marginBottom: 8, textAlign: 'left' }}>
+            Free weekly water newsletter - cancel anytime
+          </div>
+          {heroNewsletterSent ? (
+            <div style={{ fontSize: 12, color: '#86efac', textAlign: 'left' }}>
+              You're subscribed. Check your inbox for your sample report and weekly updates.
+            </div>
+          ) : (
+            <>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                <input
+                  value={heroNewsletterEmail}
+                  onChange={e => setHeroNewsletterEmail(e.target.value)}
+                  placeholder="Enter email for free weekly updates"
+                  type="email"
+                  style={{ flex: '1 1 300px', minHeight: 42, padding: '10px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, outline: 'none' }}
+                />
+                <button
+                  type="button"
+                  onClick={subscribeHeroNewsletter}
+                  disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
+                  style={{ minHeight: 42, padding: '10px 14px', background: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'rgba(14,34,51,0.8)' : '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 700, cursor: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer' }}
+                >
+                  {heroNewsletterSending ? 'Signing up...' : 'Sign up free'}
+                </button>
+              </div>
+              {heroNewsletterErr && <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5', textAlign: 'left' }}>{heroNewsletterErr}</div>}
+            </>
+          )}
+        </div>
 
         {/* Well water toggle */}
         <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center' }}>
@@ -3159,6 +3262,63 @@ export default function WaterCheckup() {
 
       {/* SHARE MODAL */}
       {showShare && data && <ShareModal data={data} onClose={() => setShowShare(false)} />}
+
+      {/* SAMPLE REPORT + NEWSLETTER MODAL */}
+      {showSample && (
+        <div style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 160 }} onClick={() => setShowSample(false)}>
+          <div style={{ background: 'rgba(3,12,28,0.95)', border: '1px solid rgba(255,255,255,0.1)', borderTop: '1px solid rgba(180,240,255,0.16)', borderRadius: 14, padding: '24px 24px 20px', maxWidth: 560, width: '92%' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, marginBottom: 14 }}>
+              <div>
+                <div style={{ fontSize: 11, color: '#0891b2', letterSpacing: 1.5, fontWeight: 800, marginBottom: 5 }}>SAMPLE PREVIEW</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9' }}>See a sample water report</div>
+              </div>
+              <button onClick={() => setShowSample(false)} style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 20, cursor: 'pointer' }}>×</button>
+            </div>
+
+            <div className="wc-card" style={{ borderRadius: 12, padding: '14px 14px 12px', marginBottom: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+                <div style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9' }}>Boston, MA — MWRA</div>
+                <div style={{ fontSize: 12, color: '#22d3ee', fontWeight: 800 }}>Score 74 · Grade C</div>
+              </div>
+              <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 9 }}>Open violations: 1 · PFAS compounds detected: 2 · Suggested system: Under-sink RO</div>
+              <div style={{ display: 'grid', gap: 6 }}>
+                <div style={{ fontSize: 12, color: '#cbd5e1' }}>• PFOS: 6.2 ppt (above EPA MCL)</div>
+                <div style={{ fontSize: 12, color: '#cbd5e1' }}>• Lead risk from older in-building plumbing</div>
+                <div style={{ fontSize: 12, color: '#cbd5e1' }}>• Recommendation: NSF 58 under-sink RO + annual retest</div>
+              </div>
+            </div>
+
+            {sampleSent ? (
+              <div style={{ padding: '12px 14px', borderRadius: 10, background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.35)', color: '#86efac', fontSize: 13 }}>
+                You’re subscribed. Check your inbox for the sample report + weekly newsletter confirmation.
+              </div>
+            ) : (
+              <>
+                <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 10 }}>Get this sample report + free weekly water updates.</div>
+                <input value={sampleEmail} onChange={e => setSampleEmail(e.target.value)} placeholder="you@email.com" type="email"
+                  style={{ width: '100%', boxSizing: 'border-box', padding: '10px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, marginBottom: 8, outline: 'none' }} />
+                <input value={sampleZip} onChange={e => setSampleZip(e.target.value.slice(0, 10))} placeholder="ZIP (optional)"
+                  style={{ width: '100%', boxSizing: 'border-box', padding: '10px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, marginBottom: 8, outline: 'none' }} />
+                <label style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, color: '#94a3b8', marginBottom: 10, cursor: 'pointer' }}>
+                  <input type="checkbox" checked={sampleOptIn} onChange={e => setSampleOptIn(e.target.checked)} style={{ accentColor: '#0891b2' }} />
+                  Send me free weekly water quality updates
+                </label>
+                {sampleErr && <div style={{ fontSize: 12, color: '#fca5a5', marginBottom: 8 }}>{sampleErr}</div>}
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button onClick={subscribeSample} disabled={sampleSending || !sampleEmail.includes('@')}
+                    style={{ flex: 1, padding: '10px 12px', background: sampleSending || !sampleEmail.includes('@') ? 'rgba(14,34,51,0.8)' : '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, cursor: sampleSending || !sampleEmail.includes('@') ? 'default' : 'pointer' }}>
+                    {sampleSending ? 'Sending...' : 'Email sample + subscribe'}
+                  </button>
+                  <button onClick={() => setShowSample(false)} style={{ padding: '10px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#64748b', fontSize: 12, cursor: 'pointer' }}>
+                    Close
+                  </button>
+                </div>
+                <div style={{ fontSize: 10, color: '#64748b', marginTop: 8 }}>No spam. Unsubscribe anytime.</div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* EMAIL MODAL */}
       {showEmail && data && (
