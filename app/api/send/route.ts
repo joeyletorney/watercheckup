@@ -1,49 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getOrCreateWatercheckupAudienceId, resendRequest } from '../newsletter/resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 const TAG = process.env.AMAZON_AFFILIATE_TAG || 'watercheck20-20';
 
-async function resendFetch(path: string, method: string, body: object, apiKey: string) {
-  return fetch(`https://api.resend.com${path}`, {
-    method,
-    headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-}
-
-let cachedAudienceId: string | null = null;
-async function getAudienceId(apiKey: string): Promise<string | null> {
-  if (cachedAudienceId) return cachedAudienceId;
-  try {
-    const res = await fetch('https://api.resend.com/audiences', {
-      headers: { 'Authorization': `Bearer ${apiKey}` },
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const existing = (data.data || []).find((a: any) => a.name === 'WaterCheckup');
-    if (existing) { cachedAudienceId = existing.id; return existing.id; }
-    const created = await resendFetch('/audiences', 'POST', { name: 'WaterCheckup' }, apiKey);
-    if (!created.ok) return null;
-    const newAud = await created.json();
-    cachedAudienceId = newAud.id;
-    return newAud.id;
-  } catch { return null; }
-}
-
 async function addContact(apiKey: string, email: string, city: string, pwsid: string, alertOptIn: boolean) {
   try {
-    const audienceId = await getAudienceId(apiKey);
+    const audienceId = await getOrCreateWatercheckupAudienceId(apiKey);
     if (!audienceId) return;
-    await resendFetch(`/audiences/${audienceId}/contacts`, 'POST', {
-      email,
-      unsubscribed: false,
-      data: {
-        city,
-        pwsid: pwsid || '',
-        alert_opt_in: String(alertOptIn),
-        signed_up_at: new Date().toISOString(),
+    await resendRequest(apiKey, `/audiences/${audienceId}/contacts`, {
+      method: 'POST',
+      body: {
+        email,
+        unsubscribed: false,
+        data: {
+          city,
+          pwsid: pwsid || '',
+          alert_opt_in: String(alertOptIn),
+          signed_up_at: new Date().toISOString(),
+        },
       },
-    }, apiKey);
+    });
   } catch { /* non-fatal */ }
 }
 

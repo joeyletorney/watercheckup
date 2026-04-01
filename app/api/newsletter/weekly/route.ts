@@ -1,24 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import {
+  fetchAllAudienceContacts,
+  getOrCreateWatercheckupAudienceId,
+} from '../resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
-
-let cachedAudienceId: string | null = null;
-
-async function getAudienceId(apiKey: string): Promise<string | null> {
-  if (process.env.RESEND_AUDIENCE_ID) return process.env.RESEND_AUDIENCE_ID;
-  if (cachedAudienceId) return cachedAudienceId;
-  try {
-    const res = await fetch('https://api.resend.com/audiences', { headers: { Authorization: `Bearer ${apiKey}` } });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const existing = (data.data || []).find((a: any) => a.name === 'WaterCheckup');
-    if (!existing) return null;
-    cachedAudienceId = existing.id;
-    return existing.id;
-  } catch {
-    return null;
-  }
-}
 
 function buildWeeklyHtml() {
   return `<!doctype html><html><body style="margin:0;background:#050e17;color:#e2e8f0;font-family:Arial,sans-serif">
@@ -41,6 +27,10 @@ function buildWeeklyHtml() {
   </body></html>`;
 }
 
+/**
+ * Vercel Cron: Mondays 14:00 UTC (vercel.json). Requires RESEND_API_KEY (+ verified RESEND_FROM_EMAIL).
+ * If CRON_SECRET is set, Vercel sends Authorization: Bearer <CRON_SECRET> automatically.
+ */
 export async function GET(req: NextRequest) {
   try {
     const cronSecret = process.env.CRON_SECRET;
@@ -52,25 +42,52 @@ export async function GET(req: NextRequest) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) return NextResponse.json({ success: true, skipped: true }, { headers: CORS });
+    if (!apiKey) {
+      console.error(
+        '[newsletter/weekly] RESEND_API_KEY is not set — weekly emails are not sent. Add it in Vercel → Project → Settings → Environment Variables.',
+      );
+      return NextResponse.json(
+        {
+          success: false,
+          skipped: true,
+          reason: 'RESEND_API_KEY is not configured',
+          hint: 'Add RESEND_API_KEY (and verify RESEND_FROM_EMAIL on your domain) in Vercel environment variables.',
+        },
+        { status: 503, headers: CORS },
+      );
+    }
 
-    const audienceId = await getAudienceId(apiKey);
-    if (!audienceId) return NextResponse.json({ success: false, error: 'Audience not found' }, { status: 404, headers: CORS });
+    const audienceId = await getOrCreateWatercheckupAudienceId(apiKey);
+    if (!audienceId) {
+      console.error('[newsletter/weekly] Could not resolve or create Resend audience "WaterCheckup".');
+      return NextResponse.json(
+        { success: false, error: 'Audience unavailable — check RESEND_API_KEY and Resend dashboard.' },
+        { status: 500, headers: CORS },
+      );
+    }
 
-    const res = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
-      headers: { Authorization: `Bearer ${apiKey}` },
-    });
-    if (!res.ok) return NextResponse.json({ success: false, error: 'Unable to fetch contacts' }, { status: 500, headers: CORS });
+    let contacts;
+    try {
+      contacts = await fetchAllAudienceContacts(apiKey, audienceId);
+    } catch (e) {
+      console.error('[newsletter/weekly] Failed to list contacts:', e);
+      return NextResponse.json({ success: false, error: 'Unable to fetch contacts' }, { status: 500, headers: CORS });
+    }
 
-    const payload = await res.json();
-    const contacts = (payload.data || []).filter((c: any) => c?.email && c?.unsubscribed !== true);
-    const weekly = contacts.filter((c: any) => String(c?.data?.weekly_opt_in ?? 'true') !== 'false');
+    const active = contacts.filter(c => c?.email && c?.unsubscribed !== true);
+    const weekly = active.filter(c => String(c?.data?.weekly_opt_in ?? 'true') !== 'false');
 
-    if (!weekly.length) return NextResponse.json({ success: true, sent: 0 }, { headers: CORS });
+    if (!weekly.length) {
+      return NextResponse.json(
+        { success: true, sent: 0, total: 0, message: 'No weekly opt-in contacts in audience yet.' },
+        { headers: CORS },
+      );
+    }
 
     const html = buildWeeklyHtml();
     const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <reports@watercheckup.com>';
     let sent = 0;
+    const failed: string[] = [];
     for (const c of weekly) {
       const r = await fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -83,10 +100,18 @@ export async function GET(req: NextRequest) {
         }),
       });
       if (r.ok) sent += 1;
+      else failed.push(c.email || '(unknown)');
     }
 
-    return NextResponse.json({ success: true, sent, total: weekly.length }, { headers: CORS });
+    if (failed.length) {
+      console.warn(`[newsletter/weekly] Sent ${sent}/${weekly.length}; failed for: ${failed.slice(0, 5).join(', ')}${failed.length > 5 ? '…' : ''}`);
+    } else {
+      console.log(`[newsletter/weekly] Sent ${sent} weekly email(s).`);
+    }
+
+    return NextResponse.json({ success: true, sent, total: weekly.length, failed: failed.length }, { headers: CORS });
   } catch (err: any) {
+    console.error('[newsletter/weekly]', err);
     return NextResponse.json({ error: err.message || 'Server error' }, { status: 500, headers: CORS });
   }
 }

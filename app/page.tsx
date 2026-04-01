@@ -1666,7 +1666,12 @@ function WaterCanvas() {
         ctx.translate(ax, ay);
         ctx.rotate(t * 0.12 + k * 0.65);
         ctx.beginPath();
-        ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+        // ellipse() is missing on some older browsers — avoid runtime throw on canvas init
+        if (typeof ctx.ellipse === 'function') {
+          ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+        } else {
+          ctx.arc(0, 0, rx, 0, Math.PI * 2);
+        }
         const eg = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
         eg.addColorStop(0, 'rgba(210,248,255,0.07)');
         eg.addColorStop(0.45, 'rgba(70,195,225,0.028)');
@@ -2293,10 +2298,10 @@ export default function WaterCheckup() {
           }}
         >
           <div style={{ fontSize: 13, fontWeight: 800, color: '#f0fdfa', marginBottom: 4, textAlign: 'left' }}>
-            Free weekly water briefing
+            FREE Weekly Water Newsletter
           </div>
           <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, textAlign: 'left', lineHeight: 1.45 }}>
-            One short email per week—PFAS alerts, practical fixes, cancel anytime.
+            Water contaminant alerts, PFAS alerts, practical fixes, cancel anytime
           </div>
           {heroNewsletterSent ? (
             <div style={{ fontSize: 12, color: '#86efac', textAlign: 'left', lineHeight: 1.5 }}>

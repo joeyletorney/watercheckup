@@ -1,38 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getOrCreateWatercheckupAudienceId, resendRequest } from './resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
-
-let cachedAudienceId: string | null = null;
-
-async function resendFetch(path: string, method: string, body: object, apiKey: string) {
-  return fetch(`https://api.resend.com${path}`, {
-    method,
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-}
-
-async function getAudienceId(apiKey: string): Promise<string | null> {
-  if (process.env.RESEND_AUDIENCE_ID) return process.env.RESEND_AUDIENCE_ID;
-  if (cachedAudienceId) return cachedAudienceId;
-  try {
-    const res = await fetch('https://api.resend.com/audiences', { headers: { Authorization: `Bearer ${apiKey}` } });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const existing = (data.data || []).find((a: any) => a.name === 'WaterCheckup');
-    if (existing) {
-      cachedAudienceId = existing.id;
-      return existing.id;
-    }
-    const created = await resendFetch('/audiences', 'POST', { name: 'WaterCheckup' }, apiKey);
-    if (!created.ok) return null;
-    const newAud = await created.json();
-    cachedAudienceId = newAud.id;
-    return newAud.id;
-  } catch {
-    return null;
-  }
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -50,21 +19,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const audienceId = await getAudienceId(apiKey);
+    const audienceId = await getOrCreateWatercheckupAudienceId(apiKey);
     if (!audienceId) {
       return NextResponse.json({ error: 'Audience unavailable' }, { status: 500, headers: CORS });
     }
 
-    const contactRes = await resendFetch(`/audiences/${audienceId}/contacts`, 'POST', {
-      email,
-      unsubscribed: false,
-      data: {
-        zip: zip || '',
-        weekly_opt_in: String(!!weekly),
-        source,
-        signed_up_at: new Date().toISOString(),
+    const contactRes = await resendRequest(apiKey, `/audiences/${audienceId}/contacts`, {
+      method: 'POST',
+      body: {
+        email,
+        unsubscribed: false,
+        data: {
+          zip: zip || '',
+          weekly_opt_in: String(!!weekly),
+          source,
+          signed_up_at: new Date().toISOString(),
+        },
       },
-    }, apiKey);
+    });
     if (!contactRes.ok) {
       const errBody = await contactRes.json().catch(() => ({}));
       return NextResponse.json(
