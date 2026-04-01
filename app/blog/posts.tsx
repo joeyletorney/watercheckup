@@ -1,19 +1,10 @@
 import React from 'react';
+import type { Post } from './post-types';
+import { EXTRA_POSTS } from './extra-posts';
+import { EXTRA_POSTS_2 } from './extra-posts-2';
 
 const WATERDROP = 'https://www.waterdrop.com/?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
-
-type Post = {
-  title: string;
-  excerpt: string;
-  date: string;
-  dateDisplay: string;
-  readTime: string;
-  badge: string;
-  badgeColor: string;
-  topPick: { label: string; product: string; reason: string; link: string; amazon: string };
-  content: React.ReactNode;
-};
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
 const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
@@ -327,4 +318,7 @@ export const POSTS: Record<string, Post> = {
       ),
     ),
   },
+
+  ...EXTRA_POSTS,
+  ...EXTRA_POSTS_2,
 };

@@ -1477,7 +1477,6 @@ function WaterCanvas() {
     let t = 0;
     let animId: number;
     let scrollY = 0;
-    const ripples: { x: number; y: number; r: number; a: number }[] = [];
 
     // Pre-generate stable sand grain positions
     const GRAINS = Array.from({ length: 280 }, () => ({
@@ -1486,15 +1485,24 @@ function WaterCanvas() {
       a: 0.025 + Math.random() * 0.07,
     }));
 
-    // Bioluminescent orbs — floating glowing organisms
-    const BIORBS = Array.from({ length: 18 }, (_, i) => ({
+    // Bioluminescent orbs — subtle plankton / suspended light (mostly cyan, less fantasy purple)
+    const BIORBS = Array.from({ length: 16 }, (_, i) => ({
       x: Math.random(), y: Math.random(),
-      vx: (Math.random() - 0.5) * 0.0003,
-      vy: (Math.random() - 0.5) * 0.0002,
-      r: 18 + Math.random() * 40,
+      vx: (Math.random() - 0.5) * 0.00025,
+      vy: (Math.random() - 0.5) * 0.00018,
+      r: 14 + Math.random() * 32,
       phase: Math.random() * Math.PI * 2,
-      speed: 0.4 + Math.random() * 0.8,
-      hue: i % 3 === 0 ? '139,92,246' : i % 3 === 1 ? '6,182,212' : '34,211,238',
+      speed: 0.35 + Math.random() * 0.65,
+      hue: i % 5 === 0 ? '45,180,200' : i % 5 === 1 ? '6,182,212' : '20,195,220',
+    }));
+
+    // Micro-bubbles / silt — slow upward drift (reads as depth & movement)
+    const BUBBLES = Array.from({ length: 55 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      r: 0.6 + Math.random() * 1.4,
+      sp: 0.00012 + Math.random() * 0.00022,
+      wobble: Math.random() * Math.PI * 2,
     }));
 
     // God rays — light shafts from surface
@@ -1515,24 +1523,27 @@ function WaterCanvas() {
     resize();
     window.addEventListener('resize', resize);
 
-    const onMove = (e: MouseEvent) => {
-      if (Math.random() < 0.07) ripples.push({ x: e.clientX, y: e.clientY, r: 0, a: 0.75 });
-    };
-    window.addEventListener('mousemove', onMove);
 
     const draw = () => {
       const W = canvas.width;
       const H = canvas.height;
       t += 0.006;
 
-      // ── 1. DEPTH GRADIENT BASE — darkens as user scrolls down ───────────
+      // ── 1. DEPTH GRADIENT BASE — shallow sand → deeper water (scroll adds “going deeper”)
       const depth = Math.min(scrollY / 1200, 1);
       const sand = ctx.createLinearGradient(0, 0, 0, H);
-      sand.addColorStop(0,    `rgb(${3+Math.round(depth)},${17+Math.round(depth*3)},${31+Math.round(depth*10)})`);
-      sand.addColorStop(0.35, `rgb(4,${24+Math.round(depth*4)},${40+Math.round(depth*10)})`);
-      sand.addColorStop(0.7,  `rgb(5,${29+Math.round(depth*3)},${48+Math.round(depth*8)})`);
-      sand.addColorStop(1,    `rgb(3,${14-Math.round(depth*2)},${28+Math.round(depth*14)})`);
+      sand.addColorStop(0,    `rgb(${8+Math.round(depth*4)},${22+Math.round(depth*4)},${38+Math.round(depth*8)})`);
+      sand.addColorStop(0.25, `rgb(${6+Math.round(depth*3)},${26+Math.round(depth*5)},${44+Math.round(depth*9)})`);
+      sand.addColorStop(0.55, `rgb(5,${28+Math.round(depth*4)},${46+Math.round(depth*8)})`);
+      sand.addColorStop(1,    `rgb(${4-Math.round(depth)},${18-Math.round(depth*2)},${32+Math.round(depth*12)})`);
       ctx.fillStyle = sand;
+      ctx.fillRect(0, 0, W, H);
+      // Warm shallow sand patch (subtle — reads as lit seafloor through water)
+      const sandPatch = ctx.createRadialGradient(W * 0.35, H * 0.85, 0, W * 0.42, H * 0.92, Math.max(W, H) * 0.55);
+      sandPatch.addColorStop(0,   `rgba(180,165,130,${0.045 + depth * 0.02})`);
+      sandPatch.addColorStop(0.5, `rgba(60,85,95,${0.02})`);
+      sandPatch.addColorStop(1,   'rgba(0,0,0,0)');
+      ctx.fillStyle = sandPatch;
       ctx.fillRect(0, 0, W, H);
 
       // ── 2. GOD RAYS — light shafts from the surface ─────────────────────
@@ -1597,11 +1608,11 @@ function WaterCanvas() {
         const cx = W * 0.5 + Math.sin(t * s1 + ph) * W * 0.47 + Math.cos(t * s2 + ph * 0.58) * W * 0.13;
         const cy = H * 0.5 + Math.cos(t * s2 + ph * 1.08) * H * 0.46 + Math.sin(t * s1 + ph * 0.44) * H * 0.11;
         const r  = 26 + (i % 9) * 9 + Math.sin(t * 1.6 + i * 0.9) * 14;
-        const ia = 0.013 + (i % 6) * 0.004;
+        const ia = 0.011 + (i % 6) * 0.0035;
         const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        cg.addColorStop(0,    `rgba(205,248,255,${ia * 3.0})`);
-        cg.addColorStop(0.28, `rgba(100,220,248,${ia * 1.4})`);
-        cg.addColorStop(0.62, `rgba(0,160,210,${ia * 0.5})`);
+        cg.addColorStop(0,    `rgba(220,252,255,${ia * 2.6})`);
+        cg.addColorStop(0.22, `rgba(120,230,248,${ia * 1.2})`);
+        cg.addColorStop(0.55, `rgba(40,185,215,${ia * 0.45})`);
         cg.addColorStop(1,    'rgba(0,0,0,0)');
         ctx.beginPath();
         ctx.arc(cx, cy, r, 0, Math.PI * 2);
@@ -1623,6 +1634,25 @@ function WaterCanvas() {
         ctx.arc(mx, my, mr, 0, Math.PI * 2);
         ctx.fillStyle = mcg;
         ctx.fill();
+      }
+      // Elongated caustic lenses (sunlight through a rippled surface)
+      for (let k = 0; k < 14; k++) {
+        const ax = W * 0.5 + Math.sin(t * 0.52 + k * 0.85) * W * 0.38;
+        const ay = H * 0.48 + Math.cos(t * 0.45 + k * 1.05) * H * 0.36;
+        const rx = 32 + (k % 5) * 14;
+        const ry = rx * (0.22 + (k % 3) * 0.04);
+        ctx.save();
+        ctx.translate(ax, ay);
+        ctx.rotate(t * 0.12 + k * 0.65);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+        const eg = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+        eg.addColorStop(0, 'rgba(210,248,255,0.07)');
+        eg.addColorStop(0.45, 'rgba(70,195,225,0.028)');
+        eg.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = eg;
+        ctx.fill();
+        ctx.restore();
       }
       ctx.restore();
 
@@ -1648,58 +1678,83 @@ function WaterCanvas() {
       });
       ctx.restore();
 
-      // ── 6. WATER OVERLAY ─────────────────────────────────────────────────
-      const wa = 0.58 + depth * 0.12;
+      // ── 6. WATER COLUMN TINT — spectral absorption (cyan surface → blue-green depth)
+      const wa = 0.52 + depth * 0.14;
       const water = ctx.createLinearGradient(0, 0, 0, H);
-      water.addColorStop(0,    `rgba(0,100,170,${wa})`);
-      water.addColorStop(0.30, `rgba(0,78,150,${wa + 0.06})`);
-      water.addColorStop(0.65, `rgba(0,50,118,${wa + 0.10})`);
-      water.addColorStop(1,    `rgba(0,22,72,${wa + 0.14})`);
+      water.addColorStop(0,    `rgba(0,125,155,${wa * 0.92})`);
+      water.addColorStop(0.22,  `rgba(0,105,145,${wa + 0.02})`);
+      water.addColorStop(0.48, `rgba(0,82,128,${wa + 0.07})`);
+      water.addColorStop(0.78, `rgba(0,58,98,${wa + 0.11})`);
+      water.addColorStop(1,    `rgba(0,28,62,${wa + 0.13})`);
       ctx.fillStyle = water;
+      ctx.fillRect(0, 0, W, H);
+      // Sun penetration — brighter, greener-cyan near the surface (subsurface scatter hint)
+      const sunPen = ctx.createLinearGradient(0, 0, 0, H * 0.42);
+      sunPen.addColorStop(0,   `rgba(120,220,210,${0.07 + depth * 0.03})`);
+      sunPen.addColorStop(0.6, 'rgba(40,140,160,0)');
+      sunPen.addColorStop(1,   'rgba(0,0,0,0)');
+      ctx.fillStyle = sunPen;
       ctx.fillRect(0, 0, W, H);
 
       const edge = ctx.createRadialGradient(W/2, H/2, H*0.06, W/2, H/2, W*0.74);
-      edge.addColorStop(0,    'rgba(0,30,80,0)');
-      edge.addColorStop(0.65, 'rgba(0,15,55,0.18)');
-      edge.addColorStop(1,    'rgba(0,5,30,0.50)');
+      edge.addColorStop(0,    'rgba(0,35,75,0)');
+      edge.addColorStop(0.62, 'rgba(0,18,48,0.16)');
+      edge.addColorStop(1,    'rgba(0,8,28,0.48)');
       ctx.fillStyle = edge;
       ctx.fillRect(0, 0, W, H);
 
-      // ── 7. SURFACE REFRACTION ────────────────────────────────────────────
+      // ── 6b. MICRO-BUBBLES / PARTICULATE — slow rise + lateral wobble
       ctx.save();
-      ctx.globalAlpha = 0.10;
-      for (let i = 0; i < 22; i++) {
-        const baseY = (i / 22) * H;
+      ctx.globalCompositeOperation = 'screen';
+      BUBBLES.forEach(b => {
+        b.y -= b.sp;
+        if (b.y < -0.03) b.y = 1.03;
+        b.wobble += 0.018 + b.r * 0.004;
+        const bx = b.x * W + Math.sin(b.wobble + t * 1.4) * 5;
+        const by = b.y * H;
+        const a = 0.035 + Math.sin(b.wobble * 1.3) * 0.018;
         ctx.beginPath();
-        for (let x = 0; x <= W; x += 4) {
+        ctx.arc(bx, by, b.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(215,245,255,${a})`;
+        ctx.fill();
+      });
+      ctx.restore();
+
+      // ── 7. SURFACE REFRACTION — caustic shear lines (lighter toward top = shallower)
+      ctx.save();
+      ctx.globalCompositeOperation = 'overlay';
+      ctx.globalAlpha = 0.085;
+      for (let i = 0; i < 26; i++) {
+        const baseY = (i / 26) * H;
+        const shallow = 1 - baseY / H;
+        ctx.beginPath();
+        for (let x = 0; x <= W; x += 3) {
           const y = baseY
-            + Math.sin(x * 0.013 + t * 1.05 + i * 0.68) * 7
-            + Math.sin(x * 0.027 - t * 0.62 + i * 1.15) * 3.5
-            + Math.sin(x * 0.055 + t * 1.80 + i * 0.40) * 1.5;
+            + Math.sin(x * 0.012 + t * 0.95 + i * 0.62) * (5 + shallow * 4)
+            + Math.sin(x * 0.026 - t * 0.58 + i * 1.08) * 3.2
+            + Math.sin(x * 0.048 + t * 1.65 + i * 0.38) * 1.8;
           x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
-        ctx.strokeStyle = 'rgba(255,255,255,1)';
-        ctx.lineWidth = 0.6 + Math.sin(t * 0.8 + i) * 0.3;
+        ctx.strokeStyle = `rgba(240,252,255,${0.35 + shallow * 0.45})`;
+        ctx.lineWidth = 0.45 + Math.sin(t * 0.75 + i) * 0.22;
         ctx.stroke();
       }
       ctx.restore();
 
-      // ── 8. MOUSE RIPPLES ─────────────────────────────────────────────────
-      for (let i = ripples.length - 1; i >= 0; i--) {
-        const rip = ripples[i];
-        rip.r += 4.0; rip.a -= 0.016;
-        if (rip.a <= 0) { ripples.splice(i, 1); continue; }
-        [1, 0.60, 0.30].forEach((scale, si) => {
-          if (rip.r * scale < 4) return;
-          ctx.beginPath();
-          ctx.ellipse(rip.x, rip.y, rip.r * scale, rip.r * scale * 0.26, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(255,255,255,${rip.a * (1 - si * 0.3)})`;
-          ctx.lineWidth = si === 0 ? 2 : 1;
-          ctx.stroke();
-        });
-      }
+      // ── 7b. SUN GLINT — soft specular band at the “surface”
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      const gy = H * 0.035 + Math.sin(t * 0.32) * 5 + Math.sin(t * 0.61) * 2.5;
+      const glint = ctx.createLinearGradient(0, gy, W, gy + 32);
+      glint.addColorStop(0, 'rgba(255,255,255,0)');
+      glint.addColorStop(0.4, `rgba(235,250,255,${0.038 + depth * 0.025})`);
+      glint.addColorStop(0.55, `rgba(200,235,248,${0.022 + depth * 0.015})`);
+      glint.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = glint;
+      ctx.fillRect(0, gy - 6, W, 42);
+      ctx.restore();
 
-      // ── 9. VIGNETTE ──────────────────────────────────────────────────────
+      // ── 8. VIGNETTE ──────────────────────────────────────────────────────
       const vig = ctx.createRadialGradient(W/2, H/2, H*0.16, W/2, H/2, W*0.80);
       vig.addColorStop(0, 'rgba(0,0,0,0)');
       vig.addColorStop(1, `rgba(0,18,45,${0.52 + depth * 0.2})`);
@@ -1713,7 +1768,6 @@ function WaterCanvas() {
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMove);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
@@ -2054,9 +2108,24 @@ export default function WaterCheckup() {
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
         </h1>
 
-        <p style={{ color: '#94a3b8', fontSize: 17, lineHeight: 1.75, maxWidth: 620, margin: '0 auto 28px' }}>
-          <strong style={{ color: '#22d3ee' }}>The most complete free water quality resource in the US</strong> — look up any city or town, see real EPA contaminant data, PFAS levels, and violation history, and get a top-rated filter recommendation matched to your exact water problems. No signup. No paywall. Instant results.
-        </p>
+        <div
+          style={{
+            maxWidth: 620,
+            margin: '0 auto 28px',
+            padding: '18px 22px',
+            borderRadius: 14,
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderTop: '1px solid rgba(180,240,255,0.14)',
+            background: 'rgba(4,14,32,0.55)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            boxShadow: '0 8px 32px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
+          }}
+        >
+          <p style={{ color: '#94a3b8', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
+            <strong style={{ color: '#22d3ee' }}>The most complete free water quality resource in the US</strong> — look up any city or town, see real EPA contaminant data, PFAS levels, and violation history, and get a top-rated filter recommendation matched to your exact water problems. No signup. No paywall. Instant results.
+          </p>
+        </div>
 
         {/* 3-column why us */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28, maxWidth: 720, margin: '0 auto 28px' }}>
@@ -2077,7 +2146,7 @@ export default function WaterCheckup() {
         <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 16 }}>
           <input className="wc-search-input" value={zip} onChange={e => setZip(e.target.value.slice(0,30))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code or city name" maxLength={30}
             style={{ width: 'min(100%, 420px)', padding: '15px 20px', fontSize: 20, letterSpacing: 2, background: 'rgba(6,20,48,0.75)', border: '1px solid rgba(6,182,212,0.32)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 12, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), inset 0 2px 16px rgba(0,0,0,0.3), 0 0 0 0 rgba(6,182,212,0)' }} />
-          <button onClick={search} disabled={zip.trim().length < 2 || loading} className={zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''} style={{ padding: '15px 32px', background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.trim().length >= 2 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default' }}>
+          <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''}`.trim()} style={{ padding: '15px 32px', background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.trim().length >= 2 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default' }}>
             {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
           </button>
         </div>
@@ -2420,7 +2489,7 @@ export default function WaterCheckup() {
 
           {/* LIMITED DATA NOTICE */}
           {data.limitedData && (
-            <div style={{ background: 'rgba(120,53,15,0.3)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '12px 12px 0 0', padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 0 }}>
+            <div className="wc-reveal wc-reveal-1" style={{ background: 'rgba(120,53,15,0.3)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '12px 12px 0 0', padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 0 }}>
               <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 2 }}>Limited data for ZIP {data.zip}</div>
@@ -2430,7 +2499,7 @@ export default function WaterCheckup() {
           )}
 
           {/* SUMMARY HEADER */}
-          <div className="wc-results-hdr" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
+          <div className="wc-results-hdr wc-reveal wc-reveal-2" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
             {!data.limitedData && <ScoreDial score={data.score} grade={data.grade} />}
             <div style={{ flex: 1, minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
@@ -2462,7 +2531,7 @@ export default function WaterCheckup() {
           </div>
 
           {/* TABS */}
-          <div className="wc-tab-bar" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto' }}>
+          <div className="wc-tab-bar wc-reveal wc-reveal-3" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto' }}>
             {[['report','📊 Report'],['solutions','🏠 My Solution'],['pfas','☣️ PFAS'],['compare','📋 Compare'],['products','🛒 All Products'],['cost','💰 Cost Calc'],['installers','🔧 Installers'],['resources','🔗 Resources']].map(([id, label]) => (
               <button key={id} onClick={() => setTab(id)} style={{ padding: '10px 14px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#475569', fontSize: 12, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
             ))}
@@ -2470,7 +2539,7 @@ export default function WaterCheckup() {
 
           {/* TAB: WATER REPORT */}
           {tab === 'report' && (
-            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
               {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
@@ -2637,7 +2706,7 @@ export default function WaterCheckup() {
 
           {/* TAB: PFAS DETAIL */}
           {tab === 'pfas' && (
-            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               <div style={{ marginBottom: 18, padding: '14px 16px', background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #ef444440', borderRadius: 8 }}>
                 <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#ef4444', marginBottom: 7, fontWeight: 700 }}>☣️ ABOUT PFAS — FOREVER CHEMICALS</div>
                 <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>PFAS are ~12,000 synthetic chemicals that don't break down in the environment or human body. Linked to kidney cancer, testicular cancer, thyroid disease, immune suppression, elevated cholesterol, and developmental harm. EPA set the first federal MCL in 2024: <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA and PFOS.</p>
