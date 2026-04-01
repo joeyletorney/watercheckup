@@ -3087,7 +3087,19 @@ export default function WaterCheckup() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="wqa-modal-title"
-          style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#000000cc',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 200,
+            padding: 16,
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            boxSizing: 'border-box',
+          }}
           onClick={() => setShowWqaModal(false)}
         >
           <div
@@ -3102,6 +3114,12 @@ export default function WaterCheckup() {
               boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
               maxWidth: 440,
               width: '92%',
+              maxHeight: 'min(85vh, calc(100dvh - 32px))',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain',
+              margin: 'auto',
             }}
             onClick={e => e.stopPropagation()}
           >
@@ -3147,7 +3165,19 @@ export default function WaterCheckup() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="nsf-modal-title"
-          style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#000000cc',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 200,
+            padding: 16,
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            boxSizing: 'border-box',
+          }}
           onClick={() => setShowNsfModal(false)}
         >
           <div
@@ -3162,6 +3192,12 @@ export default function WaterCheckup() {
               boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
               maxWidth: 440,
               width: '92%',
+              maxHeight: 'min(85vh, calc(100dvh - 32px))',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain',
+              margin: 'auto',
             }}
             onClick={e => e.stopPropagation()}
           >
@@ -3213,7 +3249,19 @@ export default function WaterCheckup() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="epa-modal-title"
-          style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: '#000000cc',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 200,
+            padding: 16,
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            boxSizing: 'border-box',
+          }}
           onClick={() => setShowEpaModal(false)}
         >
           <div
@@ -3228,6 +3276,12 @@ export default function WaterCheckup() {
               boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
               maxWidth: 440,
               width: '92%',
+              maxHeight: 'min(85vh, calc(100dvh - 32px))',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain',
+              margin: 'auto',
             }}
             onClick={e => e.stopPropagation()}
           >
