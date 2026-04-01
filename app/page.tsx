@@ -2048,9 +2048,32 @@ export default function WaterCheckup() {
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
         </h1>
 
-        <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 32px' }}>
+        <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.75, maxWidth: 560, margin: '0 auto 16px' }}>
           Free water quality report for any US ZIP code — plus <strong style={{ color: '#e2e8f0' }}>expert-curated filter recommendations</strong>. Instant results.
         </p>
+
+        {/* Credibility statement */}
+        <div style={{ maxWidth: 640, margin: '0 auto 28px', padding: '16px 22px', background: 'rgba(8,145,178,0.07)', border: '1px solid rgba(8,145,178,0.2)', borderRadius: 12 }}>
+          <p style={{ fontSize: 14, color: '#94a3b8', margin: 0, lineHeight: 1.7 }}>
+            <strong style={{ color: '#22d3ee' }}>The most complete free water quality resource in the US.</strong>{' '}
+            Look up any city or town — see real EPA contaminant data, PFAS levels, and violation history. Then get a top-rated filter recommendation matched to your exact water problems. Free. No signup. No paywall.
+          </p>
+        </div>
+
+        {/* 3-column why us */}
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28, maxWidth: 720, margin: '0 auto 28px' }}>
+          {[
+            { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
+            { icon: '🔬', title: 'Real EPA Data', desc: 'Live SDWIS + UCMR5 PFAS monitoring. Not marketing copy.' },
+            { icon: '💧', title: 'Free Filter Solutions', desc: 'Top-rated systems matched to your exact contaminants. No guessing.' },
+          ].map(item => (
+            <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
+              <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', marginBottom: 4 }}>{item.title}</div>
+              <div style={{ fontSize: 12, color: '#475569', lineHeight: 1.6 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
 
         {/* Search bar */}
         <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 16 }}>
