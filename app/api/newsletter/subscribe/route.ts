@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getOrCreateWatercheckupAudienceId, resendRequest } from './resend-audience';
+import { getOrCreateWatercheckupAudienceId, resendRequest } from '../resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 
