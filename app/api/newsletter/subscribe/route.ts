@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSupabaseAdmin } from '@/lib/supabase-admin';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 
@@ -72,28 +71,6 @@ export async function POST(req: NextRequest) {
         { error: (errBody as { message?: string }).message || 'Could not save subscription' },
         { status: 502, headers: CORS },
       );
-    }
-
-    const supabase = getSupabaseAdmin();
-    if (supabase) {
-      const normalized = email.trim().toLowerCase();
-      const { error: dbErr } = await supabase.from('newsletter_subscribers').upsert(
-        {
-          email: normalized,
-          zip: String(zip || '').trim(),
-          weekly_opt_in: !!weekly,
-          unsubscribed: false,
-          source: String(source || 'unknown'),
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: 'email' },
-      );
-      if (dbErr) {
-        return NextResponse.json(
-          { error: dbErr.message || 'Could not save subscriber to database' },
-          { status: 502, headers: CORS },
-        );
-      }
     }
 
     const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <reports@watercheckup.com>';
