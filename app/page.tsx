@@ -2027,7 +2027,7 @@ export default function WaterCheckup() {
           </svg>
         </a>
         <nav style={{ display: 'flex', gap: 2, marginLeft: 20 }}>
-          {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']] as [string,string][]).map(([href, label]) => (
+          {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ'], ['/blog', 'Blog']] as [string,string][]).map(([href, label]) => (
             <a key={href} href={href} style={{ padding: '7px 14px', borderRadius: 7, fontSize: 14, fontWeight: 600, color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#38bdf8')}
               onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
