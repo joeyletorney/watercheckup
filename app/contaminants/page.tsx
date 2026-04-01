@@ -110,6 +110,46 @@ const CONTAMINANTS = [
     removes: ['Reverse Osmosis — removes >97%', 'NSF/ANSI 53 certified carbon block filters', 'Cation exchange (water softeners)', 'Distillation'],
     color: '#f59e0b', icon: '🪙',
   },
+  {
+    name: 'Radionuclides', symbol: 'U / Ra / α·β', category: 'Radioactive', severity: 'high',
+    epaLimit: 'Combined Ra-226+228: 5 pCi/L; gross α: 15 pCi/L; uranium: 30 µg/L; β/photon: 4 mrem/yr',
+    healthGoal: 'Zero where MCLG exists (varies by nuclide)',
+    what: 'Radionuclides are unstable atoms that emit radiation as they decay. In drinking water the ones EPA regulates most often are uranium, combined radium-226 and radium-228, gross alpha activity, and certain beta/photon emitters. They usually come from natural rock and soil (especially in granite or phosphate regions), but can be concentrated by mining, milling, or oil and gas activity. You cannot taste, see, or smell them.',
+    sources: ['Natural uranium and radium in bedrock and aquifers', 'Phosphate mining and fertilizer legacy areas', 'Oil and gas brine or produced-water pathways (regional)', 'Historical mill tailings or industrial releases (localized)', 'Some building materials and geology in the Southwest, Plains, and Northeast'],
+    healthEffects: ['Increased lifetime cancer risk from long-term ingestion (primary concern)', 'Bone-seeking behavior for radium (skeletal dose)', 'Kidney stress from chemical toxicity of uranium (in addition to radiotoxicity)', 'Risk scales with concentration, exposure duration, and which nuclides are present'],
+    removes: ['Reverse Osmosis — effective for uranium and many dissolved species', 'Ion exchange (specific resins for radium/uranium)', 'Specialized POU/POE systems designed for radionuclides', 'Distillation', 'Note: Standard pitcher carbon filters are not a reliable solution for radionuclides'],
+    color: '#a855f7', icon: '☢️',
+  },
+  {
+    name: 'Pesticides & herbicides', symbol: 'SOCs', category: 'Agricultural / industrial chemicals', severity: 'high',
+    epaLimit: 'Per compound (e.g. atrazine 3 µg/L); many regulated under SDWA',
+    healthGoal: 'Zero (MCLG) for several listed pesticides',
+    what: 'This group includes synthetic organic chemicals used in farming, turf management, and pest control that can reach groundwater and surface water through runoff, spray drift, and leaching. EPA sets individual limits for specific pesticides (such as atrazine, 2,4-D, alachlor, and others) under the Safe Drinking Water Act. Presence depends heavily on land use, season, and your utility’s source water.',
+    sources: ['Agricultural runoff and field drainage', 'Lawn and golf-course applications', 'Spills, loading areas, and improper disposal', 'Leaching into shallow wells in agricultural regions', 'Surface water intakes downstream of farming or urban runoff'],
+    healthEffects: ['Varies by compound — may include endocrine effects, liver/kidney stress, and long-term cancer risk for specific chemicals at high exposure', 'Chronic low-level mixture exposure is an active research area', 'Sensitive groups include infants, pregnant people, and those with liver disease'],
+    removes: ['Reverse Osmosis — broad removal for many dissolved pesticides', 'NSF/ANSI 53 certified filters where certified for specific claims', 'Activated carbon (GAC) can reduce some pesticides; effectiveness is compound-specific', 'Distillation for many volatile and semi-volatile traces', 'Check NSF listings for the exact chemical you care about'],
+    color: '#84cc16', icon: '🧴',
+  },
+  {
+    name: 'Volatile organic compounds', symbol: 'VOCs', category: 'Solvents & fuel-related', severity: 'high',
+    epaLimit: 'Per compound (e.g. benzene 5 µg/L; TCE 5 µg/L; PCE 5 µg/L; many others)',
+    healthGoal: 'Zero (MCLG) for several VOCs',
+    what: 'VOCs are carbon-based chemicals that evaporate easily at room temperature. In drinking water, common examples include benzene, trichloroethylene (TCE), tetrachloroethylene (PCE), vinyl chloride, and carbon tetrachloride. They usually enter water through industrial discharge, leaking underground storage tanks, landfills, or spills — not from normal chlorine disinfection (THMs are separate DBPs).',
+    sources: ['Industrial solvents and degreasers', 'Leaking gas stations and underground storage tanks', 'Dry-cleaning chemicals (PCE)', 'Landfills and waste sites', 'Plumes migrating in groundwater toward wells or river intakes'],
+    healthEffects: ['Liver, kidney, and nervous system injury (acute high doses)', 'Long-term cancer risk for benzene, TCE, vinyl chloride, and others at regulated levels', 'Some VOCs affect fetal development in animal studies', 'Showering can increase inhalation exposure for very volatile compounds'],
+    removes: ['Reverse Osmosis — strong option for many VOCs', 'High-quality activated carbon (GAC or carbon block) — often very effective for VOCs', 'NSF/ANSI 53 certified systems with documented VOC reduction', 'Aeration (whole-house) can strip very volatile compounds in some cases', 'Distillation'],
+    color: '#ec4899', icon: '💨',
+  },
+  {
+    name: 'Cryptosporidium & Giardia', symbol: 'Cysts / oocysts', category: 'Microbial (protozoa)', severity: 'critical',
+    epaLimit: 'Treatment technique — filtered systems must meet performance; no single “ppb” limit',
+    healthGoal: 'Zero illness from waterborne pathogens (health-based goal)',
+    what: 'These are microscopic parasites that form tough cysts (Giardia) or oocysts (Cryptosporidium) that survive in cold water. They cause gastrointestinal illness and are a major concern in surface-water supplies, especially after storms, agricultural runoff, or treatment upsets. Cryptosporidium is highly chlorine-resistant; preventing illness relies on filtration, disinfection with ozone/UV, or boiling, not chlorine alone.',
+    sources: ['Human and animal fecal contamination of rivers and lakes', 'Sewage overflows and failing septic systems near wells or intakes', 'Agricultural runoff', 'Travel and daycare settings (person-to-person) — water is one exposure route', 'Private springs and surface-influenced wells without disinfection'],
+    healthEffects: ['Profuse watery diarrhea (Cryptosporidium)', 'Gas, cramps, greasy diarrhea, and weight loss (Giardia)', 'Severe dehydration — risk highest for infants, elderly, and immunocompromised', 'Cryptosporidium can cause life-threatening illness in advanced HIV/AIDS (avoid any questionable water)'],
+    removes: ['NSF/ANSI 53 or 58 certified filters with cyst reduction claims (absolute-rated ~1 µm or manufacturer-tested)', 'Reverse Osmosis — effective barrier', 'UV disinfection designed for microbiological inactivation (proper dose and flow)', 'Boiling for 1 minute (emergency or travel)', 'Note: Ordinary carbon-only pitchers are not a substitute for certified cyst reduction'],
+    color: '#ef4444', icon: '🐛',
+  },
 ];
 
 const SEV_COLORS: Record<string, { bg: string; text: string; border: string; label: string }> = {
@@ -123,9 +163,12 @@ export default function ContaminantsPage() {
   const [open, setOpen] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
+  const q = search.toLowerCase().trim();
   const filtered = CONTAMINANTS.filter(c =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.category.toLowerCase().includes(search.toLowerCase())
+    !q ||
+    c.name.toLowerCase().includes(q) ||
+    c.category.toLowerCase().includes(q) ||
+    c.symbol.toLowerCase().includes(q)
   );
 
   return (

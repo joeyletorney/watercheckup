@@ -1,7 +1,16 @@
-'use client';
 import Link from 'next/link';
 
 const POSTS = [
+  {
+    slug: 'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity',
+    title: 'Why Distilled Water and Reverse Osmosis Are the Two Best Systems for High Purity',
+    excerpt:
+      'For drinking water, “high purity” means removing dissolved salts, metals, and many organics — not just chlorine taste. Here is why distillation and RO sit at the top of the stack.',
+    date: 'April 14, 2026',
+    readTime: '10 min read',
+    badge: 'Purity',
+    badgeColor: '#06b6d4',
+  },
   {
     slug: 'arsenic-in-well-water-epa-limit-and-treatment',
     title: 'Arsenic in Well Water: The EPA Limit and Treatment That Actually Works',

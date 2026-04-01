@@ -417,4 +417,95 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
       </>
     ),
   },
+
+  'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity': {
+    title: 'Why Distilled Water and Reverse Osmosis Are the Two Best Systems for High Purity',
+    excerpt:
+      'For drinking water, “high purity” means removing dissolved salts, metals, and many organics — not just chlorine taste. Here is why distillation and RO sit at the top of the stack.',
+    date: '2026-04-14',
+    dateDisplay: 'April 14, 2026',
+    readTime: '10 min read',
+    badge: 'Purity',
+    badgeColor: '#06b6d4',
+    topPick: {
+      label: 'For most homes, certified under-sink RO is the practical high-purity choice',
+      product: 'Waterdrop Under-Sink RO System',
+      reason: 'NSF/ANSI 58 systems are tested for broad contaminant reduction with manageable flow and maintenance.',
+      link: WATERDROP,
+      amazon: `https://www.amazon.com/s?k=reverse+osmosis+water+filter+nsf+58+under+sink&tag=${AMAZON_TAG}`,
+    },
+    content: (
+      <>
+        <p style={pStyle}>
+          When people say they want <strong style={strongStyle}>“pure” water</strong>, they usually mean water with very few dissolved solids, minimal trace contaminants, and nothing that tastes or smells off. In residential treatment, two technologies consistently deliver that class of performance: <strong style={strongStyle}>distillation</strong> and <strong style={strongStyle}>reverse osmosis (RO)</strong>.
+        </p>
+        <p style={pStyle}>
+          Pitcher filters and basic carbon cartridges excel at chlorine taste and some chemicals — but they are not in the same league for <strong style={strongStyle}>overall purity</strong>. Here is why distillation and RO are the top pair, and how to choose between them.
+        </p>
+
+        <h2 style={h2Style}>What “high purity” actually means</h2>
+        <p style={pStyle}>
+          High-purity drinking water typically has <strong style={strongStyle}>low total dissolved solids (TDS)</strong> and strong reduction of ions and molecules that slip through looser media: sodium, chloride, sulfate, nitrate, arsenic species, lead, PFAS, and many organic compounds — depending on the device and certification.
+        </p>
+        <p style={pStyle}>
+          No home system makes “absolute zero” contaminants in all cases — maintenance, water chemistry, and certified claims still matter. But distillation and RO are the two approaches that <strong style={strongStyle}>reliably separate water from most of what is dissolved in it</strong>.
+        </p>
+
+        <h2 style={h2Style}>Distillation: purity through phase change</h2>
+        <p style={pStyle}>
+          A distiller boils water and condenses the steam. Most minerals, metals, and non-volatile contaminants are left behind in the boiling chamber. That is a different mechanism than adsorption (carbon) — it is <strong style={strongStyle}>physical separation by vapor pressure</strong>, which is why distillers can achieve very low dissolved solid levels.
+        </p>
+        <h3 style={h3Style}>Strengths</h3>
+        <p style={pStyle}>
+          Very high rejection of dissolved salts; simple concept; no membrane fouling in the same way RO membranes can foul from certain water chemistries (though boil chambers still need cleaning/descaling).
+        </p>
+        <h3 style={h3Style}>Tradeoffs</h3>
+        <p style={pStyle}>
+          <strong style={strongStyle}>Energy use and speed:</strong> boiling water takes electricity and time. <strong style={strongStyle}>Volatile compounds</strong> that co-distill or carry over may need venting or additional treatment in edge cases (some VOCs). Taste is often described as “flat” until remineralization. Output is usually modest — great for a few gallons a day, less ideal as whole-house supply.
+        </p>
+
+        <h2 style={h2Style}>Reverse osmosis: purity through membrane rejection</h2>
+        <p style={pStyle}>
+          RO forces water through a semi-permeable membrane with extremely small pores (on the order of <strong style={strongStyle}>~0.0001 microns</strong> class rejection behavior for many dissolved species). Most dissolved ions, PFAS, and many organics are held back; a concentrate stream carries them away.
+        </p>
+        <h3 style={h3Style}>Strengths</h3>
+        <p style={pStyle}>
+          High flow relative to distillers; widely available as <strong style={strongStyle}>under-sink tankless systems</strong>; strong third-party certifications (look for <strong style={strongStyle}>NSF/ANSI 58</strong> for RO systems and verify contaminant claims). Easier to fit daily cooking and family drinking than batch distillation for most households.
+        </p>
+        <h3 style={h3Style}>Tradeoffs</h3>
+        <p style={pStyle}>
+          Produces <strong style={strongStyle}>wastewater (brine)</strong> — normal, but worth understanding for drought regions. Membranes and prefilters need scheduled replacement. Very aggressive RO water can be corrosive to some plumbing if plumbed incorrectly — follow manufacturer guidance and common practice (often a dedicated faucet).
+        </p>
+
+        <div style={calloutStyle}>
+          <strong style={strongStyle}>Why not carbon alone? </strong>
+          Activated carbon is excellent for many chemicals and chlorine — but it does not “strip” water of dissolved salts the way RO and distillation do. For <strong style={strongStyle}>maximum dissolved-solids reduction</strong>, you want a barrier technology (membrane) or phase change (distillation).
+        </div>
+
+        <h2 style={h2Style}>Why these two are the “top two” for purity</h2>
+        <p style={pStyle}>
+          <strong style={strongStyle}>1. Mechanism:</strong> Both fundamentally separate H₂O from dissolved matter rather than only polishing select compounds.<br />
+          <strong style={strongStyle}>2. Breadth:</strong> Either can address a wide range of contaminants that drive health concerns — when properly designed, maintained, and certified for the claims you need.<br />
+          <strong style={strongStyle}>3. Measurable outcome:</strong> TDS meters are not safety instruments — but large drops in conductivity often align with the “high purity” goal people describe after RO or distillation.
+        </p>
+
+        <h2 style={h2Style}>Which should you pick at home?</h2>
+        <p style={pStyle}>
+          <strong style={strongStyle}>Choose RO</strong> if you want high purity at the kitchen sink for drinking and cooking, with reasonable flow and easier integration into daily life. That is why most “serious” home installations are RO-based.<br />
+          <strong style={strongStyle}>Choose distillation</strong> if you want batch-produced ultra-low-TDS water for specific uses, or you prefer distillation’s simplicity of chemistry — accepting energy cost and lower throughput.
+        </p>
+        <p style={pStyle}>
+          Many people add <strong style={strongStyle}>remineralization</strong> or drink blended water for taste — that slightly lowers “absolute” purity but improves palatability. Purity and taste are related but not identical goals.
+        </p>
+
+        <h2 style={h2Style}>Bottom line</h2>
+        <p style={pStyle}>
+          For <strong style={strongStyle}>maximum practical purity</strong> from residential equipment, distillation and reverse osmosis are the two technologies that deserve the top tier. Between them, <strong style={strongStyle}>RO is usually the better fit for households</strong>; distillation remains a gold-standard batch method when you specifically want water produced by evaporation and condensation.
+        </p>
+        <p style={pStyle}>
+          Start with your actual water quality (CCR + WaterCheckup + testing if needed), then pick certified equipment matched to those results — not marketing adjectives like “pure” or “natural.”
+        </p>
+      </>
+    ),
+  },
 };

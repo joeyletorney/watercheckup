@@ -46,7 +46,7 @@ async function findInstallers(zip: string) {
 // LIVING SITUATIONS
 // ─────────────────────────────────────────────────────────────────────────────
 const SITUATIONS = [
-  { id: 'homeowner', icon: '🏠', label: 'Homeowner',         desc: 'You own your home and want full protection at every tap, shower, and appliance.',        tagline: 'Full-home water protection',    cats: ['undersink','undersink-filter','countertop','countertop-filter','whole','shower'] },
+  { id: 'homeowner', icon: '🏠', label: 'Homeowner',         desc: 'You own your home and want full protection at every tap, shower, and appliance.',        tagline: 'Full-home water protection',    cats: ['undersink','undersink-filter','countertop','countertop-filter','distiller','whole','shower'] },
   { id: 'renter',    icon: '🏢', label: 'Renter / Apartment',desc: 'You rent — no plumbing changes allowed. Clean water without drilling a single hole.', tagline: 'No installation required',      cats: ['countertop','countertop-filter','pitcher','shower'] },
   { id: 'rv',        icon: '🚐', label: 'RV / Van Life',     desc: 'On the road and need reliable filtration wherever you park or hook up.',                 tagline: 'Portable filtration anywhere',  cats: ['countertop','countertop-filter','pitcher','shower'] },
   { id: 'dorm',      icon: '🎓', label: 'College Dorm',      desc: 'Small space, shared facilities, tight budget — simple, affordable, plug-in-and-pour.',  tagline: 'Simple & affordable',           cats: ['countertop','countertop-filter','pitcher','shower'] },
@@ -84,7 +84,7 @@ const ACIDIC_STATES = new Set([
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FULL PRODUCT CATALOG — 39 products, 12 categories, quick-change filters only
+// FULL PRODUCT CATALOG — 39 products, 13 categories, quick-change filters only
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO — quick-change only ─────────────────────────────────────
@@ -103,6 +103,9 @@ const PRODUCTS: any[] = [
   { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
   { id:30, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19', brand:'Waterdrop', price:309, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Bacteria','Viruses','TDS'], bestFor:['PFAS','Lead','Bacteria','Viruses'], pros:['UV sterilization built-in','Quick-change filters','Zero install'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-k19-s-vis.png?v=1774504000', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
   { id:31, cat:'countertop', catLabel:'Countertop RO', name:'AquaTru Classic', brand:'AquaTru', price:475, filterCostPerYear:130, rating:4.6, reviews:5200, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Fluoride','Radium'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['No installation required','Quick-change filters','NSF/ANSI 401 certified'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Premium countertop RO certified to NSF/ANSI 42, 53, 58, and 401 — removes PFAS, nitrates, fluoride, and radium. No installation required, and quick-change filters swap in seconds. Best premium option for the kitchen counter.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Classic-1-1_bd723f43-efb1-4f23-b772-9352d7d7179b.webp?v=1758659574', amazon:`https://www.amazon.com/dp/B0CQS3HQ8F?tag=${TAG}` },
+
+  // ── DISTILLERS — countertop ─────────────────────────────────────────────────
+  { id:45, cat:'distiller', catLabel:'Countertop Distiller', name:'CO-Z 4L Brushed Stainless Distiller', brand:'CO-Z', price:119, filterCostPerYear:35, rating:4.5, reviews:8900, gpd:null, stages:2, cert:['Steam distillation','304 stainless boil chamber','Glass carafe (most kits)'], certColor:'#14b8a6', removes:['Heavy metals >99%','Fluoride','Nitrates','TDS','Bacteria','Cysts','Dissolved solids'], bestFor:['Fluoride','Nitrates','Lead','TDS','Arsenic','PFAS'], pros:['Excellent Amazon value','Auto shut-off','750W — common 4L design'], diyDiff:'None', situations:['homeowner','family'], expertPick:true, expertReason:'CO-Z’s 4L stainless countertop distiller is one of Amazon’s best-selling alternatives to premium brands — strong ratings and review count for the price. Same distillation physics as units costing 2×: boil, condense, collect; descale often and replace carbon sachets on schedule.', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80', amazon:`https://www.amazon.com/dp/B078GHJ921?tag=${TAG}` },
 
   // ── COUNTERTOP FILTER (non-RO) ───────────────────────────────────────────────
   { id:29, cat:'countertop-filter', catLabel:'Countertop Filter', name:'Epic Pure Pitcher', brand:'Epic Water Filters', price:50, filterCostPerYear:80, rating:4.7, reviews:2800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Arsenic >99%','Chromium-6','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Removes PFAS — rare for pitcher','No installation','Best-value pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Certified to remove PFAS at 99%+ — virtually unheard of at this price. Also removes lead, arsenic, and microplastics. Best value pitcher for serious contaminant removal.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Purehero1080.png?v=1773943609', amazon:`https://www.amazon.com/dp/B08PPLVFBN?tag=${TAG}` },
@@ -130,7 +133,6 @@ const PRODUCTS: any[] = [
 
   // ── SHOWER FILTERS ──────────────────────────────────────────────────────────
   { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#475569', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'42,000+ Amazon reviews. Installs in 5 minutes — just screw it onto any showerhead. Removes chlorine that dries skin and damages hair. Best value shower filter on the market by far.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
-  { id:21, cat:'shower', catLabel:'Shower Filter', name:'Pelican PSF-1 Premium Shower', brand:'Pelican Water', price:70, filterCostPerYear:60, rating:4.6, reviews:3800, gpd:null, stages:3, cert:['NSF/ANSI 177','KDF-55'], certColor:'#d97706', removes:['Chlorine >96%','Chloramine','Scale','Hydrogen sulfide'], bestFor:['Chlorine','Chloramine','Scale'], pros:['NSF 177 certified','Removes chloramine too','Lasts 15,000 gallons'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'NSF/ANSI 177 certified — the gold standard for shower filters. Removes chloramine in addition to chlorine, which most budget shower filters miss entirely. Lasts 15,000 gallons.', img:'https://plumbersparadise.net/cdn/shop/files/PSF1.jpg?v=1740643408', amazon:`https://www.amazon.com/dp/B00A407Q44?tag=${TAG}` },
   { id:35, cat:'shower', catLabel:'Shower Filter', name:'Aquasana AQ-4105CHR', brand:'Aquasana', price:119, filterCostPerYear:80, rating:4.7, reviews:4200, gpd:null, stages:2, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >91%','Chloramine','Scale','Synthetic chemicals'], bestFor:['Chlorine','Chloramine','Scale'], pros:['NSF 177 certified','Quick-change filter','Filtered showerhead combo'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Complete filtered showerhead combo — NSF/ANSI 177 certified with a quick-change cartridge that twists off without tools. The premium pick for removing both chlorine and chloramine.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwc5d4d26e/images/large/AQ-4105CHR.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B004AQZW3A?tag=${TAG}` },
   { id:36, cat:'shower', catLabel:'Shower Filter', name:'AquaTru Shower Filter', brand:'AquaTru', price:149, filterCostPerYear:90, rating:4.6, reviews:890, gpd:null, stages:3, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >98%','Chloramine','Heavy metals','Scale','VOCs'], bestFor:['Chlorine','Chloramine','Heavy metals'], pros:['Highest chlorine reduction','Quick-change cartridge','Premium finish'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Highest chlorine reduction of any shower filter at 98%+ — NSF/ANSI 177 certified. Quick-change cartridge with a premium finish. Best pick for heavy chlorine areas.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT_-_Shower_-_PDP_01_-_Nickel.jpg?v=1773655036', amazon:`https://www.amazon.com/dp/B0FLHFTGYD?tag=${TAG}` },
 
@@ -163,10 +165,10 @@ const SITUATION_CONFIG: Record<string, {
 }> = {
   homeowner: {
     headline: 'Best filters for homeowners',
-    description: 'You can install under-sink RO or a whole-house system. Under-sink gives the cleanest drinking water; whole-house protects every tap, shower, and appliance.',
-    primaryCats: ['undersink','whole'],
+    description: 'You can install under-sink RO or a whole-house system. Under-sink gives the cleanest drinking water; whole-house protects every tap, shower, and appliance. Countertop distillers are plug-in — no plumbing — and strip fluoride, nitrates, and heavy metals by boiling steam (slow but thorough).',
+    primaryCats: ['undersink','whole','distiller'],
     avoid: 'Skip pitchers long-term — the per-gallon cost is 3x higher than RO.',
-    tip: 'Most under-sink RO systems take 2-3 hours to install with basic tools. Look for a WQA-certified installer if you\'re not comfortable with the plumbing connections.',
+    tip: 'Most under-sink RO systems take 2-3 hours to install with basic tools. For distilled water without plumbing, a CO-Z–style countertop distiller (see Distiller tab) is the value pick — plan counter space, regular descaling, and carbon sachet changes per the manual.',
   },
   renter: {
     headline: 'No-drill solutions for renters',
@@ -992,6 +994,25 @@ const DIY_GUIDES: Record<string, { time: string; difficulty: string; tools: stri
       'Your ice maker water also passes through this filter  --  both will be cleaner.',
     ],
     youtubeQuery: 'inline refrigerator water filter installation DIY',
+  },
+  distiller: {
+    time: '10 minutes', difficulty: 'None',
+    tools: ['White vinegar (for periodic descaling)','Soft cloth'],
+    steps: [
+      'Place the distiller on a level, heat-safe countertop near a grounded outlet (kitchen counter is ideal).',
+      'Rinse the boil chamber and collection jug before first use per the manual.',
+      'Fill the boil chamber to the marked line with cold tap water — do not overfill.',
+      'If included, install the activated carbon sachet or post-filter on the spout as directed.',
+      'Press start and let a full cycle complete; discard the first batch or two if the manual recommends a break-in flush.',
+      'After each cycle, empty rinse residue from the boil chamber and wipe scale buildup weekly or when you see white film.',
+    ],
+    tips: [
+      'Descale regularly with vinegar or citric acid — mineral buildup slows output and can shorten element life.',
+      'Distillation removes minerals — water can taste flat; some people add trace minerals back for taste.',
+      'Very volatile organics can co-distill slightly — carbon post-filters (included on many units) help polish taste and VOCs.',
+      'Distillers use electricity and time; plan batches for cooking/drinking rather than all-day high flow.',
+    ],
+    youtubeQuery: 'countertop water distiller how to use clean descale',
   },
 };
 
@@ -1983,8 +2004,24 @@ export default function WaterCheckup() {
   const [homePeople, setHomePeople]     = useState<string | null>(null);
   const [homeBaths, setHomeBaths]       = useState<string | null>(null);
   const [showShare, setShowShare]       = useState(false);
+  const [showWqaModal, setShowWqaModal] = useState(false);
+  const [showNsfModal, setShowNsfModal] = useState(false);
+  const [showEpaModal, setShowEpaModal] = useState(false);
   const [wellMode, setWellMode]         = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showWqaModal && !showNsfModal && !showEpaModal) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowWqaModal(false);
+        setShowNsfModal(false);
+        setShowEpaModal(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showWqaModal, showNsfModal, showEpaModal]);
 
   const search = async () => {
     // City name lookup — if input isn't digits, check city map
@@ -2052,8 +2089,8 @@ export default function WaterCheckup() {
     year: `Yr ${i}`, filter: Math.round(prod.price + (prod.filterCostPerYear || 80) * i), bottled: Math.round(ppl * 32 * 12 * i),
   }));
   const recommended = getRecommended();
-  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','pitcher','faucet','bottle','whole','softener','acid-neutralizer','shower','fridge'];
-  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower', fridge:'Fridge/Inline' };
+  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','distiller','pitcher','faucet','bottle','whole','softener','acid-neutralizer','shower','fridge'];
+  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', distiller:'Distiller', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower', fridge:'Fridge/Inline' };
   const filteredProds = productFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === productFilter);
   const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
   const pfasLevel = data?.ucmr5?.maxPfasPpt ?? data?.contaminants?.find((c: any) => c.isPFAS || c.name?.includes('PFAS'))?.level ?? null;
@@ -2095,23 +2132,44 @@ export default function WaterCheckup() {
           ))}
         </nav>
         <div className="wc-nav-badges" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
-          <span style={{ fontSize: 11, padding: '3px 9px', borderRadius: 20, background: '#d9770620', color: '#d97706', border: '1px solid #d9770640', fontWeight: 700 }}>WQA Gold Seal</span>
-          <span style={{ fontSize: 11, padding: '3px 9px', borderRadius: 20, background: '#0891b220', color: '#38bdf8', border: '1px solid #0891b240', fontWeight: 700 }}>NSF Certified</span>
-          <span style={{ fontSize: 11, padding: '3px 9px', borderRadius: 20, background: '#7c3aed20', color: '#a78bfa', border: '1px solid #7c3aed40', fontWeight: 700 }}>Live EPA Data</span>
+          <button
+            type="button"
+            className="wc-nav-badge-wqa"
+            onClick={() => setShowWqaModal(true)}
+            aria-label="What is WQA Gold Seal? Opens explanation dialog."
+          >
+            WQA Gold Seal
+          </button>
+          <button
+            type="button"
+            className="wc-nav-badge-nsf"
+            onClick={() => setShowNsfModal(true)}
+            aria-label="What does NSF certified mean? Opens explanation dialog."
+          >
+            NSF Certified
+          </button>
+          <button
+            type="button"
+            className="wc-nav-badge-epa"
+            onClick={() => setShowEpaModal(true)}
+            aria-label="What does Live EPA Data mean? Opens explanation dialog."
+          >
+            Live EPA Data
+          </button>
         </div>
       </div>
 
       {/* SEARCH / HERO */}
-      <div style={{ maxWidth: 760, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ maxWidth: 820, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
-        <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#f1f9ff', letterSpacing: -1 }}>
+        <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#ffffff', letterSpacing: -1 }}>
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
         </h1>
 
         <div
           style={{
             maxWidth: 620,
-            margin: '0 auto 28px',
+            margin: '0 auto 18px',
             padding: '18px 22px',
             borderRadius: 14,
             border: '1px solid rgba(255,255,255,0.08)',
@@ -2122,31 +2180,15 @@ export default function WaterCheckup() {
             boxShadow: '0 8px 32px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
           }}
         >
-          <p style={{ color: '#94a3b8', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#22d3ee' }}>The most complete free water quality resource in the US</strong> — look up any city or town, see real EPA contaminant data, PFAS levels, and violation history, and get a top-rated filter recommendation matched to your exact water problems. No signup. No paywall. Instant results.
+          <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
+            <strong style={{ color: '#67e8f9' }}>100% free.</strong> No sign-up, no free trial, no credit card—no BS. Type your town or city and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations picked for <em>your</em> water—not a generic sales pitch.
           </p>
         </div>
 
-        {/* 3-column why us */}
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28, maxWidth: 720, margin: '0 auto 28px' }}>
-          {[
-            { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
-            { icon: '🔬', title: 'Real EPA Data', desc: 'Live SDWIS + UCMR5 PFAS monitoring. Not marketing copy.' },
-            { icon: '💧', title: 'Free Filter Solutions', desc: 'Top-rated systems matched to your exact contaminants. No guessing.' },
-          ].map(item => (
-            <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
-              <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', marginBottom: 4 }}>{item.title}</div>
-              <div style={{ fontSize: 12, color: '#475569', lineHeight: 1.6 }}>{item.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Search bar */}
-        <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 16 }}>
-          <input className="wc-search-input" value={zip} onChange={e => setZip(e.target.value.slice(0,30))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code or city name" maxLength={30}
-            style={{ width: 'min(100%, 420px)', padding: '15px 20px', fontSize: 20, letterSpacing: 2, background: 'rgba(6,20,48,0.75)', border: '1px solid rgba(6,182,212,0.32)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 12, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), inset 0 2px 16px rgba(0,0,0,0.3), 0 0 0 0 rgba(6,182,212,0)' }} />
-          <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''}`.trim()} style={{ padding: '15px 32px', background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.trim().length >= 2 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default' }}>
+        {/* Search bar — directly under value prop */}
+        <div className="wc-search-row" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 16 }}>
+          <input className="wc-search-input" value={zip} onChange={e => setZip(e.target.value.slice(0,30))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code or city name" maxLength={30} />
+          <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''}`.trim()} style={{ padding: '18px 34px', minHeight: 58, background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 14, color: zip.trim().length >= 2 && !loading ? '#fff' : '#94a3b8', fontSize: 16, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default', alignSelf: 'stretch' }}>
             {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
           </button>
         </div>
@@ -2161,34 +2203,37 @@ export default function WaterCheckup() {
           ].map(t => (
             <div key={t.text} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ fontSize: 13 }}>{t.icon}</span>
-              <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 700 }}>{t.text}</span>
+              <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 700 }}>{t.text}</span>
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 6, fontSize: 12, color: '#1e3a4a' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
+        <div style={{ marginTop: 6, fontSize: 12, color: '#94a3b8' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
 
-        {/* Quiz CTA */}
-        <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-          <div style={{ height: 1, width: 48, background: 'rgba(255,255,255,0.06)' }} />
-          <span style={{ fontSize: 13, color: '#475569' }}>or</span>
-          <div style={{ height: 1, width: 48, background: 'rgba(255,255,255,0.06)' }} />
-        </div>
-        <div style={{ marginTop: 12 }}>
-          <a href="/quiz" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 24px', borderRadius: 30, border: '1px solid rgba(8,145,178,0.3)', background: 'rgba(8,145,178,0.08)', color: '#22d3ee', fontSize: 14, fontWeight: 700, textDecoration: 'none', transition: 'all 0.2s' }}>
-            🎯 Don&apos;t know your ZIP? Find your filter in 3 questions →
-          </a>
-        </div>
         {/* Well water toggle */}
-        <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-          <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 28px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#a78bfa' : '#94a3b8', fontSize: 17, fontWeight: 800, cursor: 'pointer', transition: 'all .2s' }}>
+        <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center' }}>
+          <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 28px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#c4b5fd' : '#cbd5e1', fontSize: 17, fontWeight: 800, cursor: 'pointer', transition: 'all .2s' }}>
             <span style={{ width: 38, height: 22, borderRadius: 11, background: wellMode ? '#7c3aed' : '#1e3a4a', display: 'inline-flex', alignItems: 'center', transition: 'background .2s', flexShrink: 0, position: 'relative' }}>
               <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#fff', position: 'absolute', left: wellMode ? 19 : 3, transition: 'left .2s' }} />
             </span>
             🏡 I&apos;m on Well Water
           </button>
-          <div style={{ fontSize: 16, fontWeight: 800, color: '#94a3b8' }}>It&apos;s Easy as 1, 2, 3</div>
         </div>
 {error && <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}><div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>⚠ Error</div><div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div></div>}
+
+        {/* 3-column why us */}
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '28px auto 28px', maxWidth: 720 }}>
+          {[
+            { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
+            { icon: '🔬', title: 'Real EPA Data', desc: 'Pulled from EPA public databases: SDWIS (your utility’s official tests, limits, and violations) and UCMR5 (nationwide PFAS sampling). Government data—not marketing copy.' },
+            { icon: '💧', title: 'Free Filter Solutions', desc: 'Top-rated systems matched to your exact contaminants. No guessing.' },
+          ].map(item => (
+            <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
+              <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 800, color: '#f8fafc', marginBottom: 4 }}>{item.title}</div>
+              <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.6 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {!data && !loading && (
@@ -2201,7 +2246,7 @@ export default function WaterCheckup() {
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Problem — What's in Your Water?</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
+                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
               </div>
             </div>
             {/* Alarming stat strip */}
@@ -2369,8 +2414,8 @@ export default function WaterCheckup() {
             {situation && (() => {
               const sit = SITUATIONS.find(s => s.id === situation)!;
               const sitProducts = PRODUCTS.filter((p: any) => sit.cats.includes(p.cat) && p.expertPick);
-              const catOrder = sit.id === 'homeowner' ? ['undersink','undersink-filter','countertop','countertop-filter','whole','shower'] : sit.cats;
-              const catTitles: Record<string,string> = { undersink:'🚰 Under-Sink RO', 'undersink-filter':'💧 Under-Sink Filter (Non-RO)', countertop:'🪣 Countertop RO', 'countertop-filter':'🧊 Countertop Filter', whole:'🏠 Whole-House', shower:'🚿 Shower Filters', pitcher:'🥤 Pitcher Filters' };
+              const catOrder = sit.id === 'homeowner' ? ['undersink','undersink-filter','countertop','countertop-filter','distiller','whole','shower'] : sit.cats;
+              const catTitles: Record<string,string> = { undersink:'🚰 Under-Sink RO', 'undersink-filter':'💧 Under-Sink Filter (Non-RO)', countertop:'🪣 Countertop RO', 'countertop-filter':'🧊 Countertop Filter', distiller:'♨️ Countertop Distillers', whole:'🏠 Whole-House', shower:'🚿 Shower Filters', pitcher:'🥤 Pitcher Filters' };
               const renderCard = (p: any) => (
                 <div key={p.id} className="wc-card" style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
@@ -2452,7 +2497,7 @@ export default function WaterCheckup() {
                   <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
                   <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
-                  <div style={{ fontSize: 11, color: '#475569' }}>{f.note}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8' }}>{f.note}</div>
                 </div>
               ))}
             </div>
@@ -2767,7 +2812,7 @@ export default function WaterCheckup() {
             {catFilters.map(cat => {
               const active = productFilter === cat;
               const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
-              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿', fridge:'❄️' };
+              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', distiller:'♨️', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿', fridge:'❄️' };
               return (
                 <button key={cat} onClick={() => setProductFilter(cat)}
                   style={{
@@ -2916,6 +2961,199 @@ export default function WaterCheckup() {
 
           {/* TAB: RESOURCES */}
           {tab === 'resources' && <ResourcesTab data={data} />}
+        </div>
+      )}
+
+      {/* WQA GOLD SEAL — info modal */}
+      {showWqaModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="wqa-modal-title"
+          style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}
+          onClick={() => setShowWqaModal(false)}
+        >
+          <div
+            style={{
+              background: 'rgba(3,12,28,0.92)',
+              backdropFilter: 'blur(28px)',
+              WebkitBackdropFilter: 'blur(28px)',
+              border: '1px solid rgba(255,255,255,0.09)',
+              borderTop: '1px solid rgba(255,255,255,0.14)',
+              borderRadius: 16,
+              padding: '26px 28px',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
+              maxWidth: 440,
+              width: '92%',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+              <div>
+                <div id="wqa-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
+                  What is the WQA Gold Seal?
+                </div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#d97706', letterSpacing: 0.5, marginTop: 6 }}>Water Quality Association</div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowWqaModal(false)}
+                aria-label="Close"
+                style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
+              >
+                ×
+              </button>
+            </div>
+            <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+              The <strong style={{ color: '#e2e8f0' }}>WQA Gold Seal</strong> is a product certification from the{' '}
+              <strong style={{ color: '#e2e8f0' }}>Water Quality Association (WQA)</strong>, a not-for-profit trade group for the water treatment industry. Equipment that earns the Gold Seal has been{' '}
+              <strong style={{ color: '#e2e8f0' }}>tested by an independent lab</strong> against published industry standards (often NSF/ANSI standards) for the claims on the label — for example contaminant reduction, structural integrity, and material safety.
+            </p>
+            <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+              It is not a government “EPA stamp,” but it is a widely recognized third-party check that a filter or system does what its certification says. When shopping, match the <strong style={{ color: '#e2e8f0' }}>specific NSF/ANSI standard</strong> (e.g. 53 for lead, 58 for RO) to your water concern.
+            </p>
+            <a
+              href="https://www.wqa.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+            >
+              Learn more at wqa.org →
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* NSF CERTIFIED — info modal */}
+      {showNsfModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="nsf-modal-title"
+          style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}
+          onClick={() => setShowNsfModal(false)}
+        >
+          <div
+            style={{
+              background: 'rgba(3,12,28,0.92)',
+              backdropFilter: 'blur(28px)',
+              WebkitBackdropFilter: 'blur(28px)',
+              border: '1px solid rgba(255,255,255,0.09)',
+              borderTop: '1px solid rgba(255,255,255,0.14)',
+              borderRadius: 16,
+              padding: '26px 28px',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
+              maxWidth: 440,
+              width: '92%',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+              <div>
+                <div id="nsf-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
+                  What does NSF certified mean for filters?
+                </div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 0.5, marginTop: 6 }}>NSF / ANSI standards</div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowNsfModal(false)}
+                aria-label="Close"
+                style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
+              >
+                ×
+              </button>
+            </div>
+            <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+              <strong style={{ color: '#e2e8f0' }}>NSF certification</strong> means a water treatment product has been evaluated by an accredited lab against specific, published standards — not just marketing copy. For filters, the important part is{' '}
+              <strong style={{ color: '#e2e8f0' }}>which NSF/ANSI standard</strong> it is certified to, because each standard covers different claims.
+            </p>
+            <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>Common standards for drinking-water devices</p>
+            <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
+              <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 42</strong> — aesthetic effects such as chlorine taste and odor.</li>
+              <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 53</strong> — health-related contaminants the standard lists (e.g. many systems are certified for lead reduction when labeled that way).</li>
+              <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 58</strong> — reverse osmosis systems (broad contaminant reduction scope defined by the standard).</li>
+              <li><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 401</strong> — some emerging compounds / incidental contaminants per the standard.</li>
+            </ul>
+            <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+              A box that only says “NSF certified” without a standard number is not enough: check the label or NSF listings for the exact standard and contaminant claims that match your water (e.g. lead, PFAS, RO performance).
+            </p>
+            <a
+              href="https://www.nsf.org/knowledge-library/what-is-nsf-certification"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+            >
+              NSF home water treatment overview →
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* LIVE EPA DATA — info modal */}
+      {showEpaModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="epa-modal-title"
+          style={{ position: 'fixed', inset: 0, background: '#000000cc', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}
+          onClick={() => setShowEpaModal(false)}
+        >
+          <div
+            style={{
+              background: 'rgba(3,12,28,0.92)',
+              backdropFilter: 'blur(28px)',
+              WebkitBackdropFilter: 'blur(28px)',
+              border: '1px solid rgba(255,255,255,0.09)',
+              borderTop: '1px solid rgba(255,255,255,0.14)',
+              borderRadius: 16,
+              padding: '26px 28px',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
+              maxWidth: 440,
+              width: '92%',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+              <div>
+                <div id="epa-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
+                  What does &ldquo;Live EPA Data&rdquo; mean?
+                </div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', letterSpacing: 0.5, marginTop: 6 }}>U.S. Environmental Protection Agency</div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowEpaModal(false)}
+                aria-label="Close"
+                style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
+              >
+                ×
+              </button>
+            </div>
+            <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+              <strong style={{ color: '#e2e8f0' }}>Live</strong> here means we pull from the same <strong style={{ color: '#e2e8f0' }}>public federal datasets</strong> the EPA uses for drinking-water programs—not a static brochure and not a private guess. Your lookup is matched to official utility identifiers and reporting so you see what is on file for systems that report to EPA.
+            </p>
+            <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>What you&apos;re seeing</p>
+            <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
+              <li style={{ marginBottom: 8 }}>
+                <strong style={{ color: '#e2e8f0' }}>SDWIS</strong> — the Safe Drinking Water Information System: monitoring results, violations, and system info utilities report under the Safe Drinking Water Act.
+              </li>
+              <li>
+                <strong style={{ color: '#e2e8f0' }}>UCMR</strong> (e.g. UCMR 5) — rounds where many systems must sample for specific contaminants (including PFAS in recent cycles) so EPA can track unregulated contaminants nationally.
+              </li>
+            </ul>
+            <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+              Reporting can lag real-world conditions, and well water often isn&apos;t in the same municipal datasets—use results as a strong baseline, then confirm anything critical with a certified lab if needed.
+            </p>
+            <a
+              href="https://www.epa.gov/ground-water-and-drinking-water"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+            >
+              EPA drinking water programs →
+            </a>
+          </div>
         </div>
       )}
 
