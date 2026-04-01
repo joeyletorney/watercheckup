@@ -2279,14 +2279,28 @@ export default function WaterCheckup() {
         </div>
         <div style={{ marginTop: 6, fontSize: 12, color: '#94a3b8' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
 
-        {/* Hero newsletter signup */}
-        <div style={{ maxWidth: 620, margin: '14px auto 0', padding: '12px 14px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.08)', borderTop: '1px solid rgba(180,240,255,0.14)', background: 'rgba(4,14,32,0.52)' }}>
-          <div style={{ fontSize: 12, color: '#cbd5e1', marginBottom: 8, textAlign: 'left' }}>
-            Free weekly water newsletter - cancel anytime
+        {/* Hero newsletter signup — below ZIP row; scroll if you’re on a small screen */}
+        <div
+          id="wc-newsletter"
+          style={{
+            maxWidth: 620,
+            margin: '18px auto 0',
+            padding: '14px 16px',
+            borderRadius: 12,
+            border: '1px solid rgba(34,211,238,0.35)',
+            boxShadow: '0 0 0 1px rgba(8,145,178,0.2), 0 12px 40px rgba(0,8,24,0.35)',
+            background: 'linear-gradient(180deg, rgba(8,30,52,0.75) 0%, rgba(4,14,32,0.65) 100%)',
+          }}
+        >
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#f0fdfa', marginBottom: 4, textAlign: 'left' }}>
+            Free weekly water briefing
+          </div>
+          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, textAlign: 'left', lineHeight: 1.45 }}>
+            One short email per week—PFAS alerts, practical fixes, cancel anytime.
           </div>
           {heroNewsletterSent ? (
-            <div style={{ fontSize: 12, color: '#86efac', textAlign: 'left' }}>
-              You're subscribed. Check your inbox for your sample report and weekly updates.
+            <div style={{ fontSize: 12, color: '#86efac', textAlign: 'left', lineHeight: 1.5 }}>
+              You&apos;re subscribed. Check your inbox (and spam/promotions) for the sample report—delivery can take a minute.
             </div>
           ) : (
             <>

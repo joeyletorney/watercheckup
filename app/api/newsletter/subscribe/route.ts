@@ -44,7 +44,10 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      return NextResponse.json({ success: true, skipped: true }, { headers: CORS });
+      return NextResponse.json(
+        { success: false, skipped: true, error: 'Email service is not configured (missing RESEND_API_KEY).' },
+        { status: 503, headers: CORS },
+      );
     }
 
     const audienceId = await getAudienceId(apiKey);
@@ -52,7 +55,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Audience unavailable' }, { status: 500, headers: CORS });
     }
 
-    await resendFetch(`/audiences/${audienceId}/contacts`, 'POST', {
+    const contactRes = await resendFetch(`/audiences/${audienceId}/contacts`, 'POST', {
       email,
       unsubscribed: false,
       data: {
@@ -62,6 +65,15 @@ export async function POST(req: NextRequest) {
         signed_up_at: new Date().toISOString(),
       },
     }, apiKey);
+    if (!contactRes.ok) {
+      const errBody = await contactRes.json().catch(() => ({}));
+      return NextResponse.json(
+        { error: (errBody as { message?: string }).message || 'Could not save subscription' },
+        { status: 502, headers: CORS },
+      );
+    }
+
+    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <reports@watercheckup.com>';
 
     const html = `<!doctype html><html><body style="margin:0;background:#050e17;color:#e2e8f0;font-family:Arial,sans-serif">
     <div style="max-width:600px;margin:0 auto;padding:24px">
@@ -82,16 +94,23 @@ export async function POST(req: NextRequest) {
     </div>
     </body></html>`;
 
-    await fetch('https://api.resend.com/emails', {
+    const sendRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'WaterCheckup <reports@watercheckup.com>',
+        from,
         to: [email],
         subject: 'Your WaterCheckup sample report + weekly newsletter',
         html,
       }),
     });
+    const sendJson = await sendRes.json().catch(() => ({}));
+    if (!sendRes.ok) {
+      return NextResponse.json(
+        { error: (sendJson as { message?: string }).message || 'Email could not be sent' },
+        { status: 502, headers: CORS },
+      );
+    }
 
     return NextResponse.json({ success: true }, { headers: CORS });
   } catch (err: any) {
