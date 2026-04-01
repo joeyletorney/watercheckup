@@ -1838,6 +1838,74 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // MAIN APP
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CITY → ZIP LOOKUP — maps common city names to a representative ZIP
+// ─────────────────────────────────────────────────────────────────────────────
+const CITY_ZIP_MAP: Record<string, { zip: string; city: string; state: string }> = {
+  'chicago': { zip: '60601', city: 'Chicago', state: 'IL' },
+  'los angeles': { zip: '90001', city: 'Los Angeles', state: 'CA' },
+  'la': { zip: '90001', city: 'Los Angeles', state: 'CA' },
+  'houston': { zip: '77001', city: 'Houston', state: 'TX' },
+  'new york': { zip: '10001', city: 'New York City', state: 'NY' },
+  'nyc': { zip: '10001', city: 'New York City', state: 'NY' },
+  'new york city': { zip: '10001', city: 'New York City', state: 'NY' },
+  'phoenix': { zip: '85001', city: 'Phoenix', state: 'AZ' },
+  'philadelphia': { zip: '19101', city: 'Philadelphia', state: 'PA' },
+  'philly': { zip: '19101', city: 'Philadelphia', state: 'PA' },
+  'san antonio': { zip: '78201', city: 'San Antonio', state: 'TX' },
+  'dallas': { zip: '75201', city: 'Dallas', state: 'TX' },
+  'miami': { zip: '33101', city: 'Miami', state: 'FL' },
+  'seattle': { zip: '98101', city: 'Seattle', state: 'WA' },
+  'denver': { zip: '80201', city: 'Denver', state: 'CO' },
+  'boston': { zip: '02101', city: 'Boston', state: 'MA' },
+  'atlanta': { zip: '30301', city: 'Atlanta', state: 'GA' },
+  'san francisco': { zip: '94102', city: 'San Francisco', state: 'CA' },
+  'sf': { zip: '94102', city: 'San Francisco', state: 'CA' },
+  'detroit': { zip: '48201', city: 'Detroit', state: 'MI' },
+  'minneapolis': { zip: '55401', city: 'Minneapolis', state: 'MN' },
+  'portland': { zip: '97201', city: 'Portland', state: 'OR' },
+  'las vegas': { zip: '89101', city: 'Las Vegas', state: 'NV' },
+  'nashville': { zip: '37201', city: 'Nashville', state: 'TN' },
+  'baltimore': { zip: '21201', city: 'Baltimore', state: 'MD' },
+  'memphis': { zip: '38101', city: 'Memphis', state: 'TN' },
+  'louisville': { zip: '40201', city: 'Louisville', state: 'KY' },
+  'cleveland': { zip: '44101', city: 'Cleveland', state: 'OH' },
+  'pittsburgh': { zip: '15201', city: 'Pittsburgh', state: 'PA' },
+  'indianapolis': { zip: '46201', city: 'Indianapolis', state: 'IN' },
+  'indy': { zip: '46201', city: 'Indianapolis', state: 'IN' },
+  'columbus': { zip: '43201', city: 'Columbus', state: 'OH' },
+  'charlotte': { zip: '28201', city: 'Charlotte', state: 'NC' },
+  'raleigh': { zip: '27601', city: 'Raleigh', state: 'NC' },
+  'omaha': { zip: '68101', city: 'Omaha', state: 'NE' },
+  'kansas city': { zip: '64101', city: 'Kansas City', state: 'MO' },
+  'new orleans': { zip: '70112', city: 'New Orleans', state: 'LA' },
+  'nola': { zip: '70112', city: 'New Orleans', state: 'LA' },
+  'tampa': { zip: '33601', city: 'Tampa', state: 'FL' },
+  'st louis': { zip: '63101', city: 'St. Louis', state: 'MO' },
+  'saint louis': { zip: '63101', city: 'St. Louis', state: 'MO' },
+  'sacramento': { zip: '95814', city: 'Sacramento', state: 'CA' },
+  'salt lake city': { zip: '84101', city: 'Salt Lake City', state: 'UT' },
+  'slc': { zip: '84101', city: 'Salt Lake City', state: 'UT' },
+  'albuquerque': { zip: '87101', city: 'Albuquerque', state: 'NM' },
+  'abq': { zip: '87101', city: 'Albuquerque', state: 'NM' },
+  'tucson': { zip: '85701', city: 'Tucson', state: 'AZ' },
+  'jacksonville': { zip: '32201', city: 'Jacksonville', state: 'FL' },
+  'austin': { zip: '78701', city: 'Austin', state: 'TX' },
+  'san diego': { zip: '92101', city: 'San Diego', state: 'CA' },
+  'san jose': { zip: '95101', city: 'San Jose', state: 'CA' },
+  'washington': { zip: '20001', city: 'Washington DC', state: 'DC' },
+  'washington dc': { zip: '20001', city: 'Washington DC', state: 'DC' },
+  'dc': { zip: '20001', city: 'Washington DC', state: 'DC' },
+  'cincinnati': { zip: '45201', city: 'Cincinnati', state: 'OH' },
+  'milwaukee': { zip: '53201', city: 'Milwaukee', state: 'WI' },
+  'buffalo': { zip: '14201', city: 'Buffalo', state: 'NY' },
+  'anchorage': { zip: '99501', city: 'Anchorage', state: 'AK' },
+  'honolulu': { zip: '96801', city: 'Honolulu', state: 'HI' },
+  'baton rouge': { zip: '70801', city: 'Baton Rouge', state: 'LA' },
+  'richmond': { zip: '23219', city: 'Richmond', state: 'VA' },
+};
+
 export default function WaterCheckup() {
   const [zip, setZip]                   = useState('');
   const [loading, setLoading]           = useState(false);
@@ -1865,12 +1933,27 @@ export default function WaterCheckup() {
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const search = async () => {
-    if (zip.length !== 5 || loading) return;
+    // City name lookup — if input isn't digits, check city map
+    const trimmed = zip.trim();
+    if (!/^\d{5}$/.test(trimmed)) {
+      const match = CITY_ZIP_MAP[trimmed.toLowerCase()];
+      if (match) {
+        setZip(match.zip);
+        await doSearch(match.zip);
+        return;
+      }
+      return;
+    }
+    await doSearch(trimmed);
+  };
+
+  const doSearch = async (zipCode: string) => {
+    if (zipCode.length !== 5 || loading) return;
     setLoading(true); setError(null); setData(null); setEwgData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
     let s = 0;
     const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 650);
     try {
-      const [result, ewg] = await Promise.all([fetchWaterData(zip), fetchEwgData(zip)]);
+      const [result, ewg] = await Promise.all([fetchWaterData(zipCode), fetchEwgData(zipCode)]);
       clearInterval(tick);
       setData(result);
       if (ewg && !ewg.error) setEwgData(ewg);
@@ -1878,7 +1961,7 @@ export default function WaterCheckup() {
         setShowEmail(true);
         resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 200);
-      loadInstallers(zip);
+      loadInstallers(zipCode);
     } catch (e: any) {
       clearInterval(tick);
       setError(e.message);
@@ -1971,9 +2054,9 @@ export default function WaterCheckup() {
 
         {/* Search bar */}
         <div className="wc-search-row" style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 16 }}>
-          <input value={zip} onChange={e => setZip(e.target.value.replace(/\D/g,'').slice(0,5))} onKeyDown={e => e.key==='Enter' && search()} placeholder="Enter Zip Code" maxLength={5}
+          <input value={zip} onChange={e => setZip(e.target.value.slice(0,30))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code or city name" maxLength={30}
             style={{ width: 280, padding: '15px 20px', fontSize: 20, letterSpacing: 2, background: 'rgba(6,20,48,0.75)', border: '1px solid rgba(6,182,212,0.32)', borderTop: '1px solid rgba(180,240,255,0.22)', borderRadius: 12, color: '#22d3ee', outline: 'none', textAlign: 'center', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07), inset 0 2px 16px rgba(0,0,0,0.3), 0 0 0 0 rgba(6,182,212,0)' }} />
-          <button onClick={search} disabled={zip.length !== 5 || loading} className={zip.length===5 && !loading ? 'wc-analyze' : ''} style={{ padding: '15px 32px', background: zip.length===5 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.length===5 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.length===5 && !loading ? 'pointer' : 'default' }}>
+          <button onClick={search} disabled={zip.trim().length < 2 || loading} className={zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''} style={{ padding: '15px 32px', background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 12, color: zip.trim().length >= 2 && !loading ? '#fff' : '#475569', fontSize: 15, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default' }}>
             {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
           </button>
         </div>
