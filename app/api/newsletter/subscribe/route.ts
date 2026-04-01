@@ -13,6 +13,7 @@ async function resendFetch(path: string, method: string, body: object, apiKey: s
 }
 
 async function getAudienceId(apiKey: string): Promise<string | null> {
+  if (process.env.RESEND_AUDIENCE_ID) return process.env.RESEND_AUDIENCE_ID;
   if (cachedAudienceId) return cachedAudienceId;
   try {
     const res = await fetch('https://api.resend.com/audiences', { headers: { Authorization: `Bearer ${apiKey}` } });

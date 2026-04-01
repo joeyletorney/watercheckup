@@ -5,6 +5,7 @@ const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/
 let cachedAudienceId: string | null = null;
 
 async function getAudienceId(apiKey: string): Promise<string | null> {
+  if (process.env.RESEND_AUDIENCE_ID) return process.env.RESEND_AUDIENCE_ID;
   if (cachedAudienceId) return cachedAudienceId;
   try {
     const res = await fetch('https://api.resend.com/audiences', { headers: { Authorization: `Bearer ${apiKey}` } });
