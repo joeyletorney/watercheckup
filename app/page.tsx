@@ -3115,15 +3115,14 @@ export default function WaterCheckup() {
               maxWidth: 440,
               width: '92%',
               maxHeight: 'min(85vh, calc(100dvh - 32px))',
-              overflowY: 'auto',
-              overflowX: 'hidden',
-              WebkitOverflowScrolling: 'touch',
-              overscrollBehavior: 'contain',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
               margin: 'auto',
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14, flexShrink: 0 }}>
               <div>
                 <div id="wqa-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
                   What is the WQA Gold Seal?
@@ -3139,22 +3138,33 @@ export default function WaterCheckup() {
                 ×
               </button>
             </div>
-            <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-              The <strong style={{ color: '#e2e8f0' }}>WQA Gold Seal</strong> is a product certification from the{' '}
-              <strong style={{ color: '#e2e8f0' }}>Water Quality Association (WQA)</strong>, a not-for-profit trade group for the water treatment industry. Equipment that earns the Gold Seal has been{' '}
-              <strong style={{ color: '#e2e8f0' }}>tested by an independent lab</strong> against published industry standards (often NSF/ANSI standards) for the claims on the label — for example contaminant reduction, structural integrity, and material safety.
-            </p>
-            <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-              It is not a government “EPA stamp,” but it is a widely recognized third-party check that a filter or system does what its certification says. When shopping, match the <strong style={{ color: '#e2e8f0' }}>specific NSF/ANSI standard</strong> (e.g. 53 for lead, 58 for RO) to your water concern.
-            </p>
-            <a
-              href="https://www.wqa.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+            <div
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain',
+              }}
             >
-              Learn more at wqa.org →
-            </a>
+              <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+                The <strong style={{ color: '#e2e8f0' }}>WQA Gold Seal</strong> is a product certification from the{' '}
+                <strong style={{ color: '#e2e8f0' }}>Water Quality Association (WQA)</strong>, a not-for-profit trade group for the water treatment industry. Equipment that earns the Gold Seal has been{' '}
+                <strong style={{ color: '#e2e8f0' }}>tested by an independent lab</strong> against published industry standards (often NSF/ANSI standards) for the claims on the label — for example contaminant reduction, structural integrity, and material safety.
+              </p>
+              <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+                It is not a government “EPA stamp,” but it is a widely recognized third-party check that a filter or system does what its certification says. When shopping, match the <strong style={{ color: '#e2e8f0' }}>specific NSF/ANSI standard</strong> (e.g. 53 for lead, 58 for RO) to your water concern.
+              </p>
+              <a
+                href="https://www.wqa.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+              >
+                Learn more at wqa.org →
+              </a>
+            </div>
           </div>
         </div>
       )}
@@ -3193,15 +3203,14 @@ export default function WaterCheckup() {
               maxWidth: 440,
               width: '92%',
               maxHeight: 'min(85vh, calc(100dvh - 32px))',
-              overflowY: 'auto',
-              overflowX: 'hidden',
-              WebkitOverflowScrolling: 'touch',
-              overscrollBehavior: 'contain',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
               margin: 'auto',
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14, flexShrink: 0 }}>
               <div>
                 <div id="nsf-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
                   What does NSF certified mean for filters?
@@ -3217,28 +3226,39 @@ export default function WaterCheckup() {
                 ×
               </button>
             </div>
-            <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-              <strong style={{ color: '#e2e8f0' }}>NSF certification</strong> means a water treatment product has been evaluated by an accredited lab against specific, published standards — not just marketing copy. For filters, the important part is{' '}
-              <strong style={{ color: '#e2e8f0' }}>which NSF/ANSI standard</strong> it is certified to, because each standard covers different claims.
-            </p>
-            <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>Common standards for drinking-water devices</p>
-            <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
-              <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 42</strong> — aesthetic effects such as chlorine taste and odor.</li>
-              <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 53</strong> — health-related contaminants the standard lists (e.g. many systems are certified for lead reduction when labeled that way).</li>
-              <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 58</strong> — reverse osmosis systems (broad contaminant reduction scope defined by the standard).</li>
-              <li><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 401</strong> — some emerging compounds / incidental contaminants per the standard.</li>
-            </ul>
-            <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-              A box that only says “NSF certified” without a standard number is not enough: check the label or NSF listings for the exact standard and contaminant claims that match your water (e.g. lead, PFAS, RO performance).
-            </p>
-            <a
-              href="https://www.nsf.org/knowledge-library/what-is-nsf-certification"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+            <div
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain',
+              }}
             >
-              NSF home water treatment overview →
-            </a>
+              <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+                <strong style={{ color: '#e2e8f0' }}>NSF certification</strong> means a water treatment product has been evaluated by an accredited lab against specific, published standards — not just marketing copy. For filters, the important part is{' '}
+                <strong style={{ color: '#e2e8f0' }}>which NSF/ANSI standard</strong> it is certified to, because each standard covers different claims.
+              </p>
+              <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>Common standards for drinking-water devices</p>
+              <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
+                <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 42</strong> — aesthetic effects such as chlorine taste and odor.</li>
+                <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 53</strong> — health-related contaminants the standard lists (e.g. many systems are certified for lead reduction when labeled that way).</li>
+                <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 58</strong> — reverse osmosis systems (broad contaminant reduction scope defined by the standard).</li>
+                <li><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 401</strong> — some emerging compounds / incidental contaminants per the standard.</li>
+              </ul>
+              <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+                A box that only says “NSF certified” without a standard number is not enough: check the label or NSF listings for the exact standard and contaminant claims that match your water (e.g. lead, PFAS, RO performance).
+              </p>
+              <a
+                href="https://www.nsf.org/knowledge-library/what-is-nsf-certification"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+              >
+                NSF home water treatment overview →
+              </a>
+            </div>
           </div>
         </div>
       )}
@@ -3277,15 +3297,14 @@ export default function WaterCheckup() {
               maxWidth: 440,
               width: '92%',
               maxHeight: 'min(85vh, calc(100dvh - 32px))',
-              overflowY: 'auto',
-              overflowX: 'hidden',
-              WebkitOverflowScrolling: 'touch',
-              overscrollBehavior: 'contain',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
               margin: 'auto',
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14, flexShrink: 0 }}>
               <div>
                 <div id="epa-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
                   What does &ldquo;Live EPA Data&rdquo; mean?
@@ -3301,29 +3320,40 @@ export default function WaterCheckup() {
                 ×
               </button>
             </div>
-            <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-              <strong style={{ color: '#e2e8f0' }}>Live</strong> here means we pull from the same <strong style={{ color: '#e2e8f0' }}>public federal datasets</strong> the EPA uses for drinking-water programs—not a static brochure and not a private guess. Your lookup is matched to official utility identifiers and reporting so you see what is on file for systems that report to EPA.
-            </p>
-            <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>What you&apos;re seeing</p>
-            <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
-              <li style={{ marginBottom: 8 }}>
-                <strong style={{ color: '#e2e8f0' }}>SDWIS</strong> — the Safe Drinking Water Information System: monitoring results, violations, and system info utilities report under the Safe Drinking Water Act.
-              </li>
-              <li>
-                <strong style={{ color: '#e2e8f0' }}>UCMR</strong> (e.g. UCMR 5) — rounds where many systems must sample for specific contaminants (including PFAS in recent cycles) so EPA can track unregulated contaminants nationally.
-              </li>
-            </ul>
-            <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-              Reporting can lag real-world conditions, and well water often isn&apos;t in the same municipal datasets—use results as a strong baseline, then confirm anything critical with a certified lab if needed.
-            </p>
-            <a
-              href="https://www.epa.gov/ground-water-and-drinking-water"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+            <div
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain',
+              }}
             >
-              EPA drinking water programs →
-            </a>
+              <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+                <strong style={{ color: '#e2e8f0' }}>Live</strong> here means we pull from the same <strong style={{ color: '#e2e8f0' }}>public federal datasets</strong> the EPA uses for drinking-water programs—not a static brochure and not a private guess. Your lookup is matched to official utility identifiers and reporting so you see what is on file for systems that report to EPA.
+              </p>
+              <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>What you&apos;re seeing</p>
+              <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
+                <li style={{ marginBottom: 8 }}>
+                  <strong style={{ color: '#e2e8f0' }}>SDWIS</strong> — the Safe Drinking Water Information System: monitoring results, violations, and system info utilities report under the Safe Drinking Water Act.
+                </li>
+                <li>
+                  <strong style={{ color: '#e2e8f0' }}>UCMR</strong> (e.g. UCMR 5) — rounds where many systems must sample for specific contaminants (including PFAS in recent cycles) so EPA can track unregulated contaminants nationally.
+                </li>
+              </ul>
+              <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
+                Reporting can lag real-world conditions, and well water often isn&apos;t in the same municipal datasets—use results as a strong baseline, then confirm anything critical with a certified lab if needed.
+              </p>
+              <a
+                href="https://www.epa.gov/ground-water-and-drinking-water"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
+              >
+                EPA drinking water programs →
+              </a>
+            </div>
           </div>
         </div>
       )}
