@@ -6,7 +6,7 @@ import {
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 
-type Issue = { subject: string; headline: string; intro: string; sections: { color: string; title: string; body: string }[]; action: string };
+type Issue = { subject: string; headline: string; intro: string; sections: { color: string; title: string; body: string }[]; action: string; product: { name: string; tag: string; why: string; search: string } };
 
 const ISSUES: Issue[] = [
   {
@@ -19,6 +19,7 @@ const ISSUES: Issue[] = [
       { color: "#facc15", title: "What actually removes it", body: "Only NSF/ANSI 53-certified filters are verified to remove lead. Pitcher filters like Brita Standard do not remove lead. Look for reverse osmosis or solid carbon block filters with NSF 53 certification." },
     ],
     action: "Check if your ZIP has lead violations on record",
+    product: { name: "Clearly Filtered Water Pitcher", tag: "NSF 53 certified · removes lead", why: "One of the few pitcher filters independently certified to remove lead. Most pitcher filters (including standard Brita) do not. The Clearly Filtered pitcher is certified to reduce lead by over 99.5% and also removes PFAS, chlorine, and hundreds of other contaminants.", search: "Clearly Filtered Water Pitcher" },
   },
   {
     subject: "PFAS: why 'forever chemicals' are still in most tap water",
@@ -30,6 +31,7 @@ const ISSUES: Issue[] = [
       { color: "#34d399", title: "How to protect yourself", body: "Activated carbon filters (NSF 58 certified) and reverse osmosis systems are the most effective at removing PFAS. Boiling does not remove PFAS — it concentrates them. Check your utility's annual report for PFAS testing results." },
     ],
     action: "See if PFAS have been detected in your water system",
+    product: { name: "APEC Water ROES-50 Reverse Osmosis System", tag: "Under-sink · removes PFAS, lead, arsenic", why: "A highly rated under-sink RO system certified to remove PFAS compounds, lead, arsenic, nitrates, and hundreds of other contaminants. Reverse osmosis is the gold standard for PFAS removal — no pitcher filter comes close.", search: "APEC ROES-50 reverse osmosis system" },
   },
   {
     subject: "The hidden byproducts of 'safe' treated water",
@@ -41,6 +43,7 @@ const ISSUES: Issue[] = [
       { color: "#22d3ee", title: "How to reduce exposure", body: "Activated carbon filters (NSF 42 or 53 certified) effectively reduce THMs and HAAs. Letting water sit uncovered in the fridge for a few hours also allows some volatile DBPs to off-gas. Reverse osmosis removes them almost entirely." },
     ],
     action: "Check your utility's THM and HAA5 levels",
+    product: { name: "Brita Longlast+ Filter Pitcher", tag: "NSF 42 & 53 · reduces chlorine & DBPs", why: "The Longlast+ cartridge (not the standard Brita filter) is NSF 53 certified and effectively reduces chlorine, chloramine, and disinfection byproducts. Lasts 6 months vs. 2 months for standard filters. One of the most cost-effective entry points for DBP reduction.", search: "Brita Longlast+ pitcher filter" },
   },
   {
     subject: "Nitrates in drinking water: the farm runoff no one talks about",
@@ -52,6 +55,7 @@ const ISSUES: Issue[] = [
       { color: "#facc15", title: "Critical: don't boil it", body: "Boiling water does NOT remove nitrates — it makes the concentration worse as water evaporates. The only effective removal methods are reverse osmosis, ion exchange, and distillation." },
     ],
     action: "Run your local water report to check nitrate levels",
+    product: { name: "iSpring RCC7 Under-Sink Reverse Osmosis System", tag: "NSF 58 certified · removes nitrates, lead, arsenic", why: "Reverse osmosis is the only reliably effective method for removing nitrates from drinking water. The iSpring RCC7 is a well-reviewed 5-stage under-sink system certified to remove nitrates, lead, arsenic, PFAS, and over 1,000 other contaminants.", search: "iSpring RCC7 reverse osmosis system" },
   },
   {
     subject: "Microplastics in tap water: what we know so far",
@@ -63,6 +67,7 @@ const ISSUES: Issue[] = [
       { color: "#34d399", title: "Reducing your exposure", body: "Reverse osmosis filters with membranes fine enough to block particles smaller than 1 micron are the most effective option. Avoiding single-use plastic bottles also reduces exposure since plastic leaches into the water inside them." },
     ],
     action: "See what contaminants are detected in your water system",
+    product: { name: "Berkey Travel Water Filter", tag: "Gravity filter · removes microplastics & bacteria", why: "Berkey's black filter elements are tested to remove microplastics, bacteria, viruses, heavy metals, and chlorine without electricity or water pressure. A good option for households that want comprehensive filtration without an under-sink installation.", search: "Berkey Travel Water Filter" },
   },
   {
     subject: "Arsenic in drinking water: a natural risk that's still widespread",
@@ -74,6 +79,7 @@ const ISSUES: Issue[] = [
       { color: "#22d3ee", title: "Effective removal", body: "Reverse osmosis removes arsenic effectively. So does activated alumina and iron-based filtration. Standard carbon filters do not remove arsenic. Make sure your filter is NSF 58 certified for arsenic reduction." },
     ],
     action: "Check if arsenic has been detected in your area",
+    product: { name: "APEC Water ROES-PH75 Reverse Osmosis + Alkaline System", tag: "NSF 58 · removes arsenic + remineralizes", why: "Standard RO systems remove beneficial minerals along with arsenic. The ROES-PH75 adds a remineralization stage that adds calcium and magnesium back in, raising the pH to a more neutral level while still removing arsenic, PFAS, lead, and nitrates.", search: "APEC ROES-PH75 reverse osmosis alkaline system" },
   },
   {
     subject: "How to actually read your water utility's annual report",
@@ -85,6 +91,7 @@ const ISSUES: Issue[] = [
       { color: "#a78bfa", title: "Violations vs. detections", body: "A detection means a contaminant was found. A violation means the level exceeded the legal limit. Utilities are required to notify you of violations — but not all contaminants have legal limits yet (like PFAS until recently)." },
     ],
     action: "Run your free WaterCheckup report to see your utility's data",
+    product: { name: "Tap Score Home Water Test Kit", tag: "Lab-certified · tests 100+ contaminants", why: "Before buying any filter, it pays to know exactly what's in your water. Tap Score sends you a collection kit, you mail a sample to their certified lab, and you get a detailed report with contaminant levels and personalized filter recommendations.", search: "Tap Score home water test kit" },
   },
   {
     subject: "Which water filter actually works for your situation?",
@@ -96,6 +103,7 @@ const ISSUES: Issue[] = [
       { color: "#fb923c", title: "Reverse osmosis: the most comprehensive", body: "Under-sink RO systems with NSF 58 certification remove the widest range of contaminants including lead, PFAS, nitrates, arsenic, and microplastics. They waste 3-4 gallons of water per gallon filtered. Remineralization filters can add back beneficial minerals." },
     ],
     action: "See what contaminants are in your water to choose the right filter",
+    product: { name: "Aquasana 3-Stage Under-Sink Filter", tag: "NSF 42, 53 & 401 · broad-spectrum protection", why: "A solid all-rounder NSF-certified to reduce lead, PFAS, chlorine, pharmaceuticals, and pesticides. Easier to install than a full RO system and doesn't waste water. A good choice if you want meaningful protection without the complexity of reverse osmosis.", search: "Aquasana 3-stage under-sink water filter" },
   },
 ];
 
@@ -111,6 +119,8 @@ function buildWeeklyHtml(issue: Issue): string {
       <div style="font-size:13px;color:#cbd5e1;line-height:1.6">${s.body}</div>
     </div>`).join('');
 
+  const amazonSearch = `https://www.amazon.com/s?k=${encodeURIComponent(issue.product.search)}`;
+
   return `<!doctype html><html><body style="margin:0;background:#050e17;color:#e2e8f0;font-family:Arial,sans-serif">
   <div style="max-width:620px;margin:0 auto;padding:32px 24px">
     <div style="font-size:11px;color:#475569;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.05em">WaterCheckup Weekly</div>
@@ -119,7 +129,19 @@ function buildWeeklyHtml(issue: Issue): string {
     ${sectionsHtml}
     <div style="margin-top:24px;margin-bottom:20px;font-size:13px;color:#94a3b8;line-height:1.7">${issue.action} — your free local report pulls live data from the EPA and your utility.</div>
     <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:700">Run my free water report →</a>
-    <div style="margin-top:32px;font-size:11px;color:#475569;line-height:1.6">You're receiving this because you subscribed at watercheckup.com. We send one email per week, no spam. Reply to unsubscribe at any time.</div>
+
+    <div style="margin-top:32px;border-top:1px solid #1e3a4a;padding-top:24px">
+      <div style="font-size:11px;color:#475569;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px">This week's product pick</div>
+      <div style="background:#0b1e36;border:1px solid #1e3a4a;border-radius:10px;padding:18px">
+        <div style="font-size:15px;font-weight:700;color:#f1f5f9;margin-bottom:4px">${issue.product.name}</div>
+        <div style="font-size:11px;color:#22d3ee;margin-bottom:10px">${issue.product.tag}</div>
+        <div style="font-size:13px;color:#cbd5e1;line-height:1.6;margin-bottom:14px">${issue.product.why}</div>
+        <a href="${amazonSearch}" style="display:inline-block;padding:10px 16px;background:#f59e0b;border-radius:8px;color:#0f172a;text-decoration:none;font-size:13px;font-weight:700">Search on Amazon →</a>
+      </div>
+      <div style="font-size:11px;color:#475569;margin-top:8px;line-height:1.5">WaterCheckup does not earn commissions on product links. We recommend based on certifications and independent testing only.</div>
+    </div>
+
+    <div style="margin-top:24px;font-size:11px;color:#475569;line-height:1.6">You're receiving this because you subscribed at watercheckup.com. We send one email per week, no spam. Reply to unsubscribe at any time.</div>
   </div>
   </body></html>`;
 }
