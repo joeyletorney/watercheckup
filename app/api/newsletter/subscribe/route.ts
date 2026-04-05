@@ -48,45 +48,47 @@ export async function POST(req: NextRequest) {
 
     const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <onboarding@resend.dev>';
 
-    const html = `<!doctype html><html><body style="margin:0;background:#050e17;color:#e2e8f0;font-family:Arial,sans-serif">
-    <div style="max-width:600px;margin:0 auto;padding:32px 24px">
+    const html = `<!doctype html><html><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"></head><body style="margin:0;background:#f8fafc;color:#1e293b;font-family:Arial,sans-serif">
+    <div style="max-width:600px;margin:0 auto;padding:32px 24px;background:#ffffff">
 
-      <div style="font-size:22px;font-weight:800;color:#22d3ee;margin-bottom:4px">Welcome to WaterCheckup</div>
-      <div style="font-size:14px;color:#94a3b8;margin-bottom:24px">Your free weekly drinking water intelligence</div>
-
-      <div style="font-size:15px;color:#e2e8f0;line-height:1.7;margin-bottom:24px">
-        You're in${zip ? ` — we'll keep an eye on water quality near ZIP <strong style="color:#f1f5f9">${zip}</strong>` : ''}. Each week we'll send you one concise update: contaminant alerts, utility violations, and practical steps to protect your household.
+      <div style="border-bottom:2px solid #0891b2;padding-bottom:16px;margin-bottom:24px">
+        <div style="font-size:22px;font-weight:800;color:#0891b2;margin-bottom:4px">WaterCheckup</div>
+        <div style="font-size:14px;color:#64748b">Your free weekly drinking water intelligence</div>
       </div>
 
-      <div style="font-size:15px;font-weight:700;color:#f1f5f9;margin-bottom:12px">The 4 contaminants most people don't know about</div>
-
-      <div style="background:#0b1e36;border:1px solid #1e3a4a;border-radius:10px;padding:16px;margin-bottom:10px">
-        <div style="font-size:14px;font-weight:700;color:#f87171;margin-bottom:4px">Lead</div>
-        <div style="font-size:13px;color:#cbd5e1;line-height:1.6">There is no safe level of lead exposure. It leaches from older pipes and fixtures — even if your utility water tests clean, it can contaminate at the tap. Children and pregnant women are most at risk.</div>
+      <div style="font-size:15px;color:#334155;line-height:1.7;margin-bottom:24px">
+        You're in${zip ? ` — we'll keep an eye on water quality near ZIP <strong style="color:#0f172a">${zip}</strong>` : ''}. Each week we'll send you one concise update: contaminant alerts, utility violations, and practical steps to protect your household.
       </div>
 
-      <div style="background:#0b1e36;border:1px solid #1e3a4a;border-radius:10px;padding:16px;margin-bottom:10px">
-        <div style="font-size:14px;font-weight:700;color:#fb923c;margin-bottom:4px">PFAS ("Forever Chemicals")</div>
-        <div style="font-size:13px;color:#cbd5e1;line-height:1.6">Linked to cancer, thyroid disease, and immune disruption. PFAS don't break down and accumulate in the body over time. They're found in water systems near military bases, airports, and industrial sites — and in many systems with no known source.</div>
+      <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px">The 4 contaminants most people don't know about</div>
+
+      <div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:6px;padding:14px 16px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:700;color:#dc2626;margin-bottom:4px">Lead</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6">There is no safe level of lead exposure. It leaches from older pipes and fixtures — even if your utility water tests clean, it can contaminate at the tap. Children and pregnant women are most at risk.</div>
       </div>
 
-      <div style="background:#0b1e36;border:1px solid #1e3a4a;border-radius:10px;padding:16px;margin-bottom:10px">
-        <div style="font-size:14px;font-weight:700;color:#facc15;margin-bottom:4px">Nitrates</div>
-        <div style="font-size:13px;color:#cbd5e1;line-height:1.6">Common in agricultural areas from fertilizer runoff. High nitrate levels are dangerous for infants and can cause "blue baby syndrome." Boiling water does not remove nitrates — it concentrates them.</div>
+      <div style="background:#fff7ed;border-left:4px solid #f97316;border-radius:6px;padding:14px 16px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:700;color:#ea580c;margin-bottom:4px">PFAS ("Forever Chemicals")</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6">Linked to cancer, thyroid disease, and immune disruption. PFAS don't break down and accumulate in the body over time. They're found in water systems near military bases, airports, and industrial sites — and in many systems with no known source.</div>
       </div>
 
-      <div style="background:#0b1e36;border:1px solid #1e3a4a;border-radius:10px;padding:16px;margin-bottom:24px">
-        <div style="font-size:14px;font-weight:700;color:#a78bfa;margin-bottom:4px">Disinfection Byproducts (DBPs)</div>
-        <div style="font-size:13px;color:#cbd5e1;line-height:1.6">Formed when chlorine or chloramine reacts with organic matter in water. Long-term exposure is associated with bladder cancer and adverse birth outcomes. Most utilities don't report these at the individual tap level.</div>
+      <div style="background:#fefce8;border-left:4px solid #eab308;border-radius:6px;padding:14px 16px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:700;color:#ca8a04;margin-bottom:4px">Nitrates</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6">Common in agricultural areas from fertilizer runoff. High nitrate levels are dangerous for infants and can cause "blue baby syndrome." Boiling water does not remove nitrates — it concentrates them.</div>
       </div>
 
-      <div style="font-size:13px;color:#94a3b8;line-height:1.7;margin-bottom:20px">
+      <div style="background:#f5f3ff;border-left:4px solid #8b5cf6;border-radius:6px;padding:14px 16px;margin-bottom:24px">
+        <div style="font-size:14px;font-weight:700;color:#7c3aed;margin-bottom:4px">Disinfection Byproducts (DBPs)</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6">Formed when chlorine or chloramine reacts with organic matter in water. Long-term exposure is associated with bladder cancer and adverse birth outcomes. Most utilities don't report these at the individual tap level.</div>
+      </div>
+
+      <div style="font-size:13px;color:#64748b;line-height:1.7;margin-bottom:20px">
         Run your free local report to see what's actually in your water supply, your utility's violation history, and which filter — if any — is worth it for your situation.
       </div>
 
-      <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#fff;text-decoration:none;font-size:14px;font-weight:700">Run my free water report →</a>
+      <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700">Run my free water report →</a>
 
-      <div style="margin-top:32px;font-size:11px;color:#475569;line-height:1.6">
+      <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0;font-size:11px;color:#94a3b8;line-height:1.6">
         You're receiving this because you subscribed at watercheckup.com. We send one email per week, no spam. Reply to unsubscribe at any time.
       </div>
 
