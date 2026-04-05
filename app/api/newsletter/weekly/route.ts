@@ -85,7 +85,7 @@ export async function GET(req: NextRequest) {
     }
 
     const html = buildWeeklyHtml();
-    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <reports@watercheckup.com>';
+    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <joe@letorney.com>';
     let sent = 0;
     const failed: string[] = [];
     for (const c of weekly) {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { syncContactToBrevoAsync } from '@/lib/brevo-sync';
 import { getOrCreateWatercheckupAudienceId, resendRequest } from '../newsletter/resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
@@ -101,11 +102,13 @@ export async function POST(req: NextRequest) {
   </div>
 </div></body></html>`;
 
+    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <joe@letorney.com>';
+
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'WaterCheckup <reports@watercheckup.com>',
+        from,
         to: [email],
         subject: `Your ${city} Water Quality Report — Score ${score}/100 (${gradeLabel})`,
         html,
@@ -117,6 +120,21 @@ export async function POST(req: NextRequest) {
 
     // Add to audience list (non-blocking — fire and forget)
     addContact(apiKey, email, city, pwsid || '', !!alertOptIn);
+
+    syncContactToBrevoAsync({
+      email,
+      attributes: {
+        CITY: city,
+        PWSID: pwsid || undefined,
+        ALERT_OPT_IN: !!alertOptIn,
+        WATER_SCORE: typeof score === 'number' ? score : undefined,
+        WATER_GRADE: grade != null ? String(grade) : undefined,
+        SYSTEM_NAME: systemName,
+        SOURCE: 'report-email',
+        SIGNUP_SOURCE: 'water-report',
+        SIGNUP_AT: new Date().toISOString(),
+      },
+    });
 
     return NextResponse.json({ success: true, id: data.id }, { headers: CORS });
 

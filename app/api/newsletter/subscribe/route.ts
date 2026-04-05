@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { syncContactToBrevoAsync } from '@/lib/brevo-sync';
 import { getOrCreateWatercheckupAudienceId, resendRequest } from '../resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
@@ -45,7 +46,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <reports@watercheckup.com>';
+    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <joe@letorney.com>';
 
     const html = `<!doctype html><html><body style="margin:0;background:#050e17;color:#e2e8f0;font-family:Arial,sans-serif">
     <div style="max-width:600px;margin:0 auto;padding:24px">
@@ -83,6 +84,17 @@ export async function POST(req: NextRequest) {
         { status: 502, headers: CORS },
       );
     }
+
+    syncContactToBrevoAsync({
+      email,
+      attributes: {
+        ZIP: zip || undefined,
+        WEEKLY_OPT_IN: weekly,
+        SOURCE: source,
+        SIGNUP_SOURCE: 'newsletter',
+        SIGNUP_AT: new Date().toISOString(),
+      },
+    });
 
     return NextResponse.json({ success: true }, { headers: CORS });
   } catch (err: any) {
