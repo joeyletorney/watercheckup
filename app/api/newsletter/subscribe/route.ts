@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { syncContactToBrevoAsync } from '@/lib/brevo-sync';
-import { getOrCreateWatercheckupAudienceId, resendRequest } from '../resend-audience';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
+const BREVO = 'https://api.brevo.com/v3';
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,41 +11,55 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400, headers: CORS });
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.BREVO_API_KEY?.trim();
     if (!apiKey) {
-      return NextResponse.json(
-        { success: false, skipped: true, error: 'Email service is not configured (missing RESEND_API_KEY).' },
-        { status: 503, headers: CORS },
-      );
+      return NextResponse.json({ success: false, error: 'Email service not configured.' }, { status: 503, headers: CORS });
     }
 
-    const audienceId = await getOrCreateWatercheckupAudienceId(apiKey);
-    if (!audienceId) {
-      return NextResponse.json({ error: 'Audience unavailable' }, { status: 500, headers: CORS });
-    }
+    const listIds = (process.env.BREVO_LIST_IDS || '5')
+      .split(/[,;\s]+/)
+      .map(s => parseInt(s.trim(), 10))
+      .filter(n => Number.isFinite(n) && n > 0);
 
-    const contactRes = await resendRequest(apiKey, `/audiences/${audienceId}/contacts`, {
+    // Add/update contact in Brevo
+    const contactRes = await fetch(`${BREVO}/contacts`, {
       method: 'POST',
-      body: {
-        email,
-        unsubscribed: false,
-        data: {
-          zip: zip || '',
-          weekly_opt_in: String(!!weekly),
-          source,
-          signed_up_at: new Date().toISOString(),
+      headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email.trim(),
+        updateEnabled: true,
+        listIds,
+        attributes: {
+          ZIP: zip || undefined,
+          WEEKLY_OPT_IN: weekly ? 'true' : 'false',
+          SOURCE: source,
+          SIGNUP_SOURCE: 'newsletter',
+          SIGNUP_AT: new Date().toISOString(),
         },
-      },
+      }),
     });
-    if (!contactRes.ok) {
-      const errBody = await contactRes.json().catch(() => ({}));
-      return NextResponse.json(
-        { error: (errBody as { message?: string }).message || 'Could not save subscription' },
-        { status: 502, headers: CORS },
-      );
+
+    if (!contactRes.ok && contactRes.status !== 204) {
+      const err = await contactRes.json().catch(() => ({}));
+      // Brevo returns 400 if attributes are unknown — retry with email + list only
+      if (contactRes.status === 400) {
+        const retry = await fetch(`${BREVO}/contacts`, {
+          method: 'POST',
+          headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.trim(), updateEnabled: true, listIds }),
+        });
+        if (!retry.ok && retry.status !== 204) {
+          const retryErr = await retry.json().catch(() => ({}));
+          return NextResponse.json({ error: (retryErr as { message?: string }).message || 'Could not save subscription' }, { status: 502, headers: CORS });
+        }
+      } else {
+        return NextResponse.json({ error: (err as { message?: string }).message || 'Could not save subscription' }, { status: 502, headers: CORS });
+      }
     }
 
-    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <onboarding@resend.dev>';
+    // Send welcome email via Brevo transactional API
+    const senderEmail = process.env.BREVO_FROM_EMAIL?.trim() || 'hello@watercheckup.com';
+    const senderName = 'WaterCheckup';
 
     const html = `<!doctype html><html><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"></head><body style="margin:0;background:#f8fafc;color:#1e293b;font-family:Arial,sans-serif">
     <div style="max-width:600px;margin:0 auto;padding:32px 24px;background:#ffffff">
@@ -89,40 +102,27 @@ export async function POST(req: NextRequest) {
       <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700">Run my free water report →</a>
 
       <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0;font-size:11px;color:#94a3b8;line-height:1.6">
-        You're receiving this because you subscribed at watercheckup.com. We send one email per week, no spam. Reply to unsubscribe at any time.
+        You're receiving this because you subscribed at watercheckup.com. We send one email per week, no spam. <a href="https://watercheckup.com/api/newsletter/unsubscribe?email=${encodeURIComponent(email.trim())}" style="color:#94a3b8">Unsubscribe</a>
       </div>
 
     </div>
     </body></html>`;
 
-    const sendRes = await fetch('https://api.resend.com/emails', {
+    const sendRes = await fetch(`${BREVO}/smtp/email`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from,
-        to: [email],
+        sender: { name: senderName, email: senderEmail },
+        to: [{ email: email.trim() }],
         subject: "Welcome to WaterCheckup — what's really in your water",
-        html,
+        htmlContent: html,
       }),
     });
-    const sendJson = await sendRes.json().catch(() => ({}));
-    if (!sendRes.ok) {
-      return NextResponse.json(
-        { error: (sendJson as { message?: string }).message || 'Email could not be sent' },
-        { status: 502, headers: CORS },
-      );
-    }
 
-    syncContactToBrevoAsync({
-      email,
-      attributes: {
-        ZIP: zip || undefined,
-        WEEKLY_OPT_IN: weekly,
-        SOURCE: source,
-        SIGNUP_SOURCE: 'newsletter',
-        SIGNUP_AT: new Date().toISOString(),
-      },
-    });
+    if (!sendRes.ok) {
+      const err = await sendRes.json().catch(() => ({}));
+      return NextResponse.json({ error: (err as { message?: string }).message || 'Email could not be sent' }, { status: 502, headers: CORS });
+    }
 
     return NextResponse.json({ success: true }, { headers: CORS });
   } catch (err: any) {
