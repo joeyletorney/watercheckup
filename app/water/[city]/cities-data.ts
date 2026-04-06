@@ -520,18 +520,6 @@ export const CITIES: Record<string, {
     ],
     urgency: 'medium',
   },
-  'charlotte-nc': {
-    name: 'Charlotte', state: 'NC', zip: '28201', population: '900K',
-    system: 'Charlotte Water', pwsid: 'NC0112010',
-    issues: ['GenX / PFAS contamination', 'Disinfection byproducts', 'Catawba River contamination'],
-    facts: [
-      'North Carolina is ground zero for GenX PFAS contamination from Chemours/DuPont.',
-      "The Cape Fear River basin -- Charlotte's watershed -- has been heavily contaminated with PFAS.",
-      'Charlotte Water has tested above EPA health advisory levels for multiple PFAS compounds.',
-      'A certified RO system is the most important purchase for Charlotte-area residents.',
-    ],
-    urgency: 'high',
-  },
   'milwaukee': {
     name: 'Milwaukee', state: 'WI', zip: '53201', population: '590K',
     system: 'Milwaukee Water Works', pwsid: 'WI3200120',
@@ -604,6 +592,3 @@ export const CITIES: Record<string, {
     ],
     urgency: 'medium',
   },
-};
-
-export const WATER_CITY_SLUGS: string[] = Object.keys(CITIES);

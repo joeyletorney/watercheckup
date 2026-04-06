@@ -2248,7 +2248,7 @@ export default function WaterCheckup() {
           }}
         >
           <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#67e8f9' }}>100% free.</strong> No sign-up, no free trial, no credit card—no BS. Type your town or city and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations picked for <em>your</em> water—not a generic sales pitch.
+            <strong style={{ color: '#67e8f9' }}>100% FREE.</strong> No sign-up, no free trial, no credit card—no BS. Type your town or city and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations based on your town or city water report.
           </p>
         </div>
 
@@ -2287,21 +2287,22 @@ export default function WaterCheckup() {
         {/* Hero newsletter signup — below ZIP row; scroll if you’re on a small screen */}
         <div
           id="wc-newsletter"
+          className="wc-newsletter-box"
           style={{
             maxWidth: 620,
             margin: '18px auto 0',
             padding: '14px 16px',
             borderRadius: 12,
-            border: '1px solid rgba(34,211,238,0.35)',
-            boxShadow: '0 0 0 1px rgba(8,145,178,0.2), 0 12px 40px rgba(0,8,24,0.35)',
-            background: 'linear-gradient(180deg, rgba(8,30,52,0.75) 0%, rgba(4,14,32,0.65) 100%)',
+            border: '1px solid rgba(34,211,238,0.45)',
+            boxShadow: '0 0 0 1px rgba(8,145,178,0.28), 0 0 24px rgba(6,182,212,0.12), 0 12px 40px rgba(0,8,24,0.4)',
+            background: 'linear-gradient(180deg, rgba(10,36,58,0.82) 0%, rgba(4,18,38,0.72) 100%)',
           }}
         >
           <div style={{ fontSize: 13, fontWeight: 800, color: '#f0fdfa', marginBottom: 4, textAlign: 'left' }}>
             FREE Weekly Water Newsletter
           </div>
           <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, textAlign: 'left', lineHeight: 1.45 }}>
-            Water contaminant alerts, PFAS alerts, practical fixes, cancel anytime
+            Water contaminant alerts in your area plus PFAS alerts, water filtration recommendations and more...
           </div>
           {heroNewsletterSent ? (
             <div style={{ fontSize: 12, color: '#86efac', textAlign: 'left', lineHeight: 1.5 }}>
@@ -2321,9 +2322,9 @@ export default function WaterCheckup() {
                   type="button"
                   onClick={subscribeHeroNewsletter}
                   disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
-                  style={{ minHeight: 42, padding: '10px 14px', background: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'rgba(14,34,51,0.8)' : '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 700, cursor: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer' }}
+                  style={{ minHeight: 42, padding: '10px 14px', background: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'rgba(14,34,51,0.8)' : '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: 0.6, cursor: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer' }}
                 >
-                  {heroNewsletterSending ? 'Signing up...' : 'Sign up free'}
+                  {heroNewsletterSending ? 'SIGNING UP...' : 'SIGN UP FREE'}
                 </button>
               </div>
               {heroNewsletterErr && <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5', textAlign: 'left' }}>{heroNewsletterErr}</div>}
