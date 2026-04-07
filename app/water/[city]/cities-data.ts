@@ -905,3 +905,4 @@ export const CITIES: Record<string, {
     urgency: 'high',
   },
 };
+export const WATER_CITY_SLUGS = Object.keys(CITIES)
