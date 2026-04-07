@@ -904,3 +904,4 @@ export const CITIES: Record<string, {
     ],
     urgency: 'high',
   },
+};
