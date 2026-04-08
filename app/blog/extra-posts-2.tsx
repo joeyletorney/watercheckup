@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Post } from './post-types';
 
-const WATERDROP = 'https://www.waterdrop.com/?ref=anbyjkqb';
+const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };

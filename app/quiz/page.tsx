@@ -8,7 +8,7 @@ const WATERDROP_TAG = 'anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 
 const LINKS = {
-  waterdrop: `https://www.waterdrop.com/?ref=${WATERDROP_TAG}`,
+  waterdrop: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`,
   amazon_pitcher: `https://www.amazon.com/s?k=water+filter+pitcher+pfas+certified&tag=${AMAZON_TAG}`,
   amazon_undersink: `https://www.amazon.com/s?k=under+sink+reverse+osmosis+system&tag=${AMAZON_TAG}`,
   amazon_whole_house: `https://www.amazon.com/s?k=whole+house+water+filter+system&tag=${AMAZON_TAG}`,

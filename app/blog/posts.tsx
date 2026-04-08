@@ -5,7 +5,7 @@ import { EXTRA_POSTS_2 } from './extra-posts-2';
 import { EXTRA_POSTS_3 } from './extra-posts-3';
 import { EXTRA_POSTS_4 } from './extra-posts-4';
 
-const WATERDROP = 'https://www.waterdrop.com/?ref=anbyjkqb';
+const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
