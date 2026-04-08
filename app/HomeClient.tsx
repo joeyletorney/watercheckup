@@ -1971,7 +1971,6 @@ export default function WaterCheckup() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 6, fontSize: 12, color: '#94a3b8' }}>Try: 02169 · 60601 · 77001 · 10001 · 90210 · 33101 · 85001</div>
 
         {/* Hero newsletter signup — below ZIP row; scroll if you’re on a small screen */}
         <div
