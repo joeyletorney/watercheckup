@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TopPickBox from './TopPickBox';
+import EmailCapture from './EmailCapture';
 
 import { CITIES } from './cities-data';
 
@@ -169,6 +170,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </div>
           ))}
         </div>
+
+        {/* Email capture */}
+        <EmailCapture cityName={cd?.name ?? cityName} slug={params.city} />
 
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center' }}>
