@@ -3505,7 +3505,7 @@ export default function WaterCheckup() {
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>BROWSE BY CITY</div>
           <h2 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', margin: '0 0 6px' }}>Check your city's water quality</h2>
-          <p style={{ fontSize: 14, color: '#475569', margin: '0 0 28px', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 28px', lineHeight: 1.6 }}>
             Real EPA data for 135+ US cities. Click any city to see contaminant levels, violations, and filter recommendations.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
