@@ -387,27 +387,29 @@ const STEPS = [
 // SCORE DIAL — animated arc + count-up number
 // ─────────────────────────────────────────────────────────────────────────────
 function ScoreDial({ score, grade }: { score: number; grade: string }) {
+  const safe = Number.isFinite(Number(score)) ? Math.max(0, Math.min(100, Number(score))) : 0;
+  const gradeStr = grade != null && grade !== '' ? String(grade) : '—';
   const [arc, setArc]         = useState(0);
   const [display, setDisplay] = useState(0);
 
   // Arc animation (CSS transition)
-  useEffect(() => { const t = setTimeout(() => setArc(score), 120); return () => clearTimeout(t); }, [score]);
+  useEffect(() => { const t = setTimeout(() => setArc(safe), 120); return () => clearTimeout(t); }, [safe]);
 
   // Count-up number animation
   useEffect(() => {
-    if (!score) return;
+    if (!safe) return;
     let raf: number;
     const duration = 1400;
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
-      setDisplay(Math.round(eased * score));
+      setDisplay(Math.round(eased * safe));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [score]);
+  }, [safe]);
 
   const r = 72, cx = 90, cy = 90;
   const rad = (d: number) => (d * Math.PI) / 180;
@@ -416,14 +418,14 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
     const p1 = pt(s), p2 = pt(e), lg = e - s > 180 ? 1 : 0;
     return `M ${p1.x} ${p1.y} A ${r} ${r} 0 ${lg} 1 ${p2.x} ${p2.y}`;
   };
-  const color = score >= 80 ? '#22d3ee' : score >= 65 ? '#f59e0b' : '#ef4444';
+  const color = safe >= 80 ? '#22d3ee' : safe >= 65 ? '#f59e0b' : '#ef4444';
   return (
     <svg width="180" height="160" viewBox="0 0 180 160">
       <path d={mkArc(210, 510)} fill="none" stroke="#1e3a4a" strokeWidth="10" strokeLinecap="round" />
       <path d={mkArc(210, 210 + 300 * (arc / 100))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
         style={{ transition: 'all 1.4s cubic-bezier(0.34,1.56,0.64,1)' }} filter={`drop-shadow(0 0 10px ${color}99)`} />
       <text x={cx} y={cy + 8}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{display}</text>
-      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#94a3b8" fontFamily="inherit">Grade: {grade}</text>
+      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#94a3b8" fontFamily="inherit">Grade: {gradeStr}</text>
     </svg>
   );
 }
@@ -498,10 +500,14 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
     <div style={{ position: 'relative', display: block ? 'block' : 'inline-block' }}>
       {/* Primary Amazon button */}
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-        <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy"
-          style={{ display: 'block', textAlign: 'center', padding: block ? '11px 0' : '10px 20px', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex: block ? 1 : undefined }}>
-          {p.amazon?.includes('waterdrop') ? 'Waterdrop →' : 'Amazon →'}
-        </a>
+        {p.amazon ? (
+          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy"
+            style={{ display: 'block', textAlign: 'center', padding: block ? '11px 0' : '10px 20px', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex: block ? 1 : undefined }}>
+            {p.amazon.includes('waterdrop') ? 'Waterdrop →' : 'Amazon →'}
+          </a>
+        ) : (
+          <span style={{ display: 'block', textAlign: 'center', padding: block ? '11px 0' : '10px 20px', borderRadius: 10, fontSize: 12, fontWeight: 700, color: '#64748b', flex: block ? 1 : undefined }}>Link unavailable</span>
+        )}
         {retailers.length > 0 && (
           <button onClick={() => setOpen(o => !o)}
             style={{ padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
@@ -550,7 +556,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
           <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.2, marginBottom: 4 }}>{p.name}</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ fontSize: 12, color: diyColors[p.diyDiff] || '#22d3ee' }}>Install: {p.diyDiff}</span>
-            {p.removes.slice(0, 2).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051527', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
+            {(p.removes || []).slice(0, 2).map((r: string) => <span key={r} style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#051527', color: '#22d3ee', border: '1px solid #22d3ee22' }}>{r}</span>)}
           </div>
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -594,7 +600,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
       {/* Content */}
       <div style={{ padding: '16px 16px 14px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
         <div>
-          <div style={{ fontSize: 10, color: '#94a3b8', letterSpacing: 1.5, fontWeight: 700, marginBottom: 3 }}>{p.brand.toUpperCase()} · {p.catLabel?.toUpperCase()}</div>
+          <div style={{ fontSize: 10, color: '#94a3b8', letterSpacing: 1.5, fontWeight: 700, marginBottom: 3 }}>{(p.brand || 'Brand').toUpperCase()} · {(p.catLabel || '').toUpperCase()}</div>
           <div style={{ fontSize: 14, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
         </div>
 
@@ -795,23 +801,24 @@ function PFASAwarenessBanner() {
 // ─────────────────────────────────────────────────────────────────────────────
 // PFAS IN-RESULTS ALERT
 // ─────────────────────────────────────────────────────────────────────────────
-function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number }) {
+function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number | string | null }) {
   const [expanded, setExpanded] = useState(false);
-  const overLimit = pfasLevel != null && pfasLevel > 4;
-  if (!pfasLevel || pfasLevel <= 0) return null;
+  const ppt = typeof pfasLevel === 'number' ? pfasLevel : Number(pfasLevel);
+  if (!Number.isFinite(ppt) || ppt <= 0) return null;
+  const overLimit = ppt > 4;
   return (
     <div style={{ background: overLimit ? 'linear-gradient(135deg,#200a0a,#0d0f1a)' : 'linear-gradient(135deg,#0d1208,#0d0f1a)', border: `1px solid ${overLimit ? '#ef4444' : '#f59e0b'}`, borderLeft: `4px solid ${overLimit ? '#ef4444' : '#f59e0b'}`, borderRadius: 10, padding: '14px 18px', marginBottom: 18 }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
         <span style={{ fontSize: 18 }}>{overLimit ? '🚨' : '⚠️'}</span>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 5, flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontSize: 12, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>PFAS DETECTED — {city?.toUpperCase()}</span>
+            <span style={{ fontSize: 12, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>PFAS DETECTED — {(city || 'Your area').toUpperCase()}</span>
             {overLimit && <span style={{ fontSize: 10, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>EXCEEDS EPA MCL</span>}
           </div>
           <p style={{ margin: '0 0 8px', fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
             {overLimit
-              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — exceeds EPA 2024 limit of 4 ppt. Standard carbon filters do NOT remove PFAS. Reverse osmosis required.</>
-              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — below 4 ppt limit but above non-detect. Forever chemicals accumulate in the body. RO or Clearly Filtered recommended.</>
+              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — exceeds EPA 2024 limit of 4 ppt. Standard carbon filters do NOT remove PFAS. Reverse osmosis required.</>
+              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — below 4 ppt limit but above non-detect. Forever chemicals accumulate in the body. RO or Clearly Filtered recommended.</>
             }
           </p>
           {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 12, color: '#94a3b8', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
@@ -1115,10 +1122,14 @@ function CountyComparison({ pwsid }: { pwsid: string }) {
                   {utils.map((u: any, i: number) => (
                     <tr key={i} style={{ background: u.isCurrent ? '#0e2545' : i % 2 === 0 ? '#0b1828' : 'transparent', borderBottom: '1px solid #0a1520' }}>
                       <td style={{ padding: '8px 8px', color: u.isCurrent ? '#22d3ee' : '#e2e8f0', fontWeight: u.isCurrent ? 700 : 400, whiteSpace: 'nowrap' }}>
-                        {u.isCurrent ? '▶ ' : ''}{u.name.length > 30 ? u.name.slice(0,28)+'…' : u.name}
+                        {u.isCurrent ? '▶ ' : ''}
+                        {(() => {
+                          const nm = typeof u.name === 'string' ? u.name : '—';
+                          return nm.length > 30 ? `${nm.slice(0, 28)}…` : nm;
+                        })()}
                       </td>
-                      <td style={{ padding: '8px 8px', color: '#94a3b8' }}>{u.city}</td>
-                      <td style={{ padding: '8px 8px', color: '#94a3b8', textAlign: 'right' }}>{u.population.toLocaleString()}</td>
+                      <td style={{ padding: '8px 8px', color: '#94a3b8' }}>{u.city ?? '—'}</td>
+                      <td style={{ padding: '8px 8px', color: '#94a3b8', textAlign: 'right' }}>{Number(u.population || 0).toLocaleString()}</td>
                       <td style={{ padding: '8px 8px', color: '#94a3b8' }}>{u.sourceLabel}</td>
                       <td style={{ padding: '8px 8px', textAlign: 'center' }}>
                         <span style={{ color: u.openViolations > 0 ? '#ef4444' : '#22d3ee', fontWeight: 700 }}>{u.openViolations}</span>
@@ -1142,9 +1153,17 @@ function CountyComparison({ pwsid }: { pwsid: string }) {
 // NATIONAL PERCENTILE
 // ─────────────────────────────────────────────────────────────────────────────
 function NationalPercentile({ pct }: { pct: number }) {
+  const n = Number(pct);
+  const valid = Number.isFinite(n) && n >= 0;
+  const clamped = valid ? Math.min(100, n) : 0;
   const [anim, setAnim] = useState(0);
-  useEffect(() => { const t = setTimeout(() => setAnim(pct), 400); return () => clearTimeout(t); }, [pct]);
-  const color = pct >= 75 ? '#22d3ee' : pct >= 50 ? '#f59e0b' : '#ef4444';
+  useEffect(() => {
+    if (!valid) return;
+    const t = setTimeout(() => setAnim(clamped), 400);
+    return () => clearTimeout(t);
+  }, [clamped, valid]);
+  if (!valid) return null;
+  const color = clamped >= 75 ? '#22d3ee' : clamped >= 50 ? '#f59e0b' : '#ef4444';
   return (
     <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, padding: '12px 16px', marginBottom: 18 }}>
       <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#94a3b8', marginBottom: 7 }}>NATIONAL WATER QUALITY RANKING</div>
@@ -1852,9 +1871,10 @@ export default function WaterCheckup() {
 
   const getRecommended = () => {
     const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge' && !p.remineralizes && !p.softener);
-    if (!data?.contaminants?.length) return base.filter((p: any) => p.cat === 'undersink').slice(0, 3);
-    const names = data.contaminants.map((c: any) => c.name);
-    const hasPFAS = data.contaminants.some((c: any) => c.isPFAS || c.name?.includes('PFAS'));
+    const cont = data?.contaminants;
+    if (!Array.isArray(cont) || !cont.length) return base.filter((p: any) => p.cat === 'undersink').slice(0, 3);
+    const names = cont.map((c: any) => c.name).filter(Boolean);
+    const hasPFAS = cont.some((c: any) => c.isPFAS || c.name?.includes('PFAS'));
     return base
       .map(p => ({ ...p, m: p.bestFor.filter((b: string) => names.some((n: string) => n.includes(b))).length + (hasPFAS && p.bestFor.includes('PFAS') ? 3 : 0) + (p.quickChange ? 2 : 0) }))
       .sort((a, b) => b.m - a.m).slice(0, 3);
@@ -2605,7 +2625,7 @@ export default function WaterCheckup() {
                     ))}
                   </div>
 
-                  {ewgData.contaminants?.length > 0 ? (
+                  {Array.isArray(ewgData.contaminants) && ewgData.contaminants.length > 0 ? (
                     <>
                       <div style={{ fontSize: 10, letterSpacing: 0.4, color: '#94a3b8', marginBottom: 8 }}>EWG HEALTH GUIDELINES ARE STRICTER THAN FEDERAL LEGAL LIMITS</div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 1, maxHeight: 280, overflowY: 'auto' }}>
