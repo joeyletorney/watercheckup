@@ -490,30 +490,12 @@ p { margin: 0; }
 }
 @keyframes wcBlink { 0%,100%{opacity:1} 50%{opacity:0} }
 .wc-metal {
-  /* Brighter cyan/sky sweep — less muddy teal on the edges */
-  background: linear-gradient(
-    135deg,
-    #0e7490 0%,
-    #0891b2 12%,
-    #06b6d4 22%,
-    #22d3ee 32%,
-    #38bdf8 40%,
-    #a5f3fc 46%,
-    #ecfeff 50%,
-    #a5f3fc 54%,
-    #38bdf8 60%,
-    #22d3ee 70%,
-    #06b6d4 82%,
-    #0891b2 92%,
-    #0e7490 100%
-  );
+  background: linear-gradient(135deg, #0e3a4a 0%, #1a6880 18%, #22d3ee 32%, #67e8f9 45%, #ffffff 50%, #67e8f9 55%, #22d3ee 68%, #0891b2 82%, #0e3a4a 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: wcMetalShift 4s ease-in-out infinite;
-  /* Glow reads as brighter on dark hero without fighting the clip */
-  filter: drop-shadow(0 0 14px rgba(34, 211, 238, 0.55)) drop-shadow(0 0 28px rgba(56, 189, 248, 0.28));
 }
 
 /* Nav: WQA badge — hover needs CSS (inline styles would block :hover) */
