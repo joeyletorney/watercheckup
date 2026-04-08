@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 const BREVO = 'https://api.brevo.com/v3';
@@ -9,6 +10,26 @@ export async function POST(req: NextRequest) {
 
     if (!email?.includes('@')) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400, headers: CORS });
+    }
+
+    const ip = getClientIp(req);
+    const ipLim = checkRateLimit(`sub:ip:${ip}`, RATE.newsletterSubscribePerIp.max, RATE.newsletterSubscribePerIp.windowMs);
+    if (!ipLim.ok) {
+      return NextResponse.json(
+        { error: 'Too many sign-up attempts. Please try again shortly.' },
+        { status: 429, headers: { ...CORS, 'Retry-After': String(ipLim.retryAfterSec) } }
+      );
+    }
+    const emLim = checkRateLimit(
+      `sub:email:${email.toLowerCase().trim()}`,
+      RATE.newsletterSubscribePerEmail.max,
+      RATE.newsletterSubscribePerEmail.windowMs
+    );
+    if (!emLim.ok) {
+      return NextResponse.json(
+        { error: 'Too many attempts for this email. Please try again later.' },
+        { status: 429, headers: { ...CORS, 'Retry-After': String(emLim.retryAfterSec) } }
+      );
     }
 
     const apiKey = process.env.BREVO_API_KEY?.trim();

@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
 
 const BREVO = 'https://api.brevo.com/v3';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+  const ip = getClientIp(req);
+  const ipLim = checkRateLimit(`unsub:ip:${ip}`, RATE.unsubscribeGetPerIp.max, RATE.unsubscribeGetPerIp.windowMs);
+  if (!ipLim.ok) {
+    return new NextResponse(errorPage('Too many requests. Please try again in a few minutes.'), {
+      status: 429,
+      headers: { 'Content-Type': 'text/html', 'Retry-After': String(ipLim.retryAfterSec) },
+    });
+  }
+
   const email = req.nextUrl.searchParams.get('email')?.trim().toLowerCase();
 
   if (!email?.includes('@')) {

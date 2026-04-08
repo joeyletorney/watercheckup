@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { SiteNav } from './components/SiteNav';
+import { SiteHeader } from './components/SiteHeader';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -1881,55 +1881,38 @@ export default function WaterCheckup() {
   return (
     <div style={{ minHeight: '100vh', position: 'relative', fontFamily: 'inherit', color: '#e2e8f0' }}>
 
-      {/* HEADER — match FAQ / Contaminants / inner pages */}
-      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', minHeight: 60, display: 'flex', alignItems: 'center', gap: 12, background: '#091825' }}>
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44">
-            <defs>
-              <linearGradient id="dg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0891b2"/>
-                <stop offset="100%" stopColor="#06b6d4"/>
-              </linearGradient>
-              <radialGradient id="dh" cx="38%" cy="28%" r="55%">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.4)"/>
-                <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
-              </radialGradient>
-            </defs>
-            <path d="M20 2 C20 2 6 15 6 24 C6 31.7 12.3 38 20 38 C27.7 38 34 31.7 34 24 C34 15 20 2 20 2Z" fill="url(#dg)"/>
-            <path d="M20 2 C20 2 6 15 6 24 C6 31.7 12.3 38 20 38 C27.7 38 34 31.7 34 24 C34 15 20 2 20 2Z" fill="url(#dh)"/>
-            <polyline points="12,24 18,31 28,18" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-            <text x="42" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#f1f5f9">Water</text>
-            <text x="106" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#22d3ee">Checkup</text>
-          </svg>
-        </a>
-        <SiteNav style={{ marginLeft: 20 }} />
-        <div className="wc-nav-badges" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
-          <button
-            type="button"
-            className="wc-nav-badge-wqa"
-            onClick={() => setShowWqaModal(true)}
-            aria-label="What is WQA Gold Seal? Opens explanation dialog."
-          >
-            WQA Gold Seal
-          </button>
-          <button
-            type="button"
-            className="wc-nav-badge-nsf"
-            onClick={() => setShowNsfModal(true)}
-            aria-label="What does NSF certified mean? Opens explanation dialog."
-          >
-            NSF Certified
-          </button>
-          <button
-            type="button"
-            className="wc-nav-badge-epa"
-            onClick={() => setShowEpaModal(true)}
-            aria-label="What does Live EPA Data mean? Opens explanation dialog."
-          >
-            Live EPA Data
-          </button>
-        </div>
-      </div>
+      <SiteHeader
+        variant="bar"
+        navStyle={{ marginLeft: 20 }}
+        trailing={
+          <>
+            <button
+              type="button"
+              className="wc-nav-badge-wqa"
+              onClick={() => setShowWqaModal(true)}
+              aria-label="What is WQA Gold Seal? Opens explanation dialog."
+            >
+              WQA Gold Seal
+            </button>
+            <button
+              type="button"
+              className="wc-nav-badge-nsf"
+              onClick={() => setShowNsfModal(true)}
+              aria-label="What does NSF certified mean? Opens explanation dialog."
+            >
+              NSF Certified
+            </button>
+            <button
+              type="button"
+              className="wc-nav-badge-epa"
+              onClick={() => setShowEpaModal(true)}
+              aria-label="What does Live EPA Data mean? Opens explanation dialog."
+            >
+              Live EPA Data
+            </button>
+          </>
+        }
+      />
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
       <div style={{ maxWidth: 820, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>

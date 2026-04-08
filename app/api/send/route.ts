@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { syncContactToBrevoAsync } from '@/lib/brevo-sync';
 import { getOrCreateWatercheckupAudienceId, resendRequest } from '../newsletter/resend-audience';
+import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 const TAG = process.env.AMAZON_AFFILIATE_TAG || 'watercheck20-20';
@@ -31,6 +32,26 @@ export async function POST(req: NextRequest) {
 
     if (!email?.includes('@')) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400, headers: CORS });
+    }
+
+    const ip = getClientIp(req);
+    const ipLim = checkRateLimit(`send:ip:${ip}`, RATE.sendEmailPerIp.max, RATE.sendEmailPerIp.windowMs);
+    if (!ipLim.ok) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again shortly.' },
+        { status: 429, headers: { ...CORS, 'Retry-After': String(ipLim.retryAfterSec) } }
+      );
+    }
+    const emLim = checkRateLimit(
+      `send:email:${String(email).toLowerCase().trim()}`,
+      RATE.sendEmailPerEmail.max,
+      RATE.sendEmailPerEmail.windowMs
+    );
+    if (!emLim.ok) {
+      return NextResponse.json(
+        { error: 'Too many requests for this email. Please try again later.' },
+        { status: 429, headers: { ...CORS, 'Retry-After': String(emLim.retryAfterSec) } }
+      );
     }
 
     const apiKey = process.env.RESEND_API_KEY;
