@@ -1957,28 +1957,13 @@ export default function WaterCheckup() {
           </div>
         </div>
 
-        {/* Trust strip */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, flexWrap: 'wrap', marginBottom: 8 }}>
-          {[
-            { icon: '🔬', text: 'Live EPA Data' },
-            { icon: '✅', text: 'NSF-Certified Picks' },
-            { icon: '🛡️', text: '100% Free' },
-            { icon: '⚡', text: 'Instant Results' },
-          ].map(t => (
-            <div key={t.text} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-              <span style={{ fontSize: 13 }}>{t.icon}</span>
-              <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 700 }}>{t.text}</span>
-            </div>
-          ))}
-        </div>
-
         {/* Hero newsletter signup — below ZIP row; scroll if you’re on a small screen */}
         <div
           id="wc-newsletter"
           className="wc-newsletter-box"
           style={{
             maxWidth: 620,
-            margin: '18px auto 0',
+            margin: '12px auto 0',
             padding: '14px 16px',
             borderRadius: 12,
             border: '1px solid rgba(34,211,238,0.45)',

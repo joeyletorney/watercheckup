@@ -140,7 +140,7 @@ p { margin: 0; }
 /* Hero search panel — draws the eye */
 .wc-search-hero-panel {
   max-width: 700px;
-  margin: 0 auto 20px;
+  margin: 0 auto 12px;
   padding: 22px 22px 20px;
   border-radius: 18px;
   border: 1px solid rgba(103, 232, 249, 0.5);
