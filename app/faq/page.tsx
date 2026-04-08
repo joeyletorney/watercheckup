@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { SiteNav } from '../components/SiteNav';
 
 const FAQS = [
   {
@@ -111,11 +112,7 @@ export default function FAQPage() {
             <text x="106" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#22d3ee">Checkup</text>
           </svg>
         </a>
-        <nav style={{ display: 'flex', gap: 4, marginLeft: 24 }}>
-          {[['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']].map(([href, label]) => (
-            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/faq' ? 700 : 500, color: href === '/faq' ? '#22d3ee' : '#94a3b8' }}>{label}</a>
-          ))}
-        </nav>
+        <SiteNav style={{ marginLeft: 24 }} />
       </div>
 
       {/* HERO */}

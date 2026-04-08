@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { SiteNav } from './components/SiteNav';
 
 const TAG = 'watercheck20-20';
 
@@ -2190,11 +2191,7 @@ export default function WaterCheckup() {
             <text x="106" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#22d3ee">Checkup</text>
           </svg>
         </a>
-        <nav style={{ display: 'flex', gap: 4, marginLeft: 20 }}>
-          {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ'], ['/blog', 'Blog']] as [string,string][]).map(([href, label]) => (
-            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/' ? 700 : 500, color: href === '/' ? '#22d3ee' : '#94a3b8', textDecoration: 'none' }}>{label}</a>
-          ))}
-        </nav>
+        <SiteNav style={{ marginLeft: 20 }} />
         <div className="wc-nav-badges" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <button
             type="button"
