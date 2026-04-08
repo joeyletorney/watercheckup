@@ -14,9 +14,10 @@ const CTA_STYLE: CSSProperties = {
   textDecoration: 'none',
 };
 
-function LogoWordmark() {
+function LogoWordmark({ height = 44 }: { height?: number }) {
+  const w = Math.round((220 / 44) * height);
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44" aria-hidden>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width={w} height={height} aria-hidden>
       <defs>
         <linearGradient id="wc-sh-dg" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#0891b2" />
@@ -84,22 +85,11 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <div
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: 8,
-                background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 14,
-              }}
-            >
-              💧
-            </div>
-            <span style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9' }}>WaterCheckup</span>
+          <Link
+            href="/"
+            style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
+          >
+            <LogoWordmark height={44} />
           </Link>
           <SiteNav />
         </div>
