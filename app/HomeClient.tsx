@@ -17,7 +17,11 @@ const TAG = 'watercheck20-20';
 async function fetchWaterData(zip: string) {
   const res = await fetch(`/api/water?zip=${zip}`);
   const data = await res.json();
-  if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+  if (!res.ok) {
+    const err = new Error(data.error || `API error ${res.status}`) as Error & { waterExtra?: Record<string, unknown> };
+    err.waterExtra = data;
+    throw err;
+  }
   return data;
 }
 
@@ -1682,6 +1686,11 @@ export default function WaterCheckup() {
   const [data, setData]                 = useState<any>(null);
   const [ewgData, setEwgData]           = useState<any>(null);
   const [error, setError]               = useState<string | null>(null);
+  const [waterLookupErrorExtra, setWaterLookupErrorExtra] = useState<{
+    hintWell?: boolean;
+    zip?: string;
+    dataFreshness?: { ucmr5SnapshotLabel?: string; sdwisLiveNote?: string; links?: { ccr?: string; ucmrData?: string; sdwis?: string } };
+  } | null>(null);
   const [tab, setTab]                   = useState('report');
   const [showEmail, setShowEmail]       = useState(false);
   const [email, setEmail]               = useState('');
@@ -1713,6 +1722,7 @@ export default function WaterCheckup() {
   const [heroNewsletterSent, setHeroNewsletterSent] = useState(false);
   const [heroNewsletterErr, setHeroNewsletterErr] = useState<string | null>(null);
   const [wellMode, setWellMode]         = useState(false);
+  const [wellFallbackState, setWellFallbackState] = useState<string | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -1746,7 +1756,7 @@ export default function WaterCheckup() {
 
   const doSearch = async (zipCode: string) => {
     if (zipCode.length !== 5 || loading) return;
-    setLoading(true); setError(null); setData(null); setEwgData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
+    setLoading(true); setError(null); setWaterLookupErrorExtra(null); setData(null); setEwgData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
     let s = 0;
     const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 650);
     try {
@@ -1759,6 +1769,7 @@ export default function WaterCheckup() {
         result.grade = result.score >= 90 ? 'A' : result.score >= 80 ? 'B' : result.score >= 65 ? 'C' : result.score >= 50 ? 'D' : 'F';
       }
       setData(result);
+      setWellFallbackState(null);
       if (ewg && !ewg.error) setEwgData(ewg);
       setTimeout(() => {
         setShowEmail(true);
@@ -1768,6 +1779,20 @@ export default function WaterCheckup() {
     } catch (e: any) {
       clearInterval(tick);
       setError(e.message);
+      const ex = e?.waterExtra;
+      setWaterLookupErrorExtra(
+        ex && typeof ex === 'object'
+          ? {
+              hintWell: !!ex.hintWell,
+              zip: typeof ex.zip === 'string' ? ex.zip : zipCode,
+              dataFreshness: ex.dataFreshness as {
+                ucmr5SnapshotLabel?: string;
+                sdwisLiveNote?: string;
+                links?: { ccr?: string; ucmrData?: string; sdwis?: string };
+              },
+            }
+          : null
+      );
     } finally { setLoading(false); }
   };
 
@@ -2021,13 +2046,60 @@ export default function WaterCheckup() {
             🏡 I&apos;m on Well Water
           </button>
         </div>
-{error && <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}><div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>⚠ Error</div><div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div></div>}
+{error && (
+            <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
+              <div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>Couldn&apos;t load municipal report</div>
+              <div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div>
+              {waterLookupErrorExtra?.hintWell && (
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(239,68,68,0.35)' }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#c4b5fd', marginBottom: 6 }}>Private well?</div>
+                  <div style={{ fontSize: 12, color: '#e9d5ff', lineHeight: 1.65, marginBottom: 10 }}>
+                    EPA SDWIS only covers <strong style={{ color: '#f5f3ff' }}>public</strong> water systems. If you use a well, turn on <strong style={{ color: '#f5f3ff' }}>I&apos;m on Well Water</strong> above for a state risk overview, then test your water annually with a certified lab.
+                  </div>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setWellMode(true);
+                      setError(null);
+                      setWaterLookupErrorExtra(null);
+                      const z = (waterLookupErrorExtra?.zip || zip).trim();
+                      if (/^\d{5}$/.test(z)) {
+                        try {
+                          const r = await fetch(`/api/well?zip=${z}`);
+                          const d = await r.json();
+                          if (d.state) setWellFallbackState(d.state === 'DEFAULT' ? 'OH' : d.state);
+                          else setWellFallbackState('OH');
+                        } catch {
+                          setWellFallbackState('OH');
+                        }
+                      } else {
+                        setWellFallbackState('OH');
+                      }
+                      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                    }}
+                    style={{ padding: '8px 14px', borderRadius: 8, border: '1px solid rgba(167,139,250,0.5)', background: 'rgba(124,58,237,0.25)', color: '#e9d5ff', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}
+                  >
+                    Switch to well water mode →
+                  </button>
+                </div>
+              )}
+              {waterLookupErrorExtra?.dataFreshness?.ucmr5SnapshotLabel && (
+                <div style={{ marginTop: 12, fontSize: 11, color: '#78716c', lineHeight: 1.5 }}>
+                  UCMR5 snapshot in app: <span style={{ color: '#a8a29e' }}>{waterLookupErrorExtra.dataFreshness.ucmr5SnapshotLabel}</span>
+                  {' · '}
+                  <a href={waterLookupErrorExtra.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ color: '#94a3b8' }}>
+                    EPA UCMR data →
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
 
         {/* 3-column why us */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '28px auto 28px', maxWidth: 720 }}>
           {[
             { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
-            { icon: '🔬', title: 'Real EPA Data', desc: 'Pulled from EPA public databases: SDWIS (your utility’s official tests, limits, and violations) and UCMR5 (nationwide PFAS sampling). Government data—not marketing copy.' },
+            { icon: '🔬', title: 'Real EPA Data', desc: 'Live SDWIS (violations, lead/copper samples) plus a bundled UCMR5 PFAS snapshot we refresh when EPA releases updates—government data, not marketing copy.' },
             { icon: '💧', title: 'Free Filter Solutions', desc: 'Top-rated systems matched to your exact contaminants. No guessing.' },
           ].map(item => (
             <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
@@ -2320,14 +2392,22 @@ export default function WaterCheckup() {
               {i === step && <span style={{ display: 'inline-block', width: 7, height: 13, background: '#22c55e', animation: 'wcBlink 1s step-end infinite', marginLeft: 2, verticalAlign: 'middle' }} />}
             </div>
           ))}
-          <div style={{ marginTop: 12, padding: '6px 10px', background: 'rgba(0,0,0,0.4)', borderRadius: 4, fontSize: 10, color: '#166534', textAlign: 'center', letterSpacing: 1 }}>EPA · UCMR5 · EWG · USGS — live data, no estimates</div>
+          <div style={{ marginTop: 12, padding: '6px 10px', background: 'rgba(0,0,0,0.4)', borderRadius: 4, fontSize: 10, color: '#64748b', textAlign: 'center', letterSpacing: 0.5, lineHeight: 1.4 }}>
+            EPA SDWIS live · UCMR5 snapshot in app · EWG/USGS when available
+          </div>
         </div>
       )}
 
       {/* WELL WATER PANEL — shown when well mode is active and we have state data */}
-      {wellMode && data?.stateCode && !loading && (
+      {wellMode && !loading && (data?.stateCode || wellFallbackState) && (
         <div ref={resultsRef} style={{ position: 'relative', zIndex: 2, marginTop: 32 }}>
-          <WellWaterPanel stateCode={data.stateCode} />
+          <WellWaterPanel
+            stateCode={
+              (data?.stateCode || wellFallbackState) === 'DEFAULT'
+                ? 'OH'
+                : String(data?.stateCode || wellFallbackState)
+            }
+          />
         </div>
       )}
 
@@ -2389,6 +2469,67 @@ export default function WaterCheckup() {
           {tab === 'report' && (
             <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
               {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
+
+              {data.dataFreshness && (
+                <div style={{ marginBottom: 18, padding: '12px 14px', background: 'rgba(8,45,70,0.35)', border: '1px solid rgba(6,182,212,0.22)', borderRadius: 10, fontSize: 12, color: '#94a3b8', lineHeight: 1.65 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 1, color: '#22d3ee', fontWeight: 800, marginBottom: 6 }}>DATA FRESHNESS</div>
+                  <div>
+                    <strong style={{ color: '#cbd5e1' }}>PFAS / UCMR5:</strong> uses a packaged EPA UCMR snapshot (as of{' '}
+                    <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>). We refresh the dataset when EPA releases major updates.
+                  </div>
+                  <div style={{ marginTop: 8 }}>
+                    <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead/copper samples:</strong> {data.dataFreshness.sdwisLiveNote}
+                  </div>
+                  <div style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                    <a href={data.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ fontSize: 11, color: '#22d3ee' }}>
+                      EPA UCMR data →
+                    </a>
+                    <a href={data.dataFreshness.links?.sdwis} target="_blank" rel="noreferrer" style={{ fontSize: 11, color: '#22d3ee' }}>
+                      EPA SDWIS (drinking water) →
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {data.pwsid && (
+                <div style={{ marginBottom: 18, padding: '14px 16px', background: 'rgba(3,18,40,0.65)', border: '1px solid rgba(148,163,184,0.2)', borderRadius: 10 }}>
+                  <div style={{ fontSize: 10, letterSpacing: 1, color: '#94a3b8', fontWeight: 800, marginBottom: 10 }}>OFFICIAL SOURCES</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <a
+                      href={
+                        data.echo?.echoUrl ??
+                        `https://echo.epa.gov/sdwa/facility-info?p_pwsid=${encodeURIComponent(data.pwsid)}`
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ fontSize: 13, fontWeight: 700, color: '#38bdf8' }}
+                    >
+                      EPA ECHO — this water system (violations, inspections, contacts) →
+                    </a>
+                    <a
+                      href={data.dataFreshness?.links?.ccr ?? 'https://www.epa.gov/ccr'}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ fontSize: 12, color: '#94a3b8' }}
+                    >
+                      EPA: Consumer Confidence Reports — how to find your utility&apos;s annual water quality report →
+                    </a>
+                    <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.55 }}>
+                      The annual CCR (Consumer Confidence Report) lists what your utility detected at the plant and in the distribution system. If it is not linked from ECHO, check your water bill or utility website.
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {!data.hasEWG && (
+                <div style={{ marginBottom: 18, padding: '10px 14px', background: 'rgba(20,30,45,0.5)', border: '1px solid rgba(100,116,139,0.25)', borderRadius: 8, fontSize: 11, color: '#94a3b8', lineHeight: 1.55 }}>
+                  <strong style={{ color: '#cbd5e1' }}>EWG Tap Water Database:</strong> full EWG metro-style reports are not merged for every ZIP. This page still uses live EPA SDWIS data and the UCMR snapshot.{' '}
+                  <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#4ade80' }}>
+                    Search your supplier on EWG →
+                  </a>
+                </div>
+              )}
+
               {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
               {data.pwsid && <CountyComparison pwsid={data.pwsid} />}

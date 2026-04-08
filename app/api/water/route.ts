@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import ucmr5Raw from '@/lib/ucmr5.json';
+import { getDataFreshness } from '@/lib/water-data-meta';
 
 // ucmr5 format: pwsid -> [maxPfasPpt, overMCLcount, [[analyte, ppt, hasMCL, overMCL], ...], lithium?]
 const ucmr5 = ucmr5Raw as Record<string, any[]>;
@@ -613,6 +614,19 @@ async function getEchoEnforcement(pwsid: string): Promise<any> {
   }
 }
 
+function logWaterLookup(payload: Record<string, unknown>) {
+  try {
+    console.log(
+      JSON.stringify({
+        wc_event: 'water_lookup',
+        ts: new Date().toISOString(),
+        ...payload,
+      })
+    );
+  } catch {
+    /* ignore logging failures */
+  }
+}
 
 export async function GET(req: NextRequest) {
   const H = {
@@ -622,8 +636,11 @@ export async function GET(req: NextRequest) {
   };
   const zip = req.nextUrl.searchParams.get('zip');
   if (!zip || !/^\d{5}$/.test(zip)) {
+    logWaterLookup({ zip: zip || '', outcome: 'invalid_zip' });
     return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400, headers: H });
   }
+
+  const t0 = Date.now();
 
   try {
     let pwsid: string;
@@ -658,8 +675,14 @@ export async function GET(req: NextRequest) {
         ).catch(() => []);
       }
       if (!Array.isArray(systems) || !systems.length) {
+        logWaterLookup({ zip, outcome: 'no_system', ms: Date.now() - t0 });
         return NextResponse.json(
-          { error: `No public water system found for ZIP ${zip}. This may be a private well area or very small community.` },
+          {
+            error: `No public water system found for ZIP ${zip}. This may be a private well area or very small community.`,
+            zip,
+            hintWell: true,
+            dataFreshness: getDataFreshness(),
+          },
           { status: 404, headers: H }
         );
       }
@@ -859,7 +882,18 @@ export async function GET(req: NextRequest) {
         : `${pfasCount} PFAS compound(s) detected — all below current EPA MCL limits.`
       : null;
 
+    logWaterLookup({
+      zip,
+      outcome: 'ok',
+      pwsid,
+      ms: Date.now() - t0,
+      hasEwg: !!ewg,
+      pfasCount,
+      openViolations: openCount,
+    });
+
     return NextResponse.json({
+      zip,
       city:             [cityName, stateCode].filter(Boolean).join(', ') || `ZIP ${zip}`,
       systemName:       pwsName,
       pwsid,
@@ -874,6 +908,7 @@ export async function GET(req: NextRequest) {
                       : 'Municipal',
       dataSource:       dataSources.join(' + '),
       dataSources,
+      dataFreshness:    getDataFreshness(),
       openViolations:   openCount,
       totalViolations:  viols.length,
       hasLCR:           samples.length > 0,
@@ -891,6 +926,7 @@ export async function GET(req: NextRequest) {
     }, { headers: H });
 
   } catch (err: any) {
+    logWaterLookup({ zip, outcome: 'error', ms: Date.now() - t0, message: String(err?.message || err) });
     return NextResponse.json({ error: err.message || 'EPA API error' }, { status: 500, headers: H });
   }
 }
