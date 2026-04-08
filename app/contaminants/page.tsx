@@ -200,7 +200,7 @@ export default function ContaminantsPage() {
       </div>
 
       {/* HERO */}
-      <div style={{ background: 'linear-gradient(180deg, #071828 0%, #040d14 100%)', padding: '52px 24px 40px', textAlign: 'center' }}>
+      <div style={{ background: 'linear-gradient(180deg, rgba(7, 24, 40, 0.75) 0%, rgba(4, 13, 20, 0.88) 100%)', padding: '52px 24px 40px', textAlign: 'center' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
         <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
         <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>

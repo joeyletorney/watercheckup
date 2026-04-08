@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
+import { WaterCanvas } from './components/WaterCanvas'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400','500','600','700','800','900'] })
 
@@ -122,7 +123,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
       </head>
-      <body className="wc-ocean-bg">{children}</body>
+      <body className="wc-ocean-bg">
+        <WaterCanvas />
+        {children}
+      </body>
     </html>
   )
 }
