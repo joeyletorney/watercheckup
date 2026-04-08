@@ -108,7 +108,7 @@ const PRODUCTS: any[] = [
   // ── UNDER-SINK FILTER (non-RO) — quick-change ───────────────────────────────
   { id:23, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife SK99', brand:'Frizzlife', price:126, filterCostPerYear:60, rating:4.7, reviews:4200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','Chlorine >99%','PFAS','Chloramine','Cysts'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Quick-change twist-off','No tank needed','Under-sink compact'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Dual quick-change filter cartridges — no tools, no mess. Removes lead at 99.9% and PFAS without the cost of a full RO system. Best value non-RO under-sink filter.', img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/SK99_85cce087-8e10-4b22-8462-605ed3b2ae72.png?v=1757989183', amazon:`https://www.amazon.com/dp/B084HW5BMT?tag=${TAG}` },
   { id:24, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife MK99', brand:'Frizzlife', price:59, filterCostPerYear:45, rating:4.6, reviews:6800, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead >99%','Chlorine >99%','Chloramine','Cysts','Heavy metals'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Best-value quick-change','Under 2 min install','Compact design'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/MK99-B.png?v=1757994240', amazon:`https://www.amazon.com/dp/B07ZY9RVN2?tag=${TAG}` },
-  { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — rare for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants. Best pick for homeowners who want PFAS protection at a lower price point.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/dp/B09NHF7N9H?tag=${TAG}` },
+  { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — rare for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants. Best pick for homeowners who want PFAS protection at a lower price point.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/dp/B076S1W5QY?tag=${TAG}` },
 
   // ── COUNTERTOP RO — no installation needed ──────────────────────────────────
   { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
@@ -472,7 +472,7 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 
 // ─────────────────────────────────────────────────────────────────────────────
 // RETAILER LINKS — per product, keyed by product id
-// LW = Lowe's Creator, CF = Clearly Filtered direct, WD = Waterdrop direct. Aquasana / AquaTru: Amazon only (no affiliate direct).
+// Only Waterdrop uses tracked affiliate URLs. Everyone else: Amazon (or generic p.amazon) only — no extra “brand” buttons.
 // ─────────────────────────────────────────────────────────────────────────────
 const RETAILER_LINKS: Record<number, { store: string; url: string; color: string; label: string }[]> = {
   // Waterdrop G3P800
@@ -481,18 +481,6 @@ const RETAILER_LINKS: Record<number, { store: string; url: string; color: string
   26: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Waterdrop D4 Countertop
   6:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
-  // Clearly Filtered Pitcher
-  9:  [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/clearly-filtered-pitcher', color: '#6366f1', label: 'Brand' } ],
-  // ZeroWater Pitcher
-  10: [ { store: 'Culligan ZeroWater', url: 'https://www.zerowater.com/collections/pitchers', color: '#0284c7', label: 'Brand' } ],
-  // Brita
-  12: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=Brita+pitcher", color: '#1a5c9e', label: 'LW' } ],
-  // Pelican Whole House
-  18: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=Pelican+whole+house+filter", color: '#1a5c9e', label: 'LW' } ],
-  // iSpring WGB32B Whole House
-  19: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=iSpring+whole+house", color: '#1a5c9e', label: 'LW' } ],
-  // Clearly Filtered Water Bottle
-  15: [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/water-bottle', color: '#6366f1', label: 'Brand' } ],
   // Waterdrop K19
   30: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Waterdrop WHF3T-PG whole house

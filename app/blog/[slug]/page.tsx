@@ -107,7 +107,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             TOP PICKS
           </div>
           <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {post.topPicks.map((pick: any, i: number) => (
+            {post.topPicks.map((pick: any, i: number) => {
+              const showDirect = pick.brand === 'Waterdrop';
+              const amazonPrimary = !showDirect;
+              return (
               <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 16px', background: i === 0 ? 'rgba(8,145,178,0.08)' : 'rgba(255,255,255,0.02)', borderRadius: 10, border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 180 }}>
                   <div style={{ fontSize: 15, fontWeight: 800, color: '#94a3b8', minWidth: 20 }}>#{i + 1}</div>
@@ -121,7 +124,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                  {pick.brand !== 'Aquasana' && pick.brand !== 'AquaTru' ? (
+                  {showDirect ? (
                     <a href={pick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
                       Buy Direct →
                     </a>
@@ -133,14 +136,14 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     style={{
                       display: 'block',
                       padding: '8px 16px',
-                      background: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
-                      color: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? '#fff' : '#94a3b8',
+                      background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
+                      color: amazonPrimary ? '#fff' : '#94a3b8',
                       textDecoration: 'none',
                       borderRadius: 7,
                       fontSize: 12,
-                      fontWeight: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? 700 : 600,
+                      fontWeight: amazonPrimary ? 700 : 600,
                       textAlign: 'center',
-                      border: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? 'none' : '1px solid #1a3a5c',
+                      border: amazonPrimary ? 'none' : '1px solid #1a3a5c',
                       whiteSpace: 'nowrap',
                     }}
                   >
@@ -148,7 +151,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   </a>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

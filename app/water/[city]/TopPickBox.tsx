@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string };
 
-/** We only affiliate Waterdrop direct + Amazon; no direct affiliate for these brands. */
+/** Only Waterdrop has a direct affiliate; everyone else gets Amazon only. */
 function showBuyDirectBrand(brand: string) {
-  return brand !== 'Aquasana' && brand !== 'AquaTru';
+  return brand === 'Waterdrop';
 }
 
 function trackClick(product: string, destination: string, city: string) {
@@ -24,7 +24,10 @@ export default function TopPickBox({ picks, label, cityName }: { picks: Pick[]; 
         ⚠ {label}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {picks.map((pick, i) => (
+        {picks.map((pick, i) => {
+          const showDirect = showBuyDirectBrand(pick.brand);
+          const amazonPrimary = !showDirect;
+          return (
           <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 16px', background: i === 0 ? 'rgba(8,145,178,0.08)' : 'rgba(255,255,255,0.02)', borderRadius: 10, border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 180 }}>
               <div style={{ fontSize: 15, fontWeight: 800, color: '#94a3b8', minWidth: 20 }}>#{i + 1}</div>
@@ -38,7 +41,7 @@ export default function TopPickBox({ picks, label, cityName }: { picks: Pick[]; 
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-              {showBuyDirectBrand(pick.brand) ? (
+              {showDirect ? (
                 <a
                   href={pick.link}
                   target="_blank"
@@ -57,14 +60,14 @@ export default function TopPickBox({ picks, label, cityName }: { picks: Pick[]; 
                 style={{
                   display: 'block',
                   padding: '8px 16px',
-                  background: !showBuyDirectBrand(pick.brand) && i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
-                  color: !showBuyDirectBrand(pick.brand) && i === 0 ? '#fff' : '#94a3b8',
+                  background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
+                  color: amazonPrimary ? '#fff' : '#94a3b8',
                   textDecoration: 'none',
                   borderRadius: 7,
                   fontSize: 12,
-                  fontWeight: !showBuyDirectBrand(pick.brand) && i === 0 ? 700 : 600,
+                  fontWeight: amazonPrimary ? 700 : 600,
                   textAlign: 'center',
-                  border: !showBuyDirectBrand(pick.brand) && i === 0 ? 'none' : '1px solid #1a3a5c',
+                  border: amazonPrimary ? 'none' : '1px solid #1a3a5c',
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -72,7 +75,8 @@ export default function TopPickBox({ picks, label, cityName }: { picks: Pick[]; 
               </a>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
       <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #0f2336', fontSize: 12, color: '#94a3b8' }}>
         Not sure which filter is right for you?{' '}

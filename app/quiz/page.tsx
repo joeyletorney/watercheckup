@@ -91,7 +91,7 @@ const TOP_5_AMAZON_DRINKING: AltPick[] = [
     price: '~$129',
     reason: 'Compact under-sink system on Amazon — NSF 401 for emerging contaminants; alternative if you do not want RO yet.',
     link: 'https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system',
-    amazon: `https://www.amazon.com/dp/B09NHF7N9H?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B076S1W5QY?tag=${AMAZON_TAG}`,
     badge: 'NO RO',
   },
 ];
@@ -111,8 +111,9 @@ function trackEvent(name: string, params: Record<string, string>) {
   }
 }
 
+/** Only Waterdrop uses our affiliate ref; other brands are Amazon-only (no unpaid direct links). */
 function showBuyDirectForBrand(brand: string) {
-  return brand !== 'Aquasana' && brand !== 'AquaTru';
+  return brand === 'Waterdrop';
 }
 
 const QUESTIONS = [
