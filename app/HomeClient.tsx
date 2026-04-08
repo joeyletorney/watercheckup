@@ -1710,6 +1710,15 @@ export default function WaterCheckup() {
   const [wellMode, setWellMode]         = useState(false);
   const [wellFallbackState, setWellFallbackState] = useState<string | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const loadingPanelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!loading) return;
+    const t = requestAnimationFrame(() => {
+      loadingPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    return () => cancelAnimationFrame(t);
+  }, [loading]);
 
   useEffect(() => {
     if (!showWqaModal && !showNsfModal && !showEpaModal && !showSample) return;
@@ -1956,6 +1965,73 @@ export default function WaterCheckup() {
             </button>
           </div>
         </div>
+
+        {/* LOADER — directly under search so it stays on-screen (was below fold after long hero) */}
+        {loading && (
+          <div
+            ref={loadingPanelRef}
+            role="status"
+            aria-live="polite"
+            aria-busy="true"
+            className="wc-loading-panel"
+            style={{
+              maxWidth: 520,
+              margin: '20px auto 0',
+              padding: '22px 26px',
+              background: 'rgba(6,14,10,0.94)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              border: '1px solid rgba(34,197,94,0.28)',
+              borderTop: '1px solid rgba(34,197,94,0.45)',
+              borderRadius: 14,
+              position: 'relative',
+              zIndex: 3,
+              boxShadow:
+                '0 24px 56px rgba(0,4,18,0.55), 0 0 40px rgba(34,197,94,0.08), inset 0 1px 0 rgba(34,197,94,0.12)',
+              fontFamily: "'Courier New', monospace",
+            }}
+          >
+            <div style={{ fontSize: 13, fontWeight: 800, color: '#86efac', marginBottom: 10, letterSpacing: 0.4, fontFamily: 'var(--font-inter), system-ui, sans-serif' }}>
+              Analyzing multiple data sources…
+            </div>
+            <div style={{ fontSize: 10, color: '#166534', letterSpacing: 2, marginBottom: 14 }}>$ watercheck --zip {zip} --live</div>
+            {STEPS.map((s, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 7, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
+                <span style={{ color: i < step ? '#22c55e' : i === step ? '#86efac' : '#166534', fontSize: 13, minWidth: 14 }}>{i < step ? '✓' : i === step ? '▶' : '·'}</span>
+                <span style={{ fontSize: 12, color: i < step ? '#4ade80' : i === step ? '#86efac' : '#166534', letterSpacing: 0.3 }}>{s}</span>
+                {i === step && (
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      width: 7,
+                      height: 13,
+                      background: '#22c55e',
+                      animation: 'wcBlink 1s step-end infinite',
+                      marginLeft: 2,
+                      verticalAlign: 'middle',
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+            <div
+              style={{
+                marginTop: 12,
+                padding: '8px 12px',
+                background: 'rgba(0,0,0,0.45)',
+                borderRadius: 6,
+                fontSize: 10,
+                color: '#64748b',
+                textAlign: 'center',
+                letterSpacing: 0.5,
+                lineHeight: 1.45,
+                fontFamily: 'var(--font-inter), system-ui, sans-serif',
+              }}
+            >
+              EPA SDWIS live · UCMR5 snapshot in app · EWG / USGS when available
+            </div>
+          </div>
+        )}
 
         {/* Hero newsletter signup — below ZIP row; scroll if you’re on a small screen */}
         <div
@@ -2339,23 +2415,6 @@ export default function WaterCheckup() {
             </div>
           </div>
 
-        </div>
-      )}
-
-      {/* LOADER */}
-      {loading && (
-        <div style={{ maxWidth: 440, margin: '40px auto', padding: '24px 28px', background: 'rgba(6,14,10,0.92)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(34,197,94,0.2)', borderTop: '1px solid rgba(34,197,94,0.4)', borderRadius: 12, position: 'relative', zIndex: 2, boxShadow: '0 24px 56px rgba(0,4,18,0.5), 0 0 40px rgba(34,197,94,0.06), inset 0 1px 0 rgba(34,197,94,0.1)', fontFamily: "'Courier New', monospace" }}>
-          <div style={{ fontSize: 10, color: '#166534', letterSpacing: 2, marginBottom: 14 }}>$ watercheck --zip {zip} --live</div>
-          {STEPS.map((s, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 7, opacity: i <= step ? 1 : 0.15, transition: 'opacity 0.4s' }}>
-              <span style={{ color: i < step ? '#22c55e' : i === step ? '#86efac' : '#166534', fontSize: 13, minWidth: 14 }}>{i < step ? '✓' : i === step ? '▶' : '·'}</span>
-              <span style={{ fontSize: 12, color: i < step ? '#4ade80' : i === step ? '#86efac' : '#166534', letterSpacing: 0.3 }}>{s}</span>
-              {i === step && <span style={{ display: 'inline-block', width: 7, height: 13, background: '#22c55e', animation: 'wcBlink 1s step-end infinite', marginLeft: 2, verticalAlign: 'middle' }} />}
-            </div>
-          ))}
-          <div style={{ marginTop: 12, padding: '6px 10px', background: 'rgba(0,0,0,0.4)', borderRadius: 4, fontSize: 10, color: '#64748b', textAlign: 'center', letterSpacing: 0.5, lineHeight: 1.4 }}>
-            EPA SDWIS live · UCMR5 snapshot in app · EWG/USGS when available
-          </div>
         </div>
       )}
 
