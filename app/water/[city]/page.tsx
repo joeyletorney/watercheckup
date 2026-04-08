@@ -44,6 +44,9 @@ export async function generateMetadata({ params }: { params: { city: string } })
   return {
     title: `Is ${cd.name} Tap Water Safe? EPA Report 2025 | WaterCheckup`,
     description: `${cd.name} water quality report powered by live EPA data. PFAS testing, lead violations, and expert filter recommendations for ${cd.name}, ${cd.state}.`,
+    alternates: {
+      canonical: `https://watercheckup.com/water/${params.city}`,
+    },
     openGraph: {
       title: `${cd.name} Tap Water Quality -- EPA Report | WaterCheckup`,
       description: `See what's really in ${cd.name}'s tap water. Live EPA SDWIS + UCMR5 PFAS data.`,

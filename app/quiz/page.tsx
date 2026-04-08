@@ -4,8 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { SiteNav } from '../components/SiteNav';
 
-declare global { interface Window { gtag?: (...args: any[]) => void } }
-
 const WATERDROP_TAG = 'anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 

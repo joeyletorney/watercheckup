@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 import { WaterCanvas } from './components/WaterCanvas'
+import { GaPageView } from './components/GaPageView'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400','500','600','700','800','900'] })
 
@@ -46,9 +48,6 @@ export const metadata: Metadata = {
     description: 'Free EPA water quality reports for any US ZIP code. Real contaminant data, expert filter picks.',
     images: ['/api/og'],
     creator: '@watercheckup',
-  },
-  alternates: {
-    canonical: 'https://watercheckup.com',
   },
   verification: {
     google: '5fMlEv2aPnPmH01F9bVS3EbJvZvXQym1t1RUr-GHvYE',
@@ -115,17 +114,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
-                });
+                gtag('config', '${GA_ID}', { send_page_view: false });
               `}
             </Script>
           </>
         )}
       </head>
       <body className="wc-ocean-bg">
+        <a href="#wc-main" className="wc-skip-link">
+          Skip to main content
+        </a>
         <WaterCanvas />
-        {children}
+        {GA_ID ? (
+          <Suspense fallback={null}>
+            <GaPageView measurementId={GA_ID} />
+          </Suspense>
+        ) : null}
+        <main id="wc-main" tabIndex={-1}>
+          {children}
+        </main>
       </body>
     </html>
   )

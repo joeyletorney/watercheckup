@@ -1,5 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteNav } from '../components/SiteNav';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    'Expert guides on tap water safety, PFAS, lead, EPA violations, filters, and well water — aligned with live EPA data.',
+  alternates: {
+    canonical: 'https://watercheckup.com/blog',
+  },
+};
 
 const POSTS = [
   {

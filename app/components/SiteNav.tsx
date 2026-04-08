@@ -9,6 +9,7 @@ const ITEMS: [string, string][] = [
   ['/contaminants', 'Contaminants'],
   ['/faq', 'FAQ'],
   ['/blog', 'Blog'],
+  ['/quiz', 'Quiz'],
 ];
 
 export function SiteNav({ style }: { style?: CSSProperties }) {
@@ -27,11 +28,13 @@ export function SiteNav({ style }: { style?: CSSProperties }) {
         const active =
           pathname === href ||
           (href === '/blog' && pathname.startsWith('/blog')) ||
-          (href === '/contaminants' && pathname.startsWith('/contaminants'));
+          (href === '/contaminants' && pathname.startsWith('/contaminants')) ||
+          (href === '/quiz' && pathname.startsWith('/quiz'));
         return (
           <Link
             key={href}
             href={href}
+            aria-current={active ? 'page' : undefined}
             style={{
               padding: '6px 14px',
               borderRadius: 6,

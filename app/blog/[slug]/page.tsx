@@ -14,6 +14,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.title} | WaterCheckup`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://watercheckup.com/blog/${params.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -28,8 +31,30 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   const post = POSTS[params.slug];
   if (!post) notFound();
 
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    author: { '@type': 'Person', name: 'J. Letorney' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'WaterCheckup',
+      logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/logo.svg' },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://watercheckup.com/blog/${params.slug}`,
+    },
+  };
+
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
       {/* Nav */}
       <div style={{ borderBottom: '1px solid #0f2336', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
