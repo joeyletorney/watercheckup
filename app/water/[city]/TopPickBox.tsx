@@ -21,7 +21,7 @@ export default function TopPickBox({ pick, cityName }: { pick: Pick; cityName: s
         <div style={{ flex: 1, minWidth: 200 }}>
           <div style={{ fontSize: 11, color: '#ef4444', fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>⚠ {pick.label}</div>
           <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>{pick.product}</div>
-          <div style={{ fontSize: 13, color: '#64748b' }}>{pick.reason}</div>
+          <div style={{ fontSize: 13, color: '#94a3b8' }}>{pick.reason}</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
           <a
@@ -38,7 +38,7 @@ export default function TopPickBox({ pick, cityName }: { pick: Pick; cityName: s
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackClick(pick.product, 'amazon', cityName)}
-            style={{ display: 'block', padding: '10px 20px', background: '#0d2240', color: '#64748b', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}
+            style={{ display: 'block', padding: '10px 20px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}
           >
             See on Amazon →
           </a>

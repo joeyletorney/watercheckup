@@ -132,7 +132,7 @@ const PRODUCTS: any[] = [
   { id:34, cat:'whole', catLabel:'Whole-House', name:'Waterdrop WHF3T-PG', brand:'Waterdrop', price:370, filterCostPerYear:80, rating:4.6, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Herbicides'], bestFor:['Chlorine','Chloramine','Sediment','VOCs'], pros:['Transparent housing','Pressure gauge included','1-year filters'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-WHF3T-PG.png?v=1762269824', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
 
   // ── SHOWER FILTERS ──────────────────────────────────────────────────────────
-  { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#475569', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'42,000+ Amazon reviews. Installs in 5 minutes — just screw it onto any showerhead. Removes chlorine that dries skin and damages hair. Best value shower filter on the market by far.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
+  { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#94a3b8', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'42,000+ Amazon reviews. Installs in 5 minutes — just screw it onto any showerhead. Removes chlorine that dries skin and damages hair. Best value shower filter on the market by far.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
   { id:35, cat:'shower', catLabel:'Shower Filter', name:'Aquasana AQ-4105CHR', brand:'Aquasana', price:119, filterCostPerYear:80, rating:4.7, reviews:4200, gpd:null, stages:2, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >91%','Chloramine','Scale','Synthetic chemicals'], bestFor:['Chlorine','Chloramine','Scale'], pros:['NSF 177 certified','Quick-change filter','Filtered showerhead combo'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Complete filtered showerhead combo — NSF/ANSI 177 certified with a quick-change cartridge that twists off without tools. The premium pick for removing both chlorine and chloramine.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwc5d4d26e/images/large/AQ-4105CHR.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B004AQZW3A?tag=${TAG}` },
   { id:36, cat:'shower', catLabel:'Shower Filter', name:'AquaTru Shower Filter', brand:'AquaTru', price:149, filterCostPerYear:90, rating:4.6, reviews:890, gpd:null, stages:3, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >98%','Chloramine','Heavy metals','Scale','VOCs'], bestFor:['Chlorine','Chloramine','Heavy metals'], pros:['Highest chlorine reduction','Quick-change cartridge','Premium finish'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Highest chlorine reduction of any shower filter at 98%+ — NSF/ANSI 177 certified. Quick-change cartridge with a premium finish. Best pick for heavy chlorine areas.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT_-_Shower_-_PDP_01_-_Nickel.jpg?v=1773655036', amazon:`https://www.amazon.com/dp/B0FLHFTGYD?tag=${TAG}` },
 
@@ -508,9 +508,9 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
         </a>
         {retailers.length > 0 && (
           <button onClick={() => setOpen(o => !o)}
-            style={{ padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: '#64748b', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
+            style={{ padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#94a3b8'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#64748b'; }}>
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#94a3b8'; }}>
             {open ? '▲' : '▼'} More stores
           </button>
         )}
@@ -550,7 +550,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
           {!imgErr && p.img ? <img src={p.img} alt={p.name} onError={() => setImgErr(true)} style={{ maxHeight: 55, maxWidth: 55, objectFit: 'contain' }} /> : <div style={{ fontSize: 20 }}>💧</div>}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 11, color: '#475569', marginBottom: 1 }}>{p.brand}</div>
+          <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 1 }}>{p.brand}</div>
           <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.2, marginBottom: 4 }}>{p.name}</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ fontSize: 12, color: diyColors[p.diyDiff] || '#22d3ee' }}>Install: {p.diyDiff}</span>
@@ -598,7 +598,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
       {/* Content */}
       <div style={{ padding: '16px 16px 14px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
         <div>
-          <div style={{ fontSize: 10, color: '#475569', letterSpacing: 1.5, fontWeight: 700, marginBottom: 3 }}>{p.brand.toUpperCase()} · {p.catLabel?.toUpperCase()}</div>
+          <div style={{ fontSize: 10, color: '#94a3b8', letterSpacing: 1.5, fontWeight: 700, marginBottom: 3 }}>{p.brand.toUpperCase()} · {p.catLabel?.toUpperCase()}</div>
           <div style={{ fontSize: 14, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
         </div>
 
@@ -640,7 +640,7 @@ function ProductCard({ p, highlight, compact, detectedContaminants }: { p: any; 
         {/* Pros */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {p.pros?.slice(0, 2).map((pro: string) => (
-            <div key={pro} style={{ fontSize: 11, color: '#64748b', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div key={pro} style={{ fontSize: 11, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ color: '#22d3ee', fontWeight: 900, fontSize: 10 }}>✓</span> {pro}
             </div>
           ))}
@@ -682,10 +682,10 @@ function ContaminantRow({ c }: { c: any }) {
           <span style={{ fontSize: 14 }}>{riskIcon}</span>
           <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
           {c.isPFAS && <span style={{ fontSize: 10, padding: '1px 6px', borderRadius: 3, background: '#ef444418', color: '#ef4444', border: '1px solid #ef444430', fontWeight: 700 }}>FOREVER CHEMICAL</span>}
-          {c.source && <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#0e2233', color: '#475569', border: '1px solid #1e3a4a' }}>{c.source}</span>}
+          {c.source && <span style={{ fontSize: 10, padding: '1px 5px', borderRadius: 3, background: '#0e2233', color: '#94a3b8', border: '1px solid #1e3a4a' }}>{c.source}</span>}
         </div>
         <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
-          {c.level != null && c.limit != null && <span style={{ fontSize: 12, color: '#475569' }}>{c.level} {c.unit} · legal limit {c.limit}</span>}
+          {c.level != null && c.limit != null && <span style={{ fontSize: 12, color: '#94a3b8' }}>{c.level} {c.unit} · legal limit {c.limit}</span>}
           {timesOver && <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: '#ef444420', color: '#ef4444', fontWeight: 800, border: '1px solid #ef444440' }}>{timesOver}× OVER LIMIT</span>}
           {c.ewgTimesOver != null && c.ewgTimesOver > 1 && (
             <span title={c.ewgGuidelineLabel || 'EWG Health Guideline'} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: '#7c1d1d', color: '#fca5a5', fontWeight: 800, border: '1px solid #ef444440', cursor: 'help' }}>
@@ -693,7 +693,7 @@ function ContaminantRow({ c }: { c: any }) {
             </span>
           )}
           <span style={{ fontSize: 11, padding: '2px 7px', borderRadius: 4, background: sev.color + '22', color: sev.color }}>{sev.label}</span>
-          {hasCtx && <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: '1px solid #1e3a4a', borderRadius: 4, color: '#475569', fontSize: 11, cursor: 'pointer', padding: '2px 7px' }}>{expanded ? 'Less ↑' : 'Health info ↓'}</button>}
+          {hasCtx && <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: '1px solid #1e3a4a', borderRadius: 4, color: '#94a3b8', fontSize: 11, cursor: 'pointer', padding: '2px 7px' }}>{expanded ? 'Less ↑' : 'Health info ↓'}</button>}
         </div>
       </div>
 
@@ -710,7 +710,7 @@ function ContaminantRow({ c }: { c: any }) {
               <button
                 onMouseEnter={() => setTooltip(true)}
                 onMouseLeave={() => setTooltip(false)}
-                style={{ background: 'none', border: 'none', padding: 0, cursor: 'help', fontSize: 11, color: '#475569' }}
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'help', fontSize: 11, color: '#94a3b8' }}
               >
                 EPA limit: {c.limit} {c.unit} ℹ
               </button>
@@ -727,14 +727,14 @@ function ContaminantRow({ c }: { c: any }) {
         </div>
       )}
 
-      {c.note && <div style={{ fontSize: 11, color: '#475569', padding: '0 16px 8px' }}>{c.note}</div>}
+      {c.note && <div style={{ fontSize: 11, color: '#94a3b8', padding: '0 16px 8px' }}>{c.note}</div>}
 
       {/* Health info expandable */}
       {hasCtx && (
         <div style={{ borderTop: '1px solid #0f2336' }}>
           <button
             onClick={() => setExpanded(x => !x)}
-            style={{ width: '100%', background: 'none', border: 'none', padding: '8px 16px', color: '#475569', fontSize: 11, cursor: 'pointer', textAlign: 'left', display: 'flex', justifyContent: 'space-between' }}
+            style={{ width: '100%', background: 'none', border: 'none', padding: '8px 16px', color: '#94a3b8', fontSize: 11, cursor: 'pointer', textAlign: 'left', display: 'flex', justifyContent: 'space-between' }}
           >
             <span>Health effects & sources</span>
             <span style={{ transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s', display: 'inline-block' }}>▾</span>
@@ -776,7 +776,7 @@ function PFASAwarenessBanner() {
   return (
     <div style={{ maxWidth: 720, margin: '22px auto 0', padding: '0 24px' }}>
       <div style={{ background: 'rgba(20,3,3,0.68)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: '1px solid rgba(220,38,38,0.28)', borderLeft: '4px solid #ef4444', borderTop: '1px solid rgba(239,68,68,0.32)', borderRadius: 10, padding: '16px 20px', display: 'flex', gap: 14, position: 'relative', boxShadow: '0 8px 32px rgba(20,3,3,0.5), inset 0 1px 0 rgba(255,255,255,0.06)' }}>
-        <button onClick={() => setDismissed(true)} style={{ position: 'absolute', top: 10, right: 12, background: 'none', border: 'none', color: '#475569', fontSize: 16, cursor: 'pointer' }}>×</button>
+        <button onClick={() => setDismissed(true)} style={{ position: 'absolute', top: 10, right: 12, background: 'none', border: 'none', color: '#94a3b8', fontSize: 16, cursor: 'pointer' }}>×</button>
         <div style={{ fontSize: 22, flexShrink: 0 }}>☣️</div>
         <div style={{ flex: 1, paddingRight: 20 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 5, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -818,11 +818,11 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
               : <>PFAS at <strong style={{ color: '#fbbf24' }}>{pfasLevel.toFixed(2)} ppt</strong> — below 4 ppt limit but above non-detect. Forever chemicals accumulate in the body. RO or Clearly Filtered recommended.</>
             }
           </p>
-          {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 12, color: '#64748b', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
+          {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 12, color: '#94a3b8', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P800 — PFAS &gt;99%</a>
             <a href={`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#94a3b8', fontSize: 11, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
-            <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: 'none', color: '#475569', fontSize: 11, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>{expanded ? 'Less ↑' : 'What are PFAS? ↓'}</button>
+            <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 11, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>{expanded ? 'Less ↑' : 'What are PFAS? ↓'}</button>
           </div>
         </div>
       </div>
@@ -1027,19 +1027,19 @@ function DIYGuidePanel({ cat }: { cat: string }) {
           <span style={{ fontSize: 16 }}>🔧</span>
           <div style={{ textAlign: 'left' }}>
             <div style={{ fontSize: 13, fontWeight: 700 }}>DIY Installation Guide</div>
-            <div style={{ fontSize: 11, color: '#64748b' }}>{guide.time} · {guide.tools.length} tools needed</div>
+            <div style={{ fontSize: 11, color: '#94a3b8' }}>{guide.time} · {guide.tools.length} tools needed</div>
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 4, background: diffColor + '22', color: diffColor, fontWeight: 700 }}>{guide.difficulty}</span>
-          <span style={{ color: '#475569', fontSize: 14 }}>{open ? '▲' : '▼'}</span>
+          <span style={{ color: '#94a3b8', fontSize: 14 }}>{open ? '▲' : '▼'}</span>
         </div>
       </button>
       {open && (
         <div style={{ padding: '0 16px 16px', borderTop: '1px solid #0e2233' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: 12, marginTop: 14, marginBottom: 14 }}>
             <div style={{ background: '#060e17', borderRadius: 8, padding: '10px 12px' }}>
-              <div style={{ fontSize: 10, color: '#475569', letterSpacing: 1, marginBottom: 6 }}>TOOLS NEEDED</div>
+              <div style={{ fontSize: 10, color: '#94a3b8', letterSpacing: 1, marginBottom: 6 }}>TOOLS NEEDED</div>
               {guide.tools.map((t,i) => <div key={i} style={{ fontSize: 12, color: '#94a3b8', marginBottom: 3 }}>• {t}</div>)}
             </div>
             <div style={{ background: '#060e17', borderRadius: 8, padding: '10px 12px' }}>
@@ -1093,25 +1093,25 @@ function CountyComparison({ pwsid }: { pwsid: string }) {
           <span style={{ fontSize: 16 }}>🗺️</span>
           <div style={{ textAlign: 'left' }}>
             <div style={{ fontSize: 13, fontWeight: 700 }}>Compare All Utilities in Your County</div>
-            <div style={{ fontSize: 11, color: '#64748b' }}>See how your water ranks against neighbors</div>
+            <div style={{ fontSize: 11, color: '#94a3b8' }}>See how your water ranks against neighbors</div>
           </div>
         </div>
-        <span style={{ color: '#475569', fontSize: 14 }}>
+        <span style={{ color: '#94a3b8', fontSize: 14 }}>
           {loading ? '⏳' : open ? '▲' : '▼'}
         </span>
       </button>
       {open && data && (
         <div style={{ background: '#060e17', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 10px 10px', padding: '12px 16px' }}>
-          {data.county && <div style={{ fontSize: 11, color: '#475569', letterSpacing: 1, marginBottom: 10 }}>{data.county.toUpperCase()} — {utils.length} PUBLIC WATER SYSTEMS</div>}
+          {data.county && <div style={{ fontSize: 11, color: '#94a3b8', letterSpacing: 1, marginBottom: 10 }}>{data.county.toUpperCase()} — {utils.length} PUBLIC WATER SYSTEMS</div>}
           {utils.length === 0 ? (
-            <div style={{ fontSize: 13, color: '#475569', padding: '8px 0' }}>County data not available for this system.</div>
+            <div style={{ fontSize: 13, color: '#94a3b8', padding: '8px 0' }}>County data not available for this system.</div>
           ) : (
             <div style={{ overflowX: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid #0e2233' }}>
                     {['Utility','City','Population','Source','Open Violations','Total Violations'].map(h => (
-                      <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, color: '#475569', letterSpacing: 0.5, fontWeight: 700, whiteSpace: 'nowrap' }}>{h.toUpperCase()}</th>
+                      <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 10, color: '#94a3b8', letterSpacing: 0.5, fontWeight: 700, whiteSpace: 'nowrap' }}>{h.toUpperCase()}</th>
                     ))}
                   </tr>
                 </thead>
@@ -1121,14 +1121,14 @@ function CountyComparison({ pwsid }: { pwsid: string }) {
                       <td style={{ padding: '8px 8px', color: u.isCurrent ? '#22d3ee' : '#e2e8f0', fontWeight: u.isCurrent ? 700 : 400, whiteSpace: 'nowrap' }}>
                         {u.isCurrent ? '▶ ' : ''}{u.name.length > 30 ? u.name.slice(0,28)+'…' : u.name}
                       </td>
-                      <td style={{ padding: '8px 8px', color: '#64748b' }}>{u.city}</td>
-                      <td style={{ padding: '8px 8px', color: '#64748b', textAlign: 'right' }}>{u.population.toLocaleString()}</td>
-                      <td style={{ padding: '8px 8px', color: '#64748b' }}>{u.sourceLabel}</td>
+                      <td style={{ padding: '8px 8px', color: '#94a3b8' }}>{u.city}</td>
+                      <td style={{ padding: '8px 8px', color: '#94a3b8', textAlign: 'right' }}>{u.population.toLocaleString()}</td>
+                      <td style={{ padding: '8px 8px', color: '#94a3b8' }}>{u.sourceLabel}</td>
                       <td style={{ padding: '8px 8px', textAlign: 'center' }}>
                         <span style={{ color: u.openViolations > 0 ? '#ef4444' : '#22d3ee', fontWeight: 700 }}>{u.openViolations}</span>
                       </td>
                       <td style={{ padding: '8px 8px', textAlign: 'center' }}>
-                        <span style={{ color: u.totalViolations > 5 ? '#f59e0b' : '#64748b' }}>{u.totalViolations}</span>
+                        <span style={{ color: u.totalViolations > 5 ? '#f59e0b' : '#94a3b8' }}>{u.totalViolations}</span>
                       </td>
                     </tr>
                   ))}
@@ -1151,7 +1151,7 @@ function NationalPercentile({ pct }: { pct: number }) {
   const color = pct >= 75 ? '#22d3ee' : pct >= 50 ? '#f59e0b' : '#ef4444';
   return (
     <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, padding: '12px 16px', marginBottom: 18 }}>
-      <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#475569', marginBottom: 7 }}>NATIONAL WATER QUALITY RANKING</div>
+      <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#94a3b8', marginBottom: 7 }}>NATIONAL WATER QUALITY RANKING</div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flex: 1 }}>
           <div style={{ height: 7, background: '#1e3a4a', borderRadius: 4, overflow: 'hidden' }}>
@@ -1160,7 +1160,7 @@ function NationalPercentile({ pct }: { pct: number }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 3, fontSize: 10, color: '#334155' }}><span>Worst</span><span>Average</span><span>Best</span></div>
         </div>
         <div style={{ textAlign: 'right', minWidth: 80 }}>
-          <div style={{ fontSize: 20, fontWeight: 900, color }}>{anim}<span style={{ fontSize: 12, color: '#475569' }}>th %ile</span></div>
+          <div style={{ fontSize: 20, fontWeight: 900, color }}>{anim}<span style={{ fontSize: 12, color: '#94a3b8' }}>th %ile</span></div>
           <div style={{ fontSize: 10, color: '#334155' }}>vs all US water</div>
         </div>
       </div>
@@ -1179,7 +1179,7 @@ function DataSourcesBadges({ sources }: { sources: string[] }) {
   };
   return (
     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
-      {sources.map(s => { const m = meta[s] || { color: '#475569', icon: '📊' }; return (
+      {sources.map(s => { const m = meta[s] || { color: '#94a3b8', icon: '📊' }; return (
         <span key={s} style={{ fontSize: 10, padding: '3px 8px', borderRadius: 4, background: m.color + '15', border: `1px solid ${m.color}40`, color: m.color, fontWeight: 700 }}>{m.icon} {s}</span>
       );})}
     </div>
@@ -1217,7 +1217,7 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
       <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 14, fontWeight: 700 }}>I AM A / I LIVE IN A…</div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
         {SITUATIONS.map(s => (
-          <button key={s.id} onClick={() => setSituation(s.id)} style={{ padding: '8px 14px', background: situation === s.id ? 'rgba(8,145,178,0.28)' : 'rgba(4,14,32,0.60)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: `1px solid ${situation === s.id ? 'rgba(6,182,212,0.55)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${situation === s.id ? 'rgba(180,240,255,0.45)' : 'rgba(255,255,255,0.12)'}`, borderRadius: 8, color: situation === s.id ? '#fff' : '#475569', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, boxShadow: situation === s.id ? '0 4px 20px rgba(8,145,178,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' : 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>
+          <button key={s.id} onClick={() => setSituation(s.id)} style={{ padding: '8px 14px', background: situation === s.id ? 'rgba(8,145,178,0.28)' : 'rgba(4,14,32,0.60)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: `1px solid ${situation === s.id ? 'rgba(6,182,212,0.55)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${situation === s.id ? 'rgba(180,240,255,0.45)' : 'rgba(255,255,255,0.12)'}`, borderRadius: 8, color: situation === s.id ? '#fff' : '#94a3b8', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, boxShadow: situation === s.id ? '0 4px 20px rgba(8,145,178,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' : 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>
             <span>{s.icon}</span><span>{s.label}</span>
           </button>
         ))}
@@ -1230,11 +1230,11 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#ef4444', marginBottom: 4, fontWeight: 700 }}>AVOID</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>{cfg.avoid}</div>
+            <div style={{ fontSize: 12, color: '#94a3b8' }}>{cfg.avoid}</div>
           </div>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#22d3ee', marginBottom: 4, fontWeight: 700 }}>💡 PRO TIP</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>{cfg.tip}</div>
+            <div style={{ fontSize: 12, color: '#94a3b8' }}>{cfg.tip}</div>
           </div>
         </div>
       </div>
@@ -1262,7 +1262,7 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
           ].map(d => (
             <div key={d.level} style={{ flex: 1, minWidth: 140, background: '#0d2240', borderRadius: 6, padding: '10px 12px', border: `1px solid ${d.color}25` }}>
               <div style={{ fontSize: 12, fontWeight: 800, color: d.color, marginBottom: 3 }}>{d.level}</div>
-              <div style={{ fontSize: 11, color: '#475569', lineHeight: 1.5 }}>{d.desc}</div>
+              <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{d.desc}</div>
             </div>
           ))}
         </div>
@@ -1314,13 +1314,13 @@ function ResourcesTab({ data }: { data: any }) {
       <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 20, fontWeight: 700 }}>OFFICIAL DATA SOURCES & RESOURCES</div>
       {resources.map(section => (
         <div key={section.cat} style={{ marginBottom: 22 }}>
-          <div style={{ fontSize: 12, color: '#64748b', marginBottom: 10, fontWeight: 700 }}>{section.cat}</div>
+          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, fontWeight: 700 }}>{section.cat}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {section.items.map(r => (
               <a key={r.name} href={r.url} target="_blank" rel="noreferrer" style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 7, padding: '10px 14px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, color: '#22d3ee', fontWeight: 700, marginBottom: 2 }}>{r.name}</div>
-                  <div style={{ fontSize: 11, color: '#475569' }}>{r.desc}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8' }}>{r.desc}</div>
                 </div>
                 <span style={{ color: '#334155', fontSize: 14, flexShrink: 0 }}>→</span>
               </a>
@@ -1398,7 +1398,7 @@ function FilterCompareTab() {
         <tbody>
           {rows.map((row, ri) => (
             <tr key={row.label} style={{ background: ri % 2 === 0 ? '#0b1e36' : '#091c35' }}>
-              <td style={{ padding: '9px 10px', color: '#64748b', fontWeight: 600, borderBottom: '1px solid #0e2233', position: 'sticky', left: 0, background: ri % 2 === 0 ? '#0b1e36' : '#091c35', whiteSpace: 'nowrap' }}>{row.label}</td>
+              <td style={{ padding: '9px 10px', color: '#94a3b8', fontWeight: 600, borderBottom: '1px solid #0e2233', position: 'sticky', left: 0, background: ri % 2 === 0 ? '#0b1e36' : '#091c35', whiteSpace: 'nowrap' }}>{row.label}</td>
               {prods.map(p => (
                 <td key={p.id} style={{ padding: '9px 10px', textAlign: 'center', color: '#94a3b8', borderBottom: '1px solid #0e2233' }}>{row.fn(p)}</td>
               ))}
@@ -1458,7 +1458,7 @@ function ShareModal({ data, onClose }: { data: any; onClose: () => void }) {
       <div style={{ background: 'rgba(3,12,28,0.88)', backdropFilter: 'blur(28px)', WebkitBackdropFilter: 'blur(28px)', border: '1px solid rgba(255,255,255,0.09)', borderTop: '1px solid rgba(255,255,255,0.16)', borderRadius: 16, padding: '28px 28px', boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.09)', maxWidth: 420, width: '92%' }} onClick={e => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>Share Your Water Report</div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#475569', fontSize: 20, cursor: 'pointer', padding: 0, lineHeight: 1 }}>×</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 20, cursor: 'pointer', padding: 0, lineHeight: 1 }}>×</button>
         </div>
 
         {/* Preview card */}
@@ -1817,7 +1817,7 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
       <div style={{ marginBottom: 28, padding: '20px 24px', background: 'linear-gradient(135deg,rgba(5,18,42,0.9),rgba(2,8,20,0.95))', border: '1px solid rgba(120,80,255,0.3)', borderRadius: 12, boxShadow: '0 8px 32px rgba(120,80,255,0.15)' }}>
         <div style={{ fontSize: 11, letterSpacing: 1.5, color: '#a78bfa', fontWeight: 800, marginBottom: 8 }}>PRIVATE WELL · {stateCode} STATE RISK PROFILE</div>
         <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff', marginBottom: 8 }}>Well Water Risks in Your Area</div>
-        <p style={{ fontSize: 14, color: '#64748b', margin: 0, lineHeight: 1.7 }}>
+        <p style={{ fontSize: 14, color: '#94a3b8', margin: 0, lineHeight: 1.7 }}>
           Private wells are <strong style={{ color: '#e2e8f0' }}>not regulated by the EPA</strong> — you are responsible for your own testing and treatment. The risks below are based on USGS and EPA groundwater data for {stateCode}. Test your well annually.
         </p>
       </div>
@@ -1847,7 +1847,7 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
           <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
           <a href="https://www.ntllabs.com/well-water-testing/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
         </div>
-        <div style={{ fontSize: 11, color: '#475569', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
+        <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           <a href={`https://www.amazon.com/dp/B01LZMXS5P?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #47556955', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>🧪 Safe Home 200-Parameter Test — $30 →</a>
           <a href={`https://www.amazon.com/dp/B00BPTYJMO?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #47556955', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>🧪 First Alert Bacteria Test — $15 →</a>
@@ -2382,7 +2382,7 @@ export default function WaterCheckup() {
               ].map(s => (
                 <div key={s.stat} className="wc-card" style={{ flex: '1 1 140px', borderRadius: 10, padding: '12px 14px', textAlign: 'center' }}>
                   <div style={{ fontSize: 22, fontWeight: 900, color: '#22d3ee', letterSpacing: -0.5 }}>{s.stat}</div>
-                  <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.45, marginTop: 3 }}>{s.label}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.45, marginTop: 3 }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -2454,11 +2454,11 @@ export default function WaterCheckup() {
                       <div style={{ fontSize: 10, fontWeight: 700, color: c.color, letterSpacing: 0.3, marginTop: 2 }}>{c.risk}</div>
                     </div>
                   </div>
-                  <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.65 }}>{c.body}</div>
+                  <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.65 }}>{c.body}</div>
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 16, padding: '14px 18px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#64748b', textAlign: 'center' }}>
+            <div style={{ marginTop: 16, padding: '14px 18px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#94a3b8', textAlign: 'center' }}>
               Enter your ZIP code above ↑ to see exactly what EPA data shows for <strong style={{ color: '#38bdf8' }}>your water system</strong>
             </div>
           </div>
@@ -2469,7 +2469,7 @@ export default function WaterCheckup() {
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>What's Your Living Situation?</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>We'll show you the right filters for your home type.</div>
+                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>We'll show you the right filters for your home type.</div>
               </div>
             </div>
 
@@ -2481,7 +2481,7 @@ export default function WaterCheckup() {
                   style={{ background: situation === s.id ? 'rgba(8,50,110,0.70)' : 'rgba(4,14,32,0.62)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: `1px solid ${situation === s.id ? 'rgba(8,145,178,0.55)' : 'rgba(255,255,255,0.07)'}`, borderTop: `1px solid ${situation === s.id ? 'rgba(6,182,212,0.65)' : 'rgba(255,255,255,0.13)'}`, borderRadius: 16, padding: '22px 18px', cursor: 'pointer', textAlign: 'center', boxShadow: situation === s.id ? '0 0 32px rgba(8,145,178,.28), 0 16px 40px rgba(0,4,18,.45), inset 0 1px 0 rgba(255,255,255,.12)' : '0 8px 24px rgba(0,4,18,.35), inset 0 1px 0 rgba(255,255,255,.07)' }}>
                   <div style={{ fontSize: 34, marginBottom: 10 }}>{s.icon}</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: situation === s.id ? '#38bdf8' : '#e2e8f0', marginBottom: 5 }}>{s.label}</div>
-                  <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{s.desc}</div>
+                  <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>{s.desc}</div>
                 </button>
               ))}
             </div>
@@ -2497,7 +2497,7 @@ export default function WaterCheckup() {
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       {['1','2','3','4','5','5+'].map(n => (
                         <button key={n} onClick={() => setHomePeople(homePeople === n ? null : n)}
-                          style={{ padding: '8px 18px', borderRadius: 8, border: `1px solid ${homePeople === n ? 'rgba(6,182,212,0.7)' : 'rgba(255,255,255,0.1)'}`, borderTop: `1px solid ${homePeople === n ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.16)'}`, background: homePeople === n ? 'rgba(6,182,212,0.22)' : 'rgba(4,14,32,0.5)', color: homePeople === n ? '#22d3ee' : '#64748b', fontSize: 15, fontWeight: 800, cursor: 'pointer', transition: 'all .15s', boxShadow: homePeople === n ? '0 0 14px rgba(6,182,212,0.25)' : 'none' }}>
+                          style={{ padding: '8px 18px', borderRadius: 8, border: `1px solid ${homePeople === n ? 'rgba(6,182,212,0.7)' : 'rgba(255,255,255,0.1)'}`, borderTop: `1px solid ${homePeople === n ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.16)'}`, background: homePeople === n ? 'rgba(6,182,212,0.22)' : 'rgba(4,14,32,0.5)', color: homePeople === n ? '#22d3ee' : '#94a3b8', fontSize: 15, fontWeight: 800, cursor: 'pointer', transition: 'all .15s', boxShadow: homePeople === n ? '0 0 14px rgba(6,182,212,0.25)' : 'none' }}>
                           {n}
                         </button>
                       ))}
@@ -2509,7 +2509,7 @@ export default function WaterCheckup() {
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       {['1','1.5','2','2.5','3+'].map(n => (
                         <button key={n} onClick={() => setHomeBaths(homeBaths === n ? null : n)}
-                          style={{ padding: '8px 18px', borderRadius: 8, border: `1px solid ${homeBaths === n ? 'rgba(6,182,212,0.7)' : 'rgba(255,255,255,0.1)'}`, borderTop: `1px solid ${homeBaths === n ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.16)'}`, background: homeBaths === n ? 'rgba(6,182,212,0.22)' : 'rgba(4,14,32,0.5)', color: homeBaths === n ? '#22d3ee' : '#64748b', fontSize: 15, fontWeight: 800, cursor: 'pointer', transition: 'all .15s', boxShadow: homeBaths === n ? '0 0 14px rgba(6,182,212,0.25)' : 'none' }}>
+                          style={{ padding: '8px 18px', borderRadius: 8, border: `1px solid ${homeBaths === n ? 'rgba(6,182,212,0.7)' : 'rgba(255,255,255,0.1)'}`, borderTop: `1px solid ${homeBaths === n ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.16)'}`, background: homeBaths === n ? 'rgba(6,182,212,0.22)' : 'rgba(4,14,32,0.5)', color: homeBaths === n ? '#22d3ee' : '#94a3b8', fontSize: 15, fontWeight: 800, cursor: 'pointer', transition: 'all .15s', boxShadow: homeBaths === n ? '0 0 14px rgba(6,182,212,0.25)' : 'none' }}>
                           {n}
                         </button>
                       ))}
@@ -2547,11 +2547,11 @@ export default function WaterCheckup() {
                     {p.quickChange && <div style={{ position: 'absolute', top: 8, right: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow:'0 2px 8px #06b6d455' }}>⚡ Quick-Change</div>}
                   </div>
                   <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
-                    <div style={{ fontSize: 11, color: '#475569', fontWeight: 600, letterSpacing: 0.5 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
+                    <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600, letterSpacing: 0.5 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
                     <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                       <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
-                      <span style={{ fontSize: 11, color: '#64748b' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
+                      <span style={{ fontSize: 11, color: '#94a3b8' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
                     </div>
                     <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.65, flex: 1 }}>{p.expertReason}</div>
                     {p.quickChange && (
@@ -2605,7 +2605,7 @@ export default function WaterCheckup() {
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market.</div>
+                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market.</div>
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
@@ -2675,7 +2675,7 @@ export default function WaterCheckup() {
                 {data.openViolations > 0 && <span style={{ fontSize: 11, padding: '2px 7px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
                 {data.pfasAboveMcl > 0 && <span style={{ fontSize: 11, padding: '2px 7px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>PFAS ⚠</span>}
               </div>
-              <div style={{ fontSize: 13, color: '#475569', marginBottom: 1 }}>{data.city} · PWSID: {data.pwsid}</div>
+              <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 1 }}>{data.city} · PWSID: {data.pwsid}</div>
               <div style={{ fontSize: 12, color: '#334155', marginBottom: 8 }}>{data.sourceType}{data.population ? ` · Serves ${data.population}` : ''}</div>
               {data.summary && <div style={{ fontSize: 13, color: '#94a3b8', fontStyle: 'italic', marginBottom: 12, lineHeight: 1.6 }}>"{data.summary}"</div>}
               <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
@@ -2694,14 +2694,14 @@ export default function WaterCheckup() {
             </div>
             <div style={{ display: 'flex', gap: 6, flexDirection: 'column' }}>
               <button onClick={() => setShowEmail(true)} className="wc-glass-btn" style={{ padding: '7px 14px', borderRadius: 6, fontSize: 12, letterSpacing: 1, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ GET REPORT</button>
-              <button onClick={() => setShowShare(true)} style={{ padding: '7px 14px', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.09)', borderTop: '1px solid rgba(255,255,255,0.14)', borderRadius: 6, color: '#64748b', fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>↗ SHARE</button>
+              <button onClick={() => setShowShare(true)} style={{ padding: '7px 14px', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.09)', borderTop: '1px solid rgba(255,255,255,0.14)', borderRadius: 6, color: '#94a3b8', fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>↗ SHARE</button>
             </div>
           </div>
 
           {/* TABS */}
           <div className="wc-tab-bar wc-reveal wc-reveal-3" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto' }}>
             {[['report','📊 Report'],['solutions','🏠 My Solution'],['pfas','☣️ PFAS'],['compare','📋 Compare'],['products','🛒 All Products'],['cost','💰 Cost Calc'],['installers','🔧 Installers'],['resources','🔗 Resources']].map(([id, label]) => (
-              <button key={id} onClick={() => setTab(id)} style={{ padding: '10px 14px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#475569', fontSize: 12, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
+              <button key={id} onClick={() => setTab(id)} style={{ padding: '10px 14px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#94a3b8', fontSize: 12, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
             ))}
           </div>
 
@@ -2719,8 +2719,8 @@ export default function WaterCheckup() {
                   <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 22, overflow: 'hidden' }}>
                     {data.violations.map((v: any, i: number) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '9px 14px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
-                        <div style={{ flex: 1 }}><div style={{ fontSize: 12, color: '#94a3b8' }}>{v.rule}</div>{v.contaminant && <div style={{ fontSize: 11, color: '#475569', marginTop: 1 }}>{v.contaminant}</div>}</div>
-                        <div style={{ fontSize: 12, color: '#475569', minWidth: 32 }}>{v.year}</div>
+                        <div style={{ flex: 1 }}><div style={{ fontSize: 12, color: '#94a3b8' }}>{v.rule}</div>{v.contaminant && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>{v.contaminant}</div>}</div>
+                        <div style={{ fontSize: 12, color: '#94a3b8', minWidth: 32 }}>{v.year}</div>
                         <div style={{ fontSize: 11, fontWeight: 700, color: v.statusColor || '#94a3b8', minWidth: 65, textAlign: 'right' }}>{v.status}</div>
                       </div>
                     ))}
@@ -2729,7 +2729,7 @@ export default function WaterCheckup() {
               ) : (
                 <div style={{ background: '#051527', border: '1px solid #22d3ee22', borderRadius: 8, padding: '12px 16px', marginBottom: 18, display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 16 }}>✅</span>
-                  <div><div style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 12, color: '#475569', marginTop: 1 }}>EPA SDWIS shows no violations for this water system.</div></div>
+                  <div><div style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 12, color: '#94a3b8', marginTop: 1 }}>EPA SDWIS shows no violations for this water system.</div></div>
                 </div>
               )}
 
@@ -2759,30 +2759,30 @@ export default function WaterCheckup() {
                     ].map((stat, i) => (
                       <div key={i} style={{ background: 'rgba(3,12,28,0.6)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 7, padding: '10px 12px', textAlign: 'center' }}>
                         <div style={{ fontSize: 22, fontWeight: 800, color: stat.color, lineHeight: 1 }}>{stat.val}</div>
-                        <div style={{ fontSize: 10, color: '#475569', marginTop: 3, lineHeight: 1.3 }}>{stat.label}</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 3, lineHeight: 1.3 }}>{stat.label}</div>
                       </div>
                     ))}
                   </div>
 
                   {ewgData.contaminants?.length > 0 ? (
                     <>
-                      <div style={{ fontSize: 10, letterSpacing: 0.4, color: '#475569', marginBottom: 8 }}>EWG HEALTH GUIDELINES ARE STRICTER THAN FEDERAL LEGAL LIMITS</div>
+                      <div style={{ fontSize: 10, letterSpacing: 0.4, color: '#94a3b8', marginBottom: 8 }}>EWG HEALTH GUIDELINES ARE STRICTER THAN FEDERAL LEGAL LIMITS</div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 1, maxHeight: 280, overflowY: 'auto' }}>
                         {ewgData.contaminants.slice(0, 20).map((c: any, i: number) => (
                           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', background: i % 2 === 0 ? 'rgba(3,12,28,0.4)' : 'transparent', borderRadius: 4, fontSize: 12 }}>
                             <div style={{ flex: 1, color: c.exceedsGuideline ? '#fbbf24' : '#94a3b8', fontWeight: c.exceedsGuideline ? 600 : 400 }}>{c.name}</div>
-                            <div style={{ color: '#64748b', minWidth: 70, textAlign: 'right' }}>{c.detected}</div>
+                            <div style={{ color: '#94a3b8', minWidth: 70, textAlign: 'right' }}>{c.detected}</div>
                             {c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#7f1d1d', color: '#fca5a5', borderRadius: 3, fontWeight: 700 }}>OVER LIMIT</span>}
                             {c.exceedsGuideline && !c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#78350f', color: '#fde68a', borderRadius: 3 }}>Health concern</span>}
                           </div>
                         ))}
                         {ewgData.contaminants.length > 20 && (
-                          <div style={{ fontSize: 11, color: '#475569', textAlign: 'center', padding: '8px 0' }}>+{ewgData.contaminants.length - 20} more — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view all on EWG</a></div>
+                          <div style={{ fontSize: 11, color: '#94a3b8', textAlign: 'center', padding: '8px 0' }}>+{ewgData.contaminants.length - 20} more — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view all on EWG</a></div>
                         )}
                       </div>
                     </>
                   ) : (
-                    <div style={{ fontSize: 12, color: '#475569', textAlign: 'center', padding: '8px 0' }}>
+                    <div style={{ fontSize: 12, color: '#94a3b8', textAlign: 'center', padding: '8px 0' }}>
                       Contaminant detail not available — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view full EWG report →</a>
                     </div>
                   )}
@@ -2794,39 +2794,39 @@ export default function WaterCheckup() {
                 <div style={{ background: '#0b1e36', border: '1px solid #ef444430', borderRadius: 8, padding: '14px 16px', marginBottom: 18 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
                     <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#ef4444', fontWeight: 700 }}>⚖️ EPA ECHO — ENFORCEMENT & COMPLIANCE HISTORY</div>
-                    <a href={data.echo.echoUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#475569', textDecoration: 'none', border: '1px solid #1e3a4a', borderRadius: 3, padding: '1px 7px' }}>View full ECHO record →</a>
+                    <a href={data.echo.echoUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#94a3b8', textDecoration: 'none', border: '1px solid #1e3a4a', borderRadius: 3, padding: '1px 7px' }}>View full ECHO record →</a>
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))', gap: 8 }}>
                     {data.echo.formalActions > 0 && (
                       <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
                         <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444' }}>{data.echo.formalActions}</div>
-                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Formal Actions</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Formal Actions</div>
                       </div>
                     )}
                     {data.echo.informalActions > 0 && (
                       <div style={{ background: '#0b1e36', border: '1px solid #f59e0b30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
                         <div style={{ fontSize: 20, fontWeight: 900, color: '#f59e0b' }}>{data.echo.informalActions}</div>
-                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Informal Actions</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Informal Actions</div>
                       </div>
                     )}
                     {data.echo.penaltiesFormatted && (
                       <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
                         <div style={{ fontSize: 16, fontWeight: 900, color: '#ef4444' }}>{data.echo.penaltiesFormatted}</div>
-                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Total Penalties</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Total Penalties</div>
                       </div>
                     )}
                     {data.echo.inspections > 0 && (
                       <div style={{ background: '#0b1e36', border: '1px solid #22d3ee30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
                         <div style={{ fontSize: 20, fontWeight: 900, color: '#22d3ee' }}>{data.echo.inspections}</div>
-                        <div style={{ fontSize: 10, color: '#64748b', marginTop: 2 }}>Inspections</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Inspections</div>
                       </div>
                     )}
                   </div>
                   {data.echo.lastInspection && (
-                    <div style={{ marginTop: 8, fontSize: 11, color: '#475569' }}>Last inspection: <span style={{ color: '#94a3b8' }}>{data.echo.lastInspection}</span></div>
+                    <div style={{ marginTop: 8, fontSize: 11, color: '#94a3b8' }}>Last inspection: <span style={{ color: '#94a3b8' }}>{data.echo.lastInspection}</span></div>
                   )}
                   {data.echo.complianceStatus && (
-                    <div style={{ marginTop: 4, fontSize: 11, color: '#475569' }}>Compliance status: <span style={{ color: data.echo.formalActions > 0 ? '#ef4444' : '#22d3ee' }}>{data.echo.complianceStatus}</span></div>
+                    <div style={{ marginTop: 4, fontSize: 11, color: '#94a3b8' }}>Compliance status: <span style={{ color: data.echo.formalActions > 0 ? '#ef4444' : '#22d3ee' }}>{data.echo.complianceStatus}</span></div>
                   )}
                 </div>
               )}
@@ -2883,7 +2883,7 @@ export default function WaterCheckup() {
                 <div style={{ padding: '24px', textAlign: 'center' }}>
                   <div style={{ fontSize: 22, marginBottom: 7 }}>✅</div>
                   <div style={{ fontSize: 15, color: '#22d3ee', fontWeight: 700, marginBottom: 5 }}>No PFAS detected via UCMR5</div>
-                  <div style={{ fontSize: 13, color: '#475569' }}>No measurable PFAS in EPA's 2023-2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
+                  <div style={{ fontSize: 13, color: '#94a3b8' }}>No measurable PFAS in EPA's 2023-2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
                 </div>
               ) : (
                 <>
@@ -2916,7 +2916,7 @@ export default function WaterCheckup() {
                     <div style={{ fontSize: 11, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
                     <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
                   </div>
-                  <div style={{ fontSize: 12, color: '#475569' }}>Curated by J. Letorney · 40+ yrs expertise</div>
+                  <div style={{ fontSize: 12, color: '#94a3b8' }}>Curated by J. Letorney · 40+ yrs expertise</div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {featured.map((p: any, idx: number) => {
@@ -2944,7 +2944,7 @@ export default function WaterCheckup() {
                     borderTop: `1px solid ${active ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.12)'}`,
                     background: active ? 'rgba(8,145,178,0.22)' : 'rgba(4,14,32,0.55)',
                     backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                    color: active ? '#22d3ee' : '#475569',
+                    color: active ? '#22d3ee' : '#94a3b8',
                     boxShadow: active ? '0 0 20px rgba(8,145,178,0.25), inset 0 1px 0 rgba(255,255,255,0.12)' : 'none',
                     transition: 'all .2s ease',
                     display: 'flex', alignItems: 'center', gap: 5,
@@ -2976,23 +2976,23 @@ export default function WaterCheckup() {
                   <div style={{ marginBottom: 18, padding: '14px 18px', background: 'linear-gradient(135deg,#071525,#091c35)', border: '1px solid #22d3ee30', borderRadius: 10, display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'center' }}>
                     <div style={{ textAlign: 'center', minWidth: 90 }}>
                       <div style={{ fontSize: 32, fontWeight: 900, color: '#22d3ee' }}>{paybackMonths}</div>
-                      <div style={{ fontSize: 11, color: '#475569' }}>months to break even</div>
+                      <div style={{ fontSize: 11, color: '#94a3b8' }}>months to break even</div>
                     </div>
                     <div style={{ flex: 1, minWidth: 180 }}>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>Filter pays for itself in {paybackMonths} months</div>
-                      <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.6 }}>vs. buying {ppl} people bottled water at ~$1.33/bottle. After that, you save ${monthlyBottled - monthlyFilter}/mo — every month — for clean water.</div>
+                      <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>vs. buying {ppl} people bottled water at ~$1.33/bottle. After that, you save ${monthlyBottled - monthlyFilter}/mo — every month — for clean water.</div>
                     </div>
                   </div>
                 );
               })()}
               <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginBottom: 22, alignItems: 'flex-end' }}>
-                <div><div style={{ fontSize: 11, color: '#64748b', marginBottom: 4 }}>SYSTEM</div>
+                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>SYSTEM</div>
                   <select value={ftype} onChange={e => setFtype(e.target.value)} style={{ background: '#0b1e36', border: '1px solid #1e3a4a', color: '#e2e8f0', padding: '6px 10px', borderRadius: 6, fontSize: 12 }}>
                     {PRODUCTS.filter(p => p.filterCostPerYear).map(p => <option key={p.name}>{p.name}</option>)}
                   </select>
                 </div>
-                <div><div style={{ fontSize: 11, color: '#64748b', marginBottom: 4 }}>YEARS: {years}</div><input type="range" min={1} max={10} value={years} onChange={e => setYears(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
-                <div><div style={{ fontSize: 11, color: '#64748b', marginBottom: 4 }}>PEOPLE: {ppl}</div><input type="range" min={1} max={8} value={ppl} onChange={e => setPpl(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
+                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>YEARS: {years}</div><input type="range" min={1} max={10} value={years} onChange={e => setYears(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
+                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>PEOPLE: {ppl}</div><input type="range" min={1} max={8} value={ppl} onChange={e => setPpl(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
               </div>
               <div style={{ height: 220 }}>
                 <ResponsiveContainer width="100%" height="100%">
@@ -3002,8 +3002,8 @@ export default function WaterCheckup() {
                       <linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/><stop offset="95%" stopColor="#ef4444" stopOpacity={0}/></linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#0e2233" />
-                    <XAxis dataKey="year" tick={{ fill: '#475569', fontSize: 11 }} />
-                    <YAxis tick={{ fill: '#475569', fontSize: 11 }} tickFormatter={(v: any) => `$${v}`} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v: any) => `$${v}`} />
                     <Tooltip contentStyle={{ background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8 }} labelStyle={{ color: '#94a3b8', fontSize: 11 }} formatter={(v: any) => [`$${v}`, '']} />
                     <Area type="monotone" dataKey="filter" name="Filter System" stroke="#0891b2" fill="url(#gF)" strokeWidth={2} />
                     <Area type="monotone" dataKey="bottled" name="Bottled Water" stroke="#ef4444" fill="url(#gB)" strokeWidth={2} />
@@ -3013,7 +3013,7 @@ export default function WaterCheckup() {
               <div style={{ display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
                 {[{ l:'Filter System',c:'#0891b2',v:`$${prod.price + (prod.filterCostPerYear||80)*years}`},{l:'Bottled Water',c:'#ef4444',v:`$${Math.round(ppl*32*12*years)}`},{l:'You Save',c:'#22d3ee',v:`$${Math.max(0,Math.round(ppl*32*12*years)-prod.price-(prod.filterCostPerYear||80)*years)}`}].map(s => (
                   <div key={s.l} style={{ flex:1, minWidth:90, background:'#0b1e36', border:`1px solid ${s.c}33`, borderRadius:8, padding:'11px 14px' }}>
-                    <div style={{ fontSize:11, color:'#64748b', marginBottom:2 }}>{s.l}</div>
+                    <div style={{ fontSize:11, color:'#94a3b8', marginBottom:2 }}>{s.l}</div>
                     <div style={{ fontSize:18, fontWeight:800, color:s.c }}>{s.v}</div>
                     <div style={{ fontSize:10, color:'#334155' }}>over {years} yr{years!==1?'s':''}</div>
                   </div>
@@ -3042,26 +3042,26 @@ export default function WaterCheckup() {
                 {['Are you WQA certified or licensed in this state?','What\'s included in the installation — faucet, shutoff valve, drain line?','Do you test the water before and after installation?','What\'s the filter replacement schedule and cost?','Is there a warranty on labor and parts?','Will you register the product with the manufacturer?'].map((q,i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 7, alignItems: 'flex-start' }}>
                     <span style={{ color: '#22d3ee', flexShrink: 0, fontSize: 12 }}>{i+1}.</span>
-                    <span style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{q}</span>
+                    <span style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>{q}</span>
                   </div>
                 ))}
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
                 <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2' }}>LOCAL WATER TREATMENT INSTALLERS NEAR {data.city}</div>
-                <button onClick={() => loadInstallers(zip)} disabled={instLoading} style={{ padding: '5px 10px', background: 'transparent', border: '1px solid #0e2233', borderRadius: 4, color: '#475569', fontSize: 11, cursor: 'pointer' }}>{instLoading ? 'Searching…' : '↻ Refresh'}</button>
+                <button onClick={() => loadInstallers(zip)} disabled={instLoading} style={{ padding: '5px 10px', background: 'transparent', border: '1px solid #0e2233', borderRadius: 4, color: '#94a3b8', fontSize: 11, cursor: 'pointer' }}>{instLoading ? 'Searching…' : '↻ Refresh'}</button>
               </div>
-              {instLoading && <div style={{ padding: '20px', textAlign: 'center', color: '#475569', fontSize: 13 }}>🔍 Finding local water treatment specialists…</div>}
+              {instLoading && <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>🔍 Finding local water treatment specialists…</div>}
               {!instLoading && installers.map((c: any, i: number) => (
                 <div key={i} style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, padding: '14px 18px', marginBottom: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 13, fontWeight: 800, marginBottom: 2 }}>{c.name}</div>
-                      <div style={{ fontSize: 12, color: '#64748b', marginBottom: 2 }}>{c.address}</div>
-                      {c.specialty && <div style={{ fontSize: 11, color: '#475569', marginBottom: 4 }}>{c.specialty}</div>}
+                      <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 2 }}>{c.address}</div>
+                      {c.specialty && <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>{c.specialty}</div>}
                       <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
                         {c.cert && <span style={{ fontSize: 11, padding: '1px 5px', borderRadius: 3, background: '#d9770622', color: '#d97706', border: '1px solid #d9770644', fontWeight: 700 }}>{c.cert}</span>}
-                        {c.rating && <span style={{ fontSize: 12, color: '#f59e0b' }}>{'★'.repeat(Math.round(c.rating))} <span style={{ color: '#64748b', fontSize: 11 }}>{c.rating}{c.reviews?` (${c.reviews})`:''}</span></span>}
+                        {c.rating && <span style={{ fontSize: 12, color: '#f59e0b' }}>{'★'.repeat(Math.round(c.rating))} <span style={{ color: '#94a3b8', fontSize: 11 }}>{c.rating}{c.reviews?` (${c.reviews})`:''}</span></span>}
                         {c.distance && <span style={{ fontSize: 11, color: '#334155' }}>📍 {c.distance}</span>}
                       </div>
                     </div>
@@ -3074,7 +3074,7 @@ export default function WaterCheckup() {
                 </div>
               ))}
               {!instLoading && installers.length === 0 && (
-                <div style={{ padding: '20px', textAlign: 'center', color: '#475569', fontSize: 13 }}>
+                <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>
                   <button onClick={() => loadInstallers(zip)} style={{ padding: '7px 16px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 12, cursor: 'pointer' }}>Search Local Installers</button>
                 </div>
               )}
@@ -3139,7 +3139,7 @@ export default function WaterCheckup() {
                 type="button"
                 onClick={() => setShowWqaModal(false)}
                 aria-label="Close"
-                style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
+                style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
               >
                 ×
               </button>
@@ -3227,7 +3227,7 @@ export default function WaterCheckup() {
                 type="button"
                 onClick={() => setShowNsfModal(false)}
                 aria-label="Close"
-                style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
+                style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
               >
                 ×
               </button>
@@ -3321,7 +3321,7 @@ export default function WaterCheckup() {
                 type="button"
                 onClick={() => setShowEpaModal(false)}
                 aria-label="Close"
-                style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
+                style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
               >
                 ×
               </button>
@@ -3376,7 +3376,7 @@ export default function WaterCheckup() {
                 <div style={{ fontSize: 11, color: '#0891b2', letterSpacing: 1.5, fontWeight: 800, marginBottom: 5 }}>SAMPLE PREVIEW</div>
                 <div style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9' }}>See a sample water report</div>
               </div>
-              <button onClick={() => setShowSample(false)} style={{ background: 'none', border: 'none', color: '#64748b', fontSize: 20, cursor: 'pointer' }}>×</button>
+              <button onClick={() => setShowSample(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 20, cursor: 'pointer' }}>×</button>
             </div>
 
             <div className="wc-card" style={{ borderRadius: 12, padding: '14px 14px 12px', marginBottom: 14 }}>
@@ -3413,11 +3413,11 @@ export default function WaterCheckup() {
                     style={{ flex: 1, padding: '10px 12px', background: sampleSending || !sampleEmail.includes('@') ? 'rgba(14,34,51,0.8)' : '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, cursor: sampleSending || !sampleEmail.includes('@') ? 'default' : 'pointer' }}>
                     {sampleSending ? 'Sending...' : 'Email sample + subscribe'}
                   </button>
-                  <button onClick={() => setShowSample(false)} style={{ padding: '10px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#64748b', fontSize: 12, cursor: 'pointer' }}>
+                  <button onClick={() => setShowSample(false)} style={{ padding: '10px 12px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#94a3b8', fontSize: 12, cursor: 'pointer' }}>
                     Close
                   </button>
                 </div>
-                <div style={{ fontSize: 10, color: '#64748b', marginTop: 8 }}>No spam. Unsubscribe anytime.</div>
+                <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 8 }}>No spam. Unsubscribe anytime.</div>
               </>
             )}
           </div>
@@ -3432,18 +3432,18 @@ export default function WaterCheckup() {
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: 32, marginBottom: 8 }}>✅</div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: '#22d3ee' }}>Report sent!</div>
-                <div style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>Check your inbox.</div>
+                <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 4 }}>Check your inbox.</div>
               </div>
             ) : (
               <>
                 <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 7 }}>FREE WATER REPORT</div>
                 <div style={{ fontSize: 15, fontWeight: 800, marginBottom: 4 }}>Get your full analysis</div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>Your {data.city} report — EPA + UCMR5 + EWG + USGS data with personalized filter recommendations.</div>
+                <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Your {data.city} report — EPA + UCMR5 + EWG + USGS data with personalized filter recommendations.</div>
                 <input value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" type="email"
                   style={{ width: '100%', boxSizing: 'border-box', padding: '9px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, marginBottom: 9, outline: 'none' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
                   <input type="checkbox" id="al" checked={emailAlert} onChange={e => setEmailAlert(e.target.checked)} style={{ accentColor: '#0891b2' }} />
-                  <label htmlFor="al" style={{ fontSize: 11, color: '#64748b', cursor: 'pointer' }}>Alert me if violations are added for {data.city}</label>
+                  <label htmlFor="al" style={{ fontSize: 11, color: '#94a3b8', cursor: 'pointer' }}>Alert me if violations are added for {data.city}</label>
                 </div>
                 <div style={{ display: 'flex', gap: 7 }}>
                   <button onClick={async () => {
@@ -3475,7 +3475,7 @@ export default function WaterCheckup() {
                     }
                   }}
                     style={{ flex: 1, padding: '9px', background: '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send Report →</button>
-                  <button onClick={() => setShowEmail(false)} style={{ padding: '9px 13px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#475569', fontSize: 12, cursor: 'pointer' }}>Skip</button>
+                  <button onClick={() => setShowEmail(false)} style={{ padding: '9px 13px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 8, color: '#94a3b8', fontSize: 12, cursor: 'pointer' }}>Skip</button>
                 </div>
               </>
             )}
@@ -3496,7 +3496,7 @@ export default function WaterCheckup() {
           ].map(({ stat, label }) => (
             <div key={stat} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>
-              <div style={{ fontSize: 12, color: '#475569', letterSpacing: 1 }}>{label}</div>
+              <div style={{ fontSize: 12, color: '#94a3b8', letterSpacing: 1 }}>{label}</div>
             </div>
           ))}
         </div>
@@ -3602,7 +3602,7 @@ export default function WaterCheckup() {
             ].map(({ source, desc }) => (
               <div key={source} style={{ padding: '10px 14px', background: '#071828', border: '1px solid #0f2336', borderRadius: 8 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', marginBottom: 2 }}>{source}</div>
-                <div style={{ fontSize: 11, color: '#475569' }}>{desc}</div>
+                <div style={{ fontSize: 11, color: '#94a3b8' }}>{desc}</div>
               </div>
             ))}
           </div>

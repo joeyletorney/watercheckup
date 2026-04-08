@@ -113,7 +113,7 @@ export default function FAQPage() {
         </a>
         <nav style={{ display: 'flex', gap: 4, marginLeft: 24 }}>
           {[['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']].map(([href, label]) => (
-            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/faq' ? 700 : 500, color: href === '/faq' ? '#22d3ee' : '#64748b' }}>{label}</a>
+            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/faq' ? 700 : 500, color: href === '/faq' ? '#22d3ee' : '#94a3b8' }}>{label}</a>
           ))}
         </nav>
       </div>
@@ -122,7 +122,7 @@ export default function FAQPage() {
       <div style={{ background: 'linear-gradient(180deg, #071828 0%, #040d14 100%)', padding: '52px 24px 40px', textAlign: 'center' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>40+ YEARS OF WATER EXPERTISE</div>
         <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Frequently Asked Questions</h1>
-        <p style={{ fontSize: 17, color: '#64748b', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
+        <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
           Straight answers about water quality, contaminants, filters, and what the EPA data actually means for your family.
         </p>
       </div>
@@ -161,7 +161,7 @@ export default function FAQPage() {
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginTop: 20 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Ready to check your actual water?</div>
-          <p style={{ fontSize: 15, color: '#64748b', marginBottom: 24, lineHeight: 1.6 }}>Enter your ZIP code and get a free report pulled directly from EPA SDWIS, UCMR5, and EWG data.</p>
+          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>Enter your ZIP code and get a free report pulled directly from EPA SDWIS, UCMR5, and EWG data.</p>
           <a href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, boxShadow: '0 4px 20px #0891b244' }}>
             Check My Water →
           </a>

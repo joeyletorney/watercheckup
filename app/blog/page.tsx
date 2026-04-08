@@ -269,7 +269,7 @@ export default function BlogIndex() {
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
           <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px' }}>The WaterCheckup Blog</h1>
-          <p style={{ fontSize: 16, color: '#64748b', margin: 0, lineHeight: 1.7 }}>
+          <p style={{ fontSize: 16, color: '#94a3b8', margin: 0, lineHeight: 1.7 }}>
             Expert guides on tap water safety, PFAS, lead, EPA violations, and the right filters — backed by real EPA data.
           </p>
         </div>
@@ -282,12 +282,12 @@ export default function BlogIndex() {
                   <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
                     {post.badge}
                   </span>
-                  <span style={{ fontSize: 12, color: '#475569' }}>{post.date}</span>
-                  <span style={{ fontSize: 12, color: '#475569' }}>·</span>
-                  <span style={{ fontSize: 12, color: '#475569' }}>{post.readTime}</span>
+                  <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.date}</span>
+                  <span style={{ fontSize: 12, color: '#94a3b8' }}>·</span>
+                  <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.readTime}</span>
                 </div>
                 <h2 style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px', lineHeight: 1.3 }}>{post.title}</h2>
-                <p style={{ fontSize: 14, color: '#64748b', margin: '0 0 16px', lineHeight: 1.7 }}>{post.excerpt}</p>
+                <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.7 }}>{post.excerpt}</p>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#0891b2' }}>Read more →</span>
               </div>
             </Link>
@@ -296,7 +296,7 @@ export default function BlogIndex() {
 
         <div style={{ marginTop: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific water</div>
-          <p style={{ fontSize: 14, color: '#64748b', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>
+          <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>

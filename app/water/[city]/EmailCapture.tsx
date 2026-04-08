@@ -28,7 +28,7 @@ export default function EmailCapture({ cityName, slug }: { cityName: string; slu
       <div style={{ marginBottom: 40, padding: '24px 24px', background: '#0a2a1a', border: '1px solid #0f6e40', borderRadius: 12, textAlign: 'center' }}>
         <div style={{ fontSize: 20, marginBottom: 6 }}>✅</div>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You're in.</div>
-        <p style={{ fontSize: 13, color: '#64748b', margin: 0 }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: 0 }}>
           We'll email you when new PFAS or contamination data drops for {cityName}. Check your inbox for a welcome note.
         </p>
       </div>
@@ -43,7 +43,7 @@ export default function EmailCapture({ cityName, slug }: { cityName: string; slu
       <div style={{ fontSize: 16, fontWeight: 700, color: '#f1f5f9', marginBottom: 6 }}>
         Get {cityName} water alerts
       </div>
-      <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 16px', lineHeight: 1.6 }}>
+      <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.6 }}>
         We'll notify you when new PFAS data, EPA violations, or contamination alerts drop for {cityName}. One email, no spam, unsubscribe any time.
       </p>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

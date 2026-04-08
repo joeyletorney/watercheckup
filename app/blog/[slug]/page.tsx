@@ -42,10 +42,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 24px 80px' }}>
         {/* Breadcrumb */}
-        <div style={{ fontSize: 13, color: '#475569', marginBottom: 32 }}>
-          <Link href="/" style={{ color: '#475569', textDecoration: 'none' }}>Home</Link>
+        <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 32 }}>
+          <Link href="/" style={{ color: '#94a3b8', textDecoration: 'none' }}>Home</Link>
           {' · '}
-          <Link href="/blog" style={{ color: '#475569', textDecoration: 'none' }}>Blog</Link>
+          <Link href="/blog" style={{ color: '#94a3b8', textDecoration: 'none' }}>Blog</Link>
           {' · '}
           <span style={{ color: '#94a3b8' }}>{post.badge}</span>
         </div>
@@ -56,13 +56,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
               {post.badge}
             </span>
-            <span style={{ fontSize: 12, color: '#475569' }}>{post.dateDisplay}</span>
-            <span style={{ fontSize: 12, color: '#475569' }}>·</span>
-            <span style={{ fontSize: 12, color: '#475569' }}>{post.readTime}</span>
+            <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.dateDisplay}</span>
+            <span style={{ fontSize: 12, color: '#94a3b8' }}>·</span>
+            <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.readTime}</span>
           </div>
           <h1 style={{ fontSize: 34, fontWeight: 900, color: '#f1f5f9', margin: '0 0 16px', lineHeight: 1.2 }}>{post.title}</h1>
-          <p style={{ fontSize: 17, color: '#64748b', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
-          <div style={{ fontSize: 13, color: '#475569', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <p style={{ fontSize: 17, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
+          <div style={{ fontSize: 13, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: '#fff', flexShrink: 0 }}>JL</div>
             <span>By <strong style={{ color: '#94a3b8' }}>J. Letorney</strong> · Water treatment specialist · 40+ years in the field</span>
           </div>
@@ -72,7 +72,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div style={{ marginBottom: 40, padding: '18px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
           <div>
             <div style={{ fontSize: 13, fontWeight: 800, color: '#f1f5f9', marginBottom: 2 }}>Is your water affected?</div>
-            <div style={{ fontSize: 12, color: '#475569' }}>Check the EPA report for your exact ZIP code — free, instant.</div>
+            <div style={{ fontSize: 12, color: '#94a3b8' }}>Check the EPA report for your exact ZIP code — free, instant.</div>
           </div>
           <Link href="/" style={{ padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
             Check My ZIP →
@@ -93,13 +93,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <div style={{ flex: 1, minWidth: 200 }}>
               <div style={{ fontSize: 11, color: '#ef4444', fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>⚠ {post.topPick.label}</div>
               <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>{post.topPick.product}</div>
-              <div style={{ fontSize: 13, color: '#64748b' }}>{post.topPick.reason}</div>
+              <div style={{ fontSize: 13, color: '#94a3b8' }}>{post.topPick.reason}</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
               <a href={post.topPick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap' }}>
                 Get on Waterdrop →
               </a>
-              <a href={post.topPick.amazon} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 20px', background: '#0d2240', color: '#64748b', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+              <a href={post.topPick.amazon} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 20px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
                 See on Amazon →
               </a>
             </div>
@@ -108,7 +108,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
         {/* Related posts */}
         <div style={{ marginTop: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#475569', letterSpacing: 2, marginBottom: 16 }}>MORE GUIDES</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>MORE GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {Object.entries(POSTS).filter(([slug]) => slug !== params.slug).map(([slug, p]) => (
               <Link key={slug} href={`/blog/${slug}`} style={{ textDecoration: 'none', padding: '16px 20px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
@@ -122,7 +122,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         {/* Bottom CTA */}
         <div style={{ marginTop: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your exact water report</div>
-          <p style={{ fontSize: 14, color: '#64748b', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to see live EPA data, PFAS results, and violation history for your specific water system.</p>
+          <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to see live EPA data, PFAS results, and violation history for your specific water system.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '13px 30px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>

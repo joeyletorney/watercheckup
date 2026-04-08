@@ -75,7 +75,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
             {cd ? `${cd.name}, ${cd.state}` : cityName} Tap Water Quality
           </h1>
-          <p style={{ fontSize: 16, color: '#64748b', margin: '0 0 20px', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.6 }}>
             What EPA data, PFAS monitoring, and independent health research reveals about {cd?.name ?? cityName}'s drinking water -- and what you can do about it.
           </p>
 
@@ -84,7 +84,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <span style={{ fontSize: 18 }}>{urg.icon}</span>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 800, color: urg.color, letterSpacing: 1 }}>{urg.label}</div>
-                <div style={{ fontSize: 12, color: '#64748b' }}>Based on EPA violations and contaminant profile</div>
+                <div style={{ fontSize: 12, color: '#94a3b8' }}>Based on EPA violations and contaminant profile</div>
               </div>
             </div>
           )}
@@ -140,7 +140,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                   { l: 'State', v: cd.state },
                 ].map(({ l, v }) => (
                   <div key={l}>
-                    <div style={{ fontSize: 10, color: '#475569', letterSpacing: 1, marginBottom: 3 }}>{l}</div>
+                    <div style={{ fontSize: 10, color: '#94a3b8', letterSpacing: 1, marginBottom: 3 }}>{l}</div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{v}</div>
                   </div>
                 ))}
@@ -148,7 +148,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </div>
           </>
         ) : (
-          <div style={{ textAlign: 'center', padding: '40px 0', color: '#475569' }}>
+          <div style={{ textAlign: 'center', padding: '40px 0', color: '#94a3b8' }}>
             <div style={{ fontSize: 18, marginBottom: 8 }}>City data coming soon</div>
             <p style={{ fontSize: 14 }}>Enter your ZIP code above to check your specific water system.</p>
           </div>
@@ -177,7 +177,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center' }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Check your specific address</div>
-          <p style={{ fontSize: 15, color: '#64748b', marginBottom: 24, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>
             City-wide data is just the start. Enter your ZIP to see your exact water system's EPA report, PFAS levels, and violation history.
           </p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
@@ -187,10 +187,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* Other cities */}
         <div style={{ marginTop: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#475569', letterSpacing: 2, marginBottom: 14 }}>OTHER CITIES</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14 }}>OTHER CITIES</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {Object.entries(CITIES).filter(([k]) => k !== params.city).map(([slug, c]) => (
-              <Link key={slug} href={`/water/${slug}`} style={{ padding: '5px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 6, fontSize: 13, color: '#64748b', textDecoration: 'none' }}>
+              <Link key={slug} href={`/water/${slug}`} style={{ padding: '5px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 6, fontSize: 13, color: '#94a3b8', textDecoration: 'none' }}>
                 {c.name}, {c.state}
               </Link>
             ))}

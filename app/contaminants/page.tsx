@@ -197,7 +197,7 @@ export default function ContaminantsPage() {
         </a>
         <nav style={{ display: 'flex', gap: 4, marginLeft: 24 }}>
           {[['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ']].map(([href, label]) => (
-            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/contaminants' ? 700 : 500, color: href === '/contaminants' ? '#22d3ee' : '#64748b' }}>{label}</a>
+            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/contaminants' ? 700 : 500, color: href === '/contaminants' ? '#22d3ee' : '#94a3b8' }}>{label}</a>
           ))}
         </nav>
       </div>
@@ -206,7 +206,7 @@ export default function ContaminantsPage() {
       <div style={{ background: 'linear-gradient(180deg, #071828 0%, #040d14 100%)', padding: '52px 24px 40px', textAlign: 'center' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
         <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
-        <p style={{ fontSize: 17, color: '#64748b', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
+        <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
           What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on EPA data and independent research.
         </p>
         <input
@@ -236,11 +236,11 @@ export default function ContaminantsPage() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: '#f1f5f9' }}>{c.name}</span>
-                    <span style={{ fontSize: 12, color: '#64748b' }}>{c.symbol}</span>
+                    <span style={{ fontSize: 12, color: '#94a3b8' }}>{c.symbol}</span>
                     <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: sev.bg, color: sev.text, border: `1px solid ${sev.border}` }}>{sev.label}</span>
                   </div>
                   <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 13, color: '#475569' }}>{c.category}</span>
+                    <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.category}</span>
                     <span style={{ fontSize: 13, color: '#334155' }}>EPA Limit: <strong style={{ color: '#94a3b8' }}>{c.epaLimit}</strong></span>
                   </div>
                 </div>
@@ -276,7 +276,7 @@ export default function ContaminantsPage() {
                   </div>
 
                   <div style={{ marginTop: 18, padding: '12px 16px', background: '#091825', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
-                    <span style={{ fontSize: 13, color: '#475569' }}>Health goal (MCLG): <strong style={{ color: '#94a3b8' }}>{c.healthGoal}</strong></span>
+                    <span style={{ fontSize: 13, color: '#94a3b8' }}>Health goal (MCLG): <strong style={{ color: '#94a3b8' }}>{c.healthGoal}</strong></span>
                     <a href="/" style={{ padding: '8px 18px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 700 }}>
                       Check My Water for {c.name} →
                     </a>

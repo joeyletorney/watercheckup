@@ -70,8 +70,8 @@ const RECS: Record<string, Rec> = {
   'city-taste-renter':        { title: 'Waterdrop Pitcher Filter', tagline: 'Removes chlorine, chloramines, VOCs. Better taste instantly.', why: 'Chlorine is what makes city water taste like a pool. Carbon filtration removes it completely — zero installation needed.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_pitcher, badge: 'CHLORINE REMOVAL', badgeColor: '#059669' },
   'city-taste-owner_simple':  { title: 'Waterdrop Under-Sink Filter', tagline: 'Crystal clear, great-tasting water from your tap.', why: 'Under-sink carbon block filtration eliminates chlorine taste and odor at the source. You will notice the difference on day one.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_undersink, badge: 'BEST TASTE', badgeColor: '#059669' },
   'city-taste-owner_full':    { title: 'Whole-House Carbon Filter', tagline: 'Every tap filtered. Better showers, laundry, and drinking water.', why: 'A whole-house carbon filter removes chlorine from all water entering your home — better for your skin, hair, and every glass.', cta: 'See on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_whole_house, badge: 'WHOLE HOME', badgeColor: '#059669' },
-  'city-general-renter':      { title: 'Waterdrop Pitcher — Multi-Stage', tagline: '7-stage filtration. Removes 200+ contaminants. No tools.', why: 'For renters who want comprehensive protection without installation, a multi-stage pitcher is your best starting point.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_pitcher, badge: 'ALL-IN-ONE', badgeColor: '#475569' },
-  'city-general-owner_simple':{ title: 'Waterdrop Under-Sink RO', tagline: 'Removes 1000+ contaminants. Most complete filter available.', why: 'Reverse osmosis handles everything — PFAS, lead, nitrates, arsenic, chlorine, and more. Gold standard for home filtration.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_undersink, badge: 'MOST COMPLETE', badgeColor: '#475569' },
+  'city-general-renter':      { title: 'Waterdrop Pitcher — Multi-Stage', tagline: '7-stage filtration. Removes 200+ contaminants. No tools.', why: 'For renters who want comprehensive protection without installation, a multi-stage pitcher is your best starting point.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_pitcher, badge: 'ALL-IN-ONE', badgeColor: '#94a3b8' },
+  'city-general-owner_simple':{ title: 'Waterdrop Under-Sink RO', tagline: 'Removes 1000+ contaminants. Most complete filter available.', why: 'Reverse osmosis handles everything — PFAS, lead, nitrates, arsenic, chlorine, and more. Gold standard for home filtration.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_undersink, badge: 'MOST COMPLETE', badgeColor: '#94a3b8' },
   'city-general-owner_full':  { title: 'Whole-House + Under-Sink RO', tagline: 'Total home protection. Every drop filtered twice.', why: 'Whole-house sediment/carbon at entry plus a dedicated RO at the kitchen sink. The most comprehensive setup available.', cta: 'Under-Sink on Waterdrop', cta2: 'Whole House on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_whole_house, badge: 'TOTAL PROTECTION', badgeColor: '#0f172a' },
   'well-pfas-renter':         { title: 'Waterdrop Well Water Filter', tagline: 'Certified for well PFAS and iron removal. No installation.', why: 'Well PFAS contamination is common near agriculture and industry. A certified filter removes it wherever you are.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_well, badge: 'WELL CERTIFIED', badgeColor: '#166534' },
   'well-pfas-owner_simple':   { title: 'Waterdrop Well Water RO', tagline: 'Handles iron, hardness, PFAS, and bacteria. Built for wells.', why: 'Well water needs filters rated for higher sediment and biological contamination in addition to PFAS. This handles all of it.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_well, badge: 'WELL + PFAS', badgeColor: '#166534' },
@@ -136,13 +136,13 @@ export default function QuizPage() {
         <div style={{ marginBottom: 32 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER FINDER</div>
           <h1 style={{ fontSize: 28, fontWeight: 900, color: '#f1f5f9', margin: '0 0 8px' }}>Find Your Perfect Water Filter</h1>
-          <p style={{ fontSize: 14, color: '#475569', margin: 0 }}>3 quick questions. Personalized recommendation based on your water source and concerns.</p>
+          <p style={{ fontSize: 14, color: '#94a3b8', margin: 0 }}>3 quick questions. Personalized recommendation based on your water source and concerns.</p>
         </div>
 
         {!done ? (
           <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, padding: '32px' }}>
             <div style={{ marginBottom: 28 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#475569', marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginBottom: 8 }}>
                 <span>QUESTION {step + 1} OF {QUESTIONS.length}</span>
                 <span>{Math.round(((step + 1) / QUESTIONS.length) * 100)}%</span>
               </div>
@@ -151,7 +151,7 @@ export default function QuizPage() {
               </div>
             </div>
             <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>{currentQ.question}</h2>
-            <p style={{ fontSize: 13, color: '#475569', marginBottom: 24 }}>{currentQ.subtitle}</p>
+            <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 24 }}>{currentQ.subtitle}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {currentQ.options.map(opt => (
                 <button key={opt.value} onClick={() => handleSelect(opt.value)}
@@ -164,13 +164,13 @@ export default function QuizPage() {
               ))}
             </div>
             {step > 0 && (
-              <button onClick={() => setStep(step - 1)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#475569', marginTop: 20, padding: 0 }}>← Back</button>
+              <button onClick={() => setStep(step - 1)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#94a3b8', marginTop: 20, padding: 0 }}>← Back</button>
             )}
           </div>
         ) : rec ? (
           <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, padding: '32px' }}>
             <div style={{ display: 'inline-block', background: rec.badgeColor, color: '#fff', fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '4px 12px', borderRadius: 4, marginBottom: 16 }}>{rec.badge}</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#475569', letterSpacing: 2, marginBottom: 8 }}>OUR RECOMMENDATION</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 8 }}>OUR RECOMMENDATION</div>
             <h2 style={{ fontSize: 26, fontWeight: 900, color: '#f1f5f9', marginBottom: 8 }}>{rec.title}</h2>
             <p style={{ fontSize: 15, color: '#0891b2', fontStyle: 'italic', marginBottom: 20 }}>{rec.tagline}</p>
             <div style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '16px 18px', marginBottom: 24 }}>
@@ -182,10 +182,10 @@ export default function QuizPage() {
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 20 }}>
               {Object.entries(answers).map(([k, v]) => (
-                <span key={k} style={{ background: '#0d2240', border: '1px solid #1a3a5c', color: '#475569', fontSize: 11, letterSpacing: 1, padding: '4px 10px', borderRadius: 4, textTransform: 'uppercase' as const }}>{v.replace('_', ' ')}</span>
+                <span key={k} style={{ background: '#0d2240', border: '1px solid #1a3a5c', color: '#94a3b8', fontSize: 11, letterSpacing: 1, padding: '4px 10px', borderRadius: 4, textTransform: 'uppercase' as const }}>{v.replace('_', ' ')}</span>
               ))}
             </div>
-            <button onClick={restart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#475569', padding: 0, textDecoration: 'underline' }}>Start over</button>
+            <button onClick={restart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#94a3b8', padding: 0, textDecoration: 'underline' }}>Start over</button>
           </div>
         ) : null}
 
