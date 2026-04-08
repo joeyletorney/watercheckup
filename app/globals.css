@@ -137,44 +137,110 @@ p { margin: 0; }
     0 12px 40px rgba(0, 0, 0, 0.38);
 }
 
+/* Hero search panel — draws the eye */
+.wc-search-hero-panel {
+  max-width: 700px;
+  margin: 0 auto 20px;
+  padding: 22px 22px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(103, 232, 249, 0.5);
+  background: linear-gradient(
+    165deg,
+    rgba(8, 42, 72, 0.88) 0%,
+    rgba(4, 16, 40, 0.78) 55%,
+    rgba(6, 28, 58, 0.82) 100%
+  );
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.35),
+    0 0 36px rgba(6, 182, 212, 0.45),
+    0 0 72px rgba(8, 145, 178, 0.22),
+    0 16px 48px rgba(0, 4, 22, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  animation: wc-search-panel-glow 3.2s ease-in-out infinite;
+}
+
+@keyframes wc-search-panel-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.35),
+      0 0 32px rgba(6, 182, 212, 0.4),
+      0 0 64px rgba(8, 145, 178, 0.18),
+      0 14px 44px rgba(0, 4, 22, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    border-color: rgba(103, 232, 249, 0.48);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(165, 243, 252, 0.55),
+      0 0 48px rgba(34, 211, 238, 0.55),
+      0 0 96px rgba(6, 182, 212, 0.32),
+      0 18px 56px rgba(0, 4, 22, 0.58),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    border-color: rgba(186, 250, 255, 0.72);
+  }
+}
+
+.wc-search-hero-label {
+  font-family: var(--font-wc-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(13px, 2.8vw, 17px);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-align: center;
+  color: #ecfeff;
+  margin: 0 0 16px;
+  line-height: 1.35;
+  text-shadow:
+    0 0 18px rgba(34, 211, 238, 0.95),
+    0 0 36px rgba(6, 182, 212, 0.55),
+    0 2px 12px rgba(0, 8, 24, 0.9);
+}
+
 .wc-search-input::placeholder {
-  color: #94a3b8;
-  opacity: 1;
+  color: #a5f3fc;
+  opacity: 0.92;
+  font-weight: 600;
 }
 
 /* Hero ZIP / city search — base + hover glow (styles here so :hover isn’t blocked by inline CSS) */
 .wc-search-input {
   width: min(100%, 560px);
-  min-height: 58px;
-  padding: 18px 24px;
-  font-size: 22px;
-  letter-spacing: 1.5px;
-  background: rgba(6, 20, 48, 0.75);
-  border: 1px solid rgba(6, 182, 212, 0.32);
-  border-top-color: rgba(180, 240, 255, 0.22);
-  border-radius: 14px;
-  color: #67e8f9;
+  min-height: 64px;
+  padding: 20px 26px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: rgba(4, 18, 48, 0.92);
+  border: 2px solid rgba(103, 232, 249, 0.55);
+  border-top-color: rgba(207, 250, 254, 0.45);
+  border-radius: 16px;
+  color: #ecfeff;
   outline: none;
   text-align: center;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    inset 0 2px 16px rgba(0, 0, 0, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 2px 18px rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(34, 211, 238, 0.38),
+    0 0 0 1px rgba(56, 189, 248, 0.2);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
 }
 .wc-search-input:hover {
-  border-color: rgba(56, 189, 248, 0.55);
-  border-top-color: rgba(186, 230, 253, 0.42);
-  background: rgba(10, 32, 62, 0.82);
+  border-color: rgba(125, 211, 252, 0.85);
+  border-top-color: rgba(224, 242, 254, 0.65);
+  background: rgba(8, 30, 62, 0.95);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 2px 14px rgba(0, 0, 0, 0.25),
-    0 0 22px rgba(34, 211, 238, 0.28),
-    0 0 0 1px rgba(56, 189, 248, 0.15);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 2px 14px rgba(0, 0, 0, 0.28),
+    0 0 36px rgba(34, 211, 238, 0.5),
+    0 0 64px rgba(6, 182, 212, 0.22),
+    0 0 0 1px rgba(125, 211, 252, 0.35);
 }
 
 /* ── MOBILE RESPONSIVE ──────────────────────────────────────── */
@@ -183,9 +249,11 @@ p { margin: 0; }
   .wc-hero-h1     { font-size: 26px !important; }
   .wc-hero-sub    { font-size: 14px !important; }
   .wc-search-row  { flex-direction: column !important; align-items: stretch !important; }
-  .wc-search-row input  { width: 100% !important; font-size: 16px !important; }
-  .wc-search-input      { letter-spacing: 0.5px !important; }
-  .wc-search-input::placeholder { letter-spacing: 0 !important; font-size: 16px !important; }
+  .wc-search-row input  { width: 100% !important; font-size: 18px !important; min-height: 58px !important; padding: 16px 18px !important; }
+  .wc-search-input      { letter-spacing: 0.04em !important; }
+  .wc-search-input::placeholder { letter-spacing: 0 !important; font-size: 15px !important; }
+  .wc-search-hero-panel { padding: 16px 14px 14px !important; margin-bottom: 14px !important; }
+  .wc-search-hero-label { letter-spacing: 0.14em !important; margin-bottom: 12px !important; }
   .wc-search-row button { width: 100% !important; }
   .wc-results-hdr { flex-direction: column !important; align-items: flex-start !important; }
   .wc-stat-row    { flex-wrap: wrap !important; gap: 14px !important; }
@@ -533,15 +601,19 @@ button.wc-nav-badge-epa:focus-visible {
 .wc-search-input:focus-visible,
 .wc-search-submit:focus-visible {
   outline: none;
-  border-color: rgba(125, 211, 252, 0.75) !important;
+  border-color: rgba(224, 242, 254, 0.95) !important;
   box-shadow:
-    0 0 0 2px rgba(56, 189, 248, 0.20),
-    0 0 16px rgba(6, 182, 212, 0.18),
-    inset 0 1px 0 rgba(255,255,255,0.08) !important;
+    0 0 0 3px rgba(56, 189, 248, 0.35),
+    0 0 28px rgba(34, 211, 238, 0.55),
+    0 0 56px rgba(6, 182, 212, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .wc-search-hero-panel {
+    animation: none !important;
+  }
   .wc-reveal,
   .wc-fadein-1,
   .wc-fadein-2,

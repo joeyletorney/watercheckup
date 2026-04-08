@@ -1926,20 +1926,35 @@ export default function WaterCheckup() {
           </p>
         </div>
 
-        {/* Search bar — directly under value prop */}
-        <div className="wc-search-row" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 16 }}>
-          <input className="wc-search-input" value={zip} onChange={e => setZip(e.target.value.slice(0,30))} onKeyDown={e => e.key==='Enter' && search()} placeholder="ZIP code or city name" maxLength={30} />
-          <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''}`.trim()} style={{ padding: '18px 34px', minHeight: 58, background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 14, color: zip.trim().length >= 2 && !loading ? '#fff' : '#94a3b8', fontSize: 16, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default', alignSelf: 'stretch' }}>
-            {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
-          </button>
-          <button
-            type="button"
-            onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }}
-            className="wc-glass-btn"
-            style={{ padding: '18px 24px', minHeight: 58, borderRadius: 14, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}
-          >
-            View Sample Report
-          </button>
+        {/* Search bar — high-visibility panel */}
+        <div className="wc-search-hero-panel">
+          <p className="wc-search-hero-label" id="wc-search-hero-heading">
+            TYPE ZIP CODE OR CITY NAME
+          </p>
+          <div className="wc-search-row" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 0 }}>
+            <input
+              id="wc-hero-zip"
+              className="wc-search-input"
+              value={zip}
+              onChange={e => setZip(e.target.value.slice(0, 30))}
+              onKeyDown={e => e.key === 'Enter' && search()}
+              placeholder="e.g. 60601 or Chicago"
+              maxLength={30}
+              autoComplete="postal-code"
+              aria-labelledby="wc-search-hero-heading"
+            />
+            <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-analyze' : ''}`.trim()} style={{ padding: '18px 34px', minHeight: 58, background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 14, color: zip.trim().length >= 2 && !loading ? '#fff' : '#94a3b8', fontSize: 16, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default', alignSelf: 'stretch' }}>
+              {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
+            </button>
+            <button
+              type="button"
+              onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }}
+              className="wc-glass-btn"
+              style={{ padding: '18px 24px', minHeight: 58, borderRadius: 14, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}
+            >
+              View Sample Report
+            </button>
+          </div>
         </div>
 
         {/* Trust strip */}
