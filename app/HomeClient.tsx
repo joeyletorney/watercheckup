@@ -2006,15 +2006,6 @@ export default function WaterCheckup() {
           )}
         </div>
 
-        {/* Well water toggle */}
-        <div style={{ marginTop: 28, display: 'flex', justifyContent: 'center' }}>
-          <button onClick={() => setWellMode(m => !m)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 28px', borderRadius: 30, border: `1px solid ${wellMode ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.1)'}`, background: wellMode ? 'rgba(124,58,237,0.2)' : 'rgba(4,14,32,0.5)', color: wellMode ? '#c4b5fd' : '#cbd5e1', fontSize: 17, fontWeight: 800, cursor: 'pointer', transition: 'all .2s' }}>
-            <span style={{ width: 38, height: 22, borderRadius: 11, background: wellMode ? '#7c3aed' : '#1e3a4a', display: 'inline-flex', alignItems: 'center', transition: 'background .2s', flexShrink: 0, position: 'relative' }}>
-              <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#fff', position: 'absolute', left: wellMode ? 19 : 3, transition: 'left .2s' }} />
-            </span>
-            🏡 I&apos;m on Well Water
-          </button>
-        </div>
 {error && (
             <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
               <div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>Couldn&apos;t load municipal report</div>
@@ -2023,7 +2014,7 @@ export default function WaterCheckup() {
                 <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(239,68,68,0.35)' }}>
                   <div style={{ fontSize: 12, fontWeight: 700, color: '#c4b5fd', marginBottom: 6 }}>Private well?</div>
                   <div style={{ fontSize: 12, color: '#e9d5ff', lineHeight: 1.65, marginBottom: 10 }}>
-                    EPA SDWIS only covers <strong style={{ color: '#f5f3ff' }}>public</strong> water systems. If you use a well, turn on <strong style={{ color: '#f5f3ff' }}>I&apos;m on Well Water</strong> above for a state risk overview, then test your water annually with a certified lab.
+                    EPA SDWIS only covers <strong style={{ color: '#f5f3ff' }}>public</strong> water systems. If you use a well, tap <strong style={{ color: '#f5f3ff' }}>Switch to well water mode</strong> below for a state risk overview, then test your water annually with a certified lab.
                   </div>
                   <button
                     type="button"
