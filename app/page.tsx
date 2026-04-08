@@ -3482,6 +3482,152 @@ export default function WaterCheckup() {
           </div>
         </div>
       )}
+
+      {/* CITY GRID + TRUST SECTION */}
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: '64px 24px 80px' }}>
+
+        {/* Trust bar */}
+        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 56, paddingBottom: 40, borderBottom: '1px solid #0f2336' }}>
+          {[
+            { stat: 'EPA SDWIS', label: 'Official data source' },
+            { stat: 'UCMR5', label: 'PFAS monitoring data' },
+            { stat: '135+', label: 'City reports' },
+            { stat: '100% Free', label: 'No account needed' },
+          ].map(({ stat, label }) => (
+            <div key={stat} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>
+              <div style={{ fontSize: 12, color: '#475569', letterSpacing: 1 }}>{label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Browse by city */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>BROWSE BY CITY</div>
+          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', margin: '0 0 6px' }}>Check your city's water quality</h2>
+          <p style={{ fontSize: 14, color: '#475569', margin: '0 0 28px', lineHeight: 1.6 }}>
+            Real EPA data for 135+ US cities. Click any city to see contaminant levels, violations, and filter recommendations.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {[
+              { slug: 'new-york', name: 'New York, NY' },
+              { slug: 'los-angeles', name: 'Los Angeles, CA' },
+              { slug: 'chicago', name: 'Chicago, IL' },
+              { slug: 'houston', name: 'Houston, TX' },
+              { slug: 'phoenix', name: 'Phoenix, AZ' },
+              { slug: 'philadelphia', name: 'Philadelphia, PA' },
+              { slug: 'san-antonio', name: 'San Antonio, TX' },
+              { slug: 'san-diego', name: 'San Diego, CA' },
+              { slug: 'dallas', name: 'Dallas, TX' },
+              { slug: 'san-jose', name: 'San Jose, CA' },
+              { slug: 'austin', name: 'Austin, TX' },
+              { slug: 'jacksonville', name: 'Jacksonville, FL' },
+              { slug: 'fort-worth', name: 'Fort Worth, TX' },
+              { slug: 'columbus', name: 'Columbus, OH' },
+              { slug: 'charlotte', name: 'Charlotte, NC' },
+              { slug: 'indianapolis', name: 'Indianapolis, IN' },
+              { slug: 'san-francisco', name: 'San Francisco, CA' },
+              { slug: 'seattle', name: 'Seattle, WA' },
+              { slug: 'denver', name: 'Denver, CO' },
+              { slug: 'nashville', name: 'Nashville, TN' },
+              { slug: 'las-vegas', name: 'Las Vegas, NV' },
+              { slug: 'detroit', name: 'Detroit, MI' },
+              { slug: 'boston', name: 'Boston, MA' },
+              { slug: 'memphis', name: 'Memphis, TN' },
+              { slug: 'portland', name: 'Portland, OR' },
+              { slug: 'miami', name: 'Miami, FL' },
+              { slug: 'atlanta', name: 'Atlanta, GA' },
+              { slug: 'minneapolis', name: 'Minneapolis, MN' },
+              { slug: 'raleigh', name: 'Raleigh, NC' },
+              { slug: 'tampa', name: 'Tampa, FL' },
+              { slug: 'new-orleans', name: 'New Orleans, LA' },
+              { slug: 'cleveland', name: 'Cleveland, OH' },
+              { slug: 'pittsburgh', name: 'Pittsburgh, PA' },
+              { slug: 'st-louis', name: 'St. Louis, MO' },
+              { slug: 'orlando', name: 'Orlando, FL' },
+              { slug: 'sacramento', name: 'Sacramento, CA' },
+              { slug: 'kansas-city', name: 'Kansas City, MO' },
+              { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
+              { slug: 'tucson', name: 'Tucson, AZ' },
+              { slug: 'fresno', name: 'Fresno, CA' },
+              { slug: 'washington-dc', name: 'Washington, DC' },
+              { slug: 'albuquerque', name: 'Albuquerque, NM' },
+              { slug: 'baltimore', name: 'Baltimore, MD' },
+              { slug: 'milwaukee', name: 'Milwaukee, WI' },
+              { slug: 'louisville', name: 'Louisville, KY' },
+              { slug: 'dayton', name: 'Dayton, OH' },
+              { slug: 'jackson', name: 'Jackson, MS' },
+              { slug: 'fayetteville', name: 'Fayetteville, NC' },
+              { slug: 'tacoma', name: 'Tacoma, WA' },
+              { slug: 'des-moines', name: 'Des Moines, IA' },
+            ].map(({ slug, name }) => (
+              <a
+                key={slug}
+                href={`/water/${slug}`}
+                style={{
+                  padding: '7px 14px',
+                  background: '#0d2240',
+                  border: '1px solid #1a3a5c',
+                  borderRadius: 8,
+                  fontSize: 13,
+                  color: '#94a3b8',
+                  textDecoration: 'none',
+                  transition: 'all 0.15s',
+                }}
+                onMouseEnter={e => { (e.target as HTMLAnchorElement).style.color = '#e2e8f0'; (e.target as HTMLAnchorElement).style.borderColor = '#0891b2'; }}
+                onMouseLeave={e => { (e.target as HTMLAnchorElement).style.color = '#94a3b8'; (e.target as HTMLAnchorElement).style.borderColor = '#1a3a5c'; }}
+              >
+                {name}
+              </a>
+            ))}
+            <a href="/water/chicago" style={{ padding: '7px 14px', background: '#0891b220', border: '1px solid #0891b250', borderRadius: 8, fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
+              View all 135+ cities →
+            </a>
+          </div>
+        </div>
+
+        {/* Trust / About section */}
+        <div style={{ padding: '32px 28px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 48 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>ABOUT WATERCHECKUP</div>
+          <h3 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Why trust our data?</h3>
+          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' }}>
+            WaterCheckup pulls directly from the EPA's Safe Drinking Water Information System (SDWIS) and the UCMR5 PFAS monitoring dataset — the same databases used by regulators, researchers, and journalists. We don't generate scores or ratings. We surface the raw government data in a format anyone can understand.
+          </p>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            {[
+              { source: 'EPA SDWIS', desc: 'Violation history & system data' },
+              { source: 'UCMR5', desc: 'PFAS monitoring 2023-2025' },
+              { source: 'EWG', desc: 'Health guideline comparisons' },
+              { source: 'USGS', desc: 'Hardness & well water data' },
+            ].map(({ source, desc }) => (
+              <div key={source} style={{ padding: '10px 14px', background: '#071828', border: '1px solid #0f2336', borderRadius: 8 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', marginBottom: 2 }}>{source}</div>
+                <div style={{ fontSize: 11, color: '#475569' }}>{desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Blog teasers */}
+        <div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FROM THE BLOG</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
+            {[
+              { slug: 'is-pfas-in-my-tap-water', title: 'Is PFAS in My Tap Water?', desc: 'PFAS found in 45% of US tap water. Here\'s how to check yours.' },
+              { slug: 'best-ro-system-for-pfas-removal', title: 'Best RO Systems for PFAS 2025', desc: 'The certified filters that actually work, at every budget.' },
+              { slug: 'tap-water-safety-during-pregnancy', title: 'Tap Water Safety During Pregnancy', desc: 'Lead, nitrates, PFAS -- what to filter and why.' },
+              { slug: 'moving-to-new-city-water-quality-check', title: 'Moving? Check the Water First', desc: 'Water quality varies dramatically by city. Here\'s what to look for.' },
+            ].map(({ slug, title, desc }) => (
+              <a key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '16px 18px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6, lineHeight: 1.4 }}>{title}</div>
+                <div style={{ fontSize: 12, color: '#475569', lineHeight: 1.6 }}>{desc}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
     </div>
     </>
   );
