@@ -23,6 +23,7 @@ async function fetchBrevoListContacts(apiKey: string, listId: number): Promise<B
 }
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
+const AMAZON_TAG = 'watercheck20-20';
 
 type Product = { name: string; tag: string; why: string; search: string };
 type Issue = { subject: string; headline: string; intro: string; sections: { color: string; title: string; body: string }[]; action: string; products: Product[] };
@@ -322,7 +323,7 @@ function buildWeeklyHtml(issue: Issue, email: string): string {
     </div>`).join('');
 
   const productsHtml = issue.products.map(p => {
-    const url = `https://www.amazon.com/s?k=${encodeURIComponent(p.search)}`;
+    const url = `https://www.amazon.com/s?k=${encodeURIComponent(p.search)}&tag=${AMAZON_TAG}`;
     return `
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:10px">
       <div style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:3px">${p.name}</div>
