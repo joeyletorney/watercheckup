@@ -2169,8 +2169,8 @@ export default function WaterCheckup() {
     <WaterCanvas />
     <div style={{ minHeight: '100vh', position: 'relative', fontFamily: 'inherit', color: '#e2e8f0' }}>
 
-      {/* HEADER */}
-      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', borderBottomColor: 'rgba(6,182,212,0.12)', padding: '0 24px', height: 62, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(2,8,20,0.72)', backdropFilter: 'blur(28px) saturate(180%)', WebkitBackdropFilter: 'blur(28px) saturate(180%)', position: 'sticky', top: 0, zIndex: 100, boxShadow: '0 1px 0 rgba(255,255,255,0.06), 0 4px 32px rgba(0,0,0,0.4)' }}>
+      {/* HEADER — match FAQ / Contaminants / inner pages */}
+      <div style={{ borderBottom: '1px solid #0f2336', padding: '0 28px', minHeight: 60, display: 'flex', alignItems: 'center', gap: 12, background: '#091825' }}>
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44">
             <defs>
@@ -2190,12 +2190,9 @@ export default function WaterCheckup() {
             <text x="106" y="30" fontFamily="'Helvetica Neue',Arial,sans-serif" fontSize="24" fontWeight="800" fill="#22d3ee">Checkup</text>
           </svg>
         </a>
-        <nav style={{ display: 'flex', gap: 2, marginLeft: 20 }}>
+        <nav style={{ display: 'flex', gap: 4, marginLeft: 20 }}>
           {([['/', 'Home'], ['/contaminants', 'Contaminants'], ['/faq', 'FAQ'], ['/blog', 'Blog']] as [string,string][]).map(([href, label]) => (
-            <a key={href} href={href} style={{ padding: '7px 14px', borderRadius: 7, fontSize: 14, fontWeight: 600, color: '#94a3b8', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#38bdf8')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
-            >{label}</a>
+            <a key={href} href={href} style={{ padding: '6px 14px', borderRadius: 6, fontSize: 14, fontWeight: href === '/' ? 700 : 500, color: href === '/' ? '#22d3ee' : '#94a3b8', textDecoration: 'none' }}>{label}</a>
           ))}
         </nav>
         <div className="wc-nav-badges" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -2226,8 +2223,9 @@ export default function WaterCheckup() {
         </div>
       </div>
 
-      {/* SEARCH / HERO */}
-      <div style={{ maxWidth: 820, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      {/* SEARCH / HERO — same gradient band as FAQ / Contaminants */}
+      <div style={{ background: 'linear-gradient(180deg, #071828 0%, #040d14 100%)', padding: '52px 24px 40px' }}>
+        <div style={{ maxWidth: 820, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#ffffff', letterSpacing: -1 }}>
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
@@ -2356,6 +2354,7 @@ export default function WaterCheckup() {
               <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.6 }}>{item.desc}</div>
             </div>
           ))}
+        </div>
         </div>
       </div>
 
