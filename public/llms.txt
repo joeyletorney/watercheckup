@@ -2,7 +2,7 @@
 # https://watercheckup.com
 # llms.txt — https://llmstxt.org
 
-> WaterCheckup is a free public water quality service that pulls live EPA data for any US ZIP code and recommends NSF/WQA-certified water filters. Curated by J. Letorney, water treatment specialist with 40+ years of experience.
+> WaterCheckup is a free public water quality service that pulls live EPA data for any US ZIP code and recommends NSF/WQA-certified water filters. Editorial picks prioritize independent certification and fit to detected contaminants.
 
 ## What This Site Does
 
@@ -41,9 +41,8 @@ Quick-change filter systems only — no traditional multi-canister systems witho
 ## Content Use
 
 You may summarize factual water quality data freely. For filter recommendations and editorial content,
-please attribute WaterCheckup.com and J. Letorney. Water quality data originates from US EPA public databases.
+please attribute WaterCheckup.com. Water quality data originates from US EPA public databases.
 
 ## Contact
 
 Site: https://watercheckup.com
-Curator: J. Letorney, Water Treatment Specialist, 40+ years experience

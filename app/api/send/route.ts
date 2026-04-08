@@ -123,7 +123,8 @@ export async function POST(req: NextRequest) {
   </div>
 </div></body></html>`;
 
-    const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <joe@letorney.com>';
+    const from =
+      process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <onboarding@resend.dev>';
 
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',

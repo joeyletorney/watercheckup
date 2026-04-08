@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
-      authors: ['J. Letorney'],
+      authors: ['WaterCheckup'],
     },
   };
 }
@@ -37,7 +37,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    author: { '@type': 'Person', name: 'J. Letorney' },
+    author: { '@type': 'Organization', name: 'WaterCheckup', url: 'https://watercheckup.com' },
     publisher: {
       '@type': 'Organization',
       name: 'WaterCheckup',
@@ -80,8 +80,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <h1 style={{ fontSize: 34, fontWeight: 900, color: '#f1f5f9', margin: '0 0 16px', lineHeight: 1.2 }}>{post.title}</h1>
           <p style={{ fontSize: 17, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
           <div style={{ fontSize: 13, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: '#fff', flexShrink: 0 }}>JL</div>
-            <span>By <strong style={{ color: '#94a3b8' }}>J. Letorney</strong> · Water treatment specialist · 40+ years in the field</span>
+            <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0 }}>WC</div>
+            <span>By <strong style={{ color: '#94a3b8' }}>WaterCheckup</strong> · Editorial · NSF/WQA-aligned guidance</span>
           </div>
         </div>
 

@@ -37,7 +37,7 @@ const TOP_3_WHOLE_HOUSE_CITY = [
 
 /** Point-of-entry for private wells — iron, sediment, sulfur; pair with kitchen RO for PFAS/nitrates/drinking. */
 const TOP_3_WHOLE_HOUSE_WELL = [
-  { product: 'SpringWell WS4 Well Water Filter', brand: 'SpringWell', price: '~$899', reason: 'Designed for wells: air-injection style treatment for iron, sulfur smell, and manganese at the home entry.', link: 'https://www.springwellwater.com', amazon: `https://www.amazon.com/dp/B09NGDLQT6?tag=${AMAZON_TAG}`, badge: 'WELL + IRON' },
+  { product: 'iSpring WCFM500K Iron, Manganese & Sulfur', brand: 'iSpring', price: '~$2,299', reason: 'Whole-house media system for wells: targets iron, manganese, and hydrogen sulfide (rotten-egg smell) at the home entry — pair with kitchen RO for PFAS/nitrates.', link: 'https://www.ispringfilter.com/ac/ispring-wcfm500k-iron-manganese-and-hydrogen-sulfide-water-filtration-system-whole-house-or-well-water-set', amazon: `https://www.amazon.com/gp/product/B08TMZYYQY?tag=${AMAZON_TAG}`, badge: 'WELL + IRON' },
   { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$420', reason: 'Affordable sediment + carbon chain for every tap. Common first stage before softener, UV, or specialty well media.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`, badge: 'ENTRY STAGE' },
   { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'Multi-stage POE with gauges; useful when you need higher flow and visible pressure drop across stages.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'MULTI-STAGE' },
 ];
@@ -91,7 +91,7 @@ const TOP_5_AMAZON_DRINKING: AltPick[] = [
     price: '~$129',
     reason: 'Compact under-sink system on Amazon — NSF 401 for emerging contaminants; alternative if you do not want RO yet.',
     link: 'https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system',
-    amazon: `https://www.amazon.com/dp/B076S1W5QY?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/gp/product/B076S1W5QY?tag=${AMAZON_TAG}`,
     badge: 'NO RO',
   },
 ];

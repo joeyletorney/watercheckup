@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   description: 'Free water quality reports for any US ZIP code. Real EPA contaminant data, NSF-certified filter recommendations, and local installer referrals. Powered by live EPA SDWIS data.',
   keywords: ['water quality', 'tap water', 'EPA water data', 'water filter', 'water contaminants', 'PFAS', 'lead in water', 'water quality report', 'NSF certified filter', 'water safety', 'tap water safety', 'drinking water quality', 'water quality by zip code'],
-  authors: [{ name: 'J. Letorney', url: 'https://watercheckup.com' }],
-  creator: 'J. Letorney',
+  authors: [{ name: 'WaterCheckup', url: 'https://watercheckup.com' }],
+  creator: 'WaterCheckup',
   publisher: 'WaterCheckup',
   robots: {
     index: true,
@@ -87,8 +87,8 @@ const jsonLd = {
       url: 'https://watercheckup.com',
       logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/logo.svg' },
       sameAs: ['https://twitter.com/watercheckup'],
-      founder: { '@type': 'Person', name: 'J. Letorney' },
-      description: 'Water quality reporting service powered by live EPA data, curated by J. Letorney — 40+ years in water treatment.',
+      description:
+        'Water quality reporting powered by live EPA public data and NSF/WQA-aligned filter guidance.',
     },
     {
       '@type': 'WebPage',
