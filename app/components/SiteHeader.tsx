@@ -114,6 +114,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
 
   return (
     <div
+      className="wc-site-header-bar"
       style={{
         borderBottom: '1px solid #0f2336',
         padding: '0 28px',

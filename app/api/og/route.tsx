@@ -28,12 +28,19 @@ export async function GET(req: Request) {
         position: 'relative',
       }}
     >
-      {/* Background glow */}
+      {/* Background glows */}
       <div style={{
         position: 'absolute', top: -100, left: -100,
         width: 500, height: 500,
         borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(8,145,178,0.15) 0%, transparent 70%)',
+        display: 'flex',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: -120, right: -80,
+        width: 480, height: 480,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 68%)',
         display: 'flex',
       }} />
 
@@ -98,11 +105,37 @@ export async function GET(req: Request) {
         </div>
       </div>
 
+      {/* Bottom wave accent */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 36,
+          background: 'linear-gradient(180deg, transparent 0%, rgba(6,182,212,0.08) 45%, rgba(8,145,178,0.14) 100%)',
+          display: 'flex',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 28,
+          height: 3,
+          background: 'linear-gradient(90deg, transparent 5%, rgba(34,211,238,0.35) 50%, transparent 95%)',
+          display: 'flex',
+        }}
+      />
+
       {/* Footer */}
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         marginTop: 36, paddingTop: 20,
         borderTop: '1px solid rgba(30,58,92,0.8)',
+        position: 'relative',
+        zIndex: 1,
       }}>
         <div style={{ fontSize: 18, color: '#334155' }}>Free water quality reports at</div>
         <div style={{ fontSize: 22, color: '#22d3ee', fontWeight: 700 }}>watercheckup.com</div>

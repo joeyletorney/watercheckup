@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { SiteHeader } from './components/SiteHeader';
+import { WaveDivider } from './components/WaveDivider';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -471,14 +472,11 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 
 // ─────────────────────────────────────────────────────────────────────────────
 // RETAILER LINKS — per product, keyed by product id
-// LW = Lowe's Creator, CF = Clearly Filtered direct, WD = Waterdrop direct, AQ = Aquasana direct
+// LW = Lowe's Creator, CF = Clearly Filtered direct, WD = Waterdrop direct. Aquasana / AquaTru: Amazon only (no affiliate direct).
 // ─────────────────────────────────────────────────────────────────────────────
 const RETAILER_LINKS: Record<number, { store: string; url: string; color: string; label: string }[]> = {
   // Waterdrop G3P800
   3:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
-  // Aquasana SmartFlow
-  5:  [ { store: 'Aquasana', url: 'https://www.aquasana.com/under-sink-water-filters', color: '#0ea5e9', label: 'Brand' },
-        { store: "Lowe's",   url: "https://www.lowes.com/search?searchTerm=Aquasana+under+sink", color: '#1a5c9e', label: 'LW' } ],
   // Waterdrop D6
   26: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
   // Waterdrop D4 Countertop
@@ -493,8 +491,6 @@ const RETAILER_LINKS: Record<number, { store: string; url: string; color: string
   18: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=Pelican+whole+house+filter", color: '#1a5c9e', label: 'LW' } ],
   // iSpring WGB32B Whole House
   19: [ { store: "Lowe's", url: "https://www.lowes.com/search?searchTerm=iSpring+whole+house", color: '#1a5c9e', label: 'LW' } ],
-  // Aquasana Rhino
-  32: [ { store: 'Aquasana', url: 'https://www.aquasana.com/whole-house-water-filters', color: '#0ea5e9', label: 'Brand' } ],
   // Clearly Filtered Water Bottle
   15: [ { store: 'Clearly Filtered', url: 'https://www.clearlyfiltered.com/products/water-bottle', color: '#6366f1', label: 'Brand' } ],
   // Waterdrop K19
@@ -2077,6 +2073,8 @@ export default function WaterCheckup() {
               )}
             </div>
           )}
+
+        <WaveDivider />
 
         {/* 3-column why us */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '28px auto 28px', maxWidth: 720 }}>

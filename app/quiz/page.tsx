@@ -43,6 +43,10 @@ function trackEvent(name: string, params: Record<string, string>) {
   }
 }
 
+function showBuyDirectForBrand(brand: string) {
+  return brand !== 'Aquasana' && brand !== 'AquaTru';
+}
+
 const QUESTIONS = [
   {
     id: 'source',
@@ -210,7 +214,10 @@ export default function QuizPage() {
             {rec.alts ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 4 }}>TOP 3 OPTIONS</div>
-                {rec.alts.map((alt: any, i: number) => (
+                {rec.alts.map((alt: AltPick, i: number) => {
+                  const showDirect = showBuyDirectForBrand(alt.brand);
+                  const amazonPrimary = !showDirect && i === 0;
+                  return (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', padding: '12px 14px', background: i === 0 ? 'rgba(8,145,178,0.08)' : 'rgba(255,255,255,0.02)', borderRadius: 10, border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336' }}>
                     <div style={{ flex: 1, minWidth: 160 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
@@ -222,11 +229,14 @@ export default function QuizPage() {
                       <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 4, lineHeight: 1.5 }}>{alt.reason}</div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flexShrink: 0 }}>
-                      <a href={alt.link} target="_blank" rel="noopener noreferrer" onClick={() => handleAffiliateClick('direct', alt.product)} style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>Buy Direct →</a>
-                      <a href={alt.amazon} target="_blank" rel="noopener noreferrer" onClick={() => handleAffiliateClick('amazon', alt.product)} style={{ display: 'block', padding: '7px 14px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>Amazon →</a>
+                      {showDirect ? (
+                        <a href={alt.link} target="_blank" rel="noopener noreferrer" onClick={() => handleAffiliateClick('direct', alt.product)} style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>Buy Direct →</a>
+                      ) : null}
+                      <a href={alt.amazon} target="_blank" rel="noopener noreferrer" onClick={() => handleAffiliateClick('amazon', alt.product)} style={{ display: 'block', padding: '7px 14px', background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: amazonPrimary ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: amazonPrimary ? 700 : 600, textAlign: 'center', border: amazonPrimary ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>Amazon →</a>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>

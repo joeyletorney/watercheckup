@@ -121,10 +121,29 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                  <a href={pick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
-                    Buy Direct →
-                  </a>
-                  <a href={pick.amazon} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                  {pick.brand !== 'Aquasana' && pick.brand !== 'AquaTru' ? (
+                    <a href={pick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
+                      Buy Direct →
+                    </a>
+                  ) : null}
+                  <a
+                    href={pick.amazon}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'block',
+                      padding: '8px 16px',
+                      background: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
+                      color: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? '#fff' : '#94a3b8',
+                      textDecoration: 'none',
+                      borderRadius: 7,
+                      fontSize: 12,
+                      fontWeight: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? 700 : 600,
+                      textAlign: 'center',
+                      border: (pick.brand === 'Aquasana' || pick.brand === 'AquaTru') && i === 0 ? 'none' : '1px solid #1a3a5c',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
                     Amazon →
                   </a>
                 </div>

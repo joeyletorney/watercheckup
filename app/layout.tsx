@@ -1,12 +1,23 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import { Inter } from 'next/font/google'
+import { Inter, Outfit } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 import { WaterCanvas } from './components/WaterCanvas'
 import { GaPageView } from './components/GaPageView'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400','500','600','700','800','900'] })
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-inter',
+})
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['600', '700', '800', '900'],
+  variable: '--font-wc-display',
+})
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-34ZFC3J521'
 
@@ -93,7 +104,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${inter.className}`}>
       <head>
         <meta name="impact-site-verification" content="96edb948-ce64-4f63-83fd-3c1cef2c9453" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
