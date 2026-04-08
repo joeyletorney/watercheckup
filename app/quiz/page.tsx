@@ -25,20 +25,20 @@ const TOP_3_COUNTERTOP = [
 const TOP_3_WELL = [
   { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Handles well water RO at the tap. 10-stage filtration removes bacteria byproducts, heavy metals, nitrates, arsenic.', link: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal certified. Handles well water contaminants including arsenic, nitrates, and hardness minerals.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
-  { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$189', reason: 'Entry-point whole-house sediment + carbon filter for well water. Removes iron, chlorine, sediment at every tap.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/dp/B007QN8EEU?tag=${AMAZON_TAG}`, badge: 'WHOLE HOUSE ENTRY' },
+  { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$420', reason: 'Entry-point whole-house sediment + carbon filter for well water. Removes iron, chlorine, sediment at every tap.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`, badge: 'WHOLE HOUSE ENTRY' },
 ];
 
 /** Point-of-entry systems for city / municipal water — pairs with kitchen RO for “full protection”. */
 const TOP_3_WHOLE_HOUSE_CITY = [
   { product: 'Waterdrop WHF3T-PG Whole House 3-Stage', brand: 'Waterdrop', price: '~$370', reason: 'Sediment + carbon at every tap. Transparent housings and gauge — strong DIY whole-home chlorine/VOC reduction before your RO.', link: `https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0FYCRPXLZ?tag=${AMAZON_TAG}`, badge: 'BRAND PICK' },
-  { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$189', reason: 'Popular entry whole-house: sediment + dual carbon for all taps and showers. Often paired with under-sink RO for drinking.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/dp/B007QN8EEU?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$420', reason: 'Popular entry whole-house: sediment + dual carbon for all taps and showers. Often paired with under-sink RO for drinking.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
   { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'Whole-home sediment and carbon with pressure gauges. Good step-up capacity vs compact 10" systems.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
 ];
 
 /** Point-of-entry for private wells — iron, sediment, sulfur; pair with kitchen RO for PFAS/nitrates/drinking. */
 const TOP_3_WHOLE_HOUSE_WELL = [
   { product: 'SpringWell WS4 Well Water Filter', brand: 'SpringWell', price: '~$899', reason: 'Designed for wells: air-injection style treatment for iron, sulfur smell, and manganese at the home entry.', link: 'https://www.springwellwater.com', amazon: `https://www.amazon.com/dp/B09NGDLQT6?tag=${AMAZON_TAG}`, badge: 'WELL + IRON' },
-  { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$189', reason: 'Affordable sediment + carbon chain for every tap. Common first stage before softener, UV, or specialty well media.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/dp/B007QN8EEU?tag=${AMAZON_TAG}`, badge: 'ENTRY STAGE' },
+  { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$420', reason: 'Affordable sediment + carbon chain for every tap. Common first stage before softener, UV, or specialty well media.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`, badge: 'ENTRY STAGE' },
   { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'Multi-stage POE with gauges; useful when you need higher flow and visible pressure drop across stages.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'MULTI-STAGE' },
 ];
 
@@ -48,10 +48,10 @@ const TOP_5_AMAZON_DRINKING: AltPick[] = [
     categoryLabel: 'WHOLE HOUSE',
     product: 'iSpring WGB32B 3-Stage Whole House',
     brand: 'iSpring',
-    price: '~$189',
+    price: '~$420',
     reason: 'Top-selling 3-stage POE on Amazon: sediment + carbon for every tap. Great with a kitchen RO for drinking.',
     link: 'https://www.ispringwatersystems.com/products/wgb32b',
-    amazon: `https://www.amazon.com/dp/B007QN8EEU?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`,
     badge: 'POE BEST SELLER',
   },
   {

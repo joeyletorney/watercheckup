@@ -142,14 +142,14 @@ const WELL_PRODUCTS = [
   {
     name: 'iSpring WGB32B Well Water Whole-House',
     brand: 'iSpring',
-    price: 189,
-    rating: 4.6,
-    reviews: 7200,
+    price: 420,
+    rating: 4.7,
+    reviews: 2500,
     cert: 'NSF/ANSI 42',
     removes: ['Sediment','Iron','Manganese','Chlorine','Chloramine'],
     bestFor: 'Iron & sediment in well water',
     pros: ['3-stage whole-house','Made for well water','DIY-friendly'],
-    asin: 'B007QN8EEU',
+    asin: 'B008GNRMYK',
     tag: 'watercheck20-20',
   },
   {
