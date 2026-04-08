@@ -3620,7 +3620,7 @@ export default function WaterCheckup() {
             ].map(({ slug, title, desc }) => (
               <a key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '16px 18px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6, lineHeight: 1.4 }}>{title}</div>
-                <div style={{ fontSize: 12, color: '#475569', lineHeight: 1.6 }}>{desc}</div>
+                <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>{desc}</div>
               </a>
             ))}
           </div>
