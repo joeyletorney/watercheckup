@@ -1,5 +1,15 @@
 import type { ReactNode } from 'react';
 
+export type TopPickRow = {
+  product: string;
+  brand: string;
+  price: string;
+  reason: string;
+  link: string;
+  amazon: string;
+  badge?: string;
+};
+
 export type Post = {
   title: string;
   excerpt: string;
@@ -8,6 +18,6 @@ export type Post = {
   readTime: string;
   badge: string;
   badgeColor: string;
-  topPick: { label: string; product: string; reason: string; link: string; amazon: string };
+  topPicks: TopPickRow[];
   content: ReactNode;
 };

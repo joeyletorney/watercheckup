@@ -38,8 +38,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Home',
     badgeColor: '#94a3b8',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -78,8 +77,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Lifestyle',
     badgeColor: '#38bdf8',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -118,8 +116,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '7 min read',
     badge: 'Contaminants',
     badgeColor: '#eab308',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -154,8 +151,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -190,8 +186,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '9 min read',
     badge: 'Testing',
     badgeColor: '#2dd4bf',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -226,8 +221,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '7 min read',
     badge: 'Filters',
     badgeColor: '#06b6d4',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -258,8 +252,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '9 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -294,8 +287,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '6 min read',
     badge: 'Safety',
     badgeColor: '#ef4444',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -326,8 +318,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Science',
     badgeColor: '#8b5cf6',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -358,8 +349,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -394,8 +384,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     readTime: '10 min read',
     badge: 'Purity',
     badgeColor: '#06b6d4',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>

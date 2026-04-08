@@ -38,8 +38,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '9 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -100,8 +99,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Treatment',
     badgeColor: '#0ea5e9',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -155,8 +153,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '10 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>
@@ -212,8 +209,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '7 min read',
     badge: 'Health',
     badgeColor: '#f59e0b',
-    topPicks: TOP_3_RO`,
-    },
+    topPicks: TOP_3_RO,
     content: (
       <>
         <p style={pStyle}>

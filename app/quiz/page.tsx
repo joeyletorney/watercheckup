@@ -1,4 +1,13 @@
-'
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+
+declare global { interface Window { gtag?: (...args: any[]) => void } }
+
+const WATERDROP_TAG = 'anbyjkqb';
+const AMAZON_TAG = 'watercheck20-20';
+
 const TOP_3_RO = [
   { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet. 10-stage filtration.', link: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO on the market.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
@@ -19,17 +28,10 @@ const TOP_3_WELL = [
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal certified. Handles well water contaminants including arsenic, nitrates, and hardness minerals.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
   { product: 'iSpring WGB32B Whole House 3-Stage', brand: 'iSpring', price: '~$189', reason: 'Entry-point whole-house sediment + carbon filter for well water. Removes iron, chlorine, sediment at every tap.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/dp/B007QN8EEU?tag=${AMAZON_TAG}`, badge: 'WHOLE HOUSE ENTRY' },
 ];
-use client';
-import { useState } from 'react';
-import Link from 'next/link';
-
-declare global { interface Window { gtag?: (...args: any[]) => void } }
-
-const WATERDROP_TAG = 'anbyjkqb';
-const AMAZON_TAG = 'watercheck20-20';
 
 const LINKS = {
   waterdrop: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`,
+  waterdrop_pitcher: `https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=${WATERDROP_TAG}`,
   amazon_pitcher: `https://www.amazon.com/s?k=water+filter+pitcher+pfas+certified&tag=${AMAZON_TAG}`,
   amazon_undersink: `https://www.amazon.com/s?k=under+sink+reverse+osmosis+system&tag=${AMAZON_TAG}`,
   amazon_whole_house: `https://www.amazon.com/s?k=whole+house+water+filter+system&tag=${AMAZON_TAG}`,
@@ -75,10 +77,27 @@ const QUESTIONS = [
   },
 ];
 
+type AltPick = {
+  product: string;
+  brand: string;
+  price: string;
+  reason: string;
+  link: string;
+  amazon: string;
+  badge: string;
+};
+
 type Rec = {
-  title: string; tagline: string; why: string;
-  cta: string; cta2: string; link: string; link2: string;
-  badge: string; badgeColor: string;
+  title: string;
+  tagline: string;
+  why: string;
+  cta: string;
+  cta2: string;
+  link: string;
+  link2: string;
+  badge: string;
+  badgeColor: string;
+  alts?: AltPick[];
 };
 
 const RECS: Record<string, Rec> = {
