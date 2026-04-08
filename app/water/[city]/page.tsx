@@ -6,21 +6,32 @@ import EmailCapture from './EmailCapture';
 import { CITIES } from './cities-data';
 
 
-// Top filter pick per city
-const TOP_PICKS: Record<string, { label: string; product: string; reason: string; link: string; amazon: string }> = {
-  'chicago':       { label: 'Lead detected in tap water', product: 'Waterdrop Under-Sink RO', reason: 'Removes 99.9% of lead from Chicago service lines', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'los-angeles':   { label: 'Chromium-6 & PFAS detected', product: 'Waterdrop Under-Sink RO', reason: 'Only RO removes chromium-6 — carbon filters do not', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'houston':       { label: 'Elevated THMs in tap water', product: 'Waterdrop Under-Sink Filter', reason: 'Carbon block filtration removes THMs and chloramine byproducts', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'new-york':      { label: 'Lead risk from building pipes', product: 'Waterdrop Pitcher Filter', reason: 'NSF 53 certified for lead — no installation needed', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B01JSJFBNE?tag=watercheck20-20' },
-  'phoenix':       { label: 'PFAS + high TDS detected', product: 'Waterdrop Under-Sink RO', reason: 'RO removes PFAS, arsenic, TDS, and hard minerals in one system', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'philadelphia':  { label: 'PFAS from Delaware River', product: 'Waterdrop Under-Sink RO', reason: 'RO is the only residential technology proven to remove PFAS', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'san-antonio':   { label: 'Hard water + DBP violations', product: 'Waterdrop Under-Sink RO', reason: 'RO removes hard minerals, DBPs, and chlorine in one pass', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'dallas':        { label: 'Elevated THMs + HAA5', product: 'Waterdrop Under-Sink Filter', reason: 'Certified carbon block for THMs and haloacetic acid removal', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'miami':         { label: 'PFAS + aging infrastructure', product: 'Waterdrop Under-Sink RO', reason: 'Full RO protection for PFAS and heavy metals from old pipes', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' },
-  'seattle':       { label: 'Building pipe lead risk', product: 'Waterdrop Pitcher Filter', reason: "Seattle source water is great — in-building pipes are the risk", link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B01JSJFBNE?tag=watercheck20-20' },
-};
+// Top 3 filter picks per city
+const RO_PICKS = [
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Tankless 800 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20', badge: 'EDITORS PICK' },
+  { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20', badge: 'MOST CERTIFIED' },
+  { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters, no tools. Compact tankless design, 4-stage filtration.', link: 'https://www.aquatruwater.com/products/aquatru-under-sink', amazon: 'https://www.amazon.com/dp/B0BVWB1Y7G?tag=watercheck20-20', badge: 'EASIEST FILTER CHANGE' },
+];
 
-const DEFAULT_PICK = { label: 'Contaminants detected in local water', product: 'Waterdrop Under-Sink RO', reason: 'The gold standard for removing PFAS, lead, chlorine, and more', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20' };
+const PITCHER_PICKS = [
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473 — 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20', badge: 'BEST FOR PFAS & LEAD' },
+  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon life. Removes chlorine, PFOA/PFOS, heavy metals. No installation.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B01JSJFBNE?tag=watercheck20-20', badge: 'BEST VALUE' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53 certified for lead, chromium, and arsenic. Includes TDS meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: 'https://www.amazon.com/dp/B01I2I2R36?tag=watercheck20-20', badge: 'REMOVES TDS' },
+];
+
+const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS }> = {
+  'chicago':       { label: 'Lead detected in tap water', picks: RO_PICKS },
+  'los-angeles':   { label: 'Chromium-6 & PFAS detected', picks: RO_PICKS },
+  'houston':       { label: 'Elevated THMs in tap water', picks: RO_PICKS },
+  'new-york':      { label: 'Lead risk from building pipes', picks: PITCHER_PICKS },
+  'phoenix':       { label: 'PFAS + high TDS detected', picks: RO_PICKS },
+  'philadelphia':  { label: 'PFAS from Delaware River', picks: RO_PICKS },
+  'san-antonio':   { label: 'Hard water + DBP violations', picks: RO_PICKS },
+  'dallas':        { label: 'Elevated THMs + HAA5', picks: RO_PICKS },
+  'miami':         { label: 'PFAS + aging infrastructure', picks: RO_PICKS },
+  'seattle':       { label: 'Building pipe lead risk', picks: PITCHER_PICKS },
+};
+const DEFAULT_PICKS = { label: 'Contaminants detected in local water', picks: RO_PICKS };
 
 export async function generateStaticParams() {
   return Object.keys(CITIES).map(city => ({ city }));
@@ -93,7 +104,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* TOP PICK BOX */}
         <TopPickBox
-          pick={TOP_PICKS[params.city] || DEFAULT_PICK}
+          picks={(TOP_PICKS[params.city] || DEFAULT_PICKS).picks}
+          label={(TOP_PICKS[params.city] || DEFAULT_PICKS).label}
           cityName={cd?.name ?? cityName}
         />
 
