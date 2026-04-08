@@ -84,25 +84,35 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           {post.content}
         </div>
 
-        {/* Top product pick */}
+        {/* Top product picks */}
         <div style={{ marginTop: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>
           <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
-            TOP PICK
+            TOP PICKS
           </div>
-          <div style={{ marginTop: 8, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-            <div style={{ flex: 1, minWidth: 200 }}>
-              <div style={{ fontSize: 11, color: '#ef4444', fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>⚠ {post.topPick.label}</div>
-              <div style={{ fontSize: 18, fontWeight: 900, color: '#f1f5f9', marginBottom: 4 }}>{post.topPick.product}</div>
-              <div style={{ fontSize: 13, color: '#94a3b8' }}>{post.topPick.reason}</div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
-              <a href={post.topPick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap' }}>
-                Get on Waterdrop →
-              </a>
-              <a href={post.topPick.amazon} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '10px 20px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
-                See on Amazon →
-              </a>
-            </div>
+          <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {post.topPicks.map((pick: any, i: number) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 16px', background: i === 0 ? 'rgba(8,145,178,0.08)' : 'rgba(255,255,255,0.02)', borderRadius: 10, border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 180 }}>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: '#94a3b8', minWidth: 20 }}>#{i + 1}</div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>{pick.product}</div>
+                      {pick.badge && <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: i === 0 ? '#0891b2' : '#1e3a5f', color: '#fff', padding: '2px 7px', borderRadius: 4 }}>{pick.badge}</span>}
+                    </div>
+                    <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{pick.brand} &nbsp;·&nbsp; {pick.price}</div>
+                    <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 4, lineHeight: 1.5 }}>{pick.reason}</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
+                  <a href={pick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
+                    Buy Direct →
+                  </a>
+                  <a href={pick.amazon} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                    Amazon →
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

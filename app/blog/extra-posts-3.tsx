@@ -3,6 +3,23 @@ import type { Post } from './post-types';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
+// Shared top-3 pick sets used across blog posts
+const TOP_3_RO = [
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. 10-stage filtration.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants including PFAS.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+  { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/products/aquatru-under-sink', amazon: `https://www.amazon.com/dp/B0BVWB1Y7G?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
+];
+const TOP_3_LEAD = [
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Best-certified pitcher on the market.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR LEAD + PFAS' },
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Under-sink RO removes 99.9% of lead at the tap. Best for homeowners with aging pipes throughout the home.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'NSF 42/53 certified. Reduces lead and chromium to zero. Includes TDS meter. Budget-friendly renter option.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B01I2I2R36?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+];
+const TOP_3_PITCHER = [
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. Handles 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B01I2I2R36?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
+];
+
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
 const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
@@ -20,12 +37,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '9 min read',
     badge: 'Safety',
     badgeColor: '#ef4444',
-    topPick: {
-      label: 'Meeting EPA limits does not mean zero risk',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'NSF 58 certified. Removes PFAS, lead, arsenic, nitrates, and hundreds of other contaminants.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=under+sink+reverse+osmosis+nsf+58+certified&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -103,12 +115,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '7 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
-    topPick: {
-      label: 'Most bad taste is fixable with the right filter',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'Removes chlorine, chloramine, sulfur compounds, metals, and TDS — the most common sources of bad taste.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=water+filter+bad+taste+chlorine+nsf+42&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -204,12 +211,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Health',
     badgeColor: '#f59e0b',
-    topPick: {
-      label: 'The recommended level is 0.7 mg/L — but some want it lower',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'RO removes fluoride to near-undetectable levels. The most reliable method for households that want to reduce exposure.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=reverse+osmosis+fluoride+removal+nsf+58&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -288,12 +290,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '9 min read',
     badge: 'Filters',
     badgeColor: '#06b6d4',
-    topPick: {
-      label: 'RO removes 99%+ of PFAS, lead, arsenic, and nitrates',
-      product: 'Waterdrop G3 Tankless RO System',
-      reason: 'NSF 58 certified. 3:1 pure-to-drain ratio — far more water-efficient than traditional RO. No bulky storage tank.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=waterdrop+g3+tankless+reverse+osmosis&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -359,12 +356,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Lead',
     badgeColor: '#d97706',
-    topPick: {
-      label: 'There is no safe level of lead — the only fix is filtration or pipe replacement',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'NSF 58 certified. Removes lead to below detectable limits. The most reliable protection short of full pipe replacement.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=water+filter+lead+removal+nsf+53+certified&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_LEAD`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -435,12 +427,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '10 min read',
     badge: 'Filters',
     badgeColor: '#06b6d4',
-    topPick: {
-      label: 'Most pitcher filters do not remove lead or PFAS',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'For households with serious contamination, under-sink RO outperforms any pitcher. NSF 58 certified.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=best+water+filter+pitcher+nsf+53+lead+pfas&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_LEAD`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -523,11 +510,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '7 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
-    topPick: {
-      label: 'Radon in water primarily affects well water users in granite-heavy regions',
-      product: 'Tap Score Well Water Advanced Test',
-      reason: 'Comprehensive lab-certified well water test that includes radon along with arsenic, bacteria, nitrates, and PFAS.',
-      link: `https://www.amazon.com/s?k=tap+score+well+water+test+radon&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
       amazon: `https://www.amazon.com/s?k=well+water+radon+test+kit+certified+lab&tag=${AMAZON_TAG}`,
     },
     content: React.createElement(React.Fragment, null,
@@ -597,12 +580,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#0891b2',
-    topPick: {
-      label: 'Reverse osmosis removes 99%+ of PFAS compounds',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'NSF 58 certified for PFAS removal including PFOA, PFOS, and GenX. The most comprehensive PFAS filter available for home use.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=water+filter+pfas+removal+nsf+58+certified&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },

@@ -3,6 +3,23 @@ import type { Post } from './post-types';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
+// Shared top-3 pick sets used across blog posts
+const TOP_3_RO = [
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. 10-stage filtration.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants including PFAS.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+  { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/products/aquatru-under-sink', amazon: `https://www.amazon.com/dp/B0BVWB1Y7G?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
+];
+const TOP_3_LEAD = [
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Best-certified pitcher on the market.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR LEAD + PFAS' },
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Under-sink RO removes 99.9% of lead at the tap. Best for homeowners with aging pipes throughout the home.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'NSF 42/53 certified. Reduces lead and chromium to zero. Includes TDS meter. Budget-friendly renter option.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B01I2I2R36?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+];
+const TOP_3_PITCHER = [
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. Handles 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B01I2I2R36?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
+];
+
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
 const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
@@ -21,12 +38,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '9 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
-    topPick: {
-      label: 'Your CCR lists contaminants vs. EPA limits — compare side by side',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'NSF-certified RO narrows the gap between “legal” and “what you want to drink” for many common contaminants.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=under+sink+reverse+osmosis+nsf+58&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: (
       <>
@@ -88,12 +100,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'Treatment',
     badgeColor: '#0ea5e9',
-    topPick: {
-      label: 'Chloramine is harder to remove than free chlorine — check NSF claims',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'RO effectively handles chloramine for drinking water when the system is maintained per manufacturer guidance.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=chloramine+water+filter+nsf&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: (
       <>
@@ -148,12 +155,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '10 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
-    topPick: {
-      label: 'Wells need a certified lab panel — not just a TDS meter',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'RO is a common solution when multiple ions or nitrates/arsenic drive treatment decisions — confirm with testing first.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=well+water+test+kit+certified+laboratory&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: (
       <>
@@ -210,12 +212,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     readTime: '7 min read',
     badge: 'Health',
     badgeColor: '#f59e0b',
-    topPick: {
-      label: 'DBPs are regulated — but many people still prefer filtered drinking water',
-      product: 'Waterdrop Under-Sink RO System',
-      reason: 'RO reduces many drinking-water contaminants including DBPs for the water you consume most.',
-      link: WATERDROP,
-      amazon: `https://www.amazon.com/s?k=reverse+osmosis+under+sink+water+filter+nsf&tag=${AMAZON_TAG}`,
+    topPicks: TOP_3_RO`,
     },
     content: (
       <>
