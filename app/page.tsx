@@ -2220,9 +2220,8 @@ export default function WaterCheckup() {
         </div>
       </div>
 
-      {/* SEARCH / HERO — same gradient band as FAQ / Contaminants */}
-      <div style={{ background: 'linear-gradient(180deg, #071828 0%, #040d14 100%)', padding: '52px 24px 40px' }}>
-        <div style={{ maxWidth: 820, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      {/* SEARCH / HERO — no opaque band so fixed WaterCanvas stays visible behind content */}
+      <div style={{ maxWidth: 820, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#ffffff', letterSpacing: -1 }}>
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
@@ -2351,7 +2350,6 @@ export default function WaterCheckup() {
               <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.6 }}>{item.desc}</div>
             </div>
           ))}
-        </div>
         </div>
       </div>
 
