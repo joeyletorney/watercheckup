@@ -3,6 +3,7 @@ import type { Post } from './post-types';
 import { EXTRA_POSTS } from './extra-posts';
 import { EXTRA_POSTS_2 } from './extra-posts-2';
 import { EXTRA_POSTS_3 } from './extra-posts-3';
+import { EXTRA_POSTS_4 } from './extra-posts-4';
 
 const WATERDROP = 'https://www.waterdrop.com/?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
@@ -323,4 +324,5 @@ export const POSTS: Record<string, Post> = {
   ...EXTRA_POSTS,
   ...EXTRA_POSTS_2,
   ...EXTRA_POSTS_3,
+  ...EXTRA_POSTS_4,
 };
