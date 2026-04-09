@@ -3587,18 +3587,20 @@ export default function WaterCheckup() {
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>ABOUT WATERCHECKUP</div>
           <h3 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Why trust our data?</h3>
           <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' }}>
-            WaterCheckup pulls directly from the EPA's Safe Drinking Water Information System (SDWIS) and the UCMR5 PFAS monitoring dataset — the same databases used by regulators, researchers, and journalists. We don't generate scores or ratings. We surface the raw government data in a format anyone can understand.
+            WaterCheckup pulls live from five official government databases — the same sources used by regulators, researchers, and investigative journalists. We don't generate scores or make up ratings. We surface raw government data in plain English so anyone can understand what's actually in their water.
           </p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {[
-              { source: 'EPA SDWIS', desc: 'Violation history & system data' },
-              { source: 'UCMR5', desc: 'PFAS monitoring 2023-2025' },
-              { source: 'EWG', desc: 'Health guideline comparisons' },
-              { source: 'USGS', desc: 'Hardness & well water data' },
+              { source: 'EPA Violation Records', desc: 'Live violation history & enforcement records for 150,000+ public water systems' },
+              { source: 'EPA PFAS Testing Data', desc: 'Federal PFAS monitoring results 2023–2025 — the most comprehensive PFAS dataset ever collected' },
+              { source: 'EPA Enforcement History', desc: 'Inspection records, formal actions, and penalty data from the EPA enforcement database' },
+              { source: 'EPA Lead Tap Sampling', desc: 'Actual measured lead levels at your tap from EPA Lead & Copper Rule testing' },
+              { source: 'EPA Lead Pipe Inventory', desc: 'Federal lead service line inventory — every US utility required to publish as of October 2024' },
+              { source: 'EWG Health Guidelines', desc: 'Contaminant levels compared against stricter independent health benchmarks, not just legal limits' },
             ].map(({ source, desc }) => (
-              <div key={source} style={{ padding: '10px 14px', background: '#071828', border: '1px solid #0f2336', borderRadius: 8 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', marginBottom: 2 }}>{source}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8' }}>{desc}</div>
+              <div key={source} style={{ padding: '10px 14px', background: '#071828', border: '1px solid #0f2336', borderRadius: 8, flex: '1 1 180px' }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#0891b2', marginBottom: 3 }}>{source}</div>
+                <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{desc}</div>
               </div>
             ))}
           </div>
