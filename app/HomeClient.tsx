@@ -1951,7 +1951,7 @@ export default function WaterCheckup() {
           }}
         >
           <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#67e8f9' }}>100% FREE.</strong> No sign-up, no free trial, no credit card—no BS. Simply type in your ZIP code or town or city name and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations based on your town or city water report.
+            <strong style={{ color: '#67e8f9' }}>100% FREE.</strong> No Sign-Up, No Free Trial, No Credit Card—No BS. Simply type in your ZIP code or town or city name and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations based on Your Personalized water report.
           </p>
         </div>
 
