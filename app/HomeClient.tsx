@@ -383,6 +383,23 @@ const STEPS = [
   'Building your personalized report…',
 ];
 
+/** Hero step 3 — button id → PRODUCT.cat values (order = display sections for multi-cat) */
+const HERO_SOLUTION_CATS = {
+  pitcher: ['pitcher'],
+  countertop: ['countertop', 'countertop-filter'],
+  undersink: ['undersink', 'undersink-filter'],
+  whole: ['whole'],
+  shower: ['shower'],
+} as const;
+type HeroSolutionKey = keyof typeof HERO_SOLUTION_CATS;
+const HERO_SOLUTION_SECTION_TITLE: Record<HeroSolutionKey, string> = {
+  pitcher: 'Pitcher filters',
+  countertop: 'Countertop RO & filters',
+  undersink: 'Under-sink RO & filters',
+  whole: 'Whole-house systems',
+  shower: 'Shower filters',
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // SCORE DIAL — animated arc + count-up number
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1728,6 +1745,7 @@ export default function WaterCheckup() {
   const [heroNewsletterErr, setHeroNewsletterErr] = useState<string | null>(null);
   const [wellMode, setWellMode]         = useState(false);
   const [wellFallbackState, setWellFallbackState] = useState<string | null>(null);
+  const [heroSolutionKey, setHeroSolutionKey] = useState<HeroSolutionKey | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const loadingPanelRef = useRef<HTMLDivElement>(null);
 
@@ -1951,7 +1969,7 @@ export default function WaterCheckup() {
           }}
         >
           <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#67e8f9' }}>100% FREE.</strong> No Sign-Up, No Free Trial, No Credit Card—No BS. Simply type in your ZIP code or town or city name and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations based on Your Personalized water report.
+            <strong style={{ color: '#67e8f9' }}>100% FREE.</strong> No Sign-Up, No Free Trial, No Credit Card—No BS. Simply type in your ZIP code or town or city name and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations based on your personalized water report.
           </p>
         </div>
 
@@ -2418,21 +2436,119 @@ export default function WaterCheckup() {
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
-              {[
-                { icon: '🥤', label: 'Pitcher Filter',     best: 'Chlorine, lead, taste',         note: 'No install · Portable' },
-                { icon: '🪣', label: 'Countertop Filter',  best: 'Chlorine, PFAS, bacteria',       note: 'No plumbing needed' },
-                { icon: '🚰', label: 'Under-Counter RO',   best: '99%+ of all contaminants',       note: 'Most powerful option' },
-                { icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs',      note: 'Every tap & shower' },
-                { icon: '🚿', label: 'Shower Filter',      best: 'Chlorine & chloramine',           note: 'Healthier skin & hair' },
-              ].map(f => (
-                <div key={f.label} className="wc-card" style={{ borderRadius: 14, padding: '18px 14px', textAlign: 'center' }}>
-                  <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
-                  <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
-                  <div style={{ fontSize: 11, color: '#94a3b8' }}>{f.note}</div>
-                </div>
-              ))}
+              {([
+                { id: 'pitcher' as const, icon: '🥤', label: 'Pitcher Filter', best: 'Chlorine, lead, taste', note: 'No install · Portable' },
+                { id: 'countertop' as const, icon: '🪣', label: 'Countertop Filter', best: 'Chlorine, PFAS, bacteria', note: 'No plumbing needed' },
+                { id: 'undersink' as const, icon: '🚰', label: 'Under-Counter RO', best: '99%+ of all contaminants', note: 'Most powerful option' },
+                { id: 'whole' as const, icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs', note: 'Every tap & shower' },
+                { id: 'shower' as const, icon: '🚿', label: 'Shower Filter', best: 'Chlorine & chloramine', note: 'Healthier skin & hair' },
+              ]).map(f => {
+                const active = heroSolutionKey === f.id;
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setHeroSolutionKey(active ? null : f.id)}
+                    className="wc-card"
+                    style={{
+                      borderRadius: 14,
+                      padding: '18px 14px',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      background: active ? 'rgba(8,50,110,0.70)' : 'rgba(4,14,32,0.62)',
+                      backdropFilter: 'blur(18px)',
+                      WebkitBackdropFilter: 'blur(18px)',
+                      border: `1px solid ${active ? 'rgba(8,145,178,0.55)' : 'rgba(255,255,255,0.07)'}`,
+                      borderTop: `1px solid ${active ? 'rgba(6,182,212,0.65)' : 'rgba(255,255,255,0.13)'}`,
+                      boxShadow: active ? '0 0 28px rgba(8,145,178,.22), 0 12px 32px rgba(0,4,18,.4), inset 0 1px 0 rgba(255,255,255,.1)' : '0 8px 24px rgba(0,4,18,.35), inset 0 1px 0 rgba(255,255,255,.07)',
+                      color: 'inherit',
+                      font: 'inherit',
+                      transition: 'box-shadow .2s, border-color .2s, background .2s',
+                    }}
+                  >
+                    <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: active ? '#38bdf8' : '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
+                    <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
+                    <div style={{ fontSize: 11, color: '#94a3b8' }}>{f.note}</div>
+                    {active && <div style={{ fontSize: 10, color: '#22d3ee', marginTop: 10, fontWeight: 800, letterSpacing: 0.5 }}>▼ See picks below</div>}
+                  </button>
+                );
+              })}
             </div>
+
+            {heroSolutionKey && (() => {
+              const heroCatTitles: Record<string, string> = {
+                undersink: '🚰 Under-Sink RO',
+                'undersink-filter': '💧 Under-Sink Filter (Non-RO)',
+                countertop: '🪣 Countertop RO',
+                'countertop-filter': '🧊 Countertop Filter',
+                whole: '🏠 Whole-House',
+                shower: '🚿 Shower Filters',
+                pitcher: '🥤 Pitcher Filters',
+              };
+              const catOrder = HERO_SOLUTION_CATS[heroSolutionKey];
+              const sortExpertFirst = (a: any, b: any) => (b.expertPick ? 1 : 0) - (a.expertPick ? 1 : 0);
+              const renderHeroPickCard = (p: any) => (
+                <div key={p.id} className="wc-card" style={{ borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ background: '#fff', height: 170, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 14, position: 'relative' }}>
+                    <img src={p.img} alt={p.name} style={{ maxHeight: 148, maxWidth: '100%', objectFit: 'contain' }} onError={(e: any) => { e.target.style.display = 'none'; }} />
+                    {p.expertPick && (
+                      <div style={{ position: 'absolute', top: 8, left: 8, background: 'linear-gradient(135deg,#d97706,#f59e0b)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow: '0 2px 8px #d9770655' }}>🏅 Expert Pick</div>
+                    )}
+                    {p.quickChange && (
+                      <div style={{ position: 'absolute', top: 8, right: 8, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 10, fontWeight: 800, padding: '3px 9px', borderRadius: 5, boxShadow: '0 2px 8px #06b6d455' }}>⚡ Quick-Change</div>
+                    )}
+                  </div>
+                  <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}>
+                    <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600, letterSpacing: 0.5 }}>{p.brand?.toUpperCase()} · {p.catLabel}</div>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f9ff', lineHeight: 1.25 }}>{p.name}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <span style={{ color: '#f59e0b', fontSize: 13 }}>{'★'.repeat(Math.round(p.rating))}</span>
+                      <span style={{ fontSize: 11, color: '#94a3b8' }}>{p.rating} ({p.reviews?.toLocaleString()} reviews)</span>
+                    </div>
+                    {p.expertReason && (
+                      <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.65, flex: 1 }}>{p.expertReason}</div>
+                    )}
+                    {p.quickChange && (
+                      <div style={{ fontSize: 11, color: '#06b6d4', padding: '6px 10px', background: 'rgba(6,182,212,.08)', border: '1px solid rgba(6,182,212,.2)', borderRadius: 7 }}>
+                        ⚡ <strong>Quick-Change Filter</strong> — twist-off cartridge, no mess, no tools
+                      </div>
+                    )}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #1a3a5c', marginTop: 4 }}>
+                      <span style={{ fontSize: 24, fontWeight: 900, color: '#38bdf8' }}>${p.price}</span>
+                      <BuyButtons p={p} block />
+                    </div>
+                  </div>
+                </div>
+              );
+              return (
+                <div style={{ marginTop: 24, animation: 'wcFadeUp .45s ease-out both' }}>
+                  <div style={{ fontSize: 12, fontWeight: 800, color: '#0891b2', letterSpacing: 1, marginBottom: 14 }}>
+                    OUR TOP PICKS — {HERO_SOLUTION_SECTION_TITLE[heroSolutionKey].toUpperCase()}
+                  </div>
+                  {catOrder.length > 1 ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                      {catOrder.map(cat => {
+                        const catProds = PRODUCTS.filter((p: any) => p.cat === cat).sort(sortExpertFirst);
+                        if (!catProds.length) return null;
+                        return (
+                          <div key={cat}>
+                            <div style={{ fontSize: 11, fontWeight: 800, color: '#22d3ee', letterSpacing: 0.8, marginBottom: 10 }}>{heroCatTitles[cat] || cat}</div>
+                            <div className="wc-step4-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
+                              {catProds.map(renderHeroPickCard)}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="wc-step4-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 18 }}>
+                      {PRODUCTS.filter((p: any) => p.cat === catOrder[0]).sort(sortExpertFirst).map(renderHeroPickCard)}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </div>
 
         </div>
