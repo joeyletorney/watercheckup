@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/contaminants', priority: 0.8, changeFreq: 'weekly' as const },
     { path: '/blog',         priority: 0.85, changeFreq: 'weekly' as const },
     { path: '/quiz',         priority: 0.75, changeFreq: 'weekly' as const },
+    { path: '/well',         priority: 0.85, changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${baseUrl}${p.path}`,
     lastModified: now,

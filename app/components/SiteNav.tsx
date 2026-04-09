@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 const ITEMS: [string, string][] = [
   ['/', 'Home'],
   ['/contaminants', 'Contaminants'],
+  ['/well', 'Well Water'],
   ['/faq', 'FAQ'],
   ['/blog', 'Blog'],
   ['/quiz', 'Quiz'],
@@ -29,6 +30,7 @@ export function SiteNav({ style }: { style?: CSSProperties }) {
           pathname === href ||
           (href === '/blog' && pathname.startsWith('/blog')) ||
           (href === '/contaminants' && pathname.startsWith('/contaminants')) ||
+          (href === '/well' && pathname.startsWith('/well')) ||
           (href === '/quiz' && pathname.startsWith('/quiz'));
         return (
           <Link
