@@ -439,7 +439,7 @@ export default function QuizPage() {
         ) : null}
 
         <div style={{ marginTop: 24, textAlign: 'center', fontSize: 12, color: '#1e3a5f' }}>
-          Data sourced from EPA SDWIS, UCMR5 PFAS monitoring, and EWG · <Link href="/" style={{ color: '#1e3a5f' }}>WaterCheckup.com</Link>
+          Data sourced from 5 EPA databases + EWG health guidelines · <Link href="/" style={{ color: '#1e3a5f' }}>WaterCheckup.com</Link>
         </div>
       </div>
     </div>

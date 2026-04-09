@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: "WaterCheckup — See What's in Your Tap Water",
     template: '%s | WaterCheckup',
   },
-  description: 'Free water quality reports for any US ZIP code. Real EPA contaminant data, NSF-certified filter recommendations, and local installer referrals. Powered by live EPA SDWIS data.',
+  description: 'Free water quality reports for any US ZIP code. Data from 5 EPA databases + EWG health guidelines. NSF-certified filter recommendations and local installer referrals.',
   keywords: ['water quality', 'tap water', 'EPA water data', 'water filter', 'water contaminants', 'PFAS', 'lead in water', 'water quality report', 'NSF certified filter', 'water safety', 'tap water safety', 'drinking water quality', 'water quality by zip code'],
   authors: [{ name: 'WaterCheckup', url: 'https://watercheckup.com' }],
   creator: 'WaterCheckup',

@@ -376,9 +376,9 @@ const SEV: Record<string, { color: string; label: string }> = {
 const STEPS = [
   'Querying EPA Envirofacts API…',
   'Finding water system for ZIP…',
-  'Pulling SDWIS violation records…',
+  'Pulling EPA violation records…',
   'Fetching Lead & Copper samples…',
-  'Cross-referencing UCMR5 PFAS database…',
+  'Cross-referencing EPA PFAS testing data…',
   'Loading EWG Tap Water Atlas data…',
   'Building your personalized report…',
 ];
@@ -2066,7 +2066,7 @@ export default function WaterCheckup() {
                 fontFamily: 'var(--font-inter), system-ui, sans-serif',
               }}
             >
-              EPA SDWIS live · UCMR5 snapshot in app · EWG / USGS when available
+              EPA violation records live · Federal PFAS testing data · EWG health guidelines when available
             </div>
           </div>
         )}

@@ -75,7 +75,7 @@ const FAQS = [
     items: [
       {
         q: 'Where does WaterCheckup\'s data come from?',
-        a: 'WaterCheckup pulls real-time data from four authoritative sources: (1) EPA SDWIS (Safe Drinking Water Information System) via the EPA Envirofacts API — this includes water system information, violation history, and lead/copper sampling data for over 150,000 public water systems. (2) UCMR5 (Unregulated Contaminant Monitoring Rule, 5th edition) — the EPA\'s most comprehensive PFAS monitoring database covering 6,151 water systems tested in 2023–2024. (3) EWG Tap Water Atlas — Environmental Working Group\'s database covering 80+ major metro areas with health-based contaminant assessments. (4) USGS Arsenic and Nitrate datasets — geological and agricultural contamination data by region. Your ZIP code is matched to your specific water system (PWSID) and all available data is combined into a single report.',
+        a: 'WaterCheckup pulls from six authoritative data sources — five from the EPA and one from the Environmental Working Group (EWG). (1) EPA Violation Records — live violation history and system data for 150,000+ public water systems via the EPA Envirofacts API. (2) EPA PFAS Testing Data — federal PFAS monitoring results from 2023–2025 covering 6,151 water systems, the most comprehensive PFAS dataset ever collected. (3) EPA Enforcement History — inspection records, formal actions, and penalty data from the EPA enforcement database. (4) EPA Lead Tap Sampling — actual measured lead levels at the tap from EPA Lead & Copper Rule testing. (5) EPA Lead Pipe Inventory — federal lead service line inventory data, which all US utilities were required to publish as of October 2024. (6) EWG Health Guidelines — the Environmental Working Group\'s independent health benchmarks, which are stricter than EPA legal limits and used to flag contaminants that are legal but still a concern. Your ZIP code is matched to your specific water system and all available data is combined into a single free report.',
       },
       {
         q: 'How is the Water Quality Score calculated?',
@@ -135,7 +135,7 @@ export default function FAQPage() {
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginTop: 20 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Ready to check your actual water?</div>
-          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>Enter your ZIP code and get a free report pulled directly from EPA SDWIS, UCMR5, and EWG data.</p>
+          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>Enter your ZIP code and get a free report pulled from 5 EPA databases and EWG health guidelines.</p>
           <a href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, boxShadow: '0 4px 20px #0891b244' }}>
             Check My Water →
           </a>

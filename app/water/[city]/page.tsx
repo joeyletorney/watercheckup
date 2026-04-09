@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: { params: { city: string } })
     },
     openGraph: {
       title: `${cd.name} Tap Water Quality -- EPA Report | WaterCheckup`,
-      description: `See what's really in ${cd.name}'s tap water. Live EPA SDWIS + UCMR5 PFAS data.`,
+      description: `See what's really in ${cd.name}'s tap water. Data from 5 EPA databases + EWG health guidelines.`,
       images: [{ url: `https://watercheckup.com/api/og?city=${encodeURIComponent(cd.name + ', ' + cd.state)}&score=&grade=&violations=`, width: 1200, height: 630 }],
     },
   };
