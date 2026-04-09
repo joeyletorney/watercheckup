@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 
 export const metadata: Metadata = {
   title: 'Well Water Filter Guide 2025 — What\'s in Your Well & What Removes It | WaterCheckup',
@@ -235,7 +236,7 @@ export default function WellWaterPage() {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noopener noreferrer"
+            <a href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored"
               style={{ padding: '12px 20px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
               SimpleLab Well Water Test — from $99 →
             </a>

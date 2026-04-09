@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { SiteHeader } from './components/SiteHeader';
+import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { WaveDivider } from './components/WaveDivider';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
@@ -99,9 +100,9 @@ const ACIDIC_STATES = new Set([
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO — quick-change only ─────────────────────────────────────
-  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
+  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
   { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, expertPick:true, expertReason:'Most certified RO on the market — WQA Gold Seal plus NSF/ANSI 42, 53, 58, and 401. Removes microplastics and 90+ contaminants. Best pick for maximum certification coverage and PFAS removal.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
-  { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
+  { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:`https://www.amazon.com/dp/B08746G2XX?tag=${TAG}` },
   { id:27, cat:'undersink', catLabel:'Under-Sink RO', name:'Frizzlife PD1000-TAM4', brand:'Frizzlife', price:799, filterCostPerYear:160, rating:4.8, reviews:890, gpd:1000, stages:5, cert:['NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Chromium-6','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['1000 GPD fastest fill','Quick-change filters','Tankless compact'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/PD1000_81efd50c-480c-4ee6-b809-c2312525621a.png?v=1757987339', amazon:`https://www.amazon.com/dp/B0BK8ZRY2K?tag=${TAG}` },
   { id:28, cat:'undersink', catLabel:'Under-Sink RO', name:'AquaTru Under-Sink RO', brand:'AquaTru', price:375, filterCostPerYear:120, rating:4.6, reviews:1100, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Chromium-6','Fluoride'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['Quick-change filters','Under-sink compact','No tank'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Undersink-1-2.webp?v=1758041969', amazon:`https://www.amazon.com/dp/B0GGTSFZMY?tag=${TAG}` },
 
@@ -111,8 +112,8 @@ const PRODUCTS: any[] = [
   { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — rare for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants. Best pick for homeowners who want PFAS protection at a lower price point.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/gp/product/B076S1W5QY?tag=${TAG}` },
 
   // ── COUNTERTOP RO — no installation needed ──────────────────────────────────
-  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
-  { id:30, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19', brand:'Waterdrop', price:309, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Bacteria','Viruses','TDS'], bestFor:['PFAS','Lead','Bacteria','Viruses'], pros:['UV sterilization built-in','Quick-change filters','Zero install'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-k19-s-vis.png?v=1774504000', amazon:'https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro' },
+  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:`https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}` },
+  { id:30, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19', brand:'Waterdrop', price:309, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Bacteria','Viruses','TDS'], bestFor:['PFAS','Lead','Bacteria','Viruses'], pros:['UV sterilization built-in','Quick-change filters','Zero install'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-k19-s-vis.png?v=1774504000', amazon:`https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}` },
   { id:31, cat:'countertop', catLabel:'Countertop RO', name:'AquaTru Classic', brand:'AquaTru', price:475, filterCostPerYear:130, rating:4.6, reviews:5200, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Fluoride','Radium'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['No installation required','Quick-change filters','NSF/ANSI 401 certified'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Premium countertop RO certified to NSF/ANSI 42, 53, 58, and 401 — removes PFAS, nitrates, fluoride, and radium. No installation required, and quick-change filters swap in seconds. Best premium option for the kitchen counter.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Classic-1-1_bd723f43-efb1-4f23-b772-9352d7d7179b.webp?v=1758659574', amazon:`https://www.amazon.com/dp/B0CQS3HQ8F?tag=${TAG}` },
 
   // ── DISTILLERS — countertop ─────────────────────────────────────────────────
@@ -490,68 +491,70 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// RETAILER LINKS — per product, keyed by product id
-// Only Waterdrop uses tracked affiliate URLs. Everyone else: Amazon (or generic p.amazon) only — no extra “brand” buttons.
+// WATERDROP — buy direct (GoAffPro) + Amazon. All other brands: Amazon only.
 // ─────────────────────────────────────────────────────────────────────────────
-const RETAILER_LINKS: Record<number, { store: string; url: string; color: string; label: string }[]> = {
-  // Waterdrop G3P800
-  3:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
-  // Waterdrop D6
-  26: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
-  // Waterdrop D4 Countertop
-  6:  [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
-  // Waterdrop K19
-  30: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
-  // Waterdrop WHF3T-PG whole house
-  34: [ { store: 'Waterdrop', url: 'https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro', color: '#22d3ee', label: 'Brand' } ],
+const WATERDROP_DIRECT_BY_ID: Partial<Record<number, string>> = {
+  3: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  26: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  6: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  30: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  34: 'https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
 };
 
+const WATERDROP_AMAZON_BY_ID: Partial<Record<number, string>> = {
+  3: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
+  26: `https://www.amazon.com/dp/B08746G2XX?tag=${TAG}`,
+  6: `https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}`,
+  30: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}`,
+  34: `https://www.amazon.com/dp/B0FYCRPXLZ?tag=${TAG}`,
+};
+
+function isAmazonProductUrl(url: string | undefined): boolean {
+  if (!url) return false;
+  return /amazon\.(com|co\.uk|ca|de)\//i.test(url);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
-// BUY BUTTONS — multi-retailer expandable button group
+// BUY BUTTONS — Waterdrop: buy direct + Amazon; everyone else: Amazon only
 // ─────────────────────────────────────────────────────────────────────────────
 function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
-  const [open, setOpen] = useState(false);
-  const retailers = RETAILER_LINKS[p.id] || [];
+  const isWaterdrop = p.brand === 'Waterdrop';
+  const directUrl = isWaterdrop ? WATERDROP_DIRECT_BY_ID[p.id] : null;
+  const amazonUrl = isWaterdrop
+    ? (WATERDROP_AMAZON_BY_ID[p.id] ?? (isAmazonProductUrl(p.amazon) ? p.amazon : null))
+    : p.amazon;
+
+  const pad = block ? '11px 0' : '10px 20px';
+  const flex = block ? 1 : undefined;
+
+  if (!amazonUrl && !directUrl) {
+    return (
+      <span style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 12, fontWeight: 700, color: '#64748b', flex }}>
+        Link unavailable
+      </span>
+    );
+  }
+
+  if (isWaterdrop && directUrl && amazonUrl) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: block ? '100%' : undefined }}>
+        <a href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+          style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
+          Buy direct →
+        </a>
+        <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+          style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex }}>
+          Amazon →
+        </a>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ position: 'relative', display: block ? 'block' : 'inline-block' }}>
-      {/* Primary Amazon button */}
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-        {p.amazon ? (
-          <a href={p.amazon} target="_blank" rel="noreferrer" className="wc-buy"
-            style={{ display: 'block', textAlign: 'center', padding: block ? '11px 0' : '10px 20px', borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex: block ? 1 : undefined }}>
-            {p.amazon.includes('waterdrop') ? 'Waterdrop →' : 'Amazon →'}
-          </a>
-        ) : (
-          <span style={{ display: 'block', textAlign: 'center', padding: block ? '11px 0' : '10px 20px', borderRadius: 10, fontSize: 12, fontWeight: 700, color: '#64748b', flex: block ? 1 : undefined }}>Link unavailable</span>
-        )}
-        {retailers.length > 0 && (
-          <button onClick={() => setOpen(o => !o)}
-            style={{ padding: '10px 12px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#94a3b8'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#94a3b8'; }}>
-            {open ? '▲' : '▼'} More stores
-          </button>
-        )}
-      </div>
-
-      {/* Expanded retailer buttons */}
-      {open && retailers.length > 0 && (
-        <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          {retailers.map(r => (
-            <a key={r.store} href={r.url} target="_blank" rel="noreferrer"
-              style={{ padding: '7px 12px', borderRadius: 8, background: `${r.color}18`, border: `1px solid ${r.color}44`, color: r.color, fontSize: 11, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap', transition: 'all 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = `${r.color}28`; }}
-              onMouseLeave={e => { e.currentTarget.style.background = `${r.color}18`; }}>
-              {r.store === "Lowe's" ? '🔵' : '🌐'} {r.store} →
-            </a>
-          ))}
-          <div style={{ width: '100%', fontSize: 10, color: '#1e3a4a', marginTop: 2 }}>
-            ⓘ Prices vary by retailer · Affiliate links support this site
-          </div>
-        </div>
-      )}
-    </div>
+    <a href={amazonUrl || directUrl!} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+      style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex }}>
+      Amazon →
+    </a>
   );
 }
 
@@ -1312,7 +1315,10 @@ function ResourcesTab({ data }: { data: any }) {
     ? `https://www.epa.gov/ccr/ccr-information-consumers?PWSID=${data.pwsid}`
     : 'https://www.epa.gov/ccr';
 
-  const resources = [
+  const resources: {
+    cat: string;
+    items: { name: string; url: string; desc: string; sponsored?: boolean }[];
+  }[] = [
     { cat: '🏛️ FEDERAL', items: [
       { name: 'EPA SDWIS — Violation Search', url: `https://ofmpub.epa.gov/apex/sfdw/f?p=108:103::::::`, desc: 'Search violations for any water system nationwide' },
       { name: 'EPA Safe Drinking Water Search', url: `https://www.epa.gov/sdwa/safe-drinking-water-hotline`, desc: 'Official EPA drinking water information' },
@@ -1327,7 +1333,7 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'NRDC Drinking Water Report', url: 'https://www.nrdc.org/issues/drinking-water', desc: 'NRDC\'s national water safety resources' },
     ]},
     { cat: '⚗️ TESTING LABS', items: [
-      { name: 'SimpleLab Tap Score', url: 'https://mytapscore.com/?utm_source=watercheckup', desc: 'Mail-in water test kits — comprehensive panels starting at $89' },
+      { name: 'SimpleLab Tap Score', url: SIMPLELAB_HOME_URL, desc: 'Mail-in water test kits — comprehensive panels starting at $89', sponsored: true },
     ]},
     { cat: '🔧 INSTALLER RESOURCES', items: [
       { name: 'WQA Certified Installer Directory', url: 'https://wqa.org/find-dealer/', desc: 'Find WQA-certified water treatment professionals near you' },
@@ -1348,7 +1354,7 @@ function ResourcesTab({ data }: { data: any }) {
           <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, fontWeight: 700 }}>{section.cat}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {section.items.map(r => (
-              <a key={r.name} href={r.url} target="_blank" rel="noreferrer" style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 7, padding: '10px 14px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+              <a key={r.name} href={r.url} target="_blank" rel={'sponsored' in r && r.sponsored ? 'noopener noreferrer sponsored' : 'noreferrer'} style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 7, padding: '10px 14px', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, color: '#22d3ee', fontWeight: 700, marginBottom: 2 }}>{r.name}</div>
                   <div style={{ fontSize: 11, color: '#94a3b8' }}>{r.desc}</div>
@@ -1365,7 +1371,7 @@ function ResourcesTab({ data }: { data: any }) {
         <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
           This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test from SimpleLab (Tap Score). Your municipal supply may be clean but your home&apos;s pipes could add lead or other contaminants.
         </p>
-        <a href="https://mytapscore.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
+        <a href={SIMPLELAB_HOME_URL} target="_blank" rel="noopener noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
       </div>
     </div>
   );
@@ -1556,7 +1562,7 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
           {' '}to locate a state-certified lab near you.
         </p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
-          <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
+          <a href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
         </div>
         <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>

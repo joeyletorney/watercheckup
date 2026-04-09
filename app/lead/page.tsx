@@ -55,7 +55,21 @@ const HEALTH = [
   { who: 'Adults', detail: 'Cardiovascular effects, kidney harm, and reproductive risks increase with chronic exposure.' },
 ];
 
-const FILTERS = [
+type FilterPick = {
+  rank: number;
+  name: string;
+  brand: string;
+  price: string;
+  badge: string;
+  badgeColor: string;
+  why: string;
+  cert: string;
+  /** Waterdrop only — other brands are Amazon-only. */
+  directLink?: string;
+  amazon: string;
+};
+
+const FILTERS: FilterPick[] = [
   {
     rank: 1,
     name: 'Waterdrop G3P800 Under-Sink RO',
@@ -65,7 +79,7 @@ const FILTERS = [
     badgeColor: '#0891b2',
     why: 'Reverse osmosis is the most reliable residential technology for lead — membranes block dissolved lead along with many other metals. NSF/ANSI 58 certified systems are the standard to look for.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
-    link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
+    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
     amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20',
   },
   {
@@ -77,7 +91,6 @@ const FILTERS = [
     badgeColor: '#059669',
     why: 'Independently certified for lead reduction well beyond basic carbon pitchers — a practical option if you cannot install under-sink RO.',
     cert: 'NSF/ANSI 42, 53, 244, 401, P473',
-    link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
     amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20',
   },
   {
@@ -89,7 +102,6 @@ const FILTERS = [
     badgeColor: '#d97706',
     why: 'WQA Gold Seal plus multiple NSF standards — strong choice if you want maximum documented contaminant coverage including lead.',
     cert: 'NSF/ANSI 42, 53, 58, 401 + WQA Gold Seal',
-    link: 'https://www.aquasana.com/under-sink-water-filters',
     amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20',
   },
 ];
@@ -218,10 +230,12 @@ export default function LeadPage() {
                     <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, margin: 0 }}>{f.why}</p>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                    <a href={f.link} target="_blank" rel="noopener noreferrer"
-                      style={{ display: 'block', padding: '9px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>Buy Direct →</a>
-                    <a href={f.amazon} target="_blank" rel="noopener noreferrer"
-                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
+                    {f.directLink ? (
+                      <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
+                        style={{ display: 'block', padding: '9px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>Buy direct →</a>
+                    ) : null}
+                    <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
+                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
                   </div>
                 </div>
               </div>
