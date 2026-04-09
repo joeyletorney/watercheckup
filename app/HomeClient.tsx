@@ -2094,21 +2094,44 @@ export default function WaterCheckup() {
           style={{
             maxWidth: 620,
             margin: '32px auto 0',
-            padding: '14px 16px',
-            borderRadius: 12,
-            border: '1px solid rgba(34,211,238,0.45)',
-            boxShadow: '0 0 0 1px rgba(8,145,178,0.28), 0 0 24px rgba(6,182,212,0.12), 0 12px 40px rgba(0,8,24,0.4)',
-            background: 'linear-gradient(180deg, rgba(10,36,58,0.82) 0%, rgba(4,18,38,0.72) 100%)',
+            padding: '18px 20px',
+            borderRadius: 14,
+            border: '2px solid rgba(56, 189, 248, 0.55)',
+            boxShadow:
+              '0 0 0 1px rgba(8,145,178,0.45), 0 0 36px rgba(6,182,212,0.38), 0 0 72px rgba(34,211,238,0.18), 0 16px 48px rgba(0,8,24,0.5), inset 0 1px 0 rgba(186,230,253,0.22), inset 0 -1px 0 rgba(8,145,178,0.2)',
+            background:
+              'linear-gradient(165deg, rgba(8,52,88,0.94) 0%, rgba(6,38,72,0.9) 42%, rgba(4,24,52,0.92) 100%)',
           }}
         >
-          <div style={{ fontSize: 13, fontWeight: 800, color: '#f0fdfa', marginBottom: 4, textAlign: 'left' }}>
-            FREE Weekly Water Newsletter
+          <div
+            style={{
+              fontSize: 14,
+              fontWeight: 800,
+              marginBottom: 6,
+              textAlign: 'left',
+              letterSpacing: 0.2,
+              textShadow: '0 0 24px rgba(34,211,238,0.45), 0 2px 12px rgba(0,8,24,0.85)',
+            }}
+          >
+            <span style={{ color: '#fde047' }}>FREE</span>
+            <span style={{ color: '#f0fdfa' }}> Weekly Water </span>
+            <span style={{ color: '#22d3ee' }}>Newsletter</span>
           </div>
-          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, textAlign: 'left', lineHeight: 1.45 }}>
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: '#a5f3fc',
+              marginBottom: 12,
+              textAlign: 'left',
+              lineHeight: 1.55,
+              textShadow: '0 0 18px rgba(6,182,212,0.25)',
+            }}
+          >
             Water contaminant alerts in your area plus PFAS alerts, water filtration recommendations and more...
           </div>
           {heroNewsletterSent ? (
-            <div style={{ fontSize: 12, color: '#86efac', textAlign: 'left', lineHeight: 1.5 }}>
+            <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 600, textAlign: 'left', lineHeight: 1.55, textShadow: '0 0 16px rgba(74,222,128,0.35)' }}>
               You&apos;re subscribed. Check your inbox (and spam/promotions) for the sample report—delivery can take a minute.
             </div>
           ) : (
@@ -2119,13 +2142,39 @@ export default function WaterCheckup() {
                   onChange={e => setHeroNewsletterEmail(e.target.value)}
                   placeholder="Enter email for free weekly updates"
                   type="email"
-                  style={{ flex: '1 1 300px', minHeight: 42, padding: '10px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, outline: 'none' }}
+                  className="wc-newsletter-email-input"
+                  style={{
+                    flex: '1 1 300px',
+                    minHeight: 44,
+                    padding: '11px 14px',
+                    background: 'rgba(4, 22, 48, 0.95)',
+                    border: '2px solid rgba(56, 189, 248, 0.45)',
+                    borderRadius: 10,
+                    color: '#ecfeff',
+                    fontSize: 14,
+                    outline: 'none',
+                  }}
                 />
                 <button
                   type="button"
                   onClick={subscribeHeroNewsletter}
                   disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
-                  style={{ minHeight: 42, padding: '10px 14px', background: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'rgba(14,34,51,0.8)' : '#0891b2', border: 'none', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 700, letterSpacing: 0.6, cursor: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer' }}
+                  style={{
+                    minHeight: 44,
+                    padding: '11px 18px',
+                    background: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'rgba(14,34,51,0.85)' : 'linear-gradient(135deg, #22d3ee 0%, #0891b2 55%, #0e7490 100%)',
+                    border: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? '1px solid rgba(51,65,85,0.6)' : '1px solid rgba(165,243,252,0.55)',
+                    borderRadius: 10,
+                    color: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? '#94a3b8' : '#f0fdfa',
+                    fontSize: 13,
+                    fontWeight: 800,
+                    letterSpacing: 0.5,
+                    cursor: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer',
+                    boxShadow:
+                      heroNewsletterSending || !heroNewsletterEmail.includes('@')
+                        ? 'none'
+                        : '0 0 20px rgba(34,211,238,0.45), 0 4px 16px rgba(8,145,178,0.35), inset 0 1px 0 rgba(255,255,255,0.25)',
+                  }}
                 >
                   {heroNewsletterSending ? 'SIGNING UP...' : 'SIGN UP FREE'}
                 </button>
