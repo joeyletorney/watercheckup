@@ -119,7 +119,7 @@ const PRODUCTS = [
     removes: ['Bacteria 99.99%', 'E. coli', 'Giardia', 'Cryptosporidium', 'Viruses'],
     why: 'UV sterilization is the gold standard for private well bacteria — no chemicals, no taste change. Kills everything biological that filters miss. Whole-house 12 GPM flow rate.',
     cert: 'NSF/ANSI 55 Class B',
-    amazon: 'https://www.amazon.com/dp/B07TPC9S4Y?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B01N2YMU3O?tag=watercheck20-20',
   },
   {
     rank: 3,
