@@ -439,6 +439,18 @@ p { margin: 0; }
 }
 .wc-hero-report-btn:hover  { transform: translateY(-1px) scale(1.015); }
 .wc-hero-report-btn:active { transform: scale(.97); }
+/* Dimmed but still clearly yellow when ZIP too short or loading */
+button.wc-search-submit.wc-hero-report-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  animation: none;
+  filter: brightness(0.82) saturate(0.92);
+  color: rgba(15, 23, 42, 0.72) !important;
+  box-shadow: 0 2px 14px rgba(217, 119, 6, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+button.wc-search-submit.wc-hero-report-btn:not(:disabled) {
+  cursor: pointer;
+}
  /* ── glass secondary button ───────────────────────────────────── */
 .wc-glass-btn {
   position: relative; overflow: hidden;

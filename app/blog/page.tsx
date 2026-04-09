@@ -11,9 +11,12 @@ export const metadata: Metadata = {
   },
 };
 
-const POSTS = [
-  {
-    slug: 'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity',
+/** Full post cards for the index — keyed by slug for ordering below. */
+const POST_BY_SLUG: Record<
+  string,
+  { title: string; excerpt: string; date: string; readTime: string; badge: string; badgeColor: string }
+> = {
+  'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity': {
     title: 'Why Distilled Water and Reverse Osmosis Are the Two Best Systems for High Purity',
     excerpt:
       'For drinking water, “high purity” means removing dissolved salts, metals, and many organics — not just chlorine taste. Here is why distillation and RO sit at the top of the stack.',
@@ -22,8 +25,7 @@ const POSTS = [
     badge: 'Purity',
     badgeColor: '#06b6d4',
   },
-  {
-    slug: 'arsenic-in-well-water-epa-limit-and-treatment',
+  'arsenic-in-well-water-epa-limit-and-treatment': {
     title: 'Arsenic in Well Water: The EPA Limit and Treatment That Actually Works',
     excerpt:
       'Arsenic is a natural groundwater contaminant in many regions. Here is how to test, when 10 ppb matters, and what treatment options are common.',
@@ -32,8 +34,7 @@ const POSTS = [
     badge: 'Wells',
     badgeColor: '#a855f7',
   },
-  {
-    slug: 'microplastics-in-drinking-water-what-we-know',
+  'microplastics-in-drinking-water-what-we-know': {
     title: 'Microplastics in Drinking Water: What We Know (and What We Don’t)',
     excerpt:
       'Microplastics show up in environmental samples worldwide. Here is how they get into water, what research is still settling, and what filters may help.',
@@ -42,8 +43,7 @@ const POSTS = [
     badge: 'Science',
     badgeColor: '#8b5cf6',
   },
-  {
-    slug: 'boil-water-advisory-what-to-do-and-how-long',
+  'boil-water-advisory-what-to-do-and-how-long': {
     title: 'Boil Water Advisory: What to Do, What to Avoid, and How Long It Lasts',
     excerpt:
       'Microbiological outbreaks trigger boil notices. Here is the safe playbook — including why you should not rely on home RO during a boil advisory.',
@@ -52,8 +52,7 @@ const POSTS = [
     badge: 'Safety',
     badgeColor: '#ef4444',
   },
-  {
-    slug: 'whole-house-water-filter-vs-under-sink-which-to-choose',
+  'whole-house-water-filter-vs-under-sink-which-to-choose': {
     title: 'Whole-House Water Filter vs. Under-Sink: Which Should You Choose?',
     excerpt:
       'Point-of-entry systems treat everything entering the home; point-of-use treats drinking water. Here is how to decide without overspending.',
@@ -62,8 +61,7 @@ const POSTS = [
     badge: 'Guides',
     badgeColor: '#22c55e',
   },
-  {
-    slug: 'refrigerator-water-filters-what-they-actually-remove',
+  'refrigerator-water-filters-what-they-actually-remove': {
     title: 'Refrigerator Water Filters: What They Actually Remove',
     excerpt:
       'Fridge filters are convenient — but certification varies wildly. Here is how to read NSF claims and when you still need RO.',
@@ -72,8 +70,7 @@ const POSTS = [
     badge: 'Filters',
     badgeColor: '#06b6d4',
   },
-  {
-    slug: 'how-to-test-your-tap-water-mail-in-labs-explained',
+  'how-to-test-your-tap-water-mail-in-labs-explained': {
     title: 'How to Test Your Tap Water: Mail-In Labs, Strips, and What to Order',
     excerpt:
       'Test strips are not enough for lead or PFAS. Here is how to pick a certified lab panel, avoid contamination, and read the results.',
@@ -82,8 +79,7 @@ const POSTS = [
     badge: 'Testing',
     badgeColor: '#2dd4bf',
   },
-  {
-    slug: 'nitrate-in-well-water-infants-and-pregnancy',
+  'nitrate-in-well-water-infants-and-pregnancy': {
     title: 'Nitrate in Well Water: Why Infants and Pregnancy Need Extra Care',
     excerpt:
       'Nitrate is a common well-water issue. Here is how it causes methemoglobinemia, what the EPA limit means, and why RO is often the fix.',
@@ -92,8 +88,7 @@ const POSTS = [
     badge: 'Wells',
     badgeColor: '#a855f7',
   },
-  {
-    slug: 'chromium-6-in-drinking-water-should-you-worry',
+  'chromium-6-in-drinking-water-should-you-worry': {
     title: 'Chromium-6 in Drinking Water: Should You Worry?',
     excerpt:
       'Chromium-6 gets headlines. Here is how it differs from chromium-3, what EPA regulates, and how to interpret results.',
@@ -102,8 +97,7 @@ const POSTS = [
     badge: 'Contaminants',
     badgeColor: '#eab308',
   },
-  {
-    slug: 'bottled-water-vs-tap-water-cost-safety-and-pfas',
+  'bottled-water-vs-tap-water-cost-safety-and-pfas': {
     title: 'Bottled Water vs. Tap Water: Cost, Safety, and PFAS Reality',
     excerpt:
       'Bottled water is not automatically “purer.” Here is how regulation compares, what PFAS studies found, and when filtering tap water wins.',
@@ -112,8 +106,7 @@ const POSTS = [
     badge: 'Lifestyle',
     badgeColor: '#38bdf8',
   },
-  {
-    slug: 'hard-water-explained-scale-softeners-and-your-taps',
+  'hard-water-explained-scale-softeners-and-your-taps': {
     title: 'Hard Water Explained: Scale, Softeners, and What It Means for Your Taps',
     excerpt:
       'Calcium and magnesium make water “hard.” Here is how hardness affects appliances, whether it is a health risk, and when a softener or RO makes sense.',
@@ -122,8 +115,7 @@ const POSTS = [
     badge: 'Home',
     badgeColor: '#94a3b8',
   },
-  {
-    slug: 'disinfection-byproducts-tthm-haa5-explained',
+  'disinfection-byproducts-tthm-haa5-explained': {
     title: 'Disinfection Byproducts (TTHM & HAA5): What They Are and How to Reduce Them',
     excerpt:
       'Disinfecting water creates byproducts like TTHM and HAA5. Here is what the acronyms mean, how EPA regulates them, and practical ways to lower exposure at home.',
@@ -132,8 +124,7 @@ const POSTS = [
     badge: 'Health',
     badgeColor: '#f59e0b',
   },
-  {
-    slug: 'private-well-water-testing-101',
+  'private-well-water-testing-101': {
     title: 'Private Well Water Testing 101: What to Order and How Often',
     excerpt:
       'Wells are not covered by EPA drinking water rules the same way city water is. Here is a sensible testing schedule, which labs to use, and what results mean for treatment.',
@@ -142,8 +133,7 @@ const POSTS = [
     badge: 'Wells',
     badgeColor: '#a855f7',
   },
-  {
-    slug: 'chloramine-vs-chlorine-in-tap-water',
+  'chloramine-vs-chlorine-in-tap-water': {
     title: 'Chloramine vs. Chlorine in Tap Water: What It Means for Filters',
     excerpt:
       'Many cities switched to chloramine for longer-lasting disinfection. That changes taste, byproduct chemistry, and which filters work best — here is the practical breakdown.',
@@ -152,8 +142,7 @@ const POSTS = [
     badge: 'Treatment',
     badgeColor: '#0ea5e9',
   },
-  {
-    slug: 'how-to-read-your-consumer-confidence-report',
+  'how-to-read-your-consumer-confidence-report': {
     title: 'How to Read Your Consumer Confidence Report (CCR)',
     excerpt:
       'Every public water system sends an annual water quality report. Here is how to find yours, what the tables mean, and which lines actually matter for your health.',
@@ -162,8 +151,7 @@ const POSTS = [
     badge: 'Guides',
     badgeColor: '#22c55e',
   },
-  {
-    slug: 'what-does-epa-water-violation-mean',
+  'what-does-epa-water-violation-mean': {
     title: 'What Does an EPA Water Violation Actually Mean for Your Health?',
     excerpt: "Your water utility sent a notice. Or you found a violation on EPA's database. Here's exactly what it means, what the risk is, and what to do.",
     date: 'March 30, 2026',
@@ -171,26 +159,25 @@ const POSTS = [
     badge: 'EPA',
     badgeColor: '#7c3aed',
   },
-  {
-    slug: 'best-water-filter-for-lead-removal',
+  'best-water-filter-for-lead-removal': {
     title: 'Best Water Filters for Lead Removal in 2026 (NSF Certified)',
-    excerpt: "There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.",
+    excerpt:
+      'There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.',
     date: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',
     badgeColor: '#d97706',
   },
-  {
-    slug: 'is-pfas-in-my-tap-water',
+  'is-pfas-in-my-tap-water': {
     title: 'Is PFAS in My Tap Water? What the EPA Data Actually Shows',
-    excerpt: "PFAS \"forever chemicals\" have been found in 45% of US tap water. Here's how to find out if your water is affected — and what to do about it.",
+    excerpt:
+      'PFAS "forever chemicals" have been found in 45% of US tap water. Here\'s how to find out if your water is affected — and what to do about it.',
     date: 'March 28, 2026',
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#0891b2',
   },
-  {
-    slug: 'what-water-filter-removes-pfas',
+  'what-water-filter-removes-pfas': {
     title: 'What Water Filters Actually Remove PFAS? (NSF Certified Options Ranked)',
     excerpt: 'Not all filters that claim to remove PFAS are certified to do it. Here are the only options with real NSF 58 or NSF 473 data behind them.',
     date: 'April 22, 2026',
@@ -198,8 +185,7 @@ const POSTS = [
     badge: 'PFAS',
     badgeColor: '#0891b2',
   },
-  {
-    slug: 'radon-in-drinking-water',
+  'radon-in-drinking-water': {
     title: 'Radon in Drinking Water: Risk, Testing, and Treatment for Well Water Users',
     excerpt: 'Radon dissolves into groundwater and can off-gas in your home. Here is who is at risk, how to test, and which treatment actually works.',
     date: 'April 21, 2026',
@@ -207,8 +193,7 @@ const POSTS = [
     badge: 'Wells',
     badgeColor: '#a855f7',
   },
-  {
-    slug: 'best-water-filter-pitcher-2025',
+  'best-water-filter-pitcher-2025': {
     title: 'Best Water Filter Pitchers of 2025: Ranked by What They Actually Remove',
     excerpt: 'Filter pitchers vary wildly in what they remove. Here are the top options ranked by NSF certifications, not just taste.',
     date: 'April 20, 2026',
@@ -216,8 +201,7 @@ const POSTS = [
     badge: 'Filters',
     badgeColor: '#06b6d4',
   },
-  {
-    slug: 'lead-in-tap-water-signs-and-symptoms',
+  'lead-in-tap-water-signs-and-symptoms': {
     title: 'Lead in Tap Water: Signs, Symptoms, and How to Know If Your Home Is at Risk',
     excerpt: 'Lead has no safe exposure level. Here is how it gets into tap water, what symptoms look like, and how to find out if your home is affected.',
     date: 'April 19, 2026',
@@ -225,8 +209,7 @@ const POSTS = [
     badge: 'Lead',
     badgeColor: '#d97706',
   },
-  {
-    slug: 'reverse-osmosis-pros-and-cons',
+  'reverse-osmosis-pros-and-cons': {
     title: 'Reverse Osmosis Water Filters: Pros, Cons, and Who Actually Needs One',
     excerpt: 'RO removes more contaminants than any other home filter — but it also wastes water and removes minerals. Here is the honest tradeoff.',
     date: 'April 18, 2026',
@@ -234,8 +217,7 @@ const POSTS = [
     badge: 'Guides',
     badgeColor: '#22c55e',
   },
-  {
-    slug: 'fluoride-in-tap-water-safe-or-not',
+  'fluoride-in-tap-water-safe-or-not': {
     title: 'Fluoride in Tap Water: Is It Safe? What the Latest Research Shows',
     excerpt: 'Fluoride is added to most US public water. Here is what the science actually says about safety, optimal levels, and when filtering makes sense.',
     date: 'April 17, 2026',
@@ -243,8 +225,7 @@ const POSTS = [
     badge: 'Health',
     badgeColor: '#f59e0b',
   },
-  {
-    slug: 'why-does-tap-water-taste-bad',
+  'why-does-tap-water-taste-bad': {
     title: 'Why Does My Tap Water Taste Bad? The 7 Most Common Causes',
     excerpt: 'Bad-tasting tap water is usually caused by chlorine, chloramine, sulfur, or old pipes. Here is how to diagnose your specific issue.',
     date: 'April 16, 2026',
@@ -252,8 +233,7 @@ const POSTS = [
     badge: 'Home',
     badgeColor: '#94a3b8',
   },
-  {
-    slug: 'is-tap-water-safe-to-drink',
+  'is-tap-water-safe-to-drink': {
     title: 'Is Tap Water Safe to Drink? The Honest Answer by City and Water Source',
     excerpt: 'US tap water is generally safe — but "generally" hides a lot. Here is what the data shows and how to check your specific supply.',
     date: 'April 15, 2026',
@@ -261,7 +241,46 @@ const POSTS = [
     badge: 'Safety',
     badgeColor: '#ef4444',
   },
-];
+};
+
+/**
+ * Index order: highest-intent / headline topics first (PFAS, lead, safety, EPA),
+ * then filters & testing, contaminants & health, wells, then broader home / purity guides.
+ */
+const BLOG_INDEX_ORDER = [
+  'is-pfas-in-my-tap-water',
+  'what-water-filter-removes-pfas',
+  'best-water-filter-for-lead-removal',
+  'lead-in-tap-water-signs-and-symptoms',
+  'is-tap-water-safe-to-drink',
+  'what-does-epa-water-violation-mean',
+  'boil-water-advisory-what-to-do-and-how-long',
+  'how-to-read-your-consumer-confidence-report',
+  'how-to-test-your-tap-water-mail-in-labs-explained',
+  'bottled-water-vs-tap-water-cost-safety-and-pfas',
+  'best-water-filter-pitcher-2025',
+  'reverse-osmosis-pros-and-cons',
+  'refrigerator-water-filters-what-they-actually-remove',
+  'whole-house-water-filter-vs-under-sink-which-to-choose',
+  'chromium-6-in-drinking-water-should-you-worry',
+  'microplastics-in-drinking-water-what-we-know',
+  'fluoride-in-tap-water-safe-or-not',
+  'disinfection-byproducts-tthm-haa5-explained',
+  'chloramine-vs-chlorine-in-tap-water',
+  'why-does-tap-water-taste-bad',
+  'private-well-water-testing-101',
+  'arsenic-in-well-water-epa-limit-and-treatment',
+  'nitrate-in-well-water-infants-and-pregnancy',
+  'radon-in-drinking-water',
+  'hard-water-explained-scale-softeners-and-your-taps',
+  'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity',
+] as const;
+
+const POSTS = BLOG_INDEX_ORDER.map(slug => {
+  const meta = POST_BY_SLUG[slug];
+  if (!meta) throw new Error(`Blog index: missing slug "${slug}" in POST_BY_SLUG`);
+  return { slug, ...meta };
+});
 
 export default function BlogIndex() {
   return (

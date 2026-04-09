@@ -1992,7 +1992,12 @@ export default function WaterCheckup() {
               autoComplete="postal-code"
               aria-labelledby="wc-search-hero-heading"
             />
-            <button onClick={search} disabled={zip.trim().length < 2 || loading} className={`wc-search-submit ${zip.trim().length >= 2 && !loading ? 'wc-hero-report-btn' : ''}`.trim()} style={{ padding: '18px 34px', minHeight: 58, background: zip.trim().length >= 2 && !loading ? undefined : 'rgba(14,34,51,0.8)', border: `1px solid ${zip.length===5 && !loading ? 'transparent' : '#1e4a6a'}`, borderRadius: 14, color: zip.trim().length >= 2 && !loading ? '#0f172a' : '#94a3b8', fontSize: 16, fontWeight: 800, letterSpacing: 0.5, cursor: zip.trim().length >= 2 && !loading ? 'pointer' : 'default', alignSelf: 'stretch' }}>
+            <button
+              onClick={search}
+              disabled={zip.trim().length < 2 || loading}
+              className="wc-search-submit wc-hero-report-btn"
+              style={{ padding: '18px 34px', minHeight: 58, borderRadius: 14, fontSize: 16, fontWeight: 800, letterSpacing: 0.5, alignSelf: 'stretch' }}
+            >
               {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
             </button>
             <button
