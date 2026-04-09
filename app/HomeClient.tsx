@@ -1319,6 +1319,7 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'EPA UCMR5 PFAS Data', url: 'https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule', desc: '2023-2025 PFAS monitoring — 6,000+ water systems' },
       { name: `Your CCR Report (PWSID: ${data?.pwsid || ' — '})`, url: ccrUrl, desc: 'Annual Consumer Confidence Report from your utility' },
       { name: 'EPA ECHO Enforcement', url: `https://echo.epa.gov/`, desc: 'Enforcement actions and inspection history' },
+      { name: 'EPA Certified Lab Finder', url: 'https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water', desc: 'Find a state-certified lab in your state' },
     ]},
     { cat: '🌿 EWG & ADVOCACY', items: [
       { name: 'EWG Tap Water Atlas', url: 'https://www.ewg.org/tapwater/?utm_source=watercheckup', desc: 'EWG\'s national tap water contamination database' },
@@ -1326,9 +1327,7 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'NRDC Drinking Water Report', url: 'https://www.nrdc.org/issues/drinking-water', desc: 'NRDC\'s national water safety resources' },
     ]},
     { cat: '⚗️ TESTING LABS', items: [
-      { name: 'National Testing Labs', url: 'https://www.ntllabs.com/?utm_source=watercheckup', desc: 'Certified home water testing — PFAS, metals, bacteria' },
       { name: 'SimpleLab Tap Score', url: 'https://mytapscore.com/?utm_source=watercheckup', desc: 'Mail-in water test kits — comprehensive panels starting at $89' },
-      { name: 'EPA Certified Lab Finder', url: 'https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water', desc: 'Find a state-certified lab in your state' },
     ]},
     { cat: '🔧 INSTALLER RESOURCES', items: [
       { name: 'WQA Certified Installer Directory', url: 'https://wqa.org/find-dealer/', desc: 'Find WQA-certified water treatment professionals near you' },
@@ -1361,16 +1360,12 @@ function ResourcesTab({ data }: { data: any }) {
         </div>
       ))}
 
-      {/* Order your own test */}
       <div style={{ background: 'linear-gradient(135deg,#0d2240,#0b1e36)', border: '1px solid #7c3aed30', borderRadius: 10, padding: '16px 18px', marginTop: 8 }}>
         <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#7c3aed', marginBottom: 8, fontWeight: 700 }}>🧪 GET YOUR WATER TESTED</div>
         <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
-          This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test. Your municipal supply may be clean but your home's pipes could add lead or other contaminants.
+          This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test from SimpleLab (Tap Score). Your municipal supply may be clean but your home&apos;s pipes could add lead or other contaminants.
         </p>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <a href="https://mytapscore.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
-          <a href="https://www.ntllabs.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 5, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
-        </div>
+        <a href="https://mytapscore.com/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
       </div>
     </div>
   );
@@ -1556,11 +1551,12 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
       <div style={{ marginBottom: 32, padding: '18px 22px', background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 12 }}>
         <div style={{ fontSize: 13, fontWeight: 800, color: '#a78bfa', marginBottom: 8 }}>⚗️ STEP 1 — TEST YOUR WELL FIRST</div>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 14px', lineHeight: 1.7 }}>
-          Before buying any filter, get a certified lab test. You need to know exactly what&apos;s in your water to choose the right treatment system.
+          Before buying any filter, get a certified lab test. You need to know exactly what&apos;s in your water to choose the right treatment system. You can also use the{' '}
+          <a href="https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water" target="_blank" rel="noreferrer" style={{ color: '#a78bfa', fontWeight: 700 }}>EPA certified lab finder</a>
+          {' '}to locate a state-certified lab near you.
         </p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
           <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 12, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
-          <a href="https://www.ntllabs.com/well-water-testing/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #7c3aed55', borderRadius: 7, color: '#94a3b8', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>National Testing Labs →</a>
         </div>
         <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>

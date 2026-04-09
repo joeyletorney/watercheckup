@@ -163,7 +163,7 @@ const PRODUCTS = [
 ];
 
 const TESTING_STEPS = [
-  { num: 1, title: 'Start with a certified lab panel', desc: 'A basic dip-strip test won\'t catch arsenic, nitrates, or bacteria accurately. Get a certified mail-in lab test that covers the contaminants relevant to your state and geology. SimpleLab (Tap Score) and National Testing Laboratories are the two most trusted options.' },
+  { num: 1, title: 'Start with a certified lab panel', desc: 'A basic dip-strip test won\'t catch arsenic, nitrates, or bacteria accurately. SimpleLab (Tap Score) offers mail-in panels built for well water, or use the EPA\'s directory to find a state-certified lab and order tests that match your state and geology.' },
   { num: 2, title: 'Test annually for bacteria — more after flooding', desc: 'Bacteria is the #1 well risk and can appear suddenly after heavy rain, flooding, or nearby construction. EPA recommends testing annually minimum. Test immediately after any flooding event.' },
   { num: 3, title: 'Match your filter to your test results', desc: 'Don\'t buy a filter before you know what\'s in your water. A UV sterilizer does nothing for arsenic. An RO system does nothing for iron. The test tells you exactly what you\'re dealing with.' },
   { num: 4, title: 'Retest after installing a filter', desc: 'Confirm your filter is actually working. Retest 30 days after installation to verify contaminant levels have dropped to safe levels.' },
@@ -236,14 +236,14 @@ export default function WellWaterPage() {
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup" target="_blank" rel="noopener noreferrer"
               style={{ padding: '12px 20px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
               SimpleLab Well Water Test — from $99 →
             </a>
-            <a href="https://www.ntllabs.com/well-water-testing/?utm_source=watercheckup" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water" target="_blank" rel="noopener noreferrer"
               style={{ padding: '12px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#94a3b8', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
-              National Testing Laboratories →
+              EPA certified lab finder →
             </a>
           </div>
         </div>
@@ -346,6 +346,8 @@ export default function WellWaterPage() {
           <span style={s.label}>RELATED GUIDES</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
+              { href: '/pfas', label: 'PFAS in Drinking Water — EPA Limits & Filters' },
+              { href: '/lead', label: 'Lead in Tap Water — LCR Data, Service Lines & Filters' },
               { href: '/blog/is-pfas-in-my-tap-water', label: 'Is PFAS in My Tap Water?' },
               { href: '/blog/best-water-filter-for-lead-removal', label: 'Best Water Filters for Lead Removal' },
               { href: '/contaminants', label: 'Water Contaminant Guide — Every Major Contaminant Explained' },
