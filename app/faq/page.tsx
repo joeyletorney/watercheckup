@@ -22,6 +22,18 @@ const FAQS = [
         q: 'What is the difference between the MCL and the MCLG?',
         a: 'The MCLG (Maximum Contaminant Level Goal) is what the EPA considers safe for health with no margin of risk — it is set purely on health science. The MCL (Maximum Contaminant Level) is the enforceable legal limit — it is set based on what\'s achievable with the best available technology at a reasonable cost. For many of the most dangerous contaminants — including lead, arsenic, PFAS, and chromium-6 — the MCLG is zero, meaning no safe level exists. But the legal MCL allows detectable amounts because removing them completely is difficult. This gap is why filtering your water even when it "passes" EPA standards makes sense.',
       },
+      {
+        q: 'Why does my tap water smell or taste like chlorine?',
+        a: 'Utilities add chlorine or chloramine to disinfect water as it travels through pipes — a small residual keeps bacteria from growing in the distribution system. A strong bleach-like smell usually means more disinfectant is present (often after maintenance, line flushing, or summer algae control). It does not automatically mean your water is unsafe, but it can irritate skin and lungs in the shower and affect taste. Carbon filters and shower filters reduce chlorine and chloramine at the tap; your Consumer Confidence Report lists which disinfectant your system uses.',
+      },
+      {
+        q: 'What is chloramine, and how is it different from chlorine?',
+        a: 'Chloramine is chlorine combined with ammonia. Many large systems switched to chloramine because it lasts longer in long distribution mains and produces fewer regulated disinfection byproducts than free chlorine in some cases. Chloramine is harder to remove than chlorine — standard carbon needs longer contact time or catalytic carbon. If your utility uses chloramine, check filter labels for chloramine reduction claims and NSF certification where applicable.',
+      },
+      {
+        q: 'What are disinfection byproducts (THMs and HAAs)?',
+        a: 'When chlorine or chloramine reacts with natural organic matter in water, it forms disinfection byproducts (DBPs), including trihalomethanes (THMs) and haloacetic acids (HAAs). Long-term exposure to high levels is linked to cancer risk in epidemiological studies. EPA regulates total THMs and HAAs as group limits. Carbon filtration and RO reduce many DBPs. Your CCR lists DBP results — they often matter more than the chlorine taste alone.',
+      },
     ],
   },
   {
@@ -47,6 +59,18 @@ const FAQS = [
         q: 'How often should I change my water filter?',
         a: 'It depends on the filter type and your water quality: Pitcher filters (Brita, PUR, ZeroWater): every 2–3 months or per manufacturer guidelines. Under-sink RO pre/post-carbon filters: every 6–12 months. RO membranes: every 2–3 years with normal use. Whole-house carbon filters: every 6 months to 6 years depending on the system (the Pelican PC600 has a 6-year filter life). Shower filters: every 6 months or 10,000–15,000 gallons. If you notice a change in taste, odor, or your TDS reading rises significantly, change the filter sooner. Always follow the manufacturer schedule — an overdue filter can actually begin releasing contaminants back into the water.',
       },
+      {
+        q: 'What does NSF or WQA certification mean on a filter?',
+        a: 'NSF International (now often referenced as NSF/ANSI standards) and the Water Quality Association (WQA) are independent bodies that test whether treatment devices actually meet published standards for structural integrity and contaminant reduction. A label that only says "NSF-style" or "tested to NSF" is not the same as official certification — look for a specific standard number (e.g., 42, 53, 58, 401) and verify on the NSF or WQA database when in doubt. Certification ties marketing claims to repeatable lab results.',
+      },
+      {
+        q: 'I rent my home — can I still use a good water filter?',
+        a: 'Yes. Pitchers, countertop RO units, and faucet-mounted filters usually need no permanent plumbing changes. Traditional under-sink RO may require drilling and T-valves; some landlords allow it with approval, and others prefer removable options. Document any installation in writing if you alter plumbing. For drinking and cooking, a countertop or pitcher certified for your concerns (lead, PFAS, etc.) is often the best no-permission path.',
+      },
+      {
+        q: 'Do UV (ultraviolet) purifiers remove lead, PFAS, or nitrates?',
+        a: 'UV is excellent at inactivating bacteria, viruses, and some cysts — it is not a chemical removal technology. It does not remove dissolved metals, PFAS, nitrates, hardness, or chlorine. UV is often paired with sediment and carbon prefilters, and sometimes with RO, in well-water or rainwater systems. Match the technology to the contaminant: for lead, PFAS, or nitrates, rely on certified carbon, RO, or other media designed for those pollutants.',
+      },
     ],
   },
   {
@@ -68,6 +92,14 @@ const FAQS = [
         q: 'Is bottled water safer than tap water?',
         a: 'Not necessarily — and often no. Bottled water is regulated by the FDA, not the EPA, and FDA standards are actually less strict in some areas. About 25–45% of bottled water is simply filtered tap water (including some major brands). Bottled water is not required to disclose its contaminant testing results to consumers, while public utilities must publish annual Consumer Confidence Reports. Additionally, plastic bottles can leach BPA and phthalates into the water, particularly when stored in heat. A certified home filter system provides water that is equal to or better than most bottled water at a fraction of the cost — typically $0.10–$0.25 per gallon vs. $1–$3 per gallon for bottled.',
       },
+      {
+        q: 'What are nitrates, and who is most at risk?',
+        a: 'Nitrates (NO₃) often enter groundwater from fertilizer, septic systems, and animal agriculture. The EPA MCL is 10 mg/L as nitrogen — primarily to protect infants under six months, who can develop methemoglobinemia ("blue baby syndrome"), which impairs oxygen carrying in blood. Pregnant women and people with certain health conditions should also take nitrate seriously. Boiling does not remove nitrates — it can concentrate them. Reverse osmosis, ion exchange, and distillation are standard treatment approaches.',
+      },
+      {
+        q: 'What is chromium-6, and how do I reduce it?',
+        a: 'Chromium-6 (hexavalent chromium) is a toxic form of chromium associated with industrial pollution and some natural geology — it gained attention from the Erin Brockovich case. The EPA regulates total chromium in drinking water; California previously set a separate public health goal for chromium-6 that influenced public awareness. Not all carbon filters remove chromium-6 reliably; reverse osmosis is the most common residential approach for reducing dissolved hexavalent chromium. Check your water report for total chromium detections and use certified equipment if levels concern you.',
+      },
     ],
   },
   {
@@ -80,6 +112,14 @@ const FAQS = [
       {
         q: 'How is the Water Quality Score calculated?',
         a: 'The WaterCheckup score (0–100) is calculated based on: violation history weighted by severity (health-based violations score worse than reporting violations), the number of open vs. resolved violations, detection of high-priority contaminants like PFAS and lead, and how close detected contaminant levels are to EPA limits. A score of 80+ means no significant issues on record. 65–79 indicates elevated contaminants or past violations worth monitoring. Below 65 indicates serious issues — multiple violations, open enforcement actions, or detection of health-critical contaminants. A high score still doesn\'t mean you shouldn\'t filter — it means your utility is compliant, not that your water is contaminant-free.',
+      },
+      {
+        q: 'What is the UCMR, and why does it show up in my report?',
+        a: 'The Unregulated Contaminant Monitoring Rule (UCMR) is an EPA program that requires large and representative sets of public water systems to test for contaminants not yet fully regulated — so officials can decide if future rules are needed. UCMR data is why you sometimes see PFAS, chromium-6, or other "emerging" contaminants in reports before they become enforceable standards. A detection in UCMR does not always mean a violation; it means the substance was found at measurable levels during the monitoring cycle.',
+      },
+      {
+        q: 'Is WaterCheckup affiliated with the EPA or my water utility?',
+        a: 'No. WaterCheckup is an independent consumer tool. We aggregate publicly available EPA and other third-party datasets to make them easier to read; we do not speak for the EPA, your state regulator, or your water provider. Always confirm critical decisions (health, pregnancy, infants, legal compliance) with your utility, a certified lab, or a licensed professional. Official enforcement and billing questions belong to your water system directly.',
       },
     ],
   },

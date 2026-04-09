@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: 'inherit' }}>
-      <SiteHeader variant="inner" showCta innerBarStyle={{ background: '#091825' }} />
+      <SiteHeader variant="inner" showCta />
 
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '64px 24px 80px', textAlign: 'center' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>404</div>

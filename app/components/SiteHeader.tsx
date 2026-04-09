@@ -73,9 +73,10 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
   if (variant === 'inner') {
     return (
       <div
+        className="wc-site-header"
         style={{
           borderBottom: '1px solid #0f2336',
-          padding: '14px 24px',
+          padding: '12px 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -104,15 +105,14 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
 
   return (
     <div
-      className="wc-site-header-bar"
+      className="wc-site-header"
       style={{
         borderBottom: '1px solid #0f2336',
-        padding: '0 28px',
-        minHeight: 60,
+        padding: '12px 24px',
         display: 'flex',
         alignItems: 'center',
         gap: 12,
-        background: '#091825',
+        flexWrap: 'wrap',
       }}
     >
       <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
