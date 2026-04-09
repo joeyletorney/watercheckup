@@ -182,7 +182,7 @@ export default function ContaminantsPage() {
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
         <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
         <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
-          What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on EPA data and independent research.
+          What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
         </p>
         <input
           value={search}

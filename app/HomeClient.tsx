@@ -1969,7 +1969,7 @@ export default function WaterCheckup() {
           }}
         >
           <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#67e8f9' }}>100% FREE.</strong> No Sign-Up, No Free Trial, No Credit Card—No BS. Simply type in your ZIP code or town or city name and see what&apos;s in your water using real public data (including things like PFAS where reported). Then get expert filtration recommendations based on your personalized water report.
+            <strong style={{ color: '#67e8f9' }}>100% FREE. No login. No credit card.</strong> The only free tool that combines EPA violation records, PFAS testing data, lead tap sampling, enforcement history, and lead pipe inventory — then tells you exactly which filter removes what's in your water.
           </p>
         </div>
 
@@ -2174,7 +2174,7 @@ export default function WaterCheckup() {
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '28px auto 28px', maxWidth: 720 }}>
           {[
             { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
-            { icon: '🔬', title: 'Real EPA Data', desc: 'Live SDWIS (violations, lead/copper samples) plus a bundled UCMR5 PFAS snapshot we refresh when EPA releases updates—government data, not marketing copy.' },
+            { icon: '🔬', title: 'Real EPA Data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — plus EWG health guidelines. All in one ZIP search.' },
             { icon: '💧', title: 'Free Filter Solutions', desc: 'Top-rated systems matched to your exact contaminants. No guessing.' },
           ].map(item => (
             <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
@@ -3584,10 +3584,10 @@ export default function WaterCheckup() {
 
         {/* Trust / About section */}
         <div style={{ padding: '32px 28px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>ABOUT WATERCHECKUP</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP IS DIFFERENT</div>
           <h3 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Why trust our data?</h3>
           <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' }}>
-            WaterCheckup pulls live from five official government databases — the same sources used by regulators, researchers, and investigative journalists. We don't generate scores or make up ratings. We surface raw government data in plain English so anyone can understand what's actually in their water.
+            WaterCheckup is the only free tool that combines EPA violation records, PFAS testing data, lead tap sampling, enforcement history, and lead pipe inventory — then translates it into plain English and tells you exactly which filter removes what's detected in your water. No login. No paywall. Five EPA databases plus EWG health guidelines, all in one ZIP code search.
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {[

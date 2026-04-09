@@ -273,7 +273,7 @@ export default function BlogIndex() {
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
           <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px' }}>The WaterCheckup Blog</h1>
           <p style={{ fontSize: 16, color: '#94a3b8', margin: 0, lineHeight: 1.7 }}>
-            Expert guides on tap water safety, PFAS, lead, EPA violations, and the right filters — backed by real EPA data.
+            Expert guides on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases and tells you exactly which filter removes what's in your water.
           </p>
         </div>
 
