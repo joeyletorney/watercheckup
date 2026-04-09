@@ -37,6 +37,9 @@ body {
 
 /* Root-level safeguard: keep the original ocean background even if page-level styles are edited */
 body.wc-ocean-bg {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #000c1c !important;
   background-image:
     var(--wc-bg-noise),
@@ -102,6 +105,11 @@ select:focus-visible,
 textarea:focus-visible {
   outline: 2px solid rgba(34, 211, 238, 0.9);
   outline-offset: 2px;
+}
+
+#wc-main {
+  flex: 1 0 auto;
+  width: 100%;
 }
 
 #wc-main:focus {
@@ -299,6 +307,25 @@ p { margin: 0; }
   0%,100%{ box-shadow:0 0 18px rgba(8,145,178,.35),0 4px 22px rgba(6,182,212,.22),inset 0 1px 0 rgba(180,240,255,.18) }
   50%   { box-shadow:0 0 55px rgba(8,145,178,.72),0 4px 45px rgba(6,182,212,.52),0 0 90px rgba(6,182,212,.12),inset 0 1px 0 rgba(180,240,255,.28) }
 }
+@keyframes wcHeroCtaPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 16px rgba(245, 158, 11, 0.5),
+      0 4px 20px rgba(217, 119, 6, 0.38),
+      0 12px 32px rgba(245, 158, 11, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(180, 83, 9, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 36px rgba(251, 191, 36, 0.72),
+      0 4px 28px rgba(217, 119, 6, 0.48),
+      0 0 72px rgba(245, 158, 11, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.58),
+      inset 0 -1px 0 rgba(180, 83, 9, 0.18);
+  }
+}
 @keyframes wcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
 @keyframes wcFadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 @keyframes wcShimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
@@ -370,7 +397,7 @@ p { margin: 0; }
   box-shadow: 0 34px 82px rgba(0,4,18,0.66), 0 0 34px rgba(8,145,178,0.14),
               inset 0 1px 0 rgba(255,255,255,0.14) !important;
 }
- /* ── analyze (primary CTA) button ─────────────────────────────── */
+ /* ── analyze (primary CTA, e.g. Find My Solution) ───────────────── */
 .wc-analyze {
   position: relative; overflow: hidden;
   background: linear-gradient(160deg, rgba(8,145,178,0.88), rgba(6,182,212,0.92)) !important;
@@ -391,6 +418,27 @@ p { margin: 0; }
 }
 .wc-analyze:hover  { transform: translateY(-1px) scale(1.015); }
 .wc-analyze:active { transform: scale(.97); }
+ /* ── hero GET FREE REPORT — amber/yellow for visibility on cyan panel ── */
+.wc-hero-report-btn {
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #fbbf24 0%, #f59e0b 45%, #d97706 100%) !important;
+  border: 1px solid rgba(253, 230, 138, 0.95) !important;
+  border-top-color: rgba(255, 251, 235, 0.9) !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.45), 0 4px 20px rgba(217, 119, 6, 0.35),
+              0 12px 32px rgba(245, 158, 11, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 0 rgba(180, 83, 9, 0.25) !important;
+  animation: wcHeroCtaPulse 3.8s ease-in-out infinite;
+  transition: transform .15s ease;
+  color: #0f172a !important;
+}
+.wc-hero-report-btn::after {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,.28) 0%, transparent 100%);
+  pointer-events: none;
+}
+.wc-hero-report-btn:hover  { transform: translateY(-1px) scale(1.015); }
+.wc-hero-report-btn:active { transform: scale(.97); }
  /* ── glass secondary button ───────────────────────────────────── */
 .wc-glass-btn {
   position: relative; overflow: hidden;
@@ -608,6 +656,14 @@ button.wc-nav-badge-epa:focus-visible {
     0 0 56px rgba(6, 182, 212, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
+.wc-search-submit.wc-hero-report-btn:focus-visible {
+  border-color: rgba(254, 243, 199, 0.98) !important;
+  box-shadow:
+    0 0 0 3px rgba(245, 158, 11, 0.45),
+    0 0 28px rgba(251, 191, 36, 0.55),
+    0 0 48px rgba(217, 119, 6, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -623,13 +679,18 @@ button.wc-nav-badge-epa:focus-visible {
   .wc-shimmer,
   .wc-metal,
   .wc-analyze,
+  .wc-hero-report-btn,
   .wc-step {
     animation: none !important;
+  }
+  .wc-hero-report-btn {
+    box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
   }
   .wc-card,
   .wc-featured-card,
   .wc-img-zoom,
   .wc-analyze,
+  .wc-hero-report-btn,
   .wc-glass-btn,
   .wc-buy,
   .wc-sit,

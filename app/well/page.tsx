@@ -274,8 +274,8 @@ export default function WellWaterPage() {
           <h2 style={s.h2}>The best certified filters for well water</h2>
           <p style={s.p}>Matched to the most common well water contaminants. All NSF certified. Waterdrop includes buy direct plus Amazon; other picks link to Amazon until we add more partner links.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {PRODUCTS.map((p, i) => (
-              <div key={p.rank} style={{ padding: '18px 20px', background: i === 0 ? 'rgba(8,145,178,0.07)' : '#0d2240', border: i === 0 ? '1px solid rgba(8,145,178,0.35)' : '1px solid #1a3a5c', borderRadius: 12 }}>
+            {PRODUCTS.map(p => (
+              <div key={p.rank} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
@@ -294,7 +294,7 @@ export default function WellWaterPage() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                     {'directLink' in p && p.directLink ? (
                       <a href={p.directLink} target="_blank" rel="noopener noreferrer"
-                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap' }}>
+                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#e2e8f0', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #2d4a6c', whiteSpace: 'nowrap' }}>
                         Buy direct →
                       </a>
                     ) : null}

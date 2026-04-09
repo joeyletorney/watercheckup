@@ -217,8 +217,8 @@ export default function LeadPage() {
             Replace cartridges on schedule — expired filters lose performance.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {FILTERS.map((f, i) => (
-              <div key={f.rank} style={{ padding: '18px 20px', background: i === 0 ? 'rgba(8,145,178,0.07)' : '#0d2240', border: i === 0 ? '1px solid rgba(8,145,178,0.35)' : '1px solid #1a3a5c', borderRadius: 12 }}>
+            {FILTERS.map(f => (
+              <div key={f.rank} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
@@ -232,7 +232,7 @@ export default function LeadPage() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                     {f.directLink ? (
                       <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>Buy direct →</a>
+                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Buy direct →</a>
                     ) : null}
                     <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
                       style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>

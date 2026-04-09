@@ -15,10 +15,11 @@ const ITEMS: [string, string][] = [
   ['/quiz', 'Filter Finder'],
 ];
 
-export function SiteNav({ style }: { style?: CSSProperties }) {
+export function SiteNav({ style, ariaLabel }: { style?: CSSProperties; ariaLabel?: string }) {
   const pathname = usePathname();
   return (
     <nav
+      aria-label={ariaLabel}
       style={{
         display: 'flex',
         gap: 4,

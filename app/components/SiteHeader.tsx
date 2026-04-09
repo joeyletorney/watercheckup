@@ -92,7 +92,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
           >
             <LogoWordmark height={44} />
           </Link>
-          <SiteNav />
+          <SiteNav ariaLabel="Main" />
         </div>
         {showCta ? (
           <Link href="/" style={CTA_STYLE}>
@@ -118,7 +118,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
       <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
         <LogoWordmark />
       </Link>
-      <SiteNav style={navStyle} />
+      <SiteNav ariaLabel="Main" style={navStyle} />
       {trailing ? (
         <div className="wc-nav-badges" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           {trailing}

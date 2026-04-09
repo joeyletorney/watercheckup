@@ -5,6 +5,7 @@ import './globals.css'
 import Script from 'next/script'
 import { WaterCanvas } from './components/WaterCanvas'
 import { GaPageView } from './components/GaPageView'
+import { SiteFooter } from './components/SiteFooter'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -144,6 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="wc-main" tabIndex={-1}>
           {children}
         </main>
+        <SiteFooter />
       </body>
     </html>
   )
