@@ -15,8 +15,9 @@ export const metadata: Metadata = {
 
 const s = {
   h2: { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' } as React.CSSProperties,
-  p:  { fontSize: 15, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties,
-  label: { fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#0891b2', marginBottom: 10, display: 'block' } as React.CSSProperties,
+  /** Body / secondary copy — brighter than slate-400 for readability on dark panels */
+  p: { fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties,
+  label: { fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#38bdf8', marginBottom: 10, display: 'block' } as React.CSSProperties,
 };
 
 const CONTAMINANTS = [
@@ -175,7 +176,7 @@ export default function WellWaterPage() {
 
         {/* Hero */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>PRIVATE WELL WATER GUIDE</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 2, marginBottom: 12 }}>PRIVATE WELL WATER GUIDE</div>
           <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Well Water Filters — What&apos;s in Your Well and What Removes It
           </h1>
@@ -228,7 +229,7 @@ export default function WellWaterPage() {
                 <div style={{ width: 26, height: 26, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{step.num}</div>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{step.title}</div>
-                  <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65 }}>{step.desc}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65 }}>{step.desc}</div>
                 </div>
               </div>
             ))}
@@ -239,7 +240,7 @@ export default function WellWaterPage() {
               SimpleLab Well Water Test — from $99 →
             </a>
             <a href="https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water" target="_blank" rel="noopener noreferrer"
-              style={{ padding: '12px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#94a3b8', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
+              style={{ padding: '12px 20px', background: '#0d2240', border: '1px solid #2d4a6c', borderRadius: 8, color: '#e2e8f0', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
               EPA certified lab finder →
             </a>
           </div>
@@ -256,11 +257,11 @@ export default function WellWaterPage() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
                   <span style={{ fontSize: 18 }}>{c.icon}</span>
                   <span style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9' }}>{c.name}</span>
-                  <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: `${c.color}22`, color: c.color, border: `1px solid ${c.color}44` }}>{c.risk}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: `${c.color}28`, color: c.color, border: `1px solid ${c.color}55` }}>{c.risk}</span>
                 </div>
-                <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 8px' }}>{c.desc}</p>
-                <div style={{ fontSize: 12, color: '#22d3ee', fontWeight: 600, marginBottom: 6 }}>✓ {c.removes}</div>
-                <div style={{ fontSize: 11, color: '#475569' }}>Highest risk: {c.states}</div>
+                <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 8px' }}>{c.desc}</p>
+                <div style={{ fontSize: 12, color: '#67e8f9', fontWeight: 600, marginBottom: 6 }}>✓ {c.removes}</div>
+                <div style={{ fontSize: 11, color: '#b8cad9' }}>Highest risk: {c.states}</div>
               </div>
             ))}
           </div>
@@ -277,15 +278,15 @@ export default function WellWaterPage() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 16, fontWeight: 900, color: '#94a3b8' }}>#{p.rank}</span>
+                      <span style={{ fontSize: 16, fontWeight: 900, color: '#b8c9d9' }}>#{p.rank}</span>
                       <span style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9' }}>{p.name}</span>
                       <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: p.badgeColor, color: '#fff', padding: '2px 8px', borderRadius: 4 }}>{p.badge}</span>
                     </div>
-                    <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 8 }}>{p.brand} · {p.price} · {p.cert}</div>
-                    <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, margin: '0 0 10px' }}>{p.why}</p>
+                    <div style={{ fontSize: 11, color: '#b8cad9', marginBottom: 8 }}>{p.brand} · {p.price} · {p.cert}</div>
+                    <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 10px' }}>{p.why}</p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                       {p.removes.map(r => (
-                        <span key={r} style={{ fontSize: 11, padding: '2px 8px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 4, color: '#94a3b8' }}>{r}</span>
+                        <span key={r} style={{ fontSize: 11, padding: '2px 8px', background: '#071828', border: '1px solid #2a4a6e', borderRadius: 4, color: '#cbd5e1' }}>{r}</span>
                       ))}
                     </div>
                   </div>
@@ -297,7 +298,7 @@ export default function WellWaterPage() {
                       </a>
                     ) : null}
                     <a href={p.amazon} target="_blank" rel="noopener noreferrer"
-                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#e2e8f0', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #2d4a6c', whiteSpace: 'nowrap' }}>
                       Amazon →
                     </a>
                   </div>
@@ -309,9 +310,9 @@ export default function WellWaterPage() {
 
         {/* State risk CTA */}
         <div style={{ marginBottom: 48, padding: '28px 28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 16, textAlign: 'center' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PERSONALIZED WELL WATER REPORT</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 2, marginBottom: 10 }}>PERSONALIZED WELL WATER REPORT</div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>See the specific risks for your state</h2>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
             Enter your ZIP code to see the well water risk profile for your state — based on USGS and EPA groundwater data —
             plus personalized filter recommendations matched to what&apos;s most likely in your well.
           </p>
@@ -334,7 +335,7 @@ export default function WellWaterPage() {
             ].map(({ q, a }) => (
               <div key={q} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 8 }}>{q}</div>
-                <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{a}</p>
               </div>
             ))}
           </div>
@@ -353,8 +354,8 @@ export default function WellWaterPage() {
               { href: '/quiz', label: 'Take the Filter Quiz — Get Matched to the Right System' },
               { href: '/', label: 'Check Your ZIP Code — Full EPA Water Report' },
             ].map(({ href, label }) => (
-              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#94a3b8', fontSize: 14, fontWeight: 600 }}>
-                {label} <span style={{ color: '#0891b2' }}>→</span>
+              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #2d4a6c', borderRadius: 8, textDecoration: 'none', color: '#e2e8f0', fontSize: 14, fontWeight: 600 }}>
+                {label} <span style={{ color: '#38bdf8' }}>→</span>
               </Link>
             ))}
           </div>
