@@ -33,6 +33,23 @@ const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS }> = {
   'seattle':       { label: 'Building pipe lead risk', picks: PITCHER_PICKS },
 };
 const DEFAULT_PICKS = { label: 'Contaminants detected in local water', picks: RO_PICKS };
+const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress: boolean }> = {
+  'chicago': { url: 'https://sli.chicagowaterquality.org/', label: 'Chicago Address-Level Lookup', hasAddress: true },
+  'new-york': { url: 'https://www.nyc.gov/site/dep/environment/lead-service-lines.page', label: 'NYC Lead Service Line Info', hasAddress: false },
+  'philadelphia': { url: 'https://arcg.is/1vPmCC', label: 'Philadelphia Service Line Map', hasAddress: true },
+  'detroit': { url: 'https://detroitmi.gov/departments/water-and-sewerage-department/water/lead-service-line-replacement', label: 'Detroit Lead Line Replacement', hasAddress: false },
+  'cleveland': { url: 'https://www.clevelandwater.com/your-water/lead', label: 'Cleveland Water Lead Info', hasAddress: false },
+  'milwaukee': { url: 'https://city.milwaukee.gov/water/lead', label: 'Milwaukee Water Lead Info', hasAddress: false },
+  'pittsburgh': { url: 'https://www.pwsa.us/lead', label: 'Pittsburgh Water Lead Info', hasAddress: false },
+  'denver': { url: 'https://www.denverwater.org/tap/lead', label: 'Denver Water Lead Info', hasAddress: false },
+  'boston': { url: 'https://www.mwra.com/04water/html/leadpipe.htm', label: 'MWRA Lead Service Line Info', hasAddress: false },
+  'washington-dc': { url: 'https://dcwater.com/lead', label: 'DC Water Lead Info', hasAddress: false },
+  'minneapolis': { url: 'https://www.minneapolismn.gov/resident-services/home-property/water/lead/', label: 'Minneapolis Lead Info', hasAddress: false },
+  'st-louis': { url: 'https://www.stlwater.com/lead-service-line-inventory/', label: 'St. Louis Lead Service Line Inventory', hasAddress: false },
+  'indianapolis': { url: 'https://www.citizensenergygroup.com/My-Home/Utilities/Water/Lead-Service-Lines', label: 'Indianapolis Lead Service Lines', hasAddress: false },
+  'baltimore': { url: 'https://www.bwsh2o.com/lead', label: 'Baltimore Water Lead Info', hasAddress: false },
+};
+
 
 export async function generateStaticParams() {
   return Object.keys(CITIES).map(city => ({ city }));
@@ -176,6 +193,51 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
             </div>
           ))}
+        </div>
+
+        {/* LEAD SERVICE LINE LOOKUP */}
+        <div style={{ marginBottom: 32, padding: '20px 22px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>LEAD SERVICE LINE RISK</div>
+          <div style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Does your street have lead pipes?</div>
+          <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 16px' }}>
+            As of October 2024, all US water utilities must publish a public inventory of their lead service lines —
+            the pipes connecting the water main to your home. Even if your utility water tests clean at the treatment plant,
+            lead can leach from these pipes into your tap. Homes built before 1986 are most at risk.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {(() => {
+              const custom = SERVICE_LINE_URLS[params.city];
+              const pwsid = cd?.pwsid;
+              return (
+                <>
+                  {custom && (
+                    <a href={custom.url} target="_blank" rel="noopener noreferrer"
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 9, textDecoration: 'none' }}>
+                      <div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: '#fbbf24' }}>{custom.label} →</div>
+                        <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>
+                          {custom.hasAddress ? 'Enter your address to check your exact service line material' : 'Lead pipe replacement info and local resources'}
+                        </div>
+                      </div>
+                    </a>
+                  )}
+                  {pwsid && (
+                    <a href={'https://sdwis.epa.gov/ords/sfdw_pub/r/sfdw/sdwis_fed_reports_public/service-line-inventory?pwsid=' + pwsid}
+                      target="_blank" rel="noopener noreferrer"
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 9, textDecoration: 'none' }}>
+                      <div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8' }}>EPA Official Service Line Inventory →</div>
+                        <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>Federal LCRR inventory data for {cd?.system} · PWSID {pwsid}</div>
+                      </div>
+                    </a>
+                  )}
+                  <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 4, lineHeight: 1.6 }}>
+                    💡 Homes built before 1986 may have lead solder or service lines. A filter certified NSF/ANSI 53 removes lead at the tap regardless of pipe material.
+                  </div>
+                </>
+              );
+            })()}
+          </div>
         </div>
 
         {/* Email capture */}

@@ -2712,6 +2712,38 @@ export default function WaterCheckup() {
 
               {data.contaminants?.length > 0 && (
                 <>
+                  
+                  {/* LEAD TAP SAMPLE BANNER */}
+                  {(() => {
+                    const leadC = data.contaminants.find((c: any) => c.name === 'Lead');
+                    if (!leadC) return null;
+                    const ppb = leadC.level;
+                    const isHigh = ppb > 15;
+                    const isMod  = ppb > 5 && ppb <= 15;
+                    const color  = isHigh ? '#ef4444' : isMod ? '#f59e0b' : '#22d3ee';
+                    const bg     = isHigh ? 'rgba(239,68,68,0.07)' : isMod ? 'rgba(245,158,11,0.07)' : 'rgba(34,211,238,0.05)';
+                    const border = isHigh ? 'rgba(239,68,68,0.3)' : isMod ? 'rgba(245,158,11,0.3)' : 'rgba(34,211,238,0.2)';
+                    const icon   = isHigh ? '⚠️' : isMod ? '⚡' : '✅';
+                    const msg    = isHigh
+                      ? 'Lead detected at ' + ppb + ' ppb — ABOVE the EPA action level of 15 ppb. Lead causes permanent neurological damage. There is no safe level.'
+                      : isMod
+                      ? 'Lead detected at ' + ppb + ' ppb — below EPA action level (15 ppb) but above what health scientists consider safe. Children and pregnant women are most at risk.'
+                      : 'Lead detected at ' + ppb + ' ppb — below EPA action level of 15 ppb. Note: the CDC states there is no safe level of lead exposure.';
+                    return (
+                      <div style={{ background: bg, border: '1px solid ' + border, borderRadius: 10, padding: '14px 16px', marginBottom: 16, display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                        <span style={{ fontSize: 18, flexShrink: 0 }}>{icon}</span>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 11, fontWeight: 800, color: color, letterSpacing: 1, marginBottom: 4 }}>LEAD TAP SAMPLE — EPA MEASURED DATA</div>
+                          <div style={{ fontSize: 13, color: '#e2e8f0', lineHeight: 1.6 }}>{msg}</div>
+                          <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>Source: EPA Lead & Copper Rule tap sampling &nbsp;·&nbsp; 90th percentile result &nbsp;·&nbsp; {leadC.note}</div>
+                        </div>
+                        <div style={{ fontSize: 22, fontWeight: 900, color: color, flexShrink: 0, textAlign: 'right' }}>
+                          <div>{ppb}</div>
+                          <div style={{ fontSize: 10, fontWeight: 600, color: '#94a3b8' }}>ppb</div>
+                        </div>
+                      </div>
+                    );
+                  })()}
                   <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>CONTAMINANT ANALYSIS — CLICK ROWS FOR HEALTH INFO</div>
                   {data.contaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
                 </>
