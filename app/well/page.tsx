@@ -94,6 +94,7 @@ const CONTAMINANTS = [
   },
 ];
 
+/** `directLink` only when we have a partner URL (Waterdrop). Other picks: Amazon only until affiliates are set up. */
 const PRODUCTS = [
   {
     rank: 1,
@@ -105,7 +106,7 @@ const PRODUCTS = [
     removes: ['Arsenic >99%', 'Nitrates >97%', 'PFAS >99%', 'Lead >99%', 'Heavy metals', 'TDS'],
     why: 'Reverse osmosis is the only affordable residential technology that handles arsenic, nitrates, and PFAS simultaneously. The G3P800 is the highest-rated under-sink RO on the market — 800 GPD, tankless, 10-stage filtration.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
-    link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
+    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
     amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20',
   },
   {
@@ -118,7 +119,6 @@ const PRODUCTS = [
     removes: ['Bacteria 99.99%', 'E. coli', 'Giardia', 'Cryptosporidium', 'Viruses'],
     why: 'UV sterilization is the gold standard for private well bacteria — no chemicals, no taste change. Kills everything biological that filters miss. Whole-house 12 GPM flow rate.',
     cert: 'NSF/ANSI 55 Class B',
-    link: 'https://www.amazon.com/dp/B07TPC9S4Y?tag=watercheck20-20',
     amazon: 'https://www.amazon.com/dp/B07TPC9S4Y?tag=watercheck20-20',
   },
   {
@@ -131,8 +131,7 @@ const PRODUCTS = [
     removes: ['Iron up to 12 ppm', 'Manganese', 'Hydrogen sulfide', 'Rotten-egg odor'],
     why: 'If your well water stains fixtures orange or smells like rotten eggs, this is the system. Whole-house oxidizing media filter handles iron and manganese levels that would destroy standard RO membranes.',
     cert: 'WQA tested',
-    link: 'https://www.amazon.com/gp/product/B08TMZYYQY?tag=watercheck20-20',
-    amazon: 'https://www.amazon.com/gp/product/B08TMZYYQY?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B08TMZYYQY?tag=watercheck20-20',
   },
   {
     rank: 4,
@@ -144,7 +143,6 @@ const PRODUCTS = [
     removes: ['Low pH', 'Corrosive water', 'Copper leaching', 'Lead leaching from pipes'],
     why: 'If your water is acidic (pH below 7) it is actively corroding your copper pipes and leaching lead and copper into your drinking water. Calcite media raises pH naturally — no chemicals, no electricity.',
     cert: 'NSF/ANSI 61',
-    link: 'https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=watercheck20-20',
     amazon: 'https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=watercheck20-20',
   },
   {
@@ -157,10 +155,9 @@ const PRODUCTS = [
     removes: ['Hardness', 'Scale', 'Calcium', 'Magnesium'],
     why: 'Salt-free conditioners neutralize hardness minerals without adding sodium — better for health and the environment. SpringWell leads the category with a lifetime warranty and zero operating costs.',
     cert: 'NSF/ANSI 61, WQA tested',
-    link: 'https://www.amazon.com/s?k=SpringWell+SS1+salt+free+water+softener+conditioner&tag=watercheck20-20',
     amazon: 'https://www.amazon.com/s?k=SpringWell+SS1+salt+free+water+softener+conditioner&tag=watercheck20-20',
   },
-];
+] as const;
 
 const TESTING_STEPS = [
   { num: 1, title: 'Start with a certified lab panel', desc: 'A basic dip-strip test won\'t catch arsenic, nitrates, or bacteria accurately. SimpleLab (Tap Score) offers mail-in panels built for well water, or use the EPA\'s directory to find a state-certified lab and order tests that match your state and geology.' },
@@ -273,7 +270,7 @@ export default function WellWaterPage() {
         <div style={{ marginBottom: 48 }}>
           <span style={s.label}>TOP 5 WELL WATER FILTERS — EXPERT PICKS</span>
           <h2 style={s.h2}>The best certified filters for well water</h2>
-          <p style={s.p}>Matched to the most common well water contaminants. All NSF certified. All carry affiliate links that support this free tool.</p>
+          <p style={s.p}>Matched to the most common well water contaminants. All NSF certified. Waterdrop includes buy direct plus Amazon; other picks link to Amazon until we add more partner links.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {PRODUCTS.map((p, i) => (
               <div key={p.rank} style={{ padding: '18px 20px', background: i === 0 ? 'rgba(8,145,178,0.07)' : '#0d2240', border: i === 0 ? '1px solid rgba(8,145,178,0.35)' : '1px solid #1a3a5c', borderRadius: 12 }}>
@@ -293,12 +290,14 @@ export default function WellWaterPage() {
                     </div>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                    <a href={p.link} target="_blank" rel="noopener noreferrer"
-                      style={{ display: 'block', padding: '9px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
-                      Buy Direct →
-                    </a>
+                    {'directLink' in p && p.directLink ? (
+                      <a href={p.directLink} target="_blank" rel="noopener noreferrer"
+                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap' }}>
+                        Buy direct →
+                      </a>
+                    ) : null}
                     <a href={p.amazon} target="_blank" rel="noopener noreferrer"
-                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 600, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
                       Amazon →
                     </a>
                   </div>
