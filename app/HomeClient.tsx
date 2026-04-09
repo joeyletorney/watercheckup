@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { SiteHeader } from './components/SiteHeader';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
-import { WaveDivider } from './components/WaveDivider';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -2084,7 +2083,7 @@ export default function WaterCheckup() {
           className="wc-newsletter-box"
           style={{
             maxWidth: 620,
-            margin: '12px auto 0',
+            margin: '32px auto 0',
             padding: '14px 16px',
             borderRadius: 12,
             border: '1px solid rgba(34,211,238,0.45)',
@@ -2175,10 +2174,8 @@ export default function WaterCheckup() {
             </div>
           )}
 
-        <WaveDivider />
-
         {/* 3-column why us */}
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '28px auto 28px', maxWidth: 720 }}>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '24px auto 28px', maxWidth: 720 }}>
           {[
             { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
             { icon: '🔬', title: 'Real EPA Data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
