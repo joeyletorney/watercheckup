@@ -1995,7 +1995,17 @@ export default function WaterCheckup() {
               onClick={search}
               disabled={zip.trim().length < 2 || loading}
               className="wc-search-submit wc-hero-report-btn"
-              style={{ padding: '18px 34px', minHeight: 58, borderRadius: 14, fontSize: 16, fontWeight: 800, letterSpacing: 0.5, alignSelf: 'stretch' }}
+              style={{
+                padding: '18px 34px',
+                minHeight: 58,
+                borderRadius: 14,
+                fontSize: 16,
+                fontWeight: 800,
+                letterSpacing: 0.5,
+                alignSelf: 'stretch',
+                color: '#fbbf24',
+                WebkitTextFillColor: '#fbbf24',
+              }}
             >
               {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
             </button>

@@ -137,6 +137,8 @@ p { margin: 0; }
   text-shadow:
     0 2px 28px rgba(0, 8, 24, 0.85),
     0 1px 2px rgba(0, 0, 0, 0.45);
+  animation: wcHeroH1Float 6.8s ease-in-out infinite;
+  transform-origin: 50% 42%;
 }
 
 /* Shared by SiteHeader bar + inner — matches nav on all pages (ocean bg shows through). */
@@ -308,6 +310,27 @@ p { margin: 0; }
   50%   { box-shadow:0 0 55px rgba(8,145,178,.72),0 4px 45px rgba(6,182,212,.52),0 0 90px rgba(6,182,212,.12),inset 0 1px 0 rgba(180,240,255,.28) }
 }
 @keyframes wcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@keyframes wcHeroH1Float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.3deg);
+  }
+  18% {
+    transform: translate3d(2px, -6px, 0) rotate(0.25deg);
+  }
+  35% {
+    transform: translate3d(-3px, -10px, 0) rotate(-0.2deg);
+  }
+  52% {
+    transform: translate3d(1px, -7px, 0) rotate(0.35deg);
+  }
+  70% {
+    transform: translate3d(-2px, -12px, 0) rotate(-0.15deg);
+  }
+  88% {
+    transform: translate3d(1px, -5px, 0) rotate(0.1deg);
+  }
+}
 @keyframes wcFadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 @keyframes wcShimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes wcReveal { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
@@ -399,41 +422,87 @@ p { margin: 0; }
 }
 .wc-analyze:hover  { transform: translateY(-1px) scale(1.015); }
 .wc-analyze:active { transform: scale(.97); }
- /* ── hero GET FREE REPORT — same amber as Lead card “Brain damage · No safe level” (#f59e0b) ── */
+@keyframes wcHeroReportPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 28px rgba(251, 191, 36, 0.45),
+      0 0 56px rgba(245, 158, 11, 0.28),
+      0 4px 24px rgba(217, 119, 6, 0.35),
+      inset 0 1px 0 rgba(254, 243, 199, 0.35),
+      inset 0 0 0 1px rgba(253, 224, 71, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(253, 224, 71, 0.62),
+      0 0 80px rgba(245, 158, 11, 0.38),
+      0 6px 32px rgba(217, 119, 6, 0.42),
+      inset 0 1px 0 rgba(255, 251, 235, 0.45),
+      inset 0 0 0 1px rgba(254, 240, 138, 0.32);
+  }
+}
+ /* ── hero GET FREE REPORT — vivid amber (Lead risk #f59e0b family), bright on cyan ── */
 .wc-hero-report-btn {
   position: relative; overflow: hidden;
-  background: transparent !important;
-  border: 2px solid rgba(245, 158, 11, 0.55) !important;
-  border-top-color: rgba(251, 191, 36, 0.65) !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-fill-color: #fbbf24 !important;
+  background: linear-gradient(
+    165deg,
+    rgba(253, 224, 71, 0.28) 0%,
+    rgba(245, 158, 11, 0.2) 45%,
+    rgba(217, 119, 6, 0.14) 100%
+  ) !important;
+  border: 2px solid rgba(253, 224, 71, 0.82) !important;
+  border-top-color: rgba(254, 249, 195, 0.95) !important;
   box-shadow:
-    0 0 22px rgba(245, 158, 11, 0.22),
-    inset 0 0 0 1px rgba(245, 158, 11, 0.14) !important;
-  animation: none;
-  transition: transform 0.15s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-  color: #f59e0b !important;
-  text-shadow: 0 0 26px rgba(245, 158, 11, 0.38), 0 1px 2px rgba(0, 8, 24, 0.65);
+    0 0 28px rgba(251, 191, 36, 0.45),
+    0 0 56px rgba(245, 158, 11, 0.28),
+    0 4px 24px rgba(217, 119, 6, 0.35),
+    inset 0 1px 0 rgba(254, 243, 199, 0.35),
+    inset 0 0 0 1px rgba(253, 224, 71, 0.2) !important;
+  animation: wcHeroReportPulse 2.8s ease-in-out infinite;
+  transition: transform 0.15s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  color: #fbbf24 !important;
+  text-shadow:
+    0 0 1px #fde047,
+    0 0 18px rgba(253, 224, 71, 0.95),
+    0 0 36px rgba(245, 158, 11, 0.9),
+    0 0 56px rgba(245, 158, 11, 0.55),
+    0 2px 5px rgba(0, 8, 24, 0.85);
 }
 .wc-hero-report-btn:hover {
-  transform: translateY(-1px) scale(1.015);
-  border-color: rgba(251, 191, 36, 0.88) !important;
-  color: #fbbf24 !important;
+  transform: translateY(-1px) scale(1.02);
+  animation: none;
+  border-color: rgba(254, 249, 195, 0.98) !important;
+  color: #fde047 !important;
+  -webkit-text-fill-color: #fde047 !important;
+  filter: saturate(1.08) brightness(1.06);
   box-shadow:
-    0 0 28px rgba(245, 158, 11, 0.36),
-    inset 0 0 0 1px rgba(251, 191, 36, 0.22) !important;
+    0 0 44px rgba(253, 224, 71, 0.72),
+    0 0 88px rgba(245, 158, 11, 0.42),
+    0 8px 36px rgba(217, 119, 6, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 0 1px rgba(254, 243, 199, 0.35) !important;
 }
 .wc-hero-report-btn:active { transform: scale(.97); }
 /* Dimmed when ZIP too short or loading */
 button.wc-search-submit.wc-hero-report-btn:disabled {
-  opacity: 0.48;
+  opacity: 0.62;
   cursor: not-allowed !important;
   filter: none;
-  color: rgba(245, 158, 11, 0.45) !important;
-  text-shadow: none;
-  border-color: rgba(245, 158, 11, 0.25) !important;
+  animation: none;
+  color: #f59e0b !important;
+  -webkit-text-fill-color: #f59e0b !important;
+  text-shadow: 0 0 14px rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.08) !important;
+  border-color: rgba(245, 158, 11, 0.28) !important;
   box-shadow: none !important;
 }
 button.wc-search-submit.wc-hero-report-btn:not(:disabled) {
   cursor: pointer;
+  color: #fbbf24 !important;
+  -webkit-text-fill-color: #fbbf24 !important;
 }
  /* ── glass secondary button ───────────────────────────────────── */
 .wc-glass-btn {
@@ -653,11 +722,12 @@ button.wc-nav-badge-epa:focus-visible {
     inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 .wc-search-submit.wc-hero-report-btn:focus-visible {
-  border-color: rgba(251, 191, 36, 0.92) !important;
+  border-color: rgba(254, 249, 195, 0.98) !important;
   box-shadow:
-    0 0 0 3px rgba(245, 158, 11, 0.38),
-    0 0 28px rgba(245, 158, 11, 0.42),
-    inset 0 0 0 1px rgba(251, 191, 36, 0.18) !important;
+    0 0 0 3px rgba(245, 158, 11, 0.5),
+    0 0 36px rgba(253, 224, 71, 0.55),
+    0 0 64px rgba(245, 158, 11, 0.35),
+    inset 0 1px 0 rgba(255, 251, 235, 0.4) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -674,17 +744,25 @@ button.wc-nav-badge-epa:focus-visible {
   .wc-shimmer,
   .wc-metal,
   .wc-analyze,
+  .wc-hero-h1,
   .wc-hero-report-btn,
   .wc-step {
     animation: none !important;
   }
   .wc-hero-report-btn {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.24), inset 0 0 0 1px rgba(245, 158, 11, 0.14) !important;
+    animation: none !important;
+    box-shadow:
+      0 0 28px rgba(251, 191, 36, 0.42),
+      0 0 52px rgba(245, 158, 11, 0.26),
+      0 4px 22px rgba(217, 119, 6, 0.32),
+      inset 0 1px 0 rgba(254, 243, 199, 0.32),
+      inset 0 0 0 1px rgba(253, 224, 71, 0.18) !important;
   }
   .wc-card,
   .wc-featured-card,
   .wc-img-zoom,
   .wc-analyze,
+  .wc-hero-h1,
   .wc-hero-report-btn,
   .wc-glass-btn,
   .wc-buy,
