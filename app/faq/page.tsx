@@ -131,18 +131,17 @@ export default function FAQPage() {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0' }}>
 
-      <SiteHeader variant="bar" navStyle={{ marginLeft: 24 }} />
+      <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
 
-      {/* HERO */}
-      <div style={{ background: 'linear-gradient(180deg, rgba(7, 24, 40, 0.75) 0%, rgba(4, 13, 20, 0.88) 100%)', padding: '52px 24px 40px', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Frequently Asked Questions</h1>
-        <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
-          Straight answers about water quality, contaminants, filters, and what the EPA data actually means for your family.
-        </p>
-      </div>
+      <div style={{ maxWidth: 780, margin: '0 auto', padding: '48px 20px 80px' }}>
+        {/* HERO — ocean bg like other guide pages (no dark band under nav tabs) */}
+        <div style={{ textAlign: 'center', marginBottom: 40 }}>
+          <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Frequently Asked Questions</h1>
+          <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
+            Straight answers about water quality, contaminants, filters, and what the EPA data actually means for your family.
+          </p>
+        </div>
 
-      {/* FAQ CONTENT */}
-      <div style={{ maxWidth: 780, margin: '0 auto', padding: '32px 20px 80px' }}>
         {FAQS.map(section => (
           <div key={section.category} style={{ marginBottom: 44 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid #0f2336' }}>

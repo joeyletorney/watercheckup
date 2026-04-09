@@ -12,7 +12,7 @@ const ITEMS: [string, string][] = [
   ['/well', 'Well Water'],
   ['/faq', 'FAQ'],
   ['/blog', 'Blog'],
-  ['/quiz', 'Quiz'],
+  ['/quiz', 'Filter Finder'],
 ];
 
 export function SiteNav({ style }: { style?: CSSProperties }) {

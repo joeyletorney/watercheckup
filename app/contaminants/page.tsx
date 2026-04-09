@@ -175,25 +175,24 @@ export default function ContaminantsPage() {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0' }}>
 
-      <SiteHeader variant="bar" navStyle={{ marginLeft: 24 }} />
+      <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
 
-      {/* HERO */}
-      <div style={{ background: 'linear-gradient(180deg, rgba(7, 24, 40, 0.75) 0%, rgba(4, 13, 20, 0.88) 100%)', padding: '52px 24px 40px', textAlign: 'center' }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
-        <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
-        <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
-          What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
-        </p>
-        <input
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="Search contaminants (e.g. Lead, PFAS, Chlorine...)"
-          style={{ width: '100%', maxWidth: 460, padding: '14px 18px', background: '#0d2545', border: '1px solid #0f2d40', borderRadius: 10, color: '#f1f5f9', fontSize: 15, outline: 'none' }}
-        />
-      </div>
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px 80px' }}>
+        {/* HERO — same chrome as PFAS/Lead (ocean bg, no full-bleed dark bar above nav) */}
+        <div style={{ textAlign: 'center', marginBottom: 40 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
+          <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
+          <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
+            What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
+          </p>
+          <input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search contaminants (e.g. Lead, PFAS, Chlorine...)"
+            style={{ width: '100%', maxWidth: 460, padding: '14px 18px', background: '#0d2545', border: '1px solid #0f2d40', borderRadius: 10, color: '#f1f5f9', fontSize: 15, outline: 'none' }}
+          />
+        </div>
 
-      {/* GRID */}
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: '16px 20px 80px' }}>
         <div style={{ fontSize: 13, color: '#334155', marginBottom: 20 }}>Showing {filtered.length} of {CONTAMINANTS.length} contaminants</div>
 
         {filtered.map(c => {
