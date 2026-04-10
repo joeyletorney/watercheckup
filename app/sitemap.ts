@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/contaminants', priority: 0.8, changeFreq: 'weekly' as const },
     { path: '/blog',         priority: 0.85, changeFreq: 'weekly' as const },
     { path: '/quiz',         priority: 0.75, changeFreq: 'weekly' as const },
+    { path: '/worst-water',  priority: 0.95, changeFreq: 'monthly' as const },
     { path: '/well',         priority: 0.85, changeFreq: 'monthly' as const },
     { path: '/pfas',         priority: 0.9, changeFreq: 'monthly' as const },
     { path: '/lead',         priority: 0.9, changeFreq: 'monthly' as const },
