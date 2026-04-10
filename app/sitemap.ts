@@ -1,21 +1,35 @@
 import { MetadataRoute } from 'next'
 import { POSTS } from './blog/posts'
-import { WATER_CITY_SLUGS } from './water/[city]/cities-data'
+import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
+
+const STATE_NAMES: Record<string, string> = {
+  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
+  CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',
+  HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',
+  KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',
+  MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',
+  MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',
+  NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',
+  ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',
+  RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',
+  TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',
+  WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'Washington DC',
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://watercheckup.com'
   const now = new Date()
 
   const staticEntries = [
-    { path: '',              priority: 1.0, changeFreq: 'daily'  as const },
-    { path: '/faq',          priority: 0.8, changeFreq: 'weekly' as const },
-    { path: '/contaminants', priority: 0.8, changeFreq: 'weekly' as const },
+    { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
+    { path: '/faq',          priority: 0.8, changeFreq: 'weekly'  as const },
+    { path: '/contaminants', priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/blog',         priority: 0.85, changeFreq: 'weekly' as const },
     { path: '/quiz',         priority: 0.75, changeFreq: 'weekly' as const },
     { path: '/worst-water',  priority: 0.95, changeFreq: 'monthly' as const },
     { path: '/well',         priority: 0.85, changeFreq: 'monthly' as const },
-    { path: '/pfas',         priority: 0.9, changeFreq: 'monthly' as const },
-    { path: '/lead',         priority: 0.9, changeFreq: 'monthly' as const },
+    { path: '/pfas',         priority: 0.9,  changeFreq: 'monthly' as const },
+    { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${baseUrl}${p.path}`,
     lastModified: now,
@@ -37,5 +51,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticEntries, ...blogPostEntries, ...cityEntries]
+  // State hub pages - higher priority than individual cities
+  const stateAbbrs = [...new Set(Object.values(CITIES).map(cd => cd.state))]
+  const stateEntries = stateAbbrs.map(abbr => {
+    const name = STATE_NAMES[abbr] || abbr
+    const slug = name.toLowerCase().replace(/\s+/g, '-')
+    return {
+      url: `${baseUrl}/water/${slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }
+  })
+
+  return [...staticEntries, ...blogPostEntries, ...stateEntries, ...cityEntries]
 }

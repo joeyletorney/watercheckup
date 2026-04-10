@@ -100,8 +100,41 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cityName = params.city.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `Is ${cd?.name ?? cityName} tap water safe to drink?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `${cd?.name ?? cityName} tap water meets federal standards but EPA monitoring data — including PFAS levels and violation history — is shown on this page. A certified reverse osmosis filter is recommended for sensitive populations.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `Does ${cd?.name ?? cityName} water have PFAS?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `EPA UCMR5 monitoring data for ${cd?.name ?? cityName} (water system ${cd?.pwsid ?? ''}) is shown above. Only a reverse osmosis system or NSF 58-certified carbon block filter reliably removes PFAS from tap water.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `What water filter is best for ${cd?.name ?? cityName}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `For ${cd?.name ?? cityName}'s water profile, a reverse osmosis system addresses the widest range of contaminants including PFAS, lead, and disinfection byproducts. The Waterdrop G3P800 and Aquasana SmartFlow are top-rated options.`
+        }
+      }
+    ]
+  };
+
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
 
