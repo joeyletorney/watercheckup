@@ -5,6 +5,23 @@ import TopPickBox from './TopPickBox';
 import EmailCapture from './EmailCapture';
 
 import { CITIES } from './cities-data';
+import ucmr5Raw from '../../../lib/ucmr5.json';
+
+// UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
+const UCMR5 = ucmr5Raw as Record<string, [number, number, [string, number, number, number][], number?]>;
+
+// EPA MCLs (ppt) for regulated PFAS as of April 2024
+const EPA_MCL: Record<string, number> = {
+  PFOA: 4, PFOS: 4, PFNA: 10, PFHxS: 10, 'HFPO-DA': 10,
+};
+const EPA_HAZARD_INDEX = ['PFNA', 'PFHxS', 'HFPO-DA']; // hazard index compounds
+
+function getPfasData(pwsid: string) {
+  const entry = UCMR5[pwsid];
+  if (!entry) return null;
+  const [maxPpt, violations, compounds, hardness] = entry;
+  return { maxPpt, violations, compounds, hardness };
+}
 
 
 // Top 3 filter picks per city
@@ -137,6 +154,103 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 ))}
               </div>
             </div>
+
+            {/* PFAS DATA SECTION */}
+            {(() => {
+              const pfas = getPfasData(cd.pwsid);
+              if (!pfas) {
+                return (
+                  <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING -- EPA UCMR5 DATA</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                      <span style={{ fontSize: 20 }}>📋</span>
+                      <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0' }}>No UCMR5 data on file for this system</div>
+                    </div>
+                    <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+                      The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) required systems serving 3,300+ people to test for 29 PFAS compounds between 2023–2025. This system either was not required to test, reported no detections, or has not yet submitted results to the federal database.
+                    </p>
+                    <p style={{ fontSize: 12, color: '#64748b', margin: 0 }}>
+                      Source: EPA UCMR5 national dataset · Data current as of 2025
+                    </p>
+                  </div>
+                );
+              }
+              const { maxPpt, violations, compounds, hardness } = pfas;
+              const hasDetections = compounds.length > 0;
+              const overEPALimit = compounds.filter(([,, overEPA]) => overEPA === 1);
+              const overHealthLimit = compounds.filter(([,,, overHealth]) => overHealth === 1);
+              const statusColor = violations > 0 ? '#ef4444' : hasDetections ? '#f59e0b' : '#22d3ee';
+              const statusLabel = violations > 0 ? 'VIOLATIONS DETECTED' : hasDetections ? 'PFAS DETECTED (BELOW MCL)' : 'NO PFAS DETECTED';
+              const statusIcon = violations > 0 ? '🚨' : hasDetections ? '⚠️' : '✅';
+
+              return (
+                <div style={{ marginBottom: 40 }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+                    PFAS TESTING DATA -- EPA UCMR5
+                  </div>
+
+                  {/* Status banner */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', background: `${statusColor}12`, border: `1px solid ${statusColor}35`, borderRadius: 10, marginBottom: 16 }}>
+                    <span style={{ fontSize: 22 }}>{statusIcon}</span>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 800, color: statusColor, letterSpacing: 1 }}>{statusLabel}</div>
+                      <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 3 }}>
+                        {hasDetections
+                          ? `Max detected: ${maxPpt} ppt · ${compounds.length} compound${compounds.length !== 1 ? 's' : ''} found · ${violations} EPA MCL violation${violations !== 1 ? 's' : ''}`
+                          : 'All 29 PFAS compounds tested below detection limits'}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Compounds table */}
+                  {hasDetections && (
+                    <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 120px 120px', gap: 0 }}>
+                        {/* Header */}
+                        {['Compound', 'Level (ppt)', 'EPA MCL', 'Health Limit'].map((h, i) => (
+                          <div key={h} style={{ padding: '10px 14px', fontSize: 10, fontWeight: 800, color: '#64748b', letterSpacing: 1, background: '#040d14', borderBottom: '1px solid #1a3a5c', textAlign: i > 0 ? 'center' : 'left' }}>
+                            {h}
+                          </div>
+                        ))}
+                        {/* Rows */}
+                        {compounds.sort((a, b) => b[1] - a[1]).map(([name, level, overEPA, overHealth], idx) => (
+                          <>
+                            <div key={`${name}-name`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 600, color: '#e2e8f0', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
+                              {name}
+                              {EPA_MCL[name] !== undefined && <span style={{ fontSize: 10, color: '#64748b', marginLeft: 6 }}>regulated</span>}
+                            </div>
+                            <div key={`${name}-level`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 700, color: overHealth ? '#ef4444' : overEPA ? '#f59e0b' : '#94a3b8', textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
+                              {level.toFixed(1)}
+                            </div>
+                            <div key={`${name}-epa`} style={{ padding: '10px 14px', fontSize: 12, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: EPA_MCL[name] !== undefined ? (overEPA ? '#ef4444' : '#22d3ee') : '#64748b' }}>
+                              {EPA_MCL[name] !== undefined ? (overEPA ? `❌ >${EPA_MCL[name]} ppt` : `✓ <${EPA_MCL[name]} ppt`) : '—'}
+                            </div>
+                            <div key={`${name}-health`} style={{ padding: '10px 14px', fontSize: 12, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: overHealth ? '#ef4444' : '#22d3ee' }}>
+                              {overHealth ? '❌ Exceeds' : '✓ Within'}
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Hardness data if available */}
+                  {hardness !== undefined && (
+                    <div style={{ padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, marginBottom: 12 }}>
+                      <span style={{ fontSize: 12, color: '#64748b' }}>Water Hardness (from UCMR5): </span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: hardness > 250 ? '#f59e0b' : '#22d3ee' }}>
+                        {hardness} mg/L as CaCO₃
+                        {hardness > 250 ? ' — Hard (scale risk, reduced soap lather)' : hardness > 121 ? ' — Moderately hard' : ' — Relatively soft'}
+                      </span>
+                    </div>
+                  )}
+
+                  <p style={{ fontSize: 12, color: '#64748b', margin: 0, lineHeight: 1.6 }}>
+                    Source: EPA UCMR5 national monitoring dataset · Testing period 2023–2025 · MCL = Maximum Contaminant Level (legally enforceable limit) · Health limit = EPA health advisory threshold
+                  </p>
+                </div>
+              );
+            })()}
 
             {/* Facts */}
             <div style={{ marginBottom: 40 }}>
