@@ -12,7 +12,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const post = POSTS[params.slug];
   if (!post) return { title: 'Post Not Found | WaterCheckup' };
   return {
-    title: `${post.title} | WaterCheckup`,
+    /* Root layout title.template already adds " | WaterCheckup" — avoid doubling */
+    title: post.title,
     description: post.excerpt,
     alternates: {
       canonical: `https://watercheckup.com/blog/${params.slug}`,
