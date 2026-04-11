@@ -51,13 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  // State hub pages - higher priority than individual cities
-  const stateAbbrs = [...new Set(Object.values(CITIES).map(cd => cd.state))]
-  const stateEntries = stateAbbrs.map(abbr => {
+  // State hub pages at /water/state/[slug] — dedupe via object keys
+  const stateAbbrMap: Record<string, boolean> = {}
+  Object.values(CITIES).forEach(cd => { stateAbbrMap[cd.state] = true })
+  const stateEntries = Object.keys(stateAbbrMap).map(abbr => {
     const name = STATE_NAMES[abbr] || abbr
     const slug = name.toLowerCase().replace(/\s+/g, '-')
     return {
-      url: `${baseUrl}/water/${slug}`,
+      url: `${baseUrl}/water/state/${slug}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.8,

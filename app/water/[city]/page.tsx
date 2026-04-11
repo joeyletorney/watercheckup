@@ -8,7 +8,7 @@ import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
-const UCMR5 = ucmr5Raw as Record<string, [number, number, [string, number, number, number][], number?]>;
+const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
 // EPA MCLs (ppt) for regulated PFAS as of April 2024
 const EPA_MCL: Record<string, number> = {

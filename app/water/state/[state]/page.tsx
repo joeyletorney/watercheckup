@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { SiteHeader } from '../../components/SiteHeader';
-import { CITIES } from '../[city]/cities-data';
-import ucmr5Raw from '../../../lib/ucmr5.json';
+import { SiteHeader } from '../../../components/SiteHeader';
+import { CITIES } from '../../[city]/cities-data';
+import ucmr5Raw from '../../../../lib/ucmr5.json';
 
-const UCMR5 = ucmr5Raw as Record<string, [number, number, [string, number, number, number][], number?]>;
+const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
 const STATE_NAMES: Record<string, string> = {
   AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California',
@@ -26,7 +26,6 @@ const SLUG_TO_STATE: Record<string, string> = {};
 Object.entries(STATE_NAMES).forEach(([abbr, name]) => {
   SLUG_TO_STATE[name.toLowerCase().replace(/\s+/g, '-')] = abbr;
 });
-// Manual overrides for edge cases
 SLUG_TO_STATE['washington-dc'] = 'DC';
 SLUG_TO_STATE['dc'] = 'DC';
 
@@ -47,8 +46,9 @@ function getStateCities(stateAbbr: string) {
 }
 
 export async function generateStaticParams() {
-  const states = [...new Set(Object.values(CITIES).map(cd => cd.state))];
-  return states.map(state => ({
+  const stateMap: Record<string, boolean> = {};
+  Object.values(CITIES).forEach(cd => { stateMap[cd.state] = true; });
+  return Object.keys(stateMap).map(state => ({
     state: STATE_NAMES[state]?.toLowerCase().replace(/\s+/g, '-') ?? state.toLowerCase(),
   }));
 }
@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   return {
     title: `${stateName} Tap Water Quality — PFAS & Contaminant Data by City | WaterCheckup`,
     description: `EPA water quality data for ${cities.length} cities in ${stateName}. ${withViolations > 0 ? `${withViolations} cities with active PFAS violations. ` : ''}Check PFAS levels, lead risk, and filter recommendations for your city.`,
-    alternates: { canonical: `https://watercheckup.com/water/${stateSlug}` },
+    alternates: { canonical: `https://watercheckup.com/water/state/${stateSlug}` },
   };
 }
 
@@ -79,7 +79,6 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
   const withViolations = cities.filter(c => (c.violations ?? 0) > 0);
   const maxPpt = cities.reduce((m, c) => Math.max(m, c.maxPpt ?? 0), 0);
   const worstCity = cities.find(c => c.maxPpt === maxPpt);
-  const highUrgency = cities.filter(c => c.urgency === 'high').length;
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
@@ -121,7 +120,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
             ))}
           </div>
 
-          {/* Worst city callout if data exists */}
+          {/* Worst city callout */}
           {worstCity && maxPpt > 4 && (
             <div style={{ padding: '14px 18px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
               <span style={{ color: '#fca5a5', fontWeight: 700 }}>Highest contamination in {stateName}:</span>{' '}
@@ -145,18 +144,13 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
               const pfasColor = hasViolation ? '#ef4444' : (city.maxPpt ?? 0) > 0 ? '#f59e0b' : '#22d3ee';
 
               return (
-                <Link
-                  key={city.slug}
-                  href={`/water/${city.slug}`}
-                  style={{ textDecoration: 'none', display: 'block' }}
-                >
+                <Link key={city.slug} href={`/water/${city.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                   <div style={{
                     display: 'grid', gridTemplateColumns: '1fr auto',
                     alignItems: 'center', gap: 16, padding: '16px 18px',
                     background: '#0d2240',
                     border: `1px solid ${hasViolation ? '#ef444330' : '#1a3a5c'}`,
                     borderRadius: 10,
-                    transition: 'border-color 0.15s',
                   }}>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4, flexWrap: 'wrap' }}>
@@ -174,7 +168,6 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
                         {city.system} · Pop. {city.population}
                       </div>
                     </div>
-
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
                       {city.hasData ? (
                         <>
@@ -194,7 +187,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
           </div>
         </div>
 
-        {/* State context section */}
+        {/* State context */}
         <div style={{ marginBottom: 40, padding: '24px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>
             ABOUT WATER QUALITY IN {stateName.toUpperCase()}

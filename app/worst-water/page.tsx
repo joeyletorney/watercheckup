@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const UCMR5 = ucmr5Raw as Record<string, [number, number, [string, number, number, number][], number?]>;
+const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
 // State abbreviation to full name
 const STATE_NAMES: Record<string, string> = {
