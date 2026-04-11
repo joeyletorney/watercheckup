@@ -1949,9 +1949,9 @@ export default function WaterCheckup() {
       />
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
-      <div style={{ maxWidth: 820, margin: '72px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      <div style={{ maxWidth: 820, margin: '52px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
-        <h1 className="wc-hero-h1" style={{ fontSize: 54, fontWeight: 900, margin: '0 0 18px', lineHeight: 1.1, color: '#ffffff', letterSpacing: -1 }}>
+        <h1 className="wc-hero-h1" style={{ fontSize: 60, fontWeight: 900, margin: '0 0 20px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
           Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
         </h1>
 

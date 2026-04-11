@@ -147,6 +147,27 @@ p { margin: 0; }
   box-shadow: 0 1px 0 rgba(34, 211, 238, 0.07);
 }
 
+/* Top nav tabs — brighter default + hover (inline color overridden on hover) */
+a.wc-site-nav-link {
+  transition: color 0.16s ease, text-shadow 0.16s ease;
+}
+a.wc-site-nav-link:hover {
+  color: #ecfeff !important;
+  text-shadow: 0 0 14px rgba(103, 232, 249, 0.5), 0 0 28px rgba(34, 211, 238, 0.3) !important;
+}
+a.wc-site-nav-link[aria-current='page']:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 20px rgba(165, 243, 252, 0.65), 0 0 40px rgba(34, 211, 238, 0.35) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  a.wc-site-nav-link,
+  a.wc-site-nav-link:hover,
+  a.wc-site-nav-link[aria-current='page']:hover {
+    transition: none;
+    text-shadow: none !important;
+  }
+}
+
 /* Hero search panel — draws the eye */
 .wc-search-hero-panel {
   max-width: 700px;
@@ -256,7 +277,7 @@ p { margin: 0; }
 /* ── MOBILE RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 640px) {
   .wc-nav-badges  { display: none !important; }
-  .wc-hero-h1     { font-size: 26px !important; }
+  .wc-hero-h1     { font-size: 28px !important; }
   .wc-hero-sub    { font-size: 14px !important; }
   .wc-search-row  { flex-direction: column !important; align-items: stretch !important; }
   .wc-search-row input  { width: 100% !important; font-size: 18px !important; min-height: 58px !important; padding: 16px 18px !important; }
@@ -279,7 +300,7 @@ p { margin: 0; }
 
 @media (max-width: 400px) {
   .wc-sit-grid { grid-template-columns: 1fr !important; }
-  .wc-hero-h1  { font-size: 22px !important; }
+  .wc-hero-h1  { font-size: 24px !important; }
 }
 
 /* ── WaterCheckup component styles ── */
@@ -616,7 +637,21 @@ button.wc-search-submit.wc-hero-report-btn:not(:disabled) {
 }
 @keyframes wcBlink { 0%,100%{opacity:1} 50%{opacity:0} }
 .wc-metal {
-  background: linear-gradient(135deg, #0e3a4a 0%, #1a6880 18%, #22d3ee 32%, #67e8f9 45%, #ffffff 50%, #67e8f9 55%, #22d3ee 68%, #0891b2 82%, #0e3a4a 100%);
+  /* Brighter sky/cyan sweep — was heavy navy (#0e3a4a) at the ends */
+  background: linear-gradient(
+    135deg,
+    #0ea5e9 0%,
+    #22d3ee 14%,
+    #38bdf8 26%,
+    #67e8f9 38%,
+    #a5f3fc 46%,
+    #e0f2fe 52%,
+    #a5f3fc 58%,
+    #67e8f9 68%,
+    #38bdf8 80%,
+    #22d3ee 92%,
+    #0ea5e9 100%
+  );
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
