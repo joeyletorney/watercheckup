@@ -2114,7 +2114,7 @@ export default function WaterCheckup() {
             }}
           >
             <span style={{ color: '#fde047' }}>FREE</span>
-            <span style={{ color: '#f0fdfa' }}> Weekly Water </span>
+            <span style={{ color: '#f0fdfa' }}> Weekly Drinking Water </span>
             <span style={{ color: '#22d3ee' }}>Newsletter</span>
           </div>
           <div
@@ -2128,7 +2128,7 @@ export default function WaterCheckup() {
               textShadow: '0 0 18px rgba(6,182,212,0.25)',
             }}
           >
-            Water contaminant alerts in your area plus PFAS alerts, water filtration recommendations and more...
+            Get notified when your utility reports new violations, PFAS detections, or enforcement actions — plus one practical water safety tip every week.
           </div>
           {heroNewsletterSent ? (
             <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 600, textAlign: 'left', lineHeight: 1.55, textShadow: '0 0 16px rgba(74,222,128,0.35)' }}>
