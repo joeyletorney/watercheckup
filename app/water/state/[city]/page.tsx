@@ -49,12 +49,12 @@ export async function generateStaticParams() {
   const stateMap: Record<string, boolean> = {};
   Object.values(CITIES).forEach(cd => { stateMap[cd.state] = true; });
   return Object.keys(stateMap).map(state => ({
-    state: STATE_NAMES[state]?.toLowerCase().replace(/\s+/g, '-') ?? state.toLowerCase(),
+    city: STATE_NAMES[state]?.toLowerCase().replace(/\s+/g, '-') ?? state.toLowerCase(),
   }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
-  const { state: stateSlug } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
+  const { city: stateSlug } = await params;
   const stateAbbr = SLUG_TO_STATE[stateSlug];
   const stateName = stateAbbr ? STATE_NAMES[stateAbbr] : null;
   if (!stateName) return { title: 'Water Quality | WaterCheckup' };
@@ -67,8 +67,8 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   };
 }
 
-export default async function StatePage({ params }: { params: Promise<{ state: string }> }) {
-  const { state: stateSlug } = await params;
+export default async function StatePage({ params }: { params: Promise<{ city: string }> }) {
+  const { city: stateSlug } = await params;
   const stateAbbr = SLUG_TO_STATE[stateSlug];
   const stateName = stateAbbr ? STATE_NAMES[stateAbbr] : null;
   if (!stateName || !stateAbbr) notFound();
