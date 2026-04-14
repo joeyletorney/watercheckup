@@ -135,6 +135,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         sender: { name: senderName, email: senderEmail },
         to: [{ email: email.trim() }],
+        bcc: [{ email: "joe@letorney.com" }],
         subject: "Welcome to WaterCheckup — what's really in your water",
         htmlContent: html,
       }),
