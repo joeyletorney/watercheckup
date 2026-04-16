@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 
-declare global { interface Window { gtag?: (...args: any[]) => void } }
 
 type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string };
 
