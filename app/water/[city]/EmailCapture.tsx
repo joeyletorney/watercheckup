@@ -1,6 +1,16 @@
 'use client';
 import { useState } from 'react';
 
+function trackNewsletterSignup(slug: string) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'newsletter_signup', {
+      method: 'inline_form',
+      page_path: `/water/${slug}`,
+      source: `city-page-${slug}`,
+    });
+  }
+}
+
 export default function EmailCapture({ cityName, slug }: { cityName: string; slug: string }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -16,10 +26,17 @@ export default function EmailCapture({ cityName, slug }: { cityName: string; slu
         body: JSON.stringify({ email, source: `city-page-${slug}` }),
       });
       const data = await res.json();
-      if (data.success) { setStatus('success'); setMsg(''); }
-      else { setStatus('error'); setMsg(data.error || 'Something went wrong. Try again.'); }
+      if (data.success) {
+        trackNewsletterSignup(slug);
+        setStatus('success');
+        setMsg('');
+      } else {
+        setStatus('error');
+        setMsg(data.error || 'Something went wrong. Try again.');
+      }
     } catch {
-      setStatus('error'); setMsg('Something went wrong. Try again.');
+      setStatus('error');
+      setMsg('Something went wrong. Try again.');
     }
   }
 
