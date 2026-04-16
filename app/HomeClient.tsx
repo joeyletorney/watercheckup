@@ -1970,7 +1970,7 @@ export default function WaterCheckup() {
           }}
         >
           <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#67e8f9' }}>100% FREE. No login. No credit card.</strong> The only free tool that combines EPA violation records, PFAS testing data, lead tap sampling, enforcement history, and lead pipe inventory — then tells you exactly which filter removes what's in your water.
+            <strong style={{ color: '#67e8f9' }}>100% FREE. No login. No credit card.</strong> Just enter your ZIP code to see what's really in your water — EPA violations, PFAS "forever chemicals," lead testing, and more — across all 50 states. We'll tell you exactly which filter removes it.
           </p>
         </div>
 
@@ -2105,17 +2105,33 @@ export default function WaterCheckup() {
         >
           <div
             style={{
-              fontSize: 14,
+              fontSize: 22,
               fontWeight: 800,
-              marginBottom: 6,
+              marginBottom: 8,
               textAlign: 'left',
               letterSpacing: 0.2,
               textShadow: '0 0 24px rgba(34,211,238,0.45), 0 2px 12px rgba(0,8,24,0.85)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
             }}
           >
-            <span style={{ color: '#fde047' }}>FREE</span>
-            <span style={{ color: '#f0fdfa' }}> Weekly Drinking Water </span>
-            <span style={{ color: '#22d3ee' }}>Newsletter</span>
+            <span style={{
+              fontSize: 11,
+              fontWeight: 800,
+              letterSpacing: 1,
+              color: '#0e0f10',
+              background: '#22d3ee',
+              borderRadius: 5,
+              padding: '3px 7px',
+              flexShrink: 0,
+              textShadow: 'none',
+            }}>NEW</span>
+            <span>
+              <span style={{ color: '#fde047' }}>FREE</span>
+              <span style={{ color: '#f0fdfa' }}> Weekly Drinking Water </span>
+              <span style={{ color: '#22d3ee' }}>Newsletter</span>
+            </span>
           </div>
           <div
             style={{
@@ -2128,11 +2144,11 @@ export default function WaterCheckup() {
               textShadow: '0 0 18px rgba(6,182,212,0.25)',
             }}
           >
-            Get notified when your utility reports new violations, PFAS detections, or enforcement actions — plus one practical water safety tip every week.
+            Get alerted when your utility reports new violations or PFAS detections — plus one practical water safety tip every week.
           </div>
           {heroNewsletterSent ? (
             <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 600, textAlign: 'left', lineHeight: 1.55, textShadow: '0 0 16px rgba(74,222,128,0.35)' }}>
-              You&apos;re subscribed. Check your inbox (and spam/promotions) for the sample report—delivery can take a minute.
+              You&apos;re subscribed! Check your inbox — and spam/promotions if you don&apos;t see it within a few minutes.
             </div>
           ) : (
             <>
@@ -2140,7 +2156,7 @@ export default function WaterCheckup() {
                 <input
                   value={heroNewsletterEmail}
                   onChange={e => setHeroNewsletterEmail(e.target.value)}
-                  placeholder="Enter email for free weekly updates"
+                  placeholder="Enter your email address"
                   type="email"
                   className="wc-newsletter-email-input"
                   style={{
