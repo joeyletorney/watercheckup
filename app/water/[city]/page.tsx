@@ -100,6 +100,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cd = CITIES[params.city];
   const cityName = params.city.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
+  const cityBlurb = cityBlurbs[params.city as keyof typeof cityBlurbs]?.blurb;
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -189,9 +190,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
               </div>
             </div>
 
-            {cityBlurbs[params.city]?.blurb ? (
+            {cityBlurb ? (
               <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 40px' }}>
-                {cityBlurbs[params.city].blurb}
+                {cityBlurb}
               </p>
             ) : null}
 
