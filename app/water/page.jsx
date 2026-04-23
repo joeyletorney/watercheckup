@@ -1,6 +1,7 @@
 // Place this file at: app/water/page.jsx in your Next.js project
 
 import Link from 'next/link';
+import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata = {
   title: 'Water Quality Reports by City',
@@ -169,7 +170,9 @@ export default function WaterDirectoryPage() {
   const totalCities = Object.values(cities).flat().length;
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-12">
+    <>
+      <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
+      <main className="max-w-5xl mx-auto px-4 py-12">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -237,5 +240,6 @@ export default function WaterDirectoryPage() {
         </Link>
       </div>
     </main>
+    </>
   );
 }
