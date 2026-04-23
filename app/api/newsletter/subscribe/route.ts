@@ -148,7 +148,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true }, { headers: CORS });
   } catch (err: any) {
-    return NextResponse.json({ error: err.message || 'Server error' }, { status: 500, headers: CORS });cp ~/Downloads/TopPickBox.tsx /Users/joeyletorney/codebases/watercheckup/app/water/\[city\]/TopPickBox.tsx && cp ~/Downloads/EmailCapture.tsx /Users/joeyletorney/codebases/watercheckup/app/water/\[city\]/EmailCapture.tsx && cp ~/Downloads/route.ts /Users/joeyletorney/codebases/watercheckup/app/api/newsletter/subscribe/route.ts && cd /Users/joeyletorney/codebases/watercheckup && git add -A && git commit -m "Add UTM tracking, GA4 events, and owner signup notifications" && git push origin main
+    return NextResponse.json({ error: err.message || 'Server error' }, { status: 500, headers: CORS });
     
   }
 }
