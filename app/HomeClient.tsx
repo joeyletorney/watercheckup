@@ -3655,7 +3655,7 @@ export default function WaterCheckup() {
                 {name}
               </a>
             ))}
-            <a href="/water/chicago" style={{ padding: '7px 14px', background: '#0891b220', border: '1px solid #0891b250', borderRadius: 8, fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
+            <a href="/water" style={{ padding: '7px 14px', background: '#0891b220', border: '1px solid #0891b250', borderRadius: 8, fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
               View all 135+ cities →
             </a>
           </div>
