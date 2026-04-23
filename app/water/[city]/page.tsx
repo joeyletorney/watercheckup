@@ -6,7 +6,7 @@ import EmailCapture from './EmailCapture';
 
 import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
-import { cityBlurbs } from '@/lib/cityBlurbs';
+import cityBlurbs from '@/lib/cityBlurbs';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -97,10 +97,11 @@ const urgencyConfig = {
 };
 
 export default function CityPage({ params }: { params: { city: string } }) {
-  const cd = CITIES[params.city];
-  const cityName = params.city.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const slug = params.city;
+  const cd = CITIES[slug];
+  const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
-  const cityBlurb = cityBlurbs[params.city as keyof typeof cityBlurbs]?.blurb;
+  const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -150,6 +151,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
             {cd ? `${cd.name}, ${cd.state}` : cityName} Tap Water Quality
           </h1>
+          {cityBlurbText ? (
+            <p className="text-gray-600 mb-6">{cityBlurbText}</p>
+          ) : null}
           <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.6 }}>
             What EPA data, PFAS monitoring, and independent health research reveals about {cd?.name ?? cityName}'s drinking water -- and what you can do about it.
           </p>
@@ -168,8 +172,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* TOP PICK BOX */}
         <TopPickBox
-          picks={(TOP_PICKS[params.city] || DEFAULT_PICKS).picks}
-          label={(TOP_PICKS[params.city] || DEFAULT_PICKS).label}
+          picks={(TOP_PICKS[slug] || DEFAULT_PICKS).picks}
+          label={(TOP_PICKS[slug] || DEFAULT_PICKS).label}
           cityName={cd?.name ?? cityName}
         />
 
@@ -189,12 +193,6 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 ))}
               </div>
             </div>
-
-            {cityBlurb ? (
-              <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 40px' }}>
-                {cityBlurb}
-              </p>
-            ) : null}
 
             {/* PFAS DATA SECTION */}
             {(() => {
