@@ -203,7 +203,7 @@ export default function WaterDirectoryPage() {
       {/* City grid by region */}
       {Object.entries(cities).map(([region, regionCities]) => (
         <section key={region} className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">
+          <h2 className="text-2xl font-bold text-white mb-4 border-b pb-2">
             {region}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
