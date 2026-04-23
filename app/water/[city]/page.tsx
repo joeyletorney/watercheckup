@@ -6,6 +6,7 @@ import EmailCapture from './EmailCapture';
 
 import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
+import { cityBlurbs } from '@/lib/cityBlurbs';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -187,6 +188,13 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 ))}
               </div>
             </div>
+
+            {/* City overview blurb */}
+            {(cityBlurbs as Record<string, { blurb: string }>)[params.city]?.blurb && (
+              <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 40px' }}>
+                {(cityBlurbs as Record<string, { blurb: string }>)[params.city].blurb}
+              </p>
+            )}
 
             {/* PFAS DATA SECTION */}
             {(() => {
