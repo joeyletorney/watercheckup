@@ -189,12 +189,11 @@ export default function CityPage({ params }: { params: { city: string } }) {
               </div>
             </div>
 
-            {/* City overview blurb */}
-            {(cityBlurbs as Record<string, { blurb: string }>)[params.city]?.blurb && (
+            {cityBlurbs[params.city]?.blurb ? (
               <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 40px' }}>
-                {(cityBlurbs as Record<string, { blurb: string }>)[params.city].blurb}
+                {cityBlurbs[params.city].blurb}
               </p>
-            )}
+            ) : null}
 
             {/* PFAS DATA SECTION */}
             {(() => {
