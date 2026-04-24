@@ -73,7 +73,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
   if (variant === 'inner') {
     return (
       <div
-        className="wc-site-header"
+        className="wc-site-header wc-site-header--inner"
         style={{
           borderBottom: '1px solid #0f2336',
           padding: '12px 24px',
@@ -85,7 +85,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
           ...innerBarStyle,
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+        <div className="wc-site-header-inner-row" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16, flex: '1 1 auto', minWidth: 0 }}>
           <Link
             href="/"
             style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
@@ -95,7 +95,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
           <SiteNav ariaLabel="Main" />
         </div>
         {showCta ? (
-          <Link href="/" style={CTA_STYLE}>
+          <Link href="/" className="wc-site-header-cta" style={CTA_STYLE}>
             {ctaLabel ?? 'Check My Water →'}
           </Link>
         ) : null}
@@ -105,7 +105,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
 
   return (
     <div
-      className="wc-site-header"
+      className="wc-site-header wc-site-header--bar"
       style={{
         borderBottom: '1px solid #0f2336',
         padding: '12px 24px',

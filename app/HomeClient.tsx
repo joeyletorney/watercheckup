@@ -1969,8 +1969,11 @@ export default function WaterCheckup() {
             boxShadow: '0 8px 32px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
           }}
         >
-          <p style={{ color: '#cbd5e1', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#67e8f9' }}>100% FREE. No login. No credit card.</strong> Just enter your ZIP code to see what's really in your water — EPA violations, PFAS "forever chemicals," lead testing, and more — across all 50 states. We'll tell you exactly which filter removes it.
+          <p style={{ color: '#e2e8f0', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
+            <strong style={{ color: '#f1f5f9' }}>Enter your ZIP code</strong> (or city name) to see what&apos;s in your tap water — EPA violations, PFAS &quot;forever chemicals,&quot; lead sampling, and more — for systems across all 50 states. We recommend certified, top-rated filtration systems based on your water results.
+          </p>
+          <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.55, margin: '14px 0 0' }}>
+            100% free · No sign ups · No credit card
           </p>
         </div>
 

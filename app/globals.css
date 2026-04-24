@@ -151,6 +151,82 @@ p { margin: 0; }
   box-shadow: 0 1px 0 rgba(34, 211, 238, 0.07);
 }
 
+/* Mobile: stack logo, nav, CTAs / badges so the bar is thumb-friendly */
+@media (max-width: 767px) {
+  .wc-site-header--inner {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  .wc-site-header-inner-row {
+    flex-direction: column;
+    align-items: stretch !important;
+    width: 100%;
+  }
+  .wc-site-header-inner-row > a:first-of-type {
+    align-self: center;
+  }
+  .wc-site-header-cta {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .wc-site-header--bar {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  .wc-site-header--bar > a:first-of-type {
+    align-self: center;
+  }
+  .wc-site-header--bar .wc-nav-badges {
+    margin-left: 0 !important;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .wc-site-nav--narrow {
+    margin-left: 0 !important;
+  }
+}
+
+button.wc-site-nav-more {
+  padding: 8px 16px;
+  min-height: 44px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  color: #ecfeff;
+  cursor: pointer;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: rgba(8, 145, 178, 0.28);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+button.wc-site-nav-more:hover {
+  background: rgba(34, 211, 238, 0.22);
+  border-color: rgba(165, 243, 252, 0.55);
+}
+button.wc-site-nav-more:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.65);
+}
+.wc-site-nav-more-panel {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(4, 18, 40, 0.97);
+  border: 1px solid #1a3a5c;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+a.wc-site-nav-link--stacked {
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: flex-start !important;
+}
+
 /* Top nav tabs — brighter default + hover (inline color overridden on hover) */
 a.wc-site-nav-link {
   transition: color 0.16s ease, text-shadow 0.16s ease;
@@ -641,20 +717,20 @@ button.wc-search-submit.wc-hero-report-btn:not(:disabled) {
 }
 @keyframes wcBlink { 0%,100%{opacity:1} 50%{opacity:0} }
 .wc-metal {
-  /* Brighter sky/cyan sweep — was heavy navy (#0e3a4a) at the ends */
+  /* Light ice/cyan sweep for strong contrast on dark hero (readable “Drinking Water”) */
   background: linear-gradient(
     135deg,
-    #0ea5e9 0%,
-    #22d3ee 14%,
-    #38bdf8 26%,
-    #67e8f9 38%,
-    #a5f3fc 46%,
-    #e0f2fe 52%,
-    #a5f3fc 58%,
-    #67e8f9 68%,
-    #38bdf8 80%,
-    #22d3ee 92%,
-    #0ea5e9 100%
+    #a5f3fc 0%,
+    #cffafe 12%,
+    #e0f2fe 22%,
+    #f0f9ff 32%,
+    #ffffff 42%,
+    #f0fdfa 50%,
+    #ecfeff 58%,
+    #e0f2fe 68%,
+    #cffafe 78%,
+    #a5f3fc 88%,
+    #7dd3fc 100%
   );
   background-size: 300% 300%;
   -webkit-background-clip: text;
