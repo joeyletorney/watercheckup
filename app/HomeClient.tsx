@@ -2480,9 +2480,6 @@ export default function WaterCheckup() {
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 16, padding: '14px 18px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#94a3b8', textAlign: 'center' }}>
-              Enter your ZIP code above ↑ to see exactly what EPA data shows for <strong style={{ color: '#38bdf8' }}>your water system</strong>
-            </div>
 
             {/* Mid-page ZIP repeat — second entry point after reading about contaminants */}
             <div style={{ marginTop: 28, padding: '20px 22px', background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 12, textAlign: 'center' }}>
