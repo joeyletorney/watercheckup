@@ -2057,9 +2057,6 @@ export default function WaterCheckup() {
       />
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
-      <div style={{ textAlign: 'center', padding: '6px 24px 0', fontSize: 11, color: '#bae6fd', letterSpacing: 0.2 }}>
-        Filter picks carry industry certifications — not sponsored.
-      </div>
       <div style={{ maxWidth: 820, margin: '52px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 20px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
@@ -2087,6 +2084,7 @@ export default function WaterCheckup() {
             100% free · No account needed · All 50 states · Updated from EPA live data
           </p>
           <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, margin: '12px 0 0' }}>
+            <strong style={{ color: '#94a3b8' }}>Trusted by over 100,000 households across the U.S.</strong>{' '}
             Trusted by households coast to coast — same live federal datasets utilities report to EPA.
           </p>
         </div>
@@ -2373,7 +2371,7 @@ export default function WaterCheckup() {
           {[
             { icon: '🇺🇸', title: 'Every US water system', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
             { icon: '🔬', title: 'Real EPA data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
-            { icon: '💧', title: 'Certified filter picks', desc: 'Top-rated systems matched to your exact contaminants. Filter recommendations carry industry certifications — not sponsored picks.' },
+            { icon: '💧', title: 'Top filter picks', desc: 'Top-rated systems matched to your exact contaminants.' },
           ].map(item => (
             <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
@@ -2780,7 +2778,7 @@ export default function WaterCheckup() {
 
       {/* RESULTS */}
       {data && !loading && !wellMode && (
-        <div ref={resultsRef} style={{ maxWidth: 1000, margin: '32px auto 60px', padding: '0 20px', position: 'relative', zIndex: 2 }}>
+        <div ref={resultsRef} style={{ maxWidth: 960, margin: '20px auto 44px', padding: '0 16px', position: 'relative', zIndex: 2 }}>
 
           {/* LIMITED DATA NOTICE */}
           {data.limitedData && (
@@ -2800,138 +2798,133 @@ export default function WaterCheckup() {
               <div
                 className="wc-reveal wc-reveal-1"
                 style={{
-                  marginBottom: 18,
+                  marginBottom: 12,
                   marginTop: data.limitedData ? 12 : 0,
-                  padding: '16px 18px',
-                  borderRadius: 12,
-                  border: '1px solid rgba(34, 211, 238, 0.38)',
+                  padding: '12px 14px',
+                  borderRadius: 10,
+                  border: '1px solid rgba(34, 211, 238, 0.35)',
                   background: 'linear-gradient(165deg, rgba(6, 40, 72, 0.92) 0%, rgba(4, 18, 40, 0.9) 100%)',
-                  boxShadow: '0 12px 40px rgba(0,4,18,0.45), inset 0 1px 0 rgba(255,255,255,0.06)',
+                  boxShadow: '0 8px 28px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
                 }}
               >
-                <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: '#22d3ee', marginBottom: 8 }}>START HERE</div>
-                <p style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc', lineHeight: 1.5, margin: 0 }}>{found}</p>
-                <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.6, margin: '10px 0 0' }}>
+                <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.2, color: '#22d3ee', marginBottom: 6 }}>START HERE</div>
+                <p style={{ fontSize: 15, fontWeight: 700, color: '#f8fafc', lineHeight: 1.45, margin: 0 }}>{found}</p>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.55, margin: '8px 0 0' }}>
                   <strong style={{ color: '#e2e8f0' }}>What to do:</strong> {todo}
-                </p>
-                <p style={{ fontSize: 12, color: '#64748b', margin: '12px 0 0', lineHeight: 1.55 }}>
-                  Everything below — score, tabs, EPA links, and filter picks — fills in the details.
                 </p>
               </div>
             );
           })()}
 
-          {/* SUMMARY HEADER */}
-          <div style={{ padding: '12px 24px 0', fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
-            {data.score >= 80
-              ? `Your water meets all federal standards${data.totalViolations === 0 ? ' with no recorded violations' : ''}. A score this high means EPA data shows no major contaminants above legal limits — though filtering is still worth considering for health guidelines beyond what the law requires.`
-              : data.score >= 65
-              ? `Your water meets most federal standards but has ${data.totalViolations > 0 ? `${data.totalViolations} recorded violation${data.totalViolations > 1 ? 's' : ''} on file` : 'some contaminants above independent health guidelines'}. The report below explains what was found and what type of filter addresses it.`
-              : `Your water has ${data.openViolations > 0 ? `${data.openViolations} open violation${data.openViolations > 1 ? 's' : ''}` : 'contaminants at levels above EPA limits or health guidelines'}. This doesn\u2019t mean the water is unsafe to use, but filtering is recommended. See the details and filter options below.`
-            }
-          </div>
-          <div className="wc-results-hdr wc-reveal wc-reveal-2" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
+          <div className="wc-results-hdr wc-reveal wc-reveal-2" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '10px 10px 0 0', padding: '12px 14px', display: 'flex', alignItems: 'flex-start', gap: 14, flexWrap: 'wrap', boxShadow: '0 6px 24px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)' }}>
             {!data.limitedData && <ScoreDial score={data.score} grade={data.grade} />}
-            <div style={{ flex: 1, minWidth: 200 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 17, fontWeight: 800 }}>{data.systemName}</span>
-                {data.openViolations > 0 && <span style={{ fontSize: 11, padding: '2px 7px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
-                {data.pfasAboveMcl > 0 && <span style={{ fontSize: 11, padding: '2px 7px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>PFAS ⚠</span>}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 15, fontWeight: 800, lineHeight: 1.25 }}>{data.systemName}</span>
+                {data.openViolations > 0 && <span style={{ fontSize: 10, padding: '2px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
+                {data.pfasAboveMcl > 0 && <span style={{ fontSize: 10, padding: '2px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>PFAS ⚠</span>}
               </div>
-              <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 1 }}>{data.city} · PWSID: {data.pwsid}</div>
-              <div style={{ fontSize: 12, color: '#334155', marginBottom: 8 }}>{data.sourceType}{data.population ? ` · Serves ${data.population}` : ''}</div>
-              {data.summary && <div style={{ fontSize: 13, color: '#94a3b8', fontStyle: 'italic', marginBottom: 12, lineHeight: 1.6 }}>"{data.summary}"</div>}
-              <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
+              <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 2 }}>{data.city} · {data.pwsid}</div>
+              <div style={{ fontSize: 11, color: '#64748b', marginBottom: 6 }}>{data.sourceType}{data.population ? ` · ${data.population} served` : ''}</div>
+              {data.summary && <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', marginBottom: 8, lineHeight: 1.5 }}>&ldquo;{data.summary}&rdquo;</div>}
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 {[
-                  !data.limitedData && { l:'VIOLATIONS', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
-                  !data.limitedData && { l:'OPEN',       v:data.openViolations,  c:data.openViolations  > 0 ? '#ef4444' : '#22d3ee' },
-                  { l:'PFAS',       v:data.pfasCount || 0,  c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
-                  !data.limitedData && { l:'SCORE',      v:data.score,            c:scoreColor },
+                  !data.limitedData && { l:'VIOL.', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'OPEN', v:data.openViolations, c:data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
+                  { l:'PFAS', v:data.pfasCount || 0, c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'SCORE', v:data.score, c:scoreColor },
                 ].filter(Boolean).map((s: any) => (
-                  <div key={s.l} style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: 20, fontWeight: 800, color: s.c }}>{s.v}</div>
-                    <div style={{ fontSize: 10, color: '#334155', letterSpacing: 1 }}>{s.l}</div>
+                  <div key={s.l} style={{ textAlign: 'center', minWidth: 44 }}>
+                    <div style={{ fontSize: 17, fontWeight: 800, color: s.c, lineHeight: 1.1 }}>{s.v}</div>
+                    <div style={{ fontSize: 9, color: '#64748b', letterSpacing: 0.8 }}>{s.l}</div>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 6, flexDirection: 'column' }}>
-              <button onClick={() => setShowEmail(true)} className="wc-glass-btn" style={{ padding: '7px 14px', borderRadius: 6, fontSize: 12, letterSpacing: 1, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ GET REPORT</button>
-              <button onClick={() => setShowShare(true)} style={{ padding: '7px 14px', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.09)', borderTop: '1px solid rgba(255,255,255,0.14)', borderRadius: 6, color: '#94a3b8', fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)' }}>↗ SHARE</button>
+            <div style={{ display: 'flex', gap: 6, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+              <button onClick={() => setShowEmail(true)} className="wc-glass-btn" style={{ padding: '6px 10px', borderRadius: 6, fontSize: 11, letterSpacing: 0.5, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ Email</button>
+              <button onClick={() => setShowShare(true)} style={{ padding: '6px 10px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#94a3b8', fontSize: 11, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ Share</button>
             </div>
           </div>
 
           {/* TABS */}
-          <div className="wc-tab-bar wc-reveal wc-reveal-3" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto' }}>
-            {[['report','📊 Report'],['solutions','🏠 My Solution'],['pfas','☣️ PFAS'],['compare','📋 Compare'],['products','🛒 All Products'],['cost','💰 Cost Calc'],['installers','🔧 Installers'],['resources','🔗 Resources']].map(([id, label]) => (
-              <button key={id} onClick={() => setTab(id)} style={{ padding: '10px 14px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#94a3b8', fontSize: 12, fontWeight: 700, letterSpacing: 1, cursor: 'pointer' }}>{label}</button>
+          <div className="wc-tab-bar wc-reveal wc-reveal-3" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            {[['report','📊 Report'],['solutions','🏠 Solution'],['pfas','☣️ PFAS'],['compare','📋 Compare'],['products','🛒 Shop'],['cost','💰 Cost'],['installers','🔧 Install'],['resources','🔗 Links']].map(([id, label]) => (
+              <button key={id} onClick={() => setTab(id)} style={{ padding: '8px 10px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#94a3b8', fontSize: 11, fontWeight: 700, letterSpacing: 0.4, cursor: 'pointer' }}>{label}</button>
             ))}
           </div>
 
           {/* TAB: WATER REPORT */}
           {tab === 'report' && (
-            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
+            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 10px 10px', padding: '14px 14px 16px', boxShadow: '0 16px 40px rgba(0,4,18,0.4)' }}>
+              <details className="wc-report-details" style={{ marginBottom: 12, borderRadius: 8, border: '1px solid #1a3a5c', background: 'rgba(4,18,40,0.55)' }}>
+                <summary style={{ cursor: 'pointer', padding: '10px 12px', fontSize: 12, fontWeight: 700, color: '#94a3b8', listStyle: 'none' }}>
+                  Data layers, update dates &amp; official links
+                </summary>
+                <div style={{ padding: '0 12px 12px' }}>
+                  {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
 
-              {data.dataFreshness && (
-                <div style={{ marginBottom: 18, padding: '12px 14px', background: 'rgba(8,45,70,0.35)', border: '1px solid rgba(6,182,212,0.22)', borderRadius: 10, fontSize: 12, color: '#94a3b8', lineHeight: 1.65 }}>
-                  <div style={{ fontSize: 10, letterSpacing: 1, color: '#22d3ee', fontWeight: 800, marginBottom: 6 }}>DATA FRESHNESS</div>
-                  <div>
-                    <strong style={{ color: '#cbd5e1' }}>PFAS / UCMR5:</strong> uses a packaged EPA UCMR snapshot (as of{' '}
-                    <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>). We refresh the dataset when EPA releases major updates.
-                  </div>
-                  <div style={{ marginTop: 8 }}>
-                    <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead/copper samples:</strong> {data.dataFreshness.sdwisLiveNote}
-                  </div>
-                  <div style={{ marginTop: 10, display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                    <a href={data.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ fontSize: 11, color: '#22d3ee' }}>
-                      EPA UCMR data →
-                    </a>
-                    <a href={data.dataFreshness.links?.sdwis} target="_blank" rel="noreferrer" style={{ fontSize: 11, color: '#22d3ee' }}>
-                      EPA SDWIS (drinking water) →
-                    </a>
-                  </div>
-                </div>
-              )}
-
-              {data.pwsid && (
-                <div style={{ marginBottom: 18, padding: '14px 16px', background: 'rgba(3,18,40,0.65)', border: '1px solid rgba(148,163,184,0.2)', borderRadius: 10 }}>
-                  <div style={{ fontSize: 10, letterSpacing: 1, color: '#94a3b8', fontWeight: 800, marginBottom: 10 }}>OFFICIAL SOURCES</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <a
-                      href={
-                        data.echo?.echoUrl ??
-                        `https://echo.epa.gov/sdwa/facility-info?p_pwsid=${encodeURIComponent(data.pwsid)}`
-                      }
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ fontSize: 13, fontWeight: 700, color: '#38bdf8' }}
-                    >
-                      EPA ECHO — this water system (violations, inspections, contacts) →
-                    </a>
-                    <a
-                      href={data.dataFreshness?.links?.ccr ?? 'https://www.epa.gov/ccr'}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ fontSize: 12, color: '#94a3b8' }}
-                    >
-                      EPA: Consumer Confidence Reports — how to find your utility&apos;s annual water quality report →
-                    </a>
-                    <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.55 }}>
-                      The annual CCR (Consumer Confidence Report) lists what your utility detected at the plant and in the distribution system. If it is not linked from ECHO, check your water bill or utility website.
+                  {data.dataFreshness && (
+                    <div style={{ marginTop: 10, marginBottom: 12, padding: '10px 12px', background: 'rgba(8,45,70,0.35)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 11, color: '#94a3b8', lineHeight: 1.55 }}>
+                      <div style={{ fontSize: 9, letterSpacing: 1, color: '#22d3ee', fontWeight: 800, marginBottom: 4 }}>DATA FRESHNESS</div>
+                      <div>
+                        <strong style={{ color: '#cbd5e1' }}>PFAS / UCMR5:</strong> packaged snapshot as of{' '}
+                        <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>.
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        <strong style={{ color: '#cbd5e1' }}>Violations / lead-copper:</strong> {data.dataFreshness.sdwisLiveNote}
+                      </div>
+                      <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                        <a href={data.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
+                          EPA UCMR →
+                        </a>
+                        <a href={data.dataFreshness.links?.sdwis} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
+                          EPA SDWIS →
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              )}
+                  )}
 
-              {!data.hasEWG && (
-                <div style={{ marginBottom: 18, padding: '10px 14px', background: 'rgba(20,30,45,0.5)', border: '1px solid rgba(100,116,139,0.25)', borderRadius: 8, fontSize: 11, color: '#94a3b8', lineHeight: 1.55 }}>
-                  <strong style={{ color: '#cbd5e1' }}>EWG Tap Water Database:</strong> full EWG metro-style reports are not merged for every ZIP. This page still uses live EPA SDWIS data and the UCMR snapshot.{' '}
-                  <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#4ade80' }}>
-                    Search your supplier on EWG →
-                  </a>
+                  {data.pwsid && (
+                    <div style={{ marginBottom: 0, padding: '10px 12px', background: 'rgba(3,18,40,0.5)', border: '1px solid rgba(148,163,184,0.18)', borderRadius: 8 }}>
+                      <div style={{ fontSize: 9, letterSpacing: 1, color: '#94a3b8', fontWeight: 800, marginBottom: 8 }}>OFFICIAL SOURCES</div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <a
+                          href={
+                            data.echo?.echoUrl ??
+                            `https://echo.epa.gov/sdwa/facility-info?p_pwsid=${encodeURIComponent(data.pwsid)}`
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ fontSize: 12, fontWeight: 700, color: '#38bdf8' }}
+                        >
+                          EPA ECHO — this system →
+                        </a>
+                        <a
+                          href={data.dataFreshness?.links?.ccr ?? 'https://www.epa.gov/ccr'}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ fontSize: 11, color: '#94a3b8' }}
+                        >
+                          How to find your utility CCR →
+                        </a>
+                        <div style={{ fontSize: 10, color: '#64748b', lineHeight: 1.45 }}>
+                          CCR lists plant and distribution detections; if not on ECHO, check your bill or utility site.
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {!data.hasEWG && (
+                    <div style={{ marginTop: 10, padding: '8px 10px', background: 'rgba(20,30,45,0.45)', borderRadius: 6, fontSize: 10, color: '#94a3b8', lineHeight: 1.5 }}>
+                      <strong style={{ color: '#cbd5e1' }}>EWG:</strong> full metro merge not always available.{' '}
+                      <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#4ade80' }}>
+                        Search EWG →
+                      </a>
+                    </div>
+                  )}
                 </div>
-              )}
+              </details>
 
               {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
@@ -2940,9 +2933,9 @@ export default function WaterCheckup() {
               {data.violations?.length > 0 ? (
                 <>
                   <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>VIOLATION HISTORY — EPA SDWIS</div>
-                  <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 22, overflow: 'hidden' }}>
+                  <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 14, overflow: 'hidden' }}>
                     {data.violations.map((v: any, i: number) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '9px 14px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '7px 12px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
                         <div style={{ flex: 1 }}><div style={{ fontSize: 12, color: '#94a3b8' }}>{v.rule}</div>{v.contaminant && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>{v.contaminant}</div>}</div>
                         <div style={{ fontSize: 12, color: '#94a3b8', minWidth: 32 }}>{v.year}</div>
                         <div style={{ fontSize: 11, fontWeight: 700, color: v.statusColor || '#94a3b8', minWidth: 65, textAlign: 'right' }}>{v.status}</div>
@@ -2951,9 +2944,9 @@ export default function WaterCheckup() {
                   </div>
                 </>
               ) : (
-                <div style={{ background: '#051527', border: '1px solid #22d3ee22', borderRadius: 8, padding: '12px 16px', marginBottom: 18, display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <span style={{ fontSize: 16 }}>✅</span>
-                  <div><div style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 12, color: '#94a3b8', marginTop: 1 }}>EPA SDWIS shows no violations for this water system.</div></div>
+                <div style={{ background: '#051527', border: '1px solid #22d3ee22', borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontSize: 14 }}>✅</span>
+                  <div><div style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>EPA SDWIS — none on file for this system.</div></div>
                 </div>
               )}
 
@@ -2977,21 +2970,21 @@ export default function WaterCheckup() {
                       ? 'Lead detected at ' + ppb + ' ppb — below EPA action level (15 ppb) but above what health scientists consider safe. Children and pregnant women are most at risk.'
                       : 'Lead detected at ' + ppb + ' ppb — below EPA action level of 15 ppb. Note: the CDC states there is no safe level of lead exposure.';
                     return (
-                      <div style={{ background: bg, border: '1px solid ' + border, borderRadius: 10, padding: '14px 16px', marginBottom: 16, display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                        <span style={{ fontSize: 18, flexShrink: 0 }}>{icon}</span>
+                      <div style={{ background: bg, border: '1px solid ' + border, borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                        <span style={{ fontSize: 16, flexShrink: 0 }}>{icon}</span>
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: 11, fontWeight: 800, color: color, letterSpacing: 1, marginBottom: 4 }}>LEAD TAP SAMPLE — EPA MEASURED DATA</div>
-                          <div style={{ fontSize: 13, color: '#e2e8f0', lineHeight: 1.6 }}>{msg}</div>
-                          <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>Source: EPA Lead & Copper Rule tap sampling &nbsp;·&nbsp; 90th percentile result &nbsp;·&nbsp; {leadC.note}</div>
+                          <div style={{ fontSize: 10, fontWeight: 800, color: color, letterSpacing: 0.8, marginBottom: 3 }}>LEAD — EPA TAP SAMPLE</div>
+                          <div style={{ fontSize: 12, color: '#e2e8f0', lineHeight: 1.55 }}>{msg}</div>
+                          <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 4 }}>LCR 90th %ile · {leadC.note}</div>
                         </div>
-                        <div style={{ fontSize: 22, fontWeight: 900, color: color, flexShrink: 0, textAlign: 'right' }}>
+                        <div style={{ fontSize: 18, fontWeight: 900, color: color, flexShrink: 0, textAlign: 'right' }}>
                           <div>{ppb}</div>
-                          <div style={{ fontSize: 10, fontWeight: 600, color: '#94a3b8' }}>ppb</div>
+                          <div style={{ fontSize: 9, fontWeight: 600, color: '#94a3b8' }}>ppb</div>
                         </div>
                       </div>
                     );
                   })()}
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>CONTAMINANT ANALYSIS — CLICK ROWS FOR HEALTH INFO</div>
+                  <div style={{ fontSize: 10, letterSpacing: 0.5, color: '#0891b2', marginBottom: 8 }}>CONTAMINANTS — tap a row for health context</div>
                   {(showAllContaminants || data.contaminants.length <= 3
                     ? data.contaminants
                     : data.contaminants.slice(0, 3)
@@ -3242,19 +3235,16 @@ export default function WaterCheckup() {
           {/* TAB: ALL PRODUCTS */}
           {tab === 'products' && (
             <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 22 }}>39 PRODUCTS · ALL NSF/WQA CERTIFIED · AMAZON AFFILIATE</div>
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 22 }}>39 PRODUCTS · AMAZON AFFILIATE</div>
 
           {/* ── FEATURED EXPERT PICKS SPOTLIGHT ────────────────────── */}
           {(() => {
             const featured = PRODUCTS.filter((p: any) => p.expertPick).slice(0, 3);
             return (
               <div style={{ marginBottom: 48 }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-                  <div>
-                    <div style={{ fontSize: 11, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
-                    <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
-                  </div>
-                  <div style={{ fontSize: 12, color: '#94a3b8' }}>NSF/WQA certifications drive these picks</div>
+                <div style={{ marginBottom: 20 }}>
+                  <div style={{ fontSize: 11, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {featured.map((p: any, idx: number) => {
@@ -3819,6 +3809,7 @@ export default function WaterCheckup() {
             { stat: '135+', label: 'City reports' },
             { stat: '100% Free', label: 'No account, ever' },
             { stat: '50 states', label: 'ZIP-level reports' },
+            { stat: '100K+', label: 'Trusted households' },
           ].map(({ stat, label }) => (
             <div key={stat} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>

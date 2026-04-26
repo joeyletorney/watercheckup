@@ -67,6 +67,14 @@ body.wc-ocean-bg {
 
 a { color: inherit; text-decoration: none; }
 
+/* Water report: collapsible meta — avoid duplicate triangle in WebKit */
+.wc-report-details > summary {
+  list-style: none;
+}
+.wc-report-details > summary::-webkit-details-marker {
+  display: none;
+}
+
 /* Skip link — visible only when focused */
 .wc-skip-link {
   position: absolute;
