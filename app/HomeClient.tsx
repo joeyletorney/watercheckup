@@ -2255,9 +2255,9 @@ export default function WaterCheckup() {
         {/* 3-column why us */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '24px auto 28px', maxWidth: 720 }}>
           {[
-            { icon: '🇺🇸', title: 'Every US Water System', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
-            { icon: '🔬', title: 'Real EPA Data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
-            { icon: '💧', title: 'Free Filter Solutions', desc: 'Top-rated systems matched to your exact contaminants. No guessing.' },
+            { icon: '🇺🇸', title: 'Every US water system', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
+            { icon: '🔬', title: 'Real EPA data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
+            { icon: '💧', title: 'Certified filter picks', desc: 'Top-rated systems matched to your exact contaminants. Filter recommendations carry industry certifications — not sponsored picks.' },
           ].map(item => (
             <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
@@ -2277,17 +2277,17 @@ export default function WaterCheckup() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Problem — What's in Your Water?</div>
-                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>Most people have no idea what's coming out of their tap. Here's the truth.</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Common things found in US tap water — and what to do about them</div>
+                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>Most tap water is treated and monitored. But treatment doesn't remove everything, and what stays in varies by city. Here's what shows up most often — and the simple filters that remove each one.</div>
               </div>
             </div>
             {/* Alarming stat strip */}
             <div style={{ display: 'flex', gap: 10, marginBottom: 18, flexWrap: 'wrap' }}>
               {[
-                { stat: '45%', label: 'of US tap water contains PFAS' },
-                { stat: '400K+', label: 'miles of lead pipes still in use' },
-                { stat: '270M', label: 'Americans drink disinfection byproducts daily' },
-                { stat: '75%', label: 'of US water has detectable Chromium-6' },
+                { stat: '1 in 2 homes', label: 'has PFAS "forever chemicals" detected — more common than having a garage' },
+                { stat: '400,000 miles', label: 'of lead pipes still in use — enough to circle the Earth 16 times' },
+                { stat: '9 in 10 Americans', label: 'drink water with low-level chlorine byproducts — legal, but worth filtering' },
+                { stat: '3 in 4 systems', label: 'have detectable Chromium-6 with no federal limit set yet' },
               ].map(s => (
                 <div key={s.stat} className="wc-card" style={{ flex: '1 1 140px', borderRadius: 10, padding: '12px 14px', textAlign: 'center' }}>
                   <div style={{ fontSize: 22, fontWeight: 900, color: '#22d3ee', letterSpacing: -0.5 }}>{s.stat}</div>
@@ -2300,58 +2300,58 @@ export default function WaterCheckup() {
               {[
                 {
                   icon: '☣️',
-                  title: 'PFAS "Forever Chemicals"',
+                  title: 'PFAS "forever chemicals"',
                   risk: 'Cancer · Hormones · Immunity',
-                  body: 'Found in 45% of US tap water (USGS, 2023). Linked to kidney & testicular cancer, thyroid disease, and immune suppression. They never break down — standard carbon filters do NOT remove them. Only RO or certified PFAS filters work.',
+                  body: "Man-made chemicals used in nonstick pans, food packaging, and firefighting foam \u2014 they don\u2019t break down in the environment or in your body. Found in 1 in 2 US water supplies. Linked to thyroid disease and certain cancers with long-term exposure. Removed by: reverse osmosis or a certified PFAS filter.",
                   color: '#ef4444',
                 },
                 {
                   icon: '🔩',
                   title: 'Lead',
                   risk: 'Brain damage · No safe level',
-                  body: 'Over 400,000 miles of lead service lines still deliver water in the US. Lead causes permanent IQ loss and neurological damage — especially in children under 6. The EPA says there is no safe level. Comes from pipes, not the source.',
+                  body: "A heavy metal that leaches from old pipes and home plumbing \u2014 especially in houses built before 1986. You can\u2019t taste, see, or smell it. No safe level exists for children. Causes permanent neurological damage even at trace amounts. Removed by: reverse osmosis or NSF 53-certified filter.",
                   color: '#f59e0b',
                 },
                 {
                   icon: '⚗️',
-                  title: 'Chlorine & Disinfection Byproducts',
-                  risk: 'Probable carcinogen · THMs · HAAs',
-                  body: 'Every water utility adds chlorine or chloramine. These react with organic matter to form Trihalomethanes (THMs) and Haloacetic Acids (HAAs) — both classified as probable human carcinogens by the EPA. 270 million Americans drink them daily.',
+                  title: 'Chlorine byproducts (THMs & HAAs)',
+                  risk: 'Probable carcinogens · In most tap water',
+                  body: 'When chlorine — added by utilities to kill bacteria — mixes with organic matter, it forms trihalomethanes (THMs) and haloacetic acids (HAAs). Both are classified as probable carcinogens by the EPA and are present in nearly all treated US tap water. Removed by: activated carbon filter or reverse osmosis.',
                   color: '#a78bfa',
                 },
                 {
                   icon: '🌾',
                   title: 'Nitrates',
-                  risk: 'Infant mortality · Agricultural runoff',
-                  body: 'The #1 contaminant in rural and agricultural America. Nitrates above 10 mg/L cause "blue baby syndrome" — life-threatening oxygen deprivation in infants. Comes from fertilizer runoff and livestock waste. Standard pitchers do not remove it.',
+                  risk: 'Infant risk · Agricultural runoff',
+                  body: "Chemicals from fertilizers and animal waste that seep into groundwater \u2014 most common in rural areas near farms. Above 10 mg/L (about two teaspoons per 100 gallons) they can cause oxygen deprivation in infants \u2014 known as \u201cblue baby syndrome.\u201d Removed by: reverse osmosis (standard pitchers do NOT work).",
                   color: '#84cc16',
                 },
                 {
                   icon: '⚡',
                   title: 'Arsenic',
                   risk: 'Bladder · Lung · Skin cancer',
-                  body: 'Naturally occurring and odorless — you cannot taste it. Chronic exposure is linked to bladder, lung, and skin cancers. Over 2 million Americans drink water above the EPA limit of 10 ppb, and the WHO considers that limit too high.',
+                  body: 'A naturally occurring metal that dissolves into groundwater from rock — completely odorless and tasteless. Long-term exposure is linked to bladder, lung, and skin cancers. Over 2 million Americans drink water above the EPA limit of 10 ppb. Removed by: reverse osmosis or NSF 58-certified filter.',
                   color: '#f97316',
                 },
                 {
                   icon: '🏭',
-                  title: 'Chromium-6 (Hexavalent Chromium)',
-                  risk: 'Probable carcinogen · 75% of water',
-                  body: 'The Erin Brockovich chemical. Found in 75% of US drinking water systems at levels above health guidelines. The EPA legal limit is for total chromium — Chromium-6 alone has no enforceable limit yet. Linked to gastrointestinal cancer.',
+                  title: 'Chromium-6 (hexavalent chromium)',
+                  risk: 'Probable carcinogen · 3 in 4 water systems',
+                  body: 'The Erin Brockovich chemical — a byproduct of industrial pollution also found naturally in some soils and groundwater. Found in 3 out of 4 US water systems. The EPA has a limit for total chromium, but not specifically for Chromium-6 yet. Removed by: reverse osmosis.',
                   color: '#06b6d4',
                 },
                 {
                   icon: '🦠',
-                  title: 'Microplastics & Nanoplastics',
+                  title: 'Microplastics & nanoplastics',
                   risk: 'Emerging · Inflammation · Hormones',
-                  body: 'Found in virtually 100% of tap water samples worldwide. Recent studies detect them inside human blood, lungs, and placentas. Carry hormone-disrupting chemicals and heavy metals. Standard filters do not remove nanoplastics — only RO membranes do.',
+                  body: "Tiny plastic fragments shed from packaging, clothing, and pipes \u2014 found in virtually all tap water worldwide. Early studies link them to inflammation and hormone disruption. Standard carbon filters don\u2019t remove nanoplastics. Removed by: reverse osmosis membranes only.",
                   color: '#ec4899',
                 },
                 {
                   icon: '💧',
-                  title: 'Hard Water (Calcium & Magnesium Scale)',
+                  title: 'Hard water (calcium & magnesium)',
                   risk: 'Pipe damage · Skin · Appliances',
-                  body: '85% of the US has hard water. Scale builds up in pipes, water heaters, and appliances — reducing efficiency by up to 48% and cutting appliance life in half. Hard water also strips moisture from skin and hair, worsening eczema and dryness.',
+                  body: 'Not a health risk — but a home and skin issue. Minerals in hard water leave scale buildup on pipes, appliances, and your skin. 85% of US homes have it. Reduces appliance lifespan, increases energy bills, and worsens dry skin and eczema. Treated by: water softener or whole-house filter.',
                   color: '#94a3b8',
                 },
               ].map(c => (
@@ -2370,6 +2370,13 @@ export default function WaterCheckup() {
             <div style={{ marginTop: 16, padding: '14px 18px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 14, color: '#94a3b8', textAlign: 'center' }}>
               Enter your ZIP code above ↑ to see exactly what EPA data shows for <strong style={{ color: '#38bdf8' }}>your water system</strong>
             </div>
+
+            {/* Mid-page ZIP repeat — second entry point after reading about contaminants */}
+            <div style={{ marginTop: 28, padding: '20px 22px', background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 12, textAlign: 'center' }}>
+              <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f9ff', marginBottom: 6 }}>Ready to check your water?</div>
+              <div style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, marginBottom: 4 }}>Enter your ZIP code and we'll pull the real EPA data for your area — violations, PFAS detections, lead sampling, and a filter recommendation matched to what's actually in your water.</div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 0 }}>Free · No account · Results in seconds</div>
+            </div>
           </div>
 
           {/* ── STEP 2: YOUR SITUATION ─────────────────────────────── */}
@@ -2377,8 +2384,8 @@ export default function WaterCheckup() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
               <div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>What's Your Living Situation?</div>
-                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>We'll show you the right filters for your home type.</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Now tell us about your home</div>
+                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>To show you the right filter — one that fits your setup — tell us where you live.</div>
               </div>
             </div>
 
@@ -3570,7 +3577,7 @@ export default function WaterCheckup() {
             { stat: 'EPA SDWIS', label: 'Official data source' },
             { stat: 'UCMR5', label: 'PFAS monitoring data' },
             { stat: '135+', label: 'City reports' },
-            { stat: '100% Free', label: 'No account needed' },
+            { stat: '100% Free', label: 'No account, ever' },
           ].map(({ stat, label }) => (
             <div key={stat} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>
@@ -3582,9 +3589,9 @@ export default function WaterCheckup() {
         {/* Browse by city */}
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>BROWSE BY CITY</div>
-          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', margin: '0 0 6px' }}>Check your city's water quality</h2>
+          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', margin: '0 0 6px' }}>The most complete free water tool in the US</h2>
           <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 28px', lineHeight: 1.6 }}>
-            Real EPA data for 135+ US cities. Click any city to see contaminant levels, violations, and filter recommendations.
+            Most water quality checkers tap one database. We combine five — EPA violations, PFAS monitoring, lead pipe records, lead tap sampling, and enforcement history — then translate the results into plain language and match them to the right filter for your home. No login, no paywall, ever.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {[

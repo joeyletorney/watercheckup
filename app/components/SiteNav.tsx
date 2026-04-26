@@ -6,21 +6,18 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const ITEMS: [string, string][] = [
-  ['/', 'Home'],
-  ['/contaminants', 'Contaminants'],
-  ['/pfas', 'PFAS'],
-  ['/lead', 'Lead'],
-  ['/well', 'Well Water'],
+  ['/', 'Check my water'],
+  ['/contaminants', "What's in water"],
+  ['/quiz', 'Filter guide'],
+  ['/well', 'Well water'],
   ['/faq', 'FAQ'],
-  ['/blog', 'Blog'],
-  ['/quiz', 'Filter Finder'],
 ];
 
 /** Inline on small screens; rest live under “More”. */
 const MOBILE_PRIMARY: [string, string][] = [
-  ['/', 'Home'],
-  ['/contaminants', 'Contaminants'],
-  ['/quiz', 'Filter Finder'],
+  ['/', 'Check my water'],
+  ['/contaminants', "What's in water"],
+  ['/quiz', 'Filter guide'],
 ];
 
 const MQ = '(max-width: 767px)';
