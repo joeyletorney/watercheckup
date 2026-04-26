@@ -2084,8 +2084,7 @@ export default function WaterCheckup() {
             100% free · No account needed · All 50 states · Updated from EPA live data
           </p>
           <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, margin: '12px 0 0' }}>
-            <strong style={{ color: '#94a3b8' }}>Trusted by over 100,000 households across the U.S.</strong>{' '}
-            Trusted by households coast to coast — same live federal datasets utilities report to EPA.
+            <strong style={{ color: '#94a3b8' }}>Trusted by over 100,000 households across the U.S.</strong>
           </p>
         </div>
 
