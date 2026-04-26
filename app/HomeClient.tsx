@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { SiteHeader } from './components/SiteHeader';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 
@@ -99,19 +100,19 @@ const ACIDIC_STATES = new Set([
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO — quick-change only ─────────────────────────────────────
-  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Fastest 800GPD flow of any tankless RO. Removes 99%+ PFAS and lead. Named #1 Under-Sink RO by multiple independent labs.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
-  { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, expertPick:true, expertReason:'Most certified RO on the market — WQA Gold Seal plus NSF/ANSI 42, 53, 58, and 401. Removes microplastics and 90+ contaminants. Best pick for maximum certification coverage and PFAS removal.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
+  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Very fast 800 GPD flow among tankless RO units. Removes 99%+ PFAS and lead; often scores well in independent lab summaries.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
+  { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, expertPick:true, expertReason:'Broad third-party listings (WQA Gold Seal plus NSF/ANSI 42, 53, 58, and 401). Removes microplastics and 90+ contaminants. Strong choice if you want wide certification coverage for PFAS and more.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
   { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:`https://www.amazon.com/dp/B08746G2XX?tag=${TAG}` },
   { id:27, cat:'undersink', catLabel:'Under-Sink RO', name:'Frizzlife PD1000-TAM4', brand:'Frizzlife', price:799, filterCostPerYear:160, rating:4.8, reviews:890, gpd:1000, stages:5, cert:['NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Chromium-6','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['1000 GPD fastest fill','Quick-change filters','Tankless compact'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/PD1000_81efd50c-480c-4ee6-b809-c2312525621a.png?v=1757987339', amazon:`https://www.amazon.com/dp/B0BK8ZRY2K?tag=${TAG}` },
   { id:28, cat:'undersink', catLabel:'Under-Sink RO', name:'AquaTru Under-Sink RO', brand:'AquaTru', price:375, filterCostPerYear:120, rating:4.6, reviews:1100, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Chromium-6','Fluoride'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['Quick-change filters','Under-sink compact','No tank'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Undersink-1-2.webp?v=1758041969', amazon:`https://www.amazon.com/dp/B0GGTSFZMY?tag=${TAG}` },
 
   // ── UNDER-SINK FILTER (non-RO) — quick-change ───────────────────────────────
-  { id:23, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife SK99', brand:'Frizzlife', price:126, filterCostPerYear:60, rating:4.7, reviews:4200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','Chlorine >99%','PFAS','Chloramine','Cysts'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Quick-change twist-off','No tank needed','Under-sink compact'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Dual quick-change filter cartridges — no tools, no mess. Removes lead at 99.9% and PFAS without the cost of a full RO system. Best value non-RO under-sink filter.', img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/SK99_85cce087-8e10-4b22-8462-605ed3b2ae72.png?v=1757989183', amazon:`https://www.amazon.com/dp/B084HW5BMT?tag=${TAG}` },
+  { id:23, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife SK99', brand:'Frizzlife', price:126, filterCostPerYear:60, rating:4.7, reviews:4200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','Chlorine >99%','PFAS','Chloramine','Cysts'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Quick-change twist-off','No tank needed','Under-sink compact'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Dual quick-change filter cartridges — no tools, no mess. Removes lead at 99.9% and PFAS without the cost of a full RO system. Strong value among non-RO under-sink options.', img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/SK99_85cce087-8e10-4b22-8462-605ed3b2ae72.png?v=1757989183', amazon:`https://www.amazon.com/dp/B084HW5BMT?tag=${TAG}` },
   { id:24, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife MK99', brand:'Frizzlife', price:59, filterCostPerYear:45, rating:4.6, reviews:6800, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead >99%','Chlorine >99%','Chloramine','Cysts','Heavy metals'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Best-value quick-change','Under 2 min install','Compact design'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/MK99-B.png?v=1757994240', amazon:`https://www.amazon.com/dp/B07ZY9RVN2?tag=${TAG}` },
-  { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — rare for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants. Best pick for homeowners who want PFAS protection at a lower price point.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/gp/product/B076S1W5QY?tag=${TAG}` },
+  { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — uncommon for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants on listings. Good option if you want PFAS coverage without full RO.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/gp/product/B076S1W5QY?tag=${TAG}` },
 
   // ── COUNTERTOP RO — no installation needed ──────────────────────────────────
-  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in 10 seconds. Removes 99%+ PFAS and lead. Rated #1 countertop RO by Consumer Reports 2024.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:`https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}` },
+  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in seconds. Removes 99%+ PFAS and lead; often scores well in independent countertop-RO roundups.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:`https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}` },
   { id:30, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19', brand:'Waterdrop', price:309, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Bacteria','Viruses','TDS'], bestFor:['PFAS','Lead','Bacteria','Viruses'], pros:['UV sterilization built-in','Quick-change filters','Zero install'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-k19-s-vis.png?v=1774504000', amazon:`https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}` },
   { id:31, cat:'countertop', catLabel:'Countertop RO', name:'AquaTru Classic', brand:'AquaTru', price:475, filterCostPerYear:130, rating:4.6, reviews:5200, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Fluoride','Radium'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['No installation required','Quick-change filters','NSF/ANSI 401 certified'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Premium countertop RO certified to NSF/ANSI 42, 53, 58, and 401 — removes PFAS, nitrates, fluoride, and radium. No installation required, and quick-change filters swap in seconds. Best premium option for the kitchen counter.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Classic-1-1_bd723f43-efb1-4f23-b772-9352d7d7179b.webp?v=1758659574', amazon:`https://www.amazon.com/dp/B0CQS3HQ8F?tag=${TAG}` },
 
@@ -119,10 +120,10 @@ const PRODUCTS: any[] = [
   { id:45, cat:'distiller', catLabel:'Countertop Distiller', name:'CO-Z 4L Brushed Stainless Distiller', brand:'CO-Z', price:119, filterCostPerYear:35, rating:4.5, reviews:8900, gpd:null, stages:2, cert:['Steam distillation','304 stainless boil chamber','Glass carafe (most kits)'], certColor:'#14b8a6', removes:['Heavy metals >99%','Fluoride','Nitrates','TDS','Bacteria','Cysts','Dissolved solids'], bestFor:['Fluoride','Nitrates','Lead','TDS','Arsenic','PFAS'], pros:['Excellent Amazon value','Auto shut-off','750W — common 4L design'], diyDiff:'None', situations:['homeowner','family'], expertPick:true, expertReason:'CO-Z’s 4L stainless countertop distiller is one of Amazon’s best-selling alternatives to premium brands — strong ratings and review count for the price. Same distillation physics as units costing 2×: boil, condense, collect; descale often and replace carbon sachets on schedule.', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80', amazon:`https://www.amazon.com/dp/B078GHJ921?tag=${TAG}` },
 
   // ── COUNTERTOP FILTER (non-RO) ───────────────────────────────────────────────
-  { id:29, cat:'countertop-filter', catLabel:'Countertop Filter', name:'Epic Pure Pitcher', brand:'Epic Water Filters', price:50, filterCostPerYear:80, rating:4.7, reviews:2800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Arsenic >99%','Chromium-6','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Removes PFAS — rare for pitcher','No installation','Best-value pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Certified to remove PFAS at 99%+ — virtually unheard of at this price. Also removes lead, arsenic, and microplastics. Best value pitcher for serious contaminant removal.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Purehero1080.png?v=1773943609', amazon:`https://www.amazon.com/dp/B08PPLVFBN?tag=${TAG}` },
+  { id:29, cat:'countertop-filter', catLabel:'Countertop Filter', name:'Epic Pure Pitcher', brand:'Epic Water Filters', price:50, filterCostPerYear:80, rating:4.7, reviews:2800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Arsenic >99%','Chromium-6','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Removes PFAS — rare for pitcher','No installation','Best-value pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Certified PFAS reduction claims at 99%+ on listings — strong for a countertop pitcher. Also targets lead, arsenic, and microplastics; verify the cartridge listing matches what you buy.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Purehero1080.png?v=1773943609', amazon:`https://www.amazon.com/dp/B08PPLVFBN?tag=${TAG}` },
 
   // ── PITCHER FILTERS ─────────────────────────────────────────────────────────
-  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Only pitcher on the market to remove PFAS at 99.9%. Certified against 365+ contaminants. Reviewers on Amazon consistently rank it best for lead and arsenic. Our top pick for renters and dorms.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', amazon:`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}` },
+  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Strong published reduction claims for PFAS on certified listings, plus broad contaminant coverage. Popular with reviewers for lead and arsenic. A solid pick for renters and dorms if listings match your needs.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', amazon:`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}` },
   { id:10, cat:'pitcher', catLabel:'Pitcher Filter', name:'ZeroWater 10-Cup Pitcher', brand:'ZeroWater', price:40, filterCostPerYear:100, rating:4.5, reviews:31000, gpd:null, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Chromium 100%','TDS to 0','Mercury','Arsenic'], bestFor:['Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes TDS to 0','Includes TDS meter','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://shop.culligan.com/cdn/shop/files/UMC_10C_White_Zoom_IAPMO.jpg?v=1769531157', amazon:`https://www.amazon.com/dp/B01I2I2R36?tag=${TAG}` },
   { id:11, cat:'pitcher', catLabel:'Pitcher Filter', name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://www.pur.com/wp-content/uploads/product_ppt111w_pour_digital.png', amazon:`https://www.amazon.com/dp/B09LKTLVNR?tag=${TAG}` },
   { id:12, cat:'pitcher', catLabel:'Pitcher Filter', name:'Brita Large 10-Cup Everyday', brand:'Brita', price:28, filterCostPerYear:65, rating:4.6, reviews:62000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Chlorine taste/odor','Mercury','Cadmium','Copper'], bestFor:['Chlorine','Copper','Mercury'], pros:['Most popular pitcher','Budget-friendly','Widely available'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://images.ctfassets.net/bugnyha6so6z/acBjvgL2C42mltLEu67e3/21192a304f339de2a3a278b90ed318e7/PDP_hero_-_denali_-_white_-_original_-_desktop_1x.webp', amazon:`https://www.amazon.com/dp/B00008WOPI?tag=${TAG}` },
@@ -136,16 +137,16 @@ const PRODUCTS: any[] = [
   { id:16, cat:'bottle', catLabel:'Filtered Water Bottle', name:'LifeStraw Go Series', brand:'LifeStraw', price:40, filterCostPerYear:20, rating:4.7, reviews:18000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Bacteria 99.99%','Parasites 99.9%','Microplastics','Lead','Chlorine'], bestFor:['Bacteria','Parasites','Lead','Microplastics'], pros:['Great for travel','Ultra lightweight','No batteries'], diyDiff:'None', situations:['dorm','travel'], img:'https://lifestraw.com/cdn/shop/products/LifeStraw-Go_1Lpolar_650x.jpg?v=1763730752', amazon:`https://www.amazon.com/dp/B00B3UPMEW?tag=${TAG}` },
 
   // ── WHOLE HOUSE ─────────────────────────────────────────────────────────────
-  { id:18, cat:'whole', catLabel:'Whole-House', name:'Pelican PC600 Whole-House', brand:'Pelican Water', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'The gold standard for whole-home protection. 6-year filter life means lower maintenance than competitors. WQA Gold Seal certified. Ranked #1 whole-house carbon filter by independent water quality experts.', img:'https://cdn.shopify.com/s/files/1/0509/5918/8143/files/Gemini_Generated_Image_mf212bmf212bmf21.png?v=1757187780', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}` },
+  { id:18, cat:'whole', catLabel:'Whole-House', name:'Pelican PC600 Whole-House', brand:'Pelican Water', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Strong whole-home carbon option with a long advertised filter life and WQA Gold Seal on listings. Compare install scope and ongoing costs to other systems for your home size.', img:'https://cdn.shopify.com/s/files/1/0509/5918/8143/files/Gemini_Generated_Image_mf212bmf212bmf21.png?v=1757187780', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}` },
   { id:19, cat:'whole', catLabel:'Whole-House', name:'iSpring WGB32B Whole House 3-Stage', brand:'iSpring', price:420, filterCostPerYear:70, rating:4.7, reviews:2532, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Iron'], bestFor:['Chlorine','Chloramine','Sediment','Iron'], pros:['Most affordable whole-house','DIY-friendly','Large flow rate'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.ispringwatersystems.com/wp-content/uploads/2023/06/WGB32B_main_jpg-103980-2400x2400-2.jpg', amazon:`https://www.amazon.com/gp/product/B008GNRMYK?tag=${TAG}` },
-  { id:32, cat:'whole', catLabel:'Whole-House', name:'Aquasana Rhino EQ-1000', brand:'Aquasana', price:999, filterCostPerYear:100, rating:4.7, reviews:3400, gpd:null, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >99%','Chloramine','THMs','VOCs','PFAS','Sediment'], bestFor:['Chloramine','PFAS','THMs','VOCs'], pros:['10-year/1M gallon life','PFAS reduction','WQA certified'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'10-year/1 million gallon filter life — the longest of any whole-house system. WQA Gold Seal certified. Reduces PFAS and chloramine at every tap and shower in the home. Best long-term whole-house investment.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwe94bfae0/images/large/WH-1000.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
+  { id:32, cat:'whole', catLabel:'Whole-House', name:'Aquasana Rhino EQ-1000', brand:'Aquasana', price:999, filterCostPerYear:100, rating:4.7, reviews:3400, gpd:null, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >99%','Chloramine','THMs','VOCs','PFAS','Sediment'], bestFor:['Chloramine','PFAS','THMs','VOCs'], pros:['10-year/1M gallon life','PFAS reduction','WQA certified'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Long advertised filter life and WQA Gold Seal on listings. Reduces PFAS and chloramine at every tap and shower in the home — confirm flow and capacity for your household.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwe94bfae0/images/large/WH-1000.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
   { id:33, cat:'whole', catLabel:'Whole-House', name:'Express Water WH300SCKS', brand:'Express Water', price:548, filterCostPerYear:90, rating:4.5, reviews:2900, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','Heavy metals','Scale'], bestFor:['Chlorine','Chloramine','Scale','Sediment'], pros:['Includes pressure gauges','Easy DIY install','6-month filters'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.expresswater.com/cdn/shop/files/WH300SCKS-01_1292x.jpg?v=1771889437', amazon:`https://www.amazon.com/dp/B01LFMTYBM?tag=${TAG}` },
   { id:34, cat:'whole', catLabel:'Whole-House', name:'Waterdrop WHF3T-PG', brand:'Waterdrop', price:370, filterCostPerYear:80, rating:4.6, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Herbicides'], bestFor:['Chlorine','Chloramine','Sediment','VOCs'], pros:['Transparent housing','Pressure gauge included','1-year filters'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-WHF3T-PG.png?v=1762269824', amazon:`https://www.amazon.com/dp/B0FYCRPXLZ?tag=${TAG}` },
 
   // ── SHOWER FILTERS ──────────────────────────────────────────────────────────
-  { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#94a3b8', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'42,000+ Amazon reviews. Installs in 5 minutes — just screw it onto any showerhead. Removes chlorine that dries skin and damages hair. Best value shower filter on the market by far.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
+  { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#94a3b8', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'Huge review count on Amazon. Installs in minutes — screws onto many shower arms. Reduces chlorine that can dry skin and hair; good entry-level value — verify fit for your shower hardware.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
   { id:35, cat:'shower', catLabel:'Shower Filter', name:'Aquasana AQ-4105CHR', brand:'Aquasana', price:119, filterCostPerYear:80, rating:4.7, reviews:4200, gpd:null, stages:2, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >91%','Chloramine','Scale','Synthetic chemicals'], bestFor:['Chlorine','Chloramine','Scale'], pros:['NSF 177 certified','Quick-change filter','Filtered showerhead combo'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Complete filtered showerhead combo — NSF/ANSI 177 certified with a quick-change cartridge that twists off without tools. The premium pick for removing both chlorine and chloramine.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwc5d4d26e/images/large/AQ-4105CHR.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B004AQZW3A?tag=${TAG}` },
-  { id:36, cat:'shower', catLabel:'Shower Filter', name:'AquaTru Shower Filter', brand:'AquaTru', price:149, filterCostPerYear:90, rating:4.6, reviews:890, gpd:null, stages:3, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >98%','Chloramine','Heavy metals','Scale','VOCs'], bestFor:['Chlorine','Chloramine','Heavy metals'], pros:['Highest chlorine reduction','Quick-change cartridge','Premium finish'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Highest chlorine reduction of any shower filter at 98%+ — NSF/ANSI 177 certified. Quick-change cartridge with a premium finish. Best pick for heavy chlorine areas.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT_-_Shower_-_PDP_01_-_Nickel.jpg?v=1773655036', amazon:`https://www.amazon.com/dp/B0FLHFTGYD?tag=${TAG}` },
+  { id:36, cat:'shower', catLabel:'Shower Filter', name:'AquaTru Shower Filter', brand:'AquaTru', price:149, filterCostPerYear:90, rating:4.6, reviews:890, gpd:null, stages:3, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >98%','Chloramine','Heavy metals','Scale','VOCs'], bestFor:['Chlorine','Chloramine','Heavy metals'], pros:['Highest chlorine reduction','Quick-change cartridge','Premium finish'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Claims strong chlorine reduction on listings (often around 98%+) with NSF/ANSI 177 on applicable models. Quick-change cartridge; confirm the listing matches the SKU you order.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT_-_Shower_-_PDP_01_-_Nickel.jpg?v=1773655036', amazon:`https://www.amazon.com/dp/B0FLHFTGYD?tag=${TAG}` },
 
   // ── REFRIGERATOR / INLINE ───────────────────────────────────────────────────
   { id:22, cat:'fridge', catLabel:'Refrigerator / Inline', name:'GLACIER FRESH Inline Filter', brand:'Glacier Fresh', price:25, filterCostPerYear:50, rating:4.5, reviews:8900, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 99%','Chlorine 99%','Cysts','Fluoride 70%'], bestFor:['Lead','Chlorine','Cysts'], pros:['Universal fit','Works with most fridges','DIY 5 min'], diyDiff:'Easy', situations:['homeowner','renter','family'], img:'https://glacierfreshfilter.com/cdn/shop/products/Z045-NEW-2.jpg?v=1669607623', amazon:`https://www.amazon.com/dp/B07CF5HLBQ?tag=${TAG}` },
@@ -1766,13 +1767,13 @@ function formatResultsLead(data: any): { found: string; todo: string } {
   if (data.openViolations > 0) {
     return {
       found: `We found ${data.openViolations} open violation(s) on EPA records for ${system}.`,
-      todo: 'Read the violation list, then use the certified filter picks below for water you drink and cook with.',
+      todo: 'Read the violation list, then check filter picks below for water you drink and cook with.',
     };
   }
   if (data.pfasAboveMcl > 0) {
     return {
       found: `PFAS levels exceed the EPA legal limit in the federal data we show for ${system}.`,
-      todo: 'Use an NSF 58 reverse-osmosis system or NSF P473-rated filter for drinking water—ranked options are below.',
+      todo: 'For drinking water, reverse osmosis (often sold as NSF/ANSI 58) or a filter with a published PFAS listing (e.g. NSF P473) is the usual approach—see Shop for options.',
     };
   }
   if (data.score < 65) {
@@ -1789,7 +1790,7 @@ function formatResultsLead(data: any): { found: string; todo: string } {
   }
   return {
     found: `We matched your ZIP to ${system} (${data.city || 'your area'}).`,
-    todo: 'Review the sections below, use the tabs for PFAS or products, then pick filters that line up with your priorities.',
+      todo: 'Review the sections below, open the PFAS or Shop tabs as needed, then pick filters that match your priorities.',
   };
 }
 
@@ -2365,7 +2366,8 @@ export default function WaterCheckup() {
             </div>
           )}
 
-        {/* 3-column why us */}
+        {/* 3-column why us — hidden once a municipal report is showing to shorten the path to results */}
+        {!(data && !loading && !wellMode) && (
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '24px auto 28px', maxWidth: 720 }}>
           {[
             { icon: '🇺🇸', title: 'Every US water system', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
@@ -2379,6 +2381,7 @@ export default function WaterCheckup() {
             </div>
           ))}
         </div>
+        )}
       </div>
 
       {!data && !loading && (
@@ -2774,7 +2777,7 @@ export default function WaterCheckup() {
 
       {/* RESULTS */}
       {data && !loading && !wellMode && (
-        <div ref={resultsRef} style={{ maxWidth: 960, margin: '20px auto 44px', padding: '0 16px', position: 'relative', zIndex: 2 }}>
+        <div id="wc-results" ref={resultsRef} style={{ maxWidth: 960, margin: '20px auto 44px', padding: '0 16px', position: 'relative', zIndex: 2 }}>
 
           {/* LIMITED DATA NOTICE */}
           {data.limitedData && (
@@ -2808,6 +2811,11 @@ export default function WaterCheckup() {
                 <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.55, margin: '8px 0 0' }}>
                   <strong style={{ color: '#e2e8f0' }}>What to do:</strong> {todo}
                 </p>
+                <p style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5, margin: '10px 0 0' }}>
+                  <Link href="/faq" style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                    FAQ — reading your report, filters, PFAS, lead →
+                  </Link>
+                </p>
               </div>
             );
           })()}
@@ -2825,30 +2833,60 @@ export default function WaterCheckup() {
               {data.summary && <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', marginBottom: 8, lineHeight: 1.5 }}>&ldquo;{data.summary}&rdquo;</div>}
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                 {[
-                  !data.limitedData && { l:'VIOL.', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
-                  !data.limitedData && { l:'OPEN', v:data.openViolations, c:data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
-                  { l:'PFAS', v:data.pfasCount || 0, c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
-                  !data.limitedData && { l:'SCORE', v:data.score, c:scoreColor },
+                  !data.limitedData && { l:'VIOL.', tip: 'Total violations on EPA record (past issues included)', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'OPEN', tip: 'Open violations still listed on EPA today', v:data.openViolations, c:data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
+                  { l:'PFAS', tip: 'PFAS-related detections in the federal testing snapshot we show', v:data.pfasCount || 0, c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'SCORE', tip: 'Our summary score from the mix of signals in this report', v:data.score, c:scoreColor },
                 ].filter(Boolean).map((s: any) => (
-                  <div key={s.l} style={{ textAlign: 'center', minWidth: 44 }}>
+                  <div key={s.l} style={{ textAlign: 'center', minWidth: 44 }} title={s.tip}>
                     <div style={{ fontSize: 17, fontWeight: 800, color: s.c, lineHeight: 1.1 }}>{s.v}</div>
-                    <div style={{ fontSize: 9, color: '#64748b', letterSpacing: 0.8 }}>{s.l}</div>
+                    <div style={{ fontSize: 9, color: '#94a3b8', letterSpacing: 0.8 }}>{s.l}</div>
                   </div>
                 ))}
               </div>
             </div>
             <div style={{ display: 'flex', gap: 6, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button onClick={() => setShowEmail(true)} className="wc-glass-btn" style={{ padding: '6px 10px', borderRadius: 6, fontSize: 11, letterSpacing: 0.5, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ Email</button>
-              <button onClick={() => setShowShare(true)} style={{ padding: '6px 10px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#94a3b8', fontSize: 11, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ Share</button>
+              <button type="button" onClick={() => setShowEmail(true)} className="wc-glass-btn wc-focus-ring" style={{ padding: '6px 10px', borderRadius: 6, fontSize: 11, letterSpacing: 0.5, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ Email</button>
+              <button type="button" onClick={() => setShowShare(true)} className="wc-focus-ring" style={{ padding: '6px 10px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#cbd5e1', fontSize: 11, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ Share</button>
             </div>
           </div>
 
-          {/* TABS */}
-          <div className="wc-tab-bar wc-reveal wc-reveal-3" style={{ display: 'flex', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            {[['report','📊 Report'],['solutions','🏠 Solution'],['pfas','☣️ PFAS'],['compare','📋 Compare'],['products','🛒 Shop'],['cost','💰 Cost'],['installers','🔧 Install'],['resources','🔗 Links']].map(([id, label]) => (
-              <button key={id} onClick={() => setTab(id)} style={{ padding: '8px 10px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#22d3ee' : '#94a3b8', fontSize: 11, fontWeight: 700, letterSpacing: 0.4, cursor: 'pointer' }}>{label}</button>
-            ))}
-          </div>
+          {/* TABS — grouped: understand your water vs plan / buy */}
+          <nav className="wc-tab-bar wc-reveal wc-reveal-3" aria-label="Report sections and next steps" style={{ display: 'flex', flexDirection: 'column', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+            <div className="wc-tab-section-label" style={{ padding: '8px 12px 4px', fontSize: 10, fontWeight: 800, letterSpacing: 1.1, color: '#94a3b8' }}>YOUR WATER</div>
+            <div role="tablist" aria-label="Water data" style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch', gap: 2, padding: '0 6px 6px' }}>
+              {[['report','📊 Report'],['pfas','☣️ PFAS'],['compare','📋 Compare']].map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === id}
+                  onClick={() => setTab(id)}
+                  className="wc-result-tab"
+                  style={{ padding: '10px 12px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#e0f2fe' : '#cbd5e1', fontSize: 12, fontWeight: 700, letterSpacing: 0.3, cursor: 'pointer', minHeight: 44 }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', margin: '0 10px' }} aria-hidden />
+            <div className="wc-tab-section-label" style={{ padding: '8px 12px 4px', fontSize: 10, fontWeight: 800, letterSpacing: 1.1, color: '#94a3b8' }}>NEXT STEPS</div>
+            <div role="tablist" aria-label="Filters and help" style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch', gap: 2, padding: '0 6px 8px' }}>
+              {[['solutions','🏠 Solution'],['products','🛒 Shop'],['cost','💰 Cost'],['installers','🔧 Install'],['resources','🔗 Links']].map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === id}
+                  onClick={() => setTab(id)}
+                  className="wc-result-tab"
+                  style={{ padding: '10px 12px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#e0f2fe' : '#cbd5e1', fontSize: 12, fontWeight: 700, letterSpacing: 0.3, cursor: 'pointer', minHeight: 44 }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </nav>
 
           {/* TAB: WATER REPORT */}
           {tab === 'report' && (
@@ -2864,18 +2902,20 @@ export default function WaterCheckup() {
                     <div style={{ marginTop: 10, marginBottom: 12, padding: '10px 12px', background: 'rgba(8,45,70,0.35)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 11, color: '#94a3b8', lineHeight: 1.55 }}>
                       <div style={{ fontSize: 9, letterSpacing: 1, color: '#22d3ee', fontWeight: 800, marginBottom: 4 }}>DATA FRESHNESS</div>
                       <div>
-                        <strong style={{ color: '#cbd5e1' }}>PFAS / UCMR5:</strong> packaged snapshot as of{' '}
+                        <strong style={{ color: '#cbd5e1' }}>PFAS testing (EPA UCMR5 — national monitoring round):</strong>{' '}
+                        snapshot packaged in this app as of{' '}
                         <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>.
                       </div>
                       <div style={{ marginTop: 6 }}>
-                        <strong style={{ color: '#cbd5e1' }}>Violations / lead-copper:</strong> {data.dataFreshness.sdwisLiveNote}
+                        <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead tap samples (EPA SDWIS — utility reporting database):</strong>{' '}
+                        {data.dataFreshness.sdwisLiveNote}
                       </div>
                       <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                         <a href={data.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
-                          EPA UCMR →
+                          EPA PFAS monitoring (UCMR) →
                         </a>
                         <a href={data.dataFreshness.links?.sdwis} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
-                          EPA SDWIS →
+                          EPA violations database (SDWIS) →
                         </a>
                       </div>
                     </div>
@@ -2928,7 +2968,7 @@ export default function WaterCheckup() {
 
               {data.violations?.length > 0 ? (
                 <>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>VIOLATION HISTORY — EPA SDWIS</div>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>Violation history (EPA records for your utility)</div>
                   <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 14, overflow: 'hidden' }}>
                     {data.violations.map((v: any, i: number) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '7px 12px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
@@ -3231,7 +3271,10 @@ export default function WaterCheckup() {
           {/* TAB: ALL PRODUCTS */}
           {tab === 'products' && (
             <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 22 }}>39 PRODUCTS · AMAZON AFFILIATE</div>
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 8 }}>39 products · Amazon links</div>
+              <p style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.55, margin: '0 0 18px' }}>
+                We may earn a commission from qualifying Amazon purchases — your price stays the same. Always confirm model numbers and certifications on the seller page before you buy.
+              </p>
 
           {/* ── FEATURED EXPERT PICKS SPOTLIGHT ────────────────────── */}
           {(() => {
@@ -3938,6 +3981,16 @@ export default function WaterCheckup() {
         </div>
 
       </div>
+
+      {data && !loading && !wellMode && (
+        <button
+          type="button"
+          className="wc-back-to-report"
+          onClick={() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+        >
+          ↑ Your report
+        </button>
+      )}
 
     </div>
   );

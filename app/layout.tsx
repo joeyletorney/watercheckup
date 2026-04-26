@@ -28,8 +28,20 @@ export const metadata: Metadata = {
     default: "WaterCheckup — See What's in Your Tap Water",
     template: '%s | WaterCheckup',
   },
-  description: 'Free water quality reports for any US ZIP code. Data from 5 EPA databases + EWG health guidelines. NSF-certified filter recommendations and local installer referrals.',
-  keywords: ['water quality', 'tap water', 'EPA water data', 'water filter', 'water contaminants', 'PFAS', 'lead in water', 'water quality report', 'NSF certified filter', 'water safety', 'tap water safety', 'drinking water quality', 'water quality by zip code'],
+  description:
+    'Free tap water snapshot for any US ZIP: EPA violations, PFAS monitoring, lead sampling, and more — explained in plain language. Filter ideas matched to what we find; some shopping links may earn a commission at no extra cost to you.',
+  keywords: [
+    'water quality',
+    'tap water',
+    'EPA water data',
+    'water filter',
+    'water contaminants',
+    'PFAS',
+    'lead in water',
+    'water quality report',
+    'drinking water quality',
+    'water quality by zip code',
+  ],
   authors: [{ name: 'WaterCheckup', url: 'https://watercheckup.com' }],
   creator: 'WaterCheckup',
   publisher: 'WaterCheckup',
@@ -44,7 +56,8 @@ export const metadata: Metadata = {
     url: 'https://watercheckup.com',
     siteName: 'WaterCheckup',
     title: "WaterCheckup -- See What's Really in Your Tap Water",
-    description: 'Free EPA water quality reports for any US ZIP code. Real contaminant data, expert filter picks, and local installers. Covers all 50 states.',
+    description:
+      'Free EPA-backed water snapshot for any US ZIP: violations, PFAS, lead, and more. Plain-language summary, filter ideas, and installer leads. Some links may earn a commission.',
     images: [
       {
         url: '/api/og',
@@ -57,7 +70,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "WaterCheckup -- See What's in Your Tap Water",
-    description: 'Free EPA water quality reports for any US ZIP code. Real contaminant data, expert filter picks.',
+    description:
+      'Free EPA-backed water snapshot by ZIP — violations, PFAS, lead, plain-English guidance, and filter ideas. Some links may earn a commission.',
     images: ['/api/og'],
     creator: '@watercheckup',
   },
@@ -89,7 +103,7 @@ const jsonLd = {
       logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/logo.svg' },
       sameAs: ['https://twitter.com/watercheckup'],
       description:
-        'Water quality reporting powered by live EPA public data and NSF/WQA-aligned filter guidance.',
+        'Water quality reporting powered by live EPA public data, with filter guidance that points to published certifications and listings.',
     },
     {
       '@type': 'WebPage',
@@ -98,7 +112,8 @@ const jsonLd = {
       name: "WaterCheckup — See What's in Your Tap Water",
       isPartOf: { '@id': 'https://watercheckup.com/#website' },
       about: { '@id': 'https://watercheckup.com/#organization' },
-      description: 'Enter your ZIP code to get a free EPA water quality report with contaminant data and NSF-certified filter recommendations.',
+      description:
+        'Enter your ZIP for a free EPA-backed water report and plain-language next steps, including filter ideas matched to what we find.',
     },
   ],
 }
