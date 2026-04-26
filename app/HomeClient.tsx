@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { SiteHeader } from './components/SiteHeader';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
@@ -1702,6 +1702,97 @@ const CITY_ZIP_MAP: Record<string, { zip: string; city: string; state: string }>
   'richmond': { zip: '23219', city: 'Richmond', state: 'VA' },
 };
 
+const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
+  { slug: 'albuquerque', name: 'Albuquerque, NM' },
+  { slug: 'atlanta', name: 'Atlanta, GA' },
+  { slug: 'austin', name: 'Austin, TX' },
+  { slug: 'baltimore', name: 'Baltimore, MD' },
+  { slug: 'boston', name: 'Boston, MA' },
+  { slug: 'charlotte', name: 'Charlotte, NC' },
+  { slug: 'chicago', name: 'Chicago, IL' },
+  { slug: 'cleveland', name: 'Cleveland, OH' },
+  { slug: 'columbus', name: 'Columbus, OH' },
+  { slug: 'dallas', name: 'Dallas, TX' },
+  { slug: 'dayton', name: 'Dayton, OH' },
+  { slug: 'denver', name: 'Denver, CO' },
+  { slug: 'des-moines', name: 'Des Moines, IA' },
+  { slug: 'detroit', name: 'Detroit, MI' },
+  { slug: 'fayetteville', name: 'Fayetteville, NC' },
+  { slug: 'fort-worth', name: 'Fort Worth, TX' },
+  { slug: 'fresno', name: 'Fresno, CA' },
+  { slug: 'houston', name: 'Houston, TX' },
+  { slug: 'indianapolis', name: 'Indianapolis, IN' },
+  { slug: 'jackson', name: 'Jackson, MS' },
+  { slug: 'jacksonville', name: 'Jacksonville, FL' },
+  { slug: 'kansas-city', name: 'Kansas City, MO' },
+  { slug: 'las-vegas', name: 'Las Vegas, NV' },
+  { slug: 'los-angeles', name: 'Los Angeles, CA' },
+  { slug: 'louisville', name: 'Louisville, KY' },
+  { slug: 'memphis', name: 'Memphis, TN' },
+  { slug: 'miami', name: 'Miami, FL' },
+  { slug: 'milwaukee', name: 'Milwaukee, WI' },
+  { slug: 'minneapolis', name: 'Minneapolis, MN' },
+  { slug: 'nashville', name: 'Nashville, TN' },
+  { slug: 'new-orleans', name: 'New Orleans, LA' },
+  { slug: 'new-york', name: 'New York, NY' },
+  { slug: 'orlando', name: 'Orlando, FL' },
+  { slug: 'philadelphia', name: 'Philadelphia, PA' },
+  { slug: 'phoenix', name: 'Phoenix, AZ' },
+  { slug: 'pittsburgh', name: 'Pittsburgh, PA' },
+  { slug: 'portland', name: 'Portland, OR' },
+  { slug: 'raleigh', name: 'Raleigh, NC' },
+  { slug: 'sacramento', name: 'Sacramento, CA' },
+  { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
+  { slug: 'san-antonio', name: 'San Antonio, TX' },
+  { slug: 'san-diego', name: 'San Diego, CA' },
+  { slug: 'san-francisco', name: 'San Francisco, CA' },
+  { slug: 'san-jose', name: 'San Jose, CA' },
+  { slug: 'seattle', name: 'Seattle, WA' },
+  { slug: 'st-louis', name: 'St. Louis, MO' },
+  { slug: 'tacoma', name: 'Tacoma, WA' },
+  { slug: 'tampa', name: 'Tampa, FL' },
+  { slug: 'tucson', name: 'Tucson, AZ' },
+  { slug: 'washington-dc', name: 'Washington, DC' },
+];
+
+function formatResultsLead(data: any): { found: string; todo: string } {
+  const system = data?.systemName || 'this water system';
+  if (data?.limitedData) {
+    return {
+      found: `We found limited matching federal data for ZIP ${data.zip || ''}.`,
+      todo: 'Try a nearby ZIP, use the official EPA links below, or open your city’s full report from Browse by city.',
+    };
+  }
+  if (data.openViolations > 0) {
+    return {
+      found: `We found ${data.openViolations} open violation(s) on EPA records for ${system}.`,
+      todo: 'Read the violation list, then use the certified filter picks below for water you drink and cook with.',
+    };
+  }
+  if (data.pfasAboveMcl > 0) {
+    return {
+      found: `PFAS levels exceed the EPA legal limit in the federal data we show for ${system}.`,
+      todo: 'Use an NSF 58 reverse-osmosis system or NSF P473-rated filter for drinking water—ranked options are below.',
+    };
+  }
+  if (data.score < 65) {
+    return {
+      found: `Your system’s EPA-based summary is on the lower side—there are items worth reviewing in this report.`,
+      todo: 'Scan contaminants next, then match a filter type to what showed up (under-sink RO covers the widest range).',
+    };
+  }
+  if (data.score >= 80 && (data.totalViolations || 0) === 0) {
+    return {
+      found: `For ${system}, EPA data in this panel looks relatively clean—no violations in what we track here.`,
+      todo: 'Many households still add a filter for taste, plumbing lead, or PFAS—see top picks and the PFAS tab if you want extra margin.',
+    };
+  }
+  return {
+    found: `We matched your ZIP to ${system} (${data.city || 'your area'}).`,
+    todo: 'Review the sections below, use the tabs for PFAS or products, then pick filters that line up with your priorities.',
+  };
+}
+
 export default function WaterCheckup() {
   const [zip, setZip]                   = useState('');
   const [loading, setLoading]           = useState(false);
@@ -1747,8 +1838,25 @@ export default function WaterCheckup() {
   const [wellMode, setWellMode]         = useState(false);
   const [wellFallbackState, setWellFallbackState] = useState<string | null>(null);
   const [heroSolutionKey, setHeroSolutionKey] = useState<HeroSolutionKey | null>(null);
+  const [cityBrowseFilter, setCityBrowseFilter] = useState('');
+  const [showAllContaminants, setShowAllContaminants] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
   const loadingPanelRef = useRef<HTMLDivElement>(null);
+
+  const filteredHomepageCities = useMemo(() => {
+    const q = cityBrowseFilter.trim().toLowerCase();
+    if (!q) return HOMEPAGE_CITY_LINKS;
+    return HOMEPAGE_CITY_LINKS.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.slug.replace(/-/g, ' ').includes(q) ||
+        c.slug.includes(q.replace(/\s+/g, '-')),
+    );
+  }, [cityBrowseFilter]);
+
+  useEffect(() => {
+    setShowAllContaminants(false);
+  }, [data?.pwsid, data?.zip]);
 
   useEffect(() => {
     if (!loading) return;
@@ -1949,10 +2057,13 @@ export default function WaterCheckup() {
       />
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
+      <div style={{ textAlign: 'center', padding: '6px 24px 0', fontSize: 11, color: '#bae6fd', letterSpacing: 0.2 }}>
+        Filter picks carry industry certifications — not sponsored.
+      </div>
       <div style={{ maxWidth: 820, margin: '52px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
-        <h1 className="wc-hero-h1" style={{ fontSize: 60, fontWeight: 900, margin: '0 0 20px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
-          Know Exactly What&apos;s<br />in Your <span className="wc-metal">Drinking Water</span>
+        <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 20px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
+          Your Tap Water Report,<br />In <span style={{ color: '#ffffff' }}>10 Seconds. Free.</span>
         </h1>
 
         <div
@@ -1970,10 +2081,13 @@ export default function WaterCheckup() {
           }}
         >
           <p style={{ color: '#e2e8f0', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            <strong style={{ color: '#f1f5f9' }}>Enter your ZIP code</strong> (or city name) to see what&apos;s in your tap water — EPA violations, PFAS &quot;forever chemicals,&quot; lead sampling, and more — for systems across all 50 states. We recommend certified, top-rated filtration systems based on your water results.
+            Enter your ZIP code to see exactly what&apos;s been detected in your local water — pulled live from five EPA databases. No sign-up. No guesswork. If something needs filtering, we&apos;ll tell you exactly which filter removes it.
           </p>
           <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.55, margin: '14px 0 0' }}>
-            100% free · No sign ups · No credit card
+            100% free · No account needed · All 50 states · Updated from EPA live data
+          </p>
+          <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, margin: '12px 0 0' }}>
+            Trusted by households coast to coast — same live federal datasets utilities report to EPA.
           </p>
         </div>
 
@@ -2090,7 +2204,8 @@ export default function WaterCheckup() {
           </div>
         )}
 
-        {/* Hero newsletter signup — below ZIP row; scroll if you’re on a small screen */}
+        {/* Hero newsletter — only before first report (ask after value) */}
+        {!data && !wellMode && (
         <div
           id="wc-newsletter"
           className="wc-newsletter-box"
@@ -2202,6 +2317,7 @@ export default function WaterCheckup() {
             </>
           )}
         </div>
+        )}
 
 {error && (
             <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
@@ -2296,7 +2412,7 @@ export default function WaterCheckup() {
               ))}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 48 }}>
               {[
                 {
                   icon: '☣️',
@@ -2520,18 +2636,18 @@ export default function WaterCheckup() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
               <div>
-                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>The Solution — Water Filter Systems</div>
-                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>The right filter removes 95-99% of what&apos;s in your water. Our recommendations in every category are the highest-rated products on the market.</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Pick your filter type</div>
+                <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>Different setups, different needs. These are the main categories — each one matched to what your water actually contains.</div>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(172px, 1fr))', gap: 12 }}>
               {([
-                { id: 'pitcher' as const, icon: '🥤', label: 'Pitcher Filter', best: 'Chlorine, lead, taste', note: 'No install · Portable' },
-                { id: 'countertop' as const, icon: '🪣', label: 'Countertop Filter', best: 'Chlorine, PFAS, bacteria', note: 'No plumbing needed' },
-                { id: 'undersink' as const, icon: '🚰', label: 'Under-Counter RO', best: '99%+ of all contaminants', note: 'Most powerful option' },
-                { id: 'whole' as const, icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs', note: 'Every tap & shower' },
-                { id: 'shower' as const, icon: '🚿', label: 'Shower Filter', best: 'Chlorine & chloramine', note: 'Healthier skin & hair' },
-              ]).map(f => {
+                { id: 'pitcher' as const, icon: '🥤', label: 'Pitcher Filter', best: 'Chlorine, lead, taste', note: 'No install · Portable', bestFor: 'Renters, dorms, tight budgets', priceRange: '$28–$90', setup: 'No tools' },
+                { id: 'countertop' as const, icon: '🪣', label: 'Countertop RO', best: 'Chlorine, PFAS, bacteria', note: 'No permanent plumbing', bestFor: 'Apartments & kitchens without drilling', priceRange: '$150–$550', setup: 'Mostly DIY' },
+                { id: 'undersink' as const, icon: '🚰', label: 'Under-Counter RO', best: '99%+ of all contaminants', note: 'Most powerful option', bestFor: 'Families, PFAS/lead concerns', priceRange: '$250–$900', setup: 'DIY or plumber' },
+                { id: 'whole' as const, icon: '🏠', label: 'Whole House System', best: 'Chlorine, chloramine, THMs', note: 'Every tap & shower', bestFor: 'Hard water, smell at every faucet', priceRange: '$800–$3,500+', setup: 'Usually pro install' },
+                { id: 'shower' as const, icon: '🚿', label: 'Shower Filter', best: 'Chlorine & chloramine', note: 'Healthier skin & hair', bestFor: 'Chlorine sensitivity, quick upgrade', priceRange: '$30–$80', setup: '5–15 min DIY' },
+              ] as const).map(f => {
                 const active = heroSolutionKey === f.id;
                 return (
                   <button
@@ -2558,7 +2674,13 @@ export default function WaterCheckup() {
                     <div style={{ fontSize: 32, marginBottom: 10 }}>{f.icon}</div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: active ? '#38bdf8' : '#e2e8f0', marginBottom: 5 }}>{f.label}</div>
                     <div style={{ fontSize: 12, color: '#38bdf8', marginBottom: 4 }}>Removes: {f.best}</div>
-                    <div style={{ fontSize: 11, color: '#94a3b8' }}>{f.note}</div>
+                    <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 6 }}>{f.note}</div>
+                    <div style={{ fontSize: 11, color: '#cbd5e1', lineHeight: 1.45, marginBottom: 4 }}>
+                      <strong style={{ color: '#e2e8f0' }}>Best for:</strong> {f.bestFor}
+                    </div>
+                    <div style={{ fontSize: 10, color: '#64748b', lineHeight: 1.4 }}>
+                      {f.priceRange} · {f.setup}
+                    </div>
                     {active && <div style={{ fontSize: 10, color: '#22d3ee', marginTop: 10, fontWeight: 800, letterSpacing: 0.5 }}>▼ See picks below</div>}
                   </button>
                 );
@@ -2671,7 +2793,43 @@ export default function WaterCheckup() {
             </div>
           )}
 
+          {/* Plain-language lead: what we found + what to do (rest unfolds below) */}
+          {(() => {
+            const { found, todo } = formatResultsLead(data);
+            return (
+              <div
+                className="wc-reveal wc-reveal-1"
+                style={{
+                  marginBottom: 18,
+                  marginTop: data.limitedData ? 12 : 0,
+                  padding: '16px 18px',
+                  borderRadius: 12,
+                  border: '1px solid rgba(34, 211, 238, 0.38)',
+                  background: 'linear-gradient(165deg, rgba(6, 40, 72, 0.92) 0%, rgba(4, 18, 40, 0.9) 100%)',
+                  boxShadow: '0 12px 40px rgba(0,4,18,0.45), inset 0 1px 0 rgba(255,255,255,0.06)',
+                }}
+              >
+                <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: '#22d3ee', marginBottom: 8 }}>START HERE</div>
+                <p style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc', lineHeight: 1.5, margin: 0 }}>{found}</p>
+                <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.6, margin: '10px 0 0' }}>
+                  <strong style={{ color: '#e2e8f0' }}>What to do:</strong> {todo}
+                </p>
+                <p style={{ fontSize: 12, color: '#64748b', margin: '12px 0 0', lineHeight: 1.55 }}>
+                  Everything below — score, tabs, EPA links, and filter picks — fills in the details.
+                </p>
+              </div>
+            );
+          })()}
+
           {/* SUMMARY HEADER */}
+          <div style={{ padding: '12px 24px 0', fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
+            {data.score >= 80
+              ? `Your water meets all federal standards${data.totalViolations === 0 ? ' with no recorded violations' : ''}. A score this high means EPA data shows no major contaminants above legal limits — though filtering is still worth considering for health guidelines beyond what the law requires.`
+              : data.score >= 65
+              ? `Your water meets most federal standards but has ${data.totalViolations > 0 ? `${data.totalViolations} recorded violation${data.totalViolations > 1 ? 's' : ''} on file` : 'some contaminants above independent health guidelines'}. The report below explains what was found and what type of filter addresses it.`
+              : `Your water has ${data.openViolations > 0 ? `${data.openViolations} open violation${data.openViolations > 1 ? 's' : ''}` : 'contaminants at levels above EPA limits or health guidelines'}. This doesn\u2019t mean the water is unsafe to use, but filtering is recommended. See the details and filter options below.`
+            }
+          </div>
           <div className="wc-results-hdr wc-reveal wc-reveal-2" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '12px 12px 0 0', padding: '20px 24px', display: 'flex', alignItems: 'flex-start', gap: 22, flexWrap: 'wrap', boxShadow: '0 8px 32px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
             {!data.limitedData && <ScoreDial score={data.score} grade={data.grade} />}
             <div style={{ flex: 1, minWidth: 200 }}>
@@ -2834,7 +2992,89 @@ export default function WaterCheckup() {
                     );
                   })()}
                   <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>CONTAMINANT ANALYSIS — CLICK ROWS FOR HEALTH INFO</div>
-                  {data.contaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
+                  {(showAllContaminants || data.contaminants.length <= 3
+                    ? data.contaminants
+                    : data.contaminants.slice(0, 3)
+                  ).map((c: any, i: number) => (
+                    <ContaminantRow key={`${c.name}-${i}`} c={c} />
+                  ))}
+                  {data.contaminants.length > 3 && (
+                    <button
+                      type="button"
+                      onClick={() => setShowAllContaminants((v) => !v)}
+                      className="wc-glass-btn"
+                      style={{
+                        marginTop: 12,
+                        padding: '10px 16px',
+                        borderRadius: 8,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        color: '#22d3ee',
+                      }}
+                    >
+                      {showAllContaminants ? 'Show fewer contaminants' : `Show all ${data.contaminants.length} contaminants`}
+                    </button>
+                  )}
+
+                  {/* Newsletter after value: post-contaminant signup */}
+                  {!heroNewsletterSent ? (
+                    <div style={{ marginTop: 22, padding: '14px 16px', borderRadius: 10, border: '1px solid rgba(56, 189, 248, 0.35)', background: 'rgba(4, 22, 48, 0.75)' }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>Free weekly water-quality newsletter</div>
+                      <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 10, lineHeight: 1.55 }}>
+                        Violation alerts, PFAS news, one practical tip — optional after you&apos;ve seen your report.
+                      </div>
+                      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                        <input
+                          value={heroNewsletterEmail}
+                          onChange={(e) => setHeroNewsletterEmail(e.target.value)}
+                          placeholder="Email address"
+                          type="email"
+                          className="wc-newsletter-email-input"
+                          style={{
+                            flex: '1 1 220px',
+                            minHeight: 42,
+                            padding: '10px 12px',
+                            background: 'rgba(4, 22, 48, 0.95)',
+                            border: '1px solid rgba(56, 189, 248, 0.4)',
+                            borderRadius: 8,
+                            color: '#ecfeff',
+                            fontSize: 13,
+                            outline: 'none',
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={subscribeHeroNewsletter}
+                          disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
+                          style={{
+                            minHeight: 42,
+                            padding: '10px 16px',
+                            background:
+                              heroNewsletterSending || !heroNewsletterEmail.includes('@')
+                                ? 'rgba(14,34,51,0.85)'
+                                : 'linear-gradient(135deg, #22d3ee 0%, #0891b2 100%)',
+                            border: '1px solid rgba(165,243,252,0.45)',
+                            borderRadius: 8,
+                            color: '#f0fdfa',
+                            fontSize: 12,
+                            fontWeight: 800,
+                            cursor:
+                              heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer',
+                          }}
+                        >
+                          {heroNewsletterSending ? '…' : 'Sign up free'}
+                        </button>
+                      </div>
+                      {heroNewsletterErr && (
+                        <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5' }}>{heroNewsletterErr}</div>
+                      )}
+                    </div>
+                  ) : (
+                    <div style={{ marginTop: 18, fontSize: 12, color: '#4ade80', fontWeight: 600 }}>
+                      You&apos;re subscribed to weekly updates — check your inbox.
+                    </div>
+                  )}
                 </>
               )}
 
@@ -3578,6 +3818,7 @@ export default function WaterCheckup() {
             { stat: 'UCMR5', label: 'PFAS monitoring data' },
             { stat: '135+', label: 'City reports' },
             { stat: '100% Free', label: 'No account, ever' },
+            { stat: '50 states', label: 'ZIP-level reports' },
           ].map(({ stat, label }) => (
             <div key={stat} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>
@@ -3586,97 +3827,12 @@ export default function WaterCheckup() {
           ))}
         </div>
 
-        {/* Browse by city */}
-        <div style={{ marginBottom: 56 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>BROWSE BY CITY</div>
-          <h2 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', margin: '0 0 6px' }}>The most complete free water tool in the US</h2>
-          <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 28px', lineHeight: 1.6 }}>
-            Most water quality checkers tap one database. We combine five — EPA violations, PFAS monitoring, lead pipe records, lead tap sampling, and enforcement history — then translate the results into plain language and match them to the right filter for your home. No login, no paywall, ever.
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {[
-              { slug: 'albuquerque', name: 'Albuquerque, NM' },
-              { slug: 'atlanta', name: 'Atlanta, GA' },
-              { slug: 'austin', name: 'Austin, TX' },
-              { slug: 'baltimore', name: 'Baltimore, MD' },
-              { slug: 'boston', name: 'Boston, MA' },
-              { slug: 'charlotte', name: 'Charlotte, NC' },
-              { slug: 'chicago', name: 'Chicago, IL' },
-              { slug: 'cleveland', name: 'Cleveland, OH' },
-              { slug: 'columbus', name: 'Columbus, OH' },
-              { slug: 'dallas', name: 'Dallas, TX' },
-              { slug: 'dayton', name: 'Dayton, OH' },
-              { slug: 'denver', name: 'Denver, CO' },
-              { slug: 'des-moines', name: 'Des Moines, IA' },
-              { slug: 'detroit', name: 'Detroit, MI' },
-              { slug: 'fayetteville', name: 'Fayetteville, NC' },
-              { slug: 'fort-worth', name: 'Fort Worth, TX' },
-              { slug: 'fresno', name: 'Fresno, CA' },
-              { slug: 'houston', name: 'Houston, TX' },
-              { slug: 'indianapolis', name: 'Indianapolis, IN' },
-              { slug: 'jackson', name: 'Jackson, MS' },
-              { slug: 'jacksonville', name: 'Jacksonville, FL' },
-              { slug: 'kansas-city', name: 'Kansas City, MO' },
-              { slug: 'las-vegas', name: 'Las Vegas, NV' },
-              { slug: 'los-angeles', name: 'Los Angeles, CA' },
-              { slug: 'louisville', name: 'Louisville, KY' },
-              { slug: 'memphis', name: 'Memphis, TN' },
-              { slug: 'miami', name: 'Miami, FL' },
-              { slug: 'milwaukee', name: 'Milwaukee, WI' },
-              { slug: 'minneapolis', name: 'Minneapolis, MN' },
-              { slug: 'nashville', name: 'Nashville, TN' },
-              { slug: 'new-orleans', name: 'New Orleans, LA' },
-              { slug: 'new-york', name: 'New York, NY' },
-              { slug: 'orlando', name: 'Orlando, FL' },
-              { slug: 'philadelphia', name: 'Philadelphia, PA' },
-              { slug: 'phoenix', name: 'Phoenix, AZ' },
-              { slug: 'pittsburgh', name: 'Pittsburgh, PA' },
-              { slug: 'portland', name: 'Portland, OR' },
-              { slug: 'raleigh', name: 'Raleigh, NC' },
-              { slug: 'sacramento', name: 'Sacramento, CA' },
-              { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
-              { slug: 'san-antonio', name: 'San Antonio, TX' },
-              { slug: 'san-diego', name: 'San Diego, CA' },
-              { slug: 'san-francisco', name: 'San Francisco, CA' },
-              { slug: 'san-jose', name: 'San Jose, CA' },
-              { slug: 'seattle', name: 'Seattle, WA' },
-              { slug: 'st-louis', name: 'St. Louis, MO' },
-              { slug: 'tacoma', name: 'Tacoma, WA' },
-              { slug: 'tampa', name: 'Tampa, FL' },
-              { slug: 'tucson', name: 'Tucson, AZ' },
-              { slug: 'washington-dc', name: 'Washington, DC' },
-            ].map(({ slug, name }) => (
-              <a
-                key={slug}
-                href={`/water/${slug}`}
-                style={{
-                  padding: '7px 14px',
-                  background: '#0d2240',
-                  border: '1px solid #1a3a5c',
-                  borderRadius: 8,
-                  fontSize: 13,
-                  color: '#94a3b8',
-                  textDecoration: 'none',
-                  transition: 'all 0.15s',
-                }}
-                onMouseEnter={e => { (e.target as HTMLAnchorElement).style.color = '#e2e8f0'; (e.target as HTMLAnchorElement).style.borderColor = '#0891b2'; }}
-                onMouseLeave={e => { (e.target as HTMLAnchorElement).style.color = '#94a3b8'; (e.target as HTMLAnchorElement).style.borderColor = '#1a3a5c'; }}
-              >
-                {name}
-              </a>
-            ))}
-            <a href="/water" style={{ padding: '7px 14px', background: '#0891b220', border: '1px solid #0891b250', borderRadius: 8, fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
-              View all 135+ cities →
-            </a>
-          </div>
-        </div>
-
-        {/* Trust / About section */}
+        {/* Why WaterCheckup — above city list so more visitors see the data story */}
         <div style={{ padding: '32px 28px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP IS DIFFERENT</div>
-          <h3 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Why trust our data?</h3>
+          <h3 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>The most complete free water tool in the US</h3>
           <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' }}>
-            WaterCheckup is the only free tool that combines EPA violation records, PFAS testing data, lead tap sampling, enforcement history, and lead pipe inventory — then translates it into plain English and tells you exactly which filter removes what's detected in your water. No login. No paywall. Five EPA databases plus EWG health guidelines, all in one ZIP code search.
+            Most water quality checkers tap one database. We combine five — EPA violations, PFAS monitoring, lead pipe records, lead tap sampling, and enforcement history — then translate the results into plain language and match them to the right filter for your home. No login, no paywall, ever.
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {[
@@ -3692,6 +3848,87 @@ export default function WaterCheckup() {
                 <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{desc}</div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Browse by city */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>BROWSE BY CITY</div>
+          <label htmlFor="wc-city-filter" style={{ display: 'block', fontSize: 12, color: '#94a3b8', marginBottom: 6 }}>
+            Type to filter cities
+          </label>
+          <input
+            id="wc-city-filter"
+            type="search"
+            enterKeyHint="search"
+            autoComplete="off"
+            placeholder="e.g. Chicago, Tampa, Denver…"
+            value={cityBrowseFilter}
+            onChange={(e) => setCityBrowseFilter(e.target.value)}
+            style={{
+              width: '100%',
+              maxWidth: 420,
+              boxSizing: 'border-box',
+              marginBottom: 14,
+              padding: '11px 14px',
+              borderRadius: 10,
+              border: '1px solid #1a3a5c',
+              background: '#071828',
+              color: '#e2e8f0',
+              fontSize: 14,
+              outline: 'none',
+            }}
+          />
+          {filteredHomepageCities.length === 0 && (
+            <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>
+              No matches.{' '}
+              <a href="/water" style={{ color: '#22d3ee', fontWeight: 600 }}>
+                Open the full city directory →
+              </a>
+            </div>
+          )}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {filteredHomepageCities.map(({ slug, name }) => (
+              <a
+                key={slug}
+                href={`/water/${slug}`}
+                style={{
+                  padding: '7px 14px',
+                  background: '#0d2240',
+                  border: '1px solid #1a3a5c',
+                  borderRadius: 8,
+                  fontSize: 13,
+                  color: '#94a3b8',
+                  textDecoration: 'none',
+                  transition: 'all 0.15s',
+                }}
+                onMouseEnter={(e) => {
+                  (e.target as HTMLAnchorElement).style.color = '#e2e8f0';
+                  (e.target as HTMLAnchorElement).style.borderColor = '#0891b2';
+                }}
+                onMouseLeave={(e) => {
+                  (e.target as HTMLAnchorElement).style.color = '#94a3b8';
+                  (e.target as HTMLAnchorElement).style.borderColor = '#1a3a5c';
+                }}
+              >
+                {name}
+              </a>
+            ))}
+            <a
+              href="/water"
+              style={{
+                padding: '7px 14px',
+                background: '#0891b220',
+                border: '1px solid #0891b250',
+                borderRadius: 8,
+                fontSize: 13,
+                color: '#0891b2',
+                textDecoration: 'none',
+                fontWeight: 700,
+              }}
+            >
+              View all 135+ cities →
+            </a>
           </div>
         </div>
 
