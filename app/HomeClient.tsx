@@ -1809,7 +1809,7 @@ export default function WaterCheckup() {
   const [tab, setTab]                   = useState('report');
   const [showEmail, setShowEmail]       = useState(false);
   const [email, setEmail]               = useState('');
-  const [emailAlert, setEmailAlert]     = useState(false);
+  const [emailAlert, setEmailAlert]     = useState(true);
   const [emailSent, setEmailSent]       = useState(false);
   const [years, setYears]               = useState(5);
   const [ppl, setPpl]                   = useState(4);
@@ -2260,7 +2260,7 @@ export default function WaterCheckup() {
               textShadow: '0 0 18px rgba(6,182,212,0.25)',
             }}
           >
-            Get alerted when your utility reports new violations or PFAS detections — plus one practical water safety tip every week.
+            Get alerted the moment your utility reports new violations, PFAS detections, or enforcement actions — plus one practical water safety tip every week.
           </div>
           {heroNewsletterSent ? (
             <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 600, textAlign: 'left', lineHeight: 1.55, textShadow: '0 0 16px rgba(74,222,128,0.35)' }}>
@@ -2816,6 +2816,53 @@ export default function WaterCheckup() {
                     FAQ — reading your report, filters, PFAS, lead →
                   </Link>
                 </p>
+              </div>
+            );
+          })()}
+
+          {/* ── RISK LEVEL BANNER ── */}
+          {!data.limitedData && (() => {
+            const riskScore = data.score;
+            const riskHigh  = riskScore < 65;
+            const riskMid   = riskScore >= 65 && riskScore < 80;
+            const riskLow   = riskScore >= 80;
+            const riskColor = riskHigh ? '#ef4444' : riskMid ? '#f59e0b' : '#22d3ee';
+            const riskBg    = riskHigh ? 'rgba(239,68,68,0.10)' : riskMid ? 'rgba(245,158,11,0.10)' : 'rgba(34,211,238,0.08)';
+            const riskBorder= riskHigh ? 'rgba(239,68,68,0.35)' : riskMid ? 'rgba(245,158,11,0.30)' : 'rgba(34,211,238,0.25)';
+            const riskLabel = riskHigh ? 'HIGH RISK' : riskMid ? 'MODERATE RISK' : 'LOW RISK';
+            const riskIcon  = riskHigh ? '🔴' : riskMid ? '🟡' : '🟢';
+            const issues: string[] = [];
+            if (data.openViolations > 0) issues.push(`${data.openViolations} open EPA violation${data.openViolations > 1 ? 's' : ''}`);
+            if (data.pfasAboveMcl > 0) issues.push(`PFAS above federal limit`);
+            else if (data.pfasCount > 0) issues.push(`${data.pfasCount} PFAS compound${data.pfasCount > 1 ? 's' : ''} detected`);
+            if (data.contaminants?.filter((c: any) => c.severity === 'high').length > 0)
+              issues.push(`${data.contaminants.filter((c: any) => c.severity === 'high').length} contaminant${data.contaminants.filter((c: any) => c.severity === 'high').length > 1 ? 's' : ''} above health guidelines`);
+            return (
+              <div className="wc-reveal wc-reveal-2" style={{ marginBottom: 10, padding: '14px 16px', borderRadius: 10, border: `1px solid ${riskBorder}`, borderLeft: `4px solid ${riskColor}`, background: riskBg, display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                    <span style={{ fontSize: 16 }}>{riskIcon}</span>
+                    <span style={{ fontSize: 13, fontWeight: 900, color: riskColor, letterSpacing: 1 }}>WATER SAFETY SCORE: {riskScore}/100 — {riskLabel}</span>
+                  </div>
+                  {issues.length > 0 && (
+                    <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>
+                      Your water has <strong style={{ color: riskColor }}>{issues.join(' · ')}</strong>
+                    </div>
+                  )}
+                  {issues.length === 0 && (
+                    <div style={{ fontSize: 13, color: '#94a3b8' }}>No active violations or detections above limits in this dataset.</div>
+                  )}
+                </div>
+                <div style={{ display: 'flex', gap: 8, flexShrink: 0, flexWrap: 'wrap', alignItems: 'center' }}>
+                  {(riskHigh || riskMid) && (
+                    <button type="button" onClick={() => setTab('solutions')} style={{ padding: '8px 16px', background: riskColor, border: 'none', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                      Fix This →
+                    </button>
+                  )}
+                  <button type="button" onClick={() => setShowEmail(true)} style={{ padding: '8px 14px', background: 'transparent', border: `1px solid ${riskBorder}`, borderRadius: 8, color: riskColor, fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    🔔 Get Alerts
+                  </button>
+                </div>
               </div>
             );
           })()}
@@ -3790,14 +3837,18 @@ export default function WaterCheckup() {
               </div>
             ) : (
               <>
-                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 7 }}>FREE WATER REPORT</div>
-                <div style={{ fontSize: 15, fontWeight: 800, marginBottom: 4 }}>Get your full analysis</div>
-                <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Your {data.city} report — EPA + UCMR5 + EWG + USGS data with personalized filter recommendations.</div>
+                <div style={{ fontSize: 11, letterSpacing: 0.5, color: data.score < 65 ? '#ef4444' : data.score < 80 ? '#f59e0b' : '#0891b2', marginBottom: 7 }}>
+                  {data.score < 65 ? '🔴 HIGH RISK DETECTED' : data.score < 80 ? '🟡 MODERATE RISK DETECTED' : '🟢 FREE WATER REPORT'}
+                </div>
+                <div style={{ fontSize: 15, fontWeight: 800, marginBottom: 4 }}>Email your {data.city} report + get alerts</div>
+                <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Full EPA + PFAS + EWG analysis with filter recommendations — delivered to your inbox. We&apos;ll alert you if new violations or PFAS detections are reported for your area.</div>
                 <input value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" type="email"
                   style={{ width: '100%', boxSizing: 'border-box', padding: '9px 12px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, marginBottom: 9, outline: 'none' }} />
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14 }}>
-                  <input type="checkbox" id="al" checked={emailAlert} onChange={e => setEmailAlert(e.target.checked)} style={{ accentColor: '#0891b2' }} />
-                  <label htmlFor="al" style={{ fontSize: 11, color: '#94a3b8', cursor: 'pointer' }}>Alert me if violations are added for {data.city}</label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14, padding: '8px 10px', background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 7 }}>
+                  <input type="checkbox" id="al" checked={emailAlert} onChange={e => setEmailAlert(e.target.checked)} style={{ accentColor: '#0891b2', width: 15, height: 15, flexShrink: 0 }} />
+                  <label htmlFor="al" style={{ fontSize: 12, color: '#a5f3fc', cursor: 'pointer', lineHeight: 1.4 }}>
+                    🔔 <strong>Alert me</strong> if new violations or PFAS detections are filed for {data.city}
+                  </label>
                 </div>
                 <div style={{ display: 'flex', gap: 7 }}>
                   <button onClick={async () => {
