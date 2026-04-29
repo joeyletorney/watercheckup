@@ -2051,7 +2051,7 @@ export default function WaterCheckup() {
               onClick={() => setShowEpaModal(true)}
               aria-label="What does Live EPA Data mean? Opens explanation dialog."
             >
-              Live EPA Data
+              EPA-Sourced Data
             </button>
           </>
         }
@@ -2082,7 +2082,7 @@ export default function WaterCheckup() {
             Enter your ZIP code to see exactly what&apos;s been detected in your local water — pulled live from five EPA databases. No sign-up. No guesswork. If something needs filtering, we&apos;ll tell you exactly which filter removes it.
           </p>
           <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.55, margin: '14px 0 0' }}>
-            100% free · No account needed · All 50 states · Updated from EPA live data
+            100% free · No account needed · All 50 states · Sourced from EPA databases
           </p>
           <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, margin: '12px 0 0' }}>
             <strong style={{ color: '#94a3b8' }}>Trusted by over 100,000 households across the U.S.</strong>
@@ -3667,7 +3667,7 @@ export default function WaterCheckup() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14, flexShrink: 0 }}>
               <div>
                 <div id="epa-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
-                  What does &ldquo;Live EPA Data&rdquo; mean?
+                  What does &ldquo;EPA-Sourced Data&rdquo; mean?
                 </div>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', letterSpacing: 0.5, marginTop: 6 }}>U.S. Environmental Protection Agency</div>
               </div>
@@ -3691,7 +3691,7 @@ export default function WaterCheckup() {
               }}
             >
               <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-                <strong style={{ color: '#e2e8f0' }}>Live</strong> here means we pull from the same <strong style={{ color: '#e2e8f0' }}>public federal datasets</strong> the EPA uses for drinking-water programs—not a static brochure and not a private guess. Your lookup is matched to official utility identifiers and reporting so you see what is on file for systems that report to EPA.
+                WaterCheckup pulls from the same <strong style={{ color: '#e2e8f0' }}>public federal datasets</strong> the EPA uses for drinking-water programs—not a static brochure and not a private guess. Your lookup is matched to official utility identifiers and reporting so you see what is on file for systems that report to EPA.
               </p>
               <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>What you&apos;re seeing</p>
               <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
