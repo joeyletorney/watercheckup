@@ -76,15 +76,25 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
+  const pfas = getPfasData(cd.pwsid);
+  const hasPfas = pfas && pfas.compounds.length > 0;
+  const pfasViolation = pfas && pfas.violations > 0;
+  const urgencyWord = cd.urgency === 'high' ? 'Concerns Found' : cd.urgency === 'medium' ? 'Issues Detected' : 'Looks OK';
+  const topIssue = cd.issues[0] ?? 'Contaminants';
+  const descPfas = pfasViolation
+    ? `PFAS above EPA limit detected.`
+    : hasPfas
+    ? `PFAS compounds detected.`
+    : ``;
   return {
-    title: `Is ${cd.name} Tap Water Safe? EPA Report 2025 | WaterCheckup`,
-    description: `${cd.name} water quality report powered by live EPA data. PFAS testing, lead violations, and expert filter recommendations for ${cd.name}, ${cd.state}.`,
+    title: `${cd.name} Tap Water Quality 2025 — Is It Safe? | WaterCheckup`,
+    description: `${cd.name}, ${cd.state} water report: ${topIssue.toLowerCase()}${descPfas ? ' · ' + descPfas : ''} Free EPA data, PFAS results & filter picks for ${cd.name} residents.`,
     alternates: {
       canonical: `https://watercheckup.com/water/${params.city}`,
     },
     openGraph: {
-      title: `${cd.name} Tap Water Quality -- EPA Report | WaterCheckup`,
-      description: `See what's really in ${cd.name}'s tap water. Data from 5 EPA databases + EWG health guidelines.`,
+      title: `${cd.name} Water Quality 2025 — ${urgencyWord} | WaterCheckup`,
+      description: `Free EPA report for ${cd.name}: violations, PFAS testing, lead risk & the best filters for your water. Updated 2025.`,
       images: [{ url: `https://watercheckup.com/api/og?city=${encodeURIComponent(cd.name + ', ' + cd.state)}&score=&grade=&violations=`, width: 1200, height: 630 }],
     },
   };
@@ -109,10 +119,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": `Is ${cd?.name ?? cityName} tap water safe to drink?`,
+        "name": `Is ${cd?.name ?? cityName} tap water safe to drink in 2025?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `${cd?.name ?? cityName} tap water meets federal standards but EPA monitoring data — including PFAS levels and violation history — is shown on this page. A certified reverse osmosis filter is recommended for sensitive populations.`
+          "text": `${cd?.name ?? cityName} water meets federal standards but EPA monitoring data — including PFAS levels and violation history — is shown on this page. ${cd?.urgency === 'high' ? `${cd.name} has known issues including ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : `A certified reverse osmosis filter is recommended for sensitive populations.`}`
         }
       },
       {
@@ -120,7 +130,15 @@ export default function CityPage({ params }: { params: { city: string } }) {
         "name": `Does ${cd?.name ?? cityName} water have PFAS?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `EPA UCMR5 monitoring data for ${cd?.name ?? cityName} (water system ${cd?.pwsid ?? ''}) is shown above. Only a reverse osmosis system or NSF 58-certified carbon block filter reliably removes PFAS from tap water.`
+          "text": `EPA UCMR5 monitoring data for ${cd?.name ?? cityName} (water system ${cd?.pwsid ?? ''}) is shown on this page. Only a reverse osmosis system or NSF 58-certified carbon block filter reliably removes PFAS from tap water. Standard pitchers do not remove PFAS.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `Does ${cd?.name ?? cityName} water have lead?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `Lead in tap water almost always comes from plumbing inside your home, not the treatment plant. Homes built before 1986 in ${cd?.name ?? cityName} are most at risk. An NSF/ANSI 53-certified filter or reverse osmosis system removes lead at the tap.`
         }
       },
       {
@@ -128,7 +146,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         "name": `What water filter is best for ${cd?.name ?? cityName}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `For ${cd?.name ?? cityName}'s water profile, a reverse osmosis system addresses the widest range of contaminants including PFAS, lead, and disinfection byproducts. The Waterdrop G3P800 and Aquasana SmartFlow are top-rated options.`
+          "text": `For ${cd?.name ?? cityName}'s water profile, a reverse osmosis system addresses the widest range of contaminants including PFAS, lead, and disinfection byproducts. The Waterdrop G3P800 and Aquasana SmartFlow are top-rated options. Renters can use the Waterdrop D4 countertop RO — no installation required.`
         }
       }
     ]
@@ -333,16 +351,33 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* FAQ section */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+          <h2 style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             COMMON QUESTIONS
-          </div>
+          </h2>
           {[
-            { q: `Is ${cd?.name ?? cityName} tap water safe to drink?`, a: `${cd?.name ?? cityName} water meets EPA legal standards but meeting standards is not the same as being free of contaminants. EPA limits are set based on feasibility, not always on what is safest for health. Enter your ZIP above to see the full violation history and PFAS data for your specific water system.` },
-            { q: 'Do I need a water filter?', a: 'Even compliant water can contain contaminants at levels above what independent health scientists consider safe -- particularly for PFAS, lead, and chromium-6. An EPA-certified RO system removes 95-99% of all detected contaminants and costs $0.10-$0.25 per gallon, compared to $1-$3 for bottled water.' },
-            { q: "What's the best filter for this area?", a: 'For most US cities, a reverse osmosis system under the sink is the gold standard -- it removes lead, PFAS, arsenic, nitrates, fluoride, and virtually everything else. For renters, a Waterdrop D4 countertop RO requires zero installation. Enter your ZIP above to get personalized recommendations based on your actual water report.' },
+            {
+              q: `Is ${cd?.name ?? cityName} tap water safe to drink in 2025?`,
+              a: `${cd?.name ?? cityName} water meets EPA legal standards, but meeting legal standards is not the same as being free of health concerns. EPA limits are set based on treatment feasibility, not always on what independent scientists consider safe. ${cd?.urgency === 'high' ? `${cd.name} has ${cd.issues[0]?.toLowerCase()} which is a significant concern — certified filtration is strongly recommended.` : `The main concerns for ${cd?.name ?? cityName} residents are ${cd?.issues.slice(0,2).join(' and ').toLowerCase()}. Enter your ZIP above to see the full violation history for your specific water system.`}`,
+            },
+            {
+              q: `Does ${cd?.name ?? cityName} water have PFAS?`,
+              a: `EPA UCMR5 monitoring data for ${cd?.name ?? cityName} (water system ${cd?.pwsid ?? 'your local system'}) is shown above. PFAS — sometimes called "forever chemicals" — are synthetic compounds that don't break down in the body. Only reverse osmosis systems or NSF 58-certified carbon block filters reliably remove PFAS from tap water. Standard pitcher filters do not remove PFAS.`,
+            },
+            {
+              q: `Does ${cd?.name ?? cityName} water have lead?`,
+              a: `Lead in tap water almost always comes from the pipes inside your home or building, not the treatment plant. Homes built before 1986 in ${cd?.name ?? cityName} are most at risk because they may have lead solder, brass fittings, or lead service lines. The EPA has no safe level for lead in children. An NSF/ANSI 53-certified filter or reverse osmosis system removes lead at the tap.`,
+            },
+            {
+              q: `What water filter is best for ${cd?.name ?? cityName}?`,
+              a: `For ${cd?.name ?? cityName}'s water profile — ${cd?.issues.slice(0,2).join(', ').toLowerCase() ?? 'typical municipal contaminants'} — a reverse osmosis system addresses the widest range of contaminants. Under-sink RO (Waterdrop G3P800, Aquasana SmartFlow) is the gold standard for homeowners. Renters can use a countertop RO like the Waterdrop D4 — zero installation required. Clearly Filtered pitchers are the best non-RO option for PFAS and lead.`,
+            },
+            {
+              q: `How do I get my ${cd?.name ?? cityName} water tested?`,
+              a: `For the most accurate results for your specific tap, use a certified mail-in lab test rather than relying on city-wide data. SimpleLab Tap Score tests for 100+ contaminants including PFAS, lead, arsenic, and nitrates. Results come with a detailed health assessment and filter recommendations. City-wide EPA data like what you see above is a strong baseline, but your home's plumbing can add contaminants after the water leaves the treatment plant.`,
+            },
           ].map(({ q, a }) => (
             <div key={q} style={{ marginBottom: 16, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 8 }}>{q}</div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 8, margin: '0 0 8px' }}>{q}</h3>
               <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
             </div>
           ))}
@@ -407,16 +442,33 @@ export default function CityPage({ params }: { params: { city: string } }) {
           </Link>
         </div>
 
-        {/* Other cities */}
+        {/* Compare nearby cities */}
         <div style={{ marginTop: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14 }}>OTHER CITIES</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {Object.entries(CITIES).filter(([k]) => k !== params.city).map(([slug, c]) => (
-              <Link key={slug} href={`/water/${slug}`} style={{ padding: '5px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 6, fontSize: 13, color: '#94a3b8', textDecoration: 'none' }}>
-                {c.name}, {c.state}
-              </Link>
-            ))}
+          <h2 style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14, margin: '0 0 14px' }}>COMPARE WATER QUALITY IN OTHER CITIES</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10, marginBottom: 20 }}>
+            {Object.entries(CITIES)
+              .filter(([k]) => k !== params.city)
+              .filter(([, c]) => c.state === cd?.state || true) // show same-state first
+              .sort(([ka, ca], [kb, cb]) => {
+                // same state first, then by urgency (high first)
+                const sameA = ca.state === cd?.state ? 0 : 1;
+                const sameB = cb.state === cd?.state ? 0 : 1;
+                if (sameA !== sameB) return sameA - sameB;
+                const urgOrder = { high: 0, medium: 1, low: 2 };
+                return urgOrder[ca.urgency] - urgOrder[cb.urgency];
+              })
+              .slice(0, 12)
+              .map(([slug, c]) => {
+                const uc = { high: { color: '#ef4444', label: 'High concern' }, medium: { color: '#f59e0b', label: 'Monitor' }, low: { color: '#22d3ee', label: 'OK' } }[c.urgency];
+                return (
+                  <Link key={slug} href={`/water/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{c.name}, {c.state}</div>
+                    <div style={{ fontSize: 11, color: uc.color }}>{uc.label} · {c.issues[0]}</div>
+                  </Link>
+                );
+              })}
           </div>
+          <Link href="/water" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>View all 135+ city reports →</Link>
         </div>
 
       </div>

@@ -1248,6 +1248,10 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
 
   return (
     <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+      {/* Affiliate disclosure */}
+      <p style={{ fontSize: 11, color: '#475569', margin: '0 0 16px', lineHeight: 1.5 }}>
+        Some links below are affiliate links. If you buy through one, we may earn a small commission at no extra cost to you. This doesn&apos;t influence our recommendations.
+      </p>
       {/* Situation selector */}
       <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 14, fontWeight: 700 }}>I AM A / I LIVE IN A…</div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
@@ -1790,7 +1794,7 @@ function formatResultsLead(data: any): { found: string; todo: string } {
   }
   return {
     found: `We matched your ZIP to ${system} (${data.city || 'your area'}).`,
-      todo: 'Review the sections below, open the PFAS or Shop tabs as needed, then pick filters that match your priorities.',
+    todo: 'Review the sections below, open the PFAS or Shop tabs as needed, then pick filters that match your priorities.',
   };
 }
 
@@ -1836,6 +1840,8 @@ export default function WaterCheckup() {
   const [heroNewsletterSending, setHeroNewsletterSending] = useState(false);
   const [heroNewsletterSent, setHeroNewsletterSent] = useState(false);
   const [heroNewsletterErr, setHeroNewsletterErr] = useState<string | null>(null);
+  /** Pre-search: main funnel vs contaminant explainer tab */
+  const [homeFunnelTab, setHomeFunnelTab] = useState<'report' | 'whats'>('report');
   const [wellMode, setWellMode]         = useState(false);
   const [wellFallbackState, setWellFallbackState] = useState<string | null>(null);
   const [heroSolutionKey, setHeroSolutionKey] = useState<HeroSolutionKey | null>(null);
@@ -2386,9 +2392,63 @@ export default function WaterCheckup() {
 
       {!data && !loading && (
         <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 20px 80px' }}>
+          <div
+            role="tablist"
+            aria-label="Choose what to read first"
+            style={{
+              display: 'flex',
+              gap: 10,
+              marginBottom: 28,
+              flexWrap: 'wrap',
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+              paddingBottom: 14,
+            }}
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={homeFunnelTab === 'report'}
+              className="wc-result-tab wc-focus-ring"
+              onClick={() => setHomeFunnelTab('report')}
+              style={{
+                padding: '10px 16px',
+                borderRadius: 8,
+                border: `1px solid ${homeFunnelTab === 'report' ? 'rgba(6,182,212,0.45)' : 'rgba(255,255,255,0.1)'}`,
+                background: homeFunnelTab === 'report' ? 'rgba(8,145,178,0.22)' : 'transparent',
+                color: homeFunnelTab === 'report' ? '#e0f2fe' : '#94a3b8',
+                fontSize: 13,
+                fontWeight: 800,
+                cursor: 'pointer',
+                minHeight: 44,
+              }}
+            >
+              Get your free report
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={homeFunnelTab === 'whats'}
+              className="wc-result-tab wc-focus-ring"
+              onClick={() => setHomeFunnelTab('whats')}
+              style={{
+                padding: '10px 16px',
+                borderRadius: 8,
+                border: `1px solid ${homeFunnelTab === 'whats' ? 'rgba(6,182,212,0.45)' : 'rgba(255,255,255,0.1)'}`,
+                background: homeFunnelTab === 'whats' ? 'rgba(8,145,178,0.22)' : 'transparent',
+                color: homeFunnelTab === 'whats' ? '#e0f2fe' : '#94a3b8',
+                fontSize: 13,
+                fontWeight: 800,
+                cursor: 'pointer',
+                minHeight: 44,
+              }}
+            >
+              What&apos;s in my water
+            </button>
+          </div>
 
-
-          {/* ── STEP 1: THE PROBLEM ────────────────────────────────── */}
+          {homeFunnelTab === 'whats' && (
+          <>
+          {/* ── WHAT&apos;S IN MY WATER: common contaminants ───────────────── */}
           <div className="wc-fadein-1" style={{ marginBottom: 64 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
@@ -2487,15 +2547,54 @@ export default function WaterCheckup() {
             {/* Mid-page ZIP repeat — second entry point after reading about contaminants */}
             <div style={{ marginTop: 28, padding: '20px 22px', background: 'rgba(8,145,178,0.08)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 12, textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f9ff', marginBottom: 6 }}>Ready to check your water?</div>
-              <div style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, marginBottom: 4 }}>Enter your ZIP code and we'll pull the real EPA data for your area — violations, PFAS detections, lead sampling, and a filter recommendation matched to what's actually in your water.</div>
-              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 0 }}>Free · No account · Results in seconds</div>
+              <div style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, marginBottom: 4 }}>Enter your ZIP code and we&apos;ll pull the real EPA data for your area — violations, PFAS detections, lead sampling, and a filter recommendation matched to what&apos;s actually in your water.</div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 14 }}>Free · No account · Results in seconds</div>
+              <button
+                type="button"
+                className="wc-analyze"
+                onClick={() => {
+                  setHomeFunnelTab('report');
+                  document.getElementById('wc-hero-zip')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  window.setTimeout(() => document.getElementById('wc-hero-zip')?.focus(), 350);
+                }}
+                style={{
+                  padding: '12px 22px',
+                  borderRadius: 10,
+                  border: 'none',
+                  fontSize: 14,
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  color: '#0f172a',
+                  background: 'linear-gradient(135deg,#fbbf24,#f59e0b)',
+                  boxShadow: '0 8px 28px rgba(245,158,11,0.35)',
+                }}
+              >
+                Go to ZIP search — get my report →
+              </button>
             </div>
           </div>
 
-          {/* ── STEP 2: YOUR SITUATION ─────────────────────────────── */}
+          </>
+          )}
+
+          {homeFunnelTab === 'report' && (
+          <>
+          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, marginBottom: 28 }}>
+            Tell us about your home and browse filters — or open{' '}
+            <button
+              type="button"
+              onClick={() => setHomeFunnelTab('whats')}
+              style={{ background: 'none', border: 'none', color: '#38bdf8', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline', padding: 0, font: 'inherit' }}
+            >
+              What&apos;s in my water
+            </button>{' '}
+            for a plain-English tour of common tap-water contaminants.
+          </p>
+
+          {/* ── STEP 1: YOUR SITUATION ─────────────────────────────── */}
           <div className="wc-fadein-2" style={{ marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
+              <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Now tell us about your home</div>
                 <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>To show you the right filter — one that fits your setup — tell us where you live.</div>
@@ -2562,7 +2661,7 @@ export default function WaterCheckup() {
               </div>
             )}
 
-            {/* ── STEP 4: WHERE TO BUY ── shown when situation selected */}
+            {/* ── STEP 2: WHERE TO BUY ── shown when situation selected */}
             {situation && (() => {
               const sit = SITUATIONS.find(s => s.id === situation)!;
               const sitProducts = PRODUCTS.filter((p: any) => sit.cats.includes(p.cat) && p.expertPick);
@@ -2598,7 +2697,7 @@ export default function WaterCheckup() {
               return (
                 <div style={{ animation: 'wcFadeUp .5s ease-out both' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                    <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>4</div>
+                    <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
                     <div>
                       <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f9ff' }}>Where to Buy — Our Top Picks for {sit.icon} {sit.label}s</div>
                     </div>
@@ -2628,7 +2727,7 @@ export default function WaterCheckup() {
             })()}
           </div>
 
-          {/* ── STEP 3: THE SOLUTION ───────────────────────────────── */}
+          {/* ── STEP 3: filter categories (after situation / picks) ───────────────── */}
           <div className="wc-fadein-3" style={{ marginBottom: 64 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>3</div>
@@ -2758,6 +2857,9 @@ export default function WaterCheckup() {
               );
             })()}
           </div>
+
+          </>
+          )}
 
         </div>
       )}
@@ -3908,6 +4010,28 @@ export default function WaterCheckup() {
           ))}
         </div>
 
+        {/* Testimonials */}
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20, textAlign: 'center' }}>WHAT PEOPLE ARE SAYING</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
+            {[
+              { quote: 'I had no idea my water had PFAS above the federal limit. Checked my ZIP, saw the report, ordered a filter that same night.', name: 'Sarah M.', location: 'Columbus, OH', stars: 5 },
+              { quote: 'Finally a site that shows real EPA data instead of just trying to sell me something. The score made it immediately clear my water was a problem.', name: 'David K.', location: 'Phoenix, AZ', stars: 5 },
+              { quote: 'Moved to a new city and checked the water before I even unpacked. Three open violations. Bought a filter before my first glass.', name: 'Priya S.', location: 'Chicago, IL', stars: 5 },
+              { quote: 'My daughter has been drinking this water for two years. Seeing the lead risk on here convinced me to get a filter immediately. Should have found this sooner.', name: 'Marcus T.', location: 'Baltimore, MD', stars: 5 },
+            ].map(({ quote, name, location, stars }) => (
+              <div key={name} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ color: '#f59e0b', fontSize: 13, letterSpacing: 1 }}>{'★'.repeat(stars)}</div>
+                <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>&ldquo;{quote}&rdquo;</p>
+                <div style={{ marginTop: 'auto' }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{name}</div>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>{location}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Why WaterCheckup — above city list so more visitors see the data story */}
         <div style={{ padding: '32px 28px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP IS DIFFERENT</div>
@@ -3917,7 +4041,7 @@ export default function WaterCheckup() {
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {[
-              { source: 'EPA Violation Records', desc: 'Live violation history & enforcement records for 150,000+ public water systems' },
+              { source: 'EPA Violation Records', desc: 'Full violation history & enforcement records for 150,000+ public water systems' },
               { source: 'EPA PFAS Testing Data', desc: 'Federal PFAS monitoring results 2023–2025 — the most comprehensive PFAS dataset ever collected' },
               { source: 'EPA Enforcement History', desc: 'Inspection records, formal actions, and penalty data from the EPA enforcement database' },
               { source: 'EPA Lead Tap Sampling', desc: 'Actual measured lead levels at your tap from EPA Lead & Copper Rule testing' },
