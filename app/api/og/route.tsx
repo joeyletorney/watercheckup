@@ -52,14 +52,15 @@ export async function GET(req: Request) {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 28, color: 'white',
         }}>💧</div>
-        <div style={{ fontSize: 34, fontWeight: 800, color: '#f1f5f9', display: 'flex' }}>
-          Water<span style={{ color: '#22d3ee' }}>Checkup</span>
+        <div style={{ fontSize: 34, fontWeight: 800, color: '#f1f5f9', display: 'flex', alignItems: 'baseline' }}>
+          <span style={{ color: '#f1f5f9' }}>Water</span><span style={{ color: '#22d3ee' }}>Checkup</span>
         </div>
         <div style={{
           marginLeft: 16, fontSize: 14, padding: '4px 12px',
           background: 'rgba(8,145,178,0.2)', border: '1px solid rgba(8,145,178,0.4)',
           borderRadius: 20, color: '#38bdf8', fontWeight: 700,
-        }}>LIVE EPA DATA</div>
+          display: 'flex',
+        }}>EPA-SOURCED DATA</div>
       </div>
 
       {/* Main content */}
@@ -82,7 +83,7 @@ export async function GET(req: Request) {
         {/* Info */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ fontSize: 54, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.05 }}>{city}</div>
-          <div style={{ fontSize: 24, color: '#64748b', marginBottom: 8 }}>Water Quality Report — EPA SDWIS · UCMR5 · EWG</div>
+          <div style={{ fontSize: 24, color: '#64748b', marginBottom: 8, display: 'flex' }}>Water Quality Report — EPA SDWIS · UCMR5 · EWG</div>
 
           <div style={{ display: 'flex', gap: 16 }}>
             <div style={{
@@ -137,8 +138,8 @@ export async function GET(req: Request) {
         position: 'relative',
         zIndex: 1,
       }}>
-        <div style={{ fontSize: 18, color: '#334155' }}>Free water quality reports at</div>
-        <div style={{ fontSize: 22, color: '#22d3ee', fontWeight: 700 }}>watercheckup.com</div>
+        <div style={{ fontSize: 18, color: '#334155', display: 'flex' }}>Free water quality reports at</div>
+        <div style={{ fontSize: 22, color: '#22d3ee', fontWeight: 700, display: 'flex' }}>watercheckup.com</div>
       </div>
     </div>,
     { width: 1200, height: 630 }
