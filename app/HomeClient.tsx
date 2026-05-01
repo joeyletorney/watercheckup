@@ -2070,30 +2070,9 @@ export default function WaterCheckup() {
           Your Tap Water Report,<br />In <span style={{ color: '#ffffff' }}>10 Seconds. Free.</span>
         </h1>
 
-        <div
-          style={{
-            maxWidth: 620,
-            margin: '0 auto 18px',
-            padding: '18px 22px',
-            borderRadius: 14,
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderTop: '1px solid rgba(180,240,255,0.14)',
-            background: 'rgba(4,14,32,0.55)',
-            backdropFilter: 'blur(18px)',
-            WebkitBackdropFilter: 'blur(18px)',
-            boxShadow: '0 8px 32px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
-          }}
-        >
-          <p style={{ color: '#e2e8f0', fontSize: 17, lineHeight: 1.75, margin: 0 }}>
-            Enter your ZIP code to see exactly what&apos;s been detected in your local water — pulled live from five EPA databases. No sign-up. No guesswork. If something needs filtering, we&apos;ll tell you exactly which filter removes it.
-          </p>
-          <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.55, margin: '14px 0 0' }}>
-            100% free · No account needed · All 50 states · Sourced from EPA databases
-          </p>
-          <p style={{ color: '#64748b', fontSize: 13, lineHeight: 1.5, margin: '12px 0 0' }}>
-            <strong style={{ color: '#94a3b8' }}>Trusted by over 100,000 households across the U.S.</strong>
-          </p>
-        </div>
+        <p style={{ color: '#94a3b8', fontSize: 15, margin: '0 auto 28px', maxWidth: 560, lineHeight: 1.55 }}>
+          Live EPA data · All 50 states · No account needed · 100% free
+        </p>
 
         {/* Search bar — high-visibility panel */}
         <div className="wc-search-hero-panel">
@@ -2130,15 +2109,12 @@ export default function WaterCheckup() {
             >
               {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
             </button>
-            <button
-              type="button"
-              onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }}
-              className="wc-glass-btn"
-              style={{ padding: '18px 24px', minHeight: 58, borderRadius: 14, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}
-            >
-              View Sample Report
-            </button>
           </div>
+          <p style={{ margin: '10px 0 0' }}>
+            <button type="button" onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: 13, padding: 0 }}>
+              View a sample report →
+            </button>
+          </p>
         </div>
 
         {/* LOADER — directly under search so it stays on-screen (was below fold after long hero) */}
@@ -2208,14 +2184,81 @@ export default function WaterCheckup() {
           </div>
         )}
 
-        {/* Hero newsletter — only before first report (ask after value) */}
-        {!data && !wellMode && (
+
+{error && (
+            <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
+              <div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>Couldn&apos;t load municipal report</div>
+              <div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div>
+              {waterLookupErrorExtra?.hintWell && (
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(239,68,68,0.35)' }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#c4b5fd', marginBottom: 6 }}>Private well?</div>
+                  <div style={{ fontSize: 12, color: '#e9d5ff', lineHeight: 1.65, marginBottom: 10 }}>
+                    EPA SDWIS only covers <strong style={{ color: '#f5f3ff' }}>public</strong> water systems. If you use a well, tap <strong style={{ color: '#f5f3ff' }}>Switch to well water mode</strong> below for a state risk overview, then test your water annually with a certified lab.
+                  </div>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setWellMode(true);
+                      setError(null);
+                      setWaterLookupErrorExtra(null);
+                      const z = (waterLookupErrorExtra?.zip || zip).trim();
+                      if (/^\d{5}$/.test(z)) {
+                        try {
+                          const r = await fetch(`/api/well?zip=${z}`);
+                          const d = await r.json();
+                          if (d.state) setWellFallbackState(d.state === 'DEFAULT' ? 'OH' : d.state);
+                          else setWellFallbackState('OH');
+                        } catch {
+                          setWellFallbackState('OH');
+                        }
+                      } else {
+                        setWellFallbackState('OH');
+                      }
+                      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                    }}
+                    style={{ padding: '8px 14px', borderRadius: 8, border: '1px solid rgba(167,139,250,0.5)', background: 'rgba(124,58,237,0.25)', color: '#e9d5ff', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}
+                  >
+                    Switch to well water mode →
+                  </button>
+                </div>
+              )}
+              {waterLookupErrorExtra?.dataFreshness?.ucmr5SnapshotLabel && (
+                <div style={{ marginTop: 12, fontSize: 11, color: '#78716c', lineHeight: 1.5 }}>
+                  UCMR5 snapshot in app: <span style={{ color: '#a8a29e' }}>{waterLookupErrorExtra.dataFreshness.ucmr5SnapshotLabel}</span>
+                  {' · '}
+                  <a href={waterLookupErrorExtra.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ color: '#94a3b8' }}>
+                    EPA UCMR data →
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+
+        {/* 3-column why us — hidden once a municipal report is showing to shorten the path to results */}
+        {!(data && !loading && !wellMode) && (
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '24px auto 28px', maxWidth: 720 }}>
+          {[
+            { icon: '🇺🇸', title: 'Every US water system', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
+            { icon: '🔬', title: 'Real EPA data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
+            { icon: '💧', title: 'Top filter picks', desc: 'Top-rated systems matched to your exact contaminants.' },
+          ].map(item => (
+            <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
+              <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 800, color: '#f8fafc', marginBottom: 4 }}>{item.title}</div>
+              <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.6 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+        )}
+      </div>
+
+      {/* Newsletter — below fold */}
+      {!data && !wellMode && (
+      <div style={{ maxWidth: 620, margin: '32px auto 0', padding: '0 24px' }}>
         <div
           id="wc-newsletter"
           className="wc-newsletter-box"
           style={{
-            maxWidth: 620,
-            margin: '32px auto 0',
             padding: '18px 20px',
             borderRadius: 14,
             border: '2px solid rgba(56, 189, 248, 0.55)',
@@ -2233,9 +2276,9 @@ export default function WaterCheckup() {
               textAlign: 'left',
               letterSpacing: 0.2,
               textShadow: '0 0 24px rgba(34,211,238,0.45), 0 2px 12px rgba(0,8,24,0.85)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
             }}
           >
             <span style={{
@@ -2321,74 +2364,8 @@ export default function WaterCheckup() {
             </>
           )}
         </div>
-        )}
-
-{error && (
-            <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
-              <div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>Couldn&apos;t load municipal report</div>
-              <div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div>
-              {waterLookupErrorExtra?.hintWell && (
-                <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(239,68,68,0.35)' }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#c4b5fd', marginBottom: 6 }}>Private well?</div>
-                  <div style={{ fontSize: 12, color: '#e9d5ff', lineHeight: 1.65, marginBottom: 10 }}>
-                    EPA SDWIS only covers <strong style={{ color: '#f5f3ff' }}>public</strong> water systems. If you use a well, tap <strong style={{ color: '#f5f3ff' }}>Switch to well water mode</strong> below for a state risk overview, then test your water annually with a certified lab.
-                  </div>
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      setWellMode(true);
-                      setError(null);
-                      setWaterLookupErrorExtra(null);
-                      const z = (waterLookupErrorExtra?.zip || zip).trim();
-                      if (/^\d{5}$/.test(z)) {
-                        try {
-                          const r = await fetch(`/api/well?zip=${z}`);
-                          const d = await r.json();
-                          if (d.state) setWellFallbackState(d.state === 'DEFAULT' ? 'OH' : d.state);
-                          else setWellFallbackState('OH');
-                        } catch {
-                          setWellFallbackState('OH');
-                        }
-                      } else {
-                        setWellFallbackState('OH');
-                      }
-                      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-                    }}
-                    style={{ padding: '8px 14px', borderRadius: 8, border: '1px solid rgba(167,139,250,0.5)', background: 'rgba(124,58,237,0.25)', color: '#e9d5ff', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}
-                  >
-                    Switch to well water mode →
-                  </button>
-                </div>
-              )}
-              {waterLookupErrorExtra?.dataFreshness?.ucmr5SnapshotLabel && (
-                <div style={{ marginTop: 12, fontSize: 11, color: '#78716c', lineHeight: 1.5 }}>
-                  UCMR5 snapshot in app: <span style={{ color: '#a8a29e' }}>{waterLookupErrorExtra.dataFreshness.ucmr5SnapshotLabel}</span>
-                  {' · '}
-                  <a href={waterLookupErrorExtra.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ color: '#94a3b8' }}>
-                    EPA UCMR data →
-                  </a>
-                </div>
-              )}
-            </div>
-          )}
-
-        {/* 3-column why us — hidden once a municipal report is showing to shorten the path to results */}
-        {!(data && !loading && !wellMode) && (
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '24px auto 28px', maxWidth: 720 }}>
-          {[
-            { icon: '🇺🇸', title: 'Every US water system', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
-            { icon: '🔬', title: 'Real EPA data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
-            { icon: '💧', title: 'Top filter picks', desc: 'Top-rated systems matched to your exact contaminants.' },
-          ].map(item => (
-            <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
-              <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 800, color: '#f8fafc', marginBottom: 4 }}>{item.title}</div>
-              <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.6 }}>{item.desc}</div>
-            </div>
-          ))}
-        </div>
-        )}
       </div>
+      )}
 
       {!data && !loading && (
         <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 20px 80px' }}>
