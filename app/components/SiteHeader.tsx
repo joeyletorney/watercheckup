@@ -65,11 +65,13 @@ export type SiteHeaderProps = {
   showCta?: boolean;
   /** CTA label; default “Check My Water →”. */
   ctaLabel?: string;
+  /** CTA destination; default `/`. */
+  ctaHref?: string;
   /** Extra styles on the inner variant row (e.g. solid background on 404). */
   innerBarStyle?: CSSProperties;
 };
 
-export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, innerBarStyle }: SiteHeaderProps) {
+export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, ctaHref, innerBarStyle }: SiteHeaderProps) {
   if (variant === 'inner') {
     return (
       <div
@@ -95,7 +97,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, inn
           <SiteNav ariaLabel="Main" />
         </div>
         {showCta ? (
-          <Link href="/" className="wc-site-header-cta" style={CTA_STYLE}>
+          <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
             {ctaLabel ?? 'Check My Water →'}
           </Link>
         ) : null}

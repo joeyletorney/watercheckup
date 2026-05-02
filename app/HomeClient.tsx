@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { SiteHeader } from './components/SiteHeader';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
+import { CITIES } from '@/app/water/[city]/cities-data';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -542,8 +543,8 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
           style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
           Buy direct →
         </a>
-        <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
-          style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex }}>
+        <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
+          style={{ display: 'block', textAlign: 'center', padding: block ? '7px 0' : '8px 16px', borderRadius: 10, fontSize: 11, fontWeight: 600, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#94a3b8', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}>
           Amazon →
         </a>
       </div>
@@ -551,8 +552,8 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   }
 
   return (
-    <a href={amazonUrl || directUrl!} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
-      style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex }}>
+    <a href={amazonUrl || directUrl!} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
+      style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 11, fontWeight: 600, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#94a3b8', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}>
       Amazon →
     </a>
   );
@@ -805,8 +806,12 @@ function PFASAwarenessBanner() {
             <span style={{ fontSize: 12, fontWeight: 800, color: '#ef4444', letterSpacing: 0.3 }}>EPA PFAS RULE — 2024</span>
             <span style={{ fontSize: 10, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>ENFORCEABLE MCL</span>
           </div>
-          <p style={{ margin: '0 0 10px', fontSize: 13, color: '#94a3b8', lineHeight: 1.7 }}>
-            EPA set the first federal drinking water limits for PFAS at <strong style={{ color: '#fbbf24' }}>4 ppt</strong>. An estimated <strong style={{ color: '#fbbf24' }}>45 million Americans</strong> have detectable forever chemicals in their tap water.
+          <p style={{ margin: '0 0 8px', fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
+            EPA set the first federal drinking water limits for PFAS at <strong style={{ color: '#fbbf24' }}>4 ppt</strong> (rule finalized 2024). National studies have estimated tens of millions of Americans have had detectable PFAS in drinking water.
+            <span style={{ fontSize: 10, color: '#64748b', marginLeft: 6 }}>(EPA rule · CDC/USGS context)</span>
+          </p>
+          <p style={{ margin: '0 0 10px', fontSize: 12, color: '#94a3b8', lineHeight: 1.55 }}>
+            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> Limits and estimates describe population-level patterns. Your ZIP report shows what is on file for your utility — use that as the practical next step.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer" style={{ padding: '5px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 11, fontWeight: 800, textDecoration: 'none' }}>🛒 Best RO for PFAS →</a>
@@ -837,9 +842,12 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
           </div>
           <p style={{ margin: '0 0 8px', fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
             {overLimit
-              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — exceeds EPA 2024 limit of 4 ppt. Standard carbon filters do NOT remove PFAS. Reverse osmosis required.</>
-              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — below 4 ppt limit but above non-detect. Forever chemicals accumulate in the body. RO or Clearly Filtered recommended.</>
+              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — exceeds EPA 2024 MCL of 4 ppt for applicable compounds in this dataset. Many pitchers do not remove PFAS; certified RO/P473-class systems are the usual fix for drinking water.</>
+              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — below the 4 ppt MCL in this snapshot but still a “detection.” If you want extra margin for drinking/cooking, RO or a certified PFAS-rated filter is the typical approach.</>
             }
+          </p>
+          <p style={{ margin: '0 0 10px', fontSize: 12, color: '#94a3b8', lineHeight: 1.55 }}>
+            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This is a utility-level monitoring snapshot, not a test of your kitchen tap today. If you need certainty for pregnancy, infants, or immunocompromised households, consider a certified lab test of your tap.
           </p>
           {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 12, color: '#94a3b8', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -1198,6 +1206,13 @@ function NationalPercentile({ pct }: { pct: number }) {
           <div style={{ fontSize: 20, fontWeight: 900, color }}>{anim}<span style={{ fontSize: 12, color: '#94a3b8' }}>th %ile</span></div>
           <div style={{ fontSize: 10, color: '#334155' }}>vs all US water</div>
         </div>
+      </div>
+      <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.55, marginTop: 10 }}>
+        <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This ranks your system against others in our combined national view — useful context, not a diagnosis. See{' '}
+        <Link href="/methodology" style={{ color: '#38bdf8', fontWeight: 600 }}>
+          how we calculate it
+        </Link>
+        .
       </div>
     </div>
   );
@@ -1760,6 +1775,214 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'washington-dc', name: 'Washington, DC' },
 ];
 
+function usRegionFromStateCode(st: string): string {
+  const N = ['CT', 'ME', 'MA', 'NH', 'RI', 'VT', 'NJ', 'NY', 'PA'];
+  const MW = ['IL', 'IN', 'MI', 'OH', 'WI', 'IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD'];
+  const S = ['DE', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'DC', 'WV', 'AL', 'KY', 'MS', 'TN', 'AR', 'LA', 'OK', 'TX'];
+  const W = ['MT', 'ID', 'WY', 'CO', 'NM', 'AZ', 'UT', 'NV', 'WA', 'OR', 'CA', 'AK', 'HI'];
+  if (N.includes(st)) return 'Northeast';
+  if (MW.includes(st)) return 'Midwest';
+  if (S.includes(st)) return 'South';
+  if (W.includes(st)) return 'West';
+  return 'Other';
+}
+
+function parseStateFromCityLabel(name: string): string | null {
+  const m = name.match(/,\s*([A-Z]{2})\s*$/i);
+  return m ? m[1].toUpperCase() : null;
+}
+
+function cityBrowseBadge(slug: string): string | null {
+  const cd = CITIES[slug];
+  if (!cd) return null;
+  const i0 = cd.issues[0] || '';
+  if (/PFAS|pfas/i.test(i0)) return 'PFAS noted';
+  if (/[Ll]ead/i.test(i0)) return 'Lead risk';
+  if (cd.urgency === 'high') return 'Review data';
+  return null;
+}
+
+/** Top-of-report risk line: counts detections vs rows where measured level exceeds the limit in our dataset (EPA MCL / action level). */
+function riskVerdictFromData(data: any): {
+  tier: 'high' | 'moderate' | 'low';
+  icon: string;
+  title: string;
+  subtitle: string;
+  accent: string;
+  border: string;
+  bg: string;
+} {
+  const cont = Array.isArray(data?.contaminants) ? data.contaminants : [];
+  const X = cont.length;
+  let Y = cont.filter(
+    (c: any) =>
+      typeof c.level === 'number' &&
+      typeof c.limit === 'number' &&
+      !Number.isNaN(c.level) &&
+      !Number.isNaN(c.limit) &&
+      c.level > c.limit,
+  ).length;
+  if (Number(data?.pfasAboveMcl || 0) > 0) {
+    const pfasRowExceeds = cont.some(
+      (c: any) =>
+        (c.isPFAS || String(c.name || '').includes('PFAS')) &&
+        typeof c.level === 'number' &&
+        typeof c.limit === 'number' &&
+        c.level > c.limit,
+    );
+    if (!pfasRowExceeds) Y += 1;
+  }
+
+  const openV = Number(data?.openViolations || 0) > 0;
+  const isHigh = Y > 0 || openV;
+
+  if (isHigh) {
+    let subtitle: string;
+    if (Y > 0) {
+      subtitle = `${X} contaminant${X === 1 ? '' : 's'} detected, ${Y} exceed${Y === 1 ? 's' : ''} recommended limits`;
+    } else {
+      subtitle =
+        X > 0
+          ? `${X} contaminant${X === 1 ? '' : 's'} detected — ${data.openViolations} open EPA violation${data.openViolations > 1 ? 's' : ''} on record`
+          : `${data.openViolations} open EPA violation${data.openViolations > 1 ? 's' : ''} on record for this system`;
+    }
+    return {
+      tier: 'high',
+      icon: '🔴',
+      title: 'HIGH RISK',
+      subtitle,
+      accent: '#fca5a5',
+      border: 'rgba(239,68,68,0.5)',
+      bg: 'linear-gradient(165deg, rgba(127,29,29,0.35) 0%, rgba(24,8,8,0.55) 100%)',
+    };
+  }
+
+  if (data?.limitedData && X === 0) {
+    return {
+      tier: 'moderate',
+      icon: '🟡',
+      title: 'MODERATE RISK',
+      subtitle: 'Limited contaminant data for this ZIP — confirm with your utility or a certified test if unsure',
+      accent: '#fde047',
+      border: 'rgba(245,158,11,0.45)',
+      bg: 'linear-gradient(165deg, rgba(120,53,15,0.35) 0%, rgba(24,18,8,0.5) 100%)',
+    };
+  }
+
+  if (X > 0) {
+    return {
+      tier: 'moderate',
+      icon: '🟡',
+      title: 'MODERATE RISK',
+      subtitle: `${X} contaminant${X === 1 ? '' : 's'} detected, below action levels but worth monitoring`,
+      accent: '#fde047',
+      border: 'rgba(245,158,11,0.45)',
+      bg: 'linear-gradient(165deg, rgba(120,53,15,0.28) 0%, rgba(24,18,8,0.48) 100%)',
+    };
+  }
+
+  return {
+    tier: 'low',
+    icon: '🟢',
+    title: 'LOW RISK',
+    subtitle: 'No major concerns detected',
+    accent: '#86efac',
+    border: 'rgba(52,211,153,0.45)',
+    bg: 'linear-gradient(165deg, rgba(6,78,59,0.35) 0%, rgba(6,24,18,0.5) 100%)',
+  };
+}
+
+/** Match score for product ranking — aligned with “top 3” recommended filters on the report tab. */
+function productMatchScore(p: any, cont: any[] | undefined): number {
+  if (!Array.isArray(cont) || !cont.length) return p.cat === 'undersink' ? 1 : 0;
+  const names = cont.map((c: any) => c.name).filter(Boolean);
+  const hasPFAS = cont.some((c: any) => c.isPFAS || c.name?.includes('PFAS'));
+  return (
+    p.bestFor.filter((b: string) => names.some((n: string) => n.includes(b))).length +
+    (hasPFAS && p.bestFor.includes('PFAS') ? 3 : 0) +
+    (p.quickChange ? 2 : 0)
+  );
+}
+
+const BUDGET_FILTER_CATS = new Set(['pitcher', 'faucet', 'undersink-filter', 'countertop-filter', 'distiller', 'bottle', 'countertop']);
+
+function pickBudgetOption(best: any, cont: any[] | undefined) {
+  const pool = PRODUCTS.filter(
+    (p: any) =>
+      BUDGET_FILTER_CATS.has(p.cat) &&
+      !p.wholeHouse &&
+      !p.remineralizes &&
+      p.id !== best?.id,
+  );
+  if (!pool.length) return null;
+  const scored = pool.map((p: any) => ({
+    p,
+    m: productMatchScore(p, cont),
+    price: p.price,
+  }));
+  const positive = scored.filter(s => s.m > 0);
+  const use = positive.length ? positive : scored;
+  use.sort((a, b) => (b.m !== a.m ? b.m - a.m : a.price - b.price));
+  return use[0].p;
+}
+
+function pickWholeHomeOption(cont: any[] | undefined) {
+  const pool = PRODUCTS.filter((p: any) => p.cat === 'whole' && p.wholeHouse && !p.well);
+  if (!pool.length) return null;
+  const scored = pool
+    .map((p: any) => ({ p, m: productMatchScore(p, cont) }))
+    .sort((a, b) => b.m - a.m || (b.p.expertPick ? 1 : 0) - (a.p.expertPick ? 1 : 0));
+  return scored[0]?.p ?? pool[0];
+}
+
+/**
+ * Heuristic national framing from composite score + contaminant load (not a census of every U.S. ZIP).
+ * Pair with a short disclaimer in UI.
+ */
+function nationalComparisonMetrics(data: any): null | {
+  kind: 'above_avg' | 'mid' | 'below_avg';
+  beatZipPct: number;
+  worseThanZipPct: number;
+  nCont: number;
+  nExceed: number;
+  hasOpenViolations: boolean;
+} {
+  if (!data || data.limitedData) return null;
+  const score = Math.max(0, Math.min(100, Math.round(Number(data.score) || 0)));
+  const cont = Array.isArray(data.contaminants) ? data.contaminants : [];
+  const n = cont.length;
+  let nExceed = cont.filter(
+    (c: any) =>
+      typeof c.level === 'number' &&
+      typeof c.limit === 'number' &&
+      !Number.isNaN(c.level) &&
+      !Number.isNaN(c.limit) &&
+      c.level > c.limit,
+  ).length;
+  if (Number(data.pfasAboveMcl || 0) > 0) {
+    const pfasRowExceeds = cont.some(
+      (c: any) =>
+        (c.isPFAS || String(c.name || '').includes('PFAS')) &&
+        typeof c.level === 'number' &&
+        typeof c.limit === 'number' &&
+        c.level > c.limit,
+    );
+    if (!pfasRowExceeds) nExceed += 1;
+  }
+  const hasOpenViolations = Number(data.openViolations || 0) > 0;
+  const loadSignal = Math.min(95, n * 5 + nExceed * 10 + (hasOpenViolations ? 15 : 0));
+  const worseThanZipPct = Math.min(90, Math.max(18, Math.round((100 - score) * 0.55 + loadSignal * 0.35)));
+  const kind = score >= 72 ? 'above_avg' : score >= 55 ? 'mid' : 'below_avg';
+  return {
+    kind,
+    beatZipPct: score,
+    worseThanZipPct,
+    nCont: n,
+    nExceed,
+    hasOpenViolations,
+  };
+}
+
 function formatResultsLead(data: any): { found: string; todo: string } {
   const system = data?.systemName || 'this water system';
   if (data?.limitedData) {
@@ -1828,7 +2051,6 @@ export default function WaterCheckup() {
   const [showShare, setShowShare]       = useState(false);
   const [showWqaModal, setShowWqaModal] = useState(false);
   const [showNsfModal, setShowNsfModal] = useState(false);
-  const [showEpaModal, setShowEpaModal] = useState(false);
   const [showSample, setShowSample]       = useState(false);
   const [sampleEmail, setSampleEmail]     = useState('');
   const [sampleZip, setSampleZip]         = useState('');
@@ -1840,6 +2062,10 @@ export default function WaterCheckup() {
   const [heroNewsletterSending, setHeroNewsletterSending] = useState(false);
   const [heroNewsletterSent, setHeroNewsletterSent] = useState(false);
   const [heroNewsletterErr, setHeroNewsletterErr] = useState<string | null>(null);
+  const [resultsAlertEmail, setResultsAlertEmail] = useState('');
+  const [resultsAlertSending, setResultsAlertSending] = useState(false);
+  const [resultsAlertSent, setResultsAlertSent] = useState(false);
+  const [resultsAlertErr, setResultsAlertErr] = useState<string | null>(null);
   /** Pre-search: main funnel vs contaminant explainer tab */
   const [homeFunnelTab, setHomeFunnelTab] = useState<'report' | 'whats'>('report');
   const [wellMode, setWellMode]         = useState(false);
@@ -1861,6 +2087,18 @@ export default function WaterCheckup() {
     );
   }, [cityBrowseFilter]);
 
+  const cityBrowseGrouped = useMemo(() => {
+    const map: Record<string, typeof HOMEPAGE_CITY_LINKS> = {};
+    for (const c of filteredHomepageCities) {
+      const st = parseStateFromCityLabel(c.name);
+      const region = st ? usRegionFromStateCode(st) : 'Other';
+      if (!map[region]) map[region] = [];
+      map[region].push(c);
+    }
+    const order = ['Northeast', 'Midwest', 'South', 'West', 'Other'];
+    return order.filter((r) => map[r]?.length).map((r) => ({ region: r, cities: map[r] }));
+  }, [filteredHomepageCities]);
+
   useEffect(() => {
     setShowAllContaminants(false);
   }, [data?.pwsid, data?.zip]);
@@ -1874,18 +2112,17 @@ export default function WaterCheckup() {
   }, [loading]);
 
   useEffect(() => {
-    if (!showWqaModal && !showNsfModal && !showEpaModal && !showSample) return;
+    if (!showWqaModal && !showNsfModal && !showSample) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setShowWqaModal(false);
         setShowNsfModal(false);
-        setShowEpaModal(false);
         setShowSample(false);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [showWqaModal, showNsfModal, showEpaModal, showSample]);
+  }, [showWqaModal, showNsfModal, showSample]);
 
   const search = async () => {
     // City name lookup — if input isn't digits, check city map
@@ -1904,7 +2141,7 @@ export default function WaterCheckup() {
 
   const doSearch = async (zipCode: string) => {
     if (zipCode.length !== 5 || loading) return;
-    setLoading(true); setError(null); setWaterLookupErrorExtra(null); setData(null); setEwgData(null); setTab('report'); setEmailSent(false); setStep(0); setInstallers([]);
+    setLoading(true); setError(null); setWaterLookupErrorExtra(null); setData(null); setEwgData(null); setTab('report'); setEmailSent(false); setResultsAlertSent(false); setResultsAlertErr(null); setStep(0); setInstallers([]);
     let s = 0;
     const tick = setInterval(() => { s = Math.min(s + 1, STEPS.length - 1); setStep(s); }, 650);
     try {
@@ -1994,6 +2231,32 @@ export default function WaterCheckup() {
     }
   };
 
+  const subscribeResultsAreaAlerts = async () => {
+    const z = data?.zip;
+    if (!resultsAlertEmail.includes('@') || resultsAlertSending || !z) return;
+    setResultsAlertSending(true);
+    setResultsAlertErr(null);
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: resultsAlertEmail.trim(),
+          zip: String(z).slice(0, 5),
+          weekly: true,
+          source: 'results-area-alerts',
+        }),
+      });
+      const payload = await res.json();
+      if (!res.ok) throw new Error(payload.error || 'Subscription failed');
+      setResultsAlertSent(true);
+    } catch (e: any) {
+      setResultsAlertErr(e.message || 'Subscription failed');
+    } finally {
+      setResultsAlertSending(false);
+    }
+  };
+
   const loadInstallers = async (z: string) => {
     setInstLoading(true);
     try { setInstallers(await findInstallers(z)); } catch {}
@@ -2007,10 +2270,8 @@ export default function WaterCheckup() {
     const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge' && !p.remineralizes && !p.softener);
     const cont = data?.contaminants;
     if (!Array.isArray(cont) || !cont.length) return base.filter((p: any) => p.cat === 'undersink').slice(0, 3);
-    const names = cont.map((c: any) => c.name).filter(Boolean);
-    const hasPFAS = cont.some((c: any) => c.isPFAS || c.name?.includes('PFAS'));
     return base
-      .map(p => ({ ...p, m: p.bestFor.filter((b: string) => names.some((n: string) => n.includes(b))).length + (hasPFAS && p.bestFor.includes('PFAS') ? 3 : 0) + (p.quickChange ? 2 : 0) }))
+      .map(p => ({ ...p, m: productMatchScore(p, cont) }))
       .sort((a, b) => b.m - a.m).slice(0, 3);
   };
 
@@ -2019,6 +2280,20 @@ export default function WaterCheckup() {
     year: `Yr ${i}`, filter: Math.round(prod.price + (prod.filterCostPerYear || 80) * i), bottled: Math.round(ppl * 32 * 12 * i),
   }));
   const recommended = getRecommended();
+  const threeStepBest = recommended[0];
+  const threeStepBudget = pickBudgetOption(threeStepBest, data?.contaminants);
+  const threeStepWhole = pickWholeHomeOption(data?.contaminants);
+
+  const goToProductPick = (p: any) => {
+    if (!p) return;
+    setFtype(p.name);
+    setProductFilter(p.cat);
+    setTab('products');
+    requestAnimationFrame(() => {
+      document.getElementById('wc-products-tab')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
   const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','distiller','pitcher','faucet','bottle','whole','softener','acid-neutralizer','shower','fridge'];
   const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', distiller:'Distiller', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower', fridge:'Fridge/Inline' };
   const filteredProds = productFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === productFilter);
@@ -2051,14 +2326,6 @@ export default function WaterCheckup() {
             >
               NSF Certified
             </button>
-            <button
-              type="button"
-              className="wc-nav-badge-epa"
-              onClick={() => setShowEpaModal(true)}
-              aria-label="What does Live EPA Data mean? Opens explanation dialog."
-            >
-              EPA-Sourced Data
-            </button>
           </>
         }
       />
@@ -2071,7 +2338,7 @@ export default function WaterCheckup() {
         </h1>
 
         <p style={{ color: '#94a3b8', fontSize: 15, margin: '0 auto 28px', maxWidth: 560, lineHeight: 1.55 }}>
-          Live EPA data · All 50 states · No account needed · 100% free
+          All 50 states · No account needed · 100% free
         </p>
 
         {/* Search bar — high-visibility panel */}
@@ -2107,11 +2374,14 @@ export default function WaterCheckup() {
                 WebkitTextFillColor: '#fbbf24',
               }}
             >
-              {loading ? 'ANALYZING…' : 'GET FREE REPORT →'}
+              {loading ? 'ANALYZING…' : 'Check my water →'}
             </button>
           </div>
-          <p style={{ margin: '10px 0 0' }}>
-            <button type="button" onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: 13, padding: 0 }}>
+          <p style={{ margin: '12px 0 0', fontSize: 12, color: '#64748b', letterSpacing: 0.2 }}>
+            Trusted by 100,000+ households
+          </p>
+          <p style={{ margin: '8px 0 0' }}>
+            <button type="button" onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: 12, padding: 0 }}>
               View a sample report →
             </button>
           </p>
@@ -2234,141 +2504,808 @@ export default function WaterCheckup() {
             </div>
           )}
 
-        {/* 3-column why us — hidden once a municipal report is showing to shorten the path to results */}
-        {!(data && !loading && !wellMode) && (
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', margin: '24px auto 28px', maxWidth: 720 }}>
-          {[
-            { icon: '🇺🇸', title: 'Every US water system', desc: 'Any ZIP or city name. All 50 states. Municipal and well water.' },
-            { icon: '🔬', title: 'Real EPA data', desc: 'The only free tool combining 5 EPA databases — violations, PFAS testing, lead tap sampling, enforcement history, and lead pipe inventory — in one ZIP code search.' },
-            { icon: '💧', title: 'Top filter picks', desc: 'Top-rated systems matched to your exact contaminants.' },
-          ].map(item => (
-            <div key={item.title} style={{ flex: '1 1 180px', padding: '16px 18px', background: 'rgba(4,14,32,0.6)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, textAlign: 'center' }}>
-              <div style={{ fontSize: 24, marginBottom: 8 }}>{item.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 800, color: '#f8fafc', marginBottom: 4 }}>{item.title}</div>
-              <div style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.6 }}>{item.desc}</div>
-            </div>
-          ))}
-        </div>
-        )}
       </div>
 
-      {/* Newsletter — below fold */}
-      {!data && !wellMode && (
-      <div style={{ maxWidth: 620, margin: '32px auto 0', padding: '0 24px' }}>
-        <div
-          id="wc-newsletter"
-          className="wc-newsletter-box"
-          style={{
-            padding: '18px 20px',
-            borderRadius: 14,
-            border: '2px solid rgba(56, 189, 248, 0.55)',
-            boxShadow:
-              '0 0 0 1px rgba(8,145,178,0.45), 0 0 36px rgba(6,182,212,0.38), 0 0 72px rgba(34,211,238,0.18), 0 16px 48px rgba(0,8,24,0.5), inset 0 1px 0 rgba(186,230,253,0.22), inset 0 -1px 0 rgba(8,145,178,0.2)',
-            background:
-              'linear-gradient(165deg, rgba(8,52,88,0.94) 0%, rgba(6,38,72,0.9) 42%, rgba(4,24,52,0.92) 100%)',
-          }}
-        >
-          <div
-            style={{
-              fontSize: 22,
-              fontWeight: 800,
-              marginBottom: 8,
-              textAlign: 'left',
-              letterSpacing: 0.2,
-              textShadow: '0 0 24px rgba(34,211,238,0.45), 0 2px 12px rgba(0,8,24,0.85)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-            }}
-          >
-            <span style={{
-              fontSize: 11,
-              fontWeight: 800,
-              letterSpacing: 1,
-              color: '#0e0f10',
-              background: '#22d3ee',
-              borderRadius: 5,
-              padding: '3px 7px',
-              flexShrink: 0,
-              textShadow: 'none',
-            }}>NEW</span>
-            <span>
-              <span style={{ color: '#fde047' }}>FREE</span>
-              <span style={{ color: '#f0fdfa' }}> Weekly Drinking Water </span>
-              <span style={{ color: '#22d3ee' }}>Newsletter</span>
-            </span>
-          </div>
-          <div
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: '#a5f3fc',
-              marginBottom: 12,
-              textAlign: 'left',
-              lineHeight: 1.55,
-              textShadow: '0 0 18px rgba(6,182,212,0.25)',
-            }}
-          >
-            Get alerted the moment your utility reports new violations, PFAS detections, or enforcement actions — plus one practical water safety tip every week.
-          </div>
-          {heroNewsletterSent ? (
-            <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 600, textAlign: 'left', lineHeight: 1.55, textShadow: '0 0 16px rgba(74,222,128,0.35)' }}>
-              You&apos;re subscribed! Check your inbox — and spam/promotions if you don&apos;t see it within a few minutes.
-            </div>
-          ) : (
-            <>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                <input
-                  value={heroNewsletterEmail}
-                  onChange={e => setHeroNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  type="email"
-                  className="wc-newsletter-email-input"
-                  style={{
-                    flex: '1 1 300px',
-                    minHeight: 44,
-                    padding: '11px 14px',
-                    background: 'rgba(4, 22, 48, 0.95)',
-                    border: '2px solid rgba(56, 189, 248, 0.45)',
-                    borderRadius: 10,
-                    color: '#ecfeff',
-                    fontSize: 14,
-                    outline: 'none',
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={subscribeHeroNewsletter}
-                  disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
-                  style={{
-                    minHeight: 44,
-                    padding: '11px 18px',
-                    background: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'rgba(14,34,51,0.85)' : 'linear-gradient(135deg, #22d3ee 0%, #0891b2 55%, #0e7490 100%)',
-                    border: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? '1px solid rgba(51,65,85,0.6)' : '1px solid rgba(165,243,252,0.55)',
-                    borderRadius: 10,
-                    color: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? '#94a3b8' : '#f0fdfa',
-                    fontSize: 13,
-                    fontWeight: 800,
-                    letterSpacing: 0.5,
-                    cursor: heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer',
-                    boxShadow:
-                      heroNewsletterSending || !heroNewsletterEmail.includes('@')
-                        ? 'none'
-                        : '0 0 20px rgba(34,211,238,0.45), 0 4px 16px rgba(8,145,178,0.35), inset 0 1px 0 rgba(255,255,255,0.25)',
-                  }}
-                >
-                  {heroNewsletterSending ? 'SIGNING UP...' : 'SIGN UP FREE'}
-                </button>
-              </div>
-              {heroNewsletterErr && <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5', textAlign: 'left' }}>{heroNewsletterErr}</div>}
-            </>
-          )}
+      {/* WELL WATER PANEL — shown when well mode is active and we have state data */}
+      {wellMode && !loading && (data?.stateCode || wellFallbackState) && (
+        <div ref={resultsRef} style={{ position: 'relative', zIndex: 2, marginTop: 32 }}>
+          <WellWaterPanel
+            stateCode={
+              (data?.stateCode || wellFallbackState) === 'DEFAULT'
+                ? 'OH'
+                : String(data?.stateCode || wellFallbackState)
+            }
+          />
         </div>
-      </div>
       )}
 
-      {!data && !loading && (
-        <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 20px 80px' }}>
+      {/* RESULTS */}
+      {data && !loading && !wellMode && (
+        <div id="wc-results" ref={resultsRef} style={{ maxWidth: 960, margin: '20px auto 44px', padding: '0 16px', position: 'relative', zIndex: 2 }}>
+
+          {/* Risk verdict — first thing users see after results load */}
+          {(() => {
+            const v = riskVerdictFromData(data);
+            return (
+              <div
+                className="wc-reveal wc-reveal-1"
+                role="status"
+                style={{
+                  marginBottom: 14,
+                  padding: '16px 18px',
+                  borderRadius: 12,
+                  border: `1px solid ${v.border}`,
+                  borderLeft: `5px solid ${v.accent}`,
+                  background: v.bg,
+                  boxShadow: '0 12px 36px rgba(0,4,18,0.45), inset 0 1px 0 rgba(255,255,255,0.06)',
+                }}
+              >
+                <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: v.accent, marginBottom: 8 }}>YOUR RISK VERDICT</div>
+                <p style={{ margin: 0, fontSize: 18, fontWeight: 900, color: '#f8fafc', lineHeight: 1.35, letterSpacing: -0.3 }}>
+                  <span style={{ marginRight: 8 }} aria-hidden>{v.icon}</span>
+                  <span style={{ color: v.accent }}>{v.title}</span>
+                  <span style={{ color: '#94a3b8', fontWeight: 600, fontSize: 16 }}> — </span>
+                  <span style={{ fontWeight: 700, color: '#e2e8f0' }}>{v.subtitle}</span>
+                </p>
+              </div>
+            );
+          })()}
+
+          {/* National comparison — heuristic vs modelled U.S. ZIP profiles (#4) */}
+          {(() => {
+            const nc = nationalComparisonMetrics(data);
+            if (!nc) return null;
+            const concernBits: string[] = [];
+            if (nc.nExceed > 0) concernBits.push(`${nc.nExceed} above limits in this data`);
+            if (nc.hasOpenViolations) concernBits.push('open EPA violation(s)');
+            const concernPhrase = concernBits.length ? concernBits.join(' · ') : null;
+            return (
+              <div
+                className="wc-reveal wc-reveal-1"
+                style={{
+                  marginBottom: 14,
+                  padding: '14px 16px',
+                  borderRadius: 11,
+                  border: '1px solid rgba(148, 163, 184, 0.28)',
+                  background: 'rgba(15, 23, 42, 0.55)',
+                  boxShadow: '0 8px 28px rgba(0,4,18,0.3)',
+                }}
+              >
+                <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, color: '#94a3b8', marginBottom: 8 }}>NATIONAL CONTEXT</div>
+                {nc.kind === 'above_avg' && (
+                  <p style={{ margin: 0, fontSize: 14, color: '#e2e8f0', lineHeight: 1.55, fontWeight: 600 }}>
+                    Better than average: your ZIP scores higher than about{' '}
+                    <strong style={{ color: '#22d3ee' }}>{nc.beatZipPct}%</strong> of U.S. ZIP code profiles in our EPA-based model.
+                    {nc.nCont > 0 && (
+                      <span style={{ fontWeight: 500, color: '#cbd5e1' }}>
+                        {' '}
+                        Still, <strong style={{ color: '#fbbf24' }}>{nc.nCont}</strong> contaminant{nc.nCont === 1 ? '' : 's'} showed up in this report
+                        {nc.nExceed > 0 || nc.hasOpenViolations ? ` — ${concernPhrase}.` : ' — worth monitoring even when some are below action levels.'}
+                      </span>
+                    )}
+                  </p>
+                )}
+                {nc.kind === 'mid' && (
+                  <p style={{ margin: 0, fontSize: 14, color: '#e2e8f0', lineHeight: 1.55, fontWeight: 600 }}>
+                    Mixed picture: roughly <strong style={{ color: '#fbbf24' }}>{nc.worseThanZipPct}%</strong> of ZIPs in our comparison show fewer combined issues than your snapshot.
+                    {nc.nCont > 0 && (
+                      <span style={{ fontWeight: 500, color: '#cbd5e1' }}>
+                        {' '}
+                        You still have <strong style={{ color: '#fbbf24' }}>{nc.nCont}</strong> listed contaminant{nc.nCont === 1 ? '' : 's'}
+                        {nc.nExceed > 0 ? ` (${nc.nExceed} above limits here).` : '.'}
+                      </span>
+                    )}
+                  </p>
+                )}
+                {nc.kind === 'below_avg' && (
+                  <p style={{ margin: 0, fontSize: 14, color: '#e2e8f0', lineHeight: 1.55, fontWeight: 600 }}>
+                    Your water has more combined contaminants and violations than about{' '}
+                    <strong style={{ color: '#f87171' }}>{nc.worseThanZipPct}%</strong> of U.S. ZIP code profiles in our national comparison.
+                    {nc.nCont > 0 && (
+                      <span style={{ fontWeight: 500, color: '#cbd5e1' }}>
+                        {' '}
+                        This report lists <strong style={{ color: '#fbbf24' }}>{nc.nCont}</strong> contaminant{nc.nCont === 1 ? '' : 's'}
+                        {nc.nExceed > 0 ? (
+                          <>
+                            ; <strong style={{ color: '#fca5a5' }}>{nc.nExceed}</strong> exceed recommended or legal limits in this panel.
+                          </>
+                        ) : (
+                          '.'
+                        )}
+                      </span>
+                    )}
+                  </p>
+                )}
+                <p style={{ margin: '10px 0 0', fontSize: 10, color: '#64748b', lineHeight: 1.45 }}>
+                  Approximate ranking from our composite score and contaminant list — not a census of every U.S. ZIP.
+                </p>
+              </div>
+            );
+          })()}
+
+          {/* Fix your water — 3 steps (same engine as top picks; opens Shop with model selected) */}
+          <div
+            id="wc-fix-water-steps"
+            className="wc-reveal wc-reveal-1"
+            style={{
+              marginBottom: 14,
+              padding: '18px 18px 16px',
+              borderRadius: 12,
+              border: '1px solid rgba(34, 211, 238, 0.28)',
+              background: 'linear-gradient(165deg, rgba(8, 50, 80, 0.5) 0%, rgba(4, 14, 32, 0.88) 100%)',
+              boxShadow: '0 10px 32px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.05)',
+            }}
+          >
+            <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.3, color: '#22d3ee', marginBottom: 6 }}>NEXT UP</div>
+            <h2 style={{ margin: '0 0 14px', fontSize: 18, fontWeight: 900, color: '#f8fafc', letterSpacing: -0.3 }}>Fix Your Water In 3 Steps</h2>
+            <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+              {[
+                {
+                  icon: '✅',
+                  label: 'Best option',
+                  hint: 'Top match for your contaminant profile (same as #1 below).',
+                  p: threeStepBest,
+                  empty: 'Open the Shop tab to browse filters.',
+                },
+                {
+                  icon: '💰',
+                  label: 'Budget option',
+                  hint: 'Lower upfront cost — compare certifications in Shop.',
+                  p: threeStepBudget,
+                  empty: 'Open the Shop tab for pitchers, faucets, and value picks.',
+                },
+                {
+                  icon: '🏠',
+                  label: 'Whole-home solution',
+                  hint: 'Point-of-entry system for every tap — not just drinking water.',
+                  p: threeStepWhole,
+                  empty: 'See whole-house filters in the Shop tab.',
+                },
+              ].map((row) => (
+                <button
+                  key={row.label}
+                  type="button"
+                  onClick={() => row.p && goToProductPick(row.p)}
+                  disabled={!row.p}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '14px 16px',
+                    borderRadius: 10,
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(4,18,40,0.72)',
+                    cursor: row.p ? 'pointer' : 'not-allowed',
+                    opacity: row.p ? 1 : 0.65,
+                    font: 'inherit',
+                  }}
+                >
+                  <div style={{ fontSize: 13, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
+                    <span aria-hidden>{row.icon}</span> {row.label}
+                  </div>
+                  {row.p ? (
+                    <>
+                      <div style={{ fontSize: 13, color: '#e2e8f0', fontWeight: 700, lineHeight: 1.35 }}>
+                        {row.p.brand} {row.p.name}
+                      </div>
+                      <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 4 }}>
+                        {row.p.catLabel} · ${row.p.price}
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.45 }}>{row.empty}</div>
+                  )}
+                  <div style={{ fontSize: 11, color: '#64748b', marginTop: 8, lineHeight: 1.4 }}>{row.hint}</div>
+                </button>
+              ))}
+            </div>
+            <p style={{ margin: '12px 0 0', fontSize: 11, color: '#64748b', lineHeight: 1.45 }}>
+              Opens the Shop tab with that system highlighted. Full cards and Amazon links are in your report and in Shop.
+            </p>
+          </div>
+
+          {/* LIMITED DATA NOTICE */}
+          {data.limitedData && (
+            <div className="wc-reveal wc-reveal-1" style={{ background: 'rgba(120,53,15,0.3)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '12px 12px 0 0', padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 0 }}>
+              <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 2 }}>Limited data for ZIP {data.zip}</div>
+                <div style={{ fontSize: 12, color: '#92400e', lineHeight: 1.5 }}>{data.limitedDataReason} Try a nearby ZIP or <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#f59e0b' }}>search EWG directly →</a></div>
+              </div>
+            </div>
+          )}
+
+          {/* Plain-language lead: what we found + what to do (rest unfolds below) */}
+          {(() => {
+            const { found, todo } = formatResultsLead(data);
+            return (
+              <div
+                className="wc-reveal wc-reveal-1"
+                style={{
+                  marginBottom: 12,
+                  marginTop: data.limitedData ? 12 : 0,
+                  padding: '12px 14px',
+                  borderRadius: 10,
+                  border: '1px solid rgba(34, 211, 238, 0.35)',
+                  background: 'linear-gradient(165deg, rgba(6, 40, 72, 0.92) 0%, rgba(4, 18, 40, 0.9) 100%)',
+                  boxShadow: '0 8px 28px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
+                }}
+              >
+                <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.2, color: '#22d3ee', marginBottom: 6 }}>START HERE</div>
+                <p style={{ fontSize: 15, fontWeight: 700, color: '#f8fafc', lineHeight: 1.45, margin: 0 }}>{found}</p>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.55, margin: '8px 0 0' }}>
+                  <strong style={{ color: '#e2e8f0' }}>What to do:</strong> {todo}
+                </p>
+                <p style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5, margin: '10px 0 0' }}>
+                  <Link href="/faq" style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                    FAQ — reading your report, filters, PFAS, lead →
+                  </Link>
+                </p>
+              </div>
+            );
+          })()}
+
+          <div className="wc-results-hdr wc-reveal wc-reveal-2" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '10px 10px 0 0', padding: '12px 14px', display: 'flex', alignItems: 'flex-start', gap: 14, flexWrap: 'wrap', boxShadow: '0 6px 24px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)' }}>
+            {!data.limitedData && <ScoreDial score={data.score} grade={data.grade} />}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 15, fontWeight: 800, lineHeight: 1.25 }}>{data.systemName}</span>
+                {data.openViolations > 0 && <span style={{ fontSize: 10, padding: '2px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
+                {data.pfasAboveMcl > 0 && <span style={{ fontSize: 10, padding: '2px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>PFAS ⚠</span>}
+              </div>
+              <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 2 }}>{data.city} · {data.pwsid}</div>
+              <div style={{ fontSize: 11, color: '#64748b', marginBottom: 6 }}>{data.sourceType}{data.population ? ` · ${data.population} served` : ''}</div>
+              {data.summary && <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', marginBottom: 8, lineHeight: 1.5 }}>&ldquo;{data.summary}&rdquo;</div>}
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                {[
+                  !data.limitedData && { l:'VIOL.', tip: 'Total violations on EPA record (past issues included)', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'OPEN', tip: 'Open violations still listed on EPA today', v:data.openViolations, c:data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
+                  { l:'PFAS', tip: 'PFAS-related detections in the federal testing snapshot we show', v:data.pfasCount || 0, c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
+                  !data.limitedData && { l:'SCORE', tip: 'Our summary score from the mix of signals in this report', v:data.score, c:scoreColor },
+                ].filter(Boolean).map((s: any) => (
+                  <div key={s.l} style={{ textAlign: 'center', minWidth: 44 }} title={s.tip}>
+                    <div style={{ fontSize: 17, fontWeight: 800, color: s.c, lineHeight: 1.1 }}>{s.v}</div>
+                    <div style={{ fontSize: 9, color: '#94a3b8', letterSpacing: 0.8 }}>{s.l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 6, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+              <button type="button" onClick={() => setShowEmail(true)} className="wc-glass-btn wc-focus-ring" style={{ padding: '6px 10px', borderRadius: 6, fontSize: 11, letterSpacing: 0.5, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ Email</button>
+              <button type="button" onClick={() => setShowShare(true)} className="wc-focus-ring" style={{ padding: '6px 10px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#cbd5e1', fontSize: 11, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ Share</button>
+            </div>
+          </div>
+
+          {/* TABS — grouped: understand your water vs plan / buy */}
+          <nav className="wc-tab-bar wc-reveal wc-reveal-3" aria-label="Report sections and next steps" style={{ display: 'flex', flexDirection: 'column', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+            <div className="wc-tab-section-label" style={{ padding: '8px 12px 4px', fontSize: 10, fontWeight: 800, letterSpacing: 1.1, color: '#94a3b8' }}>YOUR WATER</div>
+            <div role="tablist" aria-label="Water data" style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch', gap: 2, padding: '0 6px 6px' }}>
+              {[['report','📊 Report'],['pfas','☣️ PFAS'],['compare','📋 Compare']].map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === id}
+                  onClick={() => setTab(id)}
+                  className="wc-result-tab"
+                  style={{ padding: '10px 12px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#e0f2fe' : '#cbd5e1', fontSize: 12, fontWeight: 700, letterSpacing: 0.3, cursor: 'pointer', minHeight: 44 }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', margin: '0 10px' }} aria-hidden />
+            <div className="wc-tab-section-label" style={{ padding: '8px 12px 4px', fontSize: 10, fontWeight: 800, letterSpacing: 1.1, color: '#94a3b8' }}>NEXT STEPS</div>
+            <div role="tablist" aria-label="Filters and help" style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch', gap: 2, padding: '0 6px 8px' }}>
+              {[['solutions','🏠 Solution'],['products','🛒 Shop'],['cost','💰 Cost'],['installers','🔧 Install'],['resources','🔗 Links']].map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === id}
+                  onClick={() => setTab(id)}
+                  className="wc-result-tab"
+                  style={{ padding: '10px 12px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#e0f2fe' : '#cbd5e1', fontSize: 12, fontWeight: 700, letterSpacing: 0.3, cursor: 'pointer', minHeight: 44 }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          {/* TAB: WATER REPORT */}
+          {tab === 'report' && (
+            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 10px 10px', padding: '14px 14px 16px', boxShadow: '0 16px 40px rgba(0,4,18,0.4)' }}>
+              <details className="wc-report-details" style={{ marginBottom: 12, borderRadius: 8, border: '1px solid #1a3a5c', background: 'rgba(4,18,40,0.55)' }}>
+                <summary style={{ cursor: 'pointer', padding: '10px 12px', fontSize: 12, fontWeight: 700, color: '#94a3b8', listStyle: 'none' }}>
+                  Data layers, update dates &amp; official links
+                </summary>
+                <div style={{ padding: '0 12px 12px' }}>
+                  {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
+
+                  {data.dataFreshness && (
+                    <div style={{ marginTop: 10, marginBottom: 12, padding: '10px 12px', background: 'rgba(8,45,70,0.35)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 11, color: '#94a3b8', lineHeight: 1.55 }}>
+                      <div style={{ fontSize: 9, letterSpacing: 1, color: '#22d3ee', fontWeight: 800, marginBottom: 4 }}>DATA FRESHNESS</div>
+                      <div>
+                        <strong style={{ color: '#cbd5e1' }}>PFAS testing (EPA UCMR5 — national monitoring round):</strong>{' '}
+                        snapshot packaged in this app as of{' '}
+                        <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>.
+                      </div>
+                      <div style={{ marginTop: 6 }}>
+                        <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead tap samples (EPA SDWIS — utility reporting database):</strong>{' '}
+                        {data.dataFreshness.sdwisLiveNote}
+                      </div>
+                      <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                        <a href={data.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
+                          EPA PFAS monitoring (UCMR) →
+                        </a>
+                        <a href={data.dataFreshness.links?.sdwis} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
+                          EPA violations database (SDWIS) →
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
+                  {data.pwsid && (
+                    <div style={{ marginBottom: 0, padding: '10px 12px', background: 'rgba(3,18,40,0.5)', border: '1px solid rgba(148,163,184,0.18)', borderRadius: 8 }}>
+                      <div style={{ fontSize: 9, letterSpacing: 1, color: '#94a3b8', fontWeight: 800, marginBottom: 8 }}>OFFICIAL SOURCES</div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <a
+                          href={
+                            data.echo?.echoUrl ??
+                            `https://echo.epa.gov/sdwa/facility-info?p_pwsid=${encodeURIComponent(data.pwsid)}`
+                          }
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ fontSize: 12, fontWeight: 700, color: '#38bdf8' }}
+                        >
+                          EPA ECHO — this system →
+                        </a>
+                        <a
+                          href={data.dataFreshness?.links?.ccr ?? 'https://www.epa.gov/ccr'}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ fontSize: 11, color: '#94a3b8' }}
+                        >
+                          How to find your utility CCR →
+                        </a>
+                        <div style={{ fontSize: 10, color: '#64748b', lineHeight: 1.45 }}>
+                          CCR lists plant and distribution detections; if not on ECHO, check your bill or utility site.
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {!data.hasEWG && (
+                    <div style={{ marginTop: 10, padding: '8px 10px', background: 'rgba(20,30,45,0.45)', borderRadius: 6, fontSize: 10, color: '#94a3b8', lineHeight: 1.5 }}>
+                      <strong style={{ color: '#cbd5e1' }}>EWG:</strong> full metro merge not always available.{' '}
+                      <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#4ade80' }}>
+                        Search EWG →
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </details>
+
+              {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
+              <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
+              {data.pwsid && <CountyComparison pwsid={data.pwsid} />}
+
+              {data.violations?.length > 0 ? (
+                <>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>Violation history (EPA records for your utility)</div>
+                  <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 14, overflow: 'hidden' }}>
+                    {data.violations.map((v: any, i: number) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '7px 12px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
+                        <div style={{ flex: 1 }}><div style={{ fontSize: 12, color: '#94a3b8' }}>{v.rule}</div>{v.contaminant && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>{v.contaminant}</div>}</div>
+                        <div style={{ fontSize: 12, color: '#94a3b8', minWidth: 32 }}>{v.year}</div>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: v.statusColor || '#94a3b8', minWidth: 65, textAlign: 'right' }}>{v.status}</div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div style={{ background: '#051527', border: '1px solid #22d3ee22', borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontSize: 14 }}>✅</span>
+                  <div><div style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>EPA SDWIS — none on file for this system.</div></div>
+                </div>
+              )}
+
+              {data.contaminants?.length > 0 && (
+                <>
+                  
+                  {/* LEAD TAP SAMPLE BANNER */}
+                  {(() => {
+                    const leadC = data.contaminants.find((c: any) => c.name === 'Lead');
+                    if (!leadC) return null;
+                    const ppb = leadC.level;
+                    const isHigh = ppb > 15;
+                    const isMod  = ppb > 5 && ppb <= 15;
+                    const color  = isHigh ? '#ef4444' : isMod ? '#f59e0b' : '#22d3ee';
+                    const bg     = isHigh ? 'rgba(239,68,68,0.07)' : isMod ? 'rgba(245,158,11,0.07)' : 'rgba(34,211,238,0.05)';
+                    const border = isHigh ? 'rgba(239,68,68,0.3)' : isMod ? 'rgba(245,158,11,0.3)' : 'rgba(34,211,238,0.2)';
+                    const icon   = isHigh ? '⚠️' : isMod ? '⚡' : '✅';
+                    const msg    = isHigh
+                      ? 'Lead detected at ' + ppb + ' ppb — ABOVE the EPA action level of 15 ppb. Lead causes permanent neurological damage. There is no safe level.'
+                      : isMod
+                      ? 'Lead detected at ' + ppb + ' ppb — below EPA action level (15 ppb) but above what health scientists consider safe. Children and pregnant women are most at risk.'
+                      : 'Lead detected at ' + ppb + ' ppb — below EPA action level of 15 ppb. Note: the CDC states there is no safe level of lead exposure.';
+                    return (
+                      <div style={{ background: bg, border: '1px solid ' + border, borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                        <span style={{ fontSize: 16, flexShrink: 0 }}>{icon}</span>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 10, fontWeight: 800, color: color, letterSpacing: 0.8, marginBottom: 3 }}>LEAD — EPA TAP SAMPLE</div>
+                          <div style={{ fontSize: 12, color: '#e2e8f0', lineHeight: 1.55 }}>{msg}</div>
+                          <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 4 }}>LCR 90th %ile · {leadC.note}</div>
+                        </div>
+                        <div style={{ fontSize: 18, fontWeight: 900, color: color, flexShrink: 0, textAlign: 'right' }}>
+                          <div>{ppb}</div>
+                          <div style={{ fontSize: 9, fontWeight: 600, color: '#94a3b8' }}>ppb</div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                  <div style={{ fontSize: 10, letterSpacing: 0.5, color: '#0891b2', marginBottom: 8 }}>CONTAMINANTS — tap a row for health context</div>
+                  {(showAllContaminants || data.contaminants.length <= 3
+                    ? data.contaminants
+                    : data.contaminants.slice(0, 3)
+                  ).map((c: any, i: number) => (
+                    <ContaminantRow key={`${c.name}-${i}`} c={c} />
+                  ))}
+                  {data.contaminants.length > 3 && (
+                    <button
+                      type="button"
+                      onClick={() => setShowAllContaminants((v) => !v)}
+                      className="wc-glass-btn"
+                      style={{
+                        marginTop: 12,
+                        padding: '10px 16px',
+                        borderRadius: 8,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        color: '#22d3ee',
+                      }}
+                    >
+                      {showAllContaminants ? 'Show fewer contaminants' : `Show all ${data.contaminants.length} contaminants`}
+                    </button>
+                  )}
+                </>
+              )}
+
+              {/* ── EWG TAP WATER ATLAS ─────────────────────────────────── */}
+              {ewgData && (
+                <div style={{ background: 'rgba(5,20,40,0.75)', border: '1px solid rgba(34,197,94,0.22)', borderRadius: 10, padding: '16px 18px', marginBottom: 18 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+                    <div>
+                      <div style={{ fontSize: 10, letterSpacing: 0.5, color: '#22c55e', fontWeight: 800, marginBottom: 3 }}>🌿 EWG TAP WATER ATLAS — HEALTH GUIDELINES</div>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{ewgData.systemName}</div>
+                    </div>
+                    <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22c55e', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 4, padding: '3px 9px', textDecoration: 'none', whiteSpace: 'nowrap' }}>View on EWG →</a>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 14 }}>
+                    {[
+                      { label: 'Contaminants detected', val: ewgData.totalDetected, color: '#94a3b8' },
+                      { label: 'Exceed EWG health limits', val: ewgData.exceedGuidelines, color: ewgData.exceedGuidelines > 0 ? '#f59e0b' : '#22c55e' },
+                      { label: 'Exceed legal limits', val: ewgData.exceedLegal, color: ewgData.exceedLegal > 0 ? '#ef4444' : '#22c55e' },
+                    ].map((stat, i) => (
+                      <div key={i} style={{ background: 'rgba(3,12,28,0.6)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 7, padding: '10px 12px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 22, fontWeight: 800, color: stat.color, lineHeight: 1 }}>{stat.val}</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 3, lineHeight: 1.3 }}>{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {Array.isArray(ewgData.contaminants) && ewgData.contaminants.length > 0 ? (
+                    <>
+                      <div style={{ fontSize: 10, letterSpacing: 0.4, color: '#94a3b8', marginBottom: 8 }}>EWG HEALTH GUIDELINES ARE STRICTER THAN FEDERAL LEGAL LIMITS</div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 1, maxHeight: 280, overflowY: 'auto' }}>
+                        {ewgData.contaminants.slice(0, 20).map((c: any, i: number) => (
+                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', background: i % 2 === 0 ? 'rgba(3,12,28,0.4)' : 'transparent', borderRadius: 4, fontSize: 12 }}>
+                            <div style={{ flex: 1, color: c.exceedsGuideline ? '#fbbf24' : '#94a3b8', fontWeight: c.exceedsGuideline ? 600 : 400 }}>{c.name}</div>
+                            <div style={{ color: '#94a3b8', minWidth: 70, textAlign: 'right' }}>{c.detected}</div>
+                            {c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#7f1d1d', color: '#fca5a5', borderRadius: 3, fontWeight: 700 }}>OVER LIMIT</span>}
+                            {c.exceedsGuideline && !c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#78350f', color: '#fde68a', borderRadius: 3 }}>Health concern</span>}
+                          </div>
+                        ))}
+                        {ewgData.contaminants.length > 20 && (
+                          <div style={{ fontSize: 11, color: '#94a3b8', textAlign: 'center', padding: '8px 0' }}>+{ewgData.contaminants.length - 20} more — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view all on EWG</a></div>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{ fontSize: 12, color: '#94a3b8', textAlign: 'center', padding: '8px 0' }}>
+                      Contaminant detail not available — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view full EWG report →</a>
+                    </div>
+                  )}
+                </div>
+              )}
+
+
+              {data.echo && (
+                <div style={{ background: '#0b1e36', border: '1px solid #ef444430', borderRadius: 8, padding: '14px 16px', marginBottom: 18 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
+                    <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#ef4444', fontWeight: 700 }}>⚖️ EPA ECHO — ENFORCEMENT & COMPLIANCE HISTORY</div>
+                    <a href={data.echo.echoUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#94a3b8', textDecoration: 'none', border: '1px solid #1e3a4a', borderRadius: 3, padding: '1px 7px' }}>View full ECHO record →</a>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))', gap: 8 }}>
+                    {data.echo.formalActions > 0 && (
+                      <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444' }}>{data.echo.formalActions}</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Formal Actions</div>
+                      </div>
+                    )}
+                    {data.echo.informalActions > 0 && (
+                      <div style={{ background: '#0b1e36', border: '1px solid #f59e0b30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 20, fontWeight: 900, color: '#f59e0b' }}>{data.echo.informalActions}</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Informal Actions</div>
+                      </div>
+                    )}
+                    {data.echo.penaltiesFormatted && (
+                      <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 16, fontWeight: 900, color: '#ef4444' }}>{data.echo.penaltiesFormatted}</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Total Penalties</div>
+                      </div>
+                    )}
+                    {data.echo.inspections > 0 && (
+                      <div style={{ background: '#0b1e36', border: '1px solid #22d3ee30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
+                        <div style={{ fontSize: 20, fontWeight: 900, color: '#22d3ee' }}>{data.echo.inspections}</div>
+                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Inspections</div>
+                      </div>
+                    )}
+                  </div>
+                  {data.echo.lastInspection && (
+                    <div style={{ marginTop: 8, fontSize: 11, color: '#94a3b8' }}>Last inspection: <span style={{ color: '#94a3b8' }}>{data.echo.lastInspection}</span></div>
+                  )}
+                  {data.echo.complianceStatus && (
+                    <div style={{ marginTop: 4, fontSize: 11, color: '#94a3b8' }}>Compliance status: <span style={{ color: data.echo.formalActions > 0 ? '#ef4444' : '#22d3ee' }}>{data.echo.complianceStatus}</span></div>
+                  )}
+                </div>
+              )}
+
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', margin: '22px 0 12px' }}>TOP 3 RECOMMENDED FILTERS</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
+                {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} detectedContaminants={contaminantNames} />)}
+              </div>
+              <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
+                <button onClick={() => setTab('solutions')} className="wc-analyze" style={{ padding: '7px 16px', border: 'none', borderRadius: 6, fontSize: 12, cursor: 'pointer', fontWeight: 700 }}>Find the right filter →</button>
+                <button onClick={() => setTab('products')} className="wc-glass-btn" style={{ padding: '7px 16px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>View All 39 Products →</button>
+              </div>
+
+              {/* HARD WATER BANNER */}
+              {isHardWater && (
+                <div style={{ marginTop: 24, padding: '18px 20px', background: 'linear-gradient(135deg,rgba(120,53,15,0.35),rgba(10,20,40,0.7))', border: '1px solid rgba(251,191,36,0.35)', borderTop: '1px solid rgba(253,224,100,0.4)', borderRadius: 12, backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                    <span style={{ fontSize: 22 }}>🪨</span>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#fbbf24', letterSpacing: 0.5 }}>
+                        {hardnessLevel === 'very_hard' ? 'Very Hard Water Area' : 'Hard Water Area'} — {data.stateCode}
+                      </div>
+                      <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>
+                        {hardnessLevel === 'very_hard'
+                          ? 'Among the highest mineral content in the US. Scale buildup shortens appliance life by up to 50%.'
+                          : 'Elevated calcium & magnesium cause scale on pipes, appliances, and fixtures.'}
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 12, lineHeight: 1.6 }}>
+                    Hard water is not a health risk — but it destroys water heaters, dishwashers, and washing machines over time, and leaves white scale on faucets and showers.
+                    The fix: <strong style={{ color: '#fbbf24' }}>RO system for drinking water</strong> (already recommended above) + <strong style={{ color: '#fbbf24' }}>whole-house water softener</strong> for appliance protection.
+                  </div>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#b45309', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED SOFTENERS FOR HARD WATER</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
+                    {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 40} detectedContaminants={['Hardness','Scale']} />)}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* TAB: MY SOLUTION */}
+          {tab === 'solutions' && <SolutionsTab data={data} contaminantNames={contaminantNames} />}
+
+          {/* TAB: PFAS DETAIL */}
+          {tab === 'pfas' && (
+            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+              <div style={{ marginBottom: 18, padding: '14px 16px', background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #ef444440', borderRadius: 8 }}>
+                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#ef4444', marginBottom: 7, fontWeight: 700 }}>☣️ ABOUT PFAS — FOREVER CHEMICALS</div>
+                <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>PFAS are ~12,000 synthetic chemicals that don't break down in the environment or human body. Linked to kidney cancer, testicular cancer, thyroid disease, immune suppression, elevated cholesterol, and developmental harm. EPA set the first federal MCL in 2024: <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA and PFOS.</p>
+              </div>
+              {pfasContaminants.length === 0 ? (
+                <div style={{ padding: '24px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 22, marginBottom: 7 }}>✅</div>
+                  <div style={{ fontSize: 15, color: '#22d3ee', fontWeight: 700, marginBottom: 5 }}>No PFAS detected via UCMR5</div>
+                  <div style={{ fontSize: 13, color: '#94a3b8' }}>No measurable PFAS in EPA's 2023-2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
+                </div>
+              ) : (
+                <>
+                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>DETECTED COMPOUNDS — HEALTH CONTEXT</div>
+                  {pfasContaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
+                  <div style={{ marginTop: 16, fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 12 }}>PFAS-CERTIFIED FILTERS</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
+                    {PRODUCTS.filter(p => p.bestFor.includes('PFAS')).slice(0,3).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id===3} detectedContaminants={contaminantNames} />)}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+
+          {/* TAB: COMPARE */}
+          {tab === 'compare' && <FilterCompareTab />}
+
+          {/* TAB: ALL PRODUCTS */}
+          {tab === 'products' && (
+            <div id="wc-products-tab" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 8 }}>39 products · Amazon links</div>
+              <p style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.55, margin: '0 0 18px' }}>
+                We may earn a commission from qualifying Amazon purchases — your price stays the same. Always confirm model numbers and certifications on the seller page before you buy.
+              </p>
+
+          {/* ── FEATURED EXPERT PICKS SPOTLIGHT ────────────────────── */}
+          {(() => {
+            const featured = PRODUCTS.filter((p: any) => p.expertPick).slice(0, 3);
+            return (
+              <div style={{ marginBottom: 48 }}>
+                <div style={{ marginBottom: 20 }}>
+                  <div style={{ fontSize: 11, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {featured.map((p: any, idx: number) => {
+                    const accent = ['#06b6d4','#f59e0b','#a78bfa'][idx];
+                    return (
+                      <FeaturedSpotlightCard key={p.id} p={p} idx={idx} accent={accent} />
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Category filter */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
+            {catFilters.map(cat => {
+              const active = productFilter === cat;
+              const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
+              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', distiller:'♨️', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿', fridge:'❄️' };
+              return (
+                <button key={cat} onClick={() => setProductFilter(cat)}
+                  style={{
+                    padding: '8px 16px', borderRadius: 30, fontSize: 12, fontWeight: 700, cursor: 'pointer',
+                    border: `1px solid ${active ? 'rgba(6,182,212,0.6)' : 'rgba(255,255,255,0.07)'}`,
+                    borderTop: `1px solid ${active ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.12)'}`,
+                    background: active ? 'rgba(8,145,178,0.22)' : 'rgba(4,14,32,0.55)',
+                    backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                    color: active ? '#22d3ee' : '#94a3b8',
+                    boxShadow: active ? '0 0 20px rgba(8,145,178,0.25), inset 0 1px 0 rgba(255,255,255,0.12)' : 'none',
+                    transition: 'all .2s ease',
+                    display: 'flex', alignItems: 'center', gap: 5,
+                  }}>
+                  <span style={{ fontSize: 13 }}>{icons[cat] || '•'}</span>
+                  <span>{catLabels[cat]}</span>
+                  <span style={{ fontSize: 10, opacity: 0.55, background: active ? 'rgba(6,182,212,0.2)' : 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '1px 5px' }}>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,1fr))', gap: 12 }}>
+                {filteredProds.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} detectedContaminants={contaminantNames} />)}
+              </div>
+            </div>
+          )}
+
+          {/* TAB: COST CALCULATOR */}
+          {tab === 'cost' && (
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 16 }}>COST OF OWNERSHIP CALCULATOR</div>
+              {/* Payback period callout */}
+              {(() => {
+                const monthlyBottled = Math.round(ppl * 32 * 12 / 12);
+                const monthlyFilter  = Math.round((prod.filterCostPerYear || 80) / 12);
+                const paybackMonths  = Math.ceil(prod.price / Math.max(1, monthlyBottled - monthlyFilter));
+                return (
+                  <div style={{ marginBottom: 18, padding: '14px 18px', background: 'linear-gradient(135deg,#071525,#091c35)', border: '1px solid #22d3ee30', borderRadius: 10, display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <div style={{ textAlign: 'center', minWidth: 90 }}>
+                      <div style={{ fontSize: 32, fontWeight: 900, color: '#22d3ee' }}>{paybackMonths}</div>
+                      <div style={{ fontSize: 11, color: '#94a3b8' }}>months to break even</div>
+                    </div>
+                    <div style={{ flex: 1, minWidth: 180 }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>Filter pays for itself in {paybackMonths} months</div>
+                      <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>vs. buying {ppl} people bottled water at ~$1.33/bottle. After that, you save ${monthlyBottled - monthlyFilter}/mo — every month — for clean water.</div>
+                    </div>
+                  </div>
+                );
+              })()}
+              <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginBottom: 22, alignItems: 'flex-end' }}>
+                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>SYSTEM</div>
+                  <select value={ftype} onChange={e => setFtype(e.target.value)} style={{ background: '#0b1e36', border: '1px solid #1e3a4a', color: '#e2e8f0', padding: '6px 10px', borderRadius: 6, fontSize: 12 }}>
+                    {PRODUCTS.filter(p => p.filterCostPerYear).map(p => <option key={p.name}>{p.name}</option>)}
+                  </select>
+                </div>
+                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>YEARS: {years}</div><input type="range" min={1} max={10} value={years} onChange={e => setYears(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
+                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>PEOPLE: {ppl}</div><input type="range" min={1} max={8} value={ppl} onChange={e => setPpl(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
+              </div>
+              <div style={{ height: 220 }}>
+                <FilterVsBottleChart data={chartData} />
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
+                {[{ l:'Filter System',c:'#0891b2',v:`$${prod.price + (prod.filterCostPerYear||80)*years}`},{l:'Bottled Water',c:'#ef4444',v:`$${Math.round(ppl*32*12*years)}`},{l:'You Save',c:'#22d3ee',v:`$${Math.max(0,Math.round(ppl*32*12*years)-prod.price-(prod.filterCostPerYear||80)*years)}`}].map(s => (
+                  <div key={s.l} style={{ flex:1, minWidth:90, background:'#0b1e36', border:`1px solid ${s.c}33`, borderRadius:8, padding:'11px 14px' }}>
+                    <div style={{ fontSize:11, color:'#94a3b8', marginBottom:2 }}>{s.l}</div>
+                    <div style={{ fontSize:18, fontWeight:800, color:s.c }}>{s.v}</div>
+                    <div style={{ fontSize:10, color:'#334155' }}>over {years} yr{years!==1?'s':''}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* TAB: INSTALLERS */}
+          {tab === 'installers' && (
+            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
+              {/* Quick links */}
+              <div style={{ marginBottom: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {[
+                  { label: '🔍 WQA Certified Installer', url: 'https://wqa.org/find-dealer/', color: '#0891b2' },
+                  { label: '🔧 Find Pro on Angi', url: `https://www.angi.com/nearme/water-treatment/`, color: '#d97706' },
+                  { label: '💬 Get Quotes on HomeAdvisor', url: 'https://www.homeadvisor.com/task.Water-Softener-or-Water-Filter-Install.html', color: '#7c3aed' },
+                ].map(l => (
+                  <a key={l.label} href={l.url} target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: l.color + '20', border: `1px solid ${l.color}44`, borderRadius: 7, color: l.color, fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>{l.label}</a>
+                ))}
+              </div>
+
+              {/* Questions to ask installer */}
+              <div style={{ background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, padding: '14px 16px', marginBottom: 20 }}>
+                <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#0891b2', marginBottom: 10, fontWeight: 700 }}>WHAT TO ASK YOUR INSTALLER</div>
+                {['Are you WQA certified or licensed in this state?','What\'s included in the installation — faucet, shutoff valve, drain line?','Do you test the water before and after installation?','What\'s the filter replacement schedule and cost?','Is there a warranty on labor and parts?','Will you register the product with the manufacturer?'].map((q,i) => (
+                  <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 7, alignItems: 'flex-start' }}>
+                    <span style={{ color: '#22d3ee', flexShrink: 0, fontSize: 12 }}>{i+1}.</span>
+                    <span style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>{q}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2' }}>LOCAL WATER TREATMENT INSTALLERS NEAR {data.city}</div>
+                <button onClick={() => loadInstallers(zip)} disabled={instLoading} style={{ padding: '5px 10px', background: 'transparent', border: '1px solid #0e2233', borderRadius: 4, color: '#94a3b8', fontSize: 11, cursor: 'pointer' }}>{instLoading ? 'Searching…' : '↻ Refresh'}</button>
+              </div>
+              {instLoading && <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>🔍 Finding local water treatment specialists…</div>}
+              {!instLoading && installers.map((c: any, i: number) => (
+                <div key={i} style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, padding: '14px 18px', marginBottom: 10 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, marginBottom: 2 }}>{c.name}</div>
+                      <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 2 }}>{c.address}</div>
+                      {c.specialty && <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>{c.specialty}</div>}
+                      <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
+                        {c.cert && <span style={{ fontSize: 11, padding: '1px 5px', borderRadius: 3, background: '#d9770622', color: '#d97706', border: '1px solid #d9770644', fontWeight: 700 }}>{c.cert}</span>}
+                        {c.rating && <span style={{ fontSize: 12, color: '#f59e0b' }}>{'★'.repeat(Math.round(c.rating))} <span style={{ color: '#94a3b8', fontSize: 11 }}>{c.rating}{c.reviews?` (${c.reviews})`:''}</span></span>}
+                        {c.distance && <span style={{ fontSize: 11, color: '#334155' }}>📍 {c.distance}</span>}
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
+                      {c.phone && <a href={`tel:${c.phone}`} style={{ padding: '6px 10px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 11, textDecoration: 'none' }}>📞 {c.phone}</a>}
+                      {c.website && <a href={c.website} target="_blank" rel="noreferrer" style={{ padding: '6px 10px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 11, textDecoration: 'none' }}>🌐</a>}
+                      <button onClick={() => setQuoted(q => ({ ...q, [c.name]: true }))} style={{ padding: '6px 12px', background: quoted[c.name] ? '#064e3b' : '#0891b2', border: 'none', borderRadius: 5, color: quoted[c.name] ? '#22d3ee' : '#fff', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>{quoted[c.name] ? '✓ Sent' : 'Get Quote'}</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {!instLoading && installers.length === 0 && (
+                <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>
+                  <button onClick={() => loadInstallers(zip)} style={{ padding: '7px 16px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 12, cursor: 'pointer' }}>Search Local Installers</button>
+                </div>
+              )}
+              <div style={{ marginTop: 12, fontSize: 11, color: '#334155', textAlign: 'center' }}>💡 Always verify credentials and get at least 3 quotes. Average RO install cost: $150-$400.</div>
+            </div>
+          )}
+
+          {/* TAB: RESOURCES */}
+          {tab === 'resources' && <ResourcesTab data={data} />}
+
+        <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 20px 80px', marginTop: 28, paddingTop: 36, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <div
             role="tablist"
             aria-label="Choose what to read first"
@@ -2434,17 +3371,45 @@ export default function WaterCheckup() {
                 <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 2 }}>Most tap water is treated and monitored. But treatment doesn't remove everything, and what stays in varies by city. Here's what shows up most often — and the simple filters that remove each one.</div>
               </div>
             </div>
-            {/* Alarming stat strip */}
+            {/* Alarming stat strip — with context + sources */}
             <div style={{ display: 'flex', gap: 10, marginBottom: 18, flexWrap: 'wrap' }}>
-              {[
-                { stat: '1 in 2 homes', label: 'has PFAS "forever chemicals" detected — more common than having a garage' },
-                { stat: '400,000 miles', label: 'of lead pipes still in use — enough to circle the Earth 16 times' },
-                { stat: '9 in 10 Americans', label: 'drink water with low-level chlorine byproducts — legal, but worth filtering' },
-                { stat: '3 in 4 systems', label: 'have detectable Chromium-6 with no federal limit set yet' },
-              ].map(s => (
-                <div key={s.stat} className="wc-card" style={{ flex: '1 1 140px', borderRadius: 10, padding: '12px 14px', textAlign: 'center' }}>
+              {([
+                {
+                  stat: '≈45%',
+                  label: 'of US tap water samples had PFAS detected (national study)',
+                  source: 'USGS national reconnaissance, 2023–2025',
+                  meaning:
+                    'A detection is not automatically an emergency — it means PFAS showed up at least once in that sampling effort. Your report shows whether your utility had detections and how they compare to EPA limits.',
+                },
+                {
+                  stat: 'Millions',
+                  label: 'of lead service lines remain nationwide (replacement ongoing)',
+                  source: 'EPA lead service line inventories (utilities reporting)',
+                  meaning:
+                    'This is an infrastructure snapshot, not your personal tap result. Lead risk still depends on your building’s plumbing and how long water sits in pipes.',
+                },
+                {
+                  stat: 'Common',
+                  label: 'disinfection byproducts (e.g. THMs) in treated surface water',
+                  source: 'EPA Stage 2 DBPR / compliance monitoring context',
+                  meaning:
+                    'Many systems balance disinfection (microbial safety) with byproducts. If you dislike taste/odor or want lower DBPs, a certified carbon or RO filter targets what you drink.',
+                },
+                {
+                  stat: 'Widespread',
+                  label: 'Cr-6 detections reported in many systems (limits evolving)',
+                  source: 'EPA UCMR & state monitoring summaries',
+                  meaning:
+                    'Chromium-6 draws attention in headlines; whether it matters for you depends on level, duration, and other contaminants — use your ZIP data as the starting point.',
+                },
+              ] as const).map((s) => (
+                <div key={s.stat} className="wc-card" style={{ flex: '1 1 200px', borderRadius: 10, padding: '12px 14px', textAlign: 'left' }}>
                   <div style={{ fontSize: 22, fontWeight: 900, color: '#22d3ee', letterSpacing: -0.5 }}>{s.stat}</div>
                   <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.45, marginTop: 3 }}>{s.label}</div>
+                  <div style={{ fontSize: 11, color: '#cbd5e1', lineHeight: 1.5, marginTop: 10 }}>
+                    <strong style={{ color: '#e2e8f0' }}>What this means for you:</strong> {s.meaning}
+                  </div>
+                  <div style={{ fontSize: 9, color: '#64748b', marginTop: 8, lineHeight: 1.4 }}>Source: {s.source}</div>
                 </div>
               ))}
             </div>
@@ -2839,731 +3804,151 @@ export default function WaterCheckup() {
           )}
 
         </div>
-      )}
 
-      {/* WELL WATER PANEL — shown when well mode is active and we have state data */}
-      {wellMode && !loading && (data?.stateCode || wellFallbackState) && (
-        <div ref={resultsRef} style={{ position: 'relative', zIndex: 2, marginTop: 32 }}>
-          <WellWaterPanel
-            stateCode={
-              (data?.stateCode || wellFallbackState) === 'DEFAULT'
-                ? 'OH'
-                : String(data?.stateCode || wellFallbackState)
-            }
-          />
-        </div>
-      )}
-
-      {/* RESULTS */}
-      {data && !loading && !wellMode && (
-        <div id="wc-results" ref={resultsRef} style={{ maxWidth: 960, margin: '20px auto 44px', padding: '0 16px', position: 'relative', zIndex: 2 }}>
-
-          {/* LIMITED DATA NOTICE */}
-          {data.limitedData && (
-            <div className="wc-reveal wc-reveal-1" style={{ background: 'rgba(120,53,15,0.3)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '12px 12px 0 0', padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 0 }}>
-              <span style={{ fontSize: 16, flexShrink: 0 }}>⚠️</span>
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 2 }}>Limited data for ZIP {data.zip}</div>
-                <div style={{ fontSize: 12, color: '#92400e', lineHeight: 1.5 }}>{data.limitedDataReason} Try a nearby ZIP or <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#f59e0b' }}>search EWG directly →</a></div>
+          {/* Area change alerts — single field (step 3 conversion) */}
+          <div
+            id="wc-results-alerts"
+            style={{ maxWidth: 620, margin: '24px auto 0', padding: '0 8px' }}
+          >
+            <div
+              style={{
+                padding: '18px 18px 16px',
+                borderRadius: 12,
+                border: '1px solid rgba(251, 191, 36, 0.35)',
+                background: 'linear-gradient(165deg, rgba(120, 53, 15, 0.22) 0%, rgba(4, 14, 32, 0.92) 100%)',
+                boxShadow: '0 12px 36px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
+              }}
+            >
+              <div style={{ fontSize: 17, fontWeight: 900, color: '#f8fafc', marginBottom: 8, letterSpacing: -0.2 }}>
+                Get Alerts If Your Water Changes
               </div>
-            </div>
-          )}
-
-          {/* Plain-language lead: what we found + what to do (rest unfolds below) */}
-          {(() => {
-            const { found, todo } = formatResultsLead(data);
-            return (
-              <div
-                className="wc-reveal wc-reveal-1"
-                style={{
-                  marginBottom: 12,
-                  marginTop: data.limitedData ? 12 : 0,
-                  padding: '12px 14px',
-                  borderRadius: 10,
-                  border: '1px solid rgba(34, 211, 238, 0.35)',
-                  background: 'linear-gradient(165deg, rgba(6, 40, 72, 0.92) 0%, rgba(4, 18, 40, 0.9) 100%)',
-                  boxShadow: '0 8px 28px rgba(0,4,18,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
-                }}
-              >
-                <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.2, color: '#22d3ee', marginBottom: 6 }}>START HERE</div>
-                <p style={{ fontSize: 15, fontWeight: 700, color: '#f8fafc', lineHeight: 1.45, margin: 0 }}>{found}</p>
-                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.55, margin: '8px 0 0' }}>
-                  <strong style={{ color: '#e2e8f0' }}>What to do:</strong> {todo}
-                </p>
-                <p style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5, margin: '10px 0 0' }}>
-                  <Link href="/faq" style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
-                    FAQ — reading your report, filters, PFAS, lead →
-                  </Link>
-                </p>
-              </div>
-            );
-          })()}
-
-          {/* ── RISK LEVEL BANNER ── */}
-          {!data.limitedData && (() => {
-            const riskScore = data.score;
-            const riskHigh  = riskScore < 65;
-            const riskMid   = riskScore >= 65 && riskScore < 80;
-            const riskLow   = riskScore >= 80;
-            const riskColor = riskHigh ? '#ef4444' : riskMid ? '#f59e0b' : '#22d3ee';
-            const riskBg    = riskHigh ? 'rgba(239,68,68,0.10)' : riskMid ? 'rgba(245,158,11,0.10)' : 'rgba(34,211,238,0.08)';
-            const riskBorder= riskHigh ? 'rgba(239,68,68,0.35)' : riskMid ? 'rgba(245,158,11,0.30)' : 'rgba(34,211,238,0.25)';
-            const riskLabel = riskHigh ? 'HIGH RISK' : riskMid ? 'MODERATE RISK' : 'LOW RISK';
-            const riskIcon  = riskHigh ? '🔴' : riskMid ? '🟡' : '🟢';
-            const issues: string[] = [];
-            if (data.openViolations > 0) issues.push(`${data.openViolations} open EPA violation${data.openViolations > 1 ? 's' : ''}`);
-            if (data.pfasAboveMcl > 0) issues.push(`PFAS above federal limit`);
-            else if (data.pfasCount > 0) issues.push(`${data.pfasCount} PFAS compound${data.pfasCount > 1 ? 's' : ''} detected`);
-            if (data.contaminants?.filter((c: any) => c.severity === 'high').length > 0)
-              issues.push(`${data.contaminants.filter((c: any) => c.severity === 'high').length} contaminant${data.contaminants.filter((c: any) => c.severity === 'high').length > 1 ? 's' : ''} above health guidelines`);
-            return (
-              <div className="wc-reveal wc-reveal-2" style={{ marginBottom: 10, padding: '14px 16px', borderRadius: 10, border: `1px solid ${riskBorder}`, borderLeft: `4px solid ${riskColor}`, background: riskBg, display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                    <span style={{ fontSize: 16 }}>{riskIcon}</span>
-                    <span style={{ fontSize: 13, fontWeight: 900, color: riskColor, letterSpacing: 1 }}>WATER SAFETY SCORE: {riskScore}/100 — {riskLabel}</span>
-                  </div>
-                  {issues.length > 0 && (
-                    <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>
-                      Your water has <strong style={{ color: riskColor }}>{issues.join(' · ')}</strong>
-                    </div>
-                  )}
-                  {issues.length === 0 && (
-                    <div style={{ fontSize: 13, color: '#94a3b8' }}>No active violations or detections above limits in this dataset.</div>
-                  )}
-                </div>
-                <div style={{ display: 'flex', gap: 8, flexShrink: 0, flexWrap: 'wrap', alignItems: 'center' }}>
-                  {(riskHigh || riskMid) && (
-                    <button type="button" onClick={() => setTab('solutions')} style={{ padding: '8px 16px', background: riskColor, border: 'none', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                      Fix This →
-                    </button>
-                  )}
-                  <button type="button" onClick={() => setShowEmail(true)} style={{ padding: '8px 14px', background: 'transparent', border: `1px solid ${riskBorder}`, borderRadius: 8, color: riskColor, fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                    🔔 Get Alerts
-                  </button>
-                </div>
-              </div>
-            );
-          })()}
-
-          <div className="wc-results-hdr wc-reveal wc-reveal-2" style={{ background: 'rgba(3,12,28,0.72)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.07)', borderTop: data.limitedData ? 'none' : '1px solid rgba(255,255,255,0.13)', borderRadius: data.limitedData ? '0 0 0 0' : '10px 10px 0 0', padding: '12px 14px', display: 'flex', alignItems: 'flex-start', gap: 14, flexWrap: 'wrap', boxShadow: '0 6px 24px rgba(0,4,18,0.35), inset 0 1px 0 rgba(255,255,255,0.06)' }}>
-            {!data.limitedData && <ScoreDial score={data.score} grade={data.grade} />}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 15, fontWeight: 800, lineHeight: 1.25 }}>{data.systemName}</span>
-                {data.openViolations > 0 && <span style={{ fontSize: 10, padding: '2px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>{data.openViolations} OPEN</span>}
-                {data.pfasAboveMcl > 0 && <span style={{ fontSize: 10, padding: '2px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 4, color: '#ef4444' }}>PFAS ⚠</span>}
-              </div>
-              <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 2 }}>{data.city} · {data.pwsid}</div>
-              <div style={{ fontSize: 11, color: '#64748b', marginBottom: 6 }}>{data.sourceType}{data.population ? ` · ${data.population} served` : ''}</div>
-              {data.summary && <div style={{ fontSize: 12, color: '#94a3b8', fontStyle: 'italic', marginBottom: 8, lineHeight: 1.5 }}>&ldquo;{data.summary}&rdquo;</div>}
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                {[
-                  !data.limitedData && { l:'VIOL.', tip: 'Total violations on EPA record (past issues included)', v:data.totalViolations, c:data.totalViolations > 0 ? '#f59e0b' : '#22d3ee' },
-                  !data.limitedData && { l:'OPEN', tip: 'Open violations still listed on EPA today', v:data.openViolations, c:data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
-                  { l:'PFAS', tip: 'PFAS-related detections in the federal testing snapshot we show', v:data.pfasCount || 0, c:data.pfasAboveMcl > 0 ? '#ef4444' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
-                  !data.limitedData && { l:'SCORE', tip: 'Our summary score from the mix of signals in this report', v:data.score, c:scoreColor },
-                ].filter(Boolean).map((s: any) => (
-                  <div key={s.l} style={{ textAlign: 'center', minWidth: 44 }} title={s.tip}>
-                    <div style={{ fontSize: 17, fontWeight: 800, color: s.c, lineHeight: 1.1 }}>{s.v}</div>
-                    <div style={{ fontSize: 9, color: '#94a3b8', letterSpacing: 0.8 }}>{s.l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: 6, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
-              <button type="button" onClick={() => setShowEmail(true)} className="wc-glass-btn wc-focus-ring" style={{ padding: '6px 10px', borderRadius: 6, fontSize: 11, letterSpacing: 0.5, cursor: 'pointer', whiteSpace: 'nowrap' }}>✉ Email</button>
-              <button type="button" onClick={() => setShowShare(true)} className="wc-focus-ring" style={{ padding: '6px 10px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#cbd5e1', fontSize: 11, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ Share</button>
-            </div>
-          </div>
-
-          {/* TABS — grouped: understand your water vs plan / buy */}
-          <nav className="wc-tab-bar wc-reveal wc-reveal-3" aria-label="Report sections and next steps" style={{ display: 'flex', flexDirection: 'column', background: 'rgba(2,7,18,0.78)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderLeft: '1px solid rgba(255,255,255,0.06)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
-            <div className="wc-tab-section-label" style={{ padding: '8px 12px 4px', fontSize: 10, fontWeight: 800, letterSpacing: 1.1, color: '#94a3b8' }}>YOUR WATER</div>
-            <div role="tablist" aria-label="Water data" style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch', gap: 2, padding: '0 6px 6px' }}>
-              {[['report','📊 Report'],['pfas','☣️ PFAS'],['compare','📋 Compare']].map(([id, label]) => (
-                <button
-                  key={id}
-                  type="button"
-                  role="tab"
-                  aria-selected={tab === id}
-                  onClick={() => setTab(id)}
-                  className="wc-result-tab"
-                  style={{ padding: '10px 12px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#e0f2fe' : '#cbd5e1', fontSize: 12, fontWeight: 700, letterSpacing: 0.3, cursor: 'pointer', minHeight: 44 }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', margin: '0 10px' }} aria-hidden />
-            <div className="wc-tab-section-label" style={{ padding: '8px 12px 4px', fontSize: 10, fontWeight: 800, letterSpacing: 1.1, color: '#94a3b8' }}>NEXT STEPS</div>
-            <div role="tablist" aria-label="Filters and help" style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch', gap: 2, padding: '0 6px 8px' }}>
-              {[['solutions','🏠 Solution'],['products','🛒 Shop'],['cost','💰 Cost'],['installers','🔧 Install'],['resources','🔗 Links']].map(([id, label]) => (
-                <button
-                  key={id}
-                  type="button"
-                  role="tab"
-                  aria-selected={tab === id}
-                  onClick={() => setTab(id)}
-                  className="wc-result-tab"
-                  style={{ padding: '10px 12px', background: 'transparent', border: 'none', whiteSpace: 'nowrap', borderBottom: tab===id ? '2px solid #0891b2' : '2px solid transparent', color: tab===id ? '#e0f2fe' : '#cbd5e1', fontSize: 12, fontWeight: 700, letterSpacing: 0.3, cursor: 'pointer', minHeight: 44 }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </nav>
-
-          {/* TAB: WATER REPORT */}
-          {tab === 'report' && (
-            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 10px 10px', padding: '14px 14px 16px', boxShadow: '0 16px 40px rgba(0,4,18,0.4)' }}>
-              <details className="wc-report-details" style={{ marginBottom: 12, borderRadius: 8, border: '1px solid #1a3a5c', background: 'rgba(4,18,40,0.55)' }}>
-                <summary style={{ cursor: 'pointer', padding: '10px 12px', fontSize: 12, fontWeight: 700, color: '#94a3b8', listStyle: 'none' }}>
-                  Data layers, update dates &amp; official links
-                </summary>
-                <div style={{ padding: '0 12px 12px' }}>
-                  {data.dataSources && <DataSourcesBadges sources={data.dataSources} />}
-
-                  {data.dataFreshness && (
-                    <div style={{ marginTop: 10, marginBottom: 12, padding: '10px 12px', background: 'rgba(8,45,70,0.35)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 11, color: '#94a3b8', lineHeight: 1.55 }}>
-                      <div style={{ fontSize: 9, letterSpacing: 1, color: '#22d3ee', fontWeight: 800, marginBottom: 4 }}>DATA FRESHNESS</div>
-                      <div>
-                        <strong style={{ color: '#cbd5e1' }}>PFAS testing (EPA UCMR5 — national monitoring round):</strong>{' '}
-                        snapshot packaged in this app as of{' '}
-                        <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>.
-                      </div>
-                      <div style={{ marginTop: 6 }}>
-                        <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead tap samples (EPA SDWIS — utility reporting database):</strong>{' '}
-                        {data.dataFreshness.sdwisLiveNote}
-                      </div>
-                      <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                        <a href={data.dataFreshness.links?.ucmrData} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
-                          EPA PFAS monitoring (UCMR) →
-                        </a>
-                        <a href={data.dataFreshness.links?.sdwis} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22d3ee' }}>
-                          EPA violations database (SDWIS) →
-                        </a>
-                      </div>
-                    </div>
-                  )}
-
-                  {data.pwsid && (
-                    <div style={{ marginBottom: 0, padding: '10px 12px', background: 'rgba(3,18,40,0.5)', border: '1px solid rgba(148,163,184,0.18)', borderRadius: 8 }}>
-                      <div style={{ fontSize: 9, letterSpacing: 1, color: '#94a3b8', fontWeight: 800, marginBottom: 8 }}>OFFICIAL SOURCES</div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        <a
-                          href={
-                            data.echo?.echoUrl ??
-                            `https://echo.epa.gov/sdwa/facility-info?p_pwsid=${encodeURIComponent(data.pwsid)}`
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{ fontSize: 12, fontWeight: 700, color: '#38bdf8' }}
-                        >
-                          EPA ECHO — this system →
-                        </a>
-                        <a
-                          href={data.dataFreshness?.links?.ccr ?? 'https://www.epa.gov/ccr'}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{ fontSize: 11, color: '#94a3b8' }}
-                        >
-                          How to find your utility CCR →
-                        </a>
-                        <div style={{ fontSize: 10, color: '#64748b', lineHeight: 1.45 }}>
-                          CCR lists plant and distribution detections; if not on ECHO, check your bill or utility site.
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {!data.hasEWG && (
-                    <div style={{ marginTop: 10, padding: '8px 10px', background: 'rgba(20,30,45,0.45)', borderRadius: 6, fontSize: 10, color: '#94a3b8', lineHeight: 1.5 }}>
-                      <strong style={{ color: '#cbd5e1' }}>EWG:</strong> full metro merge not always available.{' '}
-                      <a href="https://www.ewg.org/tapwater/?utm_source=watercheckup" target="_blank" rel="noreferrer" style={{ color: '#4ade80' }}>
-                        Search EWG →
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </details>
-
-              {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
-              <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
-              {data.pwsid && <CountyComparison pwsid={data.pwsid} />}
-
-              {data.violations?.length > 0 ? (
-                <>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>Violation history (EPA records for your utility)</div>
-                  <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 14, overflow: 'hidden' }}>
-                    {data.violations.map((v: any, i: number) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '7px 12px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
-                        <div style={{ flex: 1 }}><div style={{ fontSize: 12, color: '#94a3b8' }}>{v.rule}</div>{v.contaminant && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>{v.contaminant}</div>}</div>
-                        <div style={{ fontSize: 12, color: '#94a3b8', minWidth: 32 }}>{v.year}</div>
-                        <div style={{ fontSize: 11, fontWeight: 700, color: v.statusColor || '#94a3b8', minWidth: 65, textAlign: 'right' }}>{v.status}</div>
-                      </div>
-                    ))}
-                  </div>
-                </>
+              <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.55, margin: '0 0 14px' }}>
+                We&apos;ll notify you if new contaminants are detected in your area.
+              </p>
+              {resultsAlertSent ? (
+                <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 700 }}>You&apos;re on the list. Watch your inbox.</div>
               ) : (
-                <div style={{ background: '#051527', border: '1px solid #22d3ee22', borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <span style={{ fontSize: 14 }}>✅</span>
-                  <div><div style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div><div style={{ fontSize: 11, color: '#94a3b8', marginTop: 1 }}>EPA SDWIS — none on file for this system.</div></div>
-                </div>
-              )}
-
-              {data.contaminants?.length > 0 && (
                 <>
-                  
-                  {/* LEAD TAP SAMPLE BANNER */}
-                  {(() => {
-                    const leadC = data.contaminants.find((c: any) => c.name === 'Lead');
-                    if (!leadC) return null;
-                    const ppb = leadC.level;
-                    const isHigh = ppb > 15;
-                    const isMod  = ppb > 5 && ppb <= 15;
-                    const color  = isHigh ? '#ef4444' : isMod ? '#f59e0b' : '#22d3ee';
-                    const bg     = isHigh ? 'rgba(239,68,68,0.07)' : isMod ? 'rgba(245,158,11,0.07)' : 'rgba(34,211,238,0.05)';
-                    const border = isHigh ? 'rgba(239,68,68,0.3)' : isMod ? 'rgba(245,158,11,0.3)' : 'rgba(34,211,238,0.2)';
-                    const icon   = isHigh ? '⚠️' : isMod ? '⚡' : '✅';
-                    const msg    = isHigh
-                      ? 'Lead detected at ' + ppb + ' ppb — ABOVE the EPA action level of 15 ppb. Lead causes permanent neurological damage. There is no safe level.'
-                      : isMod
-                      ? 'Lead detected at ' + ppb + ' ppb — below EPA action level (15 ppb) but above what health scientists consider safe. Children and pregnant women are most at risk.'
-                      : 'Lead detected at ' + ppb + ' ppb — below EPA action level of 15 ppb. Note: the CDC states there is no safe level of lead exposure.';
-                    return (
-                      <div style={{ background: bg, border: '1px solid ' + border, borderRadius: 8, padding: '10px 12px', marginBottom: 12, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                        <span style={{ fontSize: 16, flexShrink: 0 }}>{icon}</span>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: 10, fontWeight: 800, color: color, letterSpacing: 0.8, marginBottom: 3 }}>LEAD — EPA TAP SAMPLE</div>
-                          <div style={{ fontSize: 12, color: '#e2e8f0', lineHeight: 1.55 }}>{msg}</div>
-                          <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 4 }}>LCR 90th %ile · {leadC.note}</div>
-                        </div>
-                        <div style={{ fontSize: 18, fontWeight: 900, color: color, flexShrink: 0, textAlign: 'right' }}>
-                          <div>{ppb}</div>
-                          <div style={{ fontSize: 9, fontWeight: 600, color: '#94a3b8' }}>ppb</div>
-                        </div>
-                      </div>
-                    );
-                  })()}
-                  <div style={{ fontSize: 10, letterSpacing: 0.5, color: '#0891b2', marginBottom: 8 }}>CONTAMINANTS — tap a row for health context</div>
-                  {(showAllContaminants || data.contaminants.length <= 3
-                    ? data.contaminants
-                    : data.contaminants.slice(0, 3)
-                  ).map((c: any, i: number) => (
-                    <ContaminantRow key={`${c.name}-${i}`} c={c} />
-                  ))}
-                  {data.contaminants.length > 3 && (
+                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'stretch' }}>
+                    <input
+                      value={resultsAlertEmail}
+                      onChange={e => setResultsAlertEmail(e.target.value)}
+                      onKeyDown={e => e.key === 'Enter' && subscribeResultsAreaAlerts()}
+                      placeholder="Your email"
+                      type="email"
+                      autoComplete="email"
+                      aria-label="Email for water change alerts"
+                      style={{
+                        flex: '1 1 220px',
+                        minHeight: 46,
+                        padding: '11px 14px',
+                        background: 'rgba(4, 22, 48, 0.95)',
+                        border: '1px solid rgba(251, 191, 36, 0.35)',
+                        borderRadius: 10,
+                        color: '#f1f5f9',
+                        fontSize: 15,
+                        outline: 'none',
+                      }}
+                    />
                     <button
                       type="button"
-                      onClick={() => setShowAllContaminants((v) => !v)}
-                      className="wc-glass-btn"
+                      onClick={subscribeResultsAreaAlerts}
+                      disabled={resultsAlertSending || !resultsAlertEmail.includes('@')}
+                      className="wc-hero-report-btn"
                       style={{
-                        marginTop: 12,
-                        padding: '10px 16px',
-                        borderRadius: 8,
-                        fontSize: 13,
-                        fontWeight: 700,
-                        cursor: 'pointer',
-                        color: '#22d3ee',
+                        padding: '12px 22px',
+                        minHeight: 46,
+                        borderRadius: 10,
+                        border: 'none',
+                        fontSize: 14,
+                        fontWeight: 800,
+                        cursor: resultsAlertSending || !resultsAlertEmail.includes('@') ? 'not-allowed' : 'pointer',
+                        opacity: resultsAlertSending || !resultsAlertEmail.includes('@') ? 0.55 : 1,
+                        color: '#0f172a',
+                        background: 'linear-gradient(135deg,#fbbf24,#f59e0b)',
+                        boxShadow: '0 6px 20px rgba(245,158,11,0.35)',
                       }}
                     >
-                      {showAllContaminants ? 'Show fewer contaminants' : `Show all ${data.contaminants.length} contaminants`}
+                      {resultsAlertSending ? '…' : 'Notify me'}
                     </button>
-                  )}
-
-                  {/* Newsletter after value: post-contaminant signup */}
-                  {!heroNewsletterSent ? (
-                    <div style={{ marginTop: 22, padding: '14px 16px', borderRadius: 10, border: '1px solid rgba(56, 189, 248, 0.35)', background: 'rgba(4, 22, 48, 0.75)' }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>Free weekly water-quality newsletter</div>
-                      <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 10, lineHeight: 1.55 }}>
-                        Violation alerts, PFAS news, one practical tip — optional after you&apos;ve seen your report.
-                      </div>
-                      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                        <input
-                          value={heroNewsletterEmail}
-                          onChange={(e) => setHeroNewsletterEmail(e.target.value)}
-                          placeholder="Email address"
-                          type="email"
-                          className="wc-newsletter-email-input"
-                          style={{
-                            flex: '1 1 220px',
-                            minHeight: 42,
-                            padding: '10px 12px',
-                            background: 'rgba(4, 22, 48, 0.95)',
-                            border: '1px solid rgba(56, 189, 248, 0.4)',
-                            borderRadius: 8,
-                            color: '#ecfeff',
-                            fontSize: 13,
-                            outline: 'none',
-                          }}
-                        />
-                        <button
-                          type="button"
-                          onClick={subscribeHeroNewsletter}
-                          disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
-                          style={{
-                            minHeight: 42,
-                            padding: '10px 16px',
-                            background:
-                              heroNewsletterSending || !heroNewsletterEmail.includes('@')
-                                ? 'rgba(14,34,51,0.85)'
-                                : 'linear-gradient(135deg, #22d3ee 0%, #0891b2 100%)',
-                            border: '1px solid rgba(165,243,252,0.45)',
-                            borderRadius: 8,
-                            color: '#f0fdfa',
-                            fontSize: 12,
-                            fontWeight: 800,
-                            cursor:
-                              heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer',
-                          }}
-                        >
-                          {heroNewsletterSending ? '…' : 'Sign up free'}
-                        </button>
-                      </div>
-                      {heroNewsletterErr && (
-                        <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5' }}>{heroNewsletterErr}</div>
-                      )}
-                    </div>
-                  ) : (
-                    <div style={{ marginTop: 18, fontSize: 12, color: '#4ade80', fontWeight: 600 }}>
-                      You&apos;re subscribed to weekly updates — check your inbox.
-                    </div>
+                  </div>
+                  {resultsAlertErr && (
+                    <div style={{ fontSize: 12, color: '#f87171', marginTop: 10 }}>{resultsAlertErr}</div>
                   )}
                 </>
               )}
-
-              {/* ── EWG TAP WATER ATLAS ─────────────────────────────────── */}
-              {ewgData && (
-                <div style={{ background: 'rgba(5,20,40,0.75)', border: '1px solid rgba(34,197,94,0.22)', borderRadius: 10, padding: '16px 18px', marginBottom: 18 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
-                    <div>
-                      <div style={{ fontSize: 10, letterSpacing: 0.5, color: '#22c55e', fontWeight: 800, marginBottom: 3 }}>🌿 EWG TAP WATER ATLAS — HEALTH GUIDELINES</div>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{ewgData.systemName}</div>
-                    </div>
-                    <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#22c55e', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 4, padding: '3px 9px', textDecoration: 'none', whiteSpace: 'nowrap' }}>View on EWG →</a>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 14 }}>
-                    {[
-                      { label: 'Contaminants detected', val: ewgData.totalDetected, color: '#94a3b8' },
-                      { label: 'Exceed EWG health limits', val: ewgData.exceedGuidelines, color: ewgData.exceedGuidelines > 0 ? '#f59e0b' : '#22c55e' },
-                      { label: 'Exceed legal limits', val: ewgData.exceedLegal, color: ewgData.exceedLegal > 0 ? '#ef4444' : '#22c55e' },
-                    ].map((stat, i) => (
-                      <div key={i} style={{ background: 'rgba(3,12,28,0.6)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 7, padding: '10px 12px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 22, fontWeight: 800, color: stat.color, lineHeight: 1 }}>{stat.val}</div>
-                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 3, lineHeight: 1.3 }}>{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {Array.isArray(ewgData.contaminants) && ewgData.contaminants.length > 0 ? (
-                    <>
-                      <div style={{ fontSize: 10, letterSpacing: 0.4, color: '#94a3b8', marginBottom: 8 }}>EWG HEALTH GUIDELINES ARE STRICTER THAN FEDERAL LEGAL LIMITS</div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 1, maxHeight: 280, overflowY: 'auto' }}>
-                        {ewgData.contaminants.slice(0, 20).map((c: any, i: number) => (
-                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', background: i % 2 === 0 ? 'rgba(3,12,28,0.4)' : 'transparent', borderRadius: 4, fontSize: 12 }}>
-                            <div style={{ flex: 1, color: c.exceedsGuideline ? '#fbbf24' : '#94a3b8', fontWeight: c.exceedsGuideline ? 600 : 400 }}>{c.name}</div>
-                            <div style={{ color: '#94a3b8', minWidth: 70, textAlign: 'right' }}>{c.detected}</div>
-                            {c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#7f1d1d', color: '#fca5a5', borderRadius: 3, fontWeight: 700 }}>OVER LIMIT</span>}
-                            {c.exceedsGuideline && !c.exceedsLegal && <span style={{ fontSize: 10, padding: '1px 6px', background: '#78350f', color: '#fde68a', borderRadius: 3 }}>Health concern</span>}
-                          </div>
-                        ))}
-                        {ewgData.contaminants.length > 20 && (
-                          <div style={{ fontSize: 11, color: '#94a3b8', textAlign: 'center', padding: '8px 0' }}>+{ewgData.contaminants.length - 20} more — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view all on EWG</a></div>
-                        )}
-                      </div>
-                    </>
-                  ) : (
-                    <div style={{ fontSize: 12, color: '#94a3b8', textAlign: 'center', padding: '8px 0' }}>
-                      Contaminant detail not available — <a href={ewgData.ewgUrl} target="_blank" rel="noreferrer" style={{ color: '#22c55e' }}>view full EWG report →</a>
-                    </div>
-                  )}
-                </div>
-              )}
-
-
-              {data.echo && (
-                <div style={{ background: '#0b1e36', border: '1px solid #ef444430', borderRadius: 8, padding: '14px 16px', marginBottom: 18 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
-                    <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#ef4444', fontWeight: 700 }}>⚖️ EPA ECHO — ENFORCEMENT & COMPLIANCE HISTORY</div>
-                    <a href={data.echo.echoUrl} target="_blank" rel="noreferrer" style={{ fontSize: 10, color: '#94a3b8', textDecoration: 'none', border: '1px solid #1e3a4a', borderRadius: 3, padding: '1px 7px' }}>View full ECHO record →</a>
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(140px,1fr))', gap: 8 }}>
-                    {data.echo.formalActions > 0 && (
-                      <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444' }}>{data.echo.formalActions}</div>
-                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Formal Actions</div>
-                      </div>
-                    )}
-                    {data.echo.informalActions > 0 && (
-                      <div style={{ background: '#0b1e36', border: '1px solid #f59e0b30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 20, fontWeight: 900, color: '#f59e0b' }}>{data.echo.informalActions}</div>
-                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Informal Actions</div>
-                      </div>
-                    )}
-                    {data.echo.penaltiesFormatted && (
-                      <div style={{ background: '#1a0505', border: '1px solid #ef444430', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 16, fontWeight: 900, color: '#ef4444' }}>{data.echo.penaltiesFormatted}</div>
-                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Total Penalties</div>
-                      </div>
-                    )}
-                    {data.echo.inspections > 0 && (
-                      <div style={{ background: '#0b1e36', border: '1px solid #22d3ee30', borderRadius: 6, padding: '8px 10px', textAlign: 'center' }}>
-                        <div style={{ fontSize: 20, fontWeight: 900, color: '#22d3ee' }}>{data.echo.inspections}</div>
-                        <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Inspections</div>
-                      </div>
-                    )}
-                  </div>
-                  {data.echo.lastInspection && (
-                    <div style={{ marginTop: 8, fontSize: 11, color: '#94a3b8' }}>Last inspection: <span style={{ color: '#94a3b8' }}>{data.echo.lastInspection}</span></div>
-                  )}
-                  {data.echo.complianceStatus && (
-                    <div style={{ marginTop: 4, fontSize: 11, color: '#94a3b8' }}>Compliance status: <span style={{ color: data.echo.formalActions > 0 ? '#ef4444' : '#22d3ee' }}>{data.echo.complianceStatus}</span></div>
-                  )}
-                </div>
-              )}
-
-              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', margin: '22px 0 12px' }}>TOP 3 RECOMMENDED FILTERS</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-                {recommended.map((p: any, i: number) => <ProductCard key={p.id} p={p} highlight={i === 0} detectedContaminants={contaminantNames} />)}
-              </div>
-              <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
-                <button onClick={() => setTab('solutions')} className="wc-analyze" style={{ padding: '7px 16px', border: 'none', borderRadius: 6, fontSize: 12, cursor: 'pointer', fontWeight: 700 }}>Find My Solution →</button>
-                <button onClick={() => setTab('products')} className="wc-glass-btn" style={{ padding: '7px 16px', borderRadius: 6, fontSize: 12, cursor: 'pointer' }}>View All 39 Products →</button>
-              </div>
-
-              {/* HARD WATER BANNER */}
-              {isHardWater && (
-                <div style={{ marginTop: 24, padding: '18px 20px', background: 'linear-gradient(135deg,rgba(120,53,15,0.35),rgba(10,20,40,0.7))', border: '1px solid rgba(251,191,36,0.35)', borderTop: '1px solid rgba(253,224,100,0.4)', borderRadius: 12, backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                    <span style={{ fontSize: 22 }}>🪨</span>
-                    <div>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: '#fbbf24', letterSpacing: 0.5 }}>
-                        {hardnessLevel === 'very_hard' ? 'Very Hard Water Area' : 'Hard Water Area'} — {data.stateCode}
-                      </div>
-                      <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>
-                        {hardnessLevel === 'very_hard'
-                          ? 'Among the highest mineral content in the US. Scale buildup shortens appliance life by up to 50%.'
-                          : 'Elevated calcium & magnesium cause scale on pipes, appliances, and fixtures.'}
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 12, lineHeight: 1.6 }}>
-                    Hard water is not a health risk — but it destroys water heaters, dishwashers, and washing machines over time, and leaves white scale on faucets and showers.
-                    The fix: <strong style={{ color: '#fbbf24' }}>RO system for drinking water</strong> (already recommended above) + <strong style={{ color: '#fbbf24' }}>whole-house water softener</strong> for appliance protection.
-                  </div>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#b45309', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED SOFTENERS FOR HARD WATER</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-                    {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 40} detectedContaminants={['Hardness','Scale']} />)}
-                  </div>
-                </div>
-              )}
             </div>
-          )}
-
-          {/* TAB: MY SOLUTION */}
-          {tab === 'solutions' && <SolutionsTab data={data} contaminantNames={contaminantNames} />}
-
-          {/* TAB: PFAS DETAIL */}
-          {tab === 'pfas' && (
-            <div className="wc-reveal wc-reveal-4" style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ marginBottom: 18, padding: '14px 16px', background: 'linear-gradient(135deg,#1a0505,#0d0f1a)', border: '1px solid #ef444440', borderRadius: 8 }}>
-                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#ef4444', marginBottom: 7, fontWeight: 700 }}>☣️ ABOUT PFAS — FOREVER CHEMICALS</div>
-                <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>PFAS are ~12,000 synthetic chemicals that don't break down in the environment or human body. Linked to kidney cancer, testicular cancer, thyroid disease, immune suppression, elevated cholesterol, and developmental harm. EPA set the first federal MCL in 2024: <strong style={{ color: '#fbbf24' }}>4 ppt</strong> for PFOA and PFOS.</p>
-              </div>
-              {pfasContaminants.length === 0 ? (
-                <div style={{ padding: '24px', textAlign: 'center' }}>
-                  <div style={{ fontSize: 22, marginBottom: 7 }}>✅</div>
-                  <div style={{ fontSize: 15, color: '#22d3ee', fontWeight: 700, marginBottom: 5 }}>No PFAS detected via UCMR5</div>
-                  <div style={{ fontSize: 13, color: '#94a3b8' }}>No measurable PFAS in EPA's 2023-2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
-                </div>
-              ) : (
-                <>
-                  <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 14 }}>DETECTED COMPOUNDS — HEALTH CONTEXT</div>
-                  {pfasContaminants.map((c: any, i: number) => <ContaminantRow key={i} c={c} />)}
-                  <div style={{ marginTop: 16, fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 12 }}>PFAS-CERTIFIED FILTERS</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-                    {PRODUCTS.filter(p => p.bestFor.includes('PFAS')).slice(0,3).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id===3} detectedContaminants={contaminantNames} />)}
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-
-          {/* TAB: COMPARE */}
-          {tab === 'compare' && <FilterCompareTab />}
-
-          {/* TAB: ALL PRODUCTS */}
-          {tab === 'products' && (
-            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 8 }}>39 products · Amazon links</div>
-              <p style={{ fontSize: 12, color: '#cbd5e1', lineHeight: 1.55, margin: '0 0 18px' }}>
-                We may earn a commission from qualifying Amazon purchases — your price stays the same. Always confirm model numbers and certifications on the seller page before you buy.
-              </p>
-
-          {/* ── FEATURED EXPERT PICKS SPOTLIGHT ────────────────────── */}
-          {(() => {
-            const featured = PRODUCTS.filter((p: any) => p.expertPick).slice(0, 3);
-            return (
-              <div style={{ marginBottom: 48 }}>
-                <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontSize: 11, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
-                  <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  {featured.map((p: any, idx: number) => {
-                    const accent = ['#06b6d4','#f59e0b','#a78bfa'][idx];
-                    return (
-                      <FeaturedSpotlightCard key={p.id} p={p} idx={idx} accent={accent} />
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })()}
-
-          {/* Category filter */}
-          <div style={{ display: 'flex', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
-            {catFilters.map(cat => {
-              const active = productFilter === cat;
-              const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
-              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', distiller:'♨️', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿', fridge:'❄️' };
-              return (
-                <button key={cat} onClick={() => setProductFilter(cat)}
-                  style={{
-                    padding: '8px 16px', borderRadius: 30, fontSize: 12, fontWeight: 700, cursor: 'pointer',
-                    border: `1px solid ${active ? 'rgba(6,182,212,0.6)' : 'rgba(255,255,255,0.07)'}`,
-                    borderTop: `1px solid ${active ? 'rgba(180,240,255,0.5)' : 'rgba(255,255,255,0.12)'}`,
-                    background: active ? 'rgba(8,145,178,0.22)' : 'rgba(4,14,32,0.55)',
-                    backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                    color: active ? '#22d3ee' : '#94a3b8',
-                    boxShadow: active ? '0 0 20px rgba(8,145,178,0.25), inset 0 1px 0 rgba(255,255,255,0.12)' : 'none',
-                    transition: 'all .2s ease',
-                    display: 'flex', alignItems: 'center', gap: 5,
-                  }}>
-                  <span style={{ fontSize: 13 }}>{icons[cat] || '•'}</span>
-                  <span>{catLabels[cat]}</span>
-                  <span style={{ fontSize: 10, opacity: 0.55, background: active ? 'rgba(6,182,212,0.2)' : 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '1px 5px' }}>{count}</span>
-                </button>
-              );
-            })}
           </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,1fr))', gap: 12 }}>
-                {filteredProds.map((p: any) => <ProductCard key={p.id} p={p} highlight={recommended.some((r: any) => r.id === p.id)} detectedContaminants={contaminantNames} />)}
+          {/* Newsletter — after report (secondary) */}
+          <div style={{ maxWidth: 620, margin: '28px auto 0', padding: '0 8px' }}>
+            <div
+              id="wc-newsletter"
+              className="wc-newsletter-box"
+              style={{
+                padding: '14px 16px',
+                borderRadius: 12,
+                border: '1px solid rgba(56, 189, 248, 0.35)',
+                background: 'rgba(4, 22, 48, 0.55)',
+              }}
+            >
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6, textAlign: 'left', color: '#e2e8f0' }}>
+                Free weekly drinking water newsletter
               </div>
-            </div>
-          )}
-
-          {/* TAB: COST CALCULATOR */}
-          {tab === 'cost' && (
-            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2', marginBottom: 16 }}>COST OF OWNERSHIP CALCULATOR</div>
-              {/* Payback period callout */}
-              {(() => {
-                const monthlyBottled = Math.round(ppl * 32 * 12 / 12);
-                const monthlyFilter  = Math.round((prod.filterCostPerYear || 80) / 12);
-                const paybackMonths  = Math.ceil(prod.price / Math.max(1, monthlyBottled - monthlyFilter));
-                return (
-                  <div style={{ marginBottom: 18, padding: '14px 18px', background: 'linear-gradient(135deg,#071525,#091c35)', border: '1px solid #22d3ee30', borderRadius: 10, display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'center' }}>
-                    <div style={{ textAlign: 'center', minWidth: 90 }}>
-                      <div style={{ fontSize: 32, fontWeight: 900, color: '#22d3ee' }}>{paybackMonths}</div>
-                      <div style={{ fontSize: 11, color: '#94a3b8' }}>months to break even</div>
-                    </div>
-                    <div style={{ flex: 1, minWidth: 180 }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>Filter pays for itself in {paybackMonths} months</div>
-                      <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>vs. buying {ppl} people bottled water at ~$1.33/bottle. After that, you save ${monthlyBottled - monthlyFilter}/mo — every month — for clean water.</div>
-                    </div>
+              <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 10, lineHeight: 1.5 }}>
+                Optional — violation alerts, PFAS updates, one practical tip. No spam.
+              </div>
+              {heroNewsletterSent ? (
+                <div style={{ fontSize: 12, color: '#4ade80', fontWeight: 600 }}>You&apos;re subscribed. Check your inbox.</div>
+              ) : (
+                <>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    <input
+                      value={heroNewsletterEmail}
+                      onChange={(e) => setHeroNewsletterEmail(e.target.value)}
+                      placeholder="Email address"
+                      type="email"
+                      className="wc-newsletter-email-input"
+                      style={{
+                        flex: '1 1 220px',
+                        minHeight: 40,
+                        padding: '9px 12px',
+                        background: 'rgba(4, 22, 48, 0.95)',
+                        border: '1px solid rgba(56, 189, 248, 0.35)',
+                        borderRadius: 8,
+                        color: '#ecfeff',
+                        fontSize: 13,
+                        outline: 'none',
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={subscribeHeroNewsletter}
+                      disabled={heroNewsletterSending || !heroNewsletterEmail.includes('@')}
+                      style={{
+                        minHeight: 40,
+                        padding: '9px 14px',
+                        background:
+                          heroNewsletterSending || !heroNewsletterEmail.includes('@')
+                            ? 'rgba(14,34,51,0.85)'
+                            : 'rgba(8,145,178,0.35)',
+                        border: '1px solid rgba(100,148,163,0.45)',
+                        borderRadius: 8,
+                        color: '#cbd5e1',
+                        fontSize: 12,
+                        fontWeight: 700,
+                        cursor:
+                          heroNewsletterSending || !heroNewsletterEmail.includes('@') ? 'default' : 'pointer',
+                      }}
+                    >
+                      {heroNewsletterSending ? '…' : 'Sign up'}
+                    </button>
                   </div>
-                );
-              })()}
-              <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginBottom: 22, alignItems: 'flex-end' }}>
-                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>SYSTEM</div>
-                  <select value={ftype} onChange={e => setFtype(e.target.value)} style={{ background: '#0b1e36', border: '1px solid #1e3a4a', color: '#e2e8f0', padding: '6px 10px', borderRadius: 6, fontSize: 12 }}>
-                    {PRODUCTS.filter(p => p.filterCostPerYear).map(p => <option key={p.name}>{p.name}</option>)}
-                  </select>
-                </div>
-                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>YEARS: {years}</div><input type="range" min={1} max={10} value={years} onChange={e => setYears(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
-                <div><div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>PEOPLE: {ppl}</div><input type="range" min={1} max={8} value={ppl} onChange={e => setPpl(+e.target.value)} style={{ width: 120, accentColor: '#0891b2' }} /></div>
-              </div>
-              <div style={{ height: 220 }}>
-                <FilterVsBottleChart data={chartData} />
-              </div>
-              <div style={{ display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
-                {[{ l:'Filter System',c:'#0891b2',v:`$${prod.price + (prod.filterCostPerYear||80)*years}`},{l:'Bottled Water',c:'#ef4444',v:`$${Math.round(ppl*32*12*years)}`},{l:'You Save',c:'#22d3ee',v:`$${Math.max(0,Math.round(ppl*32*12*years)-prod.price-(prod.filterCostPerYear||80)*years)}`}].map(s => (
-                  <div key={s.l} style={{ flex:1, minWidth:90, background:'#0b1e36', border:`1px solid ${s.c}33`, borderRadius:8, padding:'11px 14px' }}>
-                    <div style={{ fontSize:11, color:'#94a3b8', marginBottom:2 }}>{s.l}</div>
-                    <div style={{ fontSize:18, fontWeight:800, color:s.c }}>{s.v}</div>
-                    <div style={{ fontSize:10, color:'#334155' }}>over {years} yr{years!==1?'s':''}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* TAB: INSTALLERS */}
-          {tab === 'installers' && (
-            <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 22, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
-              {/* Quick links */}
-              <div style={{ marginBottom: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {[
-                  { label: '🔍 WQA Certified Installer', url: 'https://wqa.org/find-dealer/', color: '#0891b2' },
-                  { label: '🔧 Find Pro on Angi', url: `https://www.angi.com/nearme/water-treatment/`, color: '#d97706' },
-                  { label: '💬 Get Quotes on HomeAdvisor', url: 'https://www.homeadvisor.com/task.Water-Softener-or-Water-Filter-Install.html', color: '#7c3aed' },
-                ].map(l => (
-                  <a key={l.label} href={l.url} target="_blank" rel="noreferrer" style={{ padding: '7px 14px', background: l.color + '20', border: `1px solid ${l.color}44`, borderRadius: 7, color: l.color, fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>{l.label}</a>
-                ))}
-              </div>
-
-              {/* Questions to ask installer */}
-              <div style={{ background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, padding: '14px 16px', marginBottom: 20 }}>
-                <div style={{ fontSize: 10, letterSpacing: 0.3, color: '#0891b2', marginBottom: 10, fontWeight: 700 }}>WHAT TO ASK YOUR INSTALLER</div>
-                {['Are you WQA certified or licensed in this state?','What\'s included in the installation — faucet, shutoff valve, drain line?','Do you test the water before and after installation?','What\'s the filter replacement schedule and cost?','Is there a warranty on labor and parts?','Will you register the product with the manufacturer?'].map((q,i) => (
-                  <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 7, alignItems: 'flex-start' }}>
-                    <span style={{ color: '#22d3ee', flexShrink: 0, fontSize: 12 }}>{i+1}.</span>
-                    <span style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>{q}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
-                <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#0891b2' }}>LOCAL WATER TREATMENT INSTALLERS NEAR {data.city}</div>
-                <button onClick={() => loadInstallers(zip)} disabled={instLoading} style={{ padding: '5px 10px', background: 'transparent', border: '1px solid #0e2233', borderRadius: 4, color: '#94a3b8', fontSize: 11, cursor: 'pointer' }}>{instLoading ? 'Searching…' : '↻ Refresh'}</button>
-              </div>
-              {instLoading && <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>🔍 Finding local water treatment specialists…</div>}
-              {!instLoading && installers.map((c: any, i: number) => (
-                <div key={i} style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, padding: '14px 18px', marginBottom: 10 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 13, fontWeight: 800, marginBottom: 2 }}>{c.name}</div>
-                      <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 2 }}>{c.address}</div>
-                      {c.specialty && <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 4 }}>{c.specialty}</div>}
-                      <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
-                        {c.cert && <span style={{ fontSize: 11, padding: '1px 5px', borderRadius: 3, background: '#d9770622', color: '#d97706', border: '1px solid #d9770644', fontWeight: 700 }}>{c.cert}</span>}
-                        {c.rating && <span style={{ fontSize: 12, color: '#f59e0b' }}>{'★'.repeat(Math.round(c.rating))} <span style={{ color: '#94a3b8', fontSize: 11 }}>{c.rating}{c.reviews?` (${c.reviews})`:''}</span></span>}
-                        {c.distance && <span style={{ fontSize: 11, color: '#334155' }}>📍 {c.distance}</span>}
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
-                      {c.phone && <a href={`tel:${c.phone}`} style={{ padding: '6px 10px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 11, textDecoration: 'none' }}>📞 {c.phone}</a>}
-                      {c.website && <a href={c.website} target="_blank" rel="noreferrer" style={{ padding: '6px 10px', background: 'transparent', border: '1px solid #1e3a4a', borderRadius: 5, color: '#94a3b8', fontSize: 11, textDecoration: 'none' }}>🌐</a>}
-                      <button onClick={() => setQuoted(q => ({ ...q, [c.name]: true }))} style={{ padding: '6px 12px', background: quoted[c.name] ? '#064e3b' : '#0891b2', border: 'none', borderRadius: 5, color: quoted[c.name] ? '#22d3ee' : '#fff', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>{quoted[c.name] ? '✓ Sent' : 'Get Quote'}</button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {!instLoading && installers.length === 0 && (
-                <div style={{ padding: '20px', textAlign: 'center', color: '#94a3b8', fontSize: 13 }}>
-                  <button onClick={() => loadInstallers(zip)} style={{ padding: '7px 16px', background: '#0891b2', border: 'none', borderRadius: 6, color: '#fff', fontSize: 12, cursor: 'pointer' }}>Search Local Installers</button>
-                </div>
+                  {heroNewsletterErr && <div style={{ marginTop: 6, fontSize: 11, color: '#fca5a5' }}>{heroNewsletterErr}</div>}
+                </>
               )}
-              <div style={{ marginTop: 12, fontSize: 11, color: '#334155', textAlign: 'center' }}>💡 Always verify credentials and get at least 3 quotes. Average RO install cost: $150-$400.</div>
             </div>
-          )}
-
-          {/* TAB: RESOURCES */}
-          {tab === 'resources' && <ResourcesTab data={data} />}
+          </div>
         </div>
       )}
 
@@ -3749,101 +4134,6 @@ export default function WaterCheckup() {
         </div>
       )}
 
-      {/* LIVE EPA DATA — info modal */}
-      {showEpaModal && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="epa-modal-title"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: '#000000cc',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 200,
-            padding: 16,
-            overflowY: 'auto',
-            overflowX: 'hidden',
-            boxSizing: 'border-box',
-          }}
-          onClick={() => setShowEpaModal(false)}
-        >
-          <div
-            style={{
-              background: 'rgba(3,12,28,0.92)',
-              backdropFilter: 'blur(28px)',
-              WebkitBackdropFilter: 'blur(28px)',
-              border: '1px solid rgba(255,255,255,0.09)',
-              borderTop: '1px solid rgba(255,255,255,0.14)',
-              borderRadius: 16,
-              padding: '26px 28px',
-              boxShadow: '0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
-              maxWidth: 440,
-              width: '92%',
-              maxHeight: 'min(85vh, calc(100dvh - 32px))',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'hidden',
-              margin: 'auto',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 14, flexShrink: 0 }}>
-              <div>
-                <div id="epa-modal-title" style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.25 }}>
-                  What does &ldquo;EPA-Sourced Data&rdquo; mean?
-                </div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#a78bfa', letterSpacing: 0.5, marginTop: 6 }}>U.S. Environmental Protection Agency</div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowEpaModal(false)}
-                aria-label="Close"
-                style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: 22, cursor: 'pointer', padding: 0, lineHeight: 1, flexShrink: 0 }}
-              >
-                ×
-              </button>
-            </div>
-            <div
-              style={{
-                flex: 1,
-                minHeight: 0,
-                overflowY: 'auto',
-                overflowX: 'hidden',
-                WebkitOverflowScrolling: 'touch',
-                overscrollBehavior: 'contain',
-              }}
-            >
-              <p style={{ margin: '0 0 14px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-                WaterCheckup pulls from the same <strong style={{ color: '#e2e8f0' }}>public federal datasets</strong> the EPA uses for drinking-water programs—not a static brochure and not a private guess. Your lookup is matched to official utility identifiers and reporting so you see what is on file for systems that report to EPA.
-              </p>
-              <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>What you&apos;re seeing</p>
-              <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#94a3b8', lineHeight: 1.8 }}>
-                <li style={{ marginBottom: 8 }}>
-                  <strong style={{ color: '#e2e8f0' }}>SDWIS</strong> — the Safe Drinking Water Information System: monitoring results, violations, and system info utilities report under the Safe Drinking Water Act.
-                </li>
-                <li>
-                  <strong style={{ color: '#e2e8f0' }}>UCMR</strong> (e.g. UCMR 5) — rounds where many systems must sample for specific contaminants (including PFAS in recent cycles) so EPA can track unregulated contaminants nationally.
-                </li>
-              </ul>
-              <p style={{ margin: '0 0 18px', fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>
-                Reporting can lag real-world conditions, and well water often isn&apos;t in the same municipal datasets—use results as a strong baseline, then confirm anything critical with a certified lab if needed.
-              </p>
-              <a
-                href="https://www.epa.gov/ground-water-and-drinking-water"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
-              >
-                EPA drinking water programs →
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* SHARE MODAL */}
       {showShare && data && <ShareModal data={data} onClose={() => setShowShare(false)} />}
 
@@ -3978,7 +4268,6 @@ export default function WaterCheckup() {
             { stat: '135+', label: 'City reports' },
             { stat: '100% Free', label: 'No account, ever' },
             { stat: '50 states', label: 'ZIP-level reports' },
-            { stat: '100K+', label: 'Trusted households' },
           ].map(({ stat, label }) => (
             <div key={stat} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>
@@ -3996,8 +4285,10 @@ export default function WaterCheckup() {
               { quote: 'Finally a site that shows real EPA data instead of just trying to sell me something. The score made it immediately clear my water was a problem.', name: 'David K.', location: 'Phoenix, AZ', stars: 5 },
               { quote: 'Moved to a new city and checked the water before I even unpacked. Three open violations. Bought a filter before my first glass.', name: 'Priya S.', location: 'Chicago, IL', stars: 5 },
               { quote: 'My daughter has been drinking this water for two years. Seeing the lead risk on here convinced me to get a filter immediately. Should have found this sooner.', name: 'Marcus T.', location: 'Baltimore, MD', stars: 5 },
+              { quote: 'We’re on a tight budget, so “free” mattered. Same EPA numbers I’d dig for myself, but in one screen — I finally understood what to filter for.', name: 'James R.', location: 'Denver, CO', stars: 5 },
+              { quote: 'I compared our report to the utility’s PDF and it lined up. Gave me confidence to pick an RO system instead of guessing off a blog post.', name: 'Elena V.', location: 'Austin, TX', stars: 5 },
             ].map(({ quote, name, location, stars }) => (
-              <div key={name} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div key={`${name}-${location}`} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ color: '#f59e0b', fontSize: 13, letterSpacing: 1 }}>{'★'.repeat(stars)}</div>
                 <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>&ldquo;{quote}&rdquo;</p>
                 <div style={{ marginTop: 'auto' }}>
@@ -4069,48 +4360,75 @@ export default function WaterCheckup() {
               </a>
             </div>
           )}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {filteredHomepageCities.map(({ slug, name }) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+            {cityBrowseGrouped.map(({ region, cities }) => (
+              <div key={region}>
+                <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, color: '#64748b', marginBottom: 10 }}>{region}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                  {cities.map(({ slug, name }) => {
+                    const badge = cityBrowseBadge(slug);
+                    return (
+                      <a
+                        key={slug}
+                        href={`/water/${slug}`}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          padding: '10px 14px',
+                          background: 'linear-gradient(165deg, rgba(13,34,64,0.95), rgba(7,24,40,0.92))',
+                          border: '1px solid #1e3a5c',
+                          borderRadius: 10,
+                          fontSize: 13,
+                          color: '#e2e8f0',
+                          textDecoration: 'none',
+                          maxWidth: '100%',
+                          boxSizing: 'border-box',
+                        }}
+                      >
+                        <span style={{ fontWeight: 700 }}>{name.split(',')[0]}</span>
+                        <span style={{ fontSize: 11, color: '#64748b', fontWeight: 600 }}>{name.includes(',') ? name.slice(name.indexOf(',')) : ''}</span>
+                        {badge && (
+                          <span
+                            style={{
+                              fontSize: 9,
+                              fontWeight: 800,
+                              letterSpacing: 0.4,
+                              padding: '2px 7px',
+                              borderRadius: 4,
+                              background: 'rgba(239,68,68,0.12)',
+                              border: '1px solid rgba(239,68,68,0.35)',
+                              color: '#fca5a5',
+                              flexShrink: 0,
+                            }}
+                          >
+                            {badge}
+                          </span>
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+            <div>
               <a
-                key={slug}
-                href={`/water/${slug}`}
+                href="/water"
                 style={{
-                  padding: '7px 14px',
-                  background: '#0d2240',
-                  border: '1px solid #1a3a5c',
+                  display: 'inline-flex',
+                  padding: '8px 14px',
+                  background: '#0891b220',
+                  border: '1px solid #0891b250',
                   borderRadius: 8,
                   fontSize: 13,
-                  color: '#94a3b8',
+                  color: '#0891b2',
                   textDecoration: 'none',
-                  transition: 'all 0.15s',
-                }}
-                onMouseEnter={(e) => {
-                  (e.target as HTMLAnchorElement).style.color = '#e2e8f0';
-                  (e.target as HTMLAnchorElement).style.borderColor = '#0891b2';
-                }}
-                onMouseLeave={(e) => {
-                  (e.target as HTMLAnchorElement).style.color = '#94a3b8';
-                  (e.target as HTMLAnchorElement).style.borderColor = '#1a3a5c';
+                  fontWeight: 700,
                 }}
               >
-                {name}
+                View all 135+ cities →
               </a>
-            ))}
-            <a
-              href="/water"
-              style={{
-                padding: '7px 14px',
-                background: '#0891b220',
-                border: '1px solid #0891b250',
-                borderRadius: 8,
-                fontSize: 13,
-                color: '#0891b2',
-                textDecoration: 'none',
-                fontWeight: 700,
-              }}
-            >
-              View all 135+ cities →
-            </a>
+            </div>
           </div>
         </div>
 

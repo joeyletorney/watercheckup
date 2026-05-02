@@ -82,7 +82,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
-      <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
+      <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 24px 80px' }}>
 

@@ -81,7 +81,7 @@ export default function TopPickBox({ picks, label, cityName, citySlug }: { picks
                     Buy Direct →
                   </a>
                 ) : null}
-                <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackClick(pick.product, 'amazon', cityName)} style={{ display: 'block', padding: '8px 16px', background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: amazonPrimary ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: amazonPrimary ? 700 : 600, textAlign: 'center', border: amazonPrimary ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackClick(pick.product, 'amazon', cityName)} style={{ display: 'block', padding: '6px 12px', background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(15,23,42,0.55)', color: amazonPrimary ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 11, fontWeight: 600, textAlign: 'center', border: amazonPrimary ? 'none' : '1px solid rgba(100,116,139,0.35)', whiteSpace: 'nowrap' }}>
                   Amazon →
                 </a>
               </div>

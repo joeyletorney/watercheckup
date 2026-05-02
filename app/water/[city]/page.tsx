@@ -157,7 +157,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
+      <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
 

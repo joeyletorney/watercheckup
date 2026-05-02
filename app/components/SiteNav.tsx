@@ -10,6 +10,7 @@ const ITEMS: [string, string][] = [
   ['/contaminants', "What's in water"],
   ['/quiz', 'Filter guide'],
   ['/well', 'Well water'],
+  ['/methodology', 'Data sources'],
   ['/faq', 'FAQ'],
 ];
 
@@ -17,6 +18,7 @@ const ITEMS: [string, string][] = [
 const MOBILE_PRIMARY: [string, string][] = [
   ['/', 'Check my water'],
   ['/contaminants', "What's in water"],
+  ['/methodology', 'Data sources'],
   ['/quiz', 'Filter guide'],
 ];
 
@@ -43,7 +45,8 @@ function isActive(pathname: string, href: string) {
     (href === '/well' && pathname.startsWith('/well')) ||
     (href === '/pfas' && pathname.startsWith('/pfas')) ||
     (href === '/lead' && pathname.startsWith('/lead')) ||
-    (href === '/quiz' && pathname.startsWith('/quiz'))
+    (href === '/quiz' && pathname.startsWith('/quiz')) ||
+    (href === '/methodology' && pathname.startsWith('/methodology'))
   );
 }
 
