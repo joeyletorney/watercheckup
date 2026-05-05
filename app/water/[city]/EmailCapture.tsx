@@ -11,7 +11,7 @@ function trackNewsletterSignup(slug: string) {
   }
 }
 
-export default function EmailCapture({ cityName, slug }: { cityName: string; slug: string }) {
+export default function EmailCapture({ cityName, slug, inline }: { cityName: string; slug: string; inline?: boolean }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [msg, setMsg] = useState('');
@@ -38,6 +38,23 @@ export default function EmailCapture({ cityName, slug }: { cityName: string; slu
       setStatus('error');
       setMsg('Something went wrong. Try again.');
     }
+  }
+
+  // Inline variant — compact single-line form used inside a flex row
+  if (inline) {
+    if (status === 'success') return <span style={{ fontSize: 12, color: '#4ade80', fontWeight: 700 }}>✓ You&apos;re on the list</span>;
+    return (
+      <>
+        <input type="email" placeholder="your@email.com" value={email}
+          onChange={e => setEmail(e.target.value)} onKeyDown={e => e.key === 'Enter' && submit()}
+          style={{ flex: '1 1 180px', minWidth: 0, padding: '7px 12px', background: 'rgba(4,22,48,0.9)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f1f5f9', fontSize: 13, outline: 'none' }} />
+        <button onClick={submit} disabled={status === 'loading'}
+          style={{ padding: '7px 16px', borderRadius: 8, border: 'none', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 12, fontWeight: 800, cursor: status === 'loading' ? 'not-allowed' : 'pointer', flexShrink: 0 }}>
+          {status === 'loading' ? '…' : 'Notify me'}
+        </button>
+        {status === 'error' && msg && <span style={{ fontSize: 11, color: '#f87171' }}>{msg}</span>}
+      </>
+    );
   }
 
   if (status === 'success') {

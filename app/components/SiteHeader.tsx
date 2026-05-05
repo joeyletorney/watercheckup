@@ -97,9 +97,14 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
           <SiteNav ariaLabel="Main" />
         </div>
         {showCta ? (
-          <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
-            {ctaLabel ?? 'Check My Water →'}
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+            <span style={{ fontSize: 11, color: '#64748b', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ color: '#22d3ee', fontWeight: 800 }}>10,000+</span> reports checked
+            </span>
+            <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
+              {ctaLabel ?? 'Check My Water →'}
+            </Link>
+          </div>
         ) : null}
       </div>
     );

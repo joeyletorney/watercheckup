@@ -126,7 +126,10 @@ const FAQS = [
 ];
 
 export default function FAQPage() {
-  const [open, setOpen] = useState<string | null>(null);
+  // Pre-open the first question from each category so answers are visible on load
+  const defaultOpen = FAQS.map(cat => cat.items[0]?.q ?? null).filter(Boolean);
+  const [open, setOpen] = useState<string | null>(defaultOpen[0] ?? null);
+  const [openSet, setOpenSet] = useState<Set<string>>(new Set(defaultOpen as string[]));
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0' }}>
@@ -149,11 +152,11 @@ export default function FAQPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {section.items.map(item => {
-                const isOpen = open === item.q;
+                const isOpen = openSet.has(item.q);
                 return (
                   <div key={item.q} style={{ background: '#0d2240', border: '1px solid #0f2336', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 12px #00000033' }}>
                     <button
-                      onClick={() => setOpen(isOpen ? null : item.q)}
+                      onClick={() => setOpenSet(prev => { const next = new Set(prev); if (next.has(item.q)) next.delete(item.q); else next.add(item.q); return next; })}
                       style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: '18px 22px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                     >
                       <span style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>{item.q}</span>

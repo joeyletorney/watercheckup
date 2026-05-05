@@ -48,7 +48,28 @@ const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS; why?: s
   'miami':         { label: 'PFAS + aging infrastructure', picks: RO_PICKS, why: 'Chosen for Miami because it removes PFAS and protects against contaminants from aging South Florida infrastructure.' },
   'seattle':       { label: 'Building pipe lead risk', picks: PITCHER_PICKS, why: 'Chosen for Seattle because building pipe lead risk is the main concern — a certified pitcher is practical for renters.' },
 };
-const DEFAULT_PICKS = { label: 'Contaminants detected in local water', picks: RO_PICKS, why: 'Chosen because it addresses the widest range of contaminants found in municipal water supplies.' };
+const DEFAULT_PICKS = { label: 'Contaminants detected in local water', picks: RO_PICKS, why: '' };
+
+/** Build a city-specific recommendation reason from its data profile. */
+function getCityWhy(slug: string, cd: typeof CITIES[string] | undefined): string {
+  if (!cd) return 'Chosen because it addresses the widest range of contaminants found in municipal water supplies.';
+  const topPick = TOP_PICKS[slug];
+  if (topPick?.why) return topPick.why;
+  // Build dynamically from the city's issue list
+  const issues = cd.issues ?? [];
+  const hasLead = issues.some(i => /lead/i.test(i));
+  const hasPfas = issues.some(i => /pfas|forever/i.test(i));
+  const hasThm = issues.some(i => /thm|disinfection|byproduct/i.test(i));
+  const hasHard = issues.some(i => /hard|tds|dissolved/i.test(i));
+  const isHigh = cd.urgency === 'high';
+  if (hasLead && hasPfas) return `Chosen for ${cd.name} because RO removes both lead (99%+) and PFAS (99%+) at the tap — the two primary concerns flagged in this system's EPA data.`;
+  if (hasLead) return `Chosen for ${cd.name} because lead is the primary concern — NSF 58 certified RO removes 99%+ of lead at the kitchen tap, regardless of what the service line is made of.`;
+  if (hasPfas) return `Chosen for ${cd.name} because PFAS contamination is detected in this system's UCMR5 data — reverse osmosis is the most effective residential technology, removing 99%+ of PFAS compounds.`;
+  if (hasThm) return `Chosen for ${cd.name} because elevated disinfection byproducts (THMs/HAAs) are the primary documented concern — RO removes them more completely than carbon filtration alone.`;
+  if (hasHard) return `Chosen for ${cd.name} because high TDS and hard water are the primary issues — RO dramatically reduces dissolved solids, hardness minerals, and any co-occurring contaminants.`;
+  if (isHigh) return `Chosen for ${cd.name} because EPA data shows elevated concern — RO provides the broadest contaminant coverage and removes 99%+ of the most common municipal water pollutants.`;
+  return `Chosen for ${cd.name} because it removes the widest range of contaminants found in municipal supplies — PFAS, lead, chlorine, nitrates, and more — in a single system.`;
+}
 
 const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress: boolean }> = {
   'chicago': { url: 'https://sli.chicagowaterquality.org/', label: 'Chicago Address-Level Lookup', hasAddress: true },
@@ -103,13 +124,15 @@ const urgencyConfig = {
   low:    { color: '#22d3ee', bg: '#22d3ee15', border: '#22d3ee40', label: 'GENERALLY OK', icon: '✅' },
 };
 
-// Water Safety Score: 0 (worst) → 100 (best)
+// Water Safety Score: 0 (worst) → 88 (best possible — no municipal water is perfect)
 function computeWaterScore(
   urgency: 'high' | 'medium' | 'low',
   issues: string[],
   pfasData: { maxPpt: number; violations: number; compounds: [string, number, number, number][]; hardness?: number } | null
 ): { score: number; grade: string; gradeColor: string; label: string; scoreColor: string } {
-  let score = 100;
+  // Baseline: all municipal water has chlorine, DBPs, and unmonitored contaminants.
+  // No tap water scores above 88 — "no violations on record" ≠ perfectly safe.
+  let score = 88;
 
   // Urgency deductions
   if (urgency === 'high')   score -= 40;
@@ -120,7 +143,7 @@ function computeWaterScore(
 
   // PFAS deductions
   if (pfasData) {
-    if (pfasData.violations > 0)       score -= 25;
+    if (pfasData.violations > 0)            score -= 25;
     else if (pfasData.compounds.length > 3) score -= 12;
     else if (pfasData.compounds.length > 0) score -= 6;
 
@@ -128,11 +151,11 @@ function computeWaterScore(
     const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
     if (overHealth) score -= 10;
 
-    if (pfasData.maxPpt > 50)  score -= 8;
+    if (pfasData.maxPpt > 50)      score -= 8;
     else if (pfasData.maxPpt > 10) score -= 4;
   }
 
-  score = Math.max(0, Math.min(100, score));
+  score = Math.max(0, Math.min(88, score));
 
   let grade: string;
   let gradeColor: string;
@@ -140,7 +163,7 @@ function computeWaterScore(
   let scoreColor: string;
 
   if (score >= 80) {
-    grade = 'A'; gradeColor = '#22d3ee'; label = 'Good'; scoreColor = '#22d3ee';
+    grade = 'A-'; gradeColor = '#22d3ee'; label = 'Good'; scoreColor = '#22d3ee';
   } else if (score >= 65) {
     grade = 'B'; gradeColor = '#86efac'; label = 'Fair'; scoreColor = '#86efac';
   } else if (score >= 50) {
@@ -172,6 +195,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
+  const cityWhyText = getCityWhy(slug, cd);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -435,6 +459,12 @@ export default function CityPage({ params }: { params: { city: string } }) {
               );
             })()}
 
+            {/* ── INLINE EMAIL CAPTURE — right after PFAS data while alarm is highest ── */}
+            <div style={{ marginBottom: 24, padding: '14px 18px', background: 'rgba(8,145,178,0.07)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 13, color: '#94a3b8', flexShrink: 0 }}>🔔 Get alerts if {cd.name}&apos;s water data changes:</span>
+              <EmailCapture cityName={cd.name} slug={slug} inline />
+            </div>
+
             {/* ── STEP 3: FILTER RECOMMENDATION ── */}
             <div style={{ marginBottom: 8 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
@@ -450,7 +480,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               label={cityPicks.label}
               cityName={cd.name}
               citySlug={slug}
-              whyText={cityPicks.why}
+              whyText={cityWhyText}
             />
 
             {/* ── SYSTEM INFO ── */}
@@ -571,6 +601,26 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Fix My Water — Free →
           </Link>
+        </div>
+
+        {/* ── RELATED BLOG POSTS ── */}
+        <div style={{ marginBottom: 40 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, margin: '0 0 14px' }}>RELATED GUIDES</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
+            {[
+              { slug: 'is-pfas-in-my-tap-water', title: 'Is PFAS in My Tap Water?', badge: 'PFAS' },
+              { slug: 'best-water-filter-for-lead-removal', title: 'Best Filters for Lead Removal', badge: 'Lead' },
+              { slug: 'what-water-filter-removes-pfas', title: 'What Filter Removes PFAS?', badge: 'Filters' },
+              { slug: 'what-does-epa-water-violation-mean', title: 'What Does an EPA Violation Mean?', badge: 'EPA' },
+              { slug: 'reverse-osmosis-pros-and-cons', title: 'Reverse Osmosis: Pros & Cons', badge: 'Filters' },
+              { slug: 'tap-water-safety-during-pregnancy', title: 'Tap Water Safety During Pregnancy', badge: 'Health' },
+            ].map(({ slug, title, badge }) => (
+              <Link key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color: '#0891b2', letterSpacing: 1, marginBottom: 4 }}>{badge}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>{title}</div>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* ── NEARBY CITIES ── */}

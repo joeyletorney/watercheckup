@@ -24,6 +24,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       type: 'article',
       publishedTime: post.date,
       authors: ['WaterCheckup'],
+      images: [
+        {
+          url: `https://watercheckup.com/api/og/blog?title=${encodeURIComponent(post.title)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(post.excerpt ?? '')}`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [`https://watercheckup.com/api/og/blog?title=${encodeURIComponent(post.title)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(post.excerpt ?? '')}`],
     },
   };
 }
@@ -168,6 +182,32 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               </Link>
             ))}
           </div>
+        </div>
+
+        {/* Check your city */}
+        <div style={{ marginTop: 48 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>CHECK YOUR CITY'S WATER</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
+            {[
+              { slug: 'san-antonio', name: 'San Antonio, TX' },
+              { slug: 'chicago', name: 'Chicago, IL' },
+              { slug: 'houston', name: 'Houston, TX' },
+              { slug: 'los-angeles', name: 'Los Angeles, CA' },
+              { slug: 'phoenix', name: 'Phoenix, AZ' },
+              { slug: 'philadelphia', name: 'Philadelphia, PA' },
+              { slug: 'dallas', name: 'Dallas, TX' },
+              { slug: 'miami', name: 'Miami, FL' },
+              { slug: 'boston', name: 'Boston, MA' },
+              { slug: 'seattle', name: 'Seattle, WA' },
+              { slug: 'denver', name: 'Denver, CO' },
+              { slug: 'new-york', name: 'New York, NY' },
+            ].map(({ slug, name }) => (
+              <Link key={slug} href={`/water/${slug}`} style={{ display: 'block', padding: '10px 14px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', fontSize: 13, fontWeight: 600, color: '#94a3b8' }}>
+                {name} →
+              </Link>
+            ))}
+          </div>
+          <Link href="/water" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>View all 135+ city reports →</Link>
         </div>
 
         {/* Bottom CTA */}

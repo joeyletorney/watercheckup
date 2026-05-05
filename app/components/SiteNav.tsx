@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 const ITEMS: [string, string][] = [
   ['/', 'Check my water'],
   ['/contaminants', "What's in water"],
+  ['/worst', 'Rankings'],
   ['/quiz', 'Filter guide'],
   ['/well', 'Well water'],
   ['/methodology', 'Data sources'],
@@ -18,7 +19,7 @@ const ITEMS: [string, string][] = [
 const MOBILE_PRIMARY: [string, string][] = [
   ['/', 'Check my water'],
   ['/contaminants', "What's in water"],
-  ['/methodology', 'Data sources'],
+  ['/worst', 'Rankings'],
   ['/quiz', 'Filter guide'],
 ];
 
@@ -46,7 +47,8 @@ function isActive(pathname: string, href: string) {
     (href === '/pfas' && pathname.startsWith('/pfas')) ||
     (href === '/lead' && pathname.startsWith('/lead')) ||
     (href === '/quiz' && pathname.startsWith('/quiz')) ||
-    (href === '/methodology' && pathname.startsWith('/methodology'))
+    (href === '/methodology' && pathname.startsWith('/methodology')) ||
+    (href === '/worst' && pathname.startsWith('/worst'))
   );
 }
 

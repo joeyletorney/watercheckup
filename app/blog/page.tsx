@@ -241,6 +241,30 @@ const POST_BY_SLUG: Record<
     badge: 'Safety',
     badgeColor: '#ef4444',
   },
+  'tap-water-safety-during-pregnancy': {
+    title: 'Is Tap Water Safe During Pregnancy? What OBs and the EPA Say',
+    excerpt: 'Pregnant women face higher risk from lead, nitrates, PFAS, and disinfection byproducts in tap water. Here is what to filter and what to skip.',
+    date: 'April 18, 2026',
+    readTime: '8 min read',
+    badge: 'Pregnancy',
+    badgeColor: '#8b5cf6',
+  },
+  'best-ro-system-for-pfas-removal': {
+    title: 'Best Reverse Osmosis Systems for PFAS Removal in 2025',
+    excerpt: 'Not all RO systems are equal for PFAS. Here are the certified options that actually work, at every budget.',
+    date: 'April 19, 2026',
+    readTime: '9 min read',
+    badge: 'Filters',
+    badgeColor: '#0891b2',
+  },
+  'moving-to-new-city-water-quality-check': {
+    title: 'Moving to a New City? Check the Water Quality First',
+    excerpt: 'Water quality varies dramatically by city and ZIP code. Here is how to check before you sign a lease or close on a home.',
+    date: 'April 20, 2026',
+    readTime: '6 min read',
+    badge: 'Moving',
+    badgeColor: '#f59e0b',
+  },
 };
 
 /**
@@ -250,9 +274,12 @@ const POST_BY_SLUG: Record<
 const BLOG_INDEX_ORDER = [
   'is-pfas-in-my-tap-water',
   'what-water-filter-removes-pfas',
+  'best-ro-system-for-pfas-removal',
   'best-water-filter-for-lead-removal',
   'lead-in-tap-water-signs-and-symptoms',
+  'tap-water-safety-during-pregnancy',
   'is-tap-water-safe-to-drink',
+  'moving-to-new-city-water-quality-check',
   'what-does-epa-water-violation-mean',
   'boil-water-advisory-what-to-do-and-how-long',
   'how-to-read-your-consumer-confidence-report',
@@ -282,40 +309,126 @@ const POSTS = BLOG_INDEX_ORDER.map(slug => {
   return { slug, ...meta };
 });
 
+// Category groupings for the blog index
+const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
+  {
+    label: 'PFAS & Forever Chemicals',
+    icon: '☣️',
+    slugs: ['is-pfas-in-my-tap-water', 'what-water-filter-removes-pfas', 'best-ro-system-for-pfas-removal'],
+  },
+  {
+    label: 'Lead & Heavy Metals',
+    icon: '⚠️',
+    slugs: ['best-water-filter-for-lead-removal', 'lead-in-tap-water-signs-and-symptoms'],
+  },
+  {
+    label: 'Safety & Health',
+    icon: '🏥',
+    slugs: ['tap-water-safety-during-pregnancy', 'is-tap-water-safe-to-drink', 'boil-water-advisory-what-to-do-and-how-long', 'fluoride-in-tap-water-safe-or-not', 'microplastics-in-drinking-water-what-we-know'],
+  },
+  {
+    label: 'Filter Guides',
+    icon: '🔬',
+    slugs: ['best-water-filter-pitcher-2025', 'reverse-osmosis-pros-and-cons', 'refrigerator-water-filters-what-they-actually-remove', 'whole-house-water-filter-vs-under-sink-which-to-choose'],
+  },
+  {
+    label: 'Testing & EPA Data',
+    icon: '📋',
+    slugs: ['how-to-test-your-tap-water-mail-in-labs-explained', 'how-to-read-your-consumer-confidence-report', 'what-does-epa-water-violation-mean', 'moving-to-new-city-water-quality-check'],
+  },
+  {
+    label: 'Contaminants Explained',
+    icon: '🧪',
+    slugs: ['chromium-6-in-drinking-water-should-you-worry', 'disinfection-byproducts-tthm-haa5-explained', 'chloramine-vs-chlorine-in-tap-water', 'bottled-water-vs-tap-water-cost-safety-and-pfas', 'why-does-tap-water-taste-bad', 'hard-water-explained-scale-softeners-and-your-taps', 'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity'],
+  },
+  {
+    label: 'Well Water',
+    icon: '🌿',
+    slugs: ['private-well-water-testing-101', 'arsenic-in-well-water-epa-limit-and-treatment', 'nitrate-in-well-water-infants-and-pregnancy', 'radon-in-drinking-water'],
+  },
+];
+
+const FEATURED_SLUGS = ['is-pfas-in-my-tap-water', 'best-water-filter-for-lead-removal', 'tap-water-safety-during-pregnancy'];
+
 export default function BlogIndex() {
+  const featuredPosts = FEATURED_SLUGS.map(s => POSTS.find(p => p.slug === s)!).filter(Boolean);
+  const postBySlug = Object.fromEntries(POSTS.map(p => [p.slug, p]));
+
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta />
 
-      <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 48 }}>
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 24px 80px' }}>
+        {/* Header */}
+        <div style={{ marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
           <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px' }}>The WaterCheckup Blog</h1>
-          <p style={{ fontSize: 16, color: '#94a3b8', margin: 0, lineHeight: 1.7 }}>
-            Expert guides on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases and tells you exactly which filter removes what's in your water.
+          <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7, maxWidth: 600 }}>
+            Expert guides on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases.
           </p>
+          {/* Category pills */}
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {CATEGORIES.map(cat => (
+              <a key={cat.label} href={`#cat-${cat.label.replace(/\s+/g,'_')}`}
+                style={{ fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 6, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.25)', color: '#38bdf8', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                {cat.icon} {cat.label}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          {POSTS.map(post => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
-              <div style={{ padding: '28px 30px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, cursor: 'pointer' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-                  <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
-                    {post.badge}
-                  </span>
-                  <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.date}</span>
-                  <span style={{ fontSize: 12, color: '#94a3b8' }}>·</span>
-                  <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.readTime}</span>
+        {/* Featured posts */}
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FEATURED</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+            {featuredPosts.map(post => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+                <div style={{ height: '100%', padding: '22px 22px 20px', background: 'linear-gradient(165deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderTop: `3px solid ${post.badgeColor}`, borderRadius: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.5, padding: '2px 8px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>{post.badge}</span>
+                    <span style={{ fontSize: 11, color: '#64748b' }}>{post.readTime}</span>
+                  </div>
+                  <h2 style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', margin: 0, lineHeight: 1.3, flex: 1 }}>{post.title}</h2>
+                  <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{post.excerpt}</p>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: post.badgeColor }}>Read more →</span>
                 </div>
-                <h2 style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px', lineHeight: 1.3 }}>{post.title}</h2>
-                <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.7 }}>{post.excerpt}</p>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#0891b2' }}>Read more →</span>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
 
+        {/* Category sections */}
+        {CATEGORIES.map(cat => {
+          const catPosts = cat.slugs.map(s => postBySlug[s]).filter(Boolean);
+          if (!catPosts.length) return null;
+          return (
+            <div key={cat.label} id={`cat-${cat.label.replace(/\s+/g,'_')}`} style={{ marginBottom: 44 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid #0f2336' }}>
+                <span style={{ fontSize: 18 }}>{cat.icon}</span>
+                <span style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', letterSpacing: 0.3 }}>{cat.label}</span>
+                <span style={{ fontSize: 11, color: '#334155', marginLeft: 4 }}>{catPosts.length} articles</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {catPosts.map(post => (
+                  <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 16px', background: 'rgba(7,24,40,0.7)', border: '1px solid #0f2336', borderRadius: 10, flexWrap: 'wrap' }}>
+                      <div style={{ flex: 1, minWidth: 200 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3, flexWrap: 'wrap' }}>
+                          <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, padding: '2px 7px', borderRadius: 3, background: post.badgeColor + '18', color: post.badgeColor, border: `1px solid ${post.badgeColor}33` }}>{post.badge}</span>
+                          <span style={{ fontSize: 11, color: '#475569' }}>{post.readTime}</span>
+                        </div>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.3 }}>{post.title}</div>
+                      </div>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: '#0891b2', flexShrink: 0 }}>Read →</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+
+        {/* CTA */}
         <div style={{ marginTop: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific water</div>
           <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>

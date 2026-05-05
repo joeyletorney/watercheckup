@@ -213,10 +213,12 @@ export default function ContaminantsPage() {
                     <span style={{ fontSize: 12, color: '#94a3b8' }}>{c.symbol}</span>
                     <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: sev.bg, color: sev.text, border: `1px solid ${sev.border}` }}>{sev.label}</span>
                   </div>
-                  <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 4 }}>
                     <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.category}</span>
                     <span style={{ fontSize: 13, color: '#334155' }}>EPA Limit: <strong style={{ color: '#94a3b8' }}>{c.epaLimit}</strong></span>
                   </div>
+                  {/* Always-visible excerpt — indexed by search engines */}
+                  <p style={{ margin: 0, fontSize: 13, color: '#64748b', lineHeight: 1.5, maxWidth: 640 }}>{c.what.slice(0, 160)}{c.what.length > 160 ? '…' : ''}</p>
                 </div>
                 <span style={{ fontSize: 18, color: '#334155', flexShrink: 0, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▾</span>
               </button>
