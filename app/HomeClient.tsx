@@ -2378,7 +2378,7 @@ export default function WaterCheckup() {
             </button>
           </div>
           <p style={{ margin: '12px 0 0', fontSize: 12, color: '#64748b', letterSpacing: 0.2 }}>
-            Trusted by 100,000+ households
+            Updated with 2023–2025 PFAS monitoring data
           </p>
           <p style={{ margin: '8px 0 0' }}>
             <button type="button" onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: 12, padding: 0 }}>
@@ -4441,6 +4441,8 @@ export default function WaterCheckup() {
               { slug: 'best-ro-system-for-pfas-removal', title: 'Best RO Systems for PFAS 2025', desc: 'The certified filters that actually work, at every budget.' },
               { slug: 'tap-water-safety-during-pregnancy', title: 'Tap Water Safety During Pregnancy', desc: 'Lead, nitrates, PFAS -- what to filter and why.' },
               { slug: 'moving-to-new-city-water-quality-check', title: 'Moving? Check the Water First', desc: 'Water quality varies dramatically by city. Here\'s what to look for.' },
+              { slug: 'bottled-water-vs-tap-water-cost-safety-and-pfas', title: 'Bottled Water vs. Tap Water', desc: 'Bottled water is not automatically purer. Here\'s the cost, safety, and PFAS reality.' },
+              { slug: 'lead-in-tap-water-signs-and-symptoms', title: 'Lead in Tap Water: Signs & Risk', desc: 'Lead has no taste or smell. Here\'s how to know if your home is at risk.' },
             ].map(({ slug, title, desc }) => (
               <a key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '16px 18px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6, lineHeight: 1.4 }}>{title}</div>
