@@ -2,15 +2,16 @@ import type { Metadata } from 'next';
 import HomeClient from './HomeClient';
 
 export const metadata: Metadata = {
-  title: 'WaterCheckup — Is Your Tap Water Safe?',
+  title: "WaterCheckup — See What's Really In Your Tap Water",
   description:
-    'PFAS found in 45% of US tap water. Check your city\'s real EPA violation history, PFAS levels, and lead risk — free in seconds, no account needed. 135+ cities covered.',
+    'Analyze local water quality by address, spot contaminants, and get personalized filter picks backed by EPA SDWIS & UCMR data — free, no account.',
   alternates: {
     canonical: 'https://watercheckup.com',
   },
   openGraph: {
-    title: 'WaterCheckup — Is Your Tap Water Actually Safe?',
-    description: 'PFAS found in 45% of US tap water. Check your exact EPA report — violations, PFAS levels, lead risk — free, no account.',
+    title: "WaterCheckup — See What's Really In Your Tap Water",
+    description:
+      'Know what your family is drinking. Instant analysis from federal water data, contaminant insights, and filter recommendations for your area.',
   },
 };
 
