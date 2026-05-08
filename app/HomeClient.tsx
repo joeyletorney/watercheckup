@@ -405,6 +405,54 @@ const HERO_SOLUTION_SECTION_TITLE: Record<HeroSolutionKey, string> = {
 // ─────────────────────────────────────────────────────────────────────────────
 // SCORE DIAL — animated arc + count-up number
 // ─────────────────────────────────────────────────────────────────────────────
+function HomeEmailCapture() {
+  const [email, setEmail] = useState('');
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  async function submit() {
+    if (!email.includes('@')) return;
+    setSending(true);
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'homepage-bottom' }),
+      });
+      const data = await res.json();
+      if (data.success) setSent(true);
+    } finally { setSending(false); }
+  }
+
+  return (
+    <div style={{ marginTop: 56, padding: '32px 28px', background: 'linear-gradient(135deg,rgba(8,145,178,0.1),rgba(4,14,32,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 16, textAlign: 'center' }}>
+      <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>STAY INFORMED</div>
+      <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f5f9', marginBottom: 8 }}>Get weekly water quality alerts</div>
+      <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, margin: '0 auto 24px', maxWidth: 480 }}>
+        We monitor EPA databases weekly for new PFAS detections, boil water advisories, and violations. One email, no spam, unsubscribe anytime.
+      </p>
+      {sent ? (
+        <div style={{ display: 'inline-block', padding: '12px 24px', background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 10, color: '#4ade80', fontWeight: 700, fontSize: 14 }}>
+          ✓ You&apos;re on the list — we&apos;ll send weekly water updates.
+        </div>
+      ) : (
+        <div style={{ display: 'flex', gap: 8, maxWidth: 420, margin: '0 auto', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <input
+            type="email" value={email} onChange={e => setEmail(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && submit()}
+            placeholder="your@email.com"
+            style={{ flex: '1 1 200px', minWidth: 0, padding: '11px 14px', background: 'rgba(4,22,48,0.9)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 9, color: '#f1f5f9', fontSize: 14, outline: 'none' }}
+          />
+          <button onClick={submit} disabled={sending || !email.includes('@')}
+            style={{ padding: '11px 22px', background: email.includes('@') ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(14,34,51,0.8)', border: 'none', borderRadius: 9, color: email.includes('@') ? '#fff' : '#475569', fontSize: 14, fontWeight: 800, cursor: email.includes('@') ? 'pointer' : 'not-allowed', flexShrink: 0 }}>
+            {sending ? '…' : 'Subscribe Free'}
+          </button>
+        </div>
+      )}
+      <p style={{ fontSize: 11, color: '#334155', marginTop: 12 }}>No spam. Unsubscribe anytime.</p>
+    </div>
+  );
+}
+
 function ScoreDial({ score, grade }: { score: number; grade: string }) {
   const safe = Number.isFinite(Number(score)) ? Math.max(0, Math.min(100, Number(score))) : 0;
   const gradeStr = grade != null && grade !== '' ? String(grade) : '—';
@@ -1330,9 +1378,9 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
 // ─────────────────────────────────────────────────────────────────────────────
 function ResourcesTab({ data }: { data: any }) {
   const stateDb = data?.stateCode ? STATE_DB[data.stateCode] : null;
-  const ccrUrl = data?.pwsid
-    ? `https://www.epa.gov/ccr/ccr-information-consumers?PWSID=${data.pwsid}`
-    : 'https://www.epa.gov/ccr';
+  const sdwisPwsUrl = data?.pwsid
+    ? `https://sdwis.epa.gov/ords/sfdw_pub/f?p=SDWIS_FED_REPORTS_PUBLIC:PWS_SEARCH::::::PWSID:${encodeURIComponent(data.pwsid)}`
+    : 'https://sdwis.epa.gov/ords/sfdw_pub/f?p=SDWIS_FED_REPORTS_PUBLIC';
 
   const resources: {
     cat: string;
@@ -1342,7 +1390,8 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'EPA SDWIS — Violation Search', url: `https://ofmpub.epa.gov/apex/sfdw/f?p=108:103::::::`, desc: 'Search violations for any water system nationwide' },
       { name: 'EPA Safe Drinking Water Search', url: `https://www.epa.gov/sdwa/safe-drinking-water-hotline`, desc: 'Official EPA drinking water information' },
       { name: 'EPA UCMR5 PFAS Data', url: 'https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule', desc: '2023-2025 PFAS monitoring — 6,000+ water systems' },
-      { name: `Your CCR Report (PWSID: ${data?.pwsid || ' — '})`, url: ccrUrl, desc: 'Annual Consumer Confidence Report from your utility' },
+      { name: `EPA SDWIS — Your system (PWSID: ${data?.pwsid || ' — '})`, url: sdwisPwsUrl, desc: 'Federal violation and facility record for this water system ID' },
+      { name: 'Find Consumer Confidence Report (annual PDF)', url: 'https://sdwis.epa.gov/fylccr', desc: 'EPA search tool for utility-submitted annual water quality reports' },
       { name: 'EPA ECHO Enforcement', url: `https://echo.epa.gov/`, desc: 'Enforcement actions and inspection history' },
       { name: 'EPA Certified Lab Finder', url: 'https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water', desc: 'Find a state-certified lab in your state' },
     ]},
@@ -1720,6 +1769,9 @@ const CITY_ZIP_MAP: Record<string, { zip: string; city: string; state: string }>
   'honolulu': { zip: '96801', city: 'Honolulu', state: 'HI' },
   'baton rouge': { zip: '70801', city: 'Baton Rouge', state: 'LA' },
   'richmond': { zip: '23219', city: 'Richmond', state: 'VA' },
+  'parkersburg': { zip: '26101', city: 'Parkersburg', state: 'WV' },
+  'portsmouth nh': { zip: '03801', city: 'Portsmouth', state: 'NH' },
+  'portland me': { zip: '04101', city: 'Portland', state: 'ME' },
 };
 
 const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
@@ -1756,10 +1808,13 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'new-orleans', name: 'New Orleans, LA' },
   { slug: 'new-york', name: 'New York, NY' },
   { slug: 'orlando', name: 'Orlando, FL' },
+  { slug: 'parkersburg', name: 'Parkersburg, WV' },
   { slug: 'philadelphia', name: 'Philadelphia, PA' },
   { slug: 'phoenix', name: 'Phoenix, AZ' },
   { slug: 'pittsburgh', name: 'Pittsburgh, PA' },
   { slug: 'portland', name: 'Portland, OR' },
+  { slug: 'portland-me', name: 'Portland, ME' },
+  { slug: 'portsmouth-nh', name: 'Portsmouth, NH' },
   { slug: 'raleigh', name: 'Raleigh, NC' },
   { slug: 'sacramento', name: 'Sacramento, CA' },
   { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
@@ -2074,7 +2129,7 @@ export default function WaterCheckup() {
   const [cityBrowseFilter, setCityBrowseFilter] = useState('');
   const [showAllContaminants, setShowAllContaminants] = useState(false);
   const [stickyVisible, setStickyVisible] = useState(false);
-  const [reportCount, setReportCount] = useState(0);
+  const [reportCount, setReportCount] = useState(1000);
   const heroRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const loadingPanelRef = useRef<HTMLDivElement>(null);
@@ -2391,7 +2446,7 @@ export default function WaterCheckup() {
       <div ref={heroRef} style={{ maxWidth: 820, margin: '52px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
 
         <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 20px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
-          Is your tap water<br />actually safe?
+          Is Your Tap Water<br />Actually Safe?
         </h1>
 
         <p style={{ color: '#94a3b8', fontSize: 15, margin: '0 auto 16px', maxWidth: 560, lineHeight: 1.55 }}>
@@ -2401,7 +2456,7 @@ export default function WaterCheckup() {
         {/* Live report counter */}
         <div style={{ margin: '0 auto 24px', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.3)' }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22d3ee', display: 'inline-block', boxShadow: '0 0 6px #22d3ee', animation: 'wcBlink 2s ease-in-out infinite' }} />
-          <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 600 }}>
+          <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600 }}>
             <strong style={{ color: '#22d3ee', fontWeight: 800 }}>{reportCount >= 10000 ? '10,000+' : reportCount.toLocaleString()}</strong> water reports checked
           </span>
         </div>
@@ -4507,6 +4562,9 @@ export default function WaterCheckup() {
             ))}
           </div>
         </div>
+
+        {/* ── EMAIL CAPTURE — homepage standalone ── */}
+        <HomeEmailCapture />
 
       </div>
 

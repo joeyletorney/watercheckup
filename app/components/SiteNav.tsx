@@ -7,9 +7,10 @@ import { usePathname } from 'next/navigation';
 
 const ITEMS: [string, string][] = [
   ['/', 'Check my water'],
-  ['/contaminants', "What's in water"],
+  ['/contaminants', 'Contaminant Guide'],
   ['/worst', 'Rankings'],
   ['/quiz', 'Filter guide'],
+  ['/blog', 'Blog'],
   ['/well', 'Well water'],
   ['/methodology', 'Data sources'],
   ['/faq', 'FAQ'],
@@ -18,7 +19,7 @@ const ITEMS: [string, string][] = [
 /** Inline on small screens; rest live under “More”. */
 const MOBILE_PRIMARY: [string, string][] = [
   ['/', 'Check my water'],
-  ['/contaminants', "What's in water"],
+  ['/contaminants', 'Contaminant Guide'],
   ['/worst', 'Rankings'],
   ['/quiz', 'Filter guide'],
 ];

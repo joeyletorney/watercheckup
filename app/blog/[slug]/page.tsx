@@ -184,6 +184,18 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
+        {/* Filter quiz CTA */}
+        <div style={{ marginTop: 40, padding: '22px 24px', background: 'linear-gradient(135deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.35)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 1.5, marginBottom: 6 }}>NOT SURE WHICH FILTER IS RIGHT FOR YOU?</div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>Take the 3-question filter quiz</div>
+            <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.5 }}>Answer 3 questions about your water source, biggest concern, and home situation — we match you to the right certified filter.</div>
+          </div>
+          <Link href="/quiz" style={{ display: 'inline-block', padding: '12px 22px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+            Find My Filter →
+          </Link>
+        </div>
+
         {/* Check your city */}
         <div style={{ marginTop: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>CHECK YOUR CITY'S WATER</div>

@@ -5,11 +5,11 @@ import { SiteFooter } from '../components/SiteFooter';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'Cities with the Worst Lead in Tap Water (2025) | WaterCheckup',
-  description: 'The US cities with the highest lead risk in tap water — ranked by EPA data, lead service line counts, and violation history. Free reports for each city.',
+  title: 'Top 25 Cities with the Highest Lead in Tap Water (2025) | WaterCheckup',
+  description: 'The 25 US cities with the highest lead risk in tap water — ranked by EPA data, lead service line counts, and violation history. Free reports for each city.',
   alternates: { canonical: 'https://watercheckup.com/worst-lead' },
   openGraph: {
-    title: 'Cities with the Worst Lead in Tap Water — 2025 EPA Data',
+    title: 'Top 25 Cities with the Highest Lead in Tap Water — 2025 EPA Data',
     description: 'Lead has no safe level for children. These US cities have the highest documented lead risk in their tap water systems.',
   },
 };
@@ -44,7 +44,7 @@ export default function WorstLeadPage() {
             LEAD IN TAP WATER — 2025 EPA DATA
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
-            US cities with the worst lead risk in tap water
+            Top 25 cities with the highest lead in tap water
           </h1>
           <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
             The EPA has no safe level for lead exposure in children. Lead in tap water comes almost exclusively from pipes inside homes and buildings — not the treatment plant. Cities with aging infrastructure, pre-1986 homes, and unreplaced lead service lines carry the highest risk.
@@ -74,36 +74,62 @@ export default function WorstLeadPage() {
           </p>
         </div>
 
-        {/* City rankings */}
+        {/* City rankings — top 25 featured, rest compact */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>
-            RANKED BY LEAD RISK — {LEAD_CITIES.length} CITIES
+            TOP 25 — HIGHEST LEAD RISK CITIES
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {LEAD_CITIES.map(({ slug, name, state, issues, urgency, population }, i) => {
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+            {LEAD_CITIES.slice(0, 25).map(({ slug, name, state, issues, urgency, population }, i) => {
               const color = URGENCY_COLOR[urgency];
-              const leadIssue = issues.find(i => i.toLowerCase().includes('lead')) || issues[0];
+              const leadIssue = issues.find(iss => iss.toLowerCase().includes('lead')) || issues[0];
+              const isTop5 = i < 5;
               return (
                 <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '16px 18px', background: '#071828', border: `1px solid ${color}30`, borderRadius: 12, transition: 'border-color 0.2s' }}>
-                    <div style={{ fontSize: 20, fontWeight: 900, color: '#1a3a5c', minWidth: 32, textAlign: 'center' }}>
-                      {i + 1}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: isTop5 ? '18px 20px' : '14px 16px', background: '#071828', border: `1px solid ${isTop5 ? color + '50' : color + '25'}`, borderRadius: 12 }}>
+                    <div style={{ fontSize: isTop5 ? 22 : 17, fontWeight: 900, color: isTop5 ? color : '#334155', minWidth: 32, textAlign: 'center' }}>
+                      #{i + 1}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
-                        <span style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9' }}>{name}, {state}</span>
+                        <span style={{ fontSize: isTop5 ? 16 : 14, fontWeight: 800, color: '#f1f5f9' }}>{name}, {state}</span>
                         <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 5, background: `${color}20`, color, letterSpacing: 0.5 }}>
                           {URGENCY_LABEL[urgency]}
                         </span>
                       </div>
-                      <div style={{ fontSize: 13, color: '#64748b' }}>{leadIssue} · {population} residents</div>
+                      <div style={{ fontSize: 12, color: '#64748b' }}>{leadIssue} · {population} residents</div>
                     </div>
-                    <div style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, flexShrink: 0 }}>View report →</div>
+                    <div style={{ fontSize: 12, color: '#0891b2', fontWeight: 700, flexShrink: 0 }}>View report →</div>
                   </div>
                 </Link>
               );
             })}
           </div>
+
+          {/* Remaining cities — compact table */}
+          {LEAD_CITIES.length > 25 && (
+            <>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 12 }}>
+                ALL {LEAD_CITIES.length} CITIES WITH DOCUMENTED LEAD RISK
+              </div>
+              <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, overflow: 'hidden' }}>
+                {LEAD_CITIES.slice(25).map(({ slug, name, state, urgency }, i) => {
+                  const color = URGENCY_COLOR[urgency];
+                  return (
+                    <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '11px 16px', borderBottom: '1px solid #0f2336' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                          <span style={{ fontSize: 12, color: '#334155', minWidth: 24 }}>#{i + 26}</span>
+                          <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>{name}, {state}</span>
+                        </div>
+                        <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 4, background: `${color}15`, color }}>{URGENCY_LABEL[urgency]}</span>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
 
         {/* What to do */}

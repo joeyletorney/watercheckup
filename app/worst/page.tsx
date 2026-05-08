@@ -18,37 +18,37 @@ export const metadata: Metadata = {
 const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
   {
     href: '/worst-pfas',
-    title: '10 worst PFAS systems (UCMR5)',
-    tag: 'UCMR5 · ppt vs EPA MCL',
+    title: 'Top 10 cities with the highest PFAS levels',
+    tag: 'EPA UCMR5 · regulated violations',
     desc: 'Water systems with the highest regulated PFAS above federal limits — compound-by-compound ppt and how many times over the MCL.',
   },
   {
     href: '/worst-thm',
-    title: 'Highest THM / DBP risk cities',
-    tag: 'City profiles · editorial',
+    title: 'Top 10 cities with the highest chlorine byproduct risk',
+    tag: 'Chlorine · chloramine · DBPs',
     desc: 'Cities where our profiles explicitly flag trihalomethanes, haloacetic acids, or disinfection byproducts — sorted by risk tier.',
   },
   {
     href: '/worst-water',
-    title: 'Broad PFAS exposure ranking',
-    tag: 'Top 50 · all PFAS detections',
+    title: 'Top 50 cities with the most PFAS contamination',
+    tag: 'EPA UCMR5 · all detections',
     desc: 'Largest aggregate PFAS readings across utilities, including compounds without an EPA MCL yet.',
   },
   {
     href: '/worst-lead',
-    title: 'Worst lead risk cities',
-    tag: 'Lead · service lines',
+    title: 'Top 25 cities with the highest lead in tap water',
+    tag: 'Lead service lines · EPA data',
     desc: 'Cities with the highest documented lead-in-water risk from EPA context and our city-level flags.',
   },
   {
     href: '/worst-violations',
-    title: 'Most EPA violations',
-    tag: 'SDWIS compliance',
-    desc: 'Utilities and regions with the heaviest Safe Drinking Water Act violation histories we surface in rankings.',
+    title: 'Top 25 cities with the most EPA water violations',
+    tag: 'SDWIS compliance records',
+    desc: 'The 25 US cities with the worst EPA Safe Drinking Water Act violation records.',
   },
   {
     href: '/worst-states',
-    title: 'Worst states for water quality',
+    title: 'Top 25 worst states for tap water quality',
     tag: 'State comparison',
     desc: 'State-level rollup of contamination pressure, violations, and infrastructure stress.',
   },
@@ -56,7 +56,7 @@ const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
 
 export default function WorstHubPage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>

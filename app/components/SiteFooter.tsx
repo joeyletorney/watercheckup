@@ -31,13 +31,15 @@ export function SiteFooter() {
             gap: 6,
           }}
         />
-        <p style={{ margin: 0, fontSize: 13, color: '#64748b', textAlign: 'center', lineHeight: 1.7 }}>
+        <p style={{ margin: 0, fontSize: 13, color: '#94a3b8', textAlign: 'center', lineHeight: 1.7 }}>
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
-          <a href="/methodology" style={{ color: '#475569', textDecoration: 'none' }}>Methodology</a>
+          <a href="/methodology" style={{ color: '#94a3b8', textDecoration: 'none' }}>Methodology</a>
           {' · '}
-          <a href="/sitemap.xml" style={{ color: '#475569', textDecoration: 'none' }}>Sitemap</a>
+          <a href="/sitemap.xml" style={{ color: '#94a3b8', textDecoration: 'none' }}>Sitemap</a>
           {' · '}
-          <a href="/blog" style={{ color: '#475569', textDecoration: 'none' }}>Blog</a>
+          <a href="/blog" style={{ color: '#94a3b8', textDecoration: 'none' }}>Blog</a>
+          {' · '}
+          <a href="/press" style={{ color: '#94a3b8', textDecoration: 'none' }}>Press</a>
         </p>
         <p style={{ margin: 0, fontSize: 12, color: '#475569', textAlign: 'center', lineHeight: 1.7, maxWidth: 680 }}>
           Water data is sourced from public EPA databases and may reflect reporting periods from the past 1–3 years due to federal reporting cycles. Always confirm critical results with a certified lab or your local utility.

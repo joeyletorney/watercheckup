@@ -222,4 +222,128 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
       ),
     ),
   },
+
+  'what-is-ppm-ppb-ppt-water-quality': {
+    title: 'PPM, PPB, PPT: What Those Numbers on Your Water Report Actually Mean',
+    excerpt: 'Your water report says lead is 12 ppb or PFAS is 6 ppt. What does that actually mean? Here\'s a plain-English guide with real-world examples anyone can understand.',
+    date: '2026-05-06',
+    dateDisplay: 'May 6, 2026',
+    readTime: '6 min read',
+    badge: 'Education',
+    badgeColor: '#0891b2',
+    topPicks: TOP_3_RO,
+    content: React.createElement(React.Fragment, null,
+      React.createElement('p', { style: pStyle },
+        'You open your water quality report and see numbers like "6.2 ppt PFOA" or "12 ppb lead." You know those sound bad, but what do they actually mean? Is 6 ppt a little? A lot? How do you even picture something that small?'
+      ),
+      React.createElement('p', { style: pStyle },
+        'This guide breaks it down in plain English — with real-world examples that make these microscopic measurements click. No chemistry degree required.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'The three units: PPM, PPB, and PPT'),
+      React.createElement('p', { style: pStyle },
+        'All three measure concentration — how much of something is dissolved in your water. Think of it like drops of food coloring in a swimming pool. The units just tell you how many drops, and how big the pool is.'
+      ),
+
+      React.createElement('div', { style: { margin: '28px 0', display: 'grid', gap: 12 } },
+        ...[
+          { unit: 'PPM', full: 'Parts Per Million', pool: '1 drop in a 13-gallon aquarium', color: '#0891b2', context: 'Used for common minerals like calcium, magnesium, and chlorine. Tap water hardness is often 100–400 ppm. Your morning coffee is about 500 ppm dissolved solids. 1 million drops of water = 13 gallons, so 1 ppm = 1 drop per 13 gallons.' },
+          { unit: 'PPB', full: 'Parts Per Billion', pool: '1 drop in a 13,000-gallon backyard pool', color: '#f59e0b', context: 'Used for lead, arsenic, and nitrates. 1 billion drops = 13,000 gallons — roughly a standard backyard swimming pool. The EPA lead action level is 15 ppb, meaning 15 drops spread across 15 backyard pools.' },
+          { unit: 'PPT', full: 'Parts Per Trillion', pool: '1 drop in 5 Olympic swimming pools', color: '#ef4444', context: 'Used for PFAS "forever chemicals." 1 trillion drops = 13 million gallons — about 20 Olympic pools. The EPA limit for PFOA and PFOS is 4 ppt, meaning just 4 drops dissolved across all 20 of those Olympic pools is already at the legal limit.' },
+        ].map(({ unit, full, pool, color, context }) =>
+          React.createElement('div', { key: unit, style: { padding: '18px 20px', background: '#0d2240', border: `1px solid ${color}40`, borderLeft: `4px solid ${color}`, borderRadius: 10 } },
+            React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 } },
+              React.createElement('span', { style: { fontSize: 20, fontWeight: 900, color, minWidth: 48 } }, unit),
+              React.createElement('span', { style: { fontSize: 13, color: '#64748b' } }, full),
+            ),
+            React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 } }, `📍 ${pool}`),
+            React.createElement('p', { style: { ...pStyle, margin: 0, fontSize: 14 } }, context),
+          )
+        )
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Real examples that make it click'),
+
+      React.createElement('h3', { style: h3Style }, '🚰 Lead: 15 ppb — the EPA action level'),
+      React.createElement('p', { style: pStyle },
+        'The EPA requires utilities to take action if lead in tap water exceeds 15 ppb. Here\'s the accurate way to picture it:'
+      ),
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: { color: '#e2e8f0' } }, '15 ppb = 15 drops spread across 15 backyard swimming pools. '),
+        'One drop per pool, fifteen times over. That\'s it. And the EPA says even that is too much for children — because there is no safe level of lead exposure. The CDC says any detectable lead in a child\'s blood can cause irreversible cognitive harm.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'Some cities have tested far above 15 ppb. Flint, Michigan peaked at over 100 ppb during its crisis — that\'s 100 drops across 100 backyard pools. Still sounds abstract, but the damage it caused to thousands of children was anything but.'
+      ),
+
+      React.createElement('h3', { style: h3Style }, '☣️ PFAS: 4 ppt — the EPA limit for PFOA and PFOS'),
+      React.createElement('p', { style: pStyle },
+        'The EPA\'s 2024 limit for PFOA and PFOS is 4 parts per trillion. Here\'s the accurate picture:'
+      ),
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: { color: '#e2e8f0' } }, '4 ppt = 4 drops spread across 20 Olympic swimming pools. '),
+        'Just 4 drops dissolved into 13 million gallons of water — and that\'s already at the legal limit. PFAS are dangerous at these near-undetectable concentrations because they accumulate in your body over a lifetime and never break down.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'To put contamination numbers in perspective: Parkersburg, West Virginia tested at 179 ppt PFOA — 44 times the EPA limit. That\'s like 44 drops per Olympic pool instead of the allowed fraction of a drop. The Cape Fear system in North Carolina hit 490 ppt PFOS — 122 times the limit. These are real communities with real people drinking this water every day.'
+      ),
+
+      React.createElement('h3', { style: h3Style }, '🥤 Nitrates: 10 ppm — the EPA limit'),
+      React.createElement('p', { style: pStyle },
+        'Nitrates from agricultural fertilizer runoff are regulated at 10 ppm — a much larger unit because nitrates are less potent per molecule. At 10 ppm, you\'re talking about 10 drops in a fish tank. Still small, but the "pool" is much smaller than for ppb or ppt measurements — which is why 10 ppm of nitrates is dangerous while 10 ppm of calcium (common in hard water) is completely harmless.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Why such tiny amounts matter'),
+      React.createElement('p', { style: pStyle },
+        'The reason these trace levels matter comes down to two things: ',
+        React.createElement('strong', { style: strongStyle }, 'bioaccumulation'),
+        ' and ',
+        React.createElement('strong', { style: strongStyle }, 'lifetime exposure'),
+        '.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'Your body doesn\'t flush lead or PFAS like it does water. Lead binds to bone. PFAS bind to proteins in your blood and accumulate in organs. Every glass you drink adds to the total. A child who drinks water with 15 ppb lead every day for 10 years has been accumulating lead in their developing brain for a decade. The individual daily dose sounds harmless — the lifetime accumulation is not.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'This is also why scientists often argue for limits far below what\'s legally allowed. The EPA sets MCLs based on a combination of health science and what\'s technically feasible for utilities to achieve. The Environmental Working Group\'s health guideline for PFOA is 0.1 ppt — 40 times stricter than the EPA\'s limit of 4 ppt. Both are based on health research. The difference is what regulators believe utilities can practically achieve.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'How to read your own water report'),
+      React.createElement('p', { style: pStyle },
+        'When you look at a water quality report — whether from your utility\'s Consumer Confidence Report or from WaterCheckup — here\'s what to focus on:'
+      ),
+      React.createElement('div', { style: { margin: '16px 0 28px', display: 'flex', flexDirection: 'column' as const, gap: 10 } },
+        ...[
+          { label: 'Check the unit', text: 'Is the number in ppm, ppb, or ppt? A 6 ppt reading and a 6 ppm reading are a million times different. Always confirm the unit before reacting.' },
+          { label: 'Compare to the limit', text: 'Is the detected level above or below the EPA MCL? Above means a legal violation. Below means it\'s within the legal limit — but not necessarily safe by independent health standards.' },
+          { label: 'Look for PFAS in ppt', text: 'PFAS are always measured in ppt because they\'re dangerous at such tiny concentrations. Anything above 4 ppt for PFOA or PFOS is above the 2024 EPA limit.' },
+          { label: 'Lead is always in ppb', text: 'The EPA action level is 15 ppb. But the CDC and AAP say no level of lead is safe for children. If you see any lead detected, a certified filter is worth it.' },
+        ].map(({ label, text }) =>
+          React.createElement('div', { key: label, style: { display: 'flex', gap: 14, padding: '14px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10 } },
+            React.createElement('div', { style: { width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 } }, '✓'),
+            React.createElement('div', null,
+              React.createElement('strong', { style: { ...strongStyle, display: 'block', marginBottom: 4 } }, label),
+              React.createElement('span', { style: { color: '#94a3b8', fontSize: 14, lineHeight: 1.7 } }, text),
+            )
+          )
+        )
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'What actually removes these contaminants'),
+      React.createElement('p', { style: pStyle },
+        'Understanding the units helps you understand why filters matter — and why not all filters are equal:'
+      ),
+      React.createElement('div', { style: warnStyle },
+        React.createElement('strong', { style: { color: '#fca5a5' } }, 'Standard pitcher filters (basic Brita, PUR) '),
+        'remove chlorine taste and some sediment. They do NOT reliably remove lead, PFAS, nitrates, or arsenic. If your water has any of these, a standard pitcher is not enough.',
+      ),
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: { color: '#e2e8f0' } }, 'Reverse osmosis (NSF 58 certified) '),
+        'removes 99%+ of PFAS, lead, nitrates, arsenic, and hundreds of other contaminants. It is the only technology proven to reduce PFAS to safe levels at the tap. Under-sink RO or countertop RO (for renters) are both effective options.',
+      ),
+      React.createElement('p', { style: pStyle },
+        'If your water report shows any PFAS above 4 ppt, lead above 5 ppb, or nitrates above 5 ppm — a certified reverse osmosis system is the right call. Use WaterCheckup to see your specific city\'s report, then take the 3-question filter quiz to find the right system for your home.'
+      ),
+    ),
+  },
 };

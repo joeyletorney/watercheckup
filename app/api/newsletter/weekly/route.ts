@@ -308,10 +308,9 @@ function weeksSinceEpoch(date: Date): number {
   return Math.floor((date.getTime() - epoch.getTime()) / (7 * 24 * 60 * 60 * 1000));
 }
 
-function getIssueForContact(signupAt: string | undefined): Issue {
-  const now = weeksSinceEpoch(new Date());
-  const signup = signupAt ? weeksSinceEpoch(new Date(signupAt)) : now;
-  const idx = Math.max(0, now - signup) % ISSUES.length;
+/** Everyone gets the same issue this week — rotates automatically each Monday. */
+function getCurrentIssue(): Issue {
+  const idx = weeksSinceEpoch(new Date()) % ISSUES.length;
   return ISSUES[idx];
 }
 
@@ -390,10 +389,11 @@ export async function GET(req: NextRequest) {
     }
 
     const senderEmail = process.env.BREVO_FROM_EMAIL?.trim() || 'hello@watercheckup.com';
+    // Compute once — everyone gets the same rotating issue this week
+    const issue = getCurrentIssue();
     let sent = 0;
     const failed: string[] = [];
     for (const contact of contacts) {
-      const issue = getIssueForContact(contact.signupAt);
       const html = buildWeeklyHtml(issue, contact.email);
       const r = await fetch(`${BREVO}/smtp/email`, {
         method: 'POST',

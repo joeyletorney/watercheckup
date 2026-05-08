@@ -19,9 +19,14 @@ const STATE_NAMES: Record<string, string> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://watercheckup.com'
   const now = new Date()
+  // Use a stable "last major update" date for static pages so Google
+  // doesn't see all 229 URLs with the same timestamp (which it ignores).
+  const dataRefresh   = new Date('2025-04-01T00:00:00.000Z'); // UCMR5 Q1 2025 data
+  const siteRefresh   = new Date('2025-03-01T00:00:00.000Z'); // general site content
 
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
+    { path: '/press',        priority: 0.75, changeFreq: 'monthly' as const },
     { path: '/faq',          priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/contaminants', priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/blog',         priority: 0.85, changeFreq: 'weekly' as const },
@@ -38,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${baseUrl}${p.path}`,
-    lastModified: now,
+    lastModified: dataRefresh,
     changeFrequency: p.changeFreq,
     priority: p.priority,
   }))
@@ -52,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
     url: `${baseUrl}/water/${slug}`,
-    lastModified: now,
+    lastModified: dataRefresh,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
@@ -65,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const slug = name.toLowerCase().replace(/\s+/g, '-')
     return {
       url: `${baseUrl}/water/state/${slug}`,
-      lastModified: now,
+      lastModified: siteRefresh,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     }

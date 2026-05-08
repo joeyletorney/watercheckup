@@ -5,30 +5,30 @@ import { SiteFooter } from '../components/SiteFooter';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'US Cities with the Most EPA Water Violations (2025) | WaterCheckup',
-  description: 'Cities ranked by EPA Safe Drinking Water Act violation history — open violations, enforcement actions, and contaminant records. Based on federal SDWIS data.',
+  title: 'Top 25 Cities with the Most EPA Water Violations (2025) | WaterCheckup',
+  description: 'The 25 US cities with the worst EPA Safe Drinking Water Act violation records — open violations, enforcement actions, and contaminant history. Based on federal SDWIS data.',
   alternates: { canonical: 'https://watercheckup.com/worst-violations' },
   openGraph: {
-    title: 'US Cities with the Most EPA Drinking Water Violations — 2025',
-    description: 'Which US cities have the worst EPA drinking water compliance records? Ranked by violation history from the federal SDWIS database.',
+    title: 'Top 25 Cities with the Most EPA Water Violations — 2025',
+    description: 'Which US cities have the worst EPA drinking water compliance records? The top 25, ranked by violation history from the federal SDWIS database.',
   },
 };
 
-// Sort by urgency then number of issues as a proxy for violation severity
-const VIOLATION_CITIES = Object.entries(CITIES)
+const TOP25_VIOLATIONS = Object.entries(CITIES)
   .map(([slug, c]) => ({ slug, ...c }))
   .sort((a, b) => {
     const urgOrder = { high: 0, medium: 1, low: 2 };
     if (urgOrder[a.urgency] !== urgOrder[b.urgency]) return urgOrder[a.urgency] - urgOrder[b.urgency];
     return b.issues.length - a.issues.length;
-  });
+  })
+  .slice(0, 25);
 
 const URGENCY_COLOR: Record<string, string> = { high: '#ef4444', medium: '#f59e0b', low: '#22d3ee' };
 const URGENCY_LABEL: Record<string, string> = { high: 'High concern', medium: 'Monitor', low: 'Generally OK' };
 
 export default function WorstViolationsPage() {
-  const highCount = VIOLATION_CITIES.filter(c => c.urgency === 'high').length;
-  const medCount = VIOLATION_CITIES.filter(c => c.urgency === 'medium').length;
+  const highCount = TOP25_VIOLATIONS.filter(c => c.urgency === 'high').length;
+  const medCount = TOP25_VIOLATIONS.filter(c => c.urgency === 'medium').length;
 
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
@@ -42,7 +42,7 @@ export default function WorstViolationsPage() {
             EPA VIOLATIONS — 2025 SDWIS DATA
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
-            US cities with the most EPA drinking water violations
+            Top 25 cities with the most EPA water violations
           </h1>
           <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
             The EPA's Safe Drinking Water Information System tracks violations at every public water system in the country. A violation means a utility failed to meet a federal standard — either by exceeding a maximum contaminant level, failing to monitor, or failing to notify residents. Here are the cities with the worst records.
@@ -75,18 +75,19 @@ export default function WorstViolationsPage() {
         {/* All cities ranked */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>
-            ALL {VIOLATION_CITIES.length} CITIES — RANKED BY VIOLATION CONCERN
+            TOP 25 CITIES — RANKED BY VIOLATION CONCERN
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {VIOLATION_CITIES.map(({ slug, name, state, issues, urgency, population }, i) => {
+            {TOP25_VIOLATIONS.map(({ slug, name, state, issues, urgency, population }, i) => {
               const color = URGENCY_COLOR[urgency];
+              const isTop5 = i < 5;
               return (
                 <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', background: '#071828', border: `1px solid ${i < 10 ? color + '40' : '#1a3a5c'}`, borderRadius: 10 }}>
-                    <div style={{ fontSize: 16, fontWeight: 900, color: '#1a3a5c', minWidth: 28, textAlign: 'center' }}>{i + 1}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isTop5 ? '16px 18px' : '12px 16px', background: '#071828', border: `1px solid ${isTop5 ? color + '40' : '#1a3a5c'}`, borderRadius: 10 }}>
+                    <div style={{ fontSize: isTop5 ? 20 : 15, fontWeight: 900, color: isTop5 ? color : '#334155', minWidth: 32, textAlign: 'center' }}>#{i + 1}</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 3 }}>
-                        <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>{name}, {state}</span>
+                        <span style={{ fontSize: isTop5 ? 15 : 13, fontWeight: 800, color: '#f1f5f9' }}>{name}, {state}</span>
                         <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 4, background: `${color}20`, color }}>{URGENCY_LABEL[urgency]}</span>
                       </div>
                       <div style={{ fontSize: 12, color: '#64748b' }}>{issues[0]} · {population} residents</div>

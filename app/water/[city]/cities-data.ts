@@ -1624,5 +1624,46 @@ export const CITIES: Record<string, {
     ],
     urgency: 'medium',
   },
+
+  // ── NEW: MISSING STATE COVERAGE ──────────────────────────────────────────
+
+  'parkersburg': {
+    name: 'Parkersburg', state: 'WV', zip: '26101', population: '29K',
+    system: 'Parkersburg Utility Board', pwsid: 'WV3305404',
+    issues: ['PFOA contamination from DuPont Washington Works', 'Ohio River industrial discharge', 'Forever chemical legacy'],
+    facts: [
+      "Parkersburg is the epicenter of the US PFOA crisis — DuPont's Washington Works plant discharged PFOA into the Ohio River for 50+ years.",
+      'EPA UCMR5 data shows PFOA at 179.5 ppt in Parkersburg water — 45× over the EPA limit of 4 ppt.',
+      'The DuPont PFOA contamination here inspired the film Dark Waters and the largest PFAS settlement in US history.',
+      'Reverse osmosis is the only certified technology that removes PFOA to safe levels at the tap.',
+    ],
+    urgency: 'high',
+  },
+
+  'portsmouth-nh': {
+    name: 'Portsmouth', state: 'NH', zip: '03801', population: '22K',
+    system: 'Portsmouth Water Division', pwsid: 'NH1181010',
+    issues: ['PFAS from Pease Air Force Base AFFF', 'Groundwater contamination', 'Military site legacy'],
+    facts: [
+      "Portsmouth was one of the first US communities to discover PFAS in its drinking water — traced to Pease Air Force Base firefighting foam use.",
+      'Pease AFB was closed in 1991 but AFFF residue remains in the groundwater used by the Coakley landfill and surrounding area.',
+      'EPA UCMR5 data shows PFOA above the 4 ppt federal limit in the Portsmouth water system.',
+      'The Pease contamination story is one of the most documented military PFAS cases in the country — RO is strongly recommended.',
+    ],
+    urgency: 'high',
+  },
+
+  'portland-me': {
+    name: 'Portland', state: 'ME', zip: '04101', population: '68K',
+    system: 'Portland Water District', pwsid: 'ME0090870',
+    issues: ['PFAS contamination above EPA limits', 'Sebago Lake source water', 'Industrial legacy runoff'],
+    facts: [
+      "Portland's water system draws from Sebago Lake — one of the cleanest large lakes in New England — but PFAS have been detected above EPA limits.",
+      'EPA UCMR5 data shows PFHxS at 13.2 ppt and PFOA at 4.1 ppt — both above the EPA MCL of 4 ppt and 10 ppt respectively.',
+      'Maine has some of the most aggressive PFAS regulations in the US, but contamination from military and industrial sites persists.',
+      'Reverse osmosis is the only certified technology proven to remove PFHxS and PFOA to safe levels at the tap.',
+    ],
+    urgency: 'high',
+  },
 };
 export const WATER_CITY_SLUGS: string[] = Object.keys(CITIES);

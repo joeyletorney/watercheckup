@@ -265,6 +265,14 @@ const POST_BY_SLUG: Record<
     badge: 'Moving',
     badgeColor: '#f59e0b',
   },
+  'what-is-ppm-ppb-ppt-water-quality': {
+    title: 'PPM, PPB, PPT: What Those Numbers on Your Water Report Actually Mean',
+    excerpt: "Your water report says lead is 12 ppb or PFAS is 6 ppt. Here's a plain-English guide with real-world examples — including why 15 ppb of lead is like 15 drops in a swimming pool.",
+    date: 'May 6, 2026',
+    readTime: '6 min read',
+    badge: 'Education',
+    badgeColor: '#0891b2',
+  },
 };
 
 /**
@@ -301,6 +309,7 @@ const BLOG_INDEX_ORDER = [
   'radon-in-drinking-water',
   'hard-water-explained-scale-softeners-and-your-taps',
   'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity',
+  'what-is-ppm-ppb-ppt-water-quality',
 ] as const;
 
 const POSTS = BLOG_INDEX_ORDER.map(slug => {
@@ -334,7 +343,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   {
     label: 'Testing & EPA Data',
     icon: '📋',
-    slugs: ['how-to-test-your-tap-water-mail-in-labs-explained', 'how-to-read-your-consumer-confidence-report', 'what-does-epa-water-violation-mean', 'moving-to-new-city-water-quality-check'],
+    slugs: ['how-to-test-your-tap-water-mail-in-labs-explained', 'how-to-read-your-consumer-confidence-report', 'what-does-epa-water-violation-mean', 'moving-to-new-city-water-quality-check', 'what-is-ppm-ppb-ppt-water-quality'],
   },
   {
     label: 'Contaminants Explained',

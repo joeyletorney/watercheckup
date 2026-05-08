@@ -51,17 +51,29 @@ const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS; why?: s
 const DEFAULT_PICKS = { label: 'Contaminants detected in local water', picks: RO_PICKS, why: '' };
 
 /** Build a city-specific recommendation reason from its data profile. */
-function getCityWhy(slug: string, cd: typeof CITIES[string] | undefined): string {
+function getCityWhy(slug: string, cd: typeof CITIES[string] | undefined, pfas?: { compounds: [string, number, number, number][]; maxPpt: number } | null): string {
   if (!cd) return 'Chosen because it addresses the widest range of contaminants found in municipal water supplies.';
   const topPick = TOP_PICKS[slug];
   if (topPick?.why) return topPick.why;
-  // Build dynamically from the city's issue list
   const issues = cd.issues ?? [];
   const hasLead = issues.some(i => /lead/i.test(i));
-  const hasPfas = issues.some(i => /pfas|forever/i.test(i));
-  const hasThm = issues.some(i => /thm|disinfection|byproduct/i.test(i));
+  // Check PFAS both from issues label AND from real UCMR5 data
+  const hasPfasIssue = issues.some(i => /pfas|forever/i.test(i));
+  const hasPfasData  = pfas && pfas.maxPpt > 0;
+  const hasPfas = hasPfasIssue || hasPfasData;
+  const hasThm  = issues.some(i => /thm|disinfection|byproduct/i.test(i));
   const hasHard = issues.some(i => /hard|tds|dissolved/i.test(i));
-  const isHigh = cd.urgency === 'high';
+  const isHigh  = cd.urgency === 'high';
+  // If we have real PFAS ppt data, use the specific number
+  if (hasLead && hasPfas && hasPfasData && pfas!.maxPpt > 4) {
+    return `Chosen for ${cd.name} because PFAS was detected at ${pfas!.maxPpt} ppt in EPA UCMR5 monitoring — above the 4 ppt federal limit — and lead service lines add additional risk. RO removes 99%+ of both at the tap.`;
+  }
+  if (hasPfas && hasPfasData && pfas!.maxPpt > 4) {
+    return `Chosen for ${cd.name} because PFAS was detected at ${pfas!.maxPpt} ppt in EPA UCMR5 monitoring — above the 4 ppt federal limit. Reverse osmosis removes 99%+ of PFAS compounds and is the only reliably certified technology for this.`;
+  }
+  if (hasPfas && hasPfasData) {
+    return `Chosen for ${cd.name} because PFAS compounds were detected in EPA UCMR5 monitoring data for this water system. Reverse osmosis is the most effective residential technology, removing 99%+ of PFAS.`;
+  }
   if (hasLead && hasPfas) return `Chosen for ${cd.name} because RO removes both lead (99%+) and PFAS (99%+) at the tap — the two primary concerns flagged in this system's EPA data.`;
   if (hasLead) return `Chosen for ${cd.name} because lead is the primary concern — NSF 58 certified RO removes 99%+ of lead at the kitchen tap, regardless of what the service line is made of.`;
   if (hasPfas) return `Chosen for ${cd.name} because PFAS contamination is detected in this system's UCMR5 data — reverse osmosis is the most effective residential technology, removing 99%+ of PFAS compounds.`;
@@ -194,8 +206,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
+  // Compute pfas early so getCityWhy can use the real UCMR5 numbers
+  const pfas = cd ? getPfasData(cd.pwsid) : null;
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
-  const cityWhyText = getCityWhy(slug, cd);
+  const cityWhyText = getCityWhy(slug, cd, pfas);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -288,7 +302,6 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
           {/* Water Safety Score + Urgency badge */}
           {cd && (() => {
-            const pfas = getPfasData(cd.pwsid);
             const ws = computeWaterScore(cd.urgency, cd.issues, pfas);
             const circumference = 2 * Math.PI * 36;
             const dashOffset = circumference - (ws.score / 100) * circumference;
@@ -371,11 +384,11 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
             {/* ── STEP 2: PFAS DATA ── */}
             {(() => {
-              const pfas = getPfasData(cd.pwsid);
               if (!pfas) {
                 return (
                   <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-                    <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING -- EPA UCMR5 DATA</div>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING — EPA UCMR5 DATA</div>
+                    <div style={{ fontSize: 10, color: '#334155', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2025</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                       <span style={{ fontSize: 20 }}>📋</span>
                       <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0' }}>No UCMR5 data on file for this system</div>
@@ -397,8 +410,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
               return (
                 <div style={{ marginBottom: 40 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
-                    PFAS TESTING DATA -- EPA UCMR5
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2 }}>PFAS TESTING DATA — EPA UCMR5</div>
+                    <div style={{ fontSize: 10, color: '#334155' }}>Testing period 2023–2025 · Last updated Q1 2025</div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', background: `${statusColor}12`, border: `1px solid ${statusColor}35`, borderRadius: 10, marginBottom: 16 }}>
