@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
 import ucmr5Raw from '../../lib/ucmr5.json';
 
 export const metadata: Metadata = {
@@ -319,7 +318,6 @@ export default function WorstPFASPage() {
           <strong style={{ color: '#64748b' }}>Data source:</strong> U.S. Environmental Protection Agency UCMR5 (5th Unregulated Contaminant Monitoring Rule), 2023–2025 national dataset. Rankings show only systems with confirmed detections above EPA Maximum Contaminant Levels for regulated PFAS compounds: PFOA (4 ppt), PFOS (4 ppt), PFNA (10 ppt), PFHxS (10 ppt), HFPO-DA/GenX (10 ppt). Not affiliated with the EPA.
         </div>
       </div>
-      <SiteFooter />
     </div>
   );
 }

@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Press & Media — WaterCheckup',
@@ -233,8 +232,6 @@ WaterCheckup — hello@watercheckup.com`}
           <strong style={{ color: '#94a3b8' }}>Disclaimer for your editors:</strong> WaterCheckup summarizes public regulatory data for educational purposes. It does not diagnose health conditions. Utility compliance can change; readers with concerns should consult certified testing and qualified professionals.
         </div>
       </div>
-
-      <SiteFooter />
     </div>
   );
 }

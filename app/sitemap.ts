@@ -21,8 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
   // Use a stable "last major update" date for static pages so Google
   // doesn't see all 229 URLs with the same timestamp (which it ignores).
-  const dataRefresh   = new Date('2025-04-01T00:00:00.000Z'); // UCMR5 Q1 2025 data
-  const siteRefresh   = new Date('2025-03-01T00:00:00.000Z'); // general site content
+  const dataRefresh   = new Date('2026-05-01T00:00:00.000Z'); // rolling — bump when data/templates ship
+  const siteRefresh   = new Date('2026-05-01T00:00:00.000Z');
 
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },

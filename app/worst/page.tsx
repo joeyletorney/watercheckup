@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Water Quality Rankings Hub — PFAS, Lead, Violations & More | WaterCheckup',
@@ -105,8 +104,6 @@ export default function WorstHubPage() {
           </Link>
         </div>
       </div>
-
-      <SiteFooter />
     </div>
   );
 }

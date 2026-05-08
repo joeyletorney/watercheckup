@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { SiteHeader } from '../../../components/SiteHeader';
-import { SiteFooter } from '../../../components/SiteFooter';
 import { EpaIframeShell } from '../../components/EpaIframeShell';
 
 export const metadata: Metadata = {
@@ -33,7 +32,6 @@ export default function EpaSdwisEmbedPage({
         backHref={back}
         backLabel="← Back to your report"
       />
-      <SiteFooter />
     </div>
   );
 }

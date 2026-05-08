@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { SiteHeader } from '../../components/SiteHeader';
-import { SiteFooter } from '../../components/SiteFooter';
 import { EpaIframeShell } from '../components/EpaIframeShell';
 
 const FYLCCR_ENTRY = 'https://sdwis.epa.gov/fylccr';
@@ -27,7 +26,6 @@ export default function EpaCcrFinderEmbedPage({ searchParams }: { searchParams: 
         backHref={back}
         backLabel="← Back to your report"
       />
-      <SiteFooter />
     </div>
   );
 }

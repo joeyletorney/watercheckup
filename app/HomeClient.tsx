@@ -2231,12 +2231,6 @@ export default function WaterCheckup() {
     try {
       const [result, ewg] = await Promise.all([fetchWaterData(zipCode), fetchEwgData(zipCode)]);
       clearInterval(tick);
-      // Apply -10 score offset: even clean water has taste/odor/sediment issues not captured by EPA testing
-      if (result && typeof result.score === 'number') {
-        result.score = Math.max(0, result.score - 10);
-        // Recalculate grade based on adjusted score
-        result.grade = result.score >= 90 ? 'A' : result.score >= 80 ? 'B' : result.score >= 65 ? 'C' : result.score >= 50 ? 'D' : 'F';
-      }
       setData(result);
       setWellFallbackState(null);
       if (ewg && !ewg.error) setEwgData(ewg);

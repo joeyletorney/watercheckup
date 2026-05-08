@@ -733,6 +733,10 @@ export async function GET(req: NextRequest) {
     }
     score = Math.max(Math.min(score, 100), 10);
 
+    // Consumer-facing offset — chlorine/DBPs, taste/odor, and plumbing risks not fully
+    // reflected in EPA violation summaries. Applied here so home, /results/[zip], and OG tags match.
+    score = Math.max(0, score - 10);
+
     // ─── National percentile (based on score distribution) ──────────────────
     // Score distribution approximation from EPA SDWIS + UCMR5 population
     // ~45M Americans have PFAS > MCL → roughly bottom 35% of population

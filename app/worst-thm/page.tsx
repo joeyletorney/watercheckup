@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
-import { SiteFooter } from '../components/SiteFooter';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
@@ -213,8 +212,6 @@ export default function WorstThmPage() {
           </div>
         </div>
       </div>
-
-      <SiteFooter />
     </div>
   );
 }
