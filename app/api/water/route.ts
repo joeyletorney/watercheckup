@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import ucmr5Raw from '@/lib/ucmr5.json';
 import { getDataFreshness } from '@/lib/water-data-meta';
+import { scoreToLetterGrade } from '@/lib/water-grade';
 
 // ucmr5 format: pwsid -> [maxPfasPpt, overMCLcount, [[analyte, ppt, hasMCL, overMCL], ...], lithium?]
 const ucmr5 = ucmr5Raw as Record<string, any[]>;
@@ -19,14 +20,6 @@ async function epaGet(path: string) {
 
 function f(o: any, k: string): any {
   return o[k] ?? o[k.toLowerCase()] ?? o[k.toUpperCase()] ?? null;
-}
-
-function scoreToGrade(s: number) {
-  if (s >= 93) return 'A';
-  if (s >= 90) return 'A-'; if (s >= 87) return 'B+';
-  if (s >= 83) return 'B';  if (s >= 80) return 'B-'; if (s >= 77) return 'C+';
-  if (s >= 73) return 'C';  if (s >= 70) return 'C-'; if (s >= 65) return 'D+';
-  if (s >= 60) return 'D';  return 'F';
 }
 
 // ─── PFAS MCLs (EPA 2024 final rule) ─────────────────────────────────────────
@@ -903,7 +896,7 @@ export async function GET(req: NextRequest) {
       pwsid,
       stateCode,
       score,
-      grade:            scoreToGrade(score),
+      grade:            scoreToLetterGrade(score),
       nationalPercentile,
       population:       popCount ? parseInt(popCount).toLocaleString() : null,
       sourceType:       srcCode === 'SW' ? 'Surface Water'

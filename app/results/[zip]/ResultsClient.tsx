@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { scoreToLetterGrade } from '@/lib/water-grade';
 
 const TAG = 'watercheck20-20';
 
@@ -13,14 +14,6 @@ const SCORE_LABEL = (s: number) =>
 // Max possible score is 88 — all municipal water has chlorine, DBPs, and unmonitored contaminants.
 // "No violations on record" does not mean perfectly safe water.
 const CAP_SCORE = (s: number) => Math.min(s, 88);
-
-const SCORE_GRADE = (s: number) => {
-  if (s >= 80) return 'A-';
-  if (s >= 65) return 'B';
-  if (s >= 50) return 'C';
-  if (s >= 35) return 'D';
-  return 'F';
-};
 
 const SEVERITY_COLOR: Record<string, string> = {
   high: '#ef4444',
@@ -174,12 +167,12 @@ function ContaminantBar({ c }: { c: any }) {
   );
 }
 
-function ScoreDial({ score }: { score: number }) {
-  const capped = CAP_SCORE(score);
-  const grade = SCORE_GRADE(capped);
+function ScoreDial({ rawScore }: { rawScore: number }) {
+  const capped = CAP_SCORE(rawScore);
+  const grade = scoreToLetterGrade(rawScore);
   const r = 52;
   const circ = 2 * Math.PI * r;
-  const offset = circ - (capped / 100) * circ;
+  const offset = circ - (capped / 88) * circ;
   const sc = SCORE_COLOR(capped);
   return (
     <div style={{ position: 'relative', width: 120, height: 120, flexShrink: 0 }}>
@@ -233,7 +226,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
   const sc = SCORE_COLOR(CAP_SCORE(data.score));
   const cappedScore = CAP_SCORE(data.score);
-  const cappedGrade = SCORE_GRADE(cappedScore);
+  const letterGrade = scoreToLetterGrade(data.score);
   const tabs = [
     { id: 'report', label: '📊 Report' },
     { id: 'pfas', label: '☣️ PFAS' },
@@ -268,7 +261,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
         {/* Score + summary row */}
         <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap', padding: '20px 24px', background: '#071828', border: `2px solid ${sc}30`, borderRadius: 16, marginBottom: 20 }}>
-          <ScoreDial score={data.score} />
+          <ScoreDial rawScore={data.score} />
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: sc, marginBottom: 6 }}>{SCORE_LABEL(cappedScore)}</div>
@@ -297,7 +290,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         {/* Quick share */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`My ${data.city} tap water scored ${cappedScore}/88 (Grade: ${cappedGrade}) on EPA data. Check yours free 💧 watercheckup.com/results/${zip}`)}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`My ${data.city} tap water scored ${cappedScore}/88 (Grade: ${letterGrade}) on EPA data. Check yours free 💧 watercheckup.com/results/${zip}`)}`}
             target="_blank" rel="noopener noreferrer"
             style={{ fontSize: 12, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#94a3b8', textDecoration: 'none', fontWeight: 600 }}
           >
