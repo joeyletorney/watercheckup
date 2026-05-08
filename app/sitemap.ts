@@ -26,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
-    { path: '/press',        priority: 0.75, changeFreq: 'monthly' as const },
     { path: '/faq',          priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/contaminants', priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/blog',         priority: 0.85, changeFreq: 'weekly' as const },

@@ -52,8 +52,7 @@ function isActive(pathname: string, href: string) {
     (href === '/quiz' && pathname.startsWith('/quiz')) ||
     (href === '/methodology' && pathname.startsWith('/methodology')) ||
     (href === '/worst' && pathname.startsWith('/worst')) ||
-    (href === '/faq' && pathname.startsWith('/faq')) ||
-    (href === '/press' && pathname.startsWith('/press'))
+    (href === '/faq' && pathname.startsWith('/faq'))
   );
 }
 

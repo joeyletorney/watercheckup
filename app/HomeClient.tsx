@@ -2473,8 +2473,6 @@ export default function WaterCheckup() {
               <span>NSF / WQA picks</span>
               <span aria-hidden style={{ color: '#334155' }}>·</span>
               <Link href="/methodology">How we analyze water →</Link>
-              <span aria-hidden style={{ color: '#334155' }}>·</span>
-              <Link href="/press">Press →</Link>
             </div>
           </div>
 

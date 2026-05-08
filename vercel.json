@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "redirects": [
+    { "source": "/press", "destination": "/", "permanent": true }
+  ],
   "crons": [
     {
       "path": "/api/newsletter/weekly",
