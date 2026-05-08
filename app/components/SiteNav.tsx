@@ -6,22 +6,23 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const ITEMS: [string, string][] = [
-  ['/', 'Check my water'],
-  ['/contaminants', 'Contaminant Guide'],
+  ['/', 'Home'],
+  ['/#wc-hero-anchor', 'Check your water'],
+  ['/contaminants', 'Contaminants'],
+  ['/quiz', 'Filter picks'],
+  ['/blog', 'Learn'],
+  ['/methodology', 'About'],
   ['/worst', 'Rankings'],
-  ['/quiz', 'Filter guide'],
-  ['/blog', 'Blog'],
   ['/well', 'Well water'],
-  ['/methodology', 'Data sources'],
   ['/faq', 'FAQ'],
 ];
 
 /** Inline on small screens; rest live under “More”. */
 const MOBILE_PRIMARY: [string, string][] = [
-  ['/', 'Check my water'],
-  ['/contaminants', 'Contaminant Guide'],
-  ['/worst', 'Rankings'],
-  ['/quiz', 'Filter guide'],
+  ['/', 'Home'],
+  ['/#wc-hero-anchor', 'Your water'],
+  ['/contaminants', 'Contaminants'],
+  ['/quiz', 'Filters'],
 ];
 
 const MQ = '(max-width: 767px)';
@@ -40,6 +41,7 @@ function useNarrowNav() {
 }
 
 function isActive(pathname: string, href: string) {
+  if (href.startsWith('/#')) return false;
   return (
     pathname === href ||
     (href === '/blog' && pathname.startsWith('/blog')) ||
@@ -49,7 +51,9 @@ function isActive(pathname: string, href: string) {
     (href === '/lead' && pathname.startsWith('/lead')) ||
     (href === '/quiz' && pathname.startsWith('/quiz')) ||
     (href === '/methodology' && pathname.startsWith('/methodology')) ||
-    (href === '/worst' && pathname.startsWith('/worst'))
+    (href === '/worst' && pathname.startsWith('/worst')) ||
+    (href === '/faq' && pathname.startsWith('/faq')) ||
+    (href === '/press' && pathname.startsWith('/press'))
   );
 }
 

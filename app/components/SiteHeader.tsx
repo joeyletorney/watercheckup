@@ -61,7 +61,7 @@ export type SiteHeaderProps = {
   trailing?: ReactNode;
   /** `marginLeft` etc. for `SiteNav` */
   navStyle?: CSSProperties;
-  /** Show primary CTA on the right (blog / quiz / city pages). */
+  /** Show primary CTA on the right (home bar, blog / quiz / inner pages). */
   showCta?: boolean;
   /** CTA label; default “Check My Water →”. */
   ctaLabel?: string;
@@ -126,9 +126,27 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
         <LogoWordmark />
       </Link>
       <SiteNav ariaLabel="Main" style={navStyle} />
-      {trailing ? (
-        <div className="wc-nav-badges" style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
-          {trailing}
+      {(showCta || trailing) ? (
+        <div
+          style={{
+            marginLeft: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            flexWrap: 'wrap',
+            justifyContent: 'flex-end',
+          }}
+        >
+          {showCta ? (
+            <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
+              {ctaLabel ?? 'Check My Water'}
+            </Link>
+          ) : null}
+          {trailing ? (
+            <div className="wc-nav-badges" style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+              {trailing}
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>

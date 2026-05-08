@@ -4,8 +4,9 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { SiteHeader } from './components/SiteHeader';
+import { HeroPreviewDeck } from './components/HeroPreviewDeck';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
-import { CITIES } from '@/app/water/[city]/cities-data';
+import { CITIES, WATER_CITY_SLUGS } from '@/app/water/[city]/cities-data';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -2385,6 +2386,9 @@ export default function WaterCheckup() {
 
       <SiteHeader
         variant="bar"
+        showCta
+        ctaHref="/#wc-hero-anchor"
+        ctaLabel="Check My Water"
         navStyle={{ marginLeft: 20 }}
         trailing={
           <>
@@ -2420,10 +2424,10 @@ export default function WaterCheckup() {
           boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
           animation: 'wcFadeUp 0.3s ease-out both',
         }}>
-          <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>🔎 Check your tap water — free</span>
+          <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 600, whiteSpace: 'nowrap' }}>Protect every glass your family drinks</span>
           <button
             type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => document.getElementById('wc-hero-anchor')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
             style={{
               padding: '8px 20px', borderRadius: 8, border: 'none',
               background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
@@ -2431,75 +2435,116 @@ export default function WaterCheckup() {
               whiteSpace: 'nowrap',
             }}
           >
-            Enter ZIP →
+            Check My Water
           </button>
         </div>
       )}
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
-      <div ref={heroRef} style={{ maxWidth: 820, margin: '52px auto 0', padding: '0 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+      <div ref={heroRef} id="wc-hero-anchor" style={{ margin: '52px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+        <div className="wc-hero-split">
+          <div className="wc-hero-split-copy">
+            <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 16px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
+              See What&apos;s Really In<br />Your Tap Water
+            </h1>
 
-        <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 20px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
-          Is Your Tap Water<br />Actually Safe?
-        </h1>
+            <p className="wc-hero-sub" style={{ color: '#cbd5e1', fontSize: 16, margin: '0 auto 12px', maxWidth: 520, lineHeight: 1.6, fontWeight: 500 }}>
+              Instantly analyze your local water quality, identify potential contaminants, and get personalized filter recommendations based on your exact address.
+            </p>
 
-        <p style={{ color: '#94a3b8', fontSize: 15, margin: '0 auto 16px', maxWidth: 560, lineHeight: 1.55 }}>
-          Check your city's real EPA water data — contaminants, PFAS levels, lead risk, and what to do about it. Free, in seconds.
-        </p>
+            <p style={{ color: '#67e8f9', fontSize: 14, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}>
+              Know what your family is drinking — peace of mind starts with the facts.
+            </p>
 
-        {/* Live report counter */}
-        <div style={{ margin: '0 auto 24px', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.3)' }}>
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22d3ee', display: 'inline-block', boxShadow: '0 0 6px #22d3ee', animation: 'wcBlink 2s ease-in-out infinite' }} />
-          <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600 }}>
-            <strong style={{ color: '#22d3ee', fontWeight: 800 }}>{reportCount >= 10000 ? '10,000+' : reportCount.toLocaleString()}</strong> water reports checked
-          </span>
+            {/* Live report counter */}
+            <div style={{ margin: '0 auto 18px', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.3)' }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22d3ee', display: 'inline-block', boxShadow: '0 0 6px #22d3ee', animation: 'wcBlink 2s ease-in-out infinite' }} />
+              <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600 }}>
+                <strong style={{ color: '#22d3ee', fontWeight: 800 }}>{reportCount >= 10000 ? '10,000+' : reportCount.toLocaleString()}</strong> reports analyzed · {WATER_CITY_SLUGS.length}+ city guides
+              </span>
+            </div>
+
+            <div className="wc-hero-trust-strip">
+              <span>EPA SDWIS</span>
+              <span aria-hidden style={{ color: '#334155' }}>·</span>
+              <span>UCMR5 PFAS</span>
+              <span aria-hidden style={{ color: '#334155' }}>·</span>
+              <span>NSF / WQA picks</span>
+              <span aria-hidden style={{ color: '#334155' }}>·</span>
+              <Link href="/methodology">How we analyze water →</Link>
+              <span aria-hidden style={{ color: '#334155' }}>·</span>
+              <Link href="/press">Press →</Link>
+            </div>
+          </div>
+
+          <div className="wc-hero-split-visual">
+            <HeroPreviewDeck />
+          </div>
         </div>
 
         {/* Search bar — high-visibility panel */}
-        <div className="wc-search-hero-panel">
+        <div className="wc-search-hero-panel" style={{ marginTop: 28 }}>
           <p className="wc-search-hero-label" id="wc-search-hero-heading">
-            ENTER YOUR ZIP CODE OR CITY
+            ENTER YOUR ZIP OR CITY
           </p>
-          <div className="wc-search-row" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 0 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'stretch', maxWidth: 560, margin: '0 auto' }}>
             <input
               id="wc-hero-zip"
               className="wc-search-input"
               value={zip}
               onChange={e => setZip(e.target.value.slice(0, 30))}
               onKeyDown={e => e.key === 'Enter' && search()}
-              placeholder="e.g. 60601 or Chicago"
+              placeholder="Street ZIP or city name"
               maxLength={30}
               autoComplete="postal-code"
               aria-labelledby="wc-search-hero-heading"
+              style={{ width: '100%', maxWidth: 'none' }}
             />
-            <button
-              onClick={search}
-              disabled={zip.trim().length < 2 || loading}
-              className="wc-search-submit wc-hero-report-btn"
-              style={{
-                padding: '18px 34px',
-                minHeight: 58,
-                borderRadius: 14,
-                fontSize: 16,
-                fontWeight: 800,
-                letterSpacing: 0.5,
-                alignSelf: 'stretch',
-                color: '#fbbf24',
-                WebkitTextFillColor: '#fbbf24',
-              }}
-            >
-              {loading ? 'Loading…' : 'See What\'s In My Water →'}
-            </button>
+            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={search}
+                disabled={zip.trim().length < 2 || loading}
+                className="wc-search-submit wc-hero-report-btn"
+                style={{
+                  padding: '18px 32px',
+                  minHeight: 58,
+                  borderRadius: 14,
+                  fontSize: 16,
+                  fontWeight: 800,
+                  letterSpacing: 0.5,
+                  color: '#fbbf24',
+                  WebkitTextFillColor: '#fbbf24',
+                  flex: '1 1 200px',
+                }}
+              >
+                {loading ? 'Loading…' : 'Check My Water'}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }}
+                style={{
+                  padding: '18px 28px',
+                  minHeight: 58,
+                  borderRadius: 14,
+                  fontSize: 15,
+                  fontWeight: 700,
+                  border: '1px solid rgba(103, 232, 249, 0.45)',
+                  background: 'rgba(8, 42, 72, 0.55)',
+                  color: '#e0f2fe',
+                  cursor: 'pointer',
+                  flex: '1 1 200px',
+                }}
+              >
+                View Sample Report
+              </button>
+            </div>
           </div>
-          <p style={{ margin: '12px 0 0', fontSize: 12, color: '#64748b', letterSpacing: 0.2 }}>
-            Based on EPA & PFAS data · 135+ cities · No account required
-          </p>
-          <p style={{ margin: '8px 0 0' }}>
-            <button type="button" onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: 12, padding: 0 }}>
-              View a sample report →
-            </button>
+          <p style={{ margin: '14px 0 0', fontSize: 12, color: '#64748b', letterSpacing: 0.2, textAlign: 'center' }}>
+            Discover hidden contaminants in your tap — drawn from federal Safe Drinking Water records. No account required.
           </p>
         </div>
+      </div>
 
         {/* LOADER — directly under search so it stays on-screen (was below fold after long hero) */}
         {loading && (
@@ -2617,8 +2662,6 @@ export default function WaterCheckup() {
               )}
             </div>
           )}
-
-      </div>
 
       {/* WELL WATER PANEL — shown when well mode is active and we have state data */}
       {wellMode && !loading && (data?.stateCode || wellFallbackState) && (
