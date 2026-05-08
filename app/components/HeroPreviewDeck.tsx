@@ -1,11 +1,33 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+const SAMPLE_SCORE = 72;
+const SCORE_MAX = 88;
+
 /**
- * Lightweight hero visuals — preview of score ring, contaminant focus, and US coverage hint.
- * Decorative only (not live user data).
+ * Hero visuals — animated score ring, contaminant focus, US coverage hint.
+ * Decorative sample until the user runs their ZIP.
  */
 export function HeroPreviewDeck() {
-  const pct = 72 / 88;
+  const [displayScore, setDisplayScore] = useState(0);
+
+  useEffect(() => {
+    const target = SAMPLE_SCORE;
+    const dur = 1100;
+    const t0 = performance.now();
+    let id: number;
+    function tick(now: number) {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - (1 - p) ** 3;
+      setDisplayScore(Math.round(eased * target));
+      if (p < 1) id = requestAnimationFrame(tick);
+    }
+    id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const pct = displayScore / SCORE_MAX;
   const deg = pct * 360;
 
   return (
@@ -16,15 +38,15 @@ export function HeroPreviewDeck() {
           style={{ background: `conic-gradient(#22d3ee ${deg}deg, rgba(26,58,92,0.9) 0)` }}
         >
           <div className="wc-hero-preview-ring-inner">
-            <span>72</span>
+            <span>{displayScore}</span>
           </div>
         </div>
         <div style={{ minWidth: 0 }}>
           <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 2, color: '#64748b', marginBottom: 4 }}>
-            LIVE SCORE PREVIEW
+            YOUR WATER SCORE (PREVIEW)
           </div>
           <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.35 }}>
-            Animated safety score — max <span style={{ color: '#22d3ee' }}>88</span> on our scale
+            Sample <span style={{ color: '#22d3ee' }}>{displayScore}</span> / {SCORE_MAX} · Enter ZIP for your real grade
           </div>
         </div>
       </div>

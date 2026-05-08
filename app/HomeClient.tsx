@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { SiteHeader } from './components/SiteHeader';
 import { HeroPreviewDeck } from './components/HeroPreviewDeck';
+import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES, WATER_CITY_SLUGS } from '@/app/water/[city]/cities-data';
 
@@ -2545,6 +2546,8 @@ export default function WaterCheckup() {
           </p>
         </div>
       </div>
+
+      <HomeVisualShowcase />
 
         {/* LOADER — directly under search so it stays on-screen (was below fold after long hero) */}
         {loading && (
