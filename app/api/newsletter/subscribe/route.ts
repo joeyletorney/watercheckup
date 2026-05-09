@@ -7,6 +7,12 @@ const BREVO = 'https://api.brevo.com/v3';
 export async function POST(req: NextRequest) {
   try {
     const { email, zip, weekly = true, source = 'unknown' } = await req.json();
+    const normalizedSource = String(source || 'unknown').trim().toLowerCase();
+    const isViolationAlert =
+      normalizedSource === 'violation-alert' ||
+      normalizedSource === 'violation_alert' ||
+      normalizedSource === 'alert' ||
+      normalizedSource.includes('violation');
 
     if (!email?.includes('@')) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400, headers: CORS });
@@ -53,8 +59,9 @@ export async function POST(req: NextRequest) {
         attributes: {
           ZIP: zip || undefined,
           WEEKLY_OPT_IN: weekly ? 'true' : 'false',
+          VIOLATION_ALERT_OPT_IN: isViolationAlert ? 'true' : 'false',
           SOURCE: source,
-          SIGNUP_SOURCE: 'newsletter',
+          SIGNUP_SOURCE: isViolationAlert ? 'violation-alert' : 'newsletter',
           SIGNUP_AT: new Date().toISOString(),
         },
       }),
@@ -82,7 +89,41 @@ export async function POST(req: NextRequest) {
     const senderEmail = process.env.BREVO_FROM_EMAIL?.trim() || 'hello@watercheckup.com';
     const senderName = 'WaterCheckup';
 
-    const html = `<!doctype html><html><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"></head><body style="margin:0;background:#f8fafc;color:#1e293b;font-family:Arial,sans-serif">
+    const html = isViolationAlert
+      ? `<!doctype html><html><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"></head><body style="margin:0;background:#f8fafc;color:#1e293b;font-family:Arial,sans-serif">
+    <div style="max-width:600px;margin:0 auto;padding:32px 24px;background:#ffffff">
+
+      <div style="border-bottom:2px solid #0891b2;padding-bottom:16px;margin-bottom:24px">
+        <div style="font-size:22px;font-weight:800;color:#0891b2;margin-bottom:4px">WaterCheckup Alerts</div>
+        <div style="font-size:14px;color:#64748b">Violation alerts for your local water system</div>
+      </div>
+
+      <div style="font-size:15px;color:#334155;line-height:1.7;margin-bottom:20px">
+        You're subscribed${zip ? ` for ZIP <strong style="color:#0f172a">${zip}</strong>` : ''}. We'll email you when new EPA-reported violations appear so you can act quickly.
+      </div>
+
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:20px">
+        <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:8px">What triggers an alert:</div>
+        <ul style="margin:0;padding-left:18px;color:#475569;font-size:13px;line-height:1.7">
+          <li>New health-based violation reported in EPA SDWIS</li>
+          <li>Status changes on open violations in your local utility</li>
+          <li>Major contaminant risk updates tied to your ZIP</li>
+        </ul>
+      </div>
+
+      <div style="font-size:13px;color:#64748b;line-height:1.7;margin-bottom:20px">
+        You can still run your full report anytime for contaminant details and filter recommendations.
+      </div>
+
+      <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700">View my water report →</a>
+
+      <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0;font-size:11px;color:#94a3b8;line-height:1.6">
+        You're receiving this because you signed up for water alerts at watercheckup.com. <a href="https://watercheckup.com/api/newsletter/unsubscribe?email=${encodeURIComponent(email.trim())}" style="color:#94a3b8">Unsubscribe</a>
+      </div>
+
+    </div>
+    </body></html>`
+      : `<!doctype html><html><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light"></head><body style="margin:0;background:#f8fafc;color:#1e293b;font-family:Arial,sans-serif">
     <div style="max-width:600px;margin:0 auto;padding:32px 24px;background:#ffffff">
 
       <div style="border-bottom:2px solid #0891b2;padding-bottom:16px;margin-bottom:24px">
@@ -136,7 +177,9 @@ export async function POST(req: NextRequest) {
         sender: { name: senderName, email: senderEmail },
         to: [{ email: email.trim() }],
         bcc: [{ email: "joe@letorney.com" }],
-        subject: "Welcome to WaterCheckup — what's really in your water",
+        subject: isViolationAlert
+          ? 'You are subscribed: local water violation alerts'
+          : "Welcome to WaterCheckup — what's really in your water",
         htmlContent: html,
       }),
     });

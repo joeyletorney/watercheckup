@@ -418,7 +418,7 @@ function HomeEmailCapture() {
     try {
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'homepage-bottom' }),
+        body: JSON.stringify({ email, source: 'violation-alert' }),
       });
       const data = await res.json();
       if (data.success) setSent(true);
@@ -2324,7 +2324,7 @@ export default function WaterCheckup() {
           email: resultsAlertEmail.trim(),
           zip: String(z).slice(0, 5),
           weekly: true,
-          source: 'results-area-alerts',
+          source: 'violation-alert',
         }),
       });
       const payload = await res.json();

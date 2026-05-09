@@ -204,7 +204,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: alertEmail, zip, source: 'results-page-alerts' }),
+        body: JSON.stringify({ email: alertEmail, zip, source: 'violation-alert' }),
       });
       setAlertSent(true);
     } catch { setAlertSent(true); }
