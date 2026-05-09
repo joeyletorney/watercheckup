@@ -121,16 +121,6 @@ const HEALTH_CONTEXT: Record<string, { effects: string; sources: string; epa_act
     sources: 'DuPont/Chemours Fayetteville Works plant. Used as a PFOA replacement in Teflon production.',
     epa_action: 'EPA MCL: 10 ppt (2024).',
   },
-  Arsenic: {
-    effects: 'Long-term exposure causes bladder, lung, and skin cancer. Affects heart, nerves, and skin at lower levels. No safe level for cancer risk.',
-    sources: 'Naturally occurring in rock and soil, industrial waste, agricultural pesticides, mining.',
-    epa_action: 'EPA MCL: 10 ppb. EWG health goal: 0.004 ppb.',
-  },
-  Nitrate: {
-    effects: '"Blue baby syndrome" in infants under 6 months (methemoglobinemia). Emerging links to colorectal cancer and thyroid disruption in adults.',
-    sources: 'Agricultural fertilizer runoff, animal waste, septic systems. Major issue in Corn Belt and farming states.',
-    epa_action: 'EPA MCL: 10 ppm. Primarily a concern for infants.',
-  },
   'Chromium-6': {
     effects: 'Known human carcinogen when ingested. Linked to stomach and intestinal cancer. California determined 0.02 ppb causes 1-in-1-million cancer risk.',
     sources: 'Industrial discharge (chrome plating, leather tanning), naturally occurring in some aquifers, coal ash disposal.',
@@ -161,11 +151,6 @@ const HEALTH_CONTEXT: Record<string, { effects: string; sources: string; epa_act
     sources: 'Added intentionally by utilities for dental health. Also naturally occurring in some aquifers.',
     epa_action: 'EPA secondary standard: 2 ppm (aesthetic). MCLG: 4 ppm.',
   },
-  Atrazine: {
-    effects: 'Endocrine disruptor. Linked to hormone disruption, low sperm count, birth defects, and potential cancer risk in animals.',
-    sources: 'Agricultural herbicide widely used on corn. Runoff into rivers and groundwater — highest in spring.',
-    epa_action: 'EPA MCL: 3 ppb. EWG health goal: 0.1 ppb.',
-  },
   Lithium: {
     effects: 'Emerging concern. Very high levels associated with thyroid and kidney effects. Some research links naturally occurring lithium in water to lower suicide rates. Health effects at drinking water concentrations still under study.',
     sources: 'Naturally occurring in some aquifers, especially in arid western US. Mining and battery manufacturing waste.',
@@ -180,6 +165,61 @@ const HEALTH_CONTEXT: Record<string, { effects: string; sources: string; epa_act
     effects: 'Alternative disinfectant to chlorine. Produces different byproducts (HANs, NDMA). Can affect people with kidney failure on dialysis. Taste and odor issues common.',
     sources: 'Added as disinfectant to reduce TTHMs. Used in many large urban systems.',
     epa_action: 'EPA MRDLG: 4 ppm.',
+  },
+  'Total Trihalomethanes (TTHMs)': {
+    effects: 'Long-term exposure linked to bladder cancer and possible reproductive harm. Formed as a byproduct of chlorine disinfection reacting with natural organic matter.',
+    sources: 'Disinfection byproduct — created during water treatment. Higher in systems using surface water with high organic content.',
+    epa_action: 'EPA MCL: 80 ppb. EWG health guideline: 0.15 ppb — more than 500x stricter.',
+  },
+  'Haloacetic Acids (HAA5)': {
+    effects: 'Group of five disinfection byproducts linked to bladder cancer and possible reproductive effects including miscarriage.',
+    sources: 'Byproduct of chlorine treatment reacting with organic matter in source water. Higher in summer months.',
+    epa_action: 'EPA MCL: 60 ppb for HAA5. EWG health guideline: 0.1 ppb.',
+  },
+  'Arsenic': {
+    effects: 'Long-term exposure causes bladder, lung, and skin cancer. Affects heart, nerves, and skin even at lower levels. No truly safe level for cancer risk.',
+    sources: 'Naturally occurring in rock and soil. Also from industrial waste, agricultural pesticides, and mining runoff.',
+    epa_action: 'EPA MCL: 10 ppb. EWG health goal: 0.004 ppb — 2,500x stricter than federal law.',
+  },
+  'Nitrate': {
+    effects: '"Blue baby syndrome" in infants under 6 months. Emerging links to colorectal cancer and thyroid disruption in adults.',
+    sources: 'Agricultural fertilizer runoff, animal waste, septic systems. Major issue in farming states.',
+    epa_action: 'EPA MCL: 10 ppm. Do not use tap water for infant formula if nitrate is elevated.',
+  },
+  'Nitrite': {
+    effects: 'Same mechanism as nitrate — reduces oxygen delivery in blood. More potent than nitrate, especially dangerous for infants.',
+    sources: 'Sewage discharge, fertilizer runoff, naturally occurring in some groundwater.',
+    epa_action: 'EPA MCL: 1 ppm.',
+  },
+  'Chromium': {
+    effects: 'Hexavalent chromium (Cr-6) is a known human carcinogen linked to stomach and intestinal cancer. Made infamous by the Erin Brockovich case.',
+    sources: 'Industrial discharge from chrome plating, coal ash disposal, naturally occurring in some aquifers.',
+    epa_action: 'EPA MCL: 100 ppb for total chromium. No federal limit for Cr-6. California health goal: 0.02 ppb.',
+  },
+  'Radium (combined)': {
+    effects: 'Radioactive element that deposits in bones and irradiates bone marrow, increasing bone cancer risk with long-term exposure.',
+    sources: 'Naturally occurring in certain rock formations. Common in Florida, Texas, and parts of the Midwest.',
+    epa_action: 'EPA MCL: 5 pCi/L combined Ra-226 and Ra-228.',
+  },
+  'Selenium': {
+    effects: 'At high levels causes hair loss, nail brittleness, fatigue, and nerve damage.',
+    sources: 'Natural deposits, mining, coal combustion byproducts, agricultural drainage.',
+    epa_action: 'EPA MCL: 50 ppb.',
+  },
+  'Barium': {
+    effects: 'Increases blood pressure with long-term exposure. Cardiovascular and gastrointestinal effects at high doses.',
+    sources: 'Natural deposits in sedimentary rock, mining and drilling operations.',
+    epa_action: 'EPA MCL: 2 ppm.',
+  },
+  'Total Coliform': {
+    effects: 'Indicator of potential fecal contamination and possible presence of pathogens like E. coli and Cryptosporidium.',
+    sources: 'Surface water intrusion, aging infrastructure, cross-contamination from sewage lines.',
+    epa_action: 'EPA standard: zero tolerance for E. coli. Coliform presence triggers mandatory investigation.',
+  },
+  'Atrazine': {
+    effects: 'Endocrine disruptor linked to hormone disruption, low sperm count, birth defects, and potential cancer risk.',
+    sources: 'Most widely used herbicide in the US — applied to corn crops. Highest in spring runoff.',
+    epa_action: 'EPA MCL: 3 ppb. EWG health guideline: 0.1 ppb.',
   },
 };
 
@@ -505,6 +545,10 @@ const CONTAM_NAMES: Record<string, string> = {
   '1040': 'Lead', '1020': 'Arsenic', '2456': 'Nitrate', '2050': 'Fluoride',
   '4010': 'Total Coliform', '5000': 'Chlorine', PB90: 'Lead', CU90: 'Copper',
   '1030': 'Chromium', '2030': 'Fluoride', '1000': 'Antimony', '2010': 'Barium',
+  '2950': 'Total Trihalomethanes (TTHMs)', '4000': 'Haloacetic Acids (HAA5)',
+  '1005': 'Arsenic', '1025': 'Barium', '2039': 'Atrazine', '4100': 'Radium-226',
+  '1045': 'Chromium', '2003': 'Fluoride', '1095': 'Selenium',
+  '1085': 'Mercury', '1074': 'Nitrite', '1038': 'Cadmium',
 };
 
 // ─── Build UCMR5 contaminants from compact format ────────────────────────────
@@ -607,6 +651,52 @@ async function getEchoEnforcement(pwsid: string): Promise<any> {
   }
 }
 
+async function getUsgsHardnessTDS(stateCode: string): Promise<any[]> {
+  try {
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=${stateCode.toLowerCase()}&parameterCd=00900,70300&siteType=ST&period=P7D&siteStatus=active`;
+    const res = await fetch(url, { next: { revalidate: 86400 } });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const series = data?.value?.timeSeries || [];
+    const results: any[] = [];
+    for (const s of series.slice(0, 6)) {
+      const paramCode = s.variable?.variableCode?.[0]?.value;
+      const val = parseFloat(s.values?.[0]?.value?.[0]?.value);
+      if (!val || val < 0) continue;
+      if (paramCode === '00900') {
+        results.push({
+          name: 'Hardness',
+          level: +val.toFixed(1),
+          limit: 300,
+          unit: 'mg/L',
+          severity: val > 300 ? 'moderate' : val > 150 ? 'low' : 'low',
+          note: `USGS NWIS regional surface water sample — ${val > 300 ? 'Very Hard' : val > 150 ? 'Hard' : val > 75 ? 'Moderately Hard' : 'Soft'}`,
+          source: 'USGS NWIS',
+          healthEffects: 'Hard water is not a health hazard. However it causes scale buildup in pipes and appliances, reduces soap lathering, and can dry out skin and hair. Softening recommended above 150 mg/L.',
+          healthSources: 'Dissolved calcium and magnesium from limestone and dolomite aquifers and rock formations in your region.',
+          epaAction: 'No EPA MCL for hardness. USGS classifies: <75 mg/L soft, 75–150 moderately hard, 150–300 hard, >300 very hard.',
+        });
+      } else if (paramCode === '70300') {
+        results.push({
+          name: 'Total Dissolved Solids (TDS)',
+          level: +val.toFixed(0),
+          limit: 500,
+          unit: 'mg/L',
+          severity: val > 500 ? 'moderate' : 'low',
+          note: `USGS NWIS regional surface water sample — EPA secondary standard 500 mg/L`,
+          source: 'USGS NWIS',
+          healthEffects: 'High TDS affects taste and can indicate elevated mineral or salt content. Not a primary health concern but may indicate presence of other dissolved contaminants.',
+          healthSources: 'Dissolved minerals, salts, metals and organic matter from soil, pipes, and industrial runoff.',
+          epaAction: 'EPA secondary standard (aesthetic): 500 mg/L. Not enforceable but affects taste.',
+        });
+      }
+    }
+    return results;
+  } catch {
+    return [];
+  }
+}
+
 function logWaterLookup(payload: Record<string, unknown>) {
   try {
     console.log(
@@ -692,11 +782,12 @@ export async function GET(req: NextRequest) {
     }
 
     // ─── Parallel data fetch ────────────────────────────────────────────────
-    const [violations, lcr, usgsData, echoData] = await Promise.all([
+    const [violations, lcr, usgsData, echoData, usgsHardness] = await Promise.all([
       epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => []),
       epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:30/JSON`).catch(() => []),
       stateCode ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
       getEchoEnforcement(pwsid),
+      stateCode ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
     ]);
     const viols: any[]   = Array.isArray(violations) ? violations : [];
     const samples: any[] = Array.isArray(lcr) ? lcr : [];
@@ -768,6 +859,18 @@ export async function GET(req: NextRequest) {
     };
     addC('Lead',   ['PB90', '1040'], 15,   'ppb');
     addC('Copper', ['CU90', '1020'], 1300, 'ppb');
+    addC('Arsenic', ['1005', '1020'], 10, 'ppb');
+    addC('Nitrate', ['2456'], 10, 'ppm');
+    addC('Nitrite', ['1074'], 1, 'ppm');
+    addC('Total Trihalomethanes (TTHMs)', ['2950'], 80, 'ppb');
+    addC('Haloacetic Acids (HAA5)', ['4000'], 60, 'ppb');
+    addC('Fluoride', ['2050', '2003', '2030'], 4, 'ppm');
+    addC('Chromium', ['1030', '1045'], 100, 'ppb');
+    addC('Selenium', ['1095'], 50, 'ppb');
+    addC('Barium', ['2010', '1025'], 2000, 'ppb');
+    addC('Radium (combined)', ['4100'], 5, 'pCi/L');
+    addC('Total Coliform', ['4010'], 0, 'presence');
+    addC('Atrazine', ['2039'], 3, 'ppb');
 
     for (const v of healthV.slice(0, 4)) {
       const cc = f(v, 'contaminant_code') || '';
@@ -806,6 +909,13 @@ export async function GET(req: NextRequest) {
             healthSources: ctx?.sources,
             epaAction: ctx?.epa_action,
           });
+        }
+      }
+    }
+    if (usgsHardness?.length) {
+      for (const h of usgsHardness) {
+        if (!contaminants.find(c => c.name === h.name)) {
+          contaminants.push(h);
         }
       }
     }
