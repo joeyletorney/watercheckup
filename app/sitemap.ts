@@ -2,6 +2,17 @@ import { MetadataRoute } from 'next'
 import { POSTS } from './blog/posts'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 
+/** Pre-render + sitemap: high-value ZIP result pages for SEO */
+const TOP_ZIPS = [
+  '02101', '02188', '02190', '10001', '11201', '07101', '19101', '15201',
+  '21201', '20001', '33101', '33602', '32801', '28201', '27601', '37201',
+  '60601', '44101', '43201', '48201', '53201', '55101', '64101', '63101',
+  '77001', '78201', '75201', '76101', '78701', '85001', '85701', '80201',
+  '89101', '98101', '97201', '90001', '94101', '92101', '30301', '70112',
+  '39201', '29201', '68101', '50301', '46201', '73101', '87101', '96801',
+  '02146', '02169', '10019', '07302', '90210', '93301', '25301', '35201', '40201',
+]
+
 const STATE_NAMES: Record<string, string> = {
   AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
   CO:'Colorado',CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',
@@ -19,13 +30,10 @@ const STATE_NAMES: Record<string, string> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://watercheckup.com'
   const now = new Date()
-  // Use a stable "last major update" date for static pages so Google
-  // doesn't see all 229 URLs with the same timestamp (which it ignores).
-  const dataRefresh   = new Date('2026-05-01T00:00:00.000Z'); // rolling — bump when data/templates ship
-  const siteRefresh   = new Date('2026-05-01T00:00:00.000Z');
 
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
+    { path: '/methodology',  priority: 0.8, changeFreq: 'monthly' as const },
     { path: '/faq',          priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/contaminants', priority: 0.8, changeFreq: 'weekly'  as const },
     { path: '/blog',         priority: 0.85, changeFreq: 'weekly' as const },
@@ -42,23 +50,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${baseUrl}${p.path}`,
-    lastModified: dataRefresh,
+    lastModified: new Date().toISOString(),
     changeFrequency: p.changeFreq,
     priority: p.priority,
   }))
 
   const blogPostEntries = Object.entries(POSTS).map(([slug, post]) => ({
     url: `${baseUrl}/blog/${slug}`,
-    lastModified: new Date(post.date + 'T12:00:00.000Z'),
+    lastModified: new Date().toISOString(),
     changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    priority:1,
   }))
 
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
     url: `${baseUrl}/water/${slug}`,
-    lastModified: dataRefresh,
+    lastModified: new Date().toISOString(),
     changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    priority: 1,
   }))
 
   // State hub pages at /water/state/[slug] — dedupe via object keys
@@ -69,11 +77,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const slug = name.toLowerCase().replace(/\s+/g, '-')
     return {
       url: `${baseUrl}/water/state/${slug}`,
-      lastModified: siteRefresh,
+      lastModified: new Date().toISOString(),
       changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      priority:1,
     }
   })
 
-  return [...staticEntries, ...blogPostEntries, ...stateEntries, ...cityEntries]
+  const zipResultEntries = TOP_ZIPS.map(zip => ({
+    url: `${baseUrl}/results/${zip}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }))
+
+  return [...staticEntries, ...blogPostEntries, ...stateEntries, ...cityEntries, ...zipResultEntries]
 }

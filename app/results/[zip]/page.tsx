@@ -4,6 +4,19 @@ import ResultsClient from './ResultsClient';
 
 interface Props { params: { zip: string } }
 
+export async function generateStaticParams() {
+  const topZips = [
+    '02101', '02188', '02190', '10001', '11201', '07101', '19101', '15201',
+    '21201', '20001', '33101', '33602', '32801', '28201', '27601', '37201',
+    '60601', '44101', '43201', '48201', '53201', '55101', '64101', '63101',
+    '77001', '78201', '75201', '76101', '78701', '85001', '85701', '80201',
+    '89101', '98101', '97201', '90001', '94101', '92101', '30301', '70112',
+    '39201', '29201', '68101', '50301', '46201', '73101', '87101', '96801',
+    '02146', '02169', '10019', '07302', '90210', '93301', '25301', '35201', '40201',
+  ];
+  return topZips.map(zip => ({ zip }));
+}
+
 async function fetchWaterData(zip: string) {
   const base = process.env.NEXT_PUBLIC_BASE_URL || 'https://watercheckup.com';
   const res = await fetch(`${base}/api/water?zip=${zip}`, { next: { revalidate: 3600 } });
