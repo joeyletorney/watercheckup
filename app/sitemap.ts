@@ -102,6 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pinned: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/water/phoenix`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/blog/best-water-filter-hard-water`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
   ]
 
