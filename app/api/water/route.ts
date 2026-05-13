@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import ucmr5Raw from '@/lib/ucmr5.json';
 import zipLookupRaw from '@/lib/zip-lookup.json';
+import lcrDataRaw from '@/lib/lcr-data.json';
 import { getDataFreshness } from '@/lib/water-data-meta';
 import { scoreToLetterGrade } from '@/lib/water-grade';
 
@@ -8,6 +9,8 @@ import { scoreToLetterGrade } from '@/lib/water-grade';
 const ucmr5 = ucmr5Raw as Record<string, any[]>;
 
 const ZIP_LOOKUP = zipLookupRaw as Record<string, { p: string; n: string; c: string; s: string; pop: number; src: string }>;
+
+const LCR_DATA = lcrDataRaw as Record<string, { lead?: number; copper?: number }>;
 
 const EPA = 'https://data.epa.gov/efservice';
 
@@ -1058,6 +1061,26 @@ export async function GET(req: NextRequest) {
     const viols: any[] = Array.isArray(violations) ? violations : [];
     const allSamples = [...(Array.isArray(lcr) ? lcr : []), ...(Array.isArray(sdwaSamples) ? sdwaSamples : [])];
 
+    /** Winning sample by max raw measure; ppb display converts mg/L → ppb when UOM says mg/L */
+    const maxSampleLevel = (hits: any[], displayUnit: string): number => {
+      if (!hits.length) return 0;
+      let bestRaw = -Infinity;
+      let bestHit: any = null;
+      for (const s of hits) {
+        const v = parseFloat(f(s, 'sample_measure')) || 0;
+        if (v > bestRaw) {
+          bestRaw = v;
+          bestHit = s;
+        }
+      }
+      if (!Number.isFinite(bestRaw)) return 0;
+      if (displayUnit === 'ppb' && bestHit) {
+        const u = String(f(bestHit, 'unit_of_measure') || '').toLowerCase();
+        if (u.includes('mg/l')) return bestRaw * 1000;
+      }
+      return bestRaw;
+    };
+
     // ─── Scoring ────────────────────────────────────────────────────────────
     let score = 100;
     const openV   = viols.filter(v => (f(v, 'violation_status_code') || '') === 'O');
@@ -1066,11 +1089,16 @@ export async function GET(req: NextRequest) {
     score -= Math.min(healthV.length * 6, 30);
 
     const leadS = allSamples.filter(s => ['PB90', '1040'].includes(f(s, 'contaminant_code') || ''));
-    if (leadS.length) {
-      const mx = Math.max(...leadS.map(s => parseFloat(f(s, 'sample_measure')) || 0));
-      if (mx > 15) score -= 20;
-      else if (mx > 10) score -= 12;
-      else if (mx > 5)  score -= 5;
+    const leadPpbFromApi = maxSampleLevel(leadS, 'ppb');
+    const leadMgCsv = LCR_DATA[pwsid]?.lead;
+    const leadPpb = Math.max(
+      leadPpbFromApi,
+      leadMgCsv != null && Number.isFinite(leadMgCsv) ? leadMgCsv * 1000 : 0,
+    );
+    if (leadPpb > 0) {
+      if (leadPpb > 15) score -= 20;
+      else if (leadPpb > 10) score -= 12;
+      else if (leadPpb > 5) score -= 5;
     }
 
     const pfasContaminants = getPfasForPwsid(pwsid);
@@ -1106,7 +1134,7 @@ export async function GET(req: NextRequest) {
     const addC = (name: string, codes: string[], limit: number, unit: string) => {
       const hits = allSamples.filter(s => codes.includes(f(s, 'contaminant_code') || ''));
       if (!hits.length) return;
-      const val = Math.max(...hits.map(s => parseFloat(f(s, 'sample_measure')) || 0));
+      const val = maxSampleLevel(hits, unit);
       const ctx = HEALTH_CONTEXT[name];
       const ewgG = EWG_GUIDELINES[name];
       const ewgTimesOver = ewgG && ewgG.limit > 0 && val > 0 ? +(val / ewgG.limit).toFixed(1) : null;
@@ -1137,6 +1165,47 @@ export async function GET(req: NextRequest) {
     addC('Radium (combined)', ['4100'], 5, 'pCi/L');
     addC('Total Coliform', ['4010'], 0, 'presence');
     addC('Atrazine', ['2039'], 3, 'ppb');
+
+    // Add lead/copper from static LCR dataset if not already found from live API
+    const lcrStatic = LCR_DATA[pwsid];
+    if (lcrStatic) {
+      if (lcrStatic.lead != null && !contaminants.find(c => c.name === 'Lead')) {
+        const val = +(lcrStatic.lead * 1000).toFixed(2); // mg/L to ppb
+        const ctx = HEALTH_CONTEXT['Lead'];
+        const ewgG = EWG_GUIDELINES['Lead'];
+        contaminants.push({
+          name: 'Lead',
+          level: val,
+          limit: 15,
+          unit: 'ppb',
+          severity: val > 15 ? 'high' : val > 5 ? 'moderate' : 'low',
+          note: `EPA LCR 90th percentile — SDWA national dataset`,
+          source: 'EPA SDWA LCR',
+          healthEffects: ctx?.effects,
+          healthSources: ctx?.sources,
+          epaAction: ctx?.epa_action,
+          ewgGuideline: ewgG?.limit ?? null,
+          ewgGuidelineLabel: ewgG?.label ?? null,
+          ewgTimesOver: ewgG && val > 0 ? +(val / ewgG.limit).toFixed(1) : null,
+        });
+      }
+      if (lcrStatic.copper != null && !contaminants.find(c => c.name === 'Copper')) {
+        const val = +(lcrStatic.copper * 1000).toFixed(2); // mg/L to ppb
+        const ctx = HEALTH_CONTEXT['Copper'];
+        contaminants.push({
+          name: 'Copper',
+          level: val,
+          limit: 1300,
+          unit: 'ppb',
+          severity: val > 1300 ? 'high' : val > 650 ? 'moderate' : 'low',
+          note: `EPA LCR 90th percentile — SDWA national dataset`,
+          source: 'EPA SDWA LCR',
+          healthEffects: ctx?.effects,
+          healthSources: ctx?.sources,
+          epaAction: ctx?.epa_action,
+        });
+      }
+    }
 
     for (const v of healthV.slice(0, 4)) {
       const cc = f(v, 'contaminant_code') || '';
@@ -1237,6 +1306,7 @@ export async function GET(req: NextRequest) {
 
     // ─── Data sources used ───────────────────────────────────────────────────
     const dataSources = ['EPA SDWIS'];
+    if (LCR_DATA[pwsid]) dataSources.push('EPA LCR National Dataset');
     if (pfasCount > 0) dataSources.push('EPA UCMR5 PFAS');
     if (ewg)           dataSources.push('EWG Tap Water Atlas');
     if (usgsData)      dataSources.push('USGS NWIS');
@@ -1284,7 +1354,7 @@ export async function GET(req: NextRequest) {
       dataFreshness:    getDataFreshness(),
       openViolations:   openCount,
       totalViolations:  viols.length,
-      hasLCR:           allSamples.length > 0,
+      hasLCR:           allSamples.length > 0 || !!(LCR_DATA[pwsid]?.lead || LCR_DATA[pwsid]?.copper),
       hasEWG:           !!ewg,
       hasPFAS:          pfasCount > 0,
       pfasCount,
