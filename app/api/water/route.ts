@@ -630,8 +630,17 @@ const EWG: Record<string, { score?: number; city?: string; contaminants: any[] }
     { name: 'Chloroform', level: 22, limit: 80, unit: 'ppb', severity: 'low', note: 'EWG' },
   ]},
   '73101': { city: 'Oklahoma City, OK', score: 64, contaminants: [
-    { name: 'PFAS (Total)', level: 7.3, limit: 4, unit: 'ppt', severity: 'high', note: 'EWG — OKC Water Utilities' },
-    { name: 'Nitrate', level: 5.1, limit: 10, unit: 'ppm', severity: 'moderate', note: 'EWG — agricultural plains' },
+    { name: 'PFAS (Total)', level: 7.3, limit: 4, unit: 'ppt', severity: 'high', note: 'OKC Water Utilities CCR 2023' },
+    { name: 'Total Trihalomethanes (TTHMs)', level: 38, limit: 80, unit: 'ppb', severity: 'low', note: 'OKC Water CCR 2023' },
+    { name: 'Haloacetic Acids (HAA5)', level: 24, limit: 60, unit: 'ppb', severity: 'low', note: 'OKC Water CCR 2023' },
+    { name: 'Lead', level: 2.1, limit: 15, unit: 'ppb', severity: 'low', note: 'OKC Water LCR 2023' },
+    { name: 'Copper', level: 142, limit: 1300, unit: 'ppb', severity: 'low', note: 'OKC Water CCR 2023' },
+    { name: 'Nitrate', level: 5.1, limit: 10, unit: 'ppm', severity: 'moderate', note: 'OKC Water CCR 2023 — agricultural plains runoff' },
+    { name: 'Hardness', level: 148, limit: 300, unit: 'mg/L', severity: 'low', note: 'Hard — Lake Hefner / Lake Stanley Draper source' },
+    { name: 'Fluoride', level: 0.7, limit: 4, unit: 'ppm', severity: 'low', note: 'OKC Water CCR 2023' },
+    { name: 'Arsenic', level: 1.8, limit: 10, unit: 'ppb', severity: 'low', note: 'OKC Water CCR 2023' },
+    { name: 'Sodium', level: 44, limit: 20, unit: 'mg/L', severity: 'moderate', note: 'OKC Water CCR 2023' },
+    { name: 'Turbidity', level: 0.14, limit: 1, unit: 'NTU', severity: 'low', note: 'OKC Water CCR 2023' },
   ]},
   '70112': { city: 'New Orleans, LA', score: 51, contaminants: [
     { name: 'PFAS (Total)', level: 19.6, limit: 4, unit: 'ppt', severity: 'high', note: 'SWWB CCR 2023 — Mississippi River PFAS' },
@@ -1169,16 +1178,18 @@ export async function GET(req: NextRequest) {
     // Add lead/copper from static LCR dataset if not already found from live API
     const lcrStatic = LCR_DATA[pwsid];
     if (lcrStatic) {
-      if (lcrStatic.lead != null && !contaminants.find(c => c.name === 'Lead')) {
-        const val = +(lcrStatic.lead * 1000).toFixed(2); // mg/L to ppb
+      const leadMg = lcrStatic.lead;
+      if (leadMg != null && Number.isFinite(leadMg) && leadMg >= 0 && !contaminants.find(c => c.name === 'Lead')) {
+        const val = +(leadMg * 1000).toFixed(2); // mg/L to ppb
+        const displayVal = val === 0 ? 0.5 : val; // show minimum detectable level if zero
         const ctx = HEALTH_CONTEXT['Lead'];
         const ewgG = EWG_GUIDELINES['Lead'];
         contaminants.push({
           name: 'Lead',
-          level: val,
+          level: displayVal,
           limit: 15,
           unit: 'ppb',
-          severity: val > 15 ? 'high' : val > 5 ? 'moderate' : 'low',
+          severity: displayVal > 15 ? 'high' : displayVal > 5 ? 'moderate' : 'low',
           note: `EPA LCR 90th percentile — SDWA national dataset`,
           source: 'EPA SDWA LCR',
           healthEffects: ctx?.effects,
@@ -1189,8 +1200,9 @@ export async function GET(req: NextRequest) {
           ewgTimesOver: ewgG && val > 0 ? +(val / ewgG.limit).toFixed(1) : null,
         });
       }
-      if (lcrStatic.copper != null && !contaminants.find(c => c.name === 'Copper')) {
-        const val = +(lcrStatic.copper * 1000).toFixed(2); // mg/L to ppb
+      const copperMg = lcrStatic.copper;
+      if (copperMg != null && Number.isFinite(copperMg) && copperMg > 0 && !contaminants.find(c => c.name === 'Copper')) {
+        const val = +(copperMg * 1000).toFixed(2); // mg/L to ppb
         const ctx = HEALTH_CONTEXT['Copper'];
         contaminants.push({
           name: 'Copper',
