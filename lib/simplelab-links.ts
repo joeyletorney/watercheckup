@@ -5,6 +5,7 @@
  * (or Advertiser → SimpleLab → Promote), one per destination.
  *   NEXT_PUBLIC_SIMPLELAB_AWIN_URL
  *   NEXT_PUBLIC_SIMPLELAB_AWIN_WELL_URL
+ *   NEXT_PUBLIC_SIMPLELAB_AWIN_CITY_URL
  *
  * **Option B:** Set your publisher ID + SimpleLab’s advertiser ID on Awin (`awinmid`).
  * We build: https://www.awin1.com/cread.php?awinmid=…&awinaffid=…&ued=…
@@ -20,9 +21,12 @@ const FALLBACK_HOME =
   'https://mytapscore.com/?utm_source=watercheckup';
 const FALLBACK_WELL =
   'https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup';
+const FALLBACK_CITY_TESTS =
+  'https://mytapscore.com/collections/city-water-tests?utm_source=watercheckup';
 
 const DEST_HOME = 'https://mytapscore.com/';
 const DEST_WELL = 'https://mytapscore.com/collections/well-water-tests';
+const DEST_CITY_TESTS = 'https://mytapscore.com/collections/city-water-tests';
 
 function buildAwinDeepLink(destination: string): string | null {
   const aff = process.env.NEXT_PUBLIC_AWIN_PUBLISHER_ID?.trim();
@@ -53,4 +57,11 @@ export const SIMPLELAB_WELL_TESTS_URL = resolveUrl(
   process.env.NEXT_PUBLIC_SIMPLELAB_AWIN_WELL_URL,
   DEST_WELL,
   FALLBACK_WELL,
+);
+
+/** Municipal / city water mail-in panels (Tap Score). Override with NEXT_PUBLIC_SIMPLELAB_AWIN_CITY_URL if needed. */
+export const SIMPLELAB_CITY_TESTS_URL = resolveUrl(
+  process.env.NEXT_PUBLIC_SIMPLELAB_AWIN_CITY_URL,
+  DEST_CITY_TESTS,
+  FALLBACK_CITY_TESTS,
 );

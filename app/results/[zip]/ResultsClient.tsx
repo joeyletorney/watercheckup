@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { scoreToLetterGrade } from '@/lib/water-grade';
+import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
 const TAG = 'watercheck20-20';
 
@@ -449,7 +450,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             </div>
           </div>
 
-          {/* Top filter recommendations (3) */}
+          {/* Top filter recommendation */}
           {(() => {
             const hasPfas = data.pfasCount > 0;
             const hasViolations = data.openViolations > 0;
@@ -593,6 +594,74 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               </div>
             );
           })()}
+
+          {/* Home test kit CTA */}
+          <div
+            style={{
+              padding: '20px 22px',
+              background: 'linear-gradient(135deg, #071828, #040d14)',
+              border: '2px solid rgba(251,191,36,0.25)',
+              borderRadius: 14,
+              marginBottom: 20,
+            }}
+          >
+            <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+              <div style={{ fontSize: 36, flexShrink: 0 }} aria-hidden>
+                🧪
+              </div>
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#fbbf24', letterSpacing: 2, marginBottom: 6 }}>
+                  TEST YOUR ACTUAL TAP
+                </div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
+                  EPA data shows what&apos;s in your utility&apos;s water — not your specific tap
+                </div>
+                <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.6, margin: '0 0 14px' }}>
+                  Lead leaches from your home&apos;s pipes and fixtures. PFAS levels vary by neighborhood. A certified lab test tells you exactly what&apos;s coming out of your faucet — not just your utility&apos;s average.
+                </p>
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <a
+                    href={SIMPLELAB_CITY_TESTS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    style={{
+                      display: 'inline-block',
+                      padding: '10px 18px',
+                      background: 'linear-gradient(135deg,#fbbf24,#f59e0b)',
+                      borderRadius: 8,
+                      color: '#0f172a',
+                      fontSize: 13,
+                      fontWeight: 800,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Tap Score city test — shop panels →
+                  </a>
+                  <a
+                    href={`https://www.amazon.com/dp/B01M3NBGIP?tag=${TAG}`}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    style={{
+                      display: 'inline-block',
+                      padding: '10px 18px',
+                      background: '#0d2240',
+                      border: '1px solid #1a3a5c',
+                      borderRadius: 8,
+                      color: '#94a3b8',
+                      fontSize: 13,
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Quick home test kit — ~$18 →
+                  </a>
+                </div>
+                <p style={{ fontSize: 11, color: '#475569', margin: '10px 0 0' }}>
+                  Tap Score tests are processed by independently accredited labs. Turnaround is typically about a week; panels vary by price — results include personalized guidance.
+                </p>
+              </div>
+            </div>
+          </div>
 
           {/* City page link */}
           {(() => {
