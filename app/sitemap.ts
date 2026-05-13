@@ -62,15 +62,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:1,
   }))
 
-  /** Long-form guides at /blog/[slug] not in POSTS (static app routes). */
-  const extraBlogSlugs = ['best-water-filter-hard-water']
-  const extraBlogEntries = extraBlogSlugs.map(slug => ({
-    url: `${baseUrl}/blog/${slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly' as const,
-    priority: 1,
-  }))
-
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
     url: `${baseUrl}/water/${slug}`,
     lastModified: new Date().toISOString(),
@@ -99,5 +90,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
-  return [...staticEntries, ...blogPostEntries, ...extraBlogEntries, ...stateEntries, ...cityEntries, ...zipResultEntries]
+  const merged: MetadataRoute.Sitemap = [
+    ...staticEntries,
+    ...blogPostEntries,
+    ...stateEntries,
+    ...cityEntries,
+    ...zipResultEntries,
+  ]
+
+  /** Pinned URLs: override changeFrequency / priority (and dedupe same URL). */
+  const pinned: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/blog/best-water-filter-hard-water`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+  ]
+
+  const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()
+  for (const e of merged) {
+    byUrl.set(e.url, e)
+  }
+  for (const e of pinned) {
+    byUrl.set(e.url, e)
+  }
+  return Array.from(byUrl.values())
 }
