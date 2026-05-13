@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, type CSSProperties } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { SiteHeader } from './components/SiteHeader';
@@ -545,10 +545,10 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 // WATERDROP — buy direct (GoAffPro) + Amazon. All other brands: Amazon only.
 // ─────────────────────────────────────────────────────────────────────────────
 const WATERDROP_DIRECT_BY_ID: Partial<Record<number, string>> = {
-  3: 'https://www.waterdropfilter.com/products/waterdrop-g3p800-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  26: 'https://www.waterdropfilter.com/products/waterdrop-d6-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  6: 'https://www.waterdropfilter.com/products/waterdrop-d4-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  30: 'https://www.waterdropfilter.com/products/waterdrop-k19-countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  3: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  26: 'https://www.waterdropfilter.com/products/ro-water-filter-system-d6?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  6: 'https://www.waterdropfilter.com/products/countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  30: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
   34: 'https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
 };
 
@@ -591,7 +591,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: block ? '100%' : undefined }}>
         <a href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
           style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
-          Buy direct →
+          Waterdrop.com →
         </a>
         <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
           style={{ display: 'block', textAlign: 'center', padding: block ? '7px 0' : '8px 16px', borderRadius: 10, fontSize: 11, fontWeight: 600, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#94a3b8', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}>
@@ -4417,38 +4417,71 @@ export default function WaterCheckup() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
             {[
-              { id: 3,  emoji: '🏆', label: 'Best overall RO',      name: 'Waterdrop G3P800',         price: 449, tag: 'NSF 42 · NSF 53 · NSF 58 · 99%+ PFAS',   accent: '#22d3ee', url: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
-              { id: 9,  emoji: '🥤', label: 'Best PFAS pitcher',    name: 'Clearly Filtered Pitcher', price: 90,  tag: 'NSF 42 · NSF 53 · NSF 401 · NSF P473',   accent: '#f59e0b', url: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}` },
-              { id: 6,  emoji: '🪣', label: 'Best for renters',     name: 'Waterdrop D4 Countertop',  price: 299, tag: 'NSF 42 · NSF 53 · NSF 58 · No install',  accent: '#06b6d4', url: `https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}` },
-              { id: 32, emoji: '🏠', label: 'Best whole-house',     name: 'Aquasana Rhino EQ-1000',   price: 999, tag: 'WQA Gold Seal · NSF 42 · NSF 61',         accent: '#34d399', url: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
-              { id: 20, emoji: '🚿', label: 'Best shower filter',   name: 'AquaBliss SF100',          price: 35,  tag: '42K+ reviews · KDF/GAC certified',        accent: '#a78bfa', url: `https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
-            ].map(({ emoji, label, name, price, tag, accent, url }) => (
-              <a
-                key={name}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                style={{
-                  display: 'flex', flexDirection: 'column', gap: 8,
-                  padding: '16px 16px 14px',
-                  background: 'linear-gradient(165deg,rgba(7,24,40,0.95),rgba(4,14,32,0.92))',
-                  border: `1px solid ${accent}30`,
-                  borderTop: `2px solid ${accent}`,
-                  borderRadius: 10, textDecoration: 'none',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ fontSize: 20 }}>{emoji}</span>
-                  <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: accent, padding: '2px 6px', borderRadius: 4, background: `${accent}15`, border: `1px solid ${accent}30` }}>{label.toUpperCase()}</span>
-                </div>
-                <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.3 }}>{name}</div>
-                <div style={{ fontSize: 10, color: '#64748b', letterSpacing: 0.3 }}>{tag}</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                  <span style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b' }}>${price}</span>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: accent, padding: '5px 10px', borderRadius: 6, background: `${accent}15`, border: `1px solid ${accent}30` }}>View →</span>
-                </div>
-              </a>
-            ))}
+              { id: 3,  emoji: '🏆', label: 'Best overall RO',      name: 'Waterdrop G3P800',         price: 449, tag: 'NSF 42 · NSF 53 · NSF 58 · 99%+ PFAS',   accent: '#22d3ee', amazon: WATERDROP_AMAZON_BY_ID[3]!, direct: WATERDROP_DIRECT_BY_ID[3]! },
+              { id: 9,  emoji: '🥤', label: 'Best PFAS pitcher',    name: 'Clearly Filtered Pitcher', price: 90,  tag: 'NSF 42 · NSF 53 · NSF 401 · NSF P473',   accent: '#f59e0b', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}` },
+              { id: 6,  emoji: '🪣', label: 'Best for renters',     name: 'Waterdrop D4 Countertop',  price: 299, tag: 'NSF 42 · NSF 53 · NSF 58 · No install',  accent: '#06b6d4', amazon: WATERDROP_AMAZON_BY_ID[6]!, direct: WATERDROP_DIRECT_BY_ID[6]! },
+              { id: 32, emoji: '🏠', label: 'Best whole-house',     name: 'Aquasana Rhino EQ-1000',   price: 999, tag: 'WQA Gold Seal · NSF 42 · NSF 61',         accent: '#34d399', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
+              { id: 20, emoji: '🚿', label: 'Best shower filter',   name: 'AquaBliss SF100',          price: 35,  tag: '42K+ reviews · KDF/GAC certified',        accent: '#a78bfa', amazon: `https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
+            ].map((row) => {
+              const { id, emoji, label, name, price, tag, accent, amazon } = row;
+              const direct = 'direct' in row ? row.direct : undefined;
+              const cardStyle: CSSProperties = {
+                display: 'flex', flexDirection: 'column', gap: 8,
+                padding: '16px 16px 14px',
+                background: 'linear-gradient(165deg,rgba(7,24,40,0.95),rgba(4,14,32,0.92))',
+                border: `1px solid ${accent}30`,
+                borderTop: `2px solid ${accent}`,
+                borderRadius: 10,
+                textDecoration: 'none',
+              };
+              const inner = (
+                <>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ fontSize: 20 }}>{emoji}</span>
+                    <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: accent, padding: '2px 6px', borderRadius: 4, background: `${accent}15`, border: `1px solid ${accent}30` }}>{label.toUpperCase()}</span>
+                  </div>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.3 }}>{name}</div>
+                  <div style={{ fontSize: 10, color: '#64748b', letterSpacing: 0.3 }}>{tag}</div>
+                  <div style={{ display: 'flex', flexDirection: direct ? 'column' : 'row', alignItems: direct ? 'stretch' : 'center', justifyContent: 'space-between', gap: direct ? 8 : 0, marginTop: 4, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                    <span style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b' }}>${price}</span>
+                    {direct ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <a
+                          href={direct}
+                          target="_blank"
+                          rel="noopener noreferrer sponsored"
+                          style={{ fontSize: 12, fontWeight: 800, color: '#0f172a', padding: '8px 10px', borderRadius: 8, textAlign: 'center', textDecoration: 'none', background: 'linear-gradient(135deg,#22d3ee,#06b6d4)', border: '1px solid rgba(34,211,238,0.5)' }}
+                        >
+                          Waterdrop.com →
+                        </a>
+                        <a
+                          href={amazon}
+                          target="_blank"
+                          rel="noopener noreferrer sponsored"
+                          style={{ fontSize: 11, fontWeight: 600, color: '#94a3b8', padding: '6px 10px', borderRadius: 8, textAlign: 'center', textDecoration: 'none', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}
+                        >
+                          Amazon →
+                        </a>
+                      </div>
+                    ) : (
+                      <span style={{ fontSize: 11, fontWeight: 700, color: accent, padding: '5px 10px', borderRadius: 6, background: `${accent}15`, border: `1px solid ${accent}30` }}>Amazon →</span>
+                    )}
+                  </div>
+                </>
+              );
+              if (direct) {
+                return (
+                  <div key={`trusted-${id}`} style={cardStyle}>
+                    {inner}
+                  </div>
+                );
+              }
+              return (
+                <a key={`trusted-${id}`} href={amazon} target="_blank" rel="noopener noreferrer sponsored" style={cardStyle}>
+                  {inner}
+                </a>
+              );
+            })}
           </div>
           <p
             style={{

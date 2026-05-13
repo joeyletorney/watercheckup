@@ -204,6 +204,17 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'fluoride-in-tap-water-safe-or-not': {
     title: "Fluoride in Tap Water: Is It Safe? What the Latest Research Shows",
     excerpt: "Fluoride has been added to US tap water since 1945. New research has reopened the safety debate. Here is what the science actually says.",
+    seo: {
+      title: 'Is Fluoride in Tap Water Safe? 2025 Science & Health Facts',
+      description:
+        'Is fluoride in tap water safe to drink? The science, the controversy, the new HHS guidelines, and what the research actually says in 2025.',
+      canonical: 'https://watercheckup.com/blog/fluoride-in-tap-water-safe-or-not',
+      openGraph: {
+        title: 'Is Fluoride in Tap Water Safe? What the Science Says in 2025',
+        description:
+          'New HHS guidelines, RFK Jr. controversy, and what researchers actually found. The honest answer on fluoride in drinking water.',
+      },
+    },
     date: '2026-04-17',
     dateDisplay: 'April 17, 2026',
     readTime: '8 min read',

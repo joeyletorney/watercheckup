@@ -11,33 +11,42 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = POSTS[params.slug];
   if (!post) return { title: 'Post Not Found | WaterCheckup' };
+
+  const docTitle = post.seo?.title ?? post.title;
+  const docDescription = post.seo?.description ?? post.excerpt;
+  const ogTitle = post.seo?.openGraph?.title ?? docTitle;
+  const ogDescription = post.seo?.openGraph?.description ?? docDescription;
+  const canonical = post.seo?.canonical ?? `https://watercheckup.com/blog/${params.slug}`;
+  const ogImageTitle = post.title;
+  const ogImageExcerpt = post.excerpt;
+
   return {
-    /* Root layout title.template already adds " | WaterCheckup" — avoid doubling */
-    title: post.title,
-    description: post.excerpt,
+    /* Root layout title.template — use absolute when `seo.title` is set so it is not doubled */
+    title: post.seo?.title ? { absolute: post.seo.title } : post.title,
+    description: docDescription,
     alternates: {
-      canonical: `https://watercheckup.com/blog/${params.slug}`,
+      canonical,
     },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
+      title: ogTitle,
+      description: ogDescription,
       type: 'article',
       publishedTime: post.date,
       authors: ['WaterCheckup'],
       images: [
         {
-          url: `https://watercheckup.com/api/og/blog?title=${encodeURIComponent(post.title)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(post.excerpt ?? '')}`,
+          url: `https://watercheckup.com/api/og/blog?title=${encodeURIComponent(ogImageTitle)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(ogImageExcerpt ?? '')}`,
           width: 1200,
           height: 630,
-          alt: post.title,
+          alt: ogImageTitle,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: post.excerpt,
-      images: [`https://watercheckup.com/api/og/blog?title=${encodeURIComponent(post.title)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(post.excerpt ?? '')}`],
+      title: ogTitle,
+      description: ogDescription,
+      images: [`https://watercheckup.com/api/og/blog?title=${encodeURIComponent(ogImageTitle)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(ogImageExcerpt ?? '')}`],
     },
   };
 }

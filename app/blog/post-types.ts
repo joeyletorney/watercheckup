@@ -10,9 +10,22 @@ export type TopPickRow = {
   badge?: string;
 };
 
+export type PostSeo = {
+  /** When set, used as the document `<title>` (absolute — root `title.template` is not applied). */
+  title: string;
+  description: string;
+  canonical?: string;
+  openGraph?: {
+    title?: string;
+    description?: string;
+  };
+};
+
 export type Post = {
   title: string;
   excerpt: string;
+  /** Optional SERP / social overrides; on-page `title` + `excerpt` stay as-is. */
+  seo?: PostSeo;
   date: string;
   dateDisplay: string;
   readTime: string;
