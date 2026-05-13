@@ -14,15 +14,17 @@
  *
  * Find `awinmid`: Awin → Advertisers → open SimpleLab / Tap Score → programme details or URL often shows the merchant ID.
  *
- * If nothing is set, falls back to mytapscore.com + utm_source=watercheckup.
+ * If nothing is set, home/well fall back to mytapscore.com + utm_source=watercheckup;
+ * city tests fall back to the default Awin deep link below (override with env if needed).
  */
 
 const FALLBACK_HOME =
   'https://mytapscore.com/?utm_source=watercheckup';
 const FALLBACK_WELL =
   'https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup';
+/** Default Awin click URL → Tap Score city-water-tests collection (WaterCheckup publisher). */
 const FALLBACK_CITY_TESTS =
-  'https://mytapscore.com/collections/city-water-tests?utm_source=watercheckup';
+  'https://www.awin1.com/cread.php?awinmid=92253&awinaffid=2847509&ued=https%3A%2F%2Fmytapscore.com%2Fcollections%2Fcity-water-tests';
 
 const DEST_HOME = 'https://mytapscore.com/';
 const DEST_WELL = 'https://mytapscore.com/collections/well-water-tests';

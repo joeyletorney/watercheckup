@@ -5,6 +5,8 @@ import { scoreToLetterGrade } from '@/lib/water-grade';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
 const TAG = 'watercheck20-20';
+/** Total hardness / water quality test kit — Amazon associate link. */
+const AMAZON_HOME_TEST_KIT_URL = `https://www.amazon.com/dp/B076DRBCBX?tag=${TAG}`;
 
 const SCORE_COLOR = (s: number) =>
   s >= 80 ? '#22d3ee' : s >= 65 ? '#86efac' : s >= 50 ? '#f59e0b' : s >= 35 ? '#f97316' : '#ef4444';
@@ -635,10 +637,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                       textDecoration: 'none',
                     }}
                   >
-                    Tap Score city test — shop panels →
+                    Tap Score Lab Test — from $49 →
                   </a>
                   <a
-                    href={`https://www.amazon.com/dp/B01M3NBGIP?tag=${TAG}`}
+                    href={AMAZON_HOME_TEST_KIT_URL}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
                     style={{
