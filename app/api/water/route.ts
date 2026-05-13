@@ -992,6 +992,11 @@ export async function GET(req: NextRequest) {
         ).catch(() => []);
       }
       if (!Array.isArray(systems) || !systems.length) {
+        systems = await epaGet(
+          `WATER_SYSTEM/ZIP_CODE/${zip}/PWS_ACTIVITY_CODE/A/rows/1:10/JSON`
+        ).catch(() => []);
+      }
+      if (!Array.isArray(systems) || !systems.length) {
         const local = ZIP_LOOKUP[zip];
         if (local?.p) {
           const rows: any[] = await epaGet(
@@ -1002,16 +1007,10 @@ export async function GET(req: NextRequest) {
       }
       if (!Array.isArray(systems) || !systems.length) {
         const geoRows: any[] = await epaGet(
-          `GEOGRAPHIC_AREA/ZIP_CODE/BEGINNING/${zip}/rows/1:10/JSON`
+          `GEOGRAPHIC_AREA/ZIP_CODE_SERVED/${zip}/rows/1:10/JSON`
         ).catch(() => []);
         if (Array.isArray(geoRows) && geoRows.length) {
-          const isMaZip = /^(010|011|012|013|014|015|016|017|018|019|020|021|022|023|024|025|026|027)\d{2}$/.test(
-            zip
-          );
-          const geoUse = isMaZip
-            ? geoRows.filter((r: any) => String(f(r, 'pwsid') || '').startsWith('MA'))
-            : geoRows;
-          const pwsids = Array.from(new Set(geoUse.map(r => f(r, 'pwsid')).filter(Boolean)));
+          const pwsids = Array.from(new Set(geoRows.map((r: any) => f(r, 'pwsid')).filter(Boolean)));
           for (const p of pwsids) {
             const rows: any[] = await epaGet(
               `WATER_SYSTEM/PWSID/${p}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
