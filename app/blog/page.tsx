@@ -201,6 +201,15 @@ const POST_BY_SLUG: Record<
     badge: 'Filters',
     badgeColor: '#06b6d4',
   },
+  'best-water-filter-hard-water': {
+    title: 'Best Water Filter for Hard Water 2025 — Tested & Ranked',
+    excerpt:
+      'Softeners, RO systems, and pitchers that actually address calcium, magnesium, and scale — with NSF-aligned picks for every budget.',
+    date: 'May 9, 2026',
+    readTime: '12 min read',
+    badge: 'Home',
+    badgeColor: '#94a3b8',
+  },
   'lead-in-tap-water-signs-and-symptoms': {
     title: 'Lead in Tap Water: Signs, Symptoms, and How to Know If Your Home Is at Risk',
     excerpt: 'Lead has no safe exposure level. Here is how it gets into tap water, what symptoms look like, and how to find out if your home is affected.',
@@ -294,6 +303,7 @@ const BLOG_INDEX_ORDER = [
   'how-to-test-your-tap-water-mail-in-labs-explained',
   'bottled-water-vs-tap-water-cost-safety-and-pfas',
   'best-water-filter-pitcher-2025',
+  'best-water-filter-hard-water',
   'reverse-osmosis-pros-and-cons',
   'refrigerator-water-filters-what-they-actually-remove',
   'whole-house-water-filter-vs-under-sink-which-to-choose',
@@ -338,7 +348,13 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   {
     label: 'Filter Guides',
     icon: '🔬',
-    slugs: ['best-water-filter-pitcher-2025', 'reverse-osmosis-pros-and-cons', 'refrigerator-water-filters-what-they-actually-remove', 'whole-house-water-filter-vs-under-sink-which-to-choose'],
+    slugs: [
+      'best-water-filter-pitcher-2025',
+      'best-water-filter-hard-water',
+      'reverse-osmosis-pros-and-cons',
+      'refrigerator-water-filters-what-they-actually-remove',
+      'whole-house-water-filter-vs-under-sink-which-to-choose',
+    ],
   },
   {
     label: 'Testing & EPA Data',
