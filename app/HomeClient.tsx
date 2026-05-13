@@ -221,13 +221,13 @@ const SITUATION_CONFIG: Record<string, {
 const STATE_DB: Record<string, { name: string; url: string }> = {
   CA: { name: 'CA GAMA Groundwater Quality', url: 'https://gamagroundwater.waterboards.ca.gov/' },
   TX: { name: 'TX TCEQ Water Quality', url: 'https://www.tceq.texas.gov/drinkingwater/' },
-  FL: { name: 'FL DEP Drinking Water', url: 'https://floridadep.gov/water/drinking-water' },
+  FL: { name: 'FL DEP Drinking Water', url: 'https://floridadep.gov/water/source-drinking-water' },
   NY: { name: 'NY DOH Water Quality', url: 'https://www.health.ny.gov/environmental/water/drinking/' },
   IL: { name: 'IL EPA Drinking Water', url: 'https://www2.illinois.gov/epa/topics/water-quality/drinking-water/' },
   PA: { name: 'PA DEP Safe Drinking Water', url: 'https://www.dep.pa.gov/Business/Water/DrinkingWater/' },
   OH: { name: 'OH EPA Drinking Water', url: 'https://epa.ohio.gov/divisions-and-offices/drinking-and-ground-waters' },
   MI: { name: 'MI EGLE Drinking Water', url: 'https://www.michigan.gov/egle/about/organization/drinking-water-and-environmental-health' },
-  GA: { name: 'GA EPD Drinking Water', url: 'https://epd.georgia.gov/watershed-protection-branch/drinking-water-program' },
+  GA: { name: 'GA EPD Drinking Water', url: 'https://epd.georgia.gov/watershed-protection-branch/drinking-water' },
   NC: { name: 'NC DEQ Water Quality', url: 'https://deq.nc.gov/about/divisions/water-resources/drinking-water' },
   NJ: { name: 'NJ DEP Safe Drinking Water', url: 'https://www.nj.gov/dep/watersupply/' },
   VA: { name: 'VA DEQ Water Quality', url: 'https://www.deq.virginia.gov/programs/water/drinking-water' },
@@ -236,7 +236,7 @@ const STATE_DB: Record<string, { name: string; url: string }> = {
   MA: { name: 'MA DEP Drinking Water', url: 'https://www.mass.gov/orgs/drinking-water-program' },
   TN: { name: 'TN DEC Drinking Water', url: 'https://www.tn.gov/environment/program-areas/wr-water-resources/drinking-water.html' },
   IN: { name: 'IN DW & NPDES', url: 'https://www.in.gov/idem/water/drinking-water/' },
-  MO: { name: 'MO Clean Water Commission', url: 'https://www.mo.gov/agency/mohea' },
+  MO: { name: 'MO DNR Public Drinking Water', url: 'https://dnr.mo.gov/content/public-drinking-water-branch' },
   MD: { name: 'MD MDE Drinking Water', url: 'https://mde.maryland.gov/programs/water/drinkingwater' },
   WI: { name: 'WI DNR Drinking Water', url: 'https://dnr.wisconsin.gov/topic/DrinkingWater' },
   MN: { name: 'MN MDH Drinking Water', url: 'https://www.health.state.mn.us/communities/environment/water/factsheet/drinkingwater.html' },
@@ -1406,7 +1406,7 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'SimpleLab Tap Score', url: SIMPLELAB_HOME_URL, desc: 'Mail-in water test kits — comprehensive panels starting at $89', sponsored: true },
     ]},
     { cat: '🔧 INSTALLER RESOURCES', items: [
-      { name: 'WQA Certified Installer Directory', url: 'https://wqa.org/find-dealer/', desc: 'Find WQA-certified water treatment professionals near you' },
+      { name: 'WQA Certified Installer Directory', url: 'https://find.wqa.org/find-providers', desc: 'Find WQA-certified water treatment professionals near you' },
       { name: 'Find a Pro on Angi (HomeAdvisor)', url: `https://www.angi.com/nearme/water-treatment/`, desc: 'Local water treatment and plumbing installers with reviews' },
       { name: 'HomeAdvisor Water Softener Pros', url: 'https://www.homeadvisor.com/task.Water-Softener-or-Water-Filter-Install.html', desc: 'Get quotes from local water filter installers' },
     ]},
@@ -3433,7 +3433,7 @@ export default function WaterCheckup() {
               {/* Quick links */}
               <div style={{ marginBottom: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {[
-                  { label: '🔍 WQA Certified Installer', url: 'https://wqa.org/find-dealer/', color: '#0891b2' },
+                  { label: '🔍 WQA Certified Installer', url: 'https://find.wqa.org/find-providers', color: '#0891b2' },
                   { label: '🔧 Find Pro on Angi', url: `https://www.angi.com/nearme/water-treatment/`, color: '#d97706' },
                   { label: '💬 Get Quotes on HomeAdvisor', url: 'https://www.homeadvisor.com/task.Water-Softener-or-Water-Filter-Install.html', color: '#7c3aed' },
                 ].map(l => (
@@ -4450,7 +4450,16 @@ export default function WaterCheckup() {
               </a>
             ))}
           </div>
-          <p style={{ fontSize: 10, color: '#334155', marginTop: 10, lineHeight: 1.5 }}>
+          <p
+            style={{
+              fontSize: 12,
+              fontWeight: 500,
+              color: '#cbd5e1',
+              marginTop: 12,
+              lineHeight: 1.55,
+              maxWidth: 720,
+            }}
+          >
             * Affiliate links — we may earn a commission at no cost to you. Our recommendations are based on certifications and data, not paid placements.
           </p>
         </div>
