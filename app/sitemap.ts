@@ -1,17 +1,12 @@
 import { MetadataRoute } from 'next'
 import { POSTS } from './blog/posts'
+import { TOP_RESULT_ZIPS } from './results/top-result-zips'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
+import { getTopUtilityStaticParamsByPopulation, getUniqueUtilityStatesLowercase } from '@/lib/utilities-data'
+import { getAllCountyStaticParams } from '@/lib/county-data'
 
-/** Pre-render + sitemap: high-value ZIP result pages for SEO */
-const TOP_ZIPS = [
-  '02101', '02188', '02190', '10001', '11201', '07101', '19101', '15201',
-  '21201', '20001', '33101', '33602', '32801', '28201', '27601', '37201',
-  '60601', '44101', '43201', '48201', '53201', '55101', '64101', '63101',
-  '77001', '78201', '75201', '76101', '78701', '85001', '85701', '80201',
-  '89101', '98101', '97201', '90001', '94101', '92101', '30301', '70112',
-  '39201', '29201', '68101', '50301', '46201', '73101', '87101', '96801',
-  '02146', '02169', '10019', '07302', '90210', '93301', '25301', '35201', '40201',
-]
+/** Full utility + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
+const SITEMAP_TOP_UTILITIES_BY_POP = 10_000
 
 const STATE_NAMES: Record<string, string> = {
   AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
@@ -27,8 +22,8 @@ const STATE_NAMES: Record<string, string> = {
   WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'Washington DC',
 };
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://watercheckup.com'
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const base = 'https://watercheckup.com'
   const now = new Date()
 
   const staticEntries = [
@@ -48,22 +43,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/well',         priority: 0.85, changeFreq: 'monthly' as const },
     { path: '/pfas',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
+    { path: '/rankings',     priority: 0.8,  changeFreq: 'monthly' as const },
+    { path: '/utilities/claim', priority: 0.5, changeFreq: 'monthly' as const },
+    { path: '/water-hardness', priority: 0.7, changeFreq: 'monthly' as const },
   ].map(p => ({
-    url: `${baseUrl}${p.path}`,
+    url: `${base}${p.path}`,
     lastModified: new Date().toISOString(),
     changeFrequency: p.changeFreq,
     priority: p.priority,
   }))
 
   const blogPostEntries = Object.entries(POSTS).map(([slug, post]) => ({
-    url: `${baseUrl}/blog/${slug}`,
+    url: `${base}/blog/${slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'monthly' as const,
     priority:1,
   }))
 
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
-    url: `${baseUrl}/water/${slug}`,
+    url: `${base}/water/${slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'monthly' as const,
     priority: 1,
@@ -76,34 +74,74 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const name = STATE_NAMES[abbr] || abbr
     const slug = name.toLowerCase().replace(/\s+/g, '-')
     return {
-      url: `${baseUrl}/water/state/${slug}`,
+      url: `${base}/water/state/${slug}`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'monthly' as const,
       priority:1,
     }
   })
 
-  const zipResultEntries = TOP_ZIPS.map(zip => ({
-    url: `${baseUrl}/results/${zip}`,
-    lastModified: new Date().toISOString(),
+  const countyStatic = getAllCountyStaticParams()
+  const countyEntries = countyStatic.map(({ state, countySlug }) => ({
+    url: `${base}/water/county/${state}/${countySlug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  // Result pages are ISR for arbitrary ZIPs; only list high-value ZIPs here (not full national index).
+  const zipResultEntries: MetadataRoute.Sitemap = TOP_RESULT_ZIPS.map((zip) => ({
+    url: `${base}/results/${zip}`,
+    lastModified: now,
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }))
+
+  let utilityEntries: MetadataRoute.Sitemap = []
+  try {
+    const utilParams = getTopUtilityStaticParamsByPopulation(SITEMAP_TOP_UTILITIES_BY_POP)
+    utilityEntries = utilParams.map(({ state, slug }) => ({
+      url: `${base}/utilities/${state}/${slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }))
+    const utilStates = getUniqueUtilityStatesLowercase()
+    utilityEntries = utilityEntries.concat(
+      utilStates.map((st) => ({
+        url: `${base}/utilities/${st}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+    )
+    utilityEntries.push({
+      url: `${base}/utilities`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })
+  } catch {
+    // data/utilities.json not generated — skip utility URLs
+  }
 
   const merged: MetadataRoute.Sitemap = [
     ...staticEntries,
     ...blogPostEntries,
     ...stateEntries,
+    ...countyEntries,
     ...cityEntries,
     ...zipResultEntries,
+    ...utilityEntries,
   ]
 
   /** Pinned URLs: override changeFrequency / priority (and dedupe same URL). */
   const pinned: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/water/phoenix`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/blog/best-water-filter-hard-water`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${base}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/phoenix`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog/best-water-filter-hard-water`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${base}/blog/top-10-cities-hardest-tap-water`, lastModified: now, changeFrequency: 'monthly', priority: 0.86 },
   ]
 
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()
