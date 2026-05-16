@@ -1,0 +1,7946 @@
+{
+  "generatedAt": "2026-05-16T04:04:05.322Z",
+  "csvSource": "https://raw.githubusercontent.com/grammakov/USA-cities-and-states/master/us_cities_states_counties.csv",
+  "recordCount": 122,
+  "counties": [
+    {
+      "countyDisplay": "Jefferson",
+      "countySlug": "jefferson",
+      "stateAbbr": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "totalCities": 1,
+      "populationServed": 210000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "birmingham",
+          "name": "Birmingham",
+          "populationLabel": "210K",
+          "popN": 210000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Madison",
+      "countySlug": "madison",
+      "stateAbbr": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "totalCities": 1,
+      "populationServed": 215000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "huntsville",
+          "name": "Huntsville",
+          "populationLabel": "215K",
+          "popN": 215000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Montgomery",
+      "countySlug": "montgomery",
+      "stateAbbr": "AL",
+      "stateName": "Alabama",
+      "stateSlug": "alabama",
+      "totalCities": 1,
+      "populationServed": 200000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "montgomery",
+          "name": "Montgomery",
+          "populationLabel": "200K",
+          "popN": 200000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Anchorage",
+      "countySlug": "anchorage",
+      "stateAbbr": "AK",
+      "stateName": "Alaska",
+      "stateSlug": "alaska",
+      "totalCities": 1,
+      "populationServed": 290000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "anchorage",
+          "name": "Anchorage",
+          "populationLabel": "290K",
+          "popN": 290000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Maricopa",
+      "countySlug": "maricopa",
+      "stateAbbr": "AZ",
+      "stateName": "Arizona",
+      "stateSlug": "arizona",
+      "totalCities": 8,
+      "populationServed": 3485000,
+      "citiesAtRisk": 7,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 7
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 7
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 7
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 5
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 5
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 2
+        }
+      ],
+      "countyScore": 1.7,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "phoenix",
+          "name": "Phoenix",
+          "populationLabel": "1.6M",
+          "popN": 1600000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        },
+        {
+          "slug": "mesa",
+          "name": "Mesa",
+          "populationLabel": "500K",
+          "popN": 500000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        },
+        {
+          "slug": "chandler",
+          "name": "Chandler",
+          "populationLabel": "280K",
+          "popN": 280000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        },
+        {
+          "slug": "gilbert",
+          "name": "Gilbert",
+          "populationLabel": "260K",
+          "popN": 260000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        },
+        {
+          "slug": "glendale-az",
+          "name": "Glendale",
+          "populationLabel": "250K",
+          "popN": 250000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        },
+        {
+          "slug": "scottsdale",
+          "name": "Scottsdale",
+          "populationLabel": "240K",
+          "popN": 240000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        },
+        {
+          "slug": "tempe",
+          "name": "Tempe",
+          "populationLabel": "180K",
+          "popN": 180000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        },
+        {
+          "slug": "peoria-az",
+          "name": "Peoria",
+          "populationLabel": "175K",
+          "popN": 175000,
+          "urgency": "high",
+          "score": 33,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Pima",
+      "countySlug": "pima",
+      "stateAbbr": "AZ",
+      "stateName": "Arizona",
+      "stateSlug": "arizona",
+      "totalCities": 1,
+      "populationServed": 540000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "tucson",
+          "name": "Tucson",
+          "populationLabel": "540K",
+          "popN": 540000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Pulaski",
+      "countySlug": "pulaski",
+      "stateAbbr": "AR",
+      "stateName": "Arkansas",
+      "stateSlug": "arkansas",
+      "totalCities": 1,
+      "populationServed": 200000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 18,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "little-rock",
+          "name": "Little Rock",
+          "populationLabel": "200K",
+          "popN": 200000,
+          "urgency": "medium",
+          "score": 18,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Alameda",
+      "countySlug": "alameda",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 230000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fremont",
+          "name": "Fremont",
+          "populationLabel": "230K",
+          "popN": 230000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Fresno",
+      "countySlug": "fresno",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 540000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fresno",
+          "name": "Fresno",
+          "populationLabel": "540K",
+          "popN": 540000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Kern",
+      "countySlug": "kern",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 380000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "bakersfield",
+          "name": "Bakersfield",
+          "populationLabel": "380K",
+          "popN": 380000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Los Angeles",
+      "countySlug": "los-angeles",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 3,
+      "populationServed": 4660000,
+      "citiesAtRisk": 2,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 2
+        }
+      ],
+      "countyScore": 28.3,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "los-angeles",
+          "name": "Los Angeles",
+          "populationLabel": "4M",
+          "popN": 4000000,
+          "urgency": "high",
+          "score": 33,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        },
+        {
+          "slug": "long-beach",
+          "name": "Long Beach",
+          "populationLabel": "460K",
+          "popN": 460000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        },
+        {
+          "slug": "glendale-ca",
+          "name": "Glendale",
+          "populationLabel": "200K",
+          "popN": 200000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Orange",
+      "countySlug": "orange",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 350000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "anaheim",
+          "name": "Anaheim",
+          "populationLabel": "350K",
+          "popN": 350000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Riverside",
+      "countySlug": "riverside",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 310000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": null,
+      "topContaminants": [],
+      "countyScore": 33,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "riverside",
+          "name": "Riverside",
+          "populationLabel": "310K",
+          "popN": 310000,
+          "urgency": "high",
+          "score": 33,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Sacramento",
+      "countySlug": "sacramento",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 520000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFHxA",
+      "topContaminants": [
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 18,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "sacramento",
+          "name": "Sacramento",
+          "populationLabel": "520K",
+          "popN": 520000,
+          "urgency": "medium",
+          "score": 18,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "San Diego",
+      "countySlug": "san-diego",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 2,
+      "populationServed": 1670000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 2,
+      "mostCommonContaminant": null,
+      "topContaminants": [],
+      "countyScore": 28,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "san-diego",
+          "name": "San Diego",
+          "populationLabel": "1.4M",
+          "popN": 1400000,
+          "urgency": "high",
+          "score": 28,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        },
+        {
+          "slug": "chula-vista",
+          "name": "Chula Vista",
+          "populationLabel": "270K",
+          "popN": 270000,
+          "urgency": "high",
+          "score": 28,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "San Francisco",
+      "countySlug": "san-francisco",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 870000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 30,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "san-francisco",
+          "name": "San Francisco",
+          "populationLabel": "870K",
+          "popN": 870000,
+          "urgency": "low",
+          "score": 30,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "San Joaquin",
+      "countySlug": "san-joaquin",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 310000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFOS",
+      "topContaminants": [
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "stockton",
+          "name": "Stockton",
+          "populationLabel": "310K",
+          "popN": 310000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Santa Clara",
+      "countySlug": "santa-clara",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 1000000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "san-jose",
+          "name": "San Jose",
+          "populationLabel": "1M",
+          "popN": 1000000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Stanislaus",
+      "countySlug": "stanislaus",
+      "stateAbbr": "CA",
+      "stateName": "California",
+      "stateSlug": "california",
+      "totalCities": 1,
+      "populationServed": 215000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "modesto",
+          "name": "Modesto",
+          "populationLabel": "215K",
+          "popN": 215000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Arapahoe",
+      "countySlug": "arapahoe",
+      "stateAbbr": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "totalCities": 1,
+      "populationServed": 370000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "aurora",
+          "name": "Aurora",
+          "populationLabel": "370K",
+          "popN": 370000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Denver",
+      "countySlug": "denver",
+      "stateAbbr": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "totalCities": 1,
+      "populationServed": 750000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "denver",
+          "name": "Denver",
+          "populationLabel": "750K",
+          "popN": 750000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "El Paso",
+      "countySlug": "el-paso",
+      "stateAbbr": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "totalCities": 1,
+      "populationServed": 480000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "colorado-springs",
+          "name": "Colorado Springs",
+          "populationLabel": "480K",
+          "popN": 480000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Jefferson",
+      "countySlug": "jefferson",
+      "stateAbbr": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "totalCities": 1,
+      "populationServed": 155000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "lakewood",
+          "name": "Lakewood",
+          "populationLabel": "155K",
+          "popN": 155000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Larimer",
+      "countySlug": "larimer",
+      "stateAbbr": "CO",
+      "stateName": "Colorado",
+      "stateSlug": "colorado",
+      "totalCities": 1,
+      "populationServed": 165000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fort-collins",
+          "name": "Fort Collins",
+          "populationLabel": "165K",
+          "popN": 165000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Fairfield",
+      "countySlug": "fairfield",
+      "stateAbbr": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "totalCities": 1,
+      "populationServed": 135000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "stamford",
+          "name": "Stamford",
+          "populationLabel": "135K",
+          "popN": 135000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hartford",
+      "countySlug": "hartford",
+      "stateAbbr": "CT",
+      "stateName": "Connecticut",
+      "stateSlug": "connecticut",
+      "totalCities": 1,
+      "populationServed": 125000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "hartford",
+          "name": "Hartford",
+          "populationLabel": "125K",
+          "popN": 125000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Broward",
+      "countySlug": "broward",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 180000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fort-lauderdale",
+          "name": "Fort Lauderdale",
+          "populationLabel": "180K",
+          "popN": 180000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Duval",
+      "countySlug": "duval",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 950000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "jacksonville",
+          "name": "Jacksonville",
+          "populationLabel": "950K",
+          "popN": 950000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hillsborough",
+      "countySlug": "hillsborough",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 400000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "tampa",
+          "name": "Tampa",
+          "populationLabel": "400K",
+          "popN": 400000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Lee",
+      "countySlug": "lee",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 190000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "cape-coral",
+          "name": "Cape Coral",
+          "populationLabel": "190K",
+          "popN": 190000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Leon",
+      "countySlug": "leon",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 190000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "tallahassee",
+          "name": "Tallahassee",
+          "populationLabel": "190K",
+          "popN": 190000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Miami-Dade",
+      "countySlug": "miami-dade",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 2,
+      "populationServed": 690000,
+      "citiesAtRisk": 2,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 2
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "miami",
+          "name": "Miami",
+          "populationLabel": "470K",
+          "popN": 470000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        },
+        {
+          "slug": "hialeah",
+          "name": "Hialeah",
+          "populationLabel": "220K",
+          "popN": 220000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Orange",
+      "countySlug": "orange",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 310000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "orlando",
+          "name": "Orlando",
+          "populationLabel": "310K",
+          "popN": 310000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Palm Beach",
+      "countySlug": "palm-beach",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 115000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "west-palm-beach",
+          "name": "West Palm Beach",
+          "populationLabel": "115K",
+          "popN": 115000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Pinellas",
+      "countySlug": "pinellas",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 260000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "st-petersburg",
+          "name": "St. Petersburg",
+          "populationLabel": "260K",
+          "popN": 260000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Chatham",
+      "countySlug": "chatham",
+      "stateAbbr": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "totalCities": 1,
+      "populationServed": 145000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "savannah",
+          "name": "Savannah",
+          "populationLabel": "145K",
+          "popN": 145000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Dekalb",
+      "countySlug": "dekalb",
+      "stateAbbr": "GA",
+      "stateName": "Georgia",
+      "stateSlug": "georgia",
+      "totalCities": 1,
+      "populationServed": 500000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 41,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "atlanta",
+          "name": "Atlanta",
+          "populationLabel": "500K",
+          "popN": 500000,
+          "urgency": "medium",
+          "score": 41,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Honolulu",
+      "countySlug": "honolulu",
+      "stateAbbr": "HI",
+      "stateName": "Hawaii",
+      "stateSlug": "hawaii",
+      "totalCities": 1,
+      "populationServed": 350000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFPeA",
+      "topContaminants": [
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 27,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "honolulu",
+          "name": "Honolulu",
+          "populationLabel": "350K",
+          "popN": 350000,
+          "urgency": "high",
+          "score": 27,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Ada",
+      "countySlug": "ada",
+      "stateAbbr": "ID",
+      "stateName": "Idaho",
+      "stateSlug": "idaho",
+      "totalCities": 1,
+      "populationServed": 240000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "boise",
+          "name": "Boise",
+          "populationLabel": "240K",
+          "popN": 240000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Cook",
+      "countySlug": "cook",
+      "stateAbbr": "IL",
+      "stateName": "Illinois",
+      "stateSlug": "illinois",
+      "totalCities": 1,
+      "populationServed": 2700000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFOA",
+      "topContaminants": [
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "chicago",
+          "name": "Chicago",
+          "populationLabel": "2.7M",
+          "popN": 2700000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Allen",
+      "countySlug": "allen",
+      "stateAbbr": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "totalCities": 1,
+      "populationServed": 265000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fort-wayne",
+          "name": "Fort Wayne",
+          "populationLabel": "265K",
+          "popN": 265000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Marion",
+      "countySlug": "marion",
+      "stateAbbr": "IN",
+      "stateName": "Indiana",
+      "stateSlug": "indiana",
+      "totalCities": 1,
+      "populationServed": 880000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "indianapolis",
+          "name": "Indianapolis",
+          "populationLabel": "880K",
+          "popN": 880000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Polk",
+      "countySlug": "polk",
+      "stateAbbr": "IA",
+      "stateName": "Iowa",
+      "stateSlug": "iowa",
+      "totalCities": 1,
+      "populationServed": 215000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "des-moines",
+          "name": "Des Moines",
+          "populationLabel": "215K",
+          "popN": 215000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Sedgwick",
+      "countySlug": "sedgwick",
+      "stateAbbr": "KS",
+      "stateName": "Kansas",
+      "stateSlug": "kansas",
+      "totalCities": 1,
+      "populationServed": 390000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "wichita",
+          "name": "Wichita",
+          "populationLabel": "390K",
+          "popN": 390000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Fayette",
+      "countySlug": "fayette",
+      "stateAbbr": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "totalCities": 1,
+      "populationServed": 320000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "lexington",
+          "name": "Lexington",
+          "populationLabel": "320K",
+          "popN": 320000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Jefferson",
+      "countySlug": "jefferson",
+      "stateAbbr": "KY",
+      "stateName": "Kentucky",
+      "stateSlug": "kentucky",
+      "totalCities": 1,
+      "populationServed": 630000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "louisville",
+          "name": "Louisville",
+          "populationLabel": "630K",
+          "popN": 630000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "East Baton Rouge",
+      "countySlug": "east-baton-rouge",
+      "stateAbbr": "LA",
+      "stateName": "Louisiana",
+      "stateSlug": "louisiana",
+      "totalCities": 1,
+      "populationServed": 230000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "baton-rouge",
+          "name": "Baton Rouge",
+          "populationLabel": "230K",
+          "popN": 230000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Orleans",
+      "countySlug": "orleans",
+      "stateAbbr": "LA",
+      "stateName": "Louisiana",
+      "stateSlug": "louisiana",
+      "totalCities": 1,
+      "populationServed": 380000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "new-orleans",
+          "name": "New Orleans",
+          "populationLabel": "380K",
+          "popN": 380000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Cumberland",
+      "countySlug": "cumberland",
+      "stateAbbr": "ME",
+      "stateName": "Maine",
+      "stateSlug": "maine",
+      "totalCities": 1,
+      "populationServed": 68000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "portland-me",
+          "name": "Portland",
+          "populationLabel": "68K",
+          "popN": 68000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Baltimore City",
+      "countySlug": "baltimore-city",
+      "stateAbbr": "MD",
+      "stateName": "Maryland",
+      "stateSlug": "maryland",
+      "totalCities": 1,
+      "populationServed": 580000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": null,
+      "topContaminants": [],
+      "countyScore": 33,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "baltimore",
+          "name": "Baltimore",
+          "populationLabel": "580K",
+          "popN": 580000,
+          "urgency": "high",
+          "score": 33,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Suffolk",
+      "countySlug": "suffolk",
+      "stateAbbr": "MA",
+      "stateName": "Massachusetts",
+      "stateSlug": "massachusetts",
+      "totalCities": 1,
+      "populationServed": 675000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "boston",
+          "name": "Boston",
+          "populationLabel": "675K",
+          "popN": 675000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Worcester",
+      "countySlug": "worcester",
+      "stateAbbr": "MA",
+      "stateName": "Massachusetts",
+      "stateSlug": "massachusetts",
+      "totalCities": 1,
+      "populationServed": 200000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "worcester",
+          "name": "Worcester",
+          "populationLabel": "200K",
+          "popN": 200000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Kent",
+      "countySlug": "kent",
+      "stateAbbr": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "totalCities": 1,
+      "populationServed": 195000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "grand-rapids",
+          "name": "Grand Rapids",
+          "populationLabel": "195K",
+          "popN": 195000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Washtenaw",
+      "countySlug": "washtenaw",
+      "stateAbbr": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "totalCities": 1,
+      "populationServed": 120000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "ann-arbor",
+          "name": "Ann Arbor",
+          "populationLabel": "120K",
+          "popN": 120000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Wayne",
+      "countySlug": "wayne",
+      "stateAbbr": "MI",
+      "stateName": "Michigan",
+      "stateSlug": "michigan",
+      "totalCities": 1,
+      "populationServed": 630000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "detroit",
+          "name": "Detroit",
+          "populationLabel": "630K",
+          "popN": 630000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hennepin",
+      "countySlug": "hennepin",
+      "stateAbbr": "MN",
+      "stateName": "Minnesota",
+      "stateSlug": "minnesota",
+      "totalCities": 1,
+      "populationServed": 430000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "minneapolis",
+          "name": "Minneapolis",
+          "populationLabel": "430K",
+          "popN": 430000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Ramsey",
+      "countySlug": "ramsey",
+      "stateAbbr": "MN",
+      "stateName": "Minnesota",
+      "stateSlug": "minnesota",
+      "totalCities": 1,
+      "populationServed": 310000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "st-paul",
+          "name": "St. Paul",
+          "populationLabel": "310K",
+          "popN": 310000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Rankin",
+      "countySlug": "rankin",
+      "stateAbbr": "MS",
+      "stateName": "Mississippi",
+      "stateSlug": "mississippi",
+      "totalCities": 1,
+      "populationServed": 150000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "jackson",
+          "name": "Jackson",
+          "populationLabel": "150K",
+          "popN": 150000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Greene",
+      "countySlug": "greene",
+      "stateAbbr": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "totalCities": 1,
+      "populationServed": 165000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "springfield-mo",
+          "name": "Springfield",
+          "populationLabel": "165K",
+          "popN": 165000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Jackson",
+      "countySlug": "jackson",
+      "stateAbbr": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "totalCities": 1,
+      "populationServed": 500000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "kansas-city",
+          "name": "Kansas City",
+          "populationLabel": "500K",
+          "popN": 500000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Saint Louis City",
+      "countySlug": "saint-louis-city",
+      "stateAbbr": "MO",
+      "stateName": "Missouri",
+      "stateSlug": "missouri",
+      "totalCities": 1,
+      "populationServed": 300000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "st-louis",
+          "name": "St. Louis",
+          "populationLabel": "300K",
+          "popN": 300000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Douglas",
+      "countySlug": "douglas",
+      "stateAbbr": "NE",
+      "stateName": "Nebraska",
+      "stateSlug": "nebraska",
+      "totalCities": 1,
+      "populationServed": 490000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "omaha",
+          "name": "Omaha",
+          "populationLabel": "490K",
+          "popN": 490000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Lancaster",
+      "countySlug": "lancaster",
+      "stateAbbr": "NE",
+      "stateName": "Nebraska",
+      "stateSlug": "nebraska",
+      "totalCities": 1,
+      "populationServed": 290000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "lincoln",
+          "name": "Lincoln",
+          "populationLabel": "290K",
+          "popN": 290000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Clark",
+      "countySlug": "clark",
+      "stateAbbr": "NV",
+      "stateName": "Nevada",
+      "stateSlug": "nevada",
+      "totalCities": 2,
+      "populationServed": 970000,
+      "citiesAtRisk": 2,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 2
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "las-vegas",
+          "name": "Las Vegas",
+          "populationLabel": "650K",
+          "popN": 650000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        },
+        {
+          "slug": "henderson",
+          "name": "Henderson",
+          "populationLabel": "320K",
+          "popN": 320000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Washoe",
+      "countySlug": "washoe",
+      "stateAbbr": "NV",
+      "stateName": "Nevada",
+      "stateSlug": "nevada",
+      "totalCities": 1,
+      "populationServed": 260000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "reno",
+          "name": "Reno",
+          "populationLabel": "260K",
+          "popN": 260000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Strafford",
+      "countySlug": "strafford",
+      "stateAbbr": "NH",
+      "stateName": "New Hampshire",
+      "stateSlug": "new-hampshire",
+      "totalCities": 1,
+      "populationServed": 22000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "portsmouth-nh",
+          "name": "Portsmouth",
+          "populationLabel": "22K",
+          "popN": 22000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Essex",
+      "countySlug": "essex",
+      "stateAbbr": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "totalCities": 1,
+      "populationServed": 310000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFHxA",
+      "topContaminants": [
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "newark",
+          "name": "Newark",
+          "populationLabel": "310K",
+          "popN": 310000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hudson",
+      "countySlug": "hudson",
+      "stateAbbr": "NJ",
+      "stateName": "New Jersey",
+      "stateSlug": "new-jersey",
+      "totalCities": 1,
+      "populationServed": 290000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "jersey-city",
+          "name": "Jersey City",
+          "populationLabel": "290K",
+          "popN": 290000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Bernalillo",
+      "countySlug": "bernalillo",
+      "stateAbbr": "NM",
+      "stateName": "New Mexico",
+      "stateSlug": "new-mexico",
+      "totalCities": 1,
+      "populationServed": 560000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "albuquerque",
+          "name": "Albuquerque",
+          "populationLabel": "560K",
+          "popN": 560000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Erie",
+      "countySlug": "erie",
+      "stateAbbr": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "totalCities": 1,
+      "populationServed": 260000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFDA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "buffalo",
+          "name": "Buffalo",
+          "populationLabel": "260K",
+          "popN": 260000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Monroe",
+      "countySlug": "monroe",
+      "stateAbbr": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "totalCities": 1,
+      "populationServed": 210000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFDA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "rochester",
+          "name": "Rochester",
+          "populationLabel": "210K",
+          "popN": 210000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "New York",
+      "countySlug": "new-york",
+      "stateAbbr": "NY",
+      "stateName": "New York",
+      "stateSlug": "new-york",
+      "totalCities": 1,
+      "populationServed": 8300000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "new-york",
+          "name": "New York City",
+          "populationLabel": "8.3M",
+          "popN": 8300000.000000001,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Cumberland",
+      "countySlug": "cumberland",
+      "stateAbbr": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "totalCities": 1,
+      "populationServed": 210000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fayetteville",
+          "name": "Fayetteville",
+          "populationLabel": "210K",
+          "popN": 210000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Durham",
+      "countySlug": "durham",
+      "stateAbbr": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "totalCities": 1,
+      "populationServed": 280000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "durham",
+          "name": "Durham",
+          "populationLabel": "280K",
+          "popN": 280000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Forsyth",
+      "countySlug": "forsyth",
+      "stateAbbr": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "totalCities": 1,
+      "populationServed": 250000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "winston-salem",
+          "name": "Winston-Salem",
+          "populationLabel": "250K",
+          "popN": 250000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Guilford",
+      "countySlug": "guilford",
+      "stateAbbr": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "totalCities": 1,
+      "populationServed": 290000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "greensboro",
+          "name": "Greensboro",
+          "populationLabel": "290K",
+          "popN": 290000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Mecklenburg",
+      "countySlug": "mecklenburg",
+      "stateAbbr": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "totalCities": 1,
+      "populationServed": 900000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "charlotte",
+          "name": "Charlotte",
+          "populationLabel": "900K",
+          "popN": 900000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Wake",
+      "countySlug": "wake",
+      "stateAbbr": "NC",
+      "stateName": "North Carolina",
+      "stateSlug": "north-carolina",
+      "totalCities": 2,
+      "populationServed": 645000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 7.3,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "raleigh",
+          "name": "Raleigh",
+          "populationLabel": "470K",
+          "popN": 470000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        },
+        {
+          "slug": "cary",
+          "name": "Cary",
+          "populationLabel": "175K",
+          "popN": 175000,
+          "urgency": "high",
+          "score": 27,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Cass",
+      "countySlug": "cass",
+      "stateAbbr": "ND",
+      "stateName": "North Dakota",
+      "stateSlug": "north-dakota",
+      "totalCities": 1,
+      "populationServed": 125000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 43,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "fargo",
+          "name": "Fargo",
+          "populationLabel": "125K",
+          "popN": 125000,
+          "urgency": "medium",
+          "score": 43,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Cuyahoga",
+      "countySlug": "cuyahoga",
+      "stateAbbr": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "totalCities": 1,
+      "populationServed": 370000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "cleveland",
+          "name": "Cleveland",
+          "populationLabel": "370K",
+          "popN": 370000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Franklin",
+      "countySlug": "franklin",
+      "stateAbbr": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "totalCities": 1,
+      "populationServed": 900000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "columbus",
+          "name": "Columbus",
+          "populationLabel": "900K",
+          "popN": 900000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hamilton",
+      "countySlug": "hamilton",
+      "stateAbbr": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "totalCities": 1,
+      "populationServed": 310000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "cincinnati",
+          "name": "Cincinnati",
+          "populationLabel": "310K",
+          "popN": 310000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Lucas",
+      "countySlug": "lucas",
+      "stateAbbr": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "totalCities": 1,
+      "populationServed": 270000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "toledo",
+          "name": "Toledo",
+          "populationLabel": "270K",
+          "popN": 270000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Montgomery",
+      "countySlug": "montgomery",
+      "stateAbbr": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "totalCities": 1,
+      "populationServed": 135000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "dayton",
+          "name": "Dayton",
+          "populationLabel": "135K",
+          "popN": 135000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Summit",
+      "countySlug": "summit",
+      "stateAbbr": "OH",
+      "stateName": "Ohio",
+      "stateSlug": "ohio",
+      "totalCities": 1,
+      "populationServed": 190000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "akron",
+          "name": "Akron",
+          "populationLabel": "190K",
+          "popN": 190000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Oklahoma",
+      "countySlug": "oklahoma",
+      "stateAbbr": "OK",
+      "stateName": "Oklahoma",
+      "stateSlug": "oklahoma",
+      "totalCities": 1,
+      "populationServed": 680000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "oklahoma-city",
+          "name": "Oklahoma City",
+          "populationLabel": "680K",
+          "popN": 680000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Clackamas",
+      "countySlug": "clackamas",
+      "stateAbbr": "OR",
+      "stateName": "Oregon",
+      "stateSlug": "oregon",
+      "totalCities": 1,
+      "populationServed": 650000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 34,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "portland",
+          "name": "Portland",
+          "populationLabel": "650K",
+          "popN": 650000,
+          "urgency": "low",
+          "score": 34,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Allegheny",
+      "countySlug": "allegheny",
+      "stateAbbr": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "totalCities": 1,
+      "populationServed": 300000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "pittsburgh",
+          "name": "Pittsburgh",
+          "populationLabel": "300K",
+          "popN": 300000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Philadelphia",
+      "countySlug": "philadelphia",
+      "stateAbbr": "PA",
+      "stateName": "Pennsylvania",
+      "stateSlug": "pennsylvania",
+      "totalCities": 1,
+      "populationServed": 1600000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "philadelphia",
+          "name": "Philadelphia",
+          "populationLabel": "1.6M",
+          "popN": 1600000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Providence",
+      "countySlug": "providence",
+      "stateAbbr": "RI",
+      "stateName": "Rhode Island",
+      "stateSlug": "rhode-island",
+      "totalCities": 1,
+      "populationServed": 180000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "providence",
+          "name": "Providence",
+          "populationLabel": "180K",
+          "popN": 180000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Lexington",
+      "countySlug": "lexington",
+      "stateAbbr": "SC",
+      "stateName": "South Carolina",
+      "stateSlug": "south-carolina",
+      "totalCities": 1,
+      "populationServed": 130000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "HFPO-DA",
+      "topContaminants": [
+        {
+          "name": "HFPO-DA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "columbia-sc",
+          "name": "Columbia",
+          "populationLabel": "130K",
+          "popN": 130000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Minnehaha",
+      "countySlug": "minnehaha",
+      "stateAbbr": "SD",
+      "stateName": "South Dakota",
+      "stateSlug": "south-dakota",
+      "totalCities": 1,
+      "populationServed": 195000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "sioux-falls",
+          "name": "Sioux Falls",
+          "populationLabel": "195K",
+          "popN": 195000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Davidson",
+      "countySlug": "davidson",
+      "stateAbbr": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "totalCities": 1,
+      "populationServed": 700000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "nashville",
+          "name": "Nashville",
+          "populationLabel": "700K",
+          "popN": 700000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hamilton",
+      "countySlug": "hamilton",
+      "stateAbbr": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "totalCities": 1,
+      "populationServed": 180000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "chattanooga",
+          "name": "Chattanooga",
+          "populationLabel": "180K",
+          "popN": 180000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Knox",
+      "countySlug": "knox",
+      "stateAbbr": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "totalCities": 1,
+      "populationServed": 190000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "knoxville",
+          "name": "Knoxville",
+          "populationLabel": "190K",
+          "popN": 190000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Rutherford",
+      "countySlug": "rutherford",
+      "stateAbbr": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "totalCities": 1,
+      "populationServed": 140000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "murfreesboro",
+          "name": "Murfreesboro",
+          "populationLabel": "140K",
+          "popN": 140000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Shelby",
+      "countySlug": "shelby",
+      "stateAbbr": "TN",
+      "stateName": "Tennessee",
+      "stateSlug": "tennessee",
+      "totalCities": 1,
+      "populationServed": 630000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "memphis",
+          "name": "Memphis",
+          "populationLabel": "630K",
+          "popN": 630000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Bexar",
+      "countySlug": "bexar",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 1500000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 43,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "san-antonio",
+          "name": "San Antonio",
+          "populationLabel": "1.5M",
+          "popN": 1500000,
+          "urgency": "medium",
+          "score": 43,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Cameron",
+      "countySlug": "cameron",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 190000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "brownsville",
+          "name": "Brownsville",
+          "populationLabel": "190K",
+          "popN": 190000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Collin",
+      "countySlug": "collin",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 290000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 37,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "plano",
+          "name": "Plano",
+          "populationLabel": "290K",
+          "popN": 290000,
+          "urgency": "medium",
+          "score": 37,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Dallas",
+      "countySlug": "dallas",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 3,
+      "populationServed": 1780000,
+      "citiesAtRisk": 2,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 3
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 3
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 3
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 3
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 2
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "ADONA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 13.6,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "dallas",
+          "name": "Dallas",
+          "populationLabel": "1.3M",
+          "popN": 1300000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        },
+        {
+          "slug": "garland",
+          "name": "Garland",
+          "populationLabel": "240K",
+          "popN": 240000,
+          "urgency": "medium",
+          "score": 37,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        },
+        {
+          "slug": "irving",
+          "name": "Irving",
+          "populationLabel": "240K",
+          "popN": 240000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "El Paso",
+      "countySlug": "el-paso",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 680000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "el-paso",
+          "name": "El Paso",
+          "populationLabel": "680K",
+          "popN": 680000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Harris",
+      "countySlug": "harris",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 2300000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 37,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "houston",
+          "name": "Houston",
+          "populationLabel": "2.3M",
+          "popN": 2300000,
+          "urgency": "medium",
+          "score": 37,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Hidalgo",
+      "countySlug": "hidalgo",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 143000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 27,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "mcallen",
+          "name": "McAllen",
+          "populationLabel": "143K",
+          "popN": 143000,
+          "urgency": "high",
+          "score": 27,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Lubbock",
+      "countySlug": "lubbock",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 260000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "ADONA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "lubbock",
+          "name": "Lubbock",
+          "populationLabel": "260K",
+          "popN": 260000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Nueces",
+      "countySlug": "nueces",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 320000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 43,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "corpus-christi",
+          "name": "Corpus Christi",
+          "populationLabel": "320K",
+          "popN": 320000,
+          "urgency": "medium",
+          "score": 43,
+          "grade": "D",
+          "gradeColor": "#f97316",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Tarrant",
+      "countySlug": "tarrant",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 2,
+      "populationServed": 1310000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "ADONA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 40.2,
+      "countyGrade": "D",
+      "countyGradeColor": "#f97316",
+      "cities": [
+        {
+          "slug": "fort-worth",
+          "name": "Fort Worth",
+          "populationLabel": "920K",
+          "popN": 920000,
+          "urgency": "medium",
+          "score": 53,
+          "grade": "C",
+          "gradeColor": "#f59e0b",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        },
+        {
+          "slug": "arlington",
+          "name": "Arlington",
+          "populationLabel": "390K",
+          "popN": 390000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Travis",
+      "countySlug": "travis",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 960000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 18,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "austin",
+          "name": "Austin",
+          "populationLabel": "960K",
+          "popN": 960000,
+          "urgency": "medium",
+          "score": 18,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Webb",
+      "countySlug": "webb",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 260000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 23,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "laredo",
+          "name": "Laredo",
+          "populationLabel": "260K",
+          "popN": 260000,
+          "urgency": "high",
+          "score": 23,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Salt Lake",
+      "countySlug": "salt-lake",
+      "stateAbbr": "UT",
+      "stateName": "Utah",
+      "stateSlug": "utah",
+      "totalCities": 1,
+      "populationServed": 200000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "salt-lake-city",
+          "name": "Salt Lake City",
+          "populationLabel": "200K",
+          "popN": 200000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Utah",
+      "countySlug": "utah",
+      "stateAbbr": "UT",
+      "stateName": "Utah",
+      "stateSlug": "utah",
+      "totalCities": 1,
+      "populationServed": 116000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "provo",
+          "name": "Provo",
+          "populationLabel": "116K",
+          "popN": 116000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Alexandria City",
+      "countySlug": "alexandria-city",
+      "stateAbbr": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "totalCities": 1,
+      "populationServed": 155000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "alexandria",
+          "name": "Alexandria",
+          "populationLabel": "155K",
+          "popN": 155000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Norfolk City",
+      "countySlug": "norfolk-city",
+      "stateAbbr": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "totalCities": 1,
+      "populationServed": 240000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "norfolk",
+          "name": "Norfolk",
+          "populationLabel": "240K",
+          "popN": 240000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Richmond City",
+      "countySlug": "richmond-city",
+      "stateAbbr": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "totalCities": 1,
+      "populationServed": 230000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 14,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "richmond",
+          "name": "Richmond",
+          "populationLabel": "230K",
+          "popN": 230000,
+          "urgency": "medium",
+          "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Virginia Beach City",
+      "countySlug": "virginia-beach-city",
+      "stateAbbr": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "totalCities": 1,
+      "populationServed": 460000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "virginia-beach",
+          "name": "Virginia Beach",
+          "populationLabel": "460K",
+          "popN": 460000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "King",
+      "countySlug": "king",
+      "stateAbbr": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "totalCities": 1,
+      "populationServed": 750000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 30,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "seattle",
+          "name": "Seattle",
+          "populationLabel": "750K",
+          "popN": 750000,
+          "urgency": "low",
+          "score": 30,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Pierce",
+      "countySlug": "pierce",
+      "stateAbbr": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "totalCities": 1,
+      "populationServed": 220000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "tacoma",
+          "name": "Tacoma",
+          "populationLabel": "220K",
+          "popN": 220000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Spokane",
+      "countySlug": "spokane",
+      "stateAbbr": "WA",
+      "stateName": "Washington",
+      "stateSlug": "washington",
+      "totalCities": 1,
+      "populationServed": 220000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBS",
+      "topContaminants": [
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeS",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 10,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "spokane",
+          "name": "Spokane",
+          "populationLabel": "220K",
+          "popN": 220000,
+          "urgency": "medium",
+          "score": 10,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 3
+        }
+      ]
+    },
+    {
+      "countyDisplay": "District Of Columbia",
+      "countySlug": "district-of-columbia",
+      "stateAbbr": "DC",
+      "stateName": "Washington DC",
+      "stateSlug": "washington-dc",
+      "totalCities": 1,
+      "populationServed": 700000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFHxA",
+      "topContaminants": [
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 27,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "washington-dc",
+          "name": "Washington DC",
+          "populationLabel": "700K",
+          "popN": 700000,
+          "urgency": "high",
+          "score": 27,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Wood",
+      "countySlug": "wood",
+      "stateAbbr": "WV",
+      "stateName": "West Virginia",
+      "stateSlug": "west-virginia",
+      "totalCities": 1,
+      "populationServed": 29000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "HFPO-DA",
+      "topContaminants": [
+        {
+          "name": "HFPO-DA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "parkersburg",
+          "name": "Parkersburg",
+          "populationLabel": "29K",
+          "popN": 29000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Dane",
+      "countySlug": "dane",
+      "stateAbbr": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "totalCities": 1,
+      "populationServed": 270000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "madison",
+          "name": "Madison",
+          "populationLabel": "270K",
+          "popN": 270000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Milwaukee",
+      "countySlug": "milwaukee",
+      "stateAbbr": "WI",
+      "stateName": "Wisconsin",
+      "stateSlug": "wisconsin",
+      "totalCities": 1,
+      "populationServed": 590000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "milwaukee",
+          "name": "Milwaukee",
+          "populationLabel": "590K",
+          "popN": 590000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    }
+  ],
+  "cityToCounty": {
+    "chicago": {
+      "stateSlug": "illinois",
+      "countySlug": "cook",
+      "countyDisplay": "Cook",
+      "stateAbbr": "IL"
+    },
+    "los-angeles": {
+      "stateSlug": "california",
+      "countySlug": "los-angeles",
+      "countyDisplay": "Los Angeles",
+      "stateAbbr": "CA"
+    },
+    "long-beach": {
+      "stateSlug": "california",
+      "countySlug": "los-angeles",
+      "countyDisplay": "Los Angeles",
+      "stateAbbr": "CA"
+    },
+    "glendale-ca": {
+      "stateSlug": "california",
+      "countySlug": "los-angeles",
+      "countyDisplay": "Los Angeles",
+      "stateAbbr": "CA"
+    },
+    "houston": {
+      "stateSlug": "texas",
+      "countySlug": "harris",
+      "countyDisplay": "Harris",
+      "stateAbbr": "TX"
+    },
+    "new-york": {
+      "stateSlug": "new-york",
+      "countySlug": "new-york",
+      "countyDisplay": "New York",
+      "stateAbbr": "NY"
+    },
+    "phoenix": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "mesa": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "chandler": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "gilbert": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "glendale-az": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "scottsdale": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "tempe": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "peoria-az": {
+      "stateSlug": "arizona",
+      "countySlug": "maricopa",
+      "countyDisplay": "Maricopa",
+      "stateAbbr": "AZ"
+    },
+    "philadelphia": {
+      "stateSlug": "pennsylvania",
+      "countySlug": "philadelphia",
+      "countyDisplay": "Philadelphia",
+      "stateAbbr": "PA"
+    },
+    "san-antonio": {
+      "stateSlug": "texas",
+      "countySlug": "bexar",
+      "countyDisplay": "Bexar",
+      "stateAbbr": "TX"
+    },
+    "dallas": {
+      "stateSlug": "texas",
+      "countySlug": "dallas",
+      "countyDisplay": "Dallas",
+      "stateAbbr": "TX"
+    },
+    "garland": {
+      "stateSlug": "texas",
+      "countySlug": "dallas",
+      "countyDisplay": "Dallas",
+      "stateAbbr": "TX"
+    },
+    "irving": {
+      "stateSlug": "texas",
+      "countySlug": "dallas",
+      "countyDisplay": "Dallas",
+      "stateAbbr": "TX"
+    },
+    "miami": {
+      "stateSlug": "florida",
+      "countySlug": "miami-dade",
+      "countyDisplay": "Miami-Dade",
+      "stateAbbr": "FL"
+    },
+    "hialeah": {
+      "stateSlug": "florida",
+      "countySlug": "miami-dade",
+      "countyDisplay": "Miami-Dade",
+      "stateAbbr": "FL"
+    },
+    "seattle": {
+      "stateSlug": "washington",
+      "countySlug": "king",
+      "countyDisplay": "King",
+      "stateAbbr": "WA"
+    },
+    "denver": {
+      "stateSlug": "colorado",
+      "countySlug": "denver",
+      "countyDisplay": "Denver",
+      "stateAbbr": "CO"
+    },
+    "boston": {
+      "stateSlug": "massachusetts",
+      "countySlug": "suffolk",
+      "countyDisplay": "Suffolk",
+      "stateAbbr": "MA"
+    },
+    "atlanta": {
+      "stateSlug": "georgia",
+      "countySlug": "dekalb",
+      "countyDisplay": "Dekalb",
+      "stateAbbr": "GA"
+    },
+    "san-francisco": {
+      "stateSlug": "california",
+      "countySlug": "san-francisco",
+      "countyDisplay": "San Francisco",
+      "stateAbbr": "CA"
+    },
+    "detroit": {
+      "stateSlug": "michigan",
+      "countySlug": "wayne",
+      "countyDisplay": "Wayne",
+      "stateAbbr": "MI"
+    },
+    "minneapolis": {
+      "stateSlug": "minnesota",
+      "countySlug": "hennepin",
+      "countyDisplay": "Hennepin",
+      "stateAbbr": "MN"
+    },
+    "portland": {
+      "stateSlug": "oregon",
+      "countySlug": "clackamas",
+      "countyDisplay": "Clackamas",
+      "stateAbbr": "OR"
+    },
+    "las-vegas": {
+      "stateSlug": "nevada",
+      "countySlug": "clark",
+      "countyDisplay": "Clark",
+      "stateAbbr": "NV"
+    },
+    "henderson": {
+      "stateSlug": "nevada",
+      "countySlug": "clark",
+      "countyDisplay": "Clark",
+      "stateAbbr": "NV"
+    },
+    "nashville": {
+      "stateSlug": "tennessee",
+      "countySlug": "davidson",
+      "countyDisplay": "Davidson",
+      "stateAbbr": "TN"
+    },
+    "baltimore": {
+      "stateSlug": "maryland",
+      "countySlug": "baltimore-city",
+      "countyDisplay": "Baltimore City",
+      "stateAbbr": "MD"
+    },
+    "memphis": {
+      "stateSlug": "tennessee",
+      "countySlug": "shelby",
+      "countyDisplay": "Shelby",
+      "stateAbbr": "TN"
+    },
+    "louisville": {
+      "stateSlug": "kentucky",
+      "countySlug": "jefferson",
+      "countyDisplay": "Jefferson",
+      "stateAbbr": "KY"
+    },
+    "cleveland": {
+      "stateSlug": "ohio",
+      "countySlug": "cuyahoga",
+      "countyDisplay": "Cuyahoga",
+      "stateAbbr": "OH"
+    },
+    "pittsburgh": {
+      "stateSlug": "pennsylvania",
+      "countySlug": "allegheny",
+      "countyDisplay": "Allegheny",
+      "stateAbbr": "PA"
+    },
+    "indianapolis": {
+      "stateSlug": "indiana",
+      "countySlug": "marion",
+      "countyDisplay": "Marion",
+      "stateAbbr": "IN"
+    },
+    "columbus": {
+      "stateSlug": "ohio",
+      "countySlug": "franklin",
+      "countyDisplay": "Franklin",
+      "stateAbbr": "OH"
+    },
+    "charlotte": {
+      "stateSlug": "north-carolina",
+      "countySlug": "mecklenburg",
+      "countyDisplay": "Mecklenburg",
+      "stateAbbr": "NC"
+    },
+    "raleigh": {
+      "stateSlug": "north-carolina",
+      "countySlug": "wake",
+      "countyDisplay": "Wake",
+      "stateAbbr": "NC"
+    },
+    "cary": {
+      "stateSlug": "north-carolina",
+      "countySlug": "wake",
+      "countyDisplay": "Wake",
+      "stateAbbr": "NC"
+    },
+    "omaha": {
+      "stateSlug": "nebraska",
+      "countySlug": "douglas",
+      "countyDisplay": "Douglas",
+      "stateAbbr": "NE"
+    },
+    "kansas-city": {
+      "stateSlug": "missouri",
+      "countySlug": "jackson",
+      "countyDisplay": "Jackson",
+      "stateAbbr": "MO"
+    },
+    "new-orleans": {
+      "stateSlug": "louisiana",
+      "countySlug": "orleans",
+      "countyDisplay": "Orleans",
+      "stateAbbr": "LA"
+    },
+    "tampa": {
+      "stateSlug": "florida",
+      "countySlug": "hillsborough",
+      "countyDisplay": "Hillsborough",
+      "stateAbbr": "FL"
+    },
+    "st-louis": {
+      "stateSlug": "missouri",
+      "countySlug": "saint-louis-city",
+      "countyDisplay": "Saint Louis City",
+      "stateAbbr": "MO"
+    },
+    "sacramento": {
+      "stateSlug": "california",
+      "countySlug": "sacramento",
+      "countyDisplay": "Sacramento",
+      "stateAbbr": "CA"
+    },
+    "salt-lake-city": {
+      "stateSlug": "utah",
+      "countySlug": "salt-lake",
+      "countyDisplay": "Salt Lake",
+      "stateAbbr": "UT"
+    },
+    "albuquerque": {
+      "stateSlug": "new-mexico",
+      "countySlug": "bernalillo",
+      "countyDisplay": "Bernalillo",
+      "stateAbbr": "NM"
+    },
+    "tucson": {
+      "stateSlug": "arizona",
+      "countySlug": "pima",
+      "countyDisplay": "Pima",
+      "stateAbbr": "AZ"
+    },
+    "jacksonville": {
+      "stateSlug": "florida",
+      "countySlug": "duval",
+      "countyDisplay": "Duval",
+      "stateAbbr": "FL"
+    },
+    "austin": {
+      "stateSlug": "texas",
+      "countySlug": "travis",
+      "countyDisplay": "Travis",
+      "stateAbbr": "TX"
+    },
+    "san-diego": {
+      "stateSlug": "california",
+      "countySlug": "san-diego",
+      "countyDisplay": "San Diego",
+      "stateAbbr": "CA"
+    },
+    "chula-vista": {
+      "stateSlug": "california",
+      "countySlug": "san-diego",
+      "countyDisplay": "San Diego",
+      "stateAbbr": "CA"
+    },
+    "san-jose": {
+      "stateSlug": "california",
+      "countySlug": "santa-clara",
+      "countyDisplay": "Santa Clara",
+      "stateAbbr": "CA"
+    },
+    "washington-dc": {
+      "stateSlug": "washington-dc",
+      "countySlug": "district-of-columbia",
+      "countyDisplay": "District Of Columbia",
+      "stateAbbr": "DC"
+    },
+    "cincinnati": {
+      "stateSlug": "ohio",
+      "countySlug": "hamilton",
+      "countyDisplay": "Hamilton",
+      "stateAbbr": "OH"
+    },
+    "milwaukee": {
+      "stateSlug": "wisconsin",
+      "countySlug": "milwaukee",
+      "countyDisplay": "Milwaukee",
+      "stateAbbr": "WI"
+    },
+    "buffalo": {
+      "stateSlug": "new-york",
+      "countySlug": "erie",
+      "countyDisplay": "Erie",
+      "stateAbbr": "NY"
+    },
+    "anchorage": {
+      "stateSlug": "alaska",
+      "countySlug": "anchorage",
+      "countyDisplay": "Anchorage",
+      "stateAbbr": "AK"
+    },
+    "honolulu": {
+      "stateSlug": "hawaii",
+      "countySlug": "honolulu",
+      "countyDisplay": "Honolulu",
+      "stateAbbr": "HI"
+    },
+    "baton-rouge": {
+      "stateSlug": "louisiana",
+      "countySlug": "east-baton-rouge",
+      "countyDisplay": "East Baton Rouge",
+      "stateAbbr": "LA"
+    },
+    "richmond": {
+      "stateSlug": "virginia",
+      "countySlug": "richmond-city",
+      "countyDisplay": "Richmond City",
+      "stateAbbr": "VA"
+    },
+    "fort-worth": {
+      "stateSlug": "texas",
+      "countySlug": "tarrant",
+      "countyDisplay": "Tarrant",
+      "stateAbbr": "TX"
+    },
+    "arlington": {
+      "stateSlug": "texas",
+      "countySlug": "tarrant",
+      "countyDisplay": "Tarrant",
+      "stateAbbr": "TX"
+    },
+    "el-paso": {
+      "stateSlug": "texas",
+      "countySlug": "el-paso",
+      "countyDisplay": "El Paso",
+      "stateAbbr": "TX"
+    },
+    "oklahoma-city": {
+      "stateSlug": "oklahoma",
+      "countySlug": "oklahoma",
+      "countyDisplay": "Oklahoma",
+      "stateAbbr": "OK"
+    },
+    "fresno": {
+      "stateSlug": "california",
+      "countySlug": "fresno",
+      "countyDisplay": "Fresno",
+      "stateAbbr": "CA"
+    },
+    "virginia-beach": {
+      "stateSlug": "virginia",
+      "countySlug": "virginia-beach-city",
+      "countyDisplay": "Virginia Beach City",
+      "stateAbbr": "VA"
+    },
+    "colorado-springs": {
+      "stateSlug": "colorado",
+      "countySlug": "el-paso",
+      "countyDisplay": "El Paso",
+      "stateAbbr": "CO"
+    },
+    "wichita": {
+      "stateSlug": "kansas",
+      "countySlug": "sedgwick",
+      "countyDisplay": "Sedgwick",
+      "stateAbbr": "KS"
+    },
+    "bakersfield": {
+      "stateSlug": "california",
+      "countySlug": "kern",
+      "countyDisplay": "Kern",
+      "stateAbbr": "CA"
+    },
+    "aurora": {
+      "stateSlug": "colorado",
+      "countySlug": "arapahoe",
+      "countyDisplay": "Arapahoe",
+      "stateAbbr": "CO"
+    },
+    "anaheim": {
+      "stateSlug": "california",
+      "countySlug": "orange",
+      "countyDisplay": "Orange",
+      "stateAbbr": "CA"
+    },
+    "corpus-christi": {
+      "stateSlug": "texas",
+      "countySlug": "nueces",
+      "countyDisplay": "Nueces",
+      "stateAbbr": "TX"
+    },
+    "riverside": {
+      "stateSlug": "california",
+      "countySlug": "riverside",
+      "countyDisplay": "Riverside",
+      "stateAbbr": "CA"
+    },
+    "lexington": {
+      "stateSlug": "kentucky",
+      "countySlug": "fayette",
+      "countyDisplay": "Fayette",
+      "stateAbbr": "KY"
+    },
+    "stockton": {
+      "stateSlug": "california",
+      "countySlug": "san-joaquin",
+      "countyDisplay": "San Joaquin",
+      "stateAbbr": "CA"
+    },
+    "st-paul": {
+      "stateSlug": "minnesota",
+      "countySlug": "ramsey",
+      "countyDisplay": "Ramsey",
+      "stateAbbr": "MN"
+    },
+    "greensboro": {
+      "stateSlug": "north-carolina",
+      "countySlug": "guilford",
+      "countyDisplay": "Guilford",
+      "stateAbbr": "NC"
+    },
+    "toledo": {
+      "stateSlug": "ohio",
+      "countySlug": "lucas",
+      "countyDisplay": "Lucas",
+      "stateAbbr": "OH"
+    },
+    "newark": {
+      "stateSlug": "new-jersey",
+      "countySlug": "essex",
+      "countyDisplay": "Essex",
+      "stateAbbr": "NJ"
+    },
+    "plano": {
+      "stateSlug": "texas",
+      "countySlug": "collin",
+      "countyDisplay": "Collin",
+      "stateAbbr": "TX"
+    },
+    "orlando": {
+      "stateSlug": "florida",
+      "countySlug": "orange",
+      "countyDisplay": "Orange",
+      "stateAbbr": "FL"
+    },
+    "laredo": {
+      "stateSlug": "texas",
+      "countySlug": "webb",
+      "countyDisplay": "Webb",
+      "stateAbbr": "TX"
+    },
+    "madison": {
+      "stateSlug": "wisconsin",
+      "countySlug": "dane",
+      "countyDisplay": "Dane",
+      "stateAbbr": "WI"
+    },
+    "durham": {
+      "stateSlug": "north-carolina",
+      "countySlug": "durham",
+      "countyDisplay": "Durham",
+      "stateAbbr": "NC"
+    },
+    "lubbock": {
+      "stateSlug": "texas",
+      "countySlug": "lubbock",
+      "countyDisplay": "Lubbock",
+      "stateAbbr": "TX"
+    },
+    "winston-salem": {
+      "stateSlug": "north-carolina",
+      "countySlug": "forsyth",
+      "countyDisplay": "Forsyth",
+      "stateAbbr": "NC"
+    },
+    "norfolk": {
+      "stateSlug": "virginia",
+      "countySlug": "norfolk-city",
+      "countyDisplay": "Norfolk City",
+      "stateAbbr": "VA"
+    },
+    "jersey-city": {
+      "stateSlug": "new-jersey",
+      "countySlug": "hudson",
+      "countyDisplay": "Hudson",
+      "stateAbbr": "NJ"
+    },
+    "reno": {
+      "stateSlug": "nevada",
+      "countySlug": "washoe",
+      "countyDisplay": "Washoe",
+      "stateAbbr": "NV"
+    },
+    "fort-wayne": {
+      "stateSlug": "indiana",
+      "countySlug": "allen",
+      "countyDisplay": "Allen",
+      "stateAbbr": "IN"
+    },
+    "st-petersburg": {
+      "stateSlug": "florida",
+      "countySlug": "pinellas",
+      "countyDisplay": "Pinellas",
+      "stateAbbr": "FL"
+    },
+    "fremont": {
+      "stateSlug": "california",
+      "countySlug": "alameda",
+      "countyDisplay": "Alameda",
+      "stateAbbr": "CA"
+    },
+    "boise": {
+      "stateSlug": "idaho",
+      "countySlug": "ada",
+      "countyDisplay": "Ada",
+      "stateAbbr": "ID"
+    },
+    "birmingham": {
+      "stateSlug": "alabama",
+      "countySlug": "jefferson",
+      "countyDisplay": "Jefferson",
+      "stateAbbr": "AL"
+    },
+    "rochester": {
+      "stateSlug": "new-york",
+      "countySlug": "monroe",
+      "countyDisplay": "Monroe",
+      "stateAbbr": "NY"
+    },
+    "spokane": {
+      "stateSlug": "washington",
+      "countySlug": "spokane",
+      "countyDisplay": "Spokane",
+      "stateAbbr": "WA"
+    },
+    "des-moines": {
+      "stateSlug": "iowa",
+      "countySlug": "polk",
+      "countyDisplay": "Polk",
+      "stateAbbr": "IA"
+    },
+    "fayetteville": {
+      "stateSlug": "north-carolina",
+      "countySlug": "cumberland",
+      "countyDisplay": "Cumberland",
+      "stateAbbr": "NC"
+    },
+    "tacoma": {
+      "stateSlug": "washington",
+      "countySlug": "pierce",
+      "countyDisplay": "Pierce",
+      "stateAbbr": "WA"
+    },
+    "akron": {
+      "stateSlug": "ohio",
+      "countySlug": "summit",
+      "countyDisplay": "Summit",
+      "stateAbbr": "OH"
+    },
+    "little-rock": {
+      "stateSlug": "arkansas",
+      "countySlug": "pulaski",
+      "countyDisplay": "Pulaski",
+      "stateAbbr": "AR"
+    },
+    "huntsville": {
+      "stateSlug": "alabama",
+      "countySlug": "madison",
+      "countyDisplay": "Madison",
+      "stateAbbr": "AL"
+    },
+    "worcester": {
+      "stateSlug": "massachusetts",
+      "countySlug": "worcester",
+      "countyDisplay": "Worcester",
+      "stateAbbr": "MA"
+    },
+    "knoxville": {
+      "stateSlug": "tennessee",
+      "countySlug": "knox",
+      "countyDisplay": "Knox",
+      "stateAbbr": "TN"
+    },
+    "providence": {
+      "stateSlug": "rhode-island",
+      "countySlug": "providence",
+      "countyDisplay": "Providence",
+      "stateAbbr": "RI"
+    },
+    "grand-rapids": {
+      "stateSlug": "michigan",
+      "countySlug": "kent",
+      "countyDisplay": "Kent",
+      "stateAbbr": "MI"
+    },
+    "dayton": {
+      "stateSlug": "ohio",
+      "countySlug": "montgomery",
+      "countyDisplay": "Montgomery",
+      "stateAbbr": "OH"
+    },
+    "jackson": {
+      "stateSlug": "mississippi",
+      "countySlug": "rankin",
+      "countyDisplay": "Rankin",
+      "stateAbbr": "MS"
+    },
+    "savannah": {
+      "stateSlug": "georgia",
+      "countySlug": "chatham",
+      "countyDisplay": "Chatham",
+      "stateAbbr": "GA"
+    },
+    "columbia-sc": {
+      "stateSlug": "south-carolina",
+      "countySlug": "lexington",
+      "countyDisplay": "Lexington",
+      "stateAbbr": "SC"
+    },
+    "fort-lauderdale": {
+      "stateSlug": "florida",
+      "countySlug": "broward",
+      "countyDisplay": "Broward",
+      "stateAbbr": "FL"
+    },
+    "lincoln": {
+      "stateSlug": "nebraska",
+      "countySlug": "lancaster",
+      "countyDisplay": "Lancaster",
+      "stateAbbr": "NE"
+    },
+    "ann-arbor": {
+      "stateSlug": "michigan",
+      "countySlug": "washtenaw",
+      "countyDisplay": "Washtenaw",
+      "stateAbbr": "MI"
+    },
+    "cape-coral": {
+      "stateSlug": "florida",
+      "countySlug": "lee",
+      "countyDisplay": "Lee",
+      "stateAbbr": "FL"
+    },
+    "tallahassee": {
+      "stateSlug": "florida",
+      "countySlug": "leon",
+      "countyDisplay": "Leon",
+      "stateAbbr": "FL"
+    },
+    "fort-collins": {
+      "stateSlug": "colorado",
+      "countySlug": "larimer",
+      "countyDisplay": "Larimer",
+      "stateAbbr": "CO"
+    },
+    "west-palm-beach": {
+      "stateSlug": "florida",
+      "countySlug": "palm-beach",
+      "countyDisplay": "Palm Beach",
+      "stateAbbr": "FL"
+    },
+    "sioux-falls": {
+      "stateSlug": "south-dakota",
+      "countySlug": "minnehaha",
+      "countyDisplay": "Minnehaha",
+      "stateAbbr": "SD"
+    },
+    "hartford": {
+      "stateSlug": "connecticut",
+      "countySlug": "hartford",
+      "countyDisplay": "Hartford",
+      "stateAbbr": "CT"
+    },
+    "stamford": {
+      "stateSlug": "connecticut",
+      "countySlug": "fairfield",
+      "countyDisplay": "Fairfield",
+      "stateAbbr": "CT"
+    },
+    "fargo": {
+      "stateSlug": "north-dakota",
+      "countySlug": "cass",
+      "countyDisplay": "Cass",
+      "stateAbbr": "ND"
+    },
+    "provo": {
+      "stateSlug": "utah",
+      "countySlug": "utah",
+      "countyDisplay": "Utah",
+      "stateAbbr": "UT"
+    },
+    "modesto": {
+      "stateSlug": "california",
+      "countySlug": "stanislaus",
+      "countyDisplay": "Stanislaus",
+      "stateAbbr": "CA"
+    },
+    "brownsville": {
+      "stateSlug": "texas",
+      "countySlug": "cameron",
+      "countyDisplay": "Cameron",
+      "stateAbbr": "TX"
+    },
+    "mcallen": {
+      "stateSlug": "texas",
+      "countySlug": "hidalgo",
+      "countyDisplay": "Hidalgo",
+      "stateAbbr": "TX"
+    },
+    "chattanooga": {
+      "stateSlug": "tennessee",
+      "countySlug": "hamilton",
+      "countyDisplay": "Hamilton",
+      "stateAbbr": "TN"
+    },
+    "springfield-mo": {
+      "stateSlug": "missouri",
+      "countySlug": "greene",
+      "countyDisplay": "Greene",
+      "stateAbbr": "MO"
+    },
+    "murfreesboro": {
+      "stateSlug": "tennessee",
+      "countySlug": "rutherford",
+      "countyDisplay": "Rutherford",
+      "stateAbbr": "TN"
+    },
+    "montgomery": {
+      "stateSlug": "alabama",
+      "countySlug": "montgomery",
+      "countyDisplay": "Montgomery",
+      "stateAbbr": "AL"
+    },
+    "alexandria": {
+      "stateSlug": "virginia",
+      "countySlug": "alexandria-city",
+      "countyDisplay": "Alexandria City",
+      "stateAbbr": "VA"
+    },
+    "lakewood": {
+      "stateSlug": "colorado",
+      "countySlug": "jefferson",
+      "countyDisplay": "Jefferson",
+      "stateAbbr": "CO"
+    },
+    "parkersburg": {
+      "stateSlug": "west-virginia",
+      "countySlug": "wood",
+      "countyDisplay": "Wood",
+      "stateAbbr": "WV"
+    },
+    "portsmouth-nh": {
+      "stateSlug": "new-hampshire",
+      "countySlug": "strafford",
+      "countyDisplay": "Strafford",
+      "stateAbbr": "NH"
+    },
+    "portland-me": {
+      "stateSlug": "maine",
+      "countySlug": "cumberland",
+      "countyDisplay": "Cumberland",
+      "stateAbbr": "ME"
+    }
+  }
+}
