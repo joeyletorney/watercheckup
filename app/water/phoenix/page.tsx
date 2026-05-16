@@ -5,14 +5,14 @@ import { SiteHeader } from '../../components/SiteHeader';
 const AMAZON_TAG = 'watercheck20-20';
 
 export const metadata: Metadata = {
-  title: 'Phoenix Water Quality 2025 — Chromium-6, PFAS & Hard Water Report | WaterCheckup',
+  title: 'Phoenix Tap Water Report 2026 — Is It Safe to Drink?',
   description:
-    'Phoenix tap water quality report 2025. Phoenix Water contains chromium-6, PFAS, arsenic, and very hard water from the Colorado River. See contaminant levels and best filters.',
+    'Phoenix water comes from the Colorado River and local groundwater. See current PFAS levels, contaminant data, and filter recommendations for your ZIP code.',
   alternates: { canonical: 'https://watercheckup.com/water/phoenix' },
   openGraph: {
-    title: 'Phoenix Water Quality 2025 — Chromium-6, PFAS & Hard Water Report',
+    title: 'Phoenix Tap Water Report 2026 — Is It Safe to Drink?',
     description:
-      'Is Phoenix tap water safe? See chromium-6, PFAS, arsenic, hardness, and the right filters for Colorado River / SRP water.',
+      'Phoenix water comes from the Colorado River and local groundwater. See current PFAS levels, contaminant data, and filter recommendations for your ZIP code.',
   },
 };
 

@@ -11,10 +11,15 @@ import { WaterHardnessClient } from "./WaterHardnessClient";
 const AMAZON = (q: string) => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=watercheck20-20`;
 
 export const metadata: Metadata = {
-  title: "Water Hardness Calculator — Check by ZIP Code | WaterCheckup",
+  title: "Water Hardness Calculator — Check by ZIP Code Free (2026)",
   description:
-    "Find your water hardness by ZIP code or calculate from your test results. See if you need a water softener and get certified filter recommendations.",
+    "Find your water hardness by ZIP code instantly. See if you need a water softener and get certified filter recommendations based on your actual water data.",
   alternates: { canonical: "https://watercheckup.com/water-hardness" },
+  openGraph: {
+    title: "Water Hardness Calculator — Check by ZIP Code Free (2026)",
+    description:
+      "Find your water hardness by ZIP code instantly. See if you need a water softener and get certified filter recommendations based on your actual water data.",
+  },
 };
 
 export const revalidate = 86400;

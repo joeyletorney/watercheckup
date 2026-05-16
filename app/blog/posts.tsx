@@ -139,14 +139,14 @@ export const POSTS: Record<string, Post> = {
     title: 'Best Water Filters for Lead Removal in 2026 (NSF Certified)',
     excerpt: 'There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.',
     seo: {
-      title: 'Best Water Filter for Lead Removal 2025 — NSF 53 Certified Picks',
+      title: 'Best Water Filters for Lead Removal 2026 — NSF Certified & Tested',
       description:
-        'Lead in your tap water? These are the only NSF 53-certified filters proven to remove lead in 2025. Ranked by effectiveness — RO systems, pitchers, and under-sink filters tested.',
+        'These NSF-certified filters remove 99%+ of lead from tap water. Updated 2026 with lab-verified results and pricing.',
       canonical: 'https://watercheckup.com/blog/best-water-filter-for-lead-removal',
       openGraph: {
-        title: 'Best Water Filter for Lead Removal 2025 — NSF 53 Certified Only',
+        title: 'Best Water Filters for Lead Removal 2026 — NSF Certified & Tested',
         description:
-          'Lead has no safe level. These NSF 53-certified filters are the only ones proven to remove it. Ranked for 2025.',
+          'These NSF-certified filters remove 99%+ of lead from tap water. Updated 2026 with lab-verified results and pricing.',
       },
     },
     date: '2026-03-29',

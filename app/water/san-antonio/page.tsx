@@ -5,14 +5,14 @@ import { SiteHeader } from '../../components/SiteHeader';
 const AMAZON_TAG = 'watercheck20-20';
 
 export const metadata: Metadata = {
-  title: 'San Antonio Water Quality 2025 — PFAS, Radium & Hardness Report | WaterCheckup',
+  title: 'San Antonio Tap Water Safety Report 2026 — Contamination Warning',
   description:
-    'San Antonio tap water quality report 2025. SAWS water contains radium, PFAS, very hard water (Edwards Aquifer), and elevated sodium. See contaminant levels, EPA data, and best filters for SA water.',
+    'San Antonio water contains contaminants above EPA health guidelines. See PFAS levels, lead data, and the exact filter that removes what\'s in your water. Free report.',
   alternates: { canonical: 'https://watercheckup.com/water/san-antonio' },
   openGraph: {
-    title: 'San Antonio Water Quality 2025 — PFAS, Radium & Hard Water Report',
+    title: 'San Antonio Tap Water Safety Report 2026 — Contamination Warning',
     description:
-      'Is San Antonio tap water safe? See SAWS contaminant data, PFAS levels, radium, hardness, and the right filters for Edwards Aquifer water.',
+      'San Antonio water contains contaminants above EPA health guidelines. See PFAS levels, lead data, and the exact filter that removes what\'s in your water. Free report.',
   },
 };
 

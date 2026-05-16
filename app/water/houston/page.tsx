@@ -5,14 +5,14 @@ import { SiteHeader } from '../../components/SiteHeader';
 const AMAZON_TAG = 'watercheck20-20';
 
 export const metadata: Metadata = {
-  title: 'Houston Water Quality 2025 — PFAS, Arsenic & Contamination Report | WaterCheckup',
+  title: 'Houston Tap Water Report 2026 — 5 Contaminants Above Guidelines',
   description:
-    'Houston tap water quality report 2025. Houston Water contains high PFAS, arsenic, radium, TTHMs, and elevated sodium. See contaminant levels, EPA data, and best filters for Houston water.',
+    'Houston water has 5 contaminants exceeding EPA health limits including PFAS and disinfection byproducts. Free report and filter recommendations.',
   alternates: { canonical: 'https://watercheckup.com/water/houston' },
   openGraph: {
-    title: 'Houston Water Quality 2025 — PFAS, Arsenic & Hard Water Report',
+    title: 'Houston Tap Water Report 2026 — 5 Contaminants Above Guidelines',
     description:
-      'Is Houston tap water safe? See Houston Water contaminant data, PFAS levels, arsenic, radium, and the right filters for your home.',
+      'Houston water has 5 contaminants exceeding EPA health limits including PFAS and disinfection byproducts. Free report and filter recommendations.',
   },
 };
 
