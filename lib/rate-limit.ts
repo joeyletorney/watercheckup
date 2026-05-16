@@ -55,4 +55,6 @@ export const RATE = {
   newsletterSubscribePerIp: { max: 25, windowMs: 15 * 60 * 1000 },
   newsletterSubscribePerEmail: { max: 8, windowMs: 60 * 60 * 1000 },
   unsubscribeGetPerIp: { max: 40, windowMs: 15 * 60 * 1000 },
+  utilityClaimPerIp: { max: 10, windowMs: 15 * 60 * 1000 },
+  utilityClaimPerEmail: { max: 5, windowMs: 60 * 60 * 1000 },
 } as const;

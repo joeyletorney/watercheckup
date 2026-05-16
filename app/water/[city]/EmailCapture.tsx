@@ -1,17 +1,59 @@
 'use client';
 import { useState } from 'react';
 
-function trackNewsletterSignup(slug: string) {
+function trackNewsletterSignup(pagePath: string, source: string) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'newsletter_signup', {
       method: 'inline_form',
-      page_path: `/water/${slug}`,
-      source: `city-page-${slug}`,
+      page_path: pagePath,
+      source,
     });
   }
 }
 
-export default function EmailCapture({ cityName, slug, inline }: { cityName: string; slug: string; inline?: boolean }) {
+type EmailCaptureProps = {
+  cityName: string;
+  slug: string;
+  inline?: boolean;
+  /** When set, copy targets a whole state (e.g. Texas / texas). */
+  stateScope?: { stateName: string; stateSlug: string };
+  /** When set, copy targets a county hub page. */
+  countyScope?: { countyDisplay: string; stateSlug: string; countySlug: string };
+  /** When set, copy targets a PWS utility page. */
+  utilityScope?: { utilityName: string; stateParam: string; utilitySlug: string; pwsid?: string };
+};
+
+export default function EmailCapture({ cityName, slug, inline, stateScope, countyScope, utilityScope }: EmailCaptureProps) {
+  const isUtility = !!utilityScope;
+  const isCounty = !!countyScope;
+  const isState = !!stateScope;
+  const displayName = isUtility
+    ? utilityScope!.utilityName
+    : isCounty
+      ? countyScope!.countyDisplay
+      : isState
+        ? stateScope!.stateName
+        : cityName;
+  const countyLabelForTitle =
+    isCounty && countyScope!.countySlug === 'district-of-columbia'
+      ? 'District of Columbia'
+      : isCounty
+        ? `${countyScope!.countyDisplay} County`
+        : '';
+  const newsletterSource = isUtility
+    ? `utility-page-${utilityScope!.stateParam}-${utilityScope!.utilitySlug}`
+    : isCounty
+      ? `county-page-${countyScope!.stateSlug}-${countyScope!.countySlug}`
+      : isState
+        ? `state-page-${stateScope!.stateSlug}`
+        : `city-page-${slug}`;
+  const pagePathForGtag = isUtility
+    ? `/utilities/${utilityScope!.stateParam}/${utilityScope!.utilitySlug}`
+    : isCounty
+      ? `/water/county/${countyScope!.stateSlug}/${countyScope!.countySlug}`
+      : isState
+        ? `/water/state/${stateScope!.stateSlug}`
+        : `/water/${slug}`;
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [msg, setMsg] = useState('');
@@ -23,11 +65,11 @@ export default function EmailCapture({ cityName, slug, inline }: { cityName: str
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: `city-page-${slug}` }),
+        body: JSON.stringify({ email, source: newsletterSource }),
       });
       const data = await res.json();
       if (data.success) {
-        trackNewsletterSignup(slug);
+        trackNewsletterSignup(pagePathForGtag, newsletterSource);
         setStatus('success');
         setMsg('');
       } else {
@@ -61,9 +103,10 @@ export default function EmailCapture({ cityName, slug, inline }: { cityName: str
     return (
       <div style={{ marginBottom: 40, padding: '24px 24px', background: '#0a2a1a', border: '1px solid #0f6e40', borderRadius: 12, textAlign: 'center' }}>
         <div style={{ fontSize: 20, marginBottom: 6 }}>✅</div>
-        <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You're in.</div>
+        <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You&apos;re in.</div>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: 0 }}>
-          We'll email you when new PFAS or contamination data drops for {cityName}. Check your inbox for a welcome note.
+          We&apos;ll email you when new PFAS or contamination data drops for{' '}
+          {isCounty ? countyLabelForTitle : displayName}. Check your inbox for a welcome note.
         </p>
       </div>
     );
@@ -75,10 +118,22 @@ export default function EmailCapture({ cityName, slug, inline }: { cityName: str
         STAY INFORMED
       </div>
       <div style={{ fontSize: 16, fontWeight: 700, color: '#f1f5f9', marginBottom: 6 }}>
-        Get {cityName} water alerts
+        {isCounty
+          ? `Get water alerts for ${countyLabelForTitle}`
+          : isState
+            ? `Get water quality alerts for ${displayName}`
+            : isUtility
+              ? `Get water quality alerts for ${displayName}`
+              : `Get ${displayName} water alerts`}
       </div>
       <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.6 }}>
-        We'll notify you when new PFAS data, EPA violations, or contamination alerts drop for {cityName}. One email, no spam, unsubscribe any time.
+        {isCounty
+          ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect cities in ${countyLabelForTitle}. One email, no spam, unsubscribe any time.`
+          : isState
+            ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect utilities in ${displayName}. One email, no spam, unsubscribe any time.`
+            : isUtility
+              ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect ${displayName}${utilityScope!.pwsid ? ` (PWS ${utilityScope!.pwsid})` : ''}. One email, no spam, unsubscribe any time.`
+              : `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts drop for ${displayName}. One email, no spam, unsubscribe any time.`}
       </p>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <input

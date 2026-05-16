@@ -5,13 +5,13 @@ const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osm
 const AMAZON_TAG = 'watercheck20-20';
 // Shared top-3 pick sets used across blog posts
 const TOP_3_RO = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. 10-stage filtration.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. 10-stage filtration.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants including PFAS.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
 ];
 const TOP_3_LEAD = [
   { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Best-certified pitcher on the market.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR LEAD + PFAS' },
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Under-sink RO removes 99.9% of lead at the tap. Best for homeowners with aging pipes throughout the home.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Under-sink RO removes 99.9% of lead at the tap. Best for homeowners with aging pipes throughout the home.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'NSF 42/53 certified. Reduces lead and chromium to zero. Includes TDS meter. Budget-friendly renter option.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
 ];
 const TOP_3_PITCHER = [
@@ -27,6 +27,70 @@ const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#94a3b8', line
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
 const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#94a3b8', lineHeight: 1.75 };
 const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#94a3b8', lineHeight: 1.75 };
+
+/** Editorial: large metros where regional geology and aquifers typically produce very hard tap water (not a single-utility ppm ranking). */
+const HARDEST_TEN_CITIES: readonly { slug: string; title: string; short: string; text: string }[] = [
+  {
+    slug: 'san-antonio',
+    title: 'San Antonio, Texas',
+    short: 'San Antonio',
+    text: 'The Edwards Aquifer and Edwards Plateau limestone dissolve calcium and magnesium into source water. It is one of the metros most often cited for extreme kettle scale, spotted glassware, and water heaters that fail early from mineral buildup.',
+  },
+  {
+    slug: 'las-vegas',
+    title: 'Las Vegas, Nevada',
+    short: 'Las Vegas',
+    text: 'Colorado River supplies and local groundwater in the Basin and Range carry high mineral loads. Evaporation concentrates salts; blending sources still leaves many homes in the “very hard” band on consumer reports.',
+  },
+  {
+    slug: 'phoenix',
+    title: 'Phoenix, Arizona',
+    short: 'Phoenix',
+    text: 'Desert surface water and groundwater pick up carbonates and sulfates from long residence time in aquifers. Utilities treat for safety, but hardness minerals are left largely in place — so scale on fixtures is the norm.',
+  },
+  {
+    slug: 'tucson',
+    title: 'Tucson, Arizona',
+    short: 'Tucson',
+    text: 'Southern Arizona aquifers flow through mineral-rich sediment and volcanic rock. Residents often see high total dissolved solids alongside hardness — RO drinking systems and whole-home softeners are common upgrades.',
+  },
+  {
+    slug: 'albuquerque',
+    title: 'Albuquerque, New Mexico',
+    short: 'Albuquerque',
+    text: 'Rio Grande rift and mountain-front recharge water interacts with limestone and gypsum-bearing formations. Hardness varies by well blend, but the regional baseline is well above the national median.',
+  },
+  {
+    slug: 'el-paso',
+    title: 'El Paso, Texas',
+    short: 'El Paso',
+    text: 'High desert groundwater and river sources mineralized by geology and evaporation. Border cities here routinely publish hardness in the upper grains-per-gallon range compared with national averages.',
+  },
+  {
+    slug: 'oklahoma-city',
+    title: 'Oklahoma City, Oklahoma',
+    short: 'Oklahoma City',
+    text: 'Red-bed sedimentary geology — sandstone, shale, and evaporite minerals — contributes dissolved hardness across the Great Plains. Agricultural and urban pumping can shift blends, but the regional pattern stays “hard to very hard.”',
+  },
+  {
+    slug: 'austin',
+    title: 'Austin, Texas',
+    short: 'Austin',
+    text: 'Central Texas limestone (Travis Peak / Edwards country) leaches calcium carbonate. Austin’s treated water is safe, but the same geology that builds caves builds scale in your coffee maker.',
+  },
+  {
+    slug: 'kansas-city',
+    title: 'Kansas City, Missouri',
+    short: 'Kansas City',
+    text: 'Pennsylvanian–Permian limestone and dolomite underlie much of the metro. Utilities blend multiple wells and river intakes; hardness swings seasonally but typically stays in the hard band year-round.',
+  },
+  {
+    slug: 'dallas',
+    title: 'Dallas, Texas',
+    short: 'Dallas',
+    text: 'North Texas Trinity and Woodbine aquifers plus surface blends often land north of 7 gpg at the tap. It is softer than San Antonio in many years, but still firmly in the “hard water” conversation for the state’s largest metro.',
+  },
+];
 
 export const EXTRA_POSTS_4: Record<string, Post> = {
   'tap-water-safety-during-pregnancy': {
@@ -91,7 +155,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'A reverse osmosis system is the most comprehensive option -- it removes lead, PFAS, nitrates, and DBPs in a single pass. Look for NSF 58 certification for PFAS removal and NSF 53 for lead. Under-sink RO systems from Waterdrop and APEC run $200-400 and require no professional installation.'
       ),
       React.createElement('p', { style: pStyle },
-        'For renters or those who cannot install under-sink systems, the Waterdrop D4 countertop RO requires zero plumbing and sits on your counter. A Clearly Filtered pitcher (NSF 53 certified for lead) is another solid option if RO is not feasible.'
+        'For renters or those who cannot install under-sink systems, the Waterdrop K19-S Countertop RO requires zero plumbing and sits on your counter. A Clearly Filtered pitcher (NSF 53 certified for lead) is another solid option if RO is not feasible.'
       ),
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, 'Bottom line: '),
@@ -128,7 +192,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, 'Waterdrop G3P800 -- Best overall'),
       React.createElement('p', { style: pStyle },
-        'The G3P800 is tankless, meaning no bulky reservoir under your sink. At 800 gallons per day it runs fast -- no waiting. NSF 58 certified, removes PFAS, lead, nitrates, arsenic, and chloramine byproducts. Runs around $299-349 and installs in under an hour with no plumber needed. This is what most WaterCheckup users end up with.'
+        'The G3P800 is tankless, meaning no bulky reservoir under your sink. At 800 gallons per day it runs fast -- no waiting. NSF 58 certified, removes PFAS, lead, nitrates, arsenic, and chloramine byproducts. Typically runs around $849 and installs in under an hour with no plumber needed. This is what most WaterCheckup users end up with.'
       ),
 
       React.createElement('h3', { style: h3Style }, 'APEC ROES-50 -- Best budget pick'),
@@ -143,9 +207,9 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Best countertop RO for renters'),
 
-      React.createElement('h3', { style: h3Style }, 'Waterdrop D4 -- No installation required'),
+      React.createElement('h3', { style: h3Style }, 'Waterdrop K19-S Countertop RO -- No installation required'),
       React.createElement('p', { style: pStyle },
-        'Sits on your counter, plugs into a standard outlet, connects to your faucet with a diverter valve that takes two minutes to install. NSF 58 certified for PFAS removal. Runs around $299. This is the answer for anyone renting or who cannot do under-sink work. Performance is close to full under-sink RO systems.'
+        'No installation needed — just plug in. NSF 58 certified, removes PFAS, lead, arsenic, and 1,000+ contaminants. Perfect for renters. 170 oz tank, 3:1 pure to drain ratio. Runs around $199. This is the answer for anyone renting or who cannot do under-sink work. Performance is close to full under-sink RO systems.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What RO does NOT remove'),
@@ -210,7 +274,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Step 3: What to buy for the first 30 days'),
       React.createElement('p', { style: pStyle },
-        'While you are getting settled and figuring out your water situation, a countertop RO system like the Waterdrop D4 is the lowest-friction option -- no installation, sits on the counter, plugs in like an appliance. Once you know what you are dealing with, you can decide whether to upgrade to an under-sink system.'
+        'While you are getting settled and figuring out your water situation, a countertop RO system like the Waterdrop K19-S Countertop RO is the lowest-friction option -- no installation, sits on the counter, plugs in like an appliance. Once you know what you are dealing with, you can decide whether to upgrade to an under-sink system.'
       ),
       React.createElement('p', { style: pStyle },
         'If you are moving somewhere with hard water (Southwest, Texas, Nevada), a shower filter with KDF media will noticeably help your skin and hair within a week -- a $30-50 improvement you will feel immediately.'
@@ -343,6 +407,119 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
       ),
       React.createElement('p', { style: pStyle },
         'If your water report shows any PFAS above 4 ppt, lead above 5 ppb, or nitrates above 5 ppm — a certified reverse osmosis system is the right call. Use WaterCheckup to see your specific city\'s report, then take the 3-question filter quiz to find the right system for your home.'
+      ),
+    ),
+  },
+
+  'top-10-cities-hardest-tap-water': {
+    title: 'Top 10 US Cities With the Hardest Tap Water (and What to Do About It)',
+    excerpt:
+      'Hard water is about geology, not bad utility work. These ten major metros sit on aquifers and river sources where calcium and magnesium are naturally high — plus practical fixes for scale and drinking water.',
+    seo: {
+      title: 'Top 10 US Cities With the Hardest Tap Water (2026) | WaterCheckup',
+      description:
+        'Which major US cities have the hardest tap water? Regional geology, typical hardness patterns, links to free city water reports, and filter guidance.',
+      canonical: 'https://watercheckup.com/blog/top-10-cities-hardest-tap-water',
+      openGraph: {
+        title: 'Top 10 US Cities With the Hardest Tap Water',
+        description:
+          'Limestone aquifers, desert rivers, and Great Plains geology — where hardness is the norm and how to treat it.',
+      },
+    },
+    date: '2026-05-09',
+    dateDisplay: 'May 9, 2026',
+    readTime: '9 min read',
+    badge: 'Home',
+    badgeColor: '#94a3b8',
+    topPicks: TOP_3_RO,
+    content: React.createElement(React.Fragment, null,
+      React.createElement('p', { style: pStyle },
+        '“Hard water” means high dissolved ',
+        React.createElement('strong', { style: strongStyle }, 'calcium and magnesium'),
+        ' — usually reported as calcium carbonate (CaCO₃) equivalent in mg/L or grains per gallon (gpg). It is not a contaminant violation by itself: EPA does not set a health limit for hardness. It ',
+        React.createElement('strong', { style: strongStyle }, 'is'),
+        ' annoying — scale on faucets, soap that will not lather, spotted dishes, dry skin, and shorter life for water heaters and appliances.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'This list highlights ',
+        React.createElement('strong', { style: strongStyle }, 'ten large US metros'),
+        ' where regional geology and typical utility blends ',
+        React.createElement('strong', { style: strongStyle }, 'most often'),
+        ' produce very hard tap water. It is ',
+        React.createElement('strong', { style: strongStyle }, 'not'),
+        ' a milligram-for-milligram national utility leaderboard: your exact ZIP, well field, and seasonal blend can differ from a neighbor. Always read your Consumer Confidence Report or run a home hardness strip if you need a number for sizing a softener.'
+      ),
+
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: strongStyle }, 'How we picked these cities: '),
+        'We combined USGS regional groundwater hardness patterns, major aquifer geology (limestone, dolomite, evaporite basins, desert mineralization), and WaterCheckup’s state-level hardness tiers used in our ZIP tool. For each city we link our ',
+        React.createElement('strong', { style: strongStyle }, 'free EPA-backed metro report'),
+        ' (SDWIS + UCMR5 context) — hardness is only one piece of what is in your glass.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Quick refresher: gpg vs mg/L'),
+      React.createElement('p', { style: pStyle },
+        'Most utilities report hardness as CaCO₃. Rough guide: ',
+        React.createElement('strong', { style: strongStyle }, '1 gpg ≈ 17.1 mg/L'),
+        '. Water under ~60 mg/L (~3.5 gpg) feels soft; above ~120 mg/L (~7 gpg) most people call it hard; above ~180 mg/L (~10.5 gpg) is often labeled very hard in consumer literature. Your CCR may use either unit.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'The top 10 cities'),
+      React.createElement('div', { style: { margin: '8px 0 28px', display: 'flex', flexDirection: 'column' as const, gap: 14 } },
+        ...HARDEST_TEN_CITIES.map((c, i) =>
+          React.createElement('div', { key: c.slug, style: { padding: '16px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 } },
+            React.createElement('div', { style: { fontSize: 11, fontWeight: 800, letterSpacing: 1.2, color: '#64748b', marginBottom: 6 } }, `NO. ${i + 1}`),
+            React.createElement('div', { style: { fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 } }, c.title),
+            React.createElement('p', { style: { ...pStyle, margin: '0 0 12px' } }, c.text),
+            React.createElement('a', { href: `/water/${c.slug}`, style: { fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' } }, `Free ${c.short} water report (EPA data) →`),
+          )
+        )
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Is hard water dangerous?'),
+      React.createElement('p', { style: pStyle },
+        'At typical municipal levels, hardness is ',
+        React.createElement('strong', { style: strongStyle }, 'not a short-term health emergency'),
+        '. Some studies even associate modest mineral content with dietary calcium intake — but you should not rely on tap water for nutrition. The real costs are ',
+        React.createElement('strong', { style: strongStyle }, 'plumbing, appliances, cleaning, and comfort'),
+        '. If you also have ',
+        React.createElement('strong', { style: strongStyle }, 'lead'),
+        ' risk from older plumbing, remember: ',
+        React.createElement('strong', { style: strongStyle }, 'softeners do not remove lead'),
+        '; they change water chemistry. Use NSF-certified filtration for metals and PFAS at the tap.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'What actually fixes it'),
+      React.createElement('p', { style: pStyle },
+        React.createElement('strong', { style: strongStyle }, 'Ion-exchange water softeners'),
+        ' (salt-based) swap calcium and magnesium for sodium or potassium — that is the gold standard for ',
+        React.createElement('strong', { style: strongStyle }, 'whole-home'),
+        ' scale control. ',
+        React.createElement('strong', { style: strongStyle }, 'Reverse osmosis'),
+        ' strips hardness for ',
+        React.createElement('strong', { style: strongStyle }, 'drinking and cooking'),
+        ' and also removes PFAS, nitrate, and many metals — but it does not protect your shower or water heater. ',
+        React.createElement('strong', { style: strongStyle }, 'Salt-free conditioners'),
+        ' reduce scaling tendency without full ion exchange; results depend on water chemistry — size them with a real hardness test.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'For deeper product comparisons, see our ',
+        React.createElement('a', { href: '/blog/best-water-filter-hard-water', style: { color: '#22d3ee', fontWeight: 700 } }, 'best water filters for hard water'),
+        ' guide. For contaminant rankings (PFAS, lead, violations), start at the ',
+        React.createElement('a', { href: '/worst', style: { color: '#22d3ee', fontWeight: 700 } }, 'WaterCheckup rankings hub'),
+        '.'
+      ),
+
+      React.createElement('div', { style: warnStyle },
+        React.createElement('strong', { style: { color: '#fbbf24' } }, 'Heads-up: '),
+        'If you see blue-green staining or pinhole leaks, that can signal ',
+        React.createElement('strong', { style: strongStyle }, 'corrosive'),
+        ' water (low pH), not just hardness. Treating hardness without addressing corrosivity can worsen copper or lead release — get a full panel or ask your utility about LCR corrosion control.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Check your own ZIP'),
+      React.createElement('p', { style: pStyle },
+        'City averages miss your block. Enter your ZIP on the WaterCheckup homepage for the exact EPA system serving your address — then decide whether you need softening, RO, or both.'
       ),
     ),
   },

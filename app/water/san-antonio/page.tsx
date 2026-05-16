@@ -107,7 +107,7 @@ const FILTER_PICKS = [
   {
     name: 'Waterdrop G3P800 Reverse Osmosis',
     badge: 'BEST FOR SA WATER',
-    price: '~$369',
+    price: '~$849',
     why: 'Removes 99%+ PFAS, radium, arsenic, sodium, and hardness minerals. NSF 58 certified. Tankless design fits under most SA kitchen sinks. Handles the full SA contaminant profile.',
     dp: 'B0987FCQQW',
     best: true,

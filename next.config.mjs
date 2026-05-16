@@ -14,6 +14,8 @@ const STATE_SLUGS = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  /** Default 60s — many ZIP/city pages exceed that on 2-core Vercel builders and get SIGTERM. */
+  staticPageGenerationTimeout: 180,
   async rewrites() {
     return STATE_SLUGS.map((slug) => ({
       source: `/water/${slug}`,

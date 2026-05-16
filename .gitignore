@@ -2,3 +2,5 @@ node_modules
 .next
 .env
 .env.local
+data/.sdwa-cache
+data/.utilities-echo-cache

@@ -93,7 +93,7 @@ const FILTER_PICKS = [
   {
     name: 'Waterdrop G3P800 Reverse Osmosis',
     badge: 'BEST FOR HOUSTON WATER',
-    price: '~$369',
+    price: '~$849',
     why: "Removes 99%+ PFAS, arsenic, radium, TTHMs, sodium, and hardness. NSF 42/53/58 certified. The right choice for Houston's high PFAS and arsenic levels.",
     dp: 'B0987FCQQW',
     best: true,

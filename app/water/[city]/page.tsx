@@ -7,6 +7,7 @@ import EmailCapture from './EmailCapture';
 import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
 import cityBlurbs from '@/lib/cityBlurbs';
+import { getCountyLinkForCitySlug } from '@/lib/county-data';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -25,7 +26,7 @@ function getPfasData(pwsid: string) {
 }
 
 const RO_PICKS = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$369', reason: 'Tankless 800 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20', badge: 'EDITORS PICK' },
+  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20', badge: 'EDITORS PICK' },
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20', badge: 'MOST CERTIFIED' },
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters, no tools. Compact tankless design, 4-stage filtration.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: 'https://www.amazon.com/dp/B0GGTSFZMY?tag=watercheck20-20', badge: 'EASIEST FILTER CHANGE' },
 ];
@@ -210,6 +211,12 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const pfas = cd ? getPfasData(cd.pwsid) : null;
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
+  const countyLink = cd ? getCountyLinkForCitySlug(slug) : undefined;
+  const countyLineLabel =
+    countyLink &&
+    (countyLink.countySlug === 'district-of-columbia'
+      ? 'District of Columbia'
+      : `${countyLink.countyDisplay} County`);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -244,7 +251,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         "name": `What water filter is best for ${cd?.name ?? cityName}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `For ${cd?.name ?? cityName}'s water profile, a reverse osmosis system addresses the widest range of contaminants including PFAS, lead, and disinfection byproducts. The Waterdrop G3P800 and Aquasana SmartFlow are top-rated options. Renters can use the Waterdrop D4 countertop RO — no installation required.`
+          "text": `For ${cd?.name ?? cityName}'s water profile, a reverse osmosis system addresses the widest range of contaminants including PFAS, lead, and disinfection byproducts. The Waterdrop G3P800 and Aquasana SmartFlow are top-rated options. Renters can use the Waterdrop K19-S Countertop RO — no installation required.`
         }
       }
     ]
@@ -275,6 +282,17 @@ export default function CityPage({ params }: { params: { city: string } }) {
             <span style={{ color: '#94a3b8' }}>{cd?.name ?? cityName}</span>
           </nav>
 
+          {cd && countyLink && countyLineLabel && (
+            <div style={{ marginBottom: 14, fontSize: 14 }}>
+              <Link
+                href={`/water/county/${countyLink.stateSlug}/${countyLink.countySlug}`}
+                style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}
+              >
+                {cd.name} is in {countyLineLabel} →
+              </Link>
+            </div>
+          )}
+
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             WATER QUALITY REPORT
           </div>
@@ -286,6 +304,17 @@ export default function CityPage({ params }: { params: { city: string } }) {
             <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.6 }}>
               Serving {cd.population} residents via {cd.system}
               {cityBlurbText ? ` · ${cityBlurbText}` : ''}
+            </p>
+          )}
+
+          {cd && (
+            <p style={{ fontSize: 14, margin: '0 0 18px' }}>
+              <Link
+                href={`/water-hardness?zip=${encodeURIComponent(cd.zip)}`}
+                style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}
+              >
+                Check water hardness in {cd.name} →
+              </Link>
             </p>
           )}
 
@@ -542,7 +571,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             },
             {
               q: `What water filter is best for ${cd?.name ?? cityName}?`,
-              a: `For ${cd?.name ?? cityName}'s water profile — ${cd?.issues.slice(0, 2).join(', ').toLowerCase() ?? 'typical municipal contaminants'} — a reverse osmosis system addresses the widest range of contaminants. Under-sink RO (Waterdrop G3P800, Aquasana SmartFlow) is the gold standard for homeowners. Renters can use a countertop RO like the Waterdrop D4 — zero installation required. Clearly Filtered pitchers are the best non-RO option for PFAS and lead.`,
+              a: `For ${cd?.name ?? cityName}'s water profile — ${cd?.issues.slice(0, 2).join(', ').toLowerCase() ?? 'typical municipal contaminants'} — a reverse osmosis system addresses the widest range of contaminants. Under-sink RO (Waterdrop G3P800, Aquasana SmartFlow) is the gold standard for homeowners. Renters can use a countertop RO like the Waterdrop K19-S Countertop RO — zero installation required. Clearly Filtered pitchers are the best non-RO option for PFAS and lead.`,
             },
             {
               q: `How do I get my ${cd?.name ?? cityName} water tested?`,

@@ -74,7 +74,7 @@ const FILTERS: FilterPick[] = [
     rank: 1,
     name: 'Waterdrop G3P800 Under-Sink RO',
     brand: 'Waterdrop',
-    price: '~$369',
+    price: '~$849',
     badge: 'STRONGEST REMOVAL',
     badgeColor: '#0891b2',
     why: 'Reverse osmosis is the most reliable residential technology for lead — membranes block dissolved lead along with many other metals. NSF/ANSI 58 certified systems are the standard to look for.',

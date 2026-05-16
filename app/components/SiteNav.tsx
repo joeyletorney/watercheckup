@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 const ITEMS: [string, string][] = [
   ['/', 'Home'],
   ['/#wc-hero-anchor', 'Check your water'],
+  ['/water-hardness', 'Hardness'],
   ['/contaminants', 'Contaminants'],
   ['/quiz', 'Filter picks'],
   ['/blog', 'Learn'],
@@ -21,6 +22,7 @@ const ITEMS: [string, string][] = [
 const MOBILE_PRIMARY: [string, string][] = [
   ['/', 'Home'],
   ['/#wc-hero-anchor', 'Your water'],
+  ['/water-hardness', 'Hardness'],
   ['/contaminants', 'Contaminants'],
   ['/quiz', 'Filters'],
 ];
@@ -52,7 +54,8 @@ function isActive(pathname: string, href: string) {
     (href === '/quiz' && pathname.startsWith('/quiz')) ||
     (href === '/methodology' && pathname.startsWith('/methodology')) ||
     (href === '/worst' && pathname.startsWith('/worst')) ||
-    (href === '/faq' && pathname.startsWith('/faq'))
+    (href === '/faq' && pathname.startsWith('/faq')) ||
+    (href === '/water-hardness' && pathname.startsWith('/water-hardness'))
   );
 }
 

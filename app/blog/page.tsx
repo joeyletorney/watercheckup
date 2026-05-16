@@ -210,6 +210,15 @@ const POST_BY_SLUG: Record<
     badge: 'Home',
     badgeColor: '#94a3b8',
   },
+  'top-10-cities-hardest-tap-water': {
+    title: 'Top 10 US Cities With the Hardest Tap Water (and What to Do About It)',
+    excerpt:
+      'Hard water follows geology — limestone aquifers, desert rivers, and mineral-rich groundwater. Here are ten major metros where scale is the norm, with EPA-backed city links.',
+    date: 'May 9, 2026',
+    readTime: '9 min read',
+    badge: 'Home',
+    badgeColor: '#94a3b8',
+  },
   'lead-in-tap-water-signs-and-symptoms': {
     title: 'Lead in Tap Water: Signs, Symptoms, and How to Know If Your Home Is at Risk',
     excerpt: 'Lead has no safe exposure level. Here is how it gets into tap water, what symptoms look like, and how to find out if your home is affected.',
@@ -304,6 +313,7 @@ const BLOG_INDEX_ORDER = [
   'bottled-water-vs-tap-water-cost-safety-and-pfas',
   'best-water-filter-pitcher-2025',
   'best-water-filter-hard-water',
+  'top-10-cities-hardest-tap-water',
   'reverse-osmosis-pros-and-cons',
   'refrigerator-water-filters-what-they-actually-remove',
   'whole-house-water-filter-vs-under-sink-which-to-choose',
@@ -351,6 +361,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
     slugs: [
       'best-water-filter-pitcher-2025',
       'best-water-filter-hard-water',
+      'top-10-cities-hardest-tap-water',
       'reverse-osmosis-pros-and-cons',
       'refrigerator-water-filters-what-they-actually-remove',
       'whole-house-water-filter-vs-under-sink-which-to-choose',

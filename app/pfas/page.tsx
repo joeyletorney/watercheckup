@@ -61,7 +61,7 @@ const FILTERS: FilterPick[] = [
     rank: 1,
     name: 'Waterdrop G3P800 Under-Sink RO',
     brand: 'Waterdrop',
-    price: '~$369',
+    price: '~$849',
     removal: '>99%',
     badge: 'EDITORS PICK',
     badgeColor: '#0891b2',

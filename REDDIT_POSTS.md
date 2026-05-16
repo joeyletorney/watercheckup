@@ -187,7 +187,7 @@ Free city lookup: watercheckup.com
 **Body:**
 Was spending about $40-60/month on bottled water (Kirkland cases from Costco, mostly). Checked my city's water in the EPA database and found it had active PFAS violations, which is why I'd been avoiding tap.
 
-Got a Waterdrop G3 tankless RO system for $370 on sale. Filter replacements run about $80/year.
+Got a Waterdrop G3 tankless RO system for ~$849 on sale. Filter replacements run about $80/year.
 
 Month 1-8: still paying off the system vs. what I'd have spent on bottles (~$50/month)
 Month 9+: ahead, saving ~$40-45/month

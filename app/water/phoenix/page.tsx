@@ -86,7 +86,7 @@ const FILTERS = [
   {
     name: 'Waterdrop G3P800 Reverse Osmosis',
     badge: 'BEST FOR PHOENIX',
-    price: '~$369',
+    price: '~$849',
     why: "Removes chromium-6, PFAS, arsenic, hardness, and sodium. The only filter type that handles Phoenix's full contaminant profile. NSF 42/53/58 certified.",
     link: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
     best: true,

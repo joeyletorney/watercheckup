@@ -99,11 +99,11 @@ const ACIDIC_STATES = new Set([
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FULL PRODUCT CATALOG — 39 products, 13 categories, quick-change filters only
+// FULL PRODUCT CATALOG — 38 products, 13 categories, quick-change filters only
 // ─────────────────────────────────────────────────────────────────────────────
 const PRODUCTS: any[] = [
   // ── UNDER-SINK RO — quick-change only ─────────────────────────────────────
-  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:449, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Very fast 800 GPD flow among tankless RO units. Removes 99%+ PFAS and lead; often scores well in independent lab summaries.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
+  { id:3, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P800', brand:'Waterdrop', price:849, filterCostPerYear:170, rating:4.8, reviews:9800, gpd:800, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Fluoride','Chlorine'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['No tank','800 GPD','Smart LED faucet'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Twist-off sealed cartridges — no mess, no tools. Very fast 800 GPD flow among tankless RO units. Removes 99%+ PFAS and lead; often scores well in independent lab summaries.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p800-w-mz-new_1_3dc0d1bd-aa82-4ceb-bd2d-7a94fcb68b7c.png?v=1734414287&width=1920', amazon:`https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}` },
   { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, expertPick:true, expertReason:'Broad third-party listings (WQA Gold Seal plus NSF/ANSI 42, 53, 58, and 401). Removes microplastics and 90+ contaminants. Strong choice if you want wide certification coverage for PFAS and more.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
   { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:`https://www.amazon.com/dp/B08746G2XX?tag=${TAG}` },
   { id:27, cat:'undersink', catLabel:'Under-Sink RO', name:'Frizzlife PD1000-TAM4', brand:'Frizzlife', price:799, filterCostPerYear:160, rating:4.8, reviews:890, gpd:1000, stages:5, cert:['NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Chromium-6','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['1000 GPD fastest fill','Quick-change filters','Tankless compact'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/PD1000_81efd50c-480c-4ee6-b809-c2312525621a.png?v=1757987339', amazon:`https://www.amazon.com/dp/B0BK8ZRY2K?tag=${TAG}` },
@@ -115,8 +115,7 @@ const PRODUCTS: any[] = [
   { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — uncommon for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants on listings. Good option if you want PFAS coverage without full RO.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/gp/product/B076S1W5QY?tag=${TAG}` },
 
   // ── COUNTERTOP RO — no installation needed ──────────────────────────────────
-  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop D4 Countertop RO', brand:'Waterdrop', price:299, filterCostPerYear:120, rating:4.6, reviews:4800, gpd:400, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','TDS','Chlorine','Bacteria'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Zero installation','Countertop placement','Perfect for renters'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'Sits on the counter — zero drilling, zero landlord permission. Quick-twist cartridges swap in seconds. Removes 99%+ PFAS and lead; often scores well in independent countertop-RO roundups.', img:'https://cdn.shopify.com/s/files/1/0078/6156/7570/products/wd-page-find-your-water-filter-wd-d4-w-mz_1251x.jpg?v=1762269066', amazon:`https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}` },
-  { id:30, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19', brand:'Waterdrop', price:309, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Bacteria','Viruses','TDS'], bestFor:['PFAS','Lead','Bacteria','Viruses'], pros:['UV sterilization built-in','Quick-change filters','Zero install'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-k19-s-vis.png?v=1774504000', amazon:`https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}` },
+  { id:6, cat:'countertop', catLabel:'Countertop RO', name:'Waterdrop K19-S Countertop RO', brand:'Waterdrop', price:199, filterCostPerYear:110, rating:4.7, reviews:2100, gpd:200, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','1,000+ contaminants','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Plug-in — no installation','170 oz tank','3:1 pure to drain'], diyDiff:'None', situations:['renter','rv','dorm','family'], quickChange:true, expertPick:true, expertReason:'No installation needed — just plug in. NSF 58 certified, removes PFAS, lead, arsenic, and 1,000+ contaminants. Perfect for renters. 170 oz tank, 3:1 pure to drain ratio.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-k19-s-vis.png?v=1774504000', amazon:`https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}` },
   { id:31, cat:'countertop', catLabel:'Countertop RO', name:'AquaTru Classic', brand:'AquaTru', price:475, filterCostPerYear:130, rating:4.6, reviews:5200, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Fluoride','Radium'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['No installation required','Quick-change filters','NSF/ANSI 401 certified'], diyDiff:'None', situations:['renter','dorm','family'], quickChange:true, expertPick:true, expertReason:'Premium countertop RO certified to NSF/ANSI 42, 53, 58, and 401 — removes PFAS, nitrates, fluoride, and radium. No installation required, and quick-change filters swap in seconds. Best premium option for the kitchen counter.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Classic-1-1_bd723f43-efb1-4f23-b772-9352d7d7179b.webp?v=1758659574', amazon:`https://www.amazon.com/dp/B0CQS3HQ8F?tag=${TAG}` },
 
   // ── DISTILLERS — countertop ─────────────────────────────────────────────────
@@ -135,10 +134,6 @@ const PRODUCTS: any[] = [
   { id:13, cat:'faucet', catLabel:'Faucet Mount', name:'PUR PLUS Faucet Mount FM2000B', brand:'PUR', price:35, filterCostPerYear:80, rating:4.5, reviews:28000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 99%','Arsenic 96%','Mercury','Chlorine','Microbial cysts'], bestFor:['Lead','Arsenic','Mercury','Chlorine'], pros:['Attaches to faucet','No permanent install','One-click on/off'], diyDiff:'Easy', situations:['renter','family','dorm'], img:'https://www.pur.com/wp-content/uploads/pfm200ba_product_on.png', amazon:`https://www.amazon.com/dp/B009V9K6BY?tag=${TAG}` },
   { id:14, cat:'faucet', catLabel:'Faucet Mount', name:'Brita Complete Faucet Filtration', brand:'Brita', price:30, filterCostPerYear:70, rating:4.4, reviews:19000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead','Asbestos','Benzene','Chlorine','Chloramine'], bestFor:['Lead','Chlorine','Chloramine','Asbestos'], pros:['Easy faucet attachment','3-way diverter','No tools needed'], diyDiff:'Easy', situations:['renter','family'], img:'https://images.ctfassets.net/bugnyha6so6z/7J48JJcS8QKR5EDvlOXyvF/911c777794cec4fd4e823ab8c66f048a/PCP_-_Elite_Faucet_-_Silver_-_1_filter_1x.webp', amazon:`https://www.amazon.com/dp/B00006IV0P?tag=${TAG}` },
 
-  // ── WATER BOTTLES / PORTABLE ────────────────────────────────────────────────
-  { id:15, cat:'bottle', catLabel:'Filtered Water Bottle', name:'Clearly Filtered Water Bottle', brand:'Clearly Filtered', price:75, filterCostPerYear:60, rating:4.6, reviews:3100, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.5%','PFAS >99.8%','Arsenic >99%','230+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Best portable PFAS removal','School & campus safe','Stainless steel'], diyDiff:'None', situations:['dorm','family','travel'], img:'https://cdn.shopify.com/s/files/1/1011/0318/files/20oz_SSBottle_Sage_1.png?v=1766087990', amazon:`https://www.amazon.com/dp/B07QNKQX1F?tag=${TAG}` },
-  { id:16, cat:'bottle', catLabel:'Filtered Water Bottle', name:'LifeStraw Go Series', brand:'LifeStraw', price:40, filterCostPerYear:20, rating:4.7, reviews:18000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Bacteria 99.99%','Parasites 99.9%','Microplastics','Lead','Chlorine'], bestFor:['Bacteria','Parasites','Lead','Microplastics'], pros:['Great for travel','Ultra lightweight','No batteries'], diyDiff:'None', situations:['dorm','travel'], img:'https://lifestraw.com/cdn/shop/products/LifeStraw-Go_1Lpolar_650x.jpg?v=1763730752', amazon:`https://www.amazon.com/dp/B00B3UPMEW?tag=${TAG}` },
-
   // ── WHOLE HOUSE ─────────────────────────────────────────────────────────────
   { id:18, cat:'whole', catLabel:'Whole-House', name:'Pelican PC600 Whole-House', brand:'Pelican Water', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Strong whole-home carbon option with a long advertised filter life and WQA Gold Seal on listings. Compare install scope and ongoing costs to other systems for your home size.', img:'https://cdn.shopify.com/s/files/1/0509/5918/8143/files/Gemini_Generated_Image_mf212bmf212bmf21.png?v=1757187780', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}` },
   { id:19, cat:'whole', catLabel:'Whole-House', name:'iSpring WGB32B Whole House 3-Stage', brand:'iSpring', price:420, filterCostPerYear:70, rating:4.7, reviews:2532, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Iron'], bestFor:['Chlorine','Chloramine','Sediment','Iron'], pros:['Most affordable whole-house','DIY-friendly','Large flow rate'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.ispringwatersystems.com/wp-content/uploads/2023/06/WGB32B_main_jpg-103980-2400x2400-2.jpg', amazon:`https://www.amazon.com/gp/product/B008GNRMYK?tag=${TAG}` },
@@ -148,20 +143,15 @@ const PRODUCTS: any[] = [
 
   // ── SHOWER FILTERS ──────────────────────────────────────────────────────────
   { id:20, cat:'shower', catLabel:'Shower Filter', name:'AquaBliss High Output SF100', brand:'AquaBliss', price:35, filterCostPerYear:35, rating:4.4, reviews:42000, gpd:null, stages:5, cert:['KDF/GAC Certified'], certColor:'#94a3b8', removes:['Chlorine','Heavy metals','Scale','Bacteria'], bestFor:['Chlorine','Scale','Bacteria'], pros:['Reduces skin & hair dryness','Easy install in minutes','Universal fit'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], expertPick:true, expertReason:'Huge review count on Amazon. Installs in minutes — screws onto many shower arms. Reduces chlorine that can dry skin and hair; good entry-level value — verify fit for your shower hardware.', img:'https://cdn.shopify.com/s/files/1/1325/7307/products/SF100.jpg?v=1765436914', amazon:`https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
-  { id:35, cat:'shower', catLabel:'Shower Filter', name:'Aquasana AQ-4105CHR', brand:'Aquasana', price:119, filterCostPerYear:80, rating:4.7, reviews:4200, gpd:null, stages:2, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >91%','Chloramine','Scale','Synthetic chemicals'], bestFor:['Chlorine','Chloramine','Scale'], pros:['NSF 177 certified','Quick-change filter','Filtered showerhead combo'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Complete filtered showerhead combo — NSF/ANSI 177 certified with a quick-change cartridge that twists off without tools. The premium pick for removing both chlorine and chloramine.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwc5d4d26e/images/large/AQ-4105CHR.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B004AQZW3A?tag=${TAG}` },
   { id:36, cat:'shower', catLabel:'Shower Filter', name:'AquaTru Shower Filter', brand:'AquaTru', price:149, filterCostPerYear:90, rating:4.6, reviews:890, gpd:null, stages:3, cert:['NSF/ANSI 177'], certColor:'#d97706', removes:['Chlorine >98%','Chloramine','Heavy metals','Scale','VOCs'], bestFor:['Chlorine','Chloramine','Heavy metals'], pros:['Highest chlorine reduction','Quick-change cartridge','Premium finish'], diyDiff:'Easy', situations:['homeowner','renter','rv','dorm'], quickChange:true, expertPick:true, expertReason:'Claims strong chlorine reduction on listings (often around 98%+) with NSF/ANSI 177 on applicable models. Quick-change cartridge; confirm the listing matches the SKU you order.', img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT_-_Shower_-_PDP_01_-_Nickel.jpg?v=1773655036', amazon:`https://www.amazon.com/dp/B0FLHFTGYD?tag=${TAG}` },
-
-  // ── REFRIGERATOR / INLINE ───────────────────────────────────────────────────
-  { id:22, cat:'fridge', catLabel:'Refrigerator / Inline', name:'GLACIER FRESH Inline Filter', brand:'Glacier Fresh', price:25, filterCostPerYear:50, rating:4.5, reviews:8900, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 99%','Chlorine 99%','Cysts','Fluoride 70%'], bestFor:['Lead','Chlorine','Cysts'], pros:['Universal fit','Works with most fridges','DIY 5 min'], diyDiff:'Easy', situations:['homeowner','renter','family'], img:'https://glacierfreshfilter.com/cdn/shop/products/Z045-NEW-2.jpg?v=1669607623', amazon:`https://www.amazon.com/dp/B07CF5HLBQ?tag=${TAG}` },
 
   // ── WELL WATER SPECIFIC ──────────────────────────────────────────────────────
   { id:37, cat:'well-uv', catLabel:'UV Sterilizer', name:'HQUA-OWS-12 UV Sterilizer', brand:'HQUA', price:149, filterCostPerYear:45, rating:4.5, reviews:2800, gpd:null, stages:1, cert:['NSF/ANSI 55 Class B'], certColor:'#7c3aed', removes:['Bacteria 99.99%','Viruses 99.99%','Cysts','E. Coli','Giardia'], bestFor:['Bacteria','Coliform','Viruses','Cysts'], pros:['No chemicals','12 GPM whole-house flow','Kills 99.99% pathogens'], diyDiff:'Medium', situations:['homeowner'], well:true, expertPick:true, expertReason:'UV sterilization is the gold standard for private well bacteria — no chemicals, no taste change, and eliminates viruses, bacteria, and cysts that filters alone can\'t stop.', img:'https://www.hquatech.com/wp-content/uploads/2025/08/OWS-12%E6%96%B0.jpg', amazon:`https://www.amazon.com/dp/B01N2YMU3O?tag=${TAG}` },
   { id:38, cat:'whole', catLabel:'Whole-House', name:'iSpring WCFM500K Iron & Sulfur (Well)', brand:'iSpring', price:2299, filterCostPerYear:0, rating:4.6, reviews:420, gpd:null, stages:1, cert:['WQA tested','Manufacturer specs'], certColor:'#22d3ee', removes:['Iron up to 12 ppm','Manganese','Hydrogen sulfide','Rotten-egg odor'], bestFor:['Iron','Manganese','Sulfur','Well water'], pros:['Whole-house iron/manganese/H₂S media','Long media life — minimal cartridge swaps','Common pro pick for well chemistry'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, img:'https://123filter-com.b-cdn.net/ac/image/thumbnails/1b/d9/WCFM500K_png-114071-750x750.png', amazon:`https://www.amazon.com/gp/product/B08TMZYYQY?tag=${TAG}` },
 
   // ── WATER SOFTENERS ─────────────────────────────────────────────────────────
-  { id:39, cat:'softener', catLabel:'Water Softener', name:'Fleck 5600SXT 48,000 Grain', brand:'Fleck', price:649, filterCostPerYear:40, rating:4.4, reviews:3200, gpd:null, stages:1, cert:['NSF/ANSI 44'], certColor:'#d97706', removes:['Hardness >99%','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Most trusted salt softener brand','48,000 grain capacity','Digital metered valve'], diyDiff:'Hard', situations:['homeowner'], softener:true, wholeHouse:true, img:'https://flecksystems.com/cdn/shop/files/fleck-5600-sxt.jpg?v=1686769528', amazon:`https://www.amazon.com/s?k=Fleck+5600SXT+48000+grain+water+softener&tag=${TAG}` },
-  { id:40, cat:'softener', catLabel:'Water Softener', name:'SpringWell Salt-Free SS1', brand:'SpringWell', price:999, filterCostPerYear:0, rating:4.8, reviews:890, gpd:null, stages:1, cert:['NSF/ANSI 61','WQA tested'], certColor:'#d97706', removes:['Hardness','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['No salt — no sodium added to water','No electricity or backwash needed','Lifetime warranty'], diyDiff:'Hard', situations:['homeowner'], softener:true, saltFree:true, wholeHouse:true, expertPick:true, expertReason:'Salt-free conditioners neutralize hardness minerals without adding sodium — better for health and the environment. SpringWell leads the category with a lifetime warranty and zero operating costs.', img:'https://qualitywaterlab.com/wp-content/uploads/2020/10/SpringWell-FutureSoft3.jpg', amazon:`https://www.amazon.com/s?k=SpringWell+SS1+salt+free+water+softener+conditioner&tag=${TAG}` },
-  { id:41, cat:'softener', catLabel:'Water Softener', name:'Aquasana SimplySoft Salt-Free', brand:'Aquasana', price:799, filterCostPerYear:50, rating:4.5, reviews:1400, gpd:null, stages:1, cert:['NSF/ANSI 61','WQA tested'], certColor:'#d97706', removes:['Hardness','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Salt-free — no sodium added','No backwash or drain needed','WQA tested'], diyDiff:'Hard', situations:['homeowner'], softener:true, saltFree:true, wholeHouse:true, img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw23b14a6d/images/large/WH-SFWC-S.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B01E4OQURW?tag=${TAG}` },
+  { id:39, cat:'softener', catLabel:'Water Softener', name:'Fleck 5600SXT 48,000 Grain', brand:'Fleck', price:649, filterCostPerYear:40, rating:4.4, reviews:3200, gpd:null, stages:1, cert:['NSF/ANSI 44'], certColor:'#d97706', removes:['Hardness >99%','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Most trusted salt softener brand','48,000 grain capacity','Digital metered valve'], diyDiff:'Hard', situations:['homeowner'], softener:true, wholeHouse:true, expertPick:true, expertReason:'Metered salt-based ion exchange is the standard for full hardness removal at every tap. Fleck 5600SXT valves are widely used by installers; size capacity to your household and water test.', img:'https://flecksystems.com/cdn/shop/files/fleck-5600-sxt.jpg?v=1686769528', amazon:`https://www.amazon.com/s?k=Fleck+5600SXT+48000+grain+water+softener&tag=${TAG}` },
+  { id:40, cat:'softener', catLabel:'Water Softener', name:'Harmony Series 48,000 Grain (AS-HS48D)', brand:'Aquasure', price:600, filterCostPerYear:42, rating:4.5, reviews:2500, gpd:null, stages:1, cert:['NSF/ANSI 44'], certColor:'#d97706', removes:['Hardness >99%','Scale','Calcium','Magnesium'], bestFor:['Hardness','Scale'], pros:['Digital metered Aquatrol head','48k grain — common DIY kit','1" or 3/4" NPT options'], diyDiff:'Hard', situations:['homeowner'], softener:true, wholeHouse:true, expertPick:false, img:'https://cdn.shopify.com/s/files/1/0298/3097/1451/files/AS-HS48D_01_189f6fc3-896b-490b-bc59-9dd56b5c6486.jpg?v=1710969251', amazon:`https://www.amazon.com/s?k=Aquasure+Harmony+AS-HS48D+48000+grain+water+softener&tag=${TAG}` },
 
   // ── ACID NEUTRALIZERS — well water low pH ───────────────────────────────────
   { id:42, cat:'acid-neutralizer', catLabel:'Acid Neutralizer', name:'AFWFilters 1.5 cu.ft. Calcite Neutralizer', brand:'AFWFilters', price:459, filterCostPerYear:40, rating:4.5, reviews:780, gpd:null, stages:1, cert:['NSF/ANSI 61'], certColor:'#22d3ee', removes:['Low pH','Corrosive water','Copper leaching','Lead leaching from pipes'], bestFor:['Acidic pH','Corrosion','Blue-green staining'], pros:['Raises pH naturally — no chemicals','Whole-house point-of-entry','10+ yr calcite media life'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, acidNeutralizer:true, expertPick:true, expertReason:'Calcite media dissolves slowly to raise pH naturally — no pumps, chemicals, or electricity. Whole-house protection stops corrosive water from leaching copper and lead from pipes. Best value acid neutralizer for private wells.', img:'https://cdn11.bigcommerce.com/s-zo9s1d/images/stencil/1280x1280/products/1473/3842/5600SXT-FLTR__11655.1653653032.jpg?c=2', amazon:`https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=${TAG}` },
@@ -190,28 +180,28 @@ const SITUATION_CONFIG: Record<string, {
     description: 'You can\'t drill into cabinets or modify plumbing. Countertop RO systems connect to your existing faucet in minutes with zero permanent changes. Faucet-mount filters are even simpler.',
     primaryCats: ['countertop','faucet','pitcher'],
     avoid: 'Avoid under-sink systems — they require drilling and permanent plumbing modifications that violate most leases.',
-    tip: 'The Waterdrop D4 Countertop RO is the best no-install option — it removes 99%+ PFAS and lead with no tools or landlord permission needed.',
+    tip: 'The Waterdrop K19-S Countertop RO is the best no-install option — no installation needed, just plug in. NSF 58 certified; removes PFAS, lead, arsenic, and 1,000+ contaminants. Perfect for renters (170 oz tank, 3:1 pure to drain).',
   },
   dorm: {
     headline: 'Dorm room & campus water solutions',
-    description: 'Campus water often has aging pipes with lead risk. A pitcher filter or countertop RO on your desk handles drinking water. Get a filtered water bottle for the dining hall and class.',
-    primaryCats: ['pitcher','bottle','countertop'],
+    description: 'Campus water often has aging pipes with lead risk. A certified pitcher or countertop RO on your desk covers drinking and cooking without dorm plumbing changes.',
+    primaryCats: ['pitcher', 'countertop'],
     avoid: 'Don\'t rely on the drinking fountains — campus water systems are often older buildings with lead service lines.',
     tip: 'Clearly Filtered pitcher is the only pitcher that removes PFAS — worth the extra cost if your school\'s water tests positive.',
   },
   family: {
     headline: 'Protecting your whole family',
-    description: 'Children are more vulnerable to lead and PFAS. Under-sink RO handles cooking and drinking water at home. Add a filtered school bottle for kids on the go.',
-    primaryCats: ['undersink','pitcher','bottle'],
+    description: 'Children are more vulnerable to lead and PFAS. Under-sink RO handles cooking and drinking water at home; a certified pitcher is a solid backup for kids\' rooms.',
+    primaryCats: ['undersink', 'pitcher'],
     avoid: 'Regular Brita pitchers don\'t remove PFAS or lead at high efficiency — for kids, get Clearly Filtered or an RO system.',
     tip: 'The #1 priority for families with kids under 6: lead and PFAS removal. Both require RO or a specifically PFAS-certified pitcher (like Clearly Filtered).',
   },
   travel: {
     headline: 'Filtering water on the go',
-    description: 'For hotel rooms, Airbnbs, and travel, a filtered water bottle is all you need. For longer stays or RVs, a countertop RO is a game-changer.',
-    primaryCats: ['bottle','pitcher'],
+    description: 'For hotel rooms and short trips, pack a certified pitcher or use bottled water from a trusted brand when needed. For longer stays or RVs, a countertop RO is a game-changer.',
+    primaryCats: ['pitcher', 'countertop'],
     avoid: 'Don\'t trust hotel tap water — aging building plumbing can have lead even when the municipal supply is clean.',
-    tip: 'The LifeStraw Go works on virtually any water source worldwide — perfect for international travel or outdoor adventures.',
+    tip: 'Countertop RO (e.g. Waterdrop K19-S) plugs into a standard outlet — workable for extended Airbnb stays if you have counter space.',
   },
 };
 
@@ -547,16 +537,14 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 const WATERDROP_DIRECT_BY_ID: Partial<Record<number, string>> = {
   3: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
   26: 'https://www.waterdropfilter.com/products/ro-water-filter-system-d6?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  6: 'https://www.waterdropfilter.com/products/countertop-reverse-osmosis-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  30: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
+  6: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
   34: 'https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
 };
 
 const WATERDROP_AMAZON_BY_ID: Partial<Record<number, string>> = {
   3: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
   26: `https://www.amazon.com/dp/B08746G2XX?tag=${TAG}`,
-  6: `https://www.amazon.com/dp/B0B8H34LZG?tag=${TAG}`,
-  30: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}`,
+  6: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}`,
   34: `https://www.amazon.com/dp/B0FYCRPXLZ?tag=${TAG}`,
 };
 
@@ -1039,43 +1027,6 @@ const DIY_GUIDES: Record<string, { time: string; difficulty: string; tools: stri
     ],
     youtubeQuery: 'whole house water filter installation main line DIY',
   },
-  bottle: {
-    time: '1 minute', difficulty: 'None',
-    tools: ['None'],
-    steps: [
-      'Remove the filter from packaging.',
-      'Insert the filter cartridge into the bottle per the included instructions.',
-      'Fill the bottle with tap water.',
-      'For first use: squeeze water through the filter and discard 2-3 times to flush carbon fines.',
-      'Your filtered water bottle is ready to use.',
-    ],
-    tips: [
-      'Never fill with hot water  --  it damages the filter media.',
-      'Rinse the bottle body weekly with soap and water.',
-      'Replace the filter per the manufacturer schedule  --  usually every 3 months or 100 gallons.',
-      'LifeStraw filters last up to 1,000 liters  --  mark the date on the bottle when you install.',
-    ],
-    youtubeQuery: 'filtered water bottle how to use Clearly Filtered LifeStraw',
-  },
-  fridge: {
-    time: '5 minutes', difficulty: 'Easy',
-    tools: ['Pipe cutter or scissors (for tubing)','Push-fit connectors (usually included)'],
-    steps: [
-      'Turn off the cold water supply valve behind or under your refrigerator.',
-      'Locate the inline position on the water supply tubing going to the fridge  --  ideally near the fridge for easy access.',
-      'Cut the supply tube at the chosen location.',
-      'Insert each cut end into the inline filter\'s push-fit connectors until they click.',
-      'Turn the water supply back on. Check both connections for drips.',
-      'Dispense and discard 1-2 gallons from the ice/water dispenser to flush the new filter.',
-    ],
-    tips: [
-      'Most inline filters fit 1/4" OD tubing  --  the standard for US refrigerators.',
-      'Install the filter outside the fridge near the wall for easier future replacements.',
-      'Replace every 6 months or 500 gallons  --  fridge water usage varies a lot.',
-      'Your ice maker water also passes through this filter  --  both will be cleaner.',
-    ],
-    youtubeQuery: 'inline refrigerator water filter installation DIY',
-  },
   distiller: {
     time: '10 minutes', difficulty: 'None',
     tools: ['White vinegar (for periodic descaling)','Soft cloth'],
@@ -1359,7 +1310,7 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
         <div style={{ fontSize: 11, letterSpacing: 0.3, color: '#0891b2', marginBottom: 10, fontWeight: 700 }}>🔧 INSTALLATION QUICK REFERENCE</div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {[
-            { level: 'None', desc: 'Pitcher, water bottle, countertop — plug in and use', color: '#22d3ee' },
+            { level: 'None', desc: 'Pitcher, countertop RO — plug in and use', color: '#22d3ee' },
             { level: 'Easy', desc: 'Faucet mount, shower filter — 5-15 min, no tools', color: '#22d3ee' },
             { level: 'Medium', desc: 'Under-sink RO — 2-3 hrs, basic plumbing, shutoff valve', color: '#f59e0b' },
             { level: 'Hard', desc: 'Whole-house — requires pipe work, hire a pro', color: '#ef4444' },
@@ -1455,7 +1406,7 @@ function FilterCompareTab() {
     { id: 3,  label: 'Waterdrop G3P800' },
     { id: 5,  label: 'Aquasana SmartFlow' },
     { id: 28, label: 'AquaTru Under-Sink' },
-    { id: 6,  label: 'Waterdrop D4' },
+    { id: 6,  label: 'Waterdrop K19-S' },
     { id: 9,  label: 'Clearly Filtered' },
     { id: 18, label: 'Pelican PC600' },
   ];
@@ -1694,7 +1645,7 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
           </div>
           <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#b45309', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED SOFTENERS FOR HARD WELL WATER</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-            {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 40} detectedContaminants={['Hardness','Scale']} />)}
+            {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 39} detectedContaminants={['Hardness','Scale']} />)}
           </div>
         </div>
       )}
@@ -1961,7 +1912,7 @@ function productMatchScore(p: any, cont: any[] | undefined): number {
   );
 }
 
-const BUDGET_FILTER_CATS = new Set(['pitcher', 'faucet', 'undersink-filter', 'countertop-filter', 'distiller', 'bottle', 'countertop']);
+const BUDGET_FILTER_CATS = new Set(['pitcher', 'faucet', 'undersink-filter', 'countertop-filter', 'distiller', 'countertop']);
 
 function pickBudgetOption(best: any, cont: any[] | undefined) {
   const pool = PRODUCTS.filter(
@@ -2347,7 +2298,7 @@ export default function WaterCheckup() {
   const isHardWater = hardnessLevel === 'very_hard' || hardnessLevel === 'hard';
 
   const getRecommended = () => {
-    const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && p.cat !== 'fridge' && !p.remineralizes && !p.softener);
+    const base = PRODUCTS.filter(p => !p.wholeHouse && p.cat !== 'shower' && !p.remineralizes && !p.softener);
     const cont = data?.contaminants;
     if (!Array.isArray(cont) || !cont.length) return base.filter((p: any) => p.cat === 'undersink').slice(0, 3);
     return base
@@ -2374,8 +2325,8 @@ export default function WaterCheckup() {
     });
   };
 
-  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','distiller','pitcher','faucet','bottle','whole','softener','acid-neutralizer','shower','fridge'];
-  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', distiller:'Distiller', pitcher:'Pitcher', faucet:'Faucet Mount', bottle:'Water Bottle', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower', fridge:'Fridge/Inline' };
+  const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','distiller','pitcher','faucet','whole','softener','acid-neutralizer','shower'];
+  const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', distiller:'Distiller', pitcher:'Pitcher', faucet:'Faucet Mount', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower' };
   const filteredProds = productFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === productFilter);
   const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
   const pfasLevel = data?.ucmr5?.maxPfasPpt ?? data?.contaminants?.find((c: any) => c.isPFAS || c.name?.includes('PFAS'))?.level ?? null;
@@ -3280,7 +3231,7 @@ export default function WaterCheckup() {
                   </div>
                   <div style={{ fontSize: 11, letterSpacing: 0.5, color: '#b45309', marginBottom: 10, fontWeight: 700 }}>RECOMMENDED SOFTENERS FOR HARD WATER</div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 12 }}>
-                    {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 40} detectedContaminants={['Hardness','Scale']} />)}
+                    {PRODUCTS.filter(p => p.softener).map((p: any) => <ProductCard key={p.id} p={p} highlight={p.id === 39} detectedContaminants={['Hardness','Scale']} />)}
                   </div>
                 </div>
               )}
@@ -3353,7 +3304,7 @@ export default function WaterCheckup() {
             {catFilters.map(cat => {
               const active = productFilter === cat;
               const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
-              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', distiller:'♨️', pitcher:'🥤', faucet:'🚰', bottle:'🫙', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿', fridge:'❄️' };
+              const icons: Record<string,string> = { all:'✦', undersink:'🔧', 'undersink-filter':'💧', countertop:'🪣', 'countertop-filter':'🥛', distiller:'♨️', pitcher:'🥤', faucet:'🚰', whole:'🏠', softener:'🪨', 'acid-neutralizer':'⚗️', shower:'🚿' };
               return (
                 <button key={cat} onClick={() => setProductFilter(cat)}
                   style={{
@@ -4417,9 +4368,9 @@ export default function WaterCheckup() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
             {[
-              { id: 3,  emoji: '🏆', label: 'Best overall RO',      name: 'Waterdrop G3P800',         price: 449, tag: 'NSF 42 · NSF 53 · NSF 58 · 99%+ PFAS',   accent: '#22d3ee', amazon: WATERDROP_AMAZON_BY_ID[3]!, direct: WATERDROP_DIRECT_BY_ID[3]! },
+              { id: 3,  emoji: '🏆', label: 'Best overall RO',      name: 'Waterdrop G3P800',         price: 849, tag: 'NSF 42 · NSF 53 · NSF 58 · 99%+ PFAS',   accent: '#22d3ee', amazon: WATERDROP_AMAZON_BY_ID[3]!, direct: WATERDROP_DIRECT_BY_ID[3]! },
               { id: 9,  emoji: '🥤', label: 'Best PFAS pitcher',    name: 'Clearly Filtered Pitcher', price: 90,  tag: 'NSF 42 · NSF 53 · NSF 401 · NSF P473',   accent: '#f59e0b', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}` },
-              { id: 6,  emoji: '🪣', label: 'Best for renters',     name: 'Waterdrop D4 Countertop',  price: 299, tag: 'NSF 42 · NSF 53 · NSF 58 · No install',  accent: '#06b6d4', amazon: WATERDROP_AMAZON_BY_ID[6]!, direct: WATERDROP_DIRECT_BY_ID[6]! },
+              { id: 6,  emoji: '🪣', label: 'Best for renters',     name: 'Waterdrop K19-S Countertop RO',  price: 199, tag: 'NSF 42 · NSF 53 · NSF 58 · No install',  accent: '#06b6d4', amazon: WATERDROP_AMAZON_BY_ID[6]!, direct: WATERDROP_DIRECT_BY_ID[6]! },
               { id: 32, emoji: '🏠', label: 'Best whole-house',     name: 'Aquasana Rhino EQ-1000',   price: 999, tag: 'WQA Gold Seal · NSF 42 · NSF 61',         accent: '#34d399', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
               { id: 20, emoji: '🚿', label: 'Best shower filter',   name: 'AquaBliss SF100',          price: 35,  tag: '42K+ reviews · KDF/GAC certified',        accent: '#a78bfa', amazon: `https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
             ].map((row) => {

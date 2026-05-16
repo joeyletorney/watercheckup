@@ -461,7 +461,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               {
                 key: 'waterdrop',
                 name: 'Waterdrop G3P800 RO',
-                price: '~$369',
+                price: '~$849',
                 amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
                 reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 800 GPD, smart TDS display.',
               },
@@ -749,7 +749,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             {
               name: 'Waterdrop G3P800 RO',
               badge: 'EDITORS PICK',
-              price: '~$369',
+              price: '~$849',
               reason: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 800 GPD, smart TDS display.',
               amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
               best: true,
