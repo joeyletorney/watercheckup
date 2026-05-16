@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import ucmr5Raw from '../../lib/ucmr5.json';
@@ -15,6 +17,8 @@ export const metadata: Metadata = {
     images: [{ url: 'https://watercheckup.com/api/og?city=Worst+PFAS+Cities&score=&grade=&violations=10', width: 1200, height: 630 }],
   },
 };
+
+export const revalidate = 86400;
 
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
@@ -90,6 +94,12 @@ function getRankedSystems(): RankedSystem[] {
     .slice(0, 10);
 }
 
+const getRankedSystemsCached = unstable_cache(
+  async () => getRankedSystems(),
+  ['worst-pfas-ucmr-top10'],
+  { revalidate: 86400 },
+);
+
 const COMPOUND_INFO: Record<string, { full: string; mcl: number; notes: string }> = {
   PFOS:     { full: 'Perfluorooctane Sulfonic Acid', mcl: 4,  notes: 'Primary compound in military AFFF firefighting foam. Linked to kidney cancer, thyroid disease, and immune suppression.' },
   PFOA:     { full: 'Perfluorooctanoic Acid',        mcl: 4,  notes: 'Used in DuPont Teflon manufacturing. The compound that sparked the Erin Brockovich-era lawsuits in WV and OH.' },
@@ -98,8 +108,9 @@ const COMPOUND_INFO: Record<string, { full: string; mcl: number; notes: string }
   PFNA:     { full: 'Perfluorononanoic Acid',        mcl: 10, notes: 'Used in fluoropolymer production. Linked to cancer and developmental harm.' },
 };
 
-export default function WorstPFASPage() {
-  const systems = getRankedSystems();
+export default async function WorstPFASPage() {
+  headers();
+  const systems = await getRankedSystemsCached();
   const worstTimesOver = systems[0]?.timesOver ?? '0';
 
   return (

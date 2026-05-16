@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import ucmr5Raw from '../../lib/ucmr5.json';
@@ -12,6 +14,8 @@ export const metadata: Metadata = {
     description: 'Some US water systems have PFAS levels 100x the EPA limit. Here are the worst offenders, ranked by EPA monitoring data.',
   },
 };
+
+export const revalidate = 86400;
 
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
@@ -60,8 +64,15 @@ function getRankedSystems() {
     .slice(0, 50);
 }
 
-export default function WorstWaterPage() {
-  const systems = getRankedSystems();
+const getRankedSystemsCached = unstable_cache(
+  async () => getRankedSystems(),
+  ['worst-water-ucmr-top50'],
+  { revalidate: 86400 },
+);
+
+export default async function WorstWaterPage() {
+  headers();
+  const systems = await getRankedSystemsCached();
   const totalPeopleAffected = '12+ million';
 
   return (

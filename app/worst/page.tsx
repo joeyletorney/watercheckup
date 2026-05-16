@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 86400;
+
 const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
   {
     href: '/worst-pfas',
@@ -50,6 +52,12 @@ const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
     title: 'Top 25 worst states for tap water quality',
     tag: 'State comparison',
     desc: 'State-level rollup of contamination pressure, violations, and infrastructure stress.',
+  },
+  {
+    href: '/blog/top-10-cities-hardest-tap-water',
+    title: 'Top 10 US cities with the hardest tap water',
+    tag: 'Editorial · geology & USGS regions',
+    desc: 'Major metros on limestone, desert, and Plains aquifers where hardness is the norm — with links to free city EPA reports and treatment context.',
   },
 ];
 

@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 86400;
+
 const STATE_FULL: Record<string, string> = {
   AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',
   CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',

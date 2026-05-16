@@ -13,10 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LEAD_CITIES = Object.entries(CITIES)
-  .filter(([, c]) => c.issues.some(i => i.toLowerCase().includes('lead')))
-  .map(([slug, c]) => ({ slug, ...c }))
-  .sort((a, b) => (a.urgency === 'high' ? -1 : 1) - (b.urgency === 'high' ? -1 : 1));
+export const revalidate = 86400;
 
 const URGENCY_COLOR: Record<string, string> = {
   high: '#ef4444',
@@ -30,7 +27,34 @@ const URGENCY_LABEL: Record<string, string> = {
   low: 'Monitor',
 };
 
-export default function WorstLeadPage() {
+const COMPUTE_BUDGET_MS = 5000;
+
+async function computeLeadCitiesSafe() {
+  const started = Date.now();
+  try {
+    const entries = Object.entries(CITIES);
+    const out: Array<{ slug: string } & (typeof CITIES)[string]> = [];
+    for (let i = 0; i < entries.length; i++) {
+      if (Date.now() - started > COMPUTE_BUDGET_MS) return [];
+      const [slug, c] = entries[i];
+      if (!c.issues.some((iss) => iss.toLowerCase().includes("lead"))) continue;
+      out.push({ slug, ...c });
+      if (i % 32 === 0 && i > 0) {
+        await new Promise<void>((r) => setImmediate(r));
+        if (Date.now() - started > COMPUTE_BUDGET_MS) return [];
+      }
+    }
+    return out.sort(
+      (a, b) =>
+        (a.urgency === "high" ? -1 : 1) - (b.urgency === "high" ? -1 : 1),
+    );
+  } catch {
+    return [];
+  }
+}
+
+export default async function WorstLeadPage() {
+  const LEAD_CITIES = await computeLeadCitiesSafe();
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
