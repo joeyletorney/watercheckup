@@ -1549,3 +1549,173 @@ button.wc-nav-badge-nsf:focus-visible {
 .city-page-hero-visual img {
   border-radius: 50%;
 }
+
+/* Utility pages — operator claim + CCR */
+.wc-utility-claim-top-banner {
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background: rgba(8, 145, 178, 0.08);
+  border: 1px solid rgba(8, 145, 178, 0.28);
+  border-radius: 10px;
+}
+.wc-utility-claim-top-banner p {
+  margin: 0;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.65;
+  text-align: center;
+}
+.wc-utility-claim-top-banner strong {
+  color: #e2e8f0;
+}
+.wc-utility-claim-top-banner a {
+  color: #67e8f9;
+  font-weight: 700;
+  text-decoration: none;
+}
+.wc-utility-claim-top-banner a:hover {
+  text-decoration: underline;
+}
+
+.wc-utility-ccr-section {
+  margin-bottom: 36px;
+}
+.wc-utility-ccr-section__title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0891b2;
+  letter-spacing: 2px;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #0f2336;
+  text-transform: uppercase;
+}
+.wc-utility-ccr-section__published,
+.wc-utility-ccr-section__claimed-pending {
+  padding: 22px 20px;
+  background: #071828;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 12px;
+}
+.wc-utility-ccr-section__unpublished-banner {
+  padding: 20px 18px;
+  background: linear-gradient(135deg, rgba(26, 16, 64, 0.55), #071828);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.wc-utility-ccr-section__badge-row {
+  margin-bottom: 12px;
+}
+.wc-utility-ccr-section__verified {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #22d3ee;
+  padding: 6px 12px;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 8px;
+}
+.wc-utility-ccr-section__meta,
+.wc-utility-ccr-section__publisher {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+.wc-utility-ccr-section__publisher {
+  color: #94a3b8;
+}
+.wc-utility-ccr-section__meta strong,
+.wc-utility-ccr-section__publisher strong {
+  color: #e2e8f0;
+}
+.wc-utility-ccr-section__findings {
+  font-size: 15px;
+  color: #cbd5e1;
+  line-height: 1.75;
+  margin: 0 0 16px;
+}
+.wc-utility-ccr-section__banner-lead,
+.wc-utility-ccr-section__operator-prompt {
+  font-size: 14px;
+  color: #e2e8f0;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+.wc-utility-ccr-section__operator-prompt {
+  color: #94a3b8;
+}
+.wc-utility-ccr-section__residents {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.75;
+  margin: 0;
+}
+.wc-utility-ccr-section__residents a {
+  color: #67e8f9;
+  text-decoration: none;
+}
+.wc-utility-ccr-section__residents a:hover {
+  text-decoration: underline;
+}
+.wc-utility-ccr-section__pdf-link,
+.wc-utility-ccr-section__claim-cta,
+.wc-utility-ccr-section__claim-link {
+  display: inline-block;
+  padding: 11px 18px;
+  background: #0d2240;
+  border: 1px solid #1a3a5c;
+  border-radius: 10px;
+  color: #67e8f9;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.wc-utility-ccr-section__claim-cta {
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.25), rgba(6, 182, 212, 0.15));
+  border-color: rgba(34, 211, 238, 0.4);
+  margin-top: 4px;
+}
+.wc-utility-ccr-section__pdf-link:hover,
+.wc-utility-ccr-section__claim-cta:hover,
+.wc-utility-ccr-section__claim-link:hover {
+  border-color: #22d3ee;
+  color: #a5f3fc;
+}
+
+.wc-utility-operator-cta {
+  margin: 0;
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.65;
+  text-align: center;
+}
+.wc-utility-operator-cta a {
+  color: #67e8f9;
+  font-weight: 700;
+  text-decoration: none;
+}
+.wc-utility-operator-cta a:hover {
+  text-decoration: underline;
+}
+.wc-utility-operator-cta--directory {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  background: rgba(8, 145, 178, 0.08);
+  border: 1px solid rgba(8, 145, 178, 0.25);
+  border-radius: 10px;
+}
+.wc-utility-operator-cta--city {
+  margin: 32px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid #0f2336;
+}
+.wc-utility-operator-cta--utility-footer {
+  margin-bottom: 28px;
+  padding: 16px 0;
+  border-top: 1px solid #0f2336;
+  border-bottom: 1px solid #0f2336;
+}

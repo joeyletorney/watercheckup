@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { SiteHeader } from "@/app/components/SiteHeader";
+import { UtilityOperatorCcrCta } from "@/components/UtilityOperatorCcrCta";
 import { stateLabel } from "@/lib/us-state-names";
 import { getUtilitiesInState } from "@/lib/utilities-data";
 
@@ -61,6 +62,8 @@ export default function UtilitiesStatePage({ params }: { params: { state: string
           {sorted.length.toLocaleString("en-US")} systems (SDWIS/Fed snapshot). Open any row for PFAS monitoring, violation
           counts, and filter recommendations.
         </p>
+
+        <UtilityOperatorCcrCta variant="state-directory" />
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {sorted.map((u) => (

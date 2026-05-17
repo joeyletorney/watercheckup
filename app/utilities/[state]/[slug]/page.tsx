@@ -3,6 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { SiteHeader } from "@/app/components/SiteHeader";
+import { UtilityCcrSection } from "@/components/UtilityCcrSection";
+import { UtilityClaimTopBanner } from "@/components/UtilityClaimTopBanner";
+import { UtilityOperatorCcrCta } from "@/components/UtilityOperatorCcrCta";
 import EmailCapture from "@/app/water/[city]/EmailCapture";
 import TopPickBox from "@/app/water/[city]/TopPickBox";
 import { sdwisPublicReportUrl } from "@/lib/epa-data";
@@ -241,6 +244,8 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
+        {!u.isClaimed ? <UtilityClaimTopBanner utilityName={u.name} /> : null}
+
         <div style={{ marginBottom: 32 }}>
           <nav style={{ fontSize: 12, color: "#64748b", marginBottom: 14 }}>
             <Link href="/" style={{ color: "#64748b", textDecoration: "none" }}>
@@ -366,105 +371,6 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
             ))}
           </div>
         </div>
-
-        {/* Operator CCR listing */}
-        {!u.isClaimed ? (
-          <div
-            style={{
-              marginBottom: 28,
-              padding: "16px 18px",
-              background: "linear-gradient(135deg,#1a1040,#071828)",
-              border: "1px solid #6366f144",
-              borderRadius: 12,
-            }}
-          >
-            <p style={{ fontSize: 14, color: "#e2e8f0", lineHeight: 1.65, margin: 0 }}>
-              <strong style={{ color: "#a5b4fc" }}>Water operator?</strong> Publish your official 2027 CCR here — residents
-              already find this page.{" "}
-              <Link href="/utilities/claim" style={{ color: "#67e8f9", fontWeight: 700, textDecoration: "none" }}>
-                Claim free →
-              </Link>
-            </p>
-          </div>
-        ) : (
-          <div
-            style={{
-              marginBottom: 28,
-              padding: "22px 20px",
-              background: "#071828",
-              border: "1px solid #22d3ee44",
-              borderRadius: 12,
-            }}
-          >
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                marginBottom: 14,
-                padding: "6px 12px",
-                background: "rgba(34,211,238,0.12)",
-                border: "1px solid #22d3ee35",
-                borderRadius: 8,
-              }}
-            >
-              <span style={{ fontSize: 11, fontWeight: 800, color: "#22d3ee", letterSpacing: 1 }}>
-                ✓ VERIFIED BY WATERCHECKUP
-              </span>
-            </div>
-            <div
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                color: "#0891b2",
-                letterSpacing: 2,
-                marginBottom: 10,
-              }}
-            >
-              CONSUMER CONFIDENCE REPORT (CCR)
-            </div>
-            {u.ccr ? (
-              <>
-                <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 12px" }}>
-                  Report year{" "}
-                  <strong style={{ color: "#e2e8f0" }}>{u.ccr.reportYear}</strong>
-                  {u.ccr.lastUpdated
-                    ? ` · Last updated ${new Date(u.ccr.lastUpdated).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}`
-                    : ""}
-                </p>
-                <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.75, margin: "0 0 16px" }}>{u.ccr.keyFindings}</p>
-                {u.ccr.pdfUrl ? (
-                  <a
-                    href={u.ccr.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "inline-block",
-                      padding: "11px 18px",
-                      background: "#0d2240",
-                      border: "1px solid #1a3a5c",
-                      borderRadius: 10,
-                      color: "#67e8f9",
-                      fontSize: 14,
-                      fontWeight: 700,
-                      textDecoration: "none",
-                    }}
-                  >
-                    Download full CCR (PDF) →
-                  </a>
-                ) : null}
-              </>
-            ) : (
-              <p style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.65, margin: 0 }}>
-                This listing is operator-verified. Full CCR summary and PDF will appear here once your team publishes them.
-              </p>
-            )}
-          </div>
-        )}
 
         {/* Contaminants table — UCMR5 */}
         <div style={{ marginBottom: 36 }}>
@@ -602,6 +508,8 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           )}
         </div>
 
+        <UtilityCcrSection utilityName={u.name} isClaimed={u.isClaimed === true} ccr={u.ccr} />
+
         {/* Violations */}
         <div style={{ marginBottom: 36 }}>
           <div
@@ -737,22 +645,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           }}
         />
 
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: 28,
-            paddingTop: 8,
-            borderTop: "1px solid #0f2336",
-          }}
-        >
-          <Link
-            href="/utilities/claim"
-            style={{ fontSize: 14, color: "#94a3b8", textDecoration: "none" }}
-          >
-            Water operator for {u.name}?{" "}
-            <span style={{ color: "#67e8f9", fontWeight: 700 }}>Claim this listing →</span>
-          </Link>
-        </div>
+        <UtilityOperatorCcrCta variant="utility-footer" utilityName={u.name} />
 
         <div
           style={{

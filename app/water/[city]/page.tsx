@@ -9,6 +9,7 @@ import ucmr5Raw from '../../../lib/ucmr5.json';
 import cityBlurbs from '@/lib/cityBlurbs';
 import { getCountyLinkForCitySlug } from '@/lib/county-data';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 
@@ -767,6 +768,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
           </div>
           <Link href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
         </div>
+
+        <UtilityOperatorCcrCta variant="city-footer" />
 
         <FounderCityAttribution />
       </div>
