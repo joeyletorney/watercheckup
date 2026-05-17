@@ -1258,3 +1258,54 @@ button.wc-nav-badge-nsf:focus-visible {
     animation: none !important;
   }
 }
+
+/* About page — founder hero portrait */
+.about-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.about-hero__text {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+.about-hero__portrait {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  padding: 3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0891b2, #22d3ee);
+  box-shadow:
+    0 0 20px rgba(34, 211, 238, 0.45),
+    0 0 40px rgba(8, 145, 178, 0.25),
+    inset 0 0 12px rgba(34, 211, 238, 0.15);
+}
+.about-hero__portrait-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #071828;
+}
+.about-hero__portrait-inner img {
+  border-radius: 50%;
+}
+@media (min-width: 768px) {
+  .about-hero {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .about-hero__text {
+    text-align: left;
+  }
+  .about-hero__portrait {
+    width: 200px;
+    height: 200px;
+  }
+}

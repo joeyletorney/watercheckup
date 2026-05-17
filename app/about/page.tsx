@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 
@@ -167,6 +168,7 @@ const personLd = {
   },
   description:
     'Joe Letorney is a water treatment professional with over 30 years of experience. Former WQA Certified Water Treatment Specialist Level VI and Certified Installer. Published author in Water Technology Magazine and Water Conditioning and Purification Magazine. Founder of WaterCheckup.',
+  image: 'https://watercheckup.com/joe-letorney.jpeg',
   sameAs: ['https://watercheckup.com/about'],
 };
 
@@ -212,26 +214,44 @@ export default function AboutPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your water →" ctaHref="/" />
 
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 100px' }}>
-        <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
+        <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20 }}>
           ABOUT THE FOUNDER
         </p>
-        <h1
-          style={{
-            fontSize: 34,
-            fontWeight: 900,
-            color: '#f8fafc',
-            lineHeight: 1.15,
-            margin: '0 0 20px',
-            fontFamily: 'var(--font-wc-display), var(--font-inter), system-ui, sans-serif',
-          }}
-        >
-          I&apos;ve Spent My Entire Life in Water. This Site is Why.
-        </h1>
-        <p style={{ ...p, fontSize: 17, color: '#cbd5e1', marginBottom: 40 }}>
-          WaterCheckup wasn&apos;t built by a tech company scraping EPA data. It was built by someone who has spent over
-          30 years testing water, designing treatment systems, and helping families understand what&apos;s actually
-          coming out of their taps.
-        </p>
+
+        <section className="about-hero" aria-label="Joe Letorney, founder">
+          <div className="about-hero__portrait">
+            <div className="about-hero__portrait-inner">
+              <Image
+                src="/joe-letorney.jpeg"
+                alt="Joe Letorney - Founder of WaterCheckup, 30-year water treatment specialist"
+                width={200}
+                height={200}
+                sizes="(max-width: 767px) 180px, 200px"
+                priority
+                style={{ objectFit: 'cover', objectPosition: 'center 15%' }}
+              />
+            </div>
+          </div>
+          <div className="about-hero__text">
+            <h1
+              style={{
+                fontSize: 34,
+                fontWeight: 900,
+                color: '#f8fafc',
+                lineHeight: 1.15,
+                margin: '0 0 20px',
+                fontFamily: 'var(--font-wc-display), var(--font-inter), system-ui, sans-serif',
+              }}
+            >
+              I&apos;ve Spent My Entire Life in Water. This Site is Why.
+            </h1>
+            <p style={{ ...p, fontSize: 17, color: '#cbd5e1', marginBottom: 0 }}>
+              WaterCheckup wasn&apos;t built by a tech company scraping EPA data. It was built by someone who has spent
+              over 30 years testing water, designing treatment systems, and helping families understand what&apos;s
+              actually coming out of their taps.
+            </p>
+          </div>
+        </section>
 
         <h2 style={{ ...h2, marginTop: 0 }}>It Started When I Was 10 Years Old</h2>
         <p style={p}>
