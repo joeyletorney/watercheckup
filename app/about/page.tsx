@@ -31,9 +31,12 @@ const p: React.CSSProperties = {
   margin: '0 0 18px',
 };
 
-const CREDENTIALS = [
+const CREDENTIALS_PRIMARY = [
   'Former Certified Water Treatment Specialist — Level VI (Water Quality Association)',
   'Former Certified Installer (Water Quality Association)',
+];
+
+const CREDENTIALS_REST = [
   '30+ Years Water Industry Experience',
   'Vice President, Durastill Export, Inc. — Water purification systems sold to 100+ countries worldwide',
   'Founder, The WaterPro, Inc. — New England water treatment',
@@ -42,6 +45,25 @@ const CREDENTIALS = [
   'Industry Speaker — Lectured at Water Quality Association conventions throughout career',
   'Spoke to thousands of water industry professionals and consumers nationwide',
 ];
+
+function CredentialCard({ line }: { line: string }) {
+  return (
+    <div
+      style={{
+        padding: '14px 18px',
+        background: '#071828',
+        border: '1px solid #1a3a5c',
+        borderRadius: 10,
+        fontSize: 14,
+        fontWeight: 600,
+        color: '#e2e8f0',
+        lineHeight: 1.5,
+      }}
+    >
+      {line}
+    </div>
+  );
+}
 
 const EXPERTISE_GROUPS = [
   {
@@ -215,16 +237,17 @@ export default function AboutPage() {
         </p>
         <p style={p}>Water wasn&apos;t just a topic in our house — it was our life.</p>
         <p style={p}>
-          I eventually became Vice President of Sales and Marketing for the family business, helping bring clean water
-          solutions to homes and businesses across the globe. Later I founded my own company, The WaterPro, Inc., serving
-          homeowners and businesses throughout New England.
+          I eventually became Vice President of Sales and Marketing, helping bring clean water solutions to homes and
+          businesses across the globe. Later I founded my own company, The WaterPro, Inc., serving homeowners and
+          businesses throughout New England.
         </p>
         <p style={p}>
           Over more than 30 years in the field I&apos;ve done it all — testing water, analyzing results, designing custom
-          treatment systems, installing them, and servicing them. I&apos;ve worked with city water and well water.
-          I&apos;ve removed bacteria, arsenic, chlorine, hardness, iron, manganese, low pH, VOCs, and tannins. I held
-          WQA (Water Quality Association) credentials as a former Certified Water Treatment Specialist at the highest
-          level — Level VI — as well as Certified Installer credentials.
+          treatment systems, installing them, and servicing them. I&apos;ve worked on both city and well water and have
+          successfully treated water with a host of contaminants, including: bacteria, chlorine, trihalomethanes, PFAS,
+          arsenic, iron and manganese, TDS, hardness, low pH, VOCs, and more. I held WQA (Water Quality Association)
+          credentials as a former Certified Water Treatment Specialist at the highest level — Level VI — as well as
+          Certified Installer credentials.
         </p>
 
         <h2 style={h2}>Industry Recognition</h2>
@@ -252,27 +275,18 @@ export default function AboutPage() {
 
         <h2 style={h2}>Credentials &amp; Experience</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 12 }}>
-          {CREDENTIALS.map((line) => (
-            <div
-              key={line}
-              style={{
-                padding: '14px 18px',
-                background: '#071828',
-                border: '1px solid #1a3a5c',
-                borderRadius: 10,
-                fontSize: 14,
-                fontWeight: 600,
-                color: '#e2e8f0',
-                lineHeight: 1.5,
-              }}
-            >
-              {line}
-            </div>
+          {CREDENTIALS_PRIMARY.map((line) => (
+            <CredentialCard key={line} line={line} />
           ))}
         </div>
-        <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 32px', fontStyle: 'italic' }}>
+        <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 16px', fontStyle: 'italic' }}>
           Credentials held during active practice with The WaterPro, Inc.
         </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+          {CREDENTIALS_REST.map((line) => (
+            <CredentialCard key={line} line={line} />
+          ))}
+        </div>
 
         <h2 style={h2}>Every Type of Water Treatment System — I&apos;ve Installed It</h2>
         <div
