@@ -62,3 +62,8 @@ export function stateLabel(code: string): string {
   const u = code.toUpperCase();
   return USPS_STATE_NAMES[u] ?? `Jurisdiction ${code}`;
 }
+
+/** Sorted { code, name } pairs for state dropdowns. */
+export const USPS_STATE_OPTIONS = Object.entries(USPS_STATE_NAMES)
+  .map(([code, name]) => ({ code, name }))
+  .sort((a, b) => a.name.localeCompare(b.name, 'en'));

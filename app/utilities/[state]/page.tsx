@@ -63,7 +63,37 @@ export default function UtilitiesStatePage({ params }: { params: { state: string
           counts, and filter recommendations.
         </p>
 
-        <UtilityOperatorCcrCta variant="state-directory" />
+        <div
+          style={{
+            marginBottom: 20,
+            padding: "14px 18px",
+            background: "rgba(8, 145, 178, 0.08)",
+            border: "1px solid rgba(8, 145, 178, 0.28)",
+            borderRadius: 10,
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+          }}
+        >
+          <UtilityOperatorCcrCta variant="state-directory" />
+          <Link
+            href="/utilities/claim"
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
+              color: "#0f172a",
+              padding: "10px 16px",
+              borderRadius: 8,
+              background: "linear-gradient(135deg,#22d3ee,#06b6d4)",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Claim Your Listing →
+          </Link>
+        </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {sorted.map((u) => (

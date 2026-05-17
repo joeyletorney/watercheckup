@@ -36,6 +36,10 @@ export function SiteFooter() {
           {SITE_FOOTER_TAGLINE}
         </p>
         <p style={{ margin: 0, fontSize: 13, color: '#94a3b8', textAlign: 'center', lineHeight: 1.7 }}>
+          <a href="/utilities/claim" style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
+            For Water Utilities
+          </a>
+          {' · '}
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
           <a href="/about" style={{ color: '#94a3b8', textDecoration: 'none' }}>About Joe Letorney</a>
           {' · '}

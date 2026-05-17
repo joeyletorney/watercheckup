@@ -1,17 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
-import { parseUtilityClaimFromJson, sendUtilityClaimNotification } from '@/lib/utility-claim';
+import { parseUtilityClaimMultipart, sendUtilityClaimNotification } from '@/lib/utility-claim';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 
-/** Legacy JSON endpoint — prefer POST /api/claim-utility with multipart. */
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json().catch(() => ({}));
-    const parsed = parseUtilityClaimFromJson(
-      typeof body === 'object' && body !== null ? (body as Record<string, unknown>) : {},
-    );
+    const contentType = req.headers.get('content-type') || '';
+    if (!contentType.includes('multipart/form-data')) {
+      return NextResponse.json(
+        { error: 'Expected multipart form data.' },
+        { status: 400, headers: CORS },
+      );
+    }
+
+    const parsed = await parseUtilityClaimMultipart(req);
     if (!parsed.ok) {
       return NextResponse.json({ error: parsed.error }, { status: 400, headers: CORS });
     }
@@ -48,7 +52,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: sent.error }, { status: 502, headers: CORS });
     }
 
-    return NextResponse.json({ success: true }, { headers: CORS });
+    return NextResponse.json(
+      {
+        success: true,
+        utilityName: data.utilityName,
+        state: data.state,
+        email: data.email,
+      },
+      { headers: CORS },
+    );
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Server error';
     return NextResponse.json({ error: msg }, { status: 500, headers: CORS });

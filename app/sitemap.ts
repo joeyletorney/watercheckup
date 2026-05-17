@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/pfas',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/rankings',     priority: 0.8,  changeFreq: 'monthly' as const },
-    { path: '/utilities/claim', priority: 0.5, changeFreq: 'monthly' as const },
+    { path: '/utilities/claim', priority: 0.6, changeFreq: 'monthly' as const },
     { path: '/water-hardness', priority: 0.7, changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${base}${p.path}`,
