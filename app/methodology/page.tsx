@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { GuideHero } from '@/components/GuideHero';
+import { METHODOLOGY_HERO, METHODOLOGY_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata: Metadata = {
@@ -26,10 +28,12 @@ export default function MethodologyPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" />
 
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 100px' }}>
-        <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>TRUST & TRANSPARENCY</p>
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f8fafc', lineHeight: 1.15, margin: '0 0 16px' }}>
-          Data sources & methodology
-        </h1>
+        <GuideHero
+          src={METHODOLOGY_HERO}
+          alt={METHODOLOGY_HERO_ALT}
+          eyebrow="TRUST & TRANSPARENCY"
+          title="Data sources & methodology"
+        />
         <p style={{ ...p, fontSize: 16 }}>
           WaterCheckup pulls from the same public federal databases that water utilities report to. We merge them by ZIP code, translate the results into plain language, and match them to filter recommendations. We are not a laboratory and we do not sample your tap.
         </p>

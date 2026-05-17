@@ -4,7 +4,13 @@ import { useState, useEffect, useRef, useMemo, type CSSProperties } from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HOME_HERO_ALT, HOME_HERO_IMAGE } from '@/lib/unsplash-images';
+import { HowItWorksSteps } from '@/components/HowItWorksSteps';
+import {
+  HOME_CONTAMINANTS_BG,
+  HOME_CONTAMINANTS_BG_ALT,
+  HOME_HERO_ALT,
+  HOME_HERO_IMAGE,
+} from '@/lib/unsplash-images';
 import { SiteHeader } from './components/SiteHeader';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
@@ -2519,6 +2525,8 @@ export default function WaterCheckup() {
 
       <HomeVisualShowcase />
 
+      <HowItWorksSteps />
+
         {/* LOADER — directly under search so it stays on-screen (was below fold after long hero) */}
         {loading && (
           <div
@@ -3520,7 +3528,17 @@ export default function WaterCheckup() {
           {homeFunnelTab === 'whats' && (
           <>
           {/* ── WHAT&apos;S IN MY WATER: common contaminants ───────────────── */}
-          <div className="wc-fadein-1" style={{ marginBottom: 64 }}>
+          <div className="wc-contaminants-section wc-fadein-1">
+            <Image
+              src={HOME_CONTAMINANTS_BG}
+              alt={HOME_CONTAMINANTS_BG_ALT}
+              fill
+              sizes="860px"
+              loading="lazy"
+              className="wc-contaminants-section__bg"
+            />
+            <div className="wc-contaminants-section__overlay" aria-hidden />
+            <div className="wc-contaminants-section__inner">
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
@@ -3670,6 +3688,7 @@ export default function WaterCheckup() {
               >
                 Go to ZIP search — get my report →
               </button>
+            </div>
             </div>
           </div>
 

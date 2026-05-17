@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { GuideHero } from '@/components/GuideHero';
+import { FAQ_PAGE_HERO, FAQ_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 const FAQS = [
@@ -138,8 +140,13 @@ export default function FAQPage() {
 
       <div style={{ maxWidth: 780, margin: '0 auto', padding: '48px 20px 80px' }}>
         {/* HERO — ocean bg like other guide pages (no dark band under nav tabs) */}
+        <GuideHero
+          src={FAQ_PAGE_HERO}
+          alt={FAQ_PAGE_HERO_ALT}
+          eyebrow="HELP CENTER"
+          title="Frequently Asked Questions"
+        />
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Frequently Asked Questions</h1>
           <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
             Straight answers about water quality, contaminants, filters, and what the EPA data actually means for your family.
           </p>

@@ -122,6 +122,30 @@ export function cityHeroAlt(cityLabel: string) {
   return cityTapHeroAlt(cityLabel);
 }
 
+/** Guide / tool page heroes */
+export const PFAS_PAGE_HERO = unsplash('photo-1611273426858-450d8e3c9fce', 1200, 420);
+export const PFAS_PAGE_HERO_ALT = 'Industrial site near water — PFAS forever chemicals in drinking water';
+export const LEAD_PAGE_HERO = unsplash('photo-1563453392214-2f3273af6298', 1200, 420);
+export const LEAD_PAGE_HERO_ALT = 'Household plumbing and tap water — lead in drinking water';
+export const WELL_PAGE_HERO = unsplash('photo-1507666664345-c49223375aca', 1200, 420);
+export const WELL_PAGE_HERO_ALT = 'Private well and rural water source';
+export const CONTAMINANTS_PAGE_HERO = unsplash('photo-1473771396169-704ce5480010', 1200, 420);
+export const CONTAMINANTS_PAGE_HERO_ALT = 'Laboratory analysis of drinking water contaminants';
+export const BLOG_INDEX_HERO = BLOG_DEFAULT_FEATURED;
+export const BLOG_INDEX_HERO_ALT = 'Drinking water quality guides and research';
+export const METHODOLOGY_HERO = unsplash('photo-1584820927498-cfe5211fd8bf', 1200, 420);
+export const METHODOLOGY_HERO_ALT = 'Water quality testing and EPA data analysis';
+export const FAQ_PAGE_HERO = unsplash('photo-1563453392212-326f5e854473', 1200, 420);
+export const FAQ_PAGE_HERO_ALT = 'Clean drinking water glass';
+export const WATER_INDEX_HERO = CITY_TAP_HERO;
+export const WATER_INDEX_HERO_ALT = 'Tap water quality reports by city';
+export const QUIZ_PAGE_HERO = ABOUT_FILTER_SYSTEM;
+export const QUIZ_PAGE_HERO_ALT = 'Water filtration systems for your home';
+export const RANKINGS_PAGE_HERO = STATE_WATER_HERO;
+export const RANKINGS_PAGE_HERO_ALT = 'US water quality rankings by region';
+export const UTILITIES_PAGE_HERO = unsplash('photo-1521208910042-0b6be2146e5f', 1200, 420);
+export const UTILITIES_PAGE_HERO_ALT = 'Public water utility service area map';
+
 /** @deprecated Use ABOUT_WATER_TEXTURE */
 export const ABOUT_WATER_BG = ABOUT_WATER_TEXTURE;
 export const ABOUT_WATER_BG_ALT = ABOUT_WATER_TEXTURE_ALT;

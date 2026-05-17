@@ -1303,9 +1303,10 @@ button.wc-nav-badge-nsf:focus-visible {
 }
 @media (min-width: 768px) {
   .about-hero {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 28px;
+    display: grid;
+    grid-template-columns: 200px 1fr 180px;
+    align-items: start;
+    gap: 24px;
   }
   .about-hero__text {
     text-align: left;
@@ -1407,29 +1408,306 @@ button.wc-nav-badge-nsf:focus-visible {
   height: auto;
 }
 
-/* Blog post featured image */
+/* Full-width hero banner with text overlay */
+.wc-page-hero-banner {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  margin: 0 0 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 58, 92, 0.85);
+}
+.wc-page-hero-banner__img {
+  object-fit: cover;
+  object-position: center;
+}
+.wc-page-hero-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.wc-page-hero-banner__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 13, 20, 0.92) 0%, rgba(4, 13, 20, 0.35) 45%, transparent 100%);
+  pointer-events: none;
+}
+.wc-page-hero-banner__content {
+  position: relative;
+  z-index: 1;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 220px;
+  justify-content: flex-end;
+}
+.wc-page-hero-banner__eyebrow {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #67e8f9;
+}
+.wc-page-hero-banner__title {
+  margin: 0;
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  font-weight: 900;
+  color: #f8fafc;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.wc-page-hero-banner__badge {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid;
+  background: rgba(7, 24, 40, 0.75);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Blog featured image */
 .wc-blog-featured {
+  position: relative;
+  margin: 0 0 28px;
+  max-height: 400px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #1a3a5c;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
-.wc-blog-featured img {
-  aspect-ratio: 2 / 1;
+.wc-blog-featured__img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+}
+.wc-blog-featured__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.wc-blog-featured__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 13, 20, 0.95) 0%, transparent 55%);
+  pointer-events: none;
+}
+.wc-blog-featured__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 20px 22px 22px;
+}
+.wc-blog-featured__title {
+  margin: 0;
+  font-size: clamp(1.35rem, 4vw, 1.85rem);
+  font-weight: 900;
+  color: #f8fafc;
+  line-height: 1.2;
+}
+
+/* Inline section photos */
+.wc-content-photo {
+  margin: 0 0 28px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1a3a5c;
+}
+.wc-content-photo__img {
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
 }
 
-/* City page — compact water hero visual */
-.city-page-hero-visual {
+/* About — testing photo beside founder */
+.about-hero__testing {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+.about-hero__testing img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.about-story-bg {
+  position: relative;
+  margin: 0 0 32px;
+  min-height: 120px;
+  padding: 28px 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 58, 92, 0.6);
+}
+.about-story-bg__img {
+  object-fit: cover;
+  opacity: 0.18;
+}
+.about-story-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(4, 13, 20, 0.94), rgba(7, 24, 40, 0.9));
+  pointer-events: none;
+}
+.about-story-bg__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Homepage — how it works */
+.wc-how-it-works {
+  max-width: 860px;
+  margin: 0 auto 56px;
+  padding: 0 24px;
+}
+.wc-how-it-works__eyebrow {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0891b2;
+  text-align: center;
+}
+.wc-how-it-works__title {
+  margin: 0 0 24px;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 800;
+  color: #f1f9ff;
+  text-align: center;
+}
+.wc-how-it-works__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.wc-how-it-works__card {
+  padding: 16px;
+  background: rgba(13, 34, 64, 0.85);
+  border: 1px solid #1a3a5c;
+  border-radius: 12px;
+}
+.wc-how-it-works__thumb {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  aspect-ratio: 4 / 2.8;
+}
+.wc-how-it-works__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wc-how-it-works__step-num {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0891b2, #06b6d4);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+.wc-how-it-works__card-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #e2e8f0;
+}
+.wc-how-it-works__card-body {
+  margin: 0;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* Homepage — contaminants section background */
+.wc-contaminants-section {
+  position: relative;
+  margin-bottom: 64px;
+  padding: 28px 22px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 58, 92, 0.5);
+}
+.wc-contaminants-section__bg {
+  object-fit: cover;
+  opacity: 0.12;
+}
+.wc-contaminants-section__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(4, 13, 20, 0.94), rgba(7, 24, 40, 0.88));
+  pointer-events: none;
+}
+.wc-contaminants-section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer wave accent */
+.wc-footer-wave {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.45;
+}
+.wc-footer-wave img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Contaminant guide card thumbnail */
+.wc-contaminant-thumb {
+  flex-shrink: 0;
   width: 72px;
   height: 72px;
-  margin-bottom: 16px;
-  border-radius: 50%;
+  border-radius: 10px;
   overflow: hidden;
-  padding: 2px;
-  background: linear-gradient(135deg, #0891b2, #22d3ee);
-  box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+  border: 1px solid #1a3a5c;
 }
-.city-page-hero-visual img {
-  border-radius: 50%;
+.wc-contaminant-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Blog index card thumbnail */
+.wc-blog-card-thumb {
+  width: 100%;
+  height: 140px;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  margin: -22px -22px 12px;
+  width: calc(100% + 44px);
+}
+.wc-blog-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

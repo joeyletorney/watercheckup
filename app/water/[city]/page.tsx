@@ -10,7 +10,8 @@ import cityBlurbs from '@/lib/cityBlurbs';
 import { getCountyLinkForCitySlug } from '@/lib/county-data';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
-import { CityPageHeroImage } from '@/components/CityPageHeroImage';
+import { PageHeroBanner } from '@/components/PageHeroBanner';
+import { CITY_TAP_HERO, cityTapHeroAlt } from '@/lib/unsplash-images';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -267,6 +268,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
       ? 'District of Columbia'
       : `${countyLink.countyDisplay} County`);
 
+  const cityLabel = cd ? `${cd.name}, ${cd.state}` : cityName;
+  const waterScore = cd ? computeWaterScore(cd.urgency, cd.issues, pfas) : null;
+
   const webPageAuthorLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -358,14 +362,25 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </div>
           )}
 
-          <CityPageHeroImage cityLabel={cd ? `${cd.name}, ${cd.state}` : cityName} />
-
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
-            WATER QUALITY REPORT
-          </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
-            {cd ? `${cd.name}, ${cd.state}` : cityName} tap water: what&apos;s in it in 2025
-          </h1>
+          <PageHeroBanner
+            src={CITY_TAP_HERO}
+            alt={cityTapHeroAlt(cityLabel)}
+            priority
+            maxHeight={360}
+          >
+            <p className="wc-page-hero-banner__eyebrow">WATER QUALITY REPORT</p>
+            <h1 className="wc-page-hero-banner__title">
+              {cityLabel} tap water: what&apos;s in it in 2025
+            </h1>
+            {waterScore ? (
+              <span
+                className="wc-page-hero-banner__badge"
+                style={{ borderColor: `${waterScore.gradeColor}88`, color: waterScore.gradeColor }}
+              >
+                Grade {waterScore.grade} · {waterScore.label}
+              </span>
+            ) : null}
+          </PageHeroBanner>
 
           {cd && (
             <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.6 }}>

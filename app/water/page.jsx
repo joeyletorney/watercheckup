@@ -1,6 +1,8 @@
 // Place this file at: app/water/page.jsx in your Next.js project
 
 import Link from 'next/link';
+import { GuideHero } from '@/components/GuideHero';
+import { WATER_INDEX_HERO, WATER_INDEX_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata = {
@@ -174,11 +176,14 @@ export default function WaterDirectoryPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
       <main className="max-w-5xl mx-auto px-4 py-12">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Water Quality Reports by City
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+      <div className="mb-12">
+        <GuideHero
+          src={WATER_INDEX_HERO}
+          alt={WATER_INDEX_HERO_ALT}
+          eyebrow="CITY DIRECTORY"
+          title="Water Quality Reports by City"
+        />
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6 mt-6 text-center">
           Free EPA tap water reports for {totalCities}+ US cities. See PFAS
           detections, lead violations, contaminant history, and certified filter
           recommendations — all from live EPA data.

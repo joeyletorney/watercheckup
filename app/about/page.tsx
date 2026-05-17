@@ -2,7 +2,17 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
-import { ABOUT_WATER_BG, ABOUT_WATER_BG_ALT } from '@/lib/unsplash-images';
+import {
+  ABOUT_FILTER_SYSTEM,
+  ABOUT_FILTER_SYSTEM_ALT,
+  ABOUT_WATER_BG,
+  ABOUT_WATER_BG_ALT,
+  ABOUT_WATER_TESTING,
+  ABOUT_WATER_TESTING_ALT,
+  ABOUT_WATER_TEXTURE,
+  ABOUT_WATER_TEXTURE_ALT,
+} from '@/lib/unsplash-images';
+import { ContentImage } from '@/components/ContentImage';
 
 export const metadata: Metadata = {
   title: {
@@ -263,11 +273,33 @@ export default function AboutPage() {
               actually coming out of their taps.
             </p>
           </div>
+          <div className="about-hero__testing">
+            <Image
+              src={ABOUT_WATER_TESTING}
+              alt={ABOUT_WATER_TESTING_ALT}
+              width={520}
+              height={520}
+              sizes="180px"
+              loading="lazy"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
             </section>
           </div>
         </div>
 
-        <h2 style={{ ...h2, marginTop: 0 }}>It Started When I Was 10 Years Old</h2>
+        <section className="about-story-bg" aria-labelledby="about-story-heading">
+          <Image
+            src={ABOUT_WATER_TEXTURE}
+            alt={ABOUT_WATER_TEXTURE_ALT}
+            fill
+            sizes="760px"
+            loading="lazy"
+            className="about-story-bg__img"
+          />
+          <div className="about-story-bg__overlay" aria-hidden />
+          <div className="about-story-bg__content">
+        <h2 id="about-story-heading" style={{ ...h2, marginTop: 0 }}>It Started When I Was 10 Years Old</h2>
         <p style={p}>
           I didn&apos;t choose water — water chose me. Growing up, my parents ran Durastill Export, Inc., a water
           purification company that sold water treatment systems to over 100 countries worldwide. While other kids were
@@ -288,6 +320,8 @@ export default function AboutPage() {
           credentials as a former Certified Water Treatment Specialist at the highest level — Level VI — as well as
           Certified Installer credentials.
         </p>
+          </div>
+        </section>
 
         <h2 style={h2}>Industry Recognition</h2>
         <p style={p}>
@@ -328,6 +362,12 @@ export default function AboutPage() {
         </div>
 
         <h2 style={h2}>Every Type of Water Treatment System — I&apos;ve Installed It</h2>
+        <ContentImage
+          src={ABOUT_FILTER_SYSTEM}
+          alt={ABOUT_FILTER_SYSTEM_ALT}
+          width={800}
+          height={500}
+        />
         <div
           style={{
             display: 'grid',

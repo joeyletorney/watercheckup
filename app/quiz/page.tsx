@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { GuideHero } from '@/components/GuideHero';
+import { QUIZ_PAGE_HERO, QUIZ_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 const WATERDROP_TAG = 'anbyjkqb';
@@ -215,8 +217,12 @@ export default function QuizPage() {
 
         {/* ── PAGE HEADER ── */}
         <div style={{ marginBottom: 36 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER FINDER</div>
-          <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 10px', lineHeight: 1.2 }}>Find Your Perfect Water Filter</h1>
+          <GuideHero
+            src={QUIZ_PAGE_HERO}
+            alt={QUIZ_PAGE_HERO_ALT}
+            eyebrow="FILTER FINDER"
+            title="Find Your Perfect Water Filter"
+          />
           <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.6 }}>3 quick questions. We match you to the right filter type and technology based on your water source, your biggest concern, and your living situation — then show you the top certified options.</p>
           {/* Trust badges */}
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 24 }}>

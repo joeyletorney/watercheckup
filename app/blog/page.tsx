@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import { GuideHero } from '@/components/GuideHero';
+import { BLOG_INDEX_HERO, BLOG_INDEX_HERO_ALT, getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata: Metadata = {
@@ -397,8 +400,12 @@ export default function BlogIndex() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 24px 80px' }}>
         {/* Header */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px' }}>The WaterCheckup Blog</h1>
+          <GuideHero
+            src={BLOG_INDEX_HERO}
+            alt={BLOG_INDEX_HERO_ALT}
+            eyebrow="WATER QUALITY GUIDES"
+            title="The WaterCheckup Blog"
+          />
           <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7, maxWidth: 600 }}>
             Expert guides on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases.
           </p>
@@ -419,7 +426,19 @@ export default function BlogIndex() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             {featuredPosts.map(post => (
               <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
-                <div style={{ height: '100%', padding: '22px 22px 20px', background: 'linear-gradient(165deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderTop: `3px solid ${post.badgeColor}`, borderRadius: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div style={{ height: '100%', background: 'linear-gradient(165deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderTop: `3px solid ${post.badgeColor}`, borderRadius: 14, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                  <div className="wc-blog-card-thumb">
+                    <Image
+                      src={getBlogFeaturedImageUrl(post.slug, post.badge)}
+                      alt={`${post.title} — featured article`}
+                      width={400}
+                      height={140}
+                      sizes="(max-width: 480px) 100vw, 400px"
+                      loading="lazy"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div style={{ padding: '22px 22px 20px', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.5, padding: '2px 8px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>{post.badge}</span>
                     <span style={{ fontSize: 11, color: '#64748b' }}>{post.readTime}</span>
@@ -427,6 +446,7 @@ export default function BlogIndex() {
                   <h2 style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', margin: 0, lineHeight: 1.3, flex: 1 }}>{post.title}</h2>
                   <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{post.excerpt}</p>
                   <span style={{ fontSize: 12, fontWeight: 700, color: post.badgeColor }}>Read more →</span>
+                  </div>
                 </div>
               </Link>
             ))}

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { GuideHero } from '@/components/GuideHero';
+import { PFAS_PAGE_HERO, PFAS_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata: Metadata = {
@@ -108,12 +110,15 @@ export default function PfasPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px 100px' }}>
 
-        {/* Hero */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>PFAS FOREVER CHEMICALS</div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
-            PFAS in Drinking Water — What It Is, Where It Is, and What Removes It
-          </h1>
+          <GuideHero
+            src={PFAS_PAGE_HERO}
+            alt={PFAS_PAGE_HERO_ALT}
+            eyebrow="PFAS FOREVER CHEMICALS"
+            title="PFAS in Drinking Water — What It Is, Where It Is, and What Removes It"
+            badge="EPA 2024 federal limits in effect"
+            badgeColor="#ef4444"
+          />
           <p style={p}>
             PFAS — per- and polyfluoroalkyl substances — are a group of over 12,000 synthetic chemicals that don&apos;t break down in the environment or your body.
             They&apos;ve been manufactured since the 1940s and are now found in the drinking water of an estimated
