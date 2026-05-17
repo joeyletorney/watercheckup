@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import HomeClient from './HomeClient';
+import { SITE_WATER_SYSTEMS_LABEL } from '@/lib/site-stats';
 
 export const metadata: Metadata = {
   title: "WaterCheckup — See What's Really In Your Tap Water",
   description:
-    'Analyze local water quality by address, spot contaminants, and get personalized filter picks backed by EPA SDWIS & UCMR data — free, no account.',
+    `Analyze local water quality by address across ${SITE_WATER_SYSTEMS_LABEL}, spot contaminants, and get personalized filter picks backed by EPA SDWIS & UCMR data — free, no account.`,
   alternates: {
     canonical: 'https://watercheckup.com',
   },

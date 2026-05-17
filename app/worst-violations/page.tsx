@@ -52,7 +52,7 @@ export default function WorstViolationsPage() {
             {[
               { stat: highCount, label: 'Cities rated high concern', color: '#ef4444' },
               { stat: medCount, label: 'Cities flagged to monitor', color: '#f59e0b' },
-              { stat: '135+', label: 'Cities tracked by WaterCheckup', color: '#0891b2' },
+              { stat: '432,000+', label: 'Water systems covered', color: '#0891b2' },
             ].map(({ stat, label, color }) => (
               <div key={label} style={{ padding: '12px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textAlign: 'center', flex: '1 1 140px' }}>
                 <div style={{ fontSize: 20, fontWeight: 900, color }}>{stat}</div>

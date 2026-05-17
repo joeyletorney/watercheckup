@@ -9,7 +9,9 @@ import { SiteHeader } from './components/SiteHeader';
 import { HeroPreviewDeck } from './components/HeroPreviewDeck';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
-import { CITIES, WATER_CITY_SLUGS } from '@/app/water/[city]/cities-data';
+import { CITIES } from '@/app/water/[city]/cities-data';
+import { CoverageStatsGrid } from '@/components/CoverageStatsGrid';
+import { SITE_WATER_SYSTEMS_LABEL, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -2414,7 +2416,7 @@ export default function WaterCheckup() {
             <div style={{ margin: '0 auto 18px', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.3)' }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22d3ee', display: 'inline-block', boxShadow: '0 0 6px #22d3ee', animation: 'wcBlink 2s ease-in-out infinite' }} />
               <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600 }}>
-                <strong style={{ color: '#22d3ee', fontWeight: 800 }}>{reportCount >= 10000 ? '10,000+' : reportCount.toLocaleString()}</strong> reports analyzed · {WATER_CITY_SLUGS.length}+ city guides
+                <strong style={{ color: '#22d3ee', fontWeight: 800 }}>{reportCount >= 10000 ? '10,000+' : reportCount.toLocaleString()}</strong> reports analyzed · {SITE_WATER_SYSTEMS_LABEL}
               </span>
             </div>
 
@@ -2507,6 +2509,8 @@ export default function WaterCheckup() {
             Discover hidden contaminants in your tap — drawn from federal Safe Drinking Water records. No account required.
           </p>
         </div>
+
+        <CoverageStatsGrid className="wc-hero-stats" />
       </div>
 
       <HomeVisualShowcase />
@@ -4294,21 +4298,7 @@ export default function WaterCheckup() {
       {/* CITY GRID + TRUST SECTION */}
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '64px 24px 80px' }}>
 
-        {/* Trust bar */}
-        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 56, paddingBottom: 40, borderBottom: '1px solid #0f2336' }}>
-          {[
-            { stat: 'EPA SDWIS', label: 'Official data source' },
-            { stat: 'UCMR5', label: 'PFAS monitoring data' },
-            { stat: '135+', label: 'City reports' },
-            { stat: '100% Free', label: 'No account, ever' },
-            { stat: '50 states', label: 'ZIP-level reports' },
-          ].map(({ stat, label }) => (
-            <div key={stat} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: 18, fontWeight: 800, color: '#0891b2', marginBottom: 2 }}>{stat}</div>
-              <div style={{ fontSize: 12, color: '#94a3b8', letterSpacing: 1 }}>{label}</div>
-            </div>
-          ))}
-        </div>
+        <CoverageStatsGrid className="wc-coverage-stats--section" />
 
         {/* Testimonials */}
         <div style={{ marginBottom: 48 }}>
@@ -4576,7 +4566,7 @@ export default function WaterCheckup() {
                   fontWeight: 700,
                 }}
               >
-                View all 135+ cities →
+                {VIEW_ALL_WATER_SYSTEMS_LINK}
               </a>
             </div>
           </div>

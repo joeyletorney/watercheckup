@@ -1340,6 +1340,49 @@ button.wc-nav-badge-nsf:focus-visible {
   z-index: 1;
 }
 
+/* Homepage + site coverage stats */
+.wc-coverage-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .wc-coverage-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+.wc-hero-stats {
+  margin-top: 28px;
+}
+.wc-coverage-stats--section {
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #0f2336;
+}
+.wc-coverage-stats__item {
+  text-align: center;
+  padding: 14px 10px;
+  background: linear-gradient(135deg, rgba(7, 24, 40, 0.85), rgba(4, 13, 20, 0.92));
+  border: 1px solid rgba(26, 58, 92, 0.8);
+  border-radius: 12;
+}
+.wc-coverage-stats__value {
+  font-size: clamp(18px, 3.5vw, 22px);
+  font-weight: 800;
+  color: #22d3ee;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.wc-coverage-stats__label {
+  font-size: 11px;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
 /* Homepage hero — Unsplash featured photo */
 .wc-hero-photo {
   width: 100%;

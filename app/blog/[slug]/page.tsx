@@ -5,6 +5,7 @@ import { POSTS } from '../posts';
 import { SiteHeader } from '../../components/SiteHeader';
 import { BlogFeaturedImage } from '@/components/BlogFeaturedImage';
 import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
+import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -238,7 +239,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               </Link>
             ))}
           </div>
-          <Link href="/water" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>View all 135+ city reports →</Link>
+          <Link href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
         </div>
 
         {/* Bottom CTA */}
