@@ -131,6 +131,11 @@ const personLd = {
     'Arsenic Removal',
     'VOC Removal',
     'Water Distillation',
+    'Trihalomethanes',
+    'TDS',
+    'Water Hardness',
+    'Low pH Treatment',
+    'Iron and Manganese Removal',
   ],
   hasCredential: [
     {
