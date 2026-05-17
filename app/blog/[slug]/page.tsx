@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { POSTS } from '../posts';
 import { SiteHeader } from '../../components/SiteHeader';
+import { BlogFeaturedImage } from '@/components/BlogFeaturedImage';
+import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -72,6 +74,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       url: 'https://watercheckup.com',
       logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/icon.png' },
     },
+    image: [getBlogFeaturedImageUrl(params.slug, post.badge)],
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://watercheckup.com/blog/${params.slug}`,
@@ -95,6 +98,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           {' · '}
           <span style={{ color: '#94a3b8' }}>{post.badge}</span>
         </div>
+
+        <BlogFeaturedImage slug={params.slug} title={post.title} badge={post.badge} />
 
         {/* Header */}
         <div style={{ marginBottom: 40 }}>

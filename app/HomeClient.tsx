@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useRef, useMemo, type CSSProperties } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
+import { HOME_HERO_ALT, HOME_HERO_IMAGE } from '@/lib/unsplash-images';
 import { SiteHeader } from './components/SiteHeader';
 import { HeroPreviewDeck } from './components/HeroPreviewDeck';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
@@ -2428,6 +2430,17 @@ export default function WaterCheckup() {
           </div>
 
           <div className="wc-hero-split-visual">
+            <div className="wc-hero-photo">
+              <Image
+                src={HOME_HERO_IMAGE}
+                alt={HOME_HERO_ALT}
+                width={380}
+                height={285}
+                sizes="(max-width: 899px) min(100vw - 48px, 380px), 380px"
+                priority
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
             <HeroPreviewDeck />
           </div>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { ABOUT_WATER_BG, ABOUT_WATER_BG_ALT } from '@/lib/unsplash-images';
 
 export const metadata: Metadata = {
   title: {
@@ -214,11 +215,22 @@ export default function AboutPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your water →" ctaHref="/" />
 
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 100px' }}>
-        <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20 }}>
-          ABOUT THE FOUNDER
-        </p>
+        <div className="about-page-hero-bg">
+          <Image
+            src={ABOUT_WATER_BG}
+            alt={ABOUT_WATER_BG_ALT}
+            fill
+            sizes="760px"
+            priority
+            className="about-page-hero-bg__img"
+          />
+          <div className="about-page-hero-bg__overlay" aria-hidden />
+          <div className="about-page-hero-bg__content">
+            <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20 }}>
+              ABOUT THE FOUNDER
+            </p>
 
-        <section className="about-hero" aria-label="Joe Letorney, founder">
+            <section className="about-hero" aria-label="Joe Letorney, founder">
           <div className="about-hero__portrait">
             <div className="about-hero__portrait-inner">
               <Image
@@ -251,7 +263,9 @@ export default function AboutPage() {
               actually coming out of their taps.
             </p>
           </div>
-        </section>
+            </section>
+          </div>
+        </div>
 
         <h2 style={{ ...h2, marginTop: 0 }}>It Started When I Was 10 Years Old</h2>
         <p style={p}>

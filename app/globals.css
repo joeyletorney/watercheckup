@@ -1309,3 +1309,78 @@ button.wc-nav-badge-nsf:focus-visible {
     height: 200px;
   }
 }
+
+/* About page — subtle water background behind founder hero */
+.about-page-hero-bg {
+  position: relative;
+  margin: 0 -24px 40px;
+  padding: 28px 24px 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 58, 92, 0.6);
+}
+.about-page-hero-bg__img {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.22;
+}
+.about-page-hero-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(4, 13, 20, 0.92) 0%,
+    rgba(7, 24, 40, 0.88) 50%,
+    rgba(4, 13, 20, 0.94) 100%
+  );
+  pointer-events: none;
+}
+.about-page-hero-bg__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Homepage hero — Unsplash featured photo */
+.wc-hero-photo {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 14px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(8, 145, 178, 0.2);
+}
+.wc-hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Blog post featured image */
+.wc-blog-featured {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1a3a5c;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+.wc-blog-featured img {
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+
+/* City page — compact water hero visual */
+.city-page-hero-visual {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 2px;
+  background: linear-gradient(135deg, #0891b2, #22d3ee);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+}
+.city-page-hero-visual img {
+  border-radius: 50%;
+}

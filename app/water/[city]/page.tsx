@@ -9,6 +9,7 @@ import ucmr5Raw from '../../../lib/ucmr5.json';
 import cityBlurbs from '@/lib/cityBlurbs';
 import { getCountyLinkForCitySlug } from '@/lib/county-data';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -355,6 +356,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
               </Link>
             </div>
           )}
+
+          <CityPageHeroImage cityLabel={cd ? `${cd.name}, ${cd.state}` : cityName} />
 
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             WATER QUALITY REPORT
