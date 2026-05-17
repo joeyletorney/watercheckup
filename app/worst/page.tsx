@@ -75,7 +75,7 @@ export default function WorstHubPage() {
             Water quality rankings hub
           </h1>
           <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
-            Every page below pulls from EPA monitoring (UCMR5), Safe Drinking Water Information System violations, or structured profiles across 400,000+ water systems. Use this hub to navigate stories that are designed to rank in search and hold up to scrutiny.
+            Every page below pulls from EPA monitoring (UCMR5), Safe Drinking Water Information System violations, or structured profiles across 400,000+ local water utilities tracked. Use this hub to navigate stories that are designed to rank in search and hold up to scrutiny.
           </p>
         </div>
 

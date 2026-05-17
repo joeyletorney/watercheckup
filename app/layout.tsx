@@ -6,6 +6,7 @@ import Script from 'next/script'
 import { WaterCanvas } from './components/WaterCanvas'
 import { GaPageView } from './components/GaPageView'
 import { SiteFooter } from './components/SiteFooter'
+import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -101,8 +102,7 @@ const jsonLd = {
       name: 'WaterCheckup',
       url: 'https://watercheckup.com',
       logo: 'https://watercheckup.com/icon.png',
-      description:
-        'Free water quality reports for 400,000+ water systems across all 50 states. Built by Joe Letorney, a 30-year water treatment expert.',
+      description: SITE_HOME_META_DESCRIPTION,
       founder: {
         '@type': 'Person',
         name: 'Joe Letorney',
