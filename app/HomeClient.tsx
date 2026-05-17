@@ -12,8 +12,10 @@ import { CITIES } from '@/app/water/[city]/cities-data';
 import {
   SITE_HERO_POSITIONING,
   SITE_HERO_TAGLINE,
+  SITE_HERO_TRUST_BANNER,
   SITE_WATER_SYSTEMS_LABEL,
   VIEW_ALL_WATER_SYSTEMS_LINK,
+  WHY_WATERCHECKUP_CARDS,
 } from '@/lib/site-stats';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
@@ -2426,15 +2428,6 @@ export default function WaterCheckup() {
               </span>
             </div>
 
-            <div className="wc-hero-trust-strip">
-              <span>EPA SDWIS</span>
-              <span aria-hidden style={{ color: '#334155' }}>·</span>
-              <span>UCMR5 PFAS</span>
-              <span aria-hidden style={{ color: '#334155' }}>·</span>
-              <span>NSF / WQA picks</span>
-              <span aria-hidden style={{ color: '#334155' }}>·</span>
-              <Link href="/methodology">How we analyze water →</Link>
-            </div>
           </div>
 
           <div className="wc-hero-split-visual">
@@ -2450,6 +2443,14 @@ export default function WaterCheckup() {
               />
             </div>
           </div>
+        </div>
+
+        <div className="wc-hero-credibility-banner" role="list" aria-label="WaterCheckup coverage highlights">
+          {SITE_HERO_TRUST_BANNER.map((label) => (
+            <span key={label} className="wc-hero-credibility-banner__item" role="listitem">
+              <span aria-hidden>✅</span> {label}
+            </span>
+          ))}
         </div>
 
         {/* Search bar — high-visibility panel */}
@@ -4326,29 +4327,22 @@ export default function WaterCheckup() {
           </div>
         </div>
 
-        {/* Why WaterCheckup — above city list so more visitors see the data story */}
-        <div style={{ padding: '32px 28px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP IS DIFFERENT</div>
-          <h3 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Your water might look clean. That doesn't mean it is.</h3>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' }}>
-            PFAS "forever chemicals" have been detected in 45% of US tap water. Lead, disinfection byproducts, and arsenic are often invisible, odorless, and tasteless. Most water quality checkers tap one database — we combine five, translate it into plain language, and match it to the right filter for your home. No login, no paywall, ever.
-          </p>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            {[
-              { source: 'EPA Violation Records', desc: 'Full violation history & enforcement records for 150,000+ public water systems' },
-              { source: 'EPA PFAS Testing Data', desc: 'Federal PFAS monitoring results 2023–2025 — the most comprehensive PFAS dataset ever collected' },
-              { source: 'EPA Enforcement History', desc: 'Inspection records, formal actions, and penalty data from the EPA enforcement database' },
-              { source: 'EPA Lead Tap Sampling', desc: 'Actual measured lead levels at your tap from EPA Lead & Copper Rule testing' },
-              { source: 'EPA Lead Pipe Inventory', desc: 'Federal lead service line inventory — every US utility required to publish as of October 2024' },
-              { source: 'EWG Health Guidelines', desc: 'Contaminant levels compared against stricter independent health benchmarks, not just legal limits' },
-            ].map(({ source, desc }) => (
-              <div key={source} style={{ padding: '10px 14px', background: '#071828', border: '1px solid #0f2336', borderRadius: 8, flex: '1 1 180px' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#0891b2', marginBottom: 3 }}>{source}</div>
-                <div style={{ fontSize: 11, color: '#94a3b8', lineHeight: 1.5 }}>{desc}</div>
-              </div>
+        {/* Why WaterCheckup */}
+        <section style={{ marginBottom: 48 }} aria-labelledby="why-watercheckup-heading">
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP</div>
+          <h2 id="why-watercheckup-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 20px' }}>
+            Why WaterCheckup
+          </h2>
+          <div className="wc-why-cards">
+            {WHY_WATERCHECKUP_CARDS.map((card) => (
+              <article key={card.title} className="wc-why-card">
+                <div className="wc-why-card__icon" aria-hidden>{card.icon}</div>
+                <h3 className="wc-why-card__title">{card.title}</h3>
+                <p className="wc-why-card__body">{card.body}</p>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Social comparison hook */}
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 48 }}>

@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { ABOUT_WATER_BG, ABOUT_WATER_BG_ALT } from '@/lib/unsplash-images';
+import { SITE_COMPARISON_ROWS } from '@/lib/site-stats';
+import { ComparisonCellDisplay } from '@/components/ComparisonCellDisplay';
 
 export const metadata: Metadata = {
   title: {
@@ -393,6 +395,35 @@ export default function AboutPage() {
         </div>
 
         <PullQuote />
+
+        <h2 style={h2}>How WaterCheckup Compares</h2>
+        <p style={{ ...p, marginBottom: 20 }}>
+          Most water quality sites are built by tech companies scraping partial EPA data. Here is how WaterCheckup stacks up.
+        </p>
+        <div className="wc-compare-table-wrap">
+          <table className="wc-compare-table">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col" className="wc-compare-table__wc-col">WaterCheckup</th>
+                <th scope="col">Others</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SITE_COMPARISON_ROWS.map((row) => (
+                <tr key={row.feature}>
+                  <th scope="row">{row.feature}</th>
+                  <td className="wc-compare-table__wc-col">
+                    <ComparisonCellDisplay cell={row.watercheckup} />
+                  </td>
+                  <td>
+                    <ComparisonCellDisplay cell={row.others} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <div
           style={{

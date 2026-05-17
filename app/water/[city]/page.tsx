@@ -585,6 +585,14 @@ export default function CityPage({ params }: { params: { city: string } }) {
               </p>
             </div>
 
+            <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 14px', lineHeight: 1.6 }}>
+              Recommendations by{' '}
+              <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+                Joe Letorney
+              </Link>
+              , 30-year water treatment specialist →
+            </p>
+
             <TopPickBox
               picks={cityPicks.picks}
               label={cityPicks.label}

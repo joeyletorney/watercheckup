@@ -1084,6 +1084,122 @@ button.wc-nav-badge-nsf:focus-visible {
   text-decoration: underline;
 }
 
+.wc-hero-credibility-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 20px;
+  margin: 20px auto 0;
+  max-width: 960px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(8, 145, 178, 0.45);
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.12), rgba(4, 14, 28, 0.75));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+.wc-hero-credibility-banner__item {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e2e8f0;
+  white-space: nowrap;
+}
+.wc-hero-credibility-banner__item span[aria-hidden] {
+  color: #34d399;
+  margin-right: 4px;
+}
+
+.wc-why-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.wc-why-card {
+  padding: 24px 22px;
+  background: #0d2240;
+  border: 1px solid #1a3a5c;
+  border-radius: 12px;
+}
+.wc-why-card__icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+.wc-why-card__title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+.wc-why-card__body {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.wc-compare-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  border: 1px solid #1a3a5c;
+}
+.wc-compare-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #071828;
+}
+.wc-compare-table th,
+.wc-compare-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #0f2336;
+  text-align: left;
+  vertical-align: middle;
+}
+.wc-compare-table thead th {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  background: #040d14;
+}
+.wc-compare-table tbody th[scope='row'] {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+.wc-compare-table__wc-col {
+  background: rgba(8, 145, 178, 0.08);
+  border-left: 2px solid rgba(34, 211, 238, 0.35);
+}
+.wc-compare-table thead .wc-compare-table__wc-col {
+  color: #67e8f9;
+  background: rgba(8, 145, 178, 0.15);
+}
+.wc-compare-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  color: #cbd5e1;
+}
+.wc-compare-cell-text {
+  font-size: 13px;
+  color: #94a3b8;
+}
+.wc-compare-icon--yes {
+  filter: none;
+}
+.wc-compare-icon--no {
+  opacity: 0.95;
+}
+.wc-compare-icon--warn {
+  opacity: 0.95;
+}
+
 /* ─── Homepage showcase (trimmed — plain English, one simple visual) ─ */
 .wc-showcase-trim {
   margin-top: 22px;

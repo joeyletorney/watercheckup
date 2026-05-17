@@ -5,7 +5,7 @@ import { POSTS } from '../posts';
 import { SiteHeader } from '../../components/SiteHeader';
 import { BlogFeaturedImage } from '@/components/BlogFeaturedImage';
 import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
-import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
+import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -112,12 +112,16 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <span style={{ fontSize: 12, color: '#94a3b8' }}>·</span>
             <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.readTime}</span>
           </div>
-          <h1 style={{ fontSize: 34, fontWeight: 900, color: '#f1f5f9', margin: '0 0 16px', lineHeight: 1.2 }}>{post.title}</h1>
+          <h1 style={{ fontSize: 34, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px', lineHeight: 1.2 }}>{post.title}</h1>
+          <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.6 }}>
+            By{' '}
+            <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+              {BLOG_AUTHOR_BYLINE.name}
+            </Link>
+            {' | '}
+            {BLOG_AUTHOR_BYLINE.credentials}
+          </p>
           <p style={{ fontSize: 17, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
-          <div style={{ fontSize: 13, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0 }}>WC</div>
-            <span>By <strong style={{ color: '#94a3b8' }}>WaterCheckup</strong> · Editorial · NSF/WQA-aligned guidance</span>
-          </div>
         </div>
 
         {/* Check ZIP CTA — top */}

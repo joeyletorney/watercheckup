@@ -29,8 +29,7 @@ export const metadata: Metadata = {
     default: "WaterCheckup — See What's in Your Tap Water",
     template: '%s | WaterCheckup',
   },
-  description:
-    'Free tap water snapshot for any US ZIP: EPA violations, PFAS monitoring, lead sampling, and more — explained in plain language. Filter ideas matched to what we find; some shopping links may earn a commission at no extra cost to you.',
+  description: SITE_HOME_META_DESCRIPTION,
   keywords: [
     'water quality',
     'tap water',
@@ -57,8 +56,7 @@ export const metadata: Metadata = {
     url: 'https://watercheckup.com',
     siteName: 'WaterCheckup',
     title: "WaterCheckup -- See What's Really in Your Tap Water",
-    description:
-      'Free EPA-backed water snapshot for any US ZIP: violations, PFAS, lead, and more. Plain-language summary, filter ideas, and installer leads. Some links may earn a commission.',
+    description: SITE_HOME_META_DESCRIPTION,
     images: [
       {
         url: '/api/og',
@@ -125,8 +123,7 @@ const jsonLd = {
       name: "WaterCheckup — See What's in Your Tap Water",
       isPartOf: { '@id': 'https://watercheckup.com/#website' },
       about: { '@id': 'https://watercheckup.com/#organization' },
-      description:
-        'Enter your ZIP for a free EPA-backed water report and plain-language next steps, including filter ideas matched to what we find.',
+      description: SITE_HOME_META_DESCRIPTION,
     },
   ],
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { SiteNav } from './SiteNav';
+import { SITE_FOOTER_TAGLINE } from '@/lib/site-stats';
 
 /** Same primary nav links as the header (`SiteNav`). */
 export function SiteFooter() {
@@ -31,6 +32,9 @@ export function SiteFooter() {
             gap: 6,
           }}
         />
+        <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', textAlign: 'center', lineHeight: 1.65, maxWidth: 640, fontWeight: 500 }}>
+          {SITE_FOOTER_TAGLINE}
+        </p>
         <p style={{ margin: 0, fontSize: 13, color: '#94a3b8', textAlign: 'center', lineHeight: 1.7 }}>
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
           <a href="/about" style={{ color: '#94a3b8', textDecoration: 'none' }}>About Joe Letorney</a>
