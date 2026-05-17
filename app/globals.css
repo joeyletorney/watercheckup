@@ -178,6 +178,12 @@ p { margin: 0; }
 }
 
 .wc-hero-h1 {
+  font-size: clamp(2.625rem, 4.2vw + 1.35rem, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 14px;
   text-wrap: balance;
   text-shadow:
     0 2px 28px rgba(0, 8, 24, 0.85),
@@ -398,7 +404,7 @@ a.wc-site-nav-link[aria-current='page']:hover {
 /* ── MOBILE RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 640px) {
   .wc-nav-badges  { display: none !important; }
-  .wc-hero-h1     { font-size: 28px !important; }
+  .wc-hero-h1     { font-size: 2.125rem !important; }
   .wc-hero-sub    { font-size: 14px !important; }
   .wc-search-row  { flex-direction: column !important; align-items: stretch !important; }
   .wc-search-row input  { width: 100% !important; font-size: 18px !important; min-height: 58px !important; padding: 16px 18px !important; }
@@ -421,7 +427,7 @@ a.wc-site-nav-link[aria-current='page']:hover {
 
 @media (max-width: 400px) {
   .wc-sit-grid { grid-template-columns: 1fr !important; }
-  .wc-hero-h1  { font-size: 24px !important; }
+  .wc-hero-h1  { font-size: 1.875rem !important; }
 }
 
 /* ── WaterCheckup component styles ── */

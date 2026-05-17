@@ -6,11 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HOME_HERO_ALT, HOME_HERO_IMAGE } from '@/lib/unsplash-images';
 import { SiteHeader } from './components/SiteHeader';
-import { HeroPreviewDeck } from './components/HeroPreviewDeck';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES } from '@/app/water/[city]/cities-data';
-import { CoverageStatsGrid } from '@/components/CoverageStatsGrid';
 import {
   SITE_HERO_POSITIONING,
   SITE_HERO_TAGLINE,
@@ -2402,10 +2400,10 @@ export default function WaterCheckup() {
       )}
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
-      <div ref={heroRef} id="wc-hero-anchor" style={{ margin: '52px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+      <div ref={heroRef} id="wc-hero-anchor" style={{ margin: '20px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
         <div className="wc-hero-split">
           <div className="wc-hero-split-copy">
-            <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 12px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
+            <h1 className="wc-hero-h1">
               See What&apos;s Really In<br />Your Tap Water
             </h1>
 
@@ -2451,7 +2449,6 @@ export default function WaterCheckup() {
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               />
             </div>
-            <HeroPreviewDeck />
           </div>
         </div>
 
@@ -2518,7 +2515,6 @@ export default function WaterCheckup() {
           </p>
         </div>
 
-        <CoverageStatsGrid className="wc-hero-stats" />
       </div>
 
       <HomeVisualShowcase />
@@ -4305,8 +4301,6 @@ export default function WaterCheckup() {
 
       {/* CITY GRID + TRUST SECTION */}
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '64px 24px 80px' }}>
-
-        <CoverageStatsGrid className="wc-coverage-stats--section" />
 
         {/* Testimonials */}
         <div style={{ marginBottom: 48 }}>
