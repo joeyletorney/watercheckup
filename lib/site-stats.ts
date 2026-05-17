@@ -39,7 +39,7 @@ export const WHY_WATERCHECKUP_CARDS = [
   {
     icon: '👨‍🔬',
     title: 'Real Expert Behind Every Recommendation',
-    body: 'WaterCheckup was built by Joe Letorney, a 30-year water treatment veteran, former WQA Certified Water Treatment Specialist Level VI, and published industry author. Not a tech company. Not an algorithm. A real water expert.',
+    body: 'WaterCheckup was built by a 30-year water treatment veteran and published industry author. Not a tech company. Not an algorithm. A real water expert.',
   },
   {
     icon: '🔬',
