@@ -13,7 +13,6 @@ import {
   SITE_HERO_POSITIONING,
   SITE_HERO_TAGLINE,
   SITE_HERO_TRUST_BANNER,
-  SITE_WATER_SYSTEMS_LABEL,
   VIEW_ALL_WATER_SYSTEMS_LINK,
   WHY_WATERCHECKUP_CARDS,
 } from '@/lib/site-stats';
@@ -2091,26 +2090,9 @@ export default function WaterCheckup() {
   const [cityBrowseFilter, setCityBrowseFilter] = useState('');
   const [showAllContaminants, setShowAllContaminants] = useState(false);
   const [stickyVisible, setStickyVisible] = useState(false);
-  const [reportCount, setReportCount] = useState(1000);
   const heroRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const loadingPanelRef = useRef<HTMLDivElement>(null);
-
-  // Animated report counter — counts up to a realistic number on mount
-  useEffect(() => {
-    const target = 10000;
-    const duration = 1400;
-    const start = performance.now();
-    let raf: number;
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setReportCount(Math.round(eased * target));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, []);
 
   // Sticky CTA — show after hero scrolls out of view
   useEffect(() => {
@@ -2419,14 +2401,6 @@ export default function WaterCheckup() {
             <p className="wc-hero-sub" style={{ color: '#cbd5e1', fontSize: 16, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.65, fontWeight: 500 }}>
               {SITE_HERO_TAGLINE}
             </p>
-
-            {/* Live report counter */}
-            <div style={{ margin: '0 auto 18px', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.3)' }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22d3ee', display: 'inline-block', boxShadow: '0 0 6px #22d3ee', animation: 'wcBlink 2s ease-in-out infinite' }} />
-              <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600 }}>
-                <strong style={{ color: '#22d3ee', fontWeight: 800 }}>{reportCount >= 10000 ? '10,000+' : reportCount.toLocaleString()}</strong> reports analyzed · {SITE_WATER_SYSTEMS_LABEL}
-              </span>
-            </div>
 
           </div>
 
