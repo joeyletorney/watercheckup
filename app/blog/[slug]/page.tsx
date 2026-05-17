@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: ogDescription,
       type: 'article',
       publishedTime: post.date,
-      authors: ['WaterCheckup'],
+      authors: ['Joe Letorney'],
       images: [
         {
           url: `https://watercheckup.com/api/og/blog?title=${encodeURIComponent(ogImageTitle)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(ogImageExcerpt ?? '')}`,
@@ -61,11 +61,16 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    author: { '@type': 'Organization', name: 'WaterCheckup', url: 'https://watercheckup.com' },
+    author: {
+      '@type': 'Person',
+      name: 'Joe Letorney',
+      url: 'https://watercheckup.com/about',
+    },
     publisher: {
       '@type': 'Organization',
       name: 'WaterCheckup',
-      logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/logo.svg' },
+      url: 'https://watercheckup.com',
+      logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/icon.png' },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',

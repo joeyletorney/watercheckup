@@ -88,6 +88,61 @@ const PILLARS = [
   },
 ];
 
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Joe Letorney',
+  jobTitle: 'Founder & Water Treatment Specialist',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'WaterCheckup',
+    url: 'https://watercheckup.com',
+  },
+  knowsAbout: [
+    'Water Treatment',
+    'PFAS Contamination',
+    'Lead in Drinking Water',
+    'Reverse Osmosis Systems',
+    'Water Quality Testing',
+    'Water Softeners',
+    'Well Water Treatment',
+    'Arsenic Removal',
+    'VOC Removal',
+    'Water Distillation',
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Former Certified Water Treatment Specialist Level VI',
+      credentialCategory: 'Professional Certification',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Water Quality Association (WQA)',
+      },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Former Certified Installer',
+      credentialCategory: 'Professional Certification',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Water Quality Association (WQA)',
+      },
+    },
+  ],
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Durastill Export, Inc.',
+  },
+  founder: {
+    '@type': 'Organization',
+    name: 'The WaterPro, Inc.',
+  },
+  description:
+    'Joe Letorney is a water treatment professional with over 30 years of experience. Former WQA Certified Water Treatment Specialist Level VI and Certified Installer. Published author in Water Technology Magazine and Water Conditioning and Purification Magazine. Founder of WaterCheckup.',
+  sameAs: ['https://watercheckup.com/about'],
+};
+
 function PullQuote() {
   return (
     <blockquote
@@ -123,6 +178,10 @@ function PullQuote() {
 export default function AboutPage() {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: 'var(--font-inter), system-ui, sans-serif' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+      />
       <SiteHeader variant="inner" showCta ctaLabel="Check your water →" ctaHref="/" />
 
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 100px' }}>

@@ -265,6 +265,21 @@ export default function CityPage({ params }: { params: { city: string } }) {
       ? 'District of Columbia'
       : `${countyLink.countyDisplay} County`);
 
+  const webPageAuthorLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    author: {
+      '@type': 'Person',
+      name: 'Joe Letorney',
+      url: 'https://watercheckup.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'WaterCheckup',
+      url: 'https://watercheckup.com',
+    },
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -307,6 +322,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageAuthorLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />

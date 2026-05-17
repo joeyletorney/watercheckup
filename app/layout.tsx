@@ -100,10 +100,23 @@ const jsonLd = {
       '@id': 'https://watercheckup.com/#organization',
       name: 'WaterCheckup',
       url: 'https://watercheckup.com',
-      logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/logo.svg' },
-      sameAs: ['https://twitter.com/watercheckup'],
+      logo: 'https://watercheckup.com/icon.png',
       description:
-        'Water quality reporting powered by live EPA public data, with filter guidance that points to published certifications and listings.',
+        'Free EPA water quality reports for any US city or ZIP code. Built by Joe Letorney, a water treatment professional with 30+ years of experience.',
+      founder: {
+        '@type': 'Person',
+        name: 'Joe Letorney',
+        url: 'https://watercheckup.com/about',
+      },
+      areaServed: 'United States',
+      knowsAbout: [
+        'Water Quality',
+        'PFAS',
+        'Drinking Water Safety',
+        'Water Filtration',
+        'EPA Water Standards',
+      ],
+      sameAs: ['https://twitter.com/watercheckup'],
     },
     {
       '@type': 'WebPage',
