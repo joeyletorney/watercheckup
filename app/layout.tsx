@@ -102,7 +102,7 @@ const jsonLd = {
       url: 'https://watercheckup.com',
       logo: 'https://watercheckup.com/icon.png',
       description:
-        'Free EPA water quality reports for any US city or ZIP code. Built by Joe Letorney, a water treatment professional with 30+ years of experience.',
+        'Free water quality reports for 400,000+ water systems across all 50 states. Built by Joe Letorney, a 30-year water treatment expert.',
       founder: {
         '@type': 'Person',
         name: 'Joe Letorney',

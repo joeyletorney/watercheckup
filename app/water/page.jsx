@@ -6,7 +6,7 @@ import { SiteHeader } from '../components/SiteHeader';
 export const metadata = {
   title: 'Water Quality Reports by City',
   description:
-    'Free EPA-based tap water quality reports for 432,000+ water systems. Check PFAS levels, lead violations, contaminant data, and filter recommendations for your area.',
+    'Free EPA-based water quality reports for 400,000+ water systems. Check PFAS levels, lead violations, contaminant data, and filter recommendations for your area.',
 };
 
 const cities = {

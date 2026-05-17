@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://watercheckup.com/worst-states' },
   openGraph: {
     title: 'Worst States for Drinking Water Quality — 2025 EPA Data',
-    description: 'Which US states have the worst tap water? Ranked using EPA violation records, PFAS monitoring data, and lead risk across 432,000+ water systems.',
+    description: 'Which US states have the worst tap water? Ranked using EPA violation records, PFAS monitoring data, and lead risk across 400,000+ water systems.',
   },
 };
 

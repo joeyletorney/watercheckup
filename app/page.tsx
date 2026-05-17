@@ -1,18 +1,16 @@
 import type { Metadata } from 'next';
 import HomeClient from './HomeClient';
-import { SITE_WATER_SYSTEMS_LABEL } from '@/lib/site-stats';
+import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats';
 
 export const metadata: Metadata = {
   title: "WaterCheckup — See What's Really In Your Tap Water",
-  description:
-    `Analyze local water quality by address across ${SITE_WATER_SYSTEMS_LABEL}, spot contaminants, and get personalized filter picks backed by EPA SDWIS & UCMR data — free, no account.`,
+  description: SITE_HOME_META_DESCRIPTION,
   alternates: {
     canonical: 'https://watercheckup.com',
   },
   openGraph: {
     title: "WaterCheckup — See What's Really In Your Tap Water",
-    description:
-      'Know what your family is drinking. Instant analysis from federal water data, contaminant insights, and filter recommendations for your area.',
+    description: SITE_HOME_META_DESCRIPTION,
   },
 };
 

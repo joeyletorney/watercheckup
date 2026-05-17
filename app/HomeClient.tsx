@@ -11,7 +11,12 @@ import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES } from '@/app/water/[city]/cities-data';
 import { CoverageStatsGrid } from '@/components/CoverageStatsGrid';
-import { SITE_WATER_SYSTEMS_LABEL, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
+import {
+  SITE_HERO_POSITIONING,
+  SITE_HERO_TAGLINE,
+  SITE_WATER_SYSTEMS_LABEL,
+  VIEW_ALL_WATER_SYSTEMS_LINK,
+} from '@/lib/site-stats';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -2400,16 +2405,19 @@ export default function WaterCheckup() {
       <div ref={heroRef} id="wc-hero-anchor" style={{ margin: '52px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
         <div className="wc-hero-split">
           <div className="wc-hero-split-copy">
-            <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 16px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
+            <h1 className="wc-hero-h1" style={{ fontSize: 46, fontWeight: 900, margin: '0 0 12px', lineHeight: 1.08, color: '#ffffff', letterSpacing: -1.2 }}>
               See What&apos;s Really In<br />Your Tap Water
             </h1>
 
-            <p className="wc-hero-sub" style={{ color: '#cbd5e1', fontSize: 16, margin: '0 auto 12px', maxWidth: 520, lineHeight: 1.6, fontWeight: 500 }}>
-              Instantly analyze your local water quality, identify potential contaminants, and get personalized filter recommendations based on your exact address.
+            <p
+              className="wc-hero-positioning"
+              style={{ color: '#67e8f9', fontSize: 15, margin: '0 auto 14px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}
+            >
+              {SITE_HERO_POSITIONING}
             </p>
 
-            <p style={{ color: '#67e8f9', fontSize: 14, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}>
-              Know what your family is drinking — peace of mind starts with the facts.
+            <p className="wc-hero-sub" style={{ color: '#cbd5e1', fontSize: 16, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.65, fontWeight: 500 }}>
+              {SITE_HERO_TAGLINE}
             </p>
 
             {/* Live report counter */}
