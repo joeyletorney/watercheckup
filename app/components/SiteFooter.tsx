@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-import { FOOTER_WAVE, FOOTER_WAVE_ALT } from '@/lib/unsplash-images';
 import { SiteNav } from './SiteNav';
 
 /** Same primary nav links as the header (`SiteNav`). */
@@ -26,16 +24,6 @@ export function SiteFooter() {
           gap: 20,
         }}
       >
-        <div className="wc-footer-wave" aria-hidden>
-          <Image
-            src={FOOTER_WAVE}
-            alt={FOOTER_WAVE_ALT}
-            width={1100}
-            height={120}
-            sizes="(max-width: 1100px) 100vw, 1100px"
-            loading="lazy"
-          />
-        </div>
         <SiteNav
           ariaLabel="Footer"
           style={{

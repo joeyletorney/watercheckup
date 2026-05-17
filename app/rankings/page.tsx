@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { GuideHero } from '@/components/GuideHero';
-import { RANKINGS_PAGE_HERO, RANKINGS_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 import { buildStateRankingRows, STATE_NAMES } from '@/lib/water-rankings';
 import { RankingsTable } from './RankingsTable';
@@ -30,12 +28,12 @@ export default function RankingsPage() {
           <span style={{ color: '#94a3b8' }}>Rankings</span>
         </nav>
 
-        <GuideHero
-          src={RANKINGS_PAGE_HERO}
-          alt={RANKINGS_PAGE_HERO_ALT}
-          eyebrow="NATIONAL COMPARISON · 50 STATES + DC"
-          title="Tap Water Quality Rankings by State 2026"
-        />
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+          NATIONAL COMPARISON · 50 STATES + DC
+        </div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 16px' }}>
+          Tap Water Quality Rankings by State 2026
+        </h1>
         <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 20px' }}>
           States are ordered by the share of <strong style={{ color: '#e2e8f0' }}>tracked cities</strong> with UCMR5 data flagged
           over an EPA limit or an active PFAS MCL violation (same bar as our state &amp; city reports). Grades use that

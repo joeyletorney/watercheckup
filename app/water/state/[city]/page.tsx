@@ -7,8 +7,6 @@ import EmailCapture from '../../[city]/EmailCapture';
 import ucmr5Raw from '../../../../lib/ucmr5.json';
 import { getCountiesForStateAbbr } from '@/lib/county-data';
 import { getAverageHardnessForState } from '@/lib/water-hardness';
-import { PageHeroBanner } from '@/components/PageHeroBanner';
-import { STATE_WATER_HERO, stateWaterHeroAlt } from '@/lib/unsplash-images';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?]
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -214,10 +212,6 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
     sortedByPop[0],
   );
 
-  const stateOverviewUrgency: 'high' | 'medium' | 'low' =
-    atRiskCount > totalCities * 0.25 ? 'high' : atRiskCount > 0 ? 'medium' : 'low';
-  const stateWaterScore = computeWaterScore(stateOverviewUrgency, [], null);
-
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
@@ -236,21 +230,12 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
         </div>
 
         <div style={{ marginBottom: 32 }}>
-          <PageHeroBanner
-            src={STATE_WATER_HERO}
-            alt={stateWaterHeroAlt(stateName)}
-            priority
-            maxHeight={360}
-          >
-            <p className="wc-page-hero-banner__eyebrow">EPA WATER QUALITY DATA · {stateAbbr}</p>
-            <h1 className="wc-page-hero-banner__title">{stateName} Tap Water Quality by City</h1>
-            <span
-              className="wc-page-hero-banner__badge"
-              style={{ borderColor: `${stateWaterScore.gradeColor}88`, color: stateWaterScore.gradeColor }}
-            >
-              State overview · Grade {stateWaterScore.grade}
-            </span>
-          </PageHeroBanner>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+            EPA WATER QUALITY DATA · {stateAbbr}
+          </div>
+          <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 14px', lineHeight: 1.2 }}>
+            {stateName} Tap Water Quality by City
+          </h1>
           <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 24px' }}>
             EPA UCMR5 PFAS monitoring, MCL / guideline flags, and WaterCheckup grades for {totalCities} cities in {stateName}.
             &quot;At Risk&quot; means at least one UCMR analyte flagged above an EPA limit or a regulated PFAS violation on record

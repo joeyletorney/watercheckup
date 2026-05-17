@@ -1,8 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
-import { PageHeroBanner } from '@/components/PageHeroBanner';
-import { getContaminantImage, CONTAMINANTS_PAGE_HERO, CONTAMINANTS_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 const CONTAMINANTS = [
@@ -181,11 +178,10 @@ export default function ContaminantsPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
 
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px 80px' }}>
-        <PageHeroBanner src={CONTAMINANTS_PAGE_HERO} alt={CONTAMINANTS_PAGE_HERO_ALT} priority maxHeight={320}>
-          <p className="wc-page-hero-banner__eyebrow">EPA DATA · HEALTH RESEARCH</p>
-          <h1 className="wc-page-hero-banner__title">Water Contaminant Guide</h1>
-        </PageHeroBanner>
+        {/* HERO — same chrome as PFAS/Lead (ocean bg, no full-bleed dark bar above nav) */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
+          <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
           <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
             What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
           </p>
@@ -210,14 +206,7 @@ export default function ContaminantsPage() {
                 onClick={() => setOpen(isOpen ? null : c.name)}
                 style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 16, padding: '18px 22px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
               >
-                {(() => {
-                  const img = getContaminantImage(c.name);
-                  return (
-                    <div className="wc-contaminant-thumb">
-                      <Image src={img.src} alt={img.alt} width={72} height={72} sizes="72px" loading="lazy" style={{ objectFit: 'cover' }} />
-                    </div>
-                  );
-                })()}
+                <span style={{ fontSize: 28, flexShrink: 0 }}>{c.icon}</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: '#f1f5f9' }}>{c.name}</span>

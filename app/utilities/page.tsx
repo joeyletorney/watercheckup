@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { GuideHero } from '@/components/GuideHero';
-import { UTILITIES_PAGE_HERO, UTILITIES_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from "@/app/components/SiteHeader";
 import { stateLabel } from "@/lib/us-state-names";
 import { getUniqueUtilityStatesLowercase } from "@/lib/utilities-data";
@@ -27,12 +25,7 @@ export default function UtilitiesIndexPage() {
     <div style={{ minHeight: "100vh", color: "#e2e8f0", fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
-        <GuideHero
-          src={UTILITIES_PAGE_HERO}
-          alt={UTILITIES_PAGE_HERO_ALT}
-          eyebrow="EPA SDWIS DIRECTORY"
-          title="Water utilities by state"
-        />
+        <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f1f5f9", margin: "0 0 12px" }}>Water utilities by state</h1>
         <p style={{ fontSize: 15, color: "#94a3b8", margin: "0 0 24px", lineHeight: 1.6 }}>
           Full PWS directory from EPA’s national SDWA release — same family of data as{" "}
           <Link href="https://echo.epa.gov/" style={{ color: "#22d3ee" }}>

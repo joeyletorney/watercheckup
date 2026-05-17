@@ -4,15 +4,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { SiteHeader } from "@/app/components/SiteHeader";
-import { ContentImage } from "@/components/ContentImage";
-import { PageHeroBanner } from "@/components/PageHeroBanner";
 import { buildStateHardnessTable } from "@/lib/water-hardness";
-import {
-  HARDNESS_HERO,
-  HARDNESS_HERO_ALT,
-  HARDNESS_SOFTENER,
-  HARDNESS_SOFTENER_ALT,
-} from "@/lib/unsplash-images";
 
 import { WaterHardnessClient } from "./WaterHardnessClient";
 
@@ -60,10 +52,12 @@ export default function WaterHardnessPage() {
           <span style={{ color: "#94a3b8" }}>Water hardness</span>
         </nav>
 
-        <PageHeroBanner src={HARDNESS_HERO} alt={HARDNESS_HERO_ALT} priority maxHeight={340}>
-          <p className="wc-page-hero-banner__eyebrow">TOOLS · HOME &amp; APPLIANCES</p>
-          <h1 className="wc-page-hero-banner__title">Water hardness calculator</h1>
-        </PageHeroBanner>
+        <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 10 }}>
+          TOOLS · HOME &amp; APPLIANCES
+        </div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f1f5f9", lineHeight: 1.15, margin: "0 0 16px" }}>
+          Water hardness calculator
+        </h1>
         <p style={{ fontSize: 16, color: "#94a3b8", lineHeight: 1.65, margin: "0 0 32px" }}>
           Convert readings, interpret results in plain English, and see whether a softener or filter makes sense — using the
           same ZIP and EPA-backed data as the rest of WaterCheckup.
@@ -140,12 +134,6 @@ export default function WaterHardnessPage() {
         <h2 style={{ ...sectionTitle, marginTop: 36 }} id="hard-water-solutions">
           Hard water solutions (general guide)
         </h2>
-        <ContentImage
-          src={HARDNESS_SOFTENER}
-          alt={HARDNESS_SOFTENER_ALT}
-          width={800}
-          height={480}
-        />
         <p style={pStyle}>
           Match treatment to severity. The calculator above highlights one affiliate starting point based on your reading; the
           three categories below cover the same ground with static Amazon search links (tag <code>watercheck20-20</code>).

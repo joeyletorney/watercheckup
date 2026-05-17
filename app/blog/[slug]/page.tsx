@@ -112,6 +112,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             <span style={{ fontSize: 12, color: '#94a3b8' }}>·</span>
             <span style={{ fontSize: 12, color: '#94a3b8' }}>{post.readTime}</span>
           </div>
+          <h1 style={{ fontSize: 34, fontWeight: 900, color: '#f1f5f9', margin: '0 0 16px', lineHeight: 1.2 }}>{post.title}</h1>
           <p style={{ fontSize: 17, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
           <div style={{ fontSize: 13, color: '#94a3b8', display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0 }}>WC</div>

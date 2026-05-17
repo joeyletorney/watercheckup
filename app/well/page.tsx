@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { GuideHero } from '@/components/GuideHero';
-import { WELL_PAGE_HERO, WELL_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 import { SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 
@@ -179,12 +177,10 @@ export default function WellWaterPage() {
 
         {/* Hero */}
         <div style={{ marginBottom: 48 }}>
-          <GuideHero
-            src={WELL_PAGE_HERO}
-            alt={WELL_PAGE_HERO_ALT}
-            eyebrow="PRIVATE WELL WATER GUIDE"
-            title="Well Water Filters — What&apos;s in Your Well and What Removes It"
-          />
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 2, marginBottom: 12 }}>PRIVATE WELL WATER GUIDE</div>
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+            Well Water Filters — What&apos;s in Your Well and What Removes It
+          </h1>
           <p style={s.p}>
             Private wells serve over <strong style={{ color: '#e2e8f0' }}>43 million Americans</strong> and are completely unregulated by the EPA.
             Nobody tests your well but you. The contaminants vary dramatically by state and geology —

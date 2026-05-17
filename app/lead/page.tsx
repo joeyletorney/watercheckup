@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { GuideHero } from '@/components/GuideHero';
-import { LEAD_PAGE_HERO, LEAD_PAGE_HERO_ALT } from '@/lib/unsplash-images';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata: Metadata = {
@@ -120,14 +118,10 @@ export default function LeadPage() {
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px 100px' }}>
 
         <div style={{ marginBottom: 48 }}>
-          <GuideHero
-            src={LEAD_PAGE_HERO}
-            alt={LEAD_PAGE_HERO_ALT}
-            eyebrow="LEAD IN DRINKING WATER"
-            title="Lead in Tap Water — What It Is, How It Gets In, and What Actually Removes It"
-            badge="EPA health goal: zero lead"
-            badgeColor="#f59e0b"
-          />
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>LEAD IN DRINKING WATER</div>
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+            Lead in Tap Water — What It Is, How It Gets In, and What Actually Removes It
+          </h1>
           <p style={p}>
             Lead is invisible, tasteless, and odorless. It usually does <strong style={{ color: '#e2e8f0' }}>not</strong> come from the river or reservoir — it leaches from
             <strong style={{ color: '#e2e8f0' }}> lead service lines, older building plumbing, and fixtures</strong> on the way to your tap.
