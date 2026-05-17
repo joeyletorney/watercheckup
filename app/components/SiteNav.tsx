@@ -12,7 +12,8 @@ const ITEMS: [string, string][] = [
   ['/contaminants', 'Contaminants'],
   ['/quiz', 'Filter picks'],
   ['/blog', 'Learn'],
-  ['/methodology', 'About'],
+  ['/about', 'About'],
+  ['/methodology', 'Methodology'],
   ['/worst', 'Rankings'],
   ['/well', 'Well water'],
   ['/faq', 'FAQ'],
@@ -52,6 +53,7 @@ function isActive(pathname: string, href: string) {
     (href === '/pfas' && pathname.startsWith('/pfas')) ||
     (href === '/lead' && pathname.startsWith('/lead')) ||
     (href === '/quiz' && pathname.startsWith('/quiz')) ||
+    (href === '/about' && pathname.startsWith('/about')) ||
     (href === '/methodology' && pathname.startsWith('/methodology')) ||
     (href === '/worst' && pathname.startsWith('/worst')) ||
     (href === '/faq' && pathname.startsWith('/faq')) ||

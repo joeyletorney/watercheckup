@@ -8,6 +8,7 @@ import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
 import cityBlurbs from '@/lib/cityBlurbs';
 import { getCountyLinkForCitySlug } from '@/lib/county-data';
+import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -739,6 +740,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <Link href="/water" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>View all 135+ city reports →</Link>
         </div>
 
+        <FounderCityAttribution />
       </div>
     </div>
   );

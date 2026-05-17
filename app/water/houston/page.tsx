@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
+import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 
 const AMAZON_TAG = 'watercheck20-20';
 
@@ -418,6 +419,8 @@ export default function HoustonWaterPage() {
           </Link>
           <p style={{ fontSize: 12, color: '#475569', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
         </div>
+
+        <FounderCityAttribution />
 
         <p style={{ fontSize: 11, color: '#334155', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Data sourced from Houston Water CCR 2024, EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. WaterCheckup is not affiliated with Houston Water or the EPA. Some filter links are affiliate links.

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
+import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 
 const AMAZON_TAG = 'watercheck20-20';
 
@@ -459,6 +460,8 @@ export default function SanAntonioWaterPage() {
           </Link>
           <p style={{ fontSize: 12, color: '#475569', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
         </div>
+
+        <FounderCityAttribution />
 
         <p style={{ fontSize: 11, color: '#334155', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Data sourced from SAWS 2025 Water Quality Report (2024 data), EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. WaterCheckup is not affiliated with SAWS or the EPA. Some filter links are affiliate links — we may earn a commission at no cost to you.

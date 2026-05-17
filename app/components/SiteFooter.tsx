@@ -33,6 +33,8 @@ export function SiteFooter() {
         />
         <p style={{ margin: 0, fontSize: 13, color: '#94a3b8', textAlign: 'center', lineHeight: 1.7 }}>
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
+          <a href="/about" style={{ color: '#94a3b8', textDecoration: 'none' }}>About Joe Letorney</a>
+          {' · '}
           <a href="/methodology" style={{ color: '#94a3b8', textDecoration: 'none' }}>Methodology</a>
           {' · '}
           <a href="/sitemap.xml" style={{ color: '#94a3b8', textDecoration: 'none' }}>Sitemap</a>
