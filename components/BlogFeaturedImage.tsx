@@ -1,35 +1,26 @@
 import Image from 'next/image';
-import { BLOG_DEFAULT_FEATURED, BLOG_DEFAULT_FEATURED_ALT, getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
+import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
 
 type Props = {
   slug: string;
   title: string;
   badge?: string;
-  showTitle?: boolean;
 };
 
-export function BlogFeaturedImage({ slug, title, badge, showTitle = true }: Props) {
-  const src = getBlogFeaturedImageUrl(slug, badge) || BLOG_DEFAULT_FEATURED;
-  const alt = badge ? `${title} — ${badge} water quality article` : BLOG_DEFAULT_FEATURED_ALT;
+export function BlogFeaturedImage({ slug, title, badge }: Props) {
+  const src = getBlogFeaturedImageUrl(slug, badge);
 
   return (
-    <figure className="wc-blog-featured">
+    <figure className="wc-blog-featured" style={{ margin: '0 0 32px' }}>
       <Image
         src={src}
-        alt={alt}
-        width={1200}
-        height={600}
+        alt={title}
+        width={800}
+        height={400}
         sizes="(max-width: 720px) 100vw, 720px"
         priority
-        className="wc-blog-featured__img"
+        style={{ width: '100%', height: 'auto', display: 'block' }}
       />
-      <div className="wc-blog-featured__overlay" aria-hidden />
-      <div className="wc-blog-featured__gradient" aria-hidden />
-      {showTitle ? (
-        <figcaption className="wc-blog-featured__caption">
-          <h1 className="wc-blog-featured__title">{title}</h1>
-        </figcaption>
-      ) : null}
     </figure>
   );
 }
