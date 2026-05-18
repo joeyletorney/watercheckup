@@ -13,7 +13,8 @@
     "build": "npm run build-utility-indexes && next build",
     "start": "next start",
     "fetch-utilities": "tsx scripts/fetch-utilities.ts",
-    "build-county-data": "tsx scripts/build-county-data.ts"
+    "build-county-data": "tsx scripts/build-county-data.ts",
+    "build-pwsid-ccr-contaminants": "tsx scripts/build-pwsid-ccr-contaminants.ts --limit 500"
   },
   "dependencies": {
     "next": "14.2.5",

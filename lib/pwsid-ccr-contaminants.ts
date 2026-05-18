@@ -1,58 +1,74 @@
 /**
  * CCR / state monitoring averages keyed by PWSID — used when live EPA sample APIs
  * return only LCR lead/copper (common) but utility reporting has fuller chemistry.
+ *
+ * Data file: `data/pwsid-ccr-contaminants.json` (built via scripts/build-pwsid-ccr-contaminants.ts)
  */
+
+import fs from 'fs';
+import path from 'path';
 
 import type { ContaminantRow } from '@/lib/water-contaminants';
 
-type CcrSeed = Omit<ContaminantRow, 'source'> & { source?: string };
+const DATA_PATH = path.join(process.cwd(), 'data', 'pwsid-ccr-contaminants.json');
 
-function seeds(rows: CcrSeed[]): ContaminantRow[] {
+/** EPA PWSID on site → EWG Tap Water Atlas PWSID when they differ */
+const PWSID_EWG_ALIASES: Record<string, string> = {
+  MA3218010: 'MA6000000',
+  MA3229000: 'MA4336000',
+};
+
+type StoredRow = {
+  name: string;
+  level: number;
+  limit: number | null;
+  unit: string;
+  severity: 'high' | 'moderate' | 'low';
+  note: string;
+  source?: string;
+};
+
+type Payload = {
+  generatedAt?: string;
+  source?: string;
+  recordCount?: number;
+  byPwsid?: Record<string, StoredRow[]>;
+};
+
+let byPwsidCache: Map<string, ContaminantRow[]> | null = null;
+
+function toContaminantRows(rows: StoredRow[]): ContaminantRow[] {
   return rows.map(r => ({
-    ...r,
+    name: r.name,
+    level: r.level,
+    limit: r.limit,
+    unit: r.unit,
+    severity: r.severity,
+    note: r.note,
     source: r.source ?? 'Utility CCR / state monitoring',
   }));
 }
 
-/** MWRA wholesale — representative of MWRA-connected communities */
-const MWRA_CCR = seeds([
-  { name: 'Total Trihalomethanes (TTHMs)', level: 28, limit: 80, unit: 'ppb', severity: 'low', note: 'MWRA CCR 2023 — Quabbin/Wachusett' },
-  { name: 'Haloacetic Acids (HAA5)', level: 18, limit: 60, unit: 'ppb', severity: 'low', note: 'MWRA CCR 2023' },
-  { name: 'Chloramine', level: 2.1, limit: 4, unit: 'ppm', severity: 'low', note: 'MWRA uses chloramine disinfection' },
-  { name: 'Copper', level: 140, limit: 1300, unit: 'ppb', severity: 'low', note: 'MWRA LCR 90th percentile' },
-  { name: 'Hardness', level: 45, limit: 300, unit: 'mg/L', severity: 'low', note: 'Soft — MWRA reservoir source' },
-  { name: 'Fluoride', level: 0.7, limit: 4, unit: 'ppm', severity: 'low', note: 'MWRA CCR 2023' },
-  { name: 'Nitrate', level: 0.28, limit: 10, unit: 'ppm', severity: 'low', note: 'MWRA CCR 2023' },
-  { name: 'Sodium', level: 12, limit: 20, unit: 'mg/L', severity: 'low', note: 'MWRA CCR 2023' },
-  { name: 'Turbidity', level: 0.1, limit: 1, unit: 'NTU', severity: 'low', note: 'MWRA CCR 2023' },
-  { name: 'Arsenic', level: 0.5, limit: 10, unit: 'ppb', severity: 'low', note: 'MWRA CCR 2023' },
-]);
+function loadByPwsidMap(): Map<string, ContaminantRow[]> {
+  if (byPwsidCache) return byPwsidCache;
 
-/** Town of Weymouth — MA DEP / EWG Tap Water Atlas utility averages (2021–2023) */
-const WEYMOUTH_CCR = seeds([
-  { name: 'Total Trihalomethanes (TTHMs)', level: 36.3, limit: 80, unit: 'ppb', severity: 'low', note: 'MA DEP avg — EWG Tap Water Atlas' },
-  { name: 'Haloacetic Acids (HAA5)', level: 9.53, limit: 60, unit: 'ppb', severity: 'low', note: 'MA DEP avg — EWG Tap Water Atlas' },
-  { name: 'Chloroform', level: 16.9, limit: 80, unit: 'ppb', severity: 'low', note: 'MA DEP avg — disinfection byproduct' },
-  { name: 'Bromodichloromethane', level: 9.61, limit: 80, unit: 'ppb', severity: 'low', note: 'MA DEP avg — disinfection byproduct' },
-  { name: 'Dibromochloromethane', level: 5.43, limit: 80, unit: 'ppb', severity: 'low', note: 'MA DEP avg — disinfection byproduct' },
-  { name: 'Dichloroacetic Acid', level: 5.09, limit: 60, unit: 'ppb', severity: 'low', note: 'MA DEP avg — HAA5 component' },
-  { name: 'Trichloroacetic Acid', level: 3.76, limit: 60, unit: 'ppb', severity: 'low', note: 'MA DEP avg — HAA5 component' },
-  { name: 'Chromium-6', level: 0.078, limit: 100, unit: 'ppb', severity: 'low', note: 'MA DEP avg — no federal Cr-6 MCL' },
-  { name: 'Fluoride', level: 0.644, limit: 4, unit: 'ppm', severity: 'low', note: 'Weymouth CCR / MA DEP' },
-  { name: 'Barium', level: 16.3, limit: 2000, unit: 'ppb', severity: 'low', note: 'MA DEP avg' },
-  { name: 'Manganese', level: 0.018, limit: 0.05, unit: 'ppm', severity: 'low', note: 'MA DEP avg 17.6 ppb — below EPA secondary 0.05 ppm' },
-  { name: 'Copper', level: 180, limit: 1300, unit: 'ppb', severity: 'low', note: 'Weymouth CCR — LCR distribution' },
-  { name: 'Nitrate', level: 0.4, limit: 10, unit: 'ppm', severity: 'low', note: 'Weymouth CCR' },
-  { name: 'Sodium', level: 22, limit: 20, unit: 'mg/L', severity: 'moderate', note: 'MA DEP avg — taste advisory 20 mg/L' },
-  { name: 'Chlorate', level: 15.1, limit: 210, unit: 'ppb', severity: 'low', note: 'MA DEP avg — UCMR benchmark 210 ppb' },
-  { name: 'Hardness', level: 95, limit: 300, unit: 'mg/L', severity: 'low', note: 'Groundwater blend — moderately hard' },
-  { name: 'Turbidity', level: 0.15, limit: 1, unit: 'NTU', severity: 'low', note: 'Weymouth CCR' },
-]);
+  byPwsidCache = new Map();
 
-const PWSID_CCR: Record<string, ContaminantRow[]> = {
-  MA3218010: MWRA_CCR,
-  MA3229000: WEYMOUTH_CCR,
-};
+  if (!fs.existsSync(DATA_PATH)) return byPwsidCache;
+
+  try {
+    const raw = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8')) as Payload;
+    for (const [pwsid, rows] of Object.entries(raw.byPwsid ?? {})) {
+      const key = pwsid.trim().toUpperCase();
+      if (!key || !Array.isArray(rows) || !rows.length) continue;
+      byPwsidCache.set(key, toContaminantRows(rows));
+    }
+  } catch {
+    /* corrupt file — treat as empty */
+  }
+
+  return byPwsidCache;
+}
 
 /**
  * Fill gaps when EPA live samples are sparse (typical: LCR lead only).
@@ -63,7 +79,10 @@ export function mergePwsidCcrContaminants(
   pwsid: string,
   options?: { minMeasuredBeforeFill?: number },
 ): void {
-  const template = PWSID_CCR[pwsid];
+  const key = pwsid.trim().toUpperCase();
+  const map = loadByPwsidMap();
+  const template =
+    map.get(key) ?? map.get(PWSID_EWG_ALIASES[key] ?? '') ?? undefined;
   if (!template?.length) return;
 
   const min = options?.minMeasuredBeforeFill ?? 8;
@@ -76,4 +95,9 @@ export function mergePwsidCcrContaminants(
     target.push({ ...row });
     names.add(row.name);
   }
+}
+
+/** For scripts / admin: path to the JSON bundle */
+export function pwsidCcrContaminantsDataPath(): string {
+  return DATA_PATH;
 }

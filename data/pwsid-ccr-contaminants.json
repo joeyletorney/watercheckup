@@ -1,0 +1,5923 @@
+{
+  "generatedAt": "2026-05-18T03:36:42.691Z",
+  "source": "ewg-tap-water-atlas",
+  "recordCount": 24,
+  "byPwsid": {
+    "MA3218010": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 3.25,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 13.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 0.81,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 14.7,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 0.83,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 17.2,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 2.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 4.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 7.39,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromide",
+        "level": 12.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.291,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 6.63,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 1.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.141,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrite",
+        "level": 0.001,
+        "limit": 1,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 0.13,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 0.41,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 0.51,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 0.44,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "MA3229000": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 9.61,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 16.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.08,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.56,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 5.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 5.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 9.53,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 17.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorodecanoic acid (PFDA)",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexane sulfonate (PFHXS)",
+        "level": 2.53,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorononanoic acid (PFNA)",
+        "level": 0.42,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 4.43,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 5.09,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 36.3,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 3.76,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 16.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.38,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 15.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.644,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 17.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.203,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 2.21,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 2.44,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 3.58,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 1.55,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "NY7003493": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 4.35,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 34.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 14,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 38.2,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 53.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 38.8,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 24,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 15,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 18.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromide",
+        "level": 20,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 21.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 0.36,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.721,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Hexachlorocyclopentadiene",
+        "level": 0.01,
+        "limit": 50,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 12.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.16,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.161,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 0.148,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "CA1910067": [
+      {
+        "name": "Arsenic",
+        "level": 2.29,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromate",
+        "level": 2.8,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.25,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 36.2,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.71,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 0.909,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 27.1,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 3.04,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,1-Dichloroethane",
+        "level": 0,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromide",
+        "level": 99.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromochloromethane",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 77.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorodifluoromethane",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.734,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Lithium",
+        "level": 57.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 5.16,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "o-toluidine",
+        "level": 0,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.54,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Tetrachloroethylene (perchloroethylene)",
+        "level": 0.01,
+        "limit": 5,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroethylene",
+        "level": 0.27,
+        "limit": 5,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 1.31,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "TX1010013": [
+      {
+        "name": "Arsenic",
+        "level": 2.06,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromochloroacetic acid",
+        "level": 4.57,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 6.19,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 13.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.75,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.97,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 2.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 15.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 21.2,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 36,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.85,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 30.4,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 4.54,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 2.19,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "2-methyl-1-propene",
+        "level": 3.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "6:2 Fluorotelomer Sulfonic Acid (6:2 FTSA)",
+        "level": 1.69,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 101.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Atrazine",
+        "level": 0.1,
+        "limit": 3,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 158.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromochloromethane",
+        "level": 0,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 31.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Cobalt",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Cyanide",
+        "level": 22.1,
+        "limit": 200,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Di(2-ethylhexyl) phthalate",
+        "level": 0.08,
+        "limit": 6,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Erucylamide",
+        "level": 3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Ethylbenzene",
+        "level": 0.02,
+        "limit": 700,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.264,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Germanium",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Hexadecanoic acid",
+        "level": 15.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Lithium",
+        "level": 12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 7.29,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Methyl isobutyl ketone",
+        "level": 0.08,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 1.99,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.57,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.155,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "o-toluidine",
+        "level": 0,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Octadecanoic acid",
+        "level": 32.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Oleic acid",
+        "level": 3.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.69,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 0.63,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 0.47,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Picloram",
+        "level": 0,
+        "limit": 500,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Selenium",
+        "level": 1.28,
+        "limit": 50,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Simazine",
+        "level": 0.03,
+        "limit": 4,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.36,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Thallium",
+        "level": 0,
+        "limit": 2,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Toluene",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 1.91,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Xylenes (total)",
+        "level": 0.13,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "IL0316000": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 8.39,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 12.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.19,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 5.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 6.49,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 12.4,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 19.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.297,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 0.297,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.89,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 25.7,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 4.97,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "4-Androstene-3,17-dione",
+        "level": 0.17,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 19.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.66,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 1.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Testosterone",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.24,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "MA6000000": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 3.25,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 13.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 0.81,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 14.7,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 0.83,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 17.2,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 2.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 4.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 7.39,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromide",
+        "level": 12.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.291,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 6.63,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 1.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.141,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrite",
+        "level": 0.001,
+        "limit": 1,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 0.13,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 0.41,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 0.51,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 0.44,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "FL4130871": [
+      {
+        "name": "6:2 Fluorotelomer Sulfonic Acid (6:2 FTSA)",
+        "level": 28.3,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Arsenic",
+        "level": 0.5,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 8.59,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 18.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 3.85,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 4.62,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 18,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 29,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 37.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexane sulfonate (PFHXS)",
+        "level": 1.77,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorononanoic acid (PFNA)",
+        "level": 0.93,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 12,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 4.64,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.12,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 32,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 5.34,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "8:2 Fluorotelomer Sulfonic Acid (8:2 FTSA)",
+        "level": 1.17,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 10.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 10,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.55,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 154.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorodifluoromethane",
+        "level": 0.15,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 0.17,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.654,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 1.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 2.47,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.27,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 1.59,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.081,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrite",
+        "level": 0.046,
+        "limit": 1,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 2.91,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 8.97,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 4.43,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 12.2,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 13.7,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Selenium",
+        "level": 0.33,
+        "limit": 50,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.32,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 0.54,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.94,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "TX0150018": [
+      {
+        "name": "Bromochloroacetic acid",
+        "level": 2.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 4.42,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 2.95,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 2.82,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.14,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 2.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 5.55,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 2.05,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 5.76,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 9.67,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.42,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 2.01,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.34,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 22.9,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 0.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "2-methyl-1-propene",
+        "level": 5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 62,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 6.27,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 0.24,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Cobalt",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.426,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Hexadecanoic acid",
+        "level": 3.91,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Lithium",
+        "level": 9.45,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 1.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Octadecanoic acid",
+        "level": 6.15,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.54,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 0.08,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Selenium",
+        "level": 0.1,
+        "limit": 50,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.81,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Thallium",
+        "level": 0.05,
+        "limit": 2,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 0.14,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 2.72,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Xylenes (total)",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "MD0150005": [
+      {
+        "name": "Bromochloroacetic acid",
+        "level": 4.83,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 6.14,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 13.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 1.81,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 38.1,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 50.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.06,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 1.08,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.18,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 54,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 29.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.55,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 11.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.683,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 13.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 2.11,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 2.51,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "AZ0407025": [
+      {
+        "name": "Arsenic",
+        "level": 4.1,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorite",
+        "level": 130.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 11.6,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 19,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.58,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 39.1,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 1.11,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 34.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 158.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 10.3,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Di(2-ethylhexyl) phthalate",
+        "level": 0.02,
+        "limit": 6,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.507,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Germanium",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Lithium",
+        "level": 70.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 25.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 2.71,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 2.64,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.6,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.05,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Selenium",
+        "level": 0.1,
+        "limit": 50,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.64,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "MD0300002": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 7.22,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 26.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 1.21,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 31.6,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 49.4,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.22,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 1.39,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.23,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 53.3,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "4-Androstene-3,17-dione",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Atrazine",
+        "level": 0.05,
+        "limit": 3,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 18.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 36.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloromethane",
+        "level": 0.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Di(2-ethylhexyl) phthalate",
+        "level": 0.16,
+        "limit": 6,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.678,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 4.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.08,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Testosterone",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "PA1510001": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 10,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 29.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.39,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.15,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 2.46,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 14.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 34.7,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 36.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 2.16,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorononanoic acid (PFNA)",
+        "level": 0.9,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 2.07,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 4.07,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 42.3,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 20,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0.11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1-Butanol",
+        "level": 0.24,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "4-Androstene-3,17-dione",
+        "level": 0.06,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Antimony",
+        "level": 0.04,
+        "limit": 6,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 37.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.06,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 280.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 0.72,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Ethinyl estradiol",
+        "level": 0.1,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.73,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 1.95,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 0.11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.66,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 2.51,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 1.44,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 0.63,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 3.84,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 4.04,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.15,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Testosterone",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "NV0000090": [
+      {
+        "name": "Arsenic",
+        "level": 1.8,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromate*",
+        "level": 4.04,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 15.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 2.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 19,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 3.68,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 12.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 14.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 24.4,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 43.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.77,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 1.77,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.11,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 49.4,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 5.78,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 1.38,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 0.26,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 58.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromide",
+        "level": 70.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 79.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Di(2-ethylhexyl) adipate",
+        "level": 0.02,
+        "limit": 400,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.476,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 1.08,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 0.73,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.59,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perchlorate*",
+        "level": 0.82,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Selenium",
+        "level": 1.33,
+        "limit": 50,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.96,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Testosterone",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.37,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "CA0110005": [
+      {
+        "name": "Bromate",
+        "level": 0.9,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.05,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 43.7,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 36.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 54.7,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 10.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 171.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.69,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.52,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 0.15,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.49,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.67,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "CA3710020": [
+      {
+        "name": "Bromate",
+        "level": 1.38,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 7.58,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 5.18,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorite",
+        "level": 286.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 5.37,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 2.73,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 9.99,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 3.19,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 36.2,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 18.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 28.1,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 0.92,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 2.07,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 45.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromide",
+        "level": 42.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromochloromethane",
+        "level": 0,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 152.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorodifluoromethane",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.587,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Lithium",
+        "level": 34.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.35,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 3.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.23,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perchlorate",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.38,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 0.1,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 0.1,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 0.1,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 0.2,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.71,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.05,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "TX0570004": [
+      {
+        "name": "Bromate",
+        "level": 2.38,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromochloroacetic acid",
+        "level": 2.86,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 4.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 1.4,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 3.87,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.28,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 1.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 4.35,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 4.33,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 7.46,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 10.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.69,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexane sulfonate (PFHXS)",
+        "level": 0.87,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 0.79,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 1.6,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 14.1,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 0.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Acetone",
+        "level": 6.38,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 11.4,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Atrazine",
+        "level": 0.11,
+        "limit": 3,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 31.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 12.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 0.54,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Cyanide",
+        "level": 95.5,
+        "limit": 200,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.651,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.38,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 1.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.91,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrite",
+        "level": 0.006,
+        "limit": 1,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 4.67,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 9.75,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 1.32,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 8.79,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 9.16,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Simazine",
+        "level": 0.08,
+        "limit": 4,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "OH1801212": [
+      {
+        "name": "Bromochloroacetic acid",
+        "level": 3.57,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 6.37,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 13,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 2.84,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 6.46,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 14.1,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 20.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.289,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.76,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 23.9,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 5.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 59.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Cyanide",
+        "level": 1,
+        "limit": 200,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.962,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 1.21,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 1.29,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 1.4,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.76,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.17,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Testosterone",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.31,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "OH2504412": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 10.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 2.23,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 23.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.21,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 5.68,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 9.79,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 19.7,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 21.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.46,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 1.46,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 41.6,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 6.4,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "1,4-Dioxane",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Atrazine",
+        "level": 0.13,
+        "limit": 3,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromate",
+        "level": 0.13,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 79.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.925,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 6.94,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monobromoacetic acid",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 2.5,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 3.7,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 1.72,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 1.28,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.35,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "CO0116001": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 8.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 18.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 1.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 10.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 16.6,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 14.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.74,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 28.9,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 6.33,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "4-Androstene-3,17-dione",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 34,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Cadmium",
+        "level": 0,
+        "limit": 5,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorodifluoromethane",
+        "level": 0.01,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.04,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium (total)",
+        "level": 0.08,
+        "limit": 100,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.607,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Lithium",
+        "level": 4.08,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 8.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 6.86,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.058,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 0.058,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.17,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Uranium",
+        "level": 0.02,
+        "limit": 20,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.26,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "NC0160010": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 8.91,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 29.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 2.62,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 9.44,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 15.3,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 24.8,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 40.8,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "moderate",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 5.83,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "2,4-D",
+        "level": 0.01,
+        "limit": 70,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.587,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 3.91,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.71,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 0.11,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 0.12,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 0.73,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.56,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "WA5377050": [
+      {
+        "name": "Bromate",
+        "level": 0.35,
+        "limit": 10,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromochloroacetic acid",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 1.69,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 27,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.12,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 12.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 28.9,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 27.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.71,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 28.7,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 14.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 16.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 1.93,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 1.26,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.062,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.03,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.48,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "VA6059501": [
+      {
+        "name": "6:2 Fluorotelomer Sulfonic Acid (6:2 FTSA)",
+        "level": 3.17,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromodichloromethane",
+        "level": 6.59,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 17.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 3.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 8.72,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 16.4,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 26.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 1.12,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate and nitrite",
+        "level": 1.12,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 0.42,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 27.8,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 6.41,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Aluminum",
+        "level": 10.2,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 31.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.27,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 184.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.674,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Molybdenum",
+        "level": 0.11,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.32,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrite",
+        "level": 0.001,
+        "limit": 1,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 0.72,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutanoic Acid (PFBA)",
+        "level": 0.8,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 0.33,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 2.71,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 0.39,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 2.88,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Radium, combined (-226 and -228)",
+        "level": 0.02,
+        "limit": 5,
+        "unit": "pCi/L",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.13,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.35,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ],
+    "MA4336000": [
+      {
+        "name": "Bromodichloromethane",
+        "level": 9.61,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chloroform",
+        "level": 16.9,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chromium-6",
+        "level": 0.08,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromoacetic Acid",
+        "level": 0.56,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dibromochloromethane",
+        "level": 5.43,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Dichloroacetic Acid",
+        "level": 5.09,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA5)",
+        "level": 9.53,
+        "limit": 60,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Haloacetic Acids (HAA9)",
+        "level": 17.7,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorodecanoic acid (PFDA)",
+        "level": 0.09,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexane sulfonate (PFHXS)",
+        "level": 2.53,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorononanoic acid (PFNA)",
+        "level": 0.42,
+        "limit": 10,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctane sulfonate (PFOS)",
+        "level": 4.43,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorooctanoic acid (PFOA)",
+        "level": 5.09,
+        "limit": 4,
+        "unit": "ppt",
+        "severity": "high",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Total Trihalomethanes (TTHMs)",
+        "level": 36.3,
+        "limit": 80,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Trichloroacetic Acid",
+        "level": 3.76,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Barium",
+        "level": 16.3,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Bromoform",
+        "level": 0.38,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Chlorate",
+        "level": 15.1,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Fluoride",
+        "level": 0.644,
+        "limit": 4,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Manganese",
+        "level": 17.6,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Monochloroacetic Acid",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Nitrate",
+        "level": 0.203,
+        "limit": 10,
+        "unit": "ppm",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorobutane sulfonate (PFBS)",
+        "level": 2.21,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoroheptanoic acid (PFHPA)",
+        "level": 2.44,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluorohexanoic Acid (PFHxA)",
+        "level": 3.58,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Perfluoropentanoic Acid (PFPeA)",
+        "level": 1.55,
+        "limit": null,
+        "unit": "ppt",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Strontium",
+        "level": 0.07,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      },
+      {
+        "name": "Vanadium",
+        "level": 0.02,
+        "limit": null,
+        "unit": "ppb",
+        "severity": "low",
+        "note": "EWG Tap Water Atlas utility average (2021–2023)",
+        "source": "EWG Tap Water Atlas"
+      }
+    ]
+  }
+}
