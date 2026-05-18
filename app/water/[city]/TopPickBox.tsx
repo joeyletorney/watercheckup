@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 
 type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string };
 
@@ -67,7 +68,9 @@ export default function TopPickBox({
   const slug = citySlug ?? cityName.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <div style={{ marginBottom: 32, padding: '20px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>
+    <div style={{ marginBottom: 32 }}>
+      <FilterRecommendationsBanner />
+      <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>
       <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
         TOP PICKS FOR {cityName.toUpperCase()}
       </div>
@@ -146,6 +149,7 @@ export default function TopPickBox({
         <Link href="/quiz" style={{ color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
           Take the 3-question quiz →
         </Link>
+      </div>
       </div>
     </div>
   );

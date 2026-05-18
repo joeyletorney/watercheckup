@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
+import { FilterRecommendationsAccent } from '@/components/FilterRecommendationsHero';
 import TopPickBox from './TopPickBox';
 import EmailCapture from './EmailCapture';
 
@@ -577,7 +578,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </div>
 
             {/* ── STEP 3: FILTER RECOMMENDATION ── */}
-            <div style={{ marginBottom: 8 }}>
+            <div className="wc-filter-rec-accent-wrap" style={{ marginBottom: 8, overflow: 'hidden' }}>
+              <FilterRecommendationsAccent />
               <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                 WHAT TO DO ABOUT IT
               </div>

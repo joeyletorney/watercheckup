@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { scoreToLetterGrade } from '@/lib/water-grade';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
@@ -515,7 +516,9 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 ];
 
             return (
-              <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '2px solid rgba(8,145,178,0.35)', borderRadius: 12, marginBottom: 20 }}>
+              <div style={{ marginBottom: 20 }}>
+                <FilterRecommendationsBanner />
+                <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '2px solid rgba(8,145,178,0.35)', borderRadius: 12 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RECOMMENDED FOR YOUR WATER</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {picks.map(({ prod, badge, reason, highlight }) => (
@@ -591,6 +594,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 >
                   Open Filters tab for full comparison →
                 </button>
+                </div>
               </div>
             );
           })()}
@@ -742,6 +746,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       {/* ── FILTERS TAB ── */}
       {tab === 'filters' && (
         <div>
+          <FilterRecommendationsBanner style={{ marginBottom: 20 }} />
           <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 16, lineHeight: 1.6 }}>
             Based on <strong style={{ color: '#e2e8f0' }}>{data.city?.split(',')[0]}</strong>'s water profile — {data.pfasCount > 0 ? 'PFAS detected, ' : ''}{data.openViolations > 0 ? `${data.openViolations} open violations, ` : ''}score {cappedScore}/88 — here are the right filters for your home.
           </p>

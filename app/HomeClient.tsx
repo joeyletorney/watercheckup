@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HOME_HERO_ALT, HOME_HERO_IMAGE } from '@/lib/unsplash-images';
+import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { SiteHeader } from './components/SiteHeader';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
@@ -3770,6 +3771,7 @@ export default function WaterCheckup() {
               );
               return (
                 <div style={{ animation: 'wcFadeUp .5s ease-out both' }}>
+                  <FilterRecommendationsBanner style={{ marginBottom: 24 }} />
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
                     <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>2</div>
                     <div>
@@ -3904,6 +3906,7 @@ export default function WaterCheckup() {
               );
               return (
                 <div style={{ marginTop: 24, animation: 'wcFadeUp .45s ease-out both' }}>
+                  <FilterRecommendationsBanner style={{ marginBottom: 20 }} />
                   <div style={{ fontSize: 12, fontWeight: 800, color: '#0891b2', letterSpacing: 1, marginBottom: 14 }}>
                     OUR TOP PICKS — {HERO_SOLUTION_SECTION_TITLE[heroSolutionKey].toUpperCase()}
                   </div>
