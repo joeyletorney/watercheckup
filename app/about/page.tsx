@@ -257,12 +257,12 @@ export default function AboutPage() {
                 fontFamily: 'var(--font-wc-display), var(--font-inter), system-ui, sans-serif',
               }}
             >
-              I&apos;ve Spent My Entire Life in Water. This Site is Why.
+              I&apos;ve Spent Most of My Life in Water. This Site is Why.
             </h1>
             <p style={{ ...p, fontSize: 17, color: '#cbd5e1', marginBottom: 0 }}>
-              WaterCheckup wasn&apos;t built by a tech company scraping EPA data. It was built by someone who has spent
-              over 30 years testing water, designing treatment systems, and helping families understand what&apos;s
-              actually coming out of their taps.
+              Honestly, water has just always been part of my life. I grew up around it, worked in it for over 30 years,
+              and somewhere along the way realized I knew things that most people really needed to know but had no easy
+              way to find out.
             </p>
           </div>
             </section>
@@ -271,25 +271,28 @@ export default function AboutPage() {
 
         <h2 style={{ ...h2, marginTop: 0 }}>It Started When I Was 10 Years Old</h2>
         <p style={p}>
-          I didn&apos;t choose water — water chose me. Growing up, my parents ran Durastill Export, Inc., a water
-          purification company that sold water treatment systems to over 100 countries worldwide. While other kids were
-          doing book reports, I was doing show-and-tell projects about water quality in grade school and presenting full
-          water education projects to my class in middle school.
-        </p>
-        <p style={p}>Water wasn&apos;t just a topic in our house — it was our life.</p>
-        <p style={p}>
-          I eventually became Vice President of Sales and Marketing, helping bring clean water solutions to homes and
-          businesses across the globe. Later I founded my own company, The WaterPro, Inc., serving homeowners and
-          businesses throughout New England.
+          My parents started an export water treatment business selling systems all over the world. So growing up, water
+          quality wasn&apos;t something I learned about in school. It was just dinner table conversation. In grade school
+          I was doing projects about water treatment and educating my classmates on various contaminants. Not because
+          anyone made me. It was just what I knew.
         </p>
         <p style={p}>
-          Over more than 30 years in the field I&apos;ve done it all — testing water, analyzing results, designing custom
-          treatment systems, installing them, and servicing them. I&apos;ve worked on both city and well water and have
-          successfully treated water with a host of contaminants, including: bacteria, chlorine, trihalomethanes, PFAS,
-          arsenic, iron and manganese, TDS, hardness, low pH, VOCs, and more. I held WQA (Water Quality Association)
-          credentials as a former Certified Water Treatment Specialist at the highest level — Level VI — as well as
-          Certified Installer credentials.
+          After college I started my own water treatment company serving homeowners throughout New England. For years I
+          went into people&apos;s homes, tested their water, figured out what was in it, and installed systems to fix it.
+          City water, well water, it didn&apos;t matter. I&apos;ve seen just about everything that can go wrong with
+          drinking water and more importantly, how to fix it.
         </p>
+        <p style={p}>
+          That&apos;s really what WaterCheckup is. I want to give people the real truth about water. Not watered down
+          information, not scare tactics, just straight honest answers about what&apos;s in your water, what it means for
+          your health, and what to do about it. Testing, contaminants, filters, whole house systems — all of it broken
+          down in plain language that anyone can understand without a chemistry degree.
+        </p>
+        <p style={p}>
+          Everything I&apos;ve learned over 30 years, put into something anyone can use for free without having to call a
+          water guy, read an EPA spreadsheet, or try to figure out if your water is actually safe.
+        </p>
+        <p style={p}>Because it shouldn&apos;t be that hard to know what&apos;s in your water.</p>
 
         <h2 style={h2}>Industry Recognition</h2>
         <p style={p}>
