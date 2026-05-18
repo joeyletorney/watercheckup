@@ -1,13 +1,22 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 
+const LEARN_HERO_IMAGE = '/girldrinkingwater.jpg';
+const LEARN_HERO_ALT = 'Girl drinking clean water — water quality education and guides';
+
 export const metadata: Metadata = {
-  title: 'Blog',
+  title: 'Learn About Your Water — Expert Guides & Safety Tips',
   description:
-    'Expert guides on tap water safety, PFAS, lead, EPA violations, filters, and well water — aligned with live EPA data.',
+    'Expert guides, water safety tips, and everything you need to know about what is in your drinking water — PFAS, lead, EPA violations, filters, and well water.',
   alternates: {
     canonical: 'https://watercheckup.com/blog',
+  },
+  openGraph: {
+    title: 'Learn About Your Water — Expert Guides & Safety Tips',
+    description:
+      'Expert guides, water safety tips, and everything you need to know about what is in your drinking water.',
   },
 };
 
@@ -392,28 +401,137 @@ export default function BlogIndex() {
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <style>{`
+        .learn-hero {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .learn-hero {
+            height: 350px;
+          }
+        }
+        .learn-intro-section {
+          overflow: hidden;
+        }
+        .learn-intro-accent {
+          display: block;
+          width: 100%;
+          max-width: 400px;
+          height: auto;
+          border-radius: 12px;
+          margin: 0 0 16px;
+          object-fit: cover;
+        }
+        @media (min-width: 768px) {
+          .learn-intro-accent {
+            float: right;
+            width: 400px;
+            max-width: 400px;
+            margin: 0 0 16px 24px;
+          }
+        }
+      `}</style>
+
       <SiteHeader variant="inner" showCta />
 
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 24px 80px' }}>
-        {/* Header */}
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px' }}>The WaterCheckup Blog</h1>
-          <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7, maxWidth: 600 }}>
-            Expert guides on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases.
+      <section className="learn-hero" aria-label="Learn about your water">
+        <Image
+          src={LEARN_HERO_IMAGE}
+          alt={LEARN_HERO_ALT}
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+          }}
+          aria-hidden
+        />
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            height: '100%',
+            maxWidth: 860,
+            margin: '0 auto',
+            padding: '0 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 'clamp(26px, 5vw, 38px)',
+              fontWeight: 900,
+              color: '#f1f5f9',
+              lineHeight: 1.15,
+              margin: '0 0 12px',
+              textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+            }}
+          >
+            Learn About Your Water
+          </h1>
+          <p
+            style={{
+              fontSize: 'clamp(15px, 2.5vw, 18px)',
+              color: '#e2e8f0',
+              lineHeight: 1.55,
+              margin: 0,
+              maxWidth: 620,
+              textShadow: '0 1px 8px rgba(0,0,0,0.35)',
+            }}
+          >
+            Expert guides, water safety tips, and everything you need to know about what&apos;s in your drinking water
           </p>
-          {/* Category pills */}
+        </div>
+      </section>
+
+      <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 24px 80px' }}>
+        <div className="learn-intro-section" style={{ marginBottom: 40 }}>
+          <Image
+            src={LEARN_HERO_IMAGE}
+            alt={LEARN_HERO_ALT}
+            width={400}
+            height={267}
+            className="learn-intro-accent"
+            style={{ objectFit: 'cover' }}
+          />
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
+          <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7 }}>
+            Browse expert articles on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases.
+          </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {CATEGORIES.map(cat => (
-              <a key={cat.label} href={`#cat-${cat.label.replace(/\s+/g,'_')}`}
-                style={{ fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 6, background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.25)', color: '#38bdf8', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              <a
+                key={cat.label}
+                href={`#cat-${cat.label.replace(/\s+/g, '_')}`}
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  padding: '4px 10px',
+                  borderRadius: 6,
+                  background: 'rgba(8,145,178,0.1)',
+                  border: '1px solid rgba(8,145,178,0.25)',
+                  color: '#38bdf8',
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {cat.icon} {cat.label}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Featured posts */}
+                {/* Featured posts */}
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FEATURED</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
