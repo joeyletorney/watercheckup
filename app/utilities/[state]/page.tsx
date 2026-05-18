@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/app/components/SiteHeader";
 import { UtilityOperatorCcrCta } from "@/components/UtilityOperatorCcrCta";
 import { stateLabel } from "@/lib/us-state-names";
-import { getUtilitiesInState } from "@/lib/utilities-data";
+import { getStateUtilityCount, getUtilitiesInStatePage } from "@/lib/utilities-data";
+
+import { UtilitiesStateList } from "./UtilitiesStateList";
 
 export const dynamicParams = true;
 export const revalidate = 86400;
@@ -26,18 +28,27 @@ export async function generateMetadata({
   };
 }
 
-export default function UtilitiesStatePage({ params }: { params: { state: string } }) {
-  let list: ReturnType<typeof getUtilitiesInState>;
+export default function UtilitiesStatePage({
+  params,
+  searchParams,
+}: {
+  params: { state: string };
+  searchParams: { page?: string; q?: string };
+}) {
+  const pageNum = Math.max(1, parseInt(searchParams.page || "1", 10) || 1);
+  const query = searchParams.q?.trim() || "";
+
+  let result: ReturnType<typeof getUtilitiesInStatePage>;
   try {
-    list = getUtilitiesInState(params.state);
+    result = getUtilitiesInStatePage(params.state, pageNum, undefined, query);
   } catch {
     notFound();
   }
-  if (list.length === 0) notFound();
+  if (result.total === 0 && !query) notFound();
 
   const code = params.state.toUpperCase();
   const stName = stateLabel(code);
-  const sorted = [...list].sort((a, b) => a.name.localeCompare(b.name, "en"));
+  const totalInState = getStateUtilityCount(params.state);
 
   return (
     <div style={{ minHeight: "100vh", color: "#e2e8f0", fontFamily: "'Inter', sans-serif" }}>
@@ -59,8 +70,8 @@ export default function UtilitiesStatePage({ params }: { params: { state: string
           Public water systems in {stName}
         </h1>
         <p style={{ fontSize: 15, color: "#94a3b8", margin: "0 0 24px", lineHeight: 1.6 }}>
-          {sorted.length.toLocaleString("en-US")} systems (SDWIS/Fed snapshot). Open any row for PFAS monitoring, violation
-          counts, and filter recommendations.
+          {totalInState.toLocaleString("en-US")} systems (SDWIS/Fed snapshot). Search or browse pages — open any row
+          for PFAS monitoring, violation counts, and filter recommendations.
         </p>
 
         <div
@@ -95,51 +106,14 @@ export default function UtilitiesStatePage({ params }: { params: { state: string
           </Link>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {sorted.map((u) => (
-            <Link
-              key={u.pwsid}
-              href={`/utilities/${params.state.toLowerCase()}/${u.slug}`}
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "space-between",
-                gap: 12,
-                padding: "12px 16px",
-                background: "#0d2240",
-                border: "1px solid #1a3a5c",
-                borderRadius: 10,
-                textDecoration: "none",
-              }}
-            >
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0" }}>{u.name}</div>
-                <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>
-                  {u.pwsid}
-                  {u.populationServed != null ? ` · ${u.populationServed.toLocaleString("en-US")} served` : ""}
-                </div>
-              </div>
-              {!u.isClaimed ? (
-                <span
-                  style={{
-                    flexShrink: 0,
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: 0.5,
-                    color: "#64748b",
-                    background: "#040d14",
-                    padding: "4px 8px",
-                    borderRadius: 6,
-                    border: "1px solid #1a3a5c",
-                    alignSelf: "center",
-                  }}
-                >
-                  Unclaimed
-                </span>
-              ) : null}
-            </Link>
-          ))}
-        </div>
+        <UtilitiesStateList
+          stateParam={params.state.toLowerCase()}
+          items={result.items}
+          page={result.page}
+          totalPages={result.totalPages}
+          total={result.total}
+          query={query}
+        />
       </div>
     </div>
   );

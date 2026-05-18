@@ -9,7 +9,8 @@
     "dev:poll": "WATCHPACK_POLLING=true next dev -p 3000",
     "clean": "rm -rf .next",
     "dev:clean": "npm run clean && next dev -p 3000",
-    "build": "next build",
+    "build-utility-indexes": "tsx scripts/build-utility-indexes.ts",
+    "build": "npm run build-utility-indexes && next build",
     "start": "next start",
     "fetch-utilities": "tsx scripts/fetch-utilities.ts",
     "build-county-data": "tsx scripts/build-county-data.ts"

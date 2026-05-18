@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
 import ucmr5Raw from '@/lib/ucmr5.json';
 import zipLookupRaw from '@/lib/zip-lookup.json';
 import lcrDataRaw from '@/lib/lcr-data.json';
@@ -1111,7 +1112,24 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400, headers: H });
   }
 
+  const ip = getClientIp(req);
+  const ipLim = checkRateLimit(`water:ip:${ip}`, RATE.waterLookupPerIp.max, RATE.waterLookupPerIp.windowMs);
+  if (!ipLim.ok) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again shortly.' },
+      { status: 429, headers: { ...H, 'Retry-After': String(ipLim.retryAfterSec) } },
+    );
+  }
+  const zipLim = checkRateLimit(`water:zip:${zip}`, RATE.waterLookupPerZip.max, RATE.waterLookupPerZip.windowMs);
+  if (!zipLim.ok) {
+    return NextResponse.json(
+      { error: 'Too many lookups for this ZIP. Please try again shortly.' },
+      { status: 429, headers: { ...H, 'Retry-After': String(zipLim.retryAfterSec) } },
+    );
+  }
+
   const t0 = Date.now();
+  const okHeaders = { ...H, 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' };
 
   try {
     let pwsid: string;
@@ -1520,7 +1538,7 @@ export async function GET(req: NextRequest) {
       echo:             echoData,
       summary,
       pfasSummary,
-    }, { headers: H });
+    }, { headers: okHeaders });
 
   } catch (err: any) {
     logWaterLookup({ zip, outcome: 'error', ms: Date.now() - t0, message: String(err?.message || err) });

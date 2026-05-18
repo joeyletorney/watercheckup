@@ -4,3 +4,4 @@ node_modules
 .env.local
 data/.sdwa-cache
 data/.utilities-echo-cache
+data/utilities-index/

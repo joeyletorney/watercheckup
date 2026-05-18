@@ -57,4 +57,6 @@ export const RATE = {
   unsubscribeGetPerIp: { max: 40, windowMs: 15 * 60 * 1000 },
   utilityClaimPerIp: { max: 10, windowMs: 15 * 60 * 1000 },
   utilityClaimPerEmail: { max: 5, windowMs: 60 * 60 * 1000 },
+  waterLookupPerIp: { max: 40, windowMs: 60 * 1000 },
+  waterLookupPerZip: { max: 15, windowMs: 60 * 1000 },
 } as const;

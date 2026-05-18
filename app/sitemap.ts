@@ -6,7 +6,7 @@ import { getTopUtilityStaticParamsByPopulation, getUniqueUtilityStatesLowercase 
 import { getAllCountyStaticParams } from '@/lib/county-data'
 
 /** Full utility + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
-const SITEMAP_TOP_UTILITIES_BY_POP = 10_000
+const SITEMAP_TOP_UTILITIES_BY_POP = 1_500
 
 const STATE_NAMES: Record<string, string> = {
   AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',

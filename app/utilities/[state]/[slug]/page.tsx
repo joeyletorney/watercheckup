@@ -11,11 +11,15 @@ import TopPickBox from "@/app/water/[city]/TopPickBox";
 import { sdwisPublicReportUrl } from "@/lib/epa-data";
 import { stateLabel } from "@/lib/us-state-names";
 import ucmr5Raw from "@/lib/ucmr5.json";
-import { getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
+import { getAllUtilityStaticParams, getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
 
 /** Prerender top utilities at build; all other `/utilities/[state]/[slug]` paths ISR on first request. */
 export const dynamicParams = true;
 export const revalidate = 86400;
+
+export function generateStaticParams() {
+  return getAllUtilityStaticParams();
+}
 
 const UCMR5 = ucmr5Raw as unknown as Record<
   string,
