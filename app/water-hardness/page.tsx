@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -8,7 +9,8 @@ import { buildStateHardnessTable } from "@/lib/water-hardness";
 
 import { WaterHardnessClient } from "./WaterHardnessClient";
 
-const AMAZON = (q: string) => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=watercheck20-20`;
+const HERO_IMAGE = "/faucetdripping.jpg";
+const HERO_ALT = "Dripping faucet showing hard water mineral buildup";
 
 export const metadata: Metadata = {
   title: "Water Hardness Calculator — Check by ZIP Code Free (2026)",
@@ -36,12 +38,105 @@ const sectionTitle: CSSProperties = {
 
 const pStyle: CSSProperties = { fontSize: 15, color: "#94a3b8", lineHeight: 1.75, margin: "0 0 14px" };
 
+const AMAZON = (q: string) => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=watercheck20-20`;
+
 export default function WaterHardnessPage() {
   const stateRows = buildStateHardnessTable();
 
   return (
     <div style={{ minHeight: "100vh", color: "#e2e8f0", fontFamily: "'Inter', sans-serif" }}>
+      <style>{`
+        .wh-hero {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .wh-hero {
+            height: 350px;
+          }
+        }
+        .wh-problems-section {
+          overflow: hidden;
+        }
+        .wh-problems-accent {
+          display: block;
+          width: 100%;
+          max-width: 400px;
+          height: auto;
+          border-radius: 12px;
+          margin: 0 0 16px;
+          object-fit: cover;
+        }
+        @media (min-width: 768px) {
+          .wh-problems-accent {
+            float: right;
+            width: 400px;
+            max-width: 400px;
+            margin: 0 0 16px 24px;
+          }
+        }
+      `}</style>
+
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
+
+      <section className="wh-hero" aria-label="Water hardness calculator">
+        <Image
+          src={HERO_IMAGE}
+          alt={HERO_ALT}
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(0,0,0,0.5)",
+          }}
+          aria-hidden
+        />
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            height: "100%",
+            maxWidth: 760,
+            margin: "0 auto",
+            padding: "0 24px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "clamp(26px, 5vw, 36px)",
+              fontWeight: 900,
+              color: "#f1f5f9",
+              lineHeight: 1.15,
+              margin: "0 0 12px",
+              textShadow: "0 2px 12px rgba(0,0,0,0.4)",
+            }}
+          >
+            Water Hardness Calculator
+          </h1>
+          <p
+            style={{
+              fontSize: "clamp(15px, 2.5vw, 18px)",
+              color: "#e2e8f0",
+              lineHeight: 1.55,
+              margin: 0,
+              maxWidth: 520,
+              textShadow: "0 1px 8px rgba(0,0,0,0.35)",
+            }}
+          >
+            Check your water hardness by ZIP code or enter your own reading
+          </p>
+        </div>
+      </section>
 
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "40px 24px 80px" }}>
         <nav style={{ fontSize: 12, color: "#64748b", marginBottom: 20 }}>
@@ -52,16 +147,9 @@ export default function WaterHardnessPage() {
           <span style={{ color: "#94a3b8" }}>Water hardness</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 10 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 24 }}>
           TOOLS · HOME &amp; APPLIANCES
         </div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f1f5f9", lineHeight: 1.15, margin: "0 0 16px" }}>
-          Water hardness calculator
-        </h1>
-        <p style={{ fontSize: 16, color: "#94a3b8", lineHeight: 1.65, margin: "0 0 32px" }}>
-          Convert readings, interpret results in plain English, and see whether a softener or filter makes sense — using the
-          same ZIP and EPA-backed data as the rest of WaterCheckup.
-        </p>
 
         <Suspense
           fallback={
@@ -85,17 +173,27 @@ export default function WaterHardnessPage() {
           thresholds.
         </p>
 
-        <h2 style={{ ...sectionTitle, marginTop: 36 }}>Hard water problems</h2>
-        <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 16px", paddingLeft: 22 }}>
-          <li style={{ marginBottom: 8 }}>Scale buildup on pipes, faucets, and heating elements in appliances</li>
-          <li style={{ marginBottom: 8 }}>Soap and detergent that refuses to lather—film on tubs and sinks</li>
-          <li style={{ marginBottom: 8 }}>Dry skin and dull hair after showering</li>
-          <li style={{ marginBottom: 8 }}>Spots on dishes and glassware after drying</li>
-          <li style={{ marginBottom: 8 }}>
-            Reduced water heater efficiency — scale insulation on elements can waste substantial energy (often quoted up to
-            ~30% in severe cases)
-          </li>
-        </ul>
+        <div className="wh-problems-section" style={{ marginTop: 36 }}>
+          <Image
+            src={HERO_IMAGE}
+            alt={HERO_ALT}
+            width={400}
+            height={267}
+            className="wh-problems-accent"
+            style={{ objectFit: "cover" }}
+          />
+          <h2 style={{ ...sectionTitle, marginTop: 0 }}>Hard water problems</h2>
+          <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 16px", paddingLeft: 22 }}>
+            <li style={{ marginBottom: 8 }}>Scale buildup on pipes, faucets, and heating elements in appliances</li>
+            <li style={{ marginBottom: 8 }}>Soap and detergent that refuses to lather—film on tubs and sinks</li>
+            <li style={{ marginBottom: 8 }}>Dry skin and dull hair after showering</li>
+            <li style={{ marginBottom: 8 }}>Spots on dishes and glassware after drying</li>
+            <li style={{ marginBottom: 8 }}>
+              Reduced water heater efficiency — scale insulation on elements can waste substantial energy (often quoted up to
+              ~30% in severe cases)
+            </li>
+          </ul>
+        </div>
 
         <h2 style={{ ...sectionTitle, marginTop: 36 }}>Soft water problems</h2>
         <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 16px", paddingLeft: 22 }}>
