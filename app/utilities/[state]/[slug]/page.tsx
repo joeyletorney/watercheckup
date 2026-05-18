@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { SiteHeader } from "@/app/components/SiteHeader";
 import { UtilityCcrSection } from "@/components/UtilityCcrSection";
+import { Ccr2027UrgencyBanner } from "@/components/Ccr2027UrgencyBanner";
 import { UtilityClaimTopBanner } from "@/components/UtilityClaimTopBanner";
 import { UtilityOperatorCcrCta } from "@/components/UtilityOperatorCcrCta";
 import EmailCapture from "@/app/water/[city]/EmailCapture";
@@ -246,6 +247,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
   return (
     <div style={{ minHeight: "100vh", color: "#e2e8f0", fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
+      <Ccr2027UrgencyBanner />
 
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
         {!u.isClaimed ? <UtilityClaimTopBanner utilityName={u.name} /> : null}

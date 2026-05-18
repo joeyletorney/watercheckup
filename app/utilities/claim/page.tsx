@@ -2,17 +2,23 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { SiteHeader } from '@/app/components/SiteHeader';
+import { Ccr2027CountdownBanner } from '@/components/Ccr2027CountdownBanner';
 
 import ClaimUtilitiesForm from './ClaimUtilitiesForm';
 
 export const metadata: Metadata = {
-  title: 'Publish Your 2026 Consumer Confidence Report Free | WaterCheckup',
+  title: 'Publish Your 2027-Compliant CCR Free | WaterCheckup',
   description:
-    'Free CCR publishing for community water systems. Your customers already find your utility on WaterCheckup — claim your listing and meet EPA Consumer Confidence Report requirements.',
+    'Meet the EPA direct URL CCR delivery requirement before January 1, 2027. Free CCR publishing for community water systems — permanent URL, no credit card.',
   alternates: { canonical: 'https://watercheckup.com/utilities/claim' },
 };
 
 const VALUE_CARDS = [
+  {
+    icon: '⏰',
+    title: '2027 Deadline Ready',
+    body: 'The revised EPA CCR Rule requires direct URL electronic delivery starting January 1, 2027. Publishing your CCR on WaterCheckup satisfies this requirement — your report gets a permanent direct URL that meets the new federal standard.',
+  },
   {
     icon: '✅',
     title: 'Free Forever',
@@ -35,9 +41,19 @@ const VALUE_CARDS = [
   },
 ] as const;
 
+const CCR_2027_CHANGES = [
+  'Direct URL electronic delivery required',
+  'Twice yearly distribution for 10,000+ systems',
+  'New summary of report contents section',
+  'Stricter readability requirements',
+  'Language access requirements for large systems',
+  'First compliant reports due July 1, 2027',
+] as const;
+
 export default function UtilityClaimPage() {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <Ccr2027CountdownBanner />
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -58,12 +74,12 @@ export default function UtilityClaimPage() {
         </div>
 
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
-          Publish Your 2026 Consumer Confidence Report Free
+          Publish Your 2027-Compliant CCR Free
         </h1>
 
         <p style={{ fontSize: 16, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 32px' }}>
-          Your customers are already finding your utility on WaterCheckup. Make sure they see your official water
-          quality report.
+          Meet the new EPA direct URL delivery requirement before the January 1, 2027 deadline — free forever, no
+          credit card, no contracts.
         </p>
 
         <div className="wc-claim-value-cards">
@@ -77,6 +93,26 @@ export default function UtilityClaimPage() {
             </article>
           ))}
         </div>
+
+        <section className="wc-ccr-2027-changes" aria-labelledby="ccr-2027-changes-heading">
+          <h2 id="ccr-2027-changes-heading" className="wc-ccr-2027-changes__title">
+            What&apos;s Changing in the 2027 CCR Rule
+          </h2>
+          <ul className="wc-ccr-2027-changes__list">
+            {CCR_2027_CHANGES.map((item) => (
+              <li key={item}>
+                <span className="wc-ccr-2027-changes__box" aria-hidden>
+                  ☐
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="wc-ccr-2027-changes__footer">
+            WaterCheckup handles the direct URL requirement for you — free, permanent, and already trusted by
+            residents searching for their water quality data.
+          </p>
+        </section>
 
         <div
           style={{
