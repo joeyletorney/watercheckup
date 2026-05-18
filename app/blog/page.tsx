@@ -25,6 +25,15 @@ const POST_BY_SLUG: Record<
   string,
   { title: string; excerpt: string; date: string; readTime: string; badge: string; badgeColor: string }
 > = {
+  'reverse-osmosis-vs-distilled-water': {
+    title: 'Reverse Osmosis vs Distilled Water — Which is Better? (2026)',
+    excerpt:
+      'RO and distilled water are both highly purified but work completely differently. A 30-year water treatment expert explains which one is right for your home.',
+    date: 'May 18, 2026',
+    readTime: '10 min read',
+    badge: 'Purity',
+    badgeColor: '#06b6d4',
+  },
   'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity': {
     title: 'Why Distilled Water and Reverse Osmosis Are the Two Best Systems for High Purity',
     excerpt:
@@ -323,6 +332,7 @@ const BLOG_INDEX_ORDER = [
   'best-water-filter-pitcher-2025',
   'best-water-filter-hard-water',
   'top-10-cities-hardest-tap-water',
+  'reverse-osmosis-vs-distilled-water',
   'reverse-osmosis-pros-and-cons',
   'refrigerator-water-filters-what-they-actually-remove',
   'whole-house-water-filter-vs-under-sink-which-to-choose',
@@ -371,6 +381,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
       'best-water-filter-pitcher-2025',
       'best-water-filter-hard-water',
       'top-10-cities-hardest-tap-water',
+      'reverse-osmosis-vs-distilled-water',
       'reverse-osmosis-pros-and-cons',
       'refrigerator-water-filters-what-they-actually-remove',
       'whole-house-water-filter-vs-under-sink-which-to-choose',
@@ -384,7 +395,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   {
     label: 'Contaminants Explained',
     icon: '🧪',
-    slugs: ['chromium-6-in-drinking-water-should-you-worry', 'disinfection-byproducts-tthm-haa5-explained', 'chloramine-vs-chlorine-in-tap-water', 'bottled-water-vs-tap-water-cost-safety-and-pfas', 'why-does-tap-water-taste-bad', 'hard-water-explained-scale-softeners-and-your-taps', 'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity'],
+    slugs: ['chromium-6-in-drinking-water-should-you-worry', 'disinfection-byproducts-tthm-haa5-explained', 'chloramine-vs-chlorine-in-tap-water', 'bottled-water-vs-tap-water-cost-safety-and-pfas', 'why-does-tap-water-taste-bad', 'hard-water-explained-scale-softeners-and-your-taps', 'reverse-osmosis-vs-distilled-water', 'why-distilled-water-and-reverse-osmosis-are-best-for-high-purity'],
   },
   {
     label: 'Well Water',
