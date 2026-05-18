@@ -5,6 +5,17 @@ import zipLookupRaw from '@/lib/zip-lookup.json';
 import lcrDataRaw from '@/lib/lcr-data.json';
 import { getDataFreshness } from '@/lib/water-data-meta';
 import { scoreToLetterGrade } from '@/lib/water-grade';
+import { mergePwsidCcrContaminants } from '@/lib/pwsid-ccr-contaminants';
+import {
+  buildDynamicSampleContaminants,
+  buildEpaCatalogContaminants,
+  CONTAM_CODE_NAMES,
+  countMeasuredContaminants,
+  EXTRA_EWG_GUIDELINES,
+  EXTRA_HEALTH_CONTEXT,
+  sortContaminants,
+  type ContaminantRow,
+} from '@/lib/water-contaminants';
 
 // ucmr5 format: pwsid -> [maxPfasPpt, overMCLcount, [[analyte, ppt, hasMCL, overMCL], ...], lithium?]
 const ucmr5 = ucmr5Raw as Record<string, any[]>;
@@ -94,6 +105,7 @@ const EWG_GUIDELINES: Record<string, { limit: number; unit: string; label: strin
   // PFAS
   'PFOA':                  { limit: 0.001, unit: 'ppt',    label: 'EWG health guideline: 0.001 ppt' },
   'PFOS':                  { limit: 0.001, unit: 'ppt',    label: 'EWG health guideline: 0.001 ppt' },
+  ...EXTRA_EWG_GUIDELINES,
 };
 
 // ─── Health context per contaminant ──────────────────────────────────────────
@@ -228,6 +240,7 @@ const HEALTH_CONTEXT: Record<string, { effects: string; sources: string; epa_act
     sources: 'Most widely used herbicide in the US — applied to corn crops. Highest in spring runoff.',
     epa_action: 'EPA MCL: 3 ppb. EWG health guideline: 0.1 ppb.',
   },
+  ...EXTRA_HEALTH_CONTEXT,
 };
 
 // ─── PWSID overrides — major cities nationwide ────────────────────────────────
@@ -931,13 +944,8 @@ const STATUS_META: Record<string, { label: string; color: string }> = {
   A: { label: 'Addressed', color: '#f59e0b' },
 };
 const CONTAM_NAMES: Record<string, string> = {
-  '1040': 'Lead', '1020': 'Arsenic', '2456': 'Nitrate', '2050': 'Fluoride',
-  '4010': 'Total Coliform', '5000': 'Chlorine', PB90: 'Lead', CU90: 'Copper',
-  '1030': 'Chromium', '2030': 'Fluoride', '1000': 'Antimony', '2010': 'Barium',
-  '2950': 'Total Trihalomethanes (TTHMs)', '4000': 'Haloacetic Acids (HAA5)',
-  '1005': 'Arsenic', '1025': 'Barium', '2039': 'Atrazine', '4100': 'Radium-226',
-  '1045': 'Chromium', '2003': 'Fluoride', '1095': 'Selenium',
-  '1085': 'Mercury', '1074': 'Nitrite', '1038': 'Cadmium',
+  ...CONTAM_CODE_NAMES,
+  '4100': 'Radium (combined)',
 };
 
 // ─── Build UCMR5 contaminants from compact format ────────────────────────────
@@ -1221,8 +1229,8 @@ export async function GET(req: NextRequest) {
     // ─── Parallel data fetch ────────────────────────────────────────────────
     const [violations, lcr, sdwaSamples, usgsData, echoData, usgsHardness] = await Promise.all([
       epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => []),
-      epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:30/JSON`).catch(() => []),
-      epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:100/JSON`).catch(() => []),
+      epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
+      epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
       stateCode ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
       getEchoEnforcement(pwsid),
       stateCode ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
@@ -1299,41 +1307,14 @@ export async function GET(req: NextRequest) {
       score >= 50 ? 15 : 8;
 
     // ─── Contaminants ────────────────────────────────────────────────────────
-    const contaminants: any[] = [];
-    const addC = (name: string, codes: string[], limit: number, unit: string) => {
-      const hits = allSamples.filter(s => codes.includes(f(s, 'contaminant_code') || ''));
-      if (!hits.length) return;
-      const val = maxSampleLevel(hits, unit);
-      const ctx = HEALTH_CONTEXT[name];
-      const ewgG = EWG_GUIDELINES[name];
-      const ewgTimesOver = ewgG && ewgG.limit > 0 && val > 0 ? +(val / ewgG.limit).toFixed(1) : null;
-      contaminants.push({
-        name, level: +val.toFixed(2), limit, unit,
-        severity: val > limit ? 'high' : val > limit * 0.5 ? 'moderate' : 'low',
-        note: `${hits.length} sample(s) — EPA Action Level: ${limit} ${unit}`,
-        source: 'EPA LCR',
-        healthEffects: ctx?.effects,
-        healthSources: ctx?.sources,
-        epaAction: ctx?.epa_action,
-        ewgGuideline: ewgG?.limit ?? null,
-        ewgGuidelineLabel: ewgG?.label ?? null,
-        ewgTimesOver,
-      });
-    };
-    addC('Lead',   ['PB90', '1040'], 15,   'ppb');
-    addC('Copper', ['CU90', '1020'], 1300, 'ppb');
-    addC('Arsenic', ['1005', '1020'], 10, 'ppb');
-    addC('Nitrate', ['2456'], 10, 'ppm');
-    addC('Nitrite', ['1074'], 1, 'ppm');
-    addC('Total Trihalomethanes (TTHMs)', ['2950'], 80, 'ppb');
-    addC('Haloacetic Acids (HAA5)', ['4000'], 60, 'ppb');
-    addC('Fluoride', ['2050', '2003', '2030'], 4, 'ppm');
-    addC('Chromium', ['1030', '1045'], 100, 'ppb');
-    addC('Selenium', ['1095'], 50, 'ppb');
-    addC('Barium', ['2010', '1025'], 2000, 'ppb');
-    addC('Radium (combined)', ['4100'], 5, 'pCi/L');
-    addC('Total Coliform', ['4010'], 0, 'presence');
-    addC('Atrazine', ['2039'], 3, 'ppb');
+    const contaminants: ContaminantRow[] = buildEpaCatalogContaminants(
+      allSamples, f, maxSampleLevel, HEALTH_CONTEXT, EWG_GUIDELINES,
+    );
+    contaminants.push(
+      ...buildDynamicSampleContaminants(
+        allSamples, contaminants, f, maxSampleLevel, HEALTH_CONTEXT,
+      ),
+    );
 
     // Add lead/copper from static LCR dataset if not already found from live API
     const lcrStatic = LCR_DATA[pwsid];
@@ -1446,6 +1427,28 @@ export async function GET(req: NextRequest) {
       });
     }
 
+    const measuredBeforeCcr = countMeasuredContaminants(contaminants);
+    mergePwsidCcrContaminants(contaminants, pwsid, { minMeasuredBeforeFill: 8 });
+    if (countMeasuredContaminants(contaminants) > measuredBeforeCcr) {
+      for (const c of contaminants) {
+        if (c.healthEffects) continue;
+        const ctx = HEALTH_CONTEXT[c.name];
+        if (ctx) {
+          c.healthEffects = ctx.effects;
+          c.healthSources = ctx.sources;
+          c.epaAction = ctx.epa_action;
+        }
+        const ewgG = EWG_GUIDELINES[c.name];
+        if (ewgG && c.level != null && c.level > 0 && !c.ewgGuideline) {
+          c.ewgGuideline = ewgG.limit;
+          c.ewgGuidelineLabel = ewgG.label;
+          c.ewgTimesOver = +(c.level / ewgG.limit).toFixed(1);
+        }
+      }
+    }
+
+    const sortedContaminants = sortContaminants(contaminants);
+
     // ─── Format violations ───────────────────────────────────────────────────
     const fmtViols = [...viols]
       .sort((a, b) =>
@@ -1481,6 +1484,9 @@ export async function GET(req: NextRequest) {
     if (LCR_DATA[pwsid]) dataSources.push('EPA LCR National Dataset');
     if (pfasCount > 0) dataSources.push('EPA UCMR5 PFAS');
     if (ewg)           dataSources.push('EWG Tap Water Atlas');
+    if (countMeasuredContaminants(contaminants) > measuredBeforeCcr) {
+      dataSources.push('Utility CCR');
+    }
     if (usgsData)      dataSources.push('USGS NWIS');
     if (lithiumVal)    dataSources.push('UCMR5 Lithium');
     if (echoData)      dataSources.push('EPA ECHO Enforcement');
@@ -1533,7 +1539,7 @@ export async function GET(req: NextRequest) {
       pfasAboveMcl:     pfasAbove,
       ucmr5:            ucmr5Summary,
       usgs:             usgsData,
-      contaminants,
+      contaminants: sortedContaminants,
       violations:       fmtViols,
       echo:             echoData,
       summary,

@@ -434,7 +434,11 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           {data.contaminants?.length > 0 && (
             <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>CONTAMINANTS DETECTED</div>
-              <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>Source: EPA SDWIS lead & copper rule sampling</p>
+              <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>
+                {data.dataSources?.length
+                  ? `Sources: ${data.dataSources.join(' · ')}`
+                  : 'Sources: EPA SDWIS, UCMR5 PFAS, utility CCR where available'}
+              </p>
               {data.contaminants.map((c: any, i: number) => (
                 <ContaminantBar key={`${c.name || c.contaminant || 'c'}-${i}`} c={c} />
               ))}
