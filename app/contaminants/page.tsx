@@ -1,6 +1,10 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import { SiteHeader } from '../components/SiteHeader';
+
+const HERO_IMAGE = '/watersplashingintoglass.jpg';
+const HERO_ALT = 'Water splashing into a glass — drinking water contaminants guide';
 
 const CONTAMINANTS = [
   {
@@ -174,17 +178,116 @@ export default function ContaminantsPage() {
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0' }}>
+      <style>{`
+        .contam-hero {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .contam-hero {
+            height: 350px;
+          }
+        }
+        .contam-intro-section {
+          overflow: hidden;
+        }
+        .contam-intro-accent {
+          display: block;
+          width: 100%;
+          max-width: 400px;
+          height: auto;
+          border-radius: 12px;
+          margin: 0 0 16px;
+          object-fit: cover;
+        }
+        @media (min-width: 768px) {
+          .contam-intro-accent {
+            float: right;
+            width: 400px;
+            max-width: 400px;
+            margin: 0 0 16px 24px;
+          }
+        }
+      `}</style>
 
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
 
+      <section className="contam-hero" aria-label="Water contaminants guide">
+        <Image
+          src={HERO_IMAGE}
+          alt={HERO_ALT}
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+          }}
+          aria-hidden
+        />
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            height: '100%',
+            maxWidth: 960,
+            margin: '0 auto',
+            padding: '0 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 'clamp(26px, 5vw, 38px)',
+              fontWeight: 900,
+              color: '#f1f5f9',
+              lineHeight: 1.15,
+              margin: '0 0 12px',
+              textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+            }}
+          >
+            Water Contaminants Guide
+          </h1>
+          <p
+            style={{
+              fontSize: 'clamp(15px, 2.5vw, 18px)',
+              color: '#e2e8f0',
+              lineHeight: 1.55,
+              margin: 0,
+              maxWidth: 560,
+              textShadow: '0 1px 8px rgba(0,0,0,0.35)',
+            }}
+          >
+            What&apos;s really in your drinking water — and what to do about it
+          </p>
+        </div>
+      </section>
+
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px 80px' }}>
-        {/* HERO — same chrome as PFAS/Lead (ocean bg, no full-bleed dark bar above nav) */}
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
+        <div className="contam-intro-section" style={{ marginBottom: 32 }}>
+          <Image
+            src={HERO_IMAGE}
+            alt={HERO_ALT}
+            width={400}
+            height={267}
+            className="contam-intro-accent"
+            style={{ objectFit: 'cover' }}
+          />
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
-          <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Water Contaminant Guide</h1>
-          <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 17, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
             What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
           </p>
+        </div>
+
+        <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
