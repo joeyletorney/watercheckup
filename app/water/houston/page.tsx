@@ -1,21 +1,11 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 
 const AMAZON_TAG = 'watercheck20-20';
 
-export const metadata: Metadata = {
-  title: 'Houston Tap Water Report 2026 — 5 Contaminants Above Guidelines',
-  description:
-    'Houston water has 5 contaminants exceeding EPA health limits including PFAS and disinfection byproducts. Free report and filter recommendations.',
-  alternates: { canonical: 'https://watercheckup.com/water/houston' },
-  openGraph: {
-    title: 'Houston Tap Water Report 2026 — 5 Contaminants Above Guidelines',
-    description:
-      'Houston water has 5 contaminants exceeding EPA health limits including PFAS and disinfection byproducts. Free report and filter recommendations.',
-  },
-};
+export const metadata = metadataForPriorityCity('houston')!;
 
 const CONTAMINANTS = [
   {

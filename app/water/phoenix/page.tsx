@@ -1,21 +1,11 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 
 const AMAZON_TAG = 'watercheck20-20';
 
-export const metadata: Metadata = {
-  title: 'Phoenix Tap Water Report 2026 — Is It Safe to Drink?',
-  description:
-    'Phoenix water comes from the Colorado River and local groundwater. See current PFAS levels, contaminant data, and filter recommendations for your ZIP code.',
-  alternates: { canonical: 'https://watercheckup.com/water/phoenix' },
-  openGraph: {
-    title: 'Phoenix Tap Water Report 2026 — Is It Safe to Drink?',
-    description:
-      'Phoenix water comes from the Colorado River and local groundwater. See current PFAS levels, contaminant data, and filter recommendations for your ZIP code.',
-  },
-};
+export const metadata = metadataForPriorityCity('phoenix')!;
 
 const CONTAMINANTS = [
   {

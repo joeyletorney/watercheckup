@@ -1,21 +1,11 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 
 const AMAZON_TAG = 'watercheck20-20';
 
-export const metadata: Metadata = {
-  title: 'San Antonio Tap Water Safety Report 2026 — Contamination Warning',
-  description:
-    'San Antonio water contains contaminants above EPA health guidelines. See PFAS levels, lead data, and the exact filter that removes what\'s in your water. Free report.',
-  alternates: { canonical: 'https://watercheckup.com/water/san-antonio' },
-  openGraph: {
-    title: 'San Antonio Tap Water Safety Report 2026 — Contamination Warning',
-    description:
-      'San Antonio water contains contaminants above EPA health guidelines. See PFAS levels, lead data, and the exact filter that removes what\'s in your water. Free report.',
-  },
-};
+export const metadata = metadataForPriorityCity('san-antonio')!;
 
 const CONTAMINANTS = [
   {

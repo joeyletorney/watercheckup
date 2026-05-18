@@ -13,6 +13,7 @@ import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
+import { PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -110,34 +111,11 @@ export async function generateStaticParams() {
   return Object.keys(CITIES).map(city => ({ city }));
 }
 
-const CITY_PAGE_SEO: Record<string, { title: string; description: string }> = {
-  'los-angeles': {
-    title: 'Los Angeles Tap Water 2026 — Chromium-6 & PFAS Detected',
-    description:
-      'LA water contains chromium-6 at one of the highest levels of any US city. See the full EPA report and what filter actually removes it.',
-  },
-  chicago: {
-    title: 'Chicago Tap Water 2026 — Lead Pipes Still a Risk',
-    description:
-      'Chicago has more lead service lines than almost any US city. See if your neighborhood is affected and what filter removes lead from tap water.',
-  },
-  philadelphia: {
-    title: 'Philadelphia Water Quality 2026 — PFOA Levels Near Record High',
-    description:
-      'Philadelphia water has some of the highest PFOA levels of any major US city. See the full EPA data and which filter removes PFAS forever chemicals.',
-  },
-  boston: {
-    title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes a Key Risk',
-    description:
-      "Boston's source water is clean but lead service lines in older neighborhoods are a real concern. Check your ZIP and get filter recommendations.",
-  },
-};
-
 export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
 
-  const seoOverride = CITY_PAGE_SEO[params.city];
+  const seoOverride = PRIORITY_CITY_SEO[params.city];
   if (seoOverride) {
     return {
       title: seoOverride.title,
