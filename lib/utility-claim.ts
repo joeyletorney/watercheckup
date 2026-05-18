@@ -1,3 +1,4 @@
+import { getSiteNotifyEmail } from '@/lib/site-notify-email';
 import { stateLabel } from '@/lib/us-state-names';
 
 export type UtilityClaimPayload = {
@@ -129,7 +130,7 @@ export async function sendUtilityClaimNotification(
   meta: { clientIp: string },
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
-  const notifyTo = process.env.UTILITY_CLAIM_NOTIFY_EMAIL?.trim() || 'joe@watercheckup.com';
+  const notifyTo = getSiteNotifyEmail();
   const from = process.env.RESEND_FROM_EMAIL?.trim() || 'WaterCheckup <onboarding@resend.dev>';
   const stateName = stateLabel(data.state);
 

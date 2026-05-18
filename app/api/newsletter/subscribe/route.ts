@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
+import { getSiteNotifyEmail } from '@/lib/site-notify-email';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 const BREVO = 'https://api.brevo.com/v3';
@@ -176,7 +177,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         sender: { name: senderName, email: senderEmail },
         to: [{ email: email.trim() }],
-        bcc: [{ email: "joe@letorney.com" }],
+        bcc: [{ email: getSiteNotifyEmail() }],
         subject: isViolationAlert
           ? 'You are subscribed: local water violation alerts'
           : "Welcome to WaterCheckup — what's really in your water",
