@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
+
+const HERO_IMAGE = '/lookingdownwell.jpg';
+const HERO_ALT = 'Looking down into a water well — private well water quality';
 
 export const metadata: Metadata = {
   title: 'Well Water Filter Guide 2025 — What\'s in Your Well & What Removes It | WaterCheckup',
@@ -171,16 +175,112 @@ const TESTING_STEPS = [
 export default function WellWaterPage() {
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <style>{`
+        .well-hero {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .well-hero {
+            height: 350px;
+          }
+        }
+        .well-intro-section {
+          overflow: hidden;
+        }
+        .well-intro-accent {
+          display: block;
+          width: 100%;
+          max-width: 400px;
+          height: auto;
+          border-radius: 12px;
+          margin: 0 0 16px;
+          object-fit: cover;
+        }
+        @media (min-width: 768px) {
+          .well-intro-accent {
+            float: right;
+            width: 400px;
+            max-width: 400px;
+            margin: 0 0 16px 24px;
+          }
+        }
+      `}</style>
+
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
+
+      <section className="well-hero" aria-label="Well water quality guide">
+        <Image
+          src={HERO_IMAGE}
+          alt={HERO_ALT}
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+          }}
+          aria-hidden
+        />
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            height: '100%',
+            maxWidth: 800,
+            margin: '0 auto',
+            padding: '0 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 'clamp(26px, 5vw, 36px)',
+              fontWeight: 900,
+              color: '#f1f5f9',
+              lineHeight: 1.15,
+              margin: '0 0 12px',
+              textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+            }}
+          >
+            Well Water Quality Guide
+          </h1>
+          <p
+            style={{
+              fontSize: 'clamp(15px, 2.5vw, 18px)',
+              color: '#e2e8f0',
+              lineHeight: 1.55,
+              margin: 0,
+              maxWidth: 560,
+              textShadow: '0 1px 8px rgba(0,0,0,0.35)',
+            }}
+          >
+            43 million Americans rely on private wells — is yours safe?
+          </p>
+        </div>
+      </section>
 
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px 100px' }}>
 
-        {/* Hero */}
-        <div style={{ marginBottom: 48 }}>
+        <div className="well-intro-section" style={{ marginBottom: 48 }}>
+          <Image
+            src={HERO_IMAGE}
+            alt={HERO_ALT}
+            width={400}
+            height={267}
+            className="well-intro-accent"
+            style={{ objectFit: 'cover' }}
+          />
           <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 2, marginBottom: 12 }}>PRIVATE WELL WATER GUIDE</div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
-            Well Water Filters — What&apos;s in Your Well and What Removes It
-          </h1>
+          <h2 style={{ ...s.h2, fontSize: 28, marginBottom: 16 }}>What is well water?</h2>
           <p style={s.p}>
             Private wells serve over <strong style={{ color: '#e2e8f0' }}>43 million Americans</strong> and are completely unregulated by the EPA.
             Nobody tests your well but you. The contaminants vary dramatically by state and geology —
