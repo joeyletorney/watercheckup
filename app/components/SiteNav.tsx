@@ -7,25 +7,25 @@ import { usePathname } from 'next/navigation';
 
 const ITEMS: [string, string][] = [
   ['/', 'Home'],
-  ['/#wc-hero-anchor', 'Check your water'],
-  ['/water-hardness', 'Hardness'],
+  ['/#wc-hero-anchor', 'Check Your Water'],
   ['/contaminants', 'Contaminants'],
-  ['/quiz', 'Filter picks'],
+  ['/water-hardness', 'Hardness'],
   ['/blog', 'Learn'],
-  ['/about', 'About'],
+  ['/quiz', 'Filter Picks'],
+  ['/well', 'Well Water'],
+  ['/rankings', 'Rankings'],
+  ['/faq', 'FAQs'],
   ['/methodology', 'Methodology'],
-  ['/worst', 'Rankings'],
-  ['/well', 'Well water'],
-  ['/faq', 'FAQ'],
+  ['/about', 'About'],
 ];
 
 /** Inline on small screens; rest live under “More”. */
 const MOBILE_PRIMARY: [string, string][] = [
   ['/', 'Home'],
-  ['/#wc-hero-anchor', 'Your water'],
-  ['/water-hardness', 'Hardness'],
+  ['/#wc-hero-anchor', 'Check Your Water'],
   ['/contaminants', 'Contaminants'],
-  ['/quiz', 'Filters'],
+  ['/water-hardness', 'Hardness'],
+  ['/quiz', 'Filter Picks'],
 ];
 
 const MQ = '(max-width: 767px)';
@@ -55,6 +55,7 @@ function isActive(pathname: string, href: string) {
     (href === '/quiz' && pathname.startsWith('/quiz')) ||
     (href === '/about' && pathname.startsWith('/about')) ||
     (href === '/methodology' && pathname.startsWith('/methodology')) ||
+    (href === '/rankings' && pathname.startsWith('/rankings')) ||
     (href === '/worst' && pathname.startsWith('/worst')) ||
     (href === '/faq' && pathname.startsWith('/faq')) ||
     (href === '/water-hardness' && pathname.startsWith('/water-hardness'))
