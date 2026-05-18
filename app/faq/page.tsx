@@ -1,6 +1,10 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import { SiteHeader } from '../components/SiteHeader';
+
+const HERO_IMAGE = '/washinghands.jpg';
+const HERO_ALT = 'Washing hands with clean tap water — drinking water safety FAQs';
 
 const FAQS = [
   {
@@ -136,15 +140,73 @@ export default function FAQPage() {
 
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
 
-      <div style={{ maxWidth: 780, margin: '0 auto', padding: '48px 20px 80px' }}>
-        {/* HERO — ocean bg like other guide pages (no dark band under nav tabs) */}
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <h1 style={{ fontSize: 38, fontWeight: 900, color: '#f1f5f9', marginBottom: 14 }}>Frequently Asked Questions</h1>
-          <p style={{ fontSize: 17, color: '#94a3b8', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
-            Straight answers about water quality, contaminants, filters, and what the EPA data actually means for your family.
+      <style>{`
+        .faq-hero {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .faq-hero {
+            height: 350px;
+          }
+        }
+      `}</style>
+
+      <section className="faq-hero" aria-label="Frequently asked questions about drinking water">
+        <Image src={HERO_IMAGE} alt={HERO_ALT} fill priority sizes="100vw" style={{ objectFit: 'cover' }} />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+          }}
+          aria-hidden
+        />
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            height: '100%',
+            maxWidth: 780,
+            margin: '0 auto',
+            padding: '0 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 'clamp(28px, 5vw, 40px)',
+              fontWeight: 900,
+              color: '#f1f5f9',
+              lineHeight: 1.15,
+              margin: '0 0 12px',
+              textShadow: '0 2px 12px rgba(0,0,0,0.4)',
+            }}
+          >
+            Frequently Asked Questions
+          </h1>
+          <p
+            style={{
+              fontSize: 'clamp(16px, 2.5vw, 18px)',
+              color: '#e2e8f0',
+              lineHeight: 1.55,
+              margin: 0,
+              maxWidth: 520,
+              textShadow: '0 1px 8px rgba(0,0,0,0.35)',
+            }}
+          >
+            Everything you need to know about your drinking water
           </p>
         </div>
+      </section>
 
+      <div style={{ maxWidth: 780, margin: '0 auto', padding: '48px 20px 80px' }}>
         {FAQS.map(section => (
           <div key={section.category} style={{ marginBottom: 44 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid #0f2336' }}>
