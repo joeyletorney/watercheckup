@@ -178,29 +178,40 @@ const personLd = {
 function PullQuote() {
   return (
     <blockquote
+      className="about-pull-quote"
       style={{
-        margin: '48px 0',
-        padding: '28px 32px',
-        background: 'linear-gradient(135deg, rgba(8,145,178,0.12), rgba(6,182,212,0.06))',
-        border: '1px solid rgba(34, 211, 238, 0.25)',
-        borderLeft: '4px solid #22d3ee',
+        margin: '56px 0',
+        padding: '36px 32px 36px 40px',
+        textAlign: 'center',
+        background: 'linear-gradient(135deg, rgba(8,145,178,0.1), rgba(6,182,212,0.05))',
+        border: '1px solid rgba(34, 211, 238, 0.2)',
+        borderLeft: '5px solid #22d3ee',
         borderRadius: 12,
       }}
     >
       <p
+        className="about-pull-quote__text"
         style={{
           margin: 0,
-          fontSize: 20,
-          fontWeight: 600,
-          color: '#e2e8f0',
-          lineHeight: 1.6,
+          fontSize: 'clamp(20px, 4vw, 26px)',
+          fontWeight: 500,
+          color: '#cbd5e1',
+          lineHeight: 1.65,
           fontStyle: 'italic',
         }}
       >
-        &ldquo;I&apos;ve spent over 30 years helping families understand their water. WaterCheckup is how I help
-        everyone else.&rdquo;
+        &ldquo;Most people have no idea what&apos;s in their water. That&apos;s not their fault — the information was
+        never made easy to find. That&apos;s what I&apos;m fixing.&rdquo;
       </p>
-      <footer style={{ marginTop: 16, fontSize: 14, fontWeight: 700, color: '#67e8f9' }}>
+      <footer
+        style={{
+          marginTop: 20,
+          fontSize: 15,
+          fontWeight: 700,
+          color: '#67e8f9',
+          fontStyle: 'normal',
+        }}
+      >
         — Joe Letorney, Founder
       </footer>
     </blockquote>

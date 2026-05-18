@@ -1462,6 +1462,20 @@ button.wc-nav-badge-nsf:focus-visible {
   z-index: 1;
 }
 
+.about-pull-quote__text {
+  font-size: clamp(20px, 4vw, 26px);
+}
+@media (max-width: 639px) {
+  .about-pull-quote__text {
+    font-size: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .about-pull-quote__text {
+    font-size: 26px;
+  }
+}
+
 /* Homepage + site coverage stats */
 .wc-coverage-stats {
   display: grid;
