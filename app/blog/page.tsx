@@ -25,6 +25,24 @@ const POST_BY_SLUG: Record<
   string,
   { title: string; excerpt: string; date: string; readTime: string; badge: string; badgeColor: string }
 > = {
+  'is-new-york-city-tap-water-safe-2026': {
+    title: 'Is New York City Tap Water Safe to Drink in 2026?',
+    excerpt:
+      'NYC has some of the best municipal source water in the country — but building pipes, lead, and PFAS still matter. Here is what the 2026 data shows for residents.',
+    date: 'May 18, 2026',
+    readTime: '9 min read',
+    badge: 'NYC',
+    badgeColor: '#0891b2',
+  },
+  'pfas-in-new-york-city-water': {
+    title: 'PFAS in New York City Water — What Residents Need to Know',
+    excerpt:
+      'PFAS forever chemicals have been detected in NYC tap water. Here is what the 2026 EPA limits mean, how NYCDEP water compares, and which filters actually remove PFAS.',
+    date: 'May 18, 2026',
+    readTime: '8 min read',
+    badge: 'PFAS',
+    badgeColor: '#0891b2',
+  },
   'reverse-osmosis-vs-distilled-water': {
     title: 'Reverse Osmosis vs Distilled Water — Which is Better? (2026)',
     excerpt:
@@ -316,6 +334,8 @@ const POST_BY_SLUG: Record<
  * then filters & testing, contaminants & health, wells, then broader home / purity guides.
  */
 const BLOG_INDEX_ORDER = [
+  'is-new-york-city-tap-water-safe-2026',
+  'pfas-in-new-york-city-water',
   'is-pfas-in-my-tap-water',
   'what-water-filter-removes-pfas',
   'best-ro-system-for-pfas-removal',
@@ -362,7 +382,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   {
     label: 'PFAS & Forever Chemicals',
     icon: '☣️',
-    slugs: ['is-pfas-in-my-tap-water', 'what-water-filter-removes-pfas', 'best-ro-system-for-pfas-removal'],
+    slugs: ['pfas-in-new-york-city-water', 'is-pfas-in-my-tap-water', 'what-water-filter-removes-pfas', 'best-ro-system-for-pfas-removal'],
   },
   {
     label: 'Lead & Heavy Metals',
@@ -372,7 +392,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   {
     label: 'Safety & Health',
     icon: '🏥',
-    slugs: ['tap-water-safety-during-pregnancy', 'is-tap-water-safe-to-drink', 'boil-water-advisory-what-to-do-and-how-long', 'fluoride-in-tap-water-safe-or-not', 'microplastics-in-drinking-water-what-we-know'],
+    slugs: ['is-new-york-city-tap-water-safe-2026', 'tap-water-safety-during-pregnancy', 'is-tap-water-safe-to-drink', 'boil-water-advisory-what-to-do-and-how-long', 'fluoride-in-tap-water-safe-or-not', 'microplastics-in-drinking-water-what-we-know'],
   },
   {
     label: 'Filter Guides',
