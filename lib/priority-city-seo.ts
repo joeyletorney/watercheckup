@@ -3,9 +3,14 @@ import type { Metadata } from 'next';
 /** High-traffic city pages — custom titles & descriptions for SEO */
 export const PRIORITY_CITY_SEO: Record<string, { title: string; description: string }> = {
   'san-antonio': {
-    title: 'San Antonio Tap Water Safety Report 2026 — Contamination Warning',
+    title: 'San Antonio Tap Water 2026 — Contamination Warning',
     description:
-      "San Antonio water contains contaminants above EPA health guidelines. See PFAS levels, lead data, and the exact filter that removes what's in your water. Free report.",
+      'San Antonio water has contaminants above EPA health guidelines including PFAS. See current levels, health risks, and certified filter recommendations. Free report.',
+  },
+  'new-york': {
+    title: 'New York City Tap Water 2026 — PFAS & Contaminants Report',
+    description:
+      "NYC tap water contains PFAS and other contaminants above health guidelines. See the full EPA report, what's in your water, and the best filter for New York City tap water.",
   },
   houston: {
     title: 'Houston Tap Water Report 2026 — 5 Contaminants Above Guidelines',
@@ -15,7 +20,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
   'los-angeles': {
     title: 'Los Angeles Tap Water 2026 — Chromium-6 & PFAS Detected',
     description:
-      'LA water contains chromium-6 at one of the highest levels of any US city. See the full EPA report and what filter actually removes it.',
+      'LA tap water contains chromium-6 and PFAS at levels above health guidelines. See the full EPA data for your neighborhood and what filter removes it.',
   },
   chicago: {
     title: 'Chicago Tap Water 2026 — Lead Pipes Still a Risk',
@@ -28,9 +33,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Phoenix water comes from the Colorado River and local groundwater. See current PFAS levels, contaminant data, and filter recommendations for your ZIP code.',
   },
   philadelphia: {
-    title: 'Philadelphia Water Quality 2026 — PFOA Levels Near Record High',
+    title: 'Philadelphia Tap Water 2026 — PFOA Levels Above Health Limits',
     description:
-      'Philadelphia water has some of the highest PFOA levels of any major US city. See the full EPA data and which filter removes PFAS forever chemicals.',
+      'Philadelphia water has some of the highest PFOA levels of any major US city. See the full EPA contamination report and certified filter recommendations.',
+  },
+  parkersburg: {
+    title: 'Parkersburg WV Water 2026 — Ground Zero for PFAS Contamination',
+    description:
+      'Parkersburg, WV is the birthplace of PFAS contamination in America. See current contamination levels, health risks, and how to protect your family.',
   },
   boston: {
     title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes a Key Risk',
