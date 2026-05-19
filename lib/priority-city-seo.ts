@@ -62,6 +62,21 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
     description:
       "Parkersburg WV is where America's PFAS crisis started. See current contamination levels, health risks, and how to protect your family from forever chemicals.",
   },
+  scottsdale: {
+    title: 'Scottsdale Tap Water 2026 — Is It Safe to Drink?',
+    description:
+      'Scottsdale water comes from Colorado River and local groundwater. See current PFAS and contaminant levels, and get filter recommendations for your home.',
+  },
+  nashville: {
+    title: 'Nashville Tap Water 2026 — Contamination Report',
+    description:
+      'Nashville tap water quality report with current EPA data on contaminants, PFAS levels, and certified filter recommendations for Nashville residents.',
+  },
+  charlotte: {
+    title: 'Charlotte Tap Water 2026 — Water Quality Report',
+    description:
+      'Charlotte water quality report with current EPA contamination data, PFAS levels, and filter recommendations for Charlotte, NC residents.',
+  },
 };
 
 export function metadataForPriorityCity(slug: string): Metadata | null {

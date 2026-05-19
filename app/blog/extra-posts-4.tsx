@@ -96,6 +96,12 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
   'tap-water-safety-during-pregnancy': {
     title: 'Is Tap Water Safe During Pregnancy? What OBs and the EPA Say',
     excerpt: 'Pregnant women face higher risk from lead, nitrates, PFAS, and disinfection byproducts in tap water. Here is what to filter and what to skip.',
+    seo: {
+      title: 'Is Tap Water Safe During Pregnancy? 2026 Expert Guide',
+      description:
+        'Pregnant women are more vulnerable to water contaminants including lead and PFAS. A 30-year water expert explains what to avoid and how to protect yourself and your baby.',
+      canonical: 'https://watercheckup.com/blog/tap-water-safety-during-pregnancy',
+    },
     date: '2026-04-18',
     dateDisplay: 'April 18, 2026',
     readTime: '8 min read',
@@ -226,6 +232,12 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
   'moving-to-new-city-water-quality-check': {
     title: 'Moving to a New City? Check the Water Quality First',
     excerpt: 'Water quality varies dramatically city to city. Before you unpack, here is how to check your new city\'s tap water for PFAS, lead, and hard water.',
+    seo: {
+      title: 'Moving to a New City? Check the Water Quality First (2026 Guide)',
+      description:
+        "Water quality varies dramatically from city to city. Before you move, check what's in the tap water — PFAS, lead, and other contaminants that could affect your family.",
+      canonical: 'https://watercheckup.com/blog/moving-to-new-city-water-quality-check',
+    },
     date: '2026-04-22',
     dateDisplay: 'April 22, 2026',
     readTime: '6 min read',

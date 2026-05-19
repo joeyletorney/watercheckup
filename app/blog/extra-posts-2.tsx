@@ -111,6 +111,12 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Chromium-6 in Drinking Water: Should You Worry?',
     excerpt:
       'Chromium-6 gets headlines. Here is how it differs from chromium-3, what EPA regulates, and how to interpret results.',
+    seo: {
+      title: 'Chromium-6 in Drinking Water — Should You Worry? (2026)',
+      description:
+        "Chromium-6 was made famous by Erin Brockovich and it's still in millions of Americans' tap water. See if your city is affected and what filter removes it.",
+      canonical: 'https://watercheckup.com/blog/chromium-6-in-drinking-water-should-you-worry',
+    },
     date: '2026-04-06',
     dateDisplay: 'April 6, 2026',
     readTime: '7 min read',

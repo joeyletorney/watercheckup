@@ -3,12 +3,14 @@ import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: 'PFAS in Drinking Water — What It Is, Where It Is, and How to Remove It | WaterCheckup',
-  description: 'PFAS "forever chemicals" are detected in 45% of US tap water. Find out if your water is affected, what the health risks are, and which filters actually remove PFAS. Free EPA data lookup.',
+  title: 'PFAS Forever Chemicals in Tap Water — 2026 Contamination Guide',
+  description:
+    'PFAS chemicals are in the tap water of millions of Americans. Find out if your city is affected, what the health risks are, and which filters actually remove forever chemicals.',
   alternates: { canonical: 'https://watercheckup.com/pfas' },
   openGraph: {
-    title: 'PFAS in Drinking Water | WaterCheckup',
-    description: 'PFAS detected in 45% of US tap water. Check your ZIP code free — EPA PFAS testing data for your exact water system.',
+    title: 'PFAS Forever Chemicals in Tap Water — 2026 Contamination Guide',
+    description:
+      'PFAS chemicals are in the tap water of millions of Americans. Find out if your city is affected, what the health risks are, and which filters actually remove forever chemicals.',
     images: [{ url: 'https://watercheckup.com/api/og?city=PFAS+Guide&score=&grade=&violations=', width: 1200, height: 630 }],
   },
 };
