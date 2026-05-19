@@ -379,6 +379,13 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Why Distilled Water and Reverse Osmosis Are the Two Best Systems for High Purity',
     excerpt:
       'For drinking water, “high purity” means removing dissolved salts, metals, and many organics — not just chlorine taste. Here is why distillation and RO sit at the top of the stack.',
+    seo: {
+      title: 'Distilled Water vs Reverse Osmosis — Which is Purer? (2026)',
+      description:
+        'Both distilled and RO water remove 99%+ of contaminants but work completely differently. A 30-year water expert explains which one is right for your home.',
+      canonical:
+        'https://watercheckup.com/blog/why-distilled-water-and-reverse-osmosis-are-best-for-high-purity',
+    },
     date: '2026-04-14',
     dateDisplay: 'April 14, 2026',
     readTime: '10 min read',

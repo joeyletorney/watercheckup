@@ -293,6 +293,12 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'reverse-osmosis-pros-and-cons': {
     title: 'Reverse Osmosis Water Filters: Pros, Cons, and Who Actually Needs One',
     excerpt: 'RO removes the most contaminants of any home filter — but it has real tradeoffs. Here is an honest look at whether it makes sense for your situation.',
+    seo: {
+      title: 'Reverse Osmosis Pros and Cons — Is RO Worth It? (2026)',
+      description:
+        'RO removes 95-99% of contaminants including PFAS and lead but has real tradeoffs. A water treatment expert breaks down everything you need to know before buying.',
+      canonical: 'https://watercheckup.com/blog/reverse-osmosis-pros-and-cons',
+    },
     date: '2026-04-18',
     dateDisplay: 'April 18, 2026',
     readTime: '9 min read',
@@ -578,6 +584,12 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'what-water-filter-removes-pfas': {
     title: 'What Water Filters Actually Remove PFAS? (NSF Certified Options Ranked)',
     excerpt: 'Not all filters remove PFAS. Here is exactly which technologies work, what certifications to look for, and how to choose the right filter for your situation.',
+    seo: {
+      title: 'What Water Filter Actually Removes PFAS? (2026 Expert Guide)',
+      description:
+        "Most filters don't remove PFAS forever chemicals. Only reverse osmosis and NSF 58 certified filters work. Here's exactly which ones remove PFAS and how much they cost.",
+      canonical: 'https://watercheckup.com/blog/what-water-filter-removes-pfas',
+    },
     date: '2026-04-22',
     dateDisplay: 'April 22, 2026',
     readTime: '8 min read',
