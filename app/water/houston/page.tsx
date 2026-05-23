@@ -1,11 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
+import { CITIES } from '../[city]/cities-data';
 
 const AMAZON_TAG = 'watercheck20-20';
 
-export const metadata = metadataForPriorityCity('houston')!;
+export function generateMetadata(): Metadata {
+  const cd = CITIES.houston;
+  return metadataForPriorityCity('houston', cd)!;
+}
 
 const CONTAMINANTS = [
   {

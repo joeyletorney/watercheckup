@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import { buildCityPageMetadata } from './city-seo-metadata';
+import { getCityPfasData } from './ucmr5-city-pfas';
+import type { CityPfasSnapshot } from './city-water-score';
 
 /** High-traffic city pages — custom titles & descriptions for SEO */
 export const PRIORITY_CITY_SEO: Record<string, { title: string; description: string }> = {
@@ -79,12 +82,28 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
   },
 };
 
-export function metadataForPriorityCity(slug: string): Metadata | null {
+type PriorityCityRecord = {
+  name: string;
+  state: string;
+  issues: string[];
+  urgency: 'high' | 'medium' | 'low';
+  pwsid: string;
+};
+
+/** Grade + key-finding SERP titles for dedicated city routes */
+export function metadataForPriorityCity(
+  slug: string,
+  city?: PriorityCityRecord,
+  pfas?: CityPfasSnapshot
+): Metadata | null {
   const seo = PRIORITY_CITY_SEO[slug];
   if (!seo) return null;
 
-  const canonical = `https://watercheckup.com/water/${slug}`;
+  if (city) {
+    return buildCityPageMetadata(slug, city, pfas ?? getCityPfasData(city.pwsid), seo);
+  }
 
+  const canonical = `https://watercheckup.com/water/${slug}`;
   return {
     title: seo.title,
     description: seo.description,

@@ -14,6 +14,10 @@ import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
+import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
+import { computeWaterScore } from '@/lib/city-water-score';
+import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
+import { getCityKeyFinding } from '@/lib/city-water-score';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -115,49 +119,9 @@ export async function generateMetadata({ params }: { params: { city: string } })
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
 
-  const seoOverride = PRIORITY_CITY_SEO[params.city];
-  if (seoOverride) {
-    return {
-      title: seoOverride.title,
-      description: seoOverride.description,
-      alternates: {
-        canonical: `https://watercheckup.com/water/${params.city}`,
-      },
-      openGraph: {
-        title: seoOverride.title,
-        description: seoOverride.description,
-        images: [
-          {
-            url: `https://watercheckup.com/api/og?city=${encodeURIComponent(cd.name + ', ' + cd.state)}&score=&grade=&violations=`,
-            width: 1200,
-            height: 630,
-          },
-        ],
-      },
-    };
-  }
-
-  const pfas = getPfasData(cd.pwsid);
-  const hasPfas = pfas && pfas.compounds.length > 0;
-  const pfasViolation = pfas && pfas.violations > 0;
-  const topIssue = cd.issues[0] ?? 'Contaminants';
-  const descPfas = pfasViolation
-    ? `PFAS above EPA limit detected.`
-    : hasPfas
-    ? `PFAS compounds detected.`
-    : ``;
-  return {
-    title: `${cd.name} Tap Water Quality 2025 — Is It Safe? | WaterCheckup`,
-    description: `${cd.name}, ${cd.state} water report: ${topIssue.toLowerCase()}${descPfas ? ' · ' + descPfas : ''} Free EPA data, PFAS results & filter picks for ${cd.name} residents.`,
-    alternates: {
-      canonical: `https://watercheckup.com/water/${params.city}`,
-    },
-    openGraph: {
-      title: `${cd.name} Water Quality 2025 — What's Really in Your Tap Water | WaterCheckup`,
-      description: `Free EPA report for ${cd.name}: violations, PFAS testing, lead risk & the best filters for your water. Updated 2025.`,
-      images: [{ url: `https://watercheckup.com/api/og?city=${encodeURIComponent(cd.name + ', ' + cd.state)}&score=&grade=&violations=`, width: 1200, height: 630 }],
-    },
-  };
+  const pfas = getCityPfasData(cd.pwsid);
+  const prioritySeo = PRIORITY_CITY_SEO[params.city];
+  return buildCityPageMetadata(params.city, cd, pfas, prioritySeo);
 }
 
 const urgencyConfig = {
@@ -165,59 +129,6 @@ const urgencyConfig = {
   medium: { color: '#f59e0b', bg: '#f59e0b15', border: '#f59e0b40', label: 'MONITOR',      icon: '⚠️' },
   low:    { color: '#22d3ee', bg: '#22d3ee15', border: '#22d3ee40', label: 'GENERALLY OK', icon: '✅' },
 };
-
-// Water Safety Score: 0 (worst) → 88 (best possible — no municipal water is perfect)
-function computeWaterScore(
-  urgency: 'high' | 'medium' | 'low',
-  issues: string[],
-  pfasData: { maxPpt: number; violations: number; compounds: [string, number, number, number][]; hardness?: number } | null
-): { score: number; grade: string; gradeColor: string; label: string; scoreColor: string } {
-  // Baseline: all municipal water has chlorine, DBPs, and unmonitored contaminants.
-  // No tap water scores above 88 — "no violations on record" ≠ perfectly safe.
-  let score = 88;
-
-  // Urgency deductions
-  if (urgency === 'high')   score -= 40;
-  if (urgency === 'medium') score -= 20;
-
-  // Issue count deductions
-  score -= Math.min(issues.length * 5, 20);
-
-  // PFAS deductions
-  if (pfasData) {
-    if (pfasData.violations > 0)            score -= 25;
-    else if (pfasData.compounds.length > 3) score -= 12;
-    else if (pfasData.compounds.length > 0) score -= 6;
-
-    // Extra penalty if any compound exceeds health limit
-    const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
-    if (overHealth) score -= 10;
-
-    if (pfasData.maxPpt > 50)      score -= 8;
-    else if (pfasData.maxPpt > 10) score -= 4;
-  }
-
-  score = Math.max(0, Math.min(88, score));
-
-  let grade: string;
-  let gradeColor: string;
-  let label: string;
-  let scoreColor: string;
-
-  if (score >= 80) {
-    grade = 'A-'; gradeColor = '#22d3ee'; label = 'Good'; scoreColor = '#22d3ee';
-  } else if (score >= 65) {
-    grade = 'B'; gradeColor = '#86efac'; label = 'Fair'; scoreColor = '#86efac';
-  } else if (score >= 50) {
-    grade = 'C'; gradeColor = '#f59e0b'; label = 'Concerning'; scoreColor = '#f59e0b';
-  } else if (score >= 35) {
-    grade = 'D'; gradeColor = '#f97316'; label = 'Poor'; scoreColor = '#f97316';
-  } else {
-    grade = 'F'; gradeColor = '#ef4444'; label = 'High Risk'; scoreColor = '#ef4444';
-  }
-
-  return { score, grade, gradeColor, label, scoreColor };
-}
 
 // Per-urgency context copy shown in the problem banner
 function getUrgencyContext(urgency: 'high' | 'medium' | 'low', issues: string[], cityName: string): string {
@@ -262,43 +173,56 @@ export default function CityPage({ params }: { params: { city: string } }) {
     },
   };
 
+  const waterScore = cd ? computeWaterScore(cd.urgency, cd.issues, pfas) : null;
+  const keyFinding = cd ? getCityKeyFinding(cd.urgency, cd.issues, pfas) : '';
+
   const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
       {
-        "@type": "Question",
-        "name": `Is ${cd?.name ?? cityName} tap water safe to drink in 2025?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `${cd?.name ?? cityName} water meets federal standards but EPA monitoring data — including PFAS levels and violation history — is shown on this page. ${cd?.urgency === 'high' ? `${cd.name} has known issues including ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : `A certified reverse osmosis filter is recommended for sensitive populations.`}`
-        }
+        '@type': 'Question',
+        name: `Is ${cd?.name ?? cityName} tap water safe to drink in 2026?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: cd && waterScore
+            ? `${cd.name} earns Water Safety Grade ${waterScore.grade} (${waterScore.score}/100) on WaterCheckup — ${keyFinding}. ${cd.urgency === 'high' ? `Known issues include ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : 'EPA compliance does not mean contaminant-free; sensitive households should still consider NSF-certified filtration.'}`
+            : `See EPA monitoring data, PFAS UCMR5 results, and WaterCheckup's A–F grade for ${cd?.name ?? cityName} on this page.`,
+        },
       },
       {
-        "@type": "Question",
-        "name": `Does ${cd?.name ?? cityName} water have PFAS?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `EPA UCMR5 monitoring data for ${cd?.name ?? cityName} (water system ${cd?.pwsid ?? ''}) is shown on this page. Only a reverse osmosis system or NSF 58-certified carbon block filter reliably removes PFAS from tap water. Standard pitchers do not remove PFAS.`
-        }
+        '@type': 'Question',
+        name: 'How is WaterCheckup different from other water quality checkers?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most water quality checkers tap one EPA database. WaterCheckup combines five federal datasets plus EWG health guidelines — SDWIS violations, UCMR5 PFAS monitoring, enforcement history, lead tap sampling, and lead service line inventory — into one free report with an expert-backed Water Safety Grade.',
+        },
       },
       {
-        "@type": "Question",
-        "name": `Does ${cd?.name ?? cityName} water have lead?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Lead in tap water almost always comes from plumbing inside your home, not the treatment plant. Homes built before 1986 in ${cd?.name ?? cityName} are most at risk. An NSF/ANSI 53-certified filter or reverse osmosis system removes lead at the tap.`
-        }
+        '@type': 'Question',
+        name: `Does ${cd?.name ?? cityName} water have PFAS?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `EPA UCMR5 monitoring for ${cd?.name ?? cityName} (PWSID ${cd?.pwsid ?? ''}) is on this page. ${pfas?.compounds.length ? 'PFAS has been detected in federal monitoring for this system.' : 'Check the table below for the latest UCMR5 snapshot.'} Only reverse osmosis (NSF 58) or NSF P473-certified filters reliably remove PFAS; standard pitchers do not.`,
+        },
       },
       {
-        "@type": "Question",
-        "name": `What water filter is best for ${cd?.name ?? cityName}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `For ${cd?.name ?? cityName}'s water profile, a reverse osmosis system addresses the widest range of contaminants including PFAS, lead, and disinfection byproducts. The Waterdrop G3P800 and Aquasana SmartFlow are top-rated options. Renters can use the Waterdrop K19-S Countertop RO — no installation required.`
-        }
-      }
-    ]
+        '@type': 'Question',
+        name: `Does ${cd?.name ?? cityName} water have lead?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Lead usually comes from service lines and building plumbing in ${cd?.name ?? cityName}, not the treatment plant. Pre-1986 homes are highest risk. NSF 53-certified pitchers or reverse osmosis remove lead at the tap.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `What water filter is best for ${cd?.name ?? cityName}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `For ${cd?.name ?? cityName}'s profile (${keyFinding}), reverse osmosis covers PFAS, lead, and disinfection byproducts. Renters can use a countertop RO; homeowners often choose under-sink NSF 58 systems ranked on this page.`,
+        },
+      },
+    ],
   };
 
   return (
@@ -344,7 +268,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             WATER QUALITY REPORT
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
-            {cd ? `${cd.name}, ${cd.state}` : cityName} tap water: what&apos;s in it in 2025
+            {cd ? `${cd.name}, ${cd.state}` : cityName} tap water: what&apos;s in it in 2026
           </h1>
 
           {cd && (
