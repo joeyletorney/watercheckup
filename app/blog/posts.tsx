@@ -32,6 +32,7 @@ const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#94a3b8', line
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
 const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#94a3b8', lineHeight: 1.75 };
 const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#94a3b8', lineHeight: 1.75 };
+const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' };
 
 export const POSTS: Record<string, Post> = {
   'is-pfas-in-my-tap-water': {
@@ -140,14 +141,14 @@ export const POSTS: Record<string, Post> = {
     title: 'Best Water Filters for Lead Removal in 2026 (NSF Certified)',
     excerpt: 'There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.',
     seo: {
-      title: 'Best Water Filters for Lead Removal 2026 — NSF Certified & Lab Tested',
+      title: 'Water Filters That Remove Lead — Best Picks 2025–2026 (NSF 53)',
       description:
-        'Only NSF 53-certified filters actually remove lead from tap water. We ranked the top 7 by what they remove, cost per gallon, and independent lab results. Updated May 2026.',
+        'Best water filters for lead removal in 2025–2026: only NSF 53-certified pitchers & RO systems remove 99%+ lead. Ranked by lab proof, cost per gallon & install type.',
       canonical: 'https://watercheckup.com/blog/best-water-filter-for-lead-removal',
       openGraph: {
-        title: 'Best Water Filters for Lead Removal 2026 — NSF Certified & Lab Tested',
+        title: 'Water Filters That Remove Lead — Best Picks 2025–2026 (NSF 53)',
         description:
-          'Only NSF 53-certified filters actually remove lead from tap water. We ranked the top 7 by what they remove, cost per gallon, and independent lab results. Updated May 2026.',
+          'Best water filters for lead removal in 2025–2026: only NSF 53-certified pitchers & RO systems remove 99%+ lead. Ranked by lab proof, cost per gallon & install type.',
       },
     },
     date: '2026-03-29',
@@ -232,6 +233,13 @@ export const POSTS: Record<string, Post> = {
       React.createElement('h2', { style: h2Style }, 'Bottom Line'),
       React.createElement('p', { style: pStyle },
         'If your home was built before 1986, get a filter rated NSF 53 for lead — today. It\'s the single highest-impact thing you can do for your family\'s health and it costs less than a month of bottled water. Don\'t wait for a water crisis to hit your city. Don\'t assume your utility\'s compliance means you\'re safe. Filter at the tap.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'Also see our ',
+        React.createElement('a', { href: '/blog/what-water-filter-removes-pfas', style: linkStyle }, 'PFAS removal water filter guide'),
+        ' and run a free ',
+        React.createElement('a', { href: '/', style: linkStyle }, 'water quality check by ZIP'),
+        ' for your utility\'s EPA data.'
       ),
     ),
   },

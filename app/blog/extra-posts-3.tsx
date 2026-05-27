@@ -585,10 +585,15 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     title: 'What Water Filters Actually Remove PFAS? (NSF Certified Options Ranked)',
     excerpt: 'Not all filters remove PFAS. Here is exactly which technologies work, what certifications to look for, and how to choose the right filter for your situation.',
     seo: {
-      title: 'What Water Filter Actually Removes PFAS? (2026 Expert Guide)',
+      title: 'PFAS Removal Water Filter — NSF 58 & P473 Options (2026)',
       description:
-        "Most filters don't remove PFAS forever chemicals. Only reverse osmosis and NSF 58 certified filters work. Here's exactly which ones remove PFAS and how much they cost.",
+        'Which water filters remove PFAS? Only NSF 58 reverse osmosis & NSF P473 carbon systems are certified. Compare top PFAS removal filters, costs & install types.',
       canonical: 'https://watercheckup.com/blog/what-water-filter-removes-pfas',
+      openGraph: {
+        title: 'PFAS Removal Water Filter — NSF 58 & P473 Options (2026)',
+        description:
+          'Which water filters remove PFAS? Only NSF 58 reverse osmosis & NSF P473 carbon systems are certified. Compare top PFAS removal filters, costs & install types.',
+      },
     },
     date: '2026-04-22',
     dateDisplay: 'April 22, 2026',
@@ -645,7 +650,9 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'How to Know If You Have PFAS in Your Water'),
       React.createElement('p', { style: pStyle },
-        'Enter your ZIP code on WaterCheckup to check your utility\'s PFAS testing results from the EPA\'s UCMR5 monitoring program. If you are on well water, you need a certified lab test — well water is not included in the EPA monitoring data.'
+        'Enter your ZIP code on WaterCheckup to check your utility\'s PFAS testing results from the EPA\'s UCMR5 monitoring program. For example, see ',
+        React.createElement('a', { href: '/water/san-antonio', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'PFAS in San Antonio water'),
+        ' on our city report. If you are on well water, you need a certified lab test — well water is not included in the EPA monitoring data.'
       ),
     ),
   },

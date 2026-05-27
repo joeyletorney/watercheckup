@@ -253,6 +253,16 @@ export default function SanAntonioWaterPage() {
           </Link>
         </div>
 
+        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px', lineHeight: 1.3 }}>
+          San Antonio water quality &amp; contamination (2026)
+        </h2>
+        <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 28px' }}>
+          This page summarizes <strong style={{ color: '#e2e8f0' }}>San Antonio water quality</strong> and{' '}
+          <strong style={{ color: '#e2e8f0' }}>water contamination</strong> data from SAWS and federal EPA monitoring — including{' '}
+          <strong style={{ color: '#e2e8f0' }}>PFAS in San Antonio water</strong>, extreme hardness (272 mg/L), radium, and disinfection byproducts.
+          Use the contaminant table below for levels, health context, and NSF-certified filters matched to SAWS water.
+        </p>
+
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             CONTAMINANTS IN SAN ANTONIO WATER — 2024 DATA
@@ -435,6 +445,39 @@ export default function SanAntonioWaterPage() {
           >
             View SAWS Report →
           </a>
+        </div>
+
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RELATED GUIDES</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {[
+              { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter — NSF certified options' },
+              { href: '/blog/best-water-filter-for-lead-removal', label: 'Water filters that remove lead (NSF 53)' },
+              { href: '/blog/best-water-filter-hard-water', label: 'Best filters for hard water — San Antonio & more' },
+              { href: '/pfas', label: 'PFAS in tap water — EPA limits & filters' },
+              { href: '/water', label: 'All city water quality reports' },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '12px 16px',
+                  background: '#071828',
+                  border: '1px solid #1a3a5c',
+                  borderRadius: 8,
+                  textDecoration: 'none',
+                  color: '#94a3b8',
+                  fontSize: 14,
+                  fontWeight: 600,
+                }}
+              >
+                {label} <span style={{ color: '#22d3ee' }}>→</span>
+              </Link>
+            ))}
+          </div>
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 32 }}>

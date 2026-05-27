@@ -1754,6 +1754,7 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'fayetteville', name: 'Fayetteville, NC' },
   { slug: 'fort-worth', name: 'Fort Worth, TX' },
   { slug: 'fresno', name: 'Fresno, CA' },
+  { slug: 'gaithersburg', name: 'Gaithersburg, MD' },
   { slug: 'houston', name: 'Houston, TX' },
   { slug: 'indianapolis', name: 'Indianapolis, IN' },
   { slug: 'jackson', name: 'Jackson, MS' },
@@ -4428,6 +4429,32 @@ export default function WaterCheckup() {
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>BROWSE BY CITY</div>
           <p style={{ fontSize: 12, color: '#475569', marginBottom: 8, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
+            {[
+              { href: '/water/san-antonio', label: 'San Antonio water quality' },
+              { href: '/water/san-antonio', label: 'PFAS in San Antonio water' },
+              { href: '/water/gaithersburg', label: 'Gaithersburg water quality' },
+              { href: '/blog/best-water-filter-for-lead-removal', label: 'Water filters that remove lead' },
+              { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter' },
+            ].map(({ href, label }) => (
+              <Link
+                key={`${href}-${label}`}
+                href={href}
+                style={{
+                  padding: '8px 14px',
+                  background: 'linear-gradient(165deg, rgba(13,34,64,0.95), rgba(7,24,40,0.92))',
+                  border: '1px solid rgba(34,211,238,0.35)',
+                  borderRadius: 10,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: '#67e8f9',
+                  textDecoration: 'none',
+                }}
+              >
+                {label} →
+              </Link>
+            ))}
+          </div>
           <label htmlFor="wc-city-filter" style={{ display: 'block', fontSize: 12, color: '#94a3b8', marginBottom: 6 }}>
             Type to filter cities
           </label>

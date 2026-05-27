@@ -55,6 +55,7 @@ const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS; why?: s
   'phoenix':       { label: 'PFAS + high TDS detected', picks: RO_PICKS, why: 'Chosen for Phoenix because it removes both PFAS and the high dissolved solids common in Arizona groundwater.' },
   'philadelphia':  { label: 'PFAS from Delaware River', picks: RO_PICKS, why: 'Chosen for Philadelphia because it removes PFAS from the Delaware River source — the primary concern for Philly residents.' },
   'san-antonio':   { label: 'Hard water + DBP violations', picks: RO_PICKS, why: 'Chosen for San Antonio because it specifically addresses disinfection byproducts and hard water — the two primary concerns for SAWS customers.' },
+  'gaithersburg':  { label: 'DBPs + PFAS monitoring', picks: RO_PICKS, why: 'Chosen for Gaithersburg/WSSC customers because under-sink RO removes PFAS, lead at the tap, and disinfection byproducts in one certified system.' },
   'dallas':        { label: 'Elevated THMs + HAA5', picks: RO_PICKS, why: 'Chosen for Dallas because RO reliably removes trihalomethanes and haloacetic acids logged in Dallas water violations.' },
   'miami':         { label: 'PFAS + aging infrastructure', picks: RO_PICKS, why: 'Chosen for Miami because it removes PFAS and protects against contaminants from aging South Florida infrastructure.' },
   'seattle':       { label: 'Building pipe lead risk', picks: PITCHER_PICKS, why: 'Chosen for Seattle because building pipe lead risk is the main concern — a certified pitcher is practical for renters.' },
@@ -268,13 +269,37 @@ export default function CityPage({ params }: { params: { city: string } }) {
             WATER QUALITY REPORT
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
-            {cd ? `${cd.name}, ${cd.state}` : cityName} tap water: what&apos;s in it in 2026
+            {slug === 'gaithersburg'
+              ? 'Gaithersburg, MD Water Quality Report'
+              : cd
+                ? `${cd.name}, ${cd.state} tap water: what\u2019s in it in 2026`
+                : `${cityName} tap water: what\u2019s in it in 2026`}
           </h1>
 
-          {cd && (
+          {slug === 'gaithersburg' && (
+            <>
+              <h2 style={{ fontSize: 20, fontWeight: 800, color: '#e2e8f0', margin: '0 0 10px', lineHeight: 1.3 }}>
+                Gaithersburg water quality (WSSC Water)
+              </h2>
+              <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.7 }}>
+                Gaithersburg is served by{' '}
+                <strong style={{ color: '#e2e8f0' }}>WSSC Water</strong> (Washington Suburban Sanitary Commission).
+                Below: EPA violation history, UCMR5 PFAS monitoring, lead risk in older homes, and NSF-certified filters
+                for Montgomery County tap water.
+              </p>
+            </>
+          )}
+
+          {cd && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.6 }}>
               Serving {cd.population} residents via {cd.system}
               {cityBlurbText ? ` · ${cityBlurbText}` : ''}
+            </p>
+          )}
+
+          {cd && slug === 'gaithersburg' && (
+            <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.6 }}>
+              Serving {cd.population} residents via {cd.system}
             </p>
           )}
 

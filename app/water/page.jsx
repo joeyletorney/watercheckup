@@ -12,6 +12,7 @@ export const metadata = {
 const cities = {
   Northeast: [
     { name: 'Baltimore, MD', slug: 'baltimore' },
+    { name: 'Gaithersburg, MD', slug: 'gaithersburg' },
     { name: 'Boston, MA', slug: 'boston' },
     { name: 'Buffalo, NY', slug: 'buffalo' },
     { name: 'Hartford, CT', slug: 'hartford' },
@@ -188,6 +189,26 @@ export default function WaterDirectoryPage() {
           <span>✅ PFAS UCMR5 monitoring data</span>
           <span>✅ Lead tap sampling results</span>
           <span>✅ 100% free, no login</span>
+        </div>
+        <div className="flex flex-wrap justify-center gap-3 text-sm mb-8">
+          <Link
+            href="/water/san-antonio"
+            className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            San Antonio water quality →
+          </Link>
+          <Link
+            href="/water/san-antonio"
+            className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            San Antonio water contamination →
+          </Link>
+          <Link
+            href="/water/gaithersburg"
+            className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            Gaithersburg water quality →
+          </Link>
         </div>
         {/* ZIP search CTA */}
         <div className="bg-blue-600 text-white rounded-xl p-6 max-w-xl mx-auto">

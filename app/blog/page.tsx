@@ -196,9 +196,9 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal in 2026 (NSF Certified)',
+    title: 'Water Filters That Remove Lead — Best 2025–2026 (NSF 53)',
     excerpt:
-      'There is no safe level of lead in drinking water. These are the only filters that are actually certified to remove it — ranked by performance and price.',
+      'There is no safe level of lead in drinking water. These NSF 53-certified filters actually remove 99%+ lead — ranked by performance and price.',
     date: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',
@@ -214,8 +214,8 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'what-water-filter-removes-pfas': {
-    title: 'What Water Filters Actually Remove PFAS? (NSF Certified Options Ranked)',
-    excerpt: 'Not all filters that claim to remove PFAS are certified to do it. Here are the only options with real NSF 58 or NSF 473 data behind them.',
+    title: 'PFAS Removal Water Filter — NSF 58 & P473 (2026)',
+    excerpt: 'Which water filters remove PFAS? Only NSF 58 reverse osmosis and P473 carbon systems are certified — ranked with real lab data.',
     date: 'April 22, 2026',
     readTime: '9 min read',
     badge: 'PFAS',

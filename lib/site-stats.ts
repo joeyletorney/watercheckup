@@ -18,7 +18,7 @@ export const SITE_HERO_TAGLINE =
   'Enter your ZIP, city, county, or utility for EPA-backed reports and contaminant-matched filter picks — free, no login.';
 
 export const SITE_HOME_META_DESCRIPTION =
-  'The most comprehensive free water quality database in America. 400,000+ water utilities, all 50 states, built by Joe Letorney — 30-year water treatment expert and former WQA Certified Specialist. Check your city, county, ZIP, or utility now.';
+  'Free water quality check by ZIP, city, or utility — the most comprehensive database in America. 400,000+ utilities, all 50 states, built by Joe Letorney, 30-year water treatment expert. EPA data, PFAS & filter picks.';
 
 export const SITE_FOOTER_TAGLINE =
   'WaterCheckup — The most comprehensive free water quality database in America. Built by a real water expert, not a tech company.';

@@ -135,7 +135,7 @@ const FAQS = [
   },
   {
     q: 'What cities have the hardest water?',
-    a: 'San Antonio (272 mg/L), Phoenix (288 mg/L), Las Vegas (290 mg/L), and Indianapolis are consistently ranked among the hardest. Check your specific ZIP at WaterCheckup.',
+    a: 'San Antonio (272 mg/L), Phoenix (288 mg/L), Las Vegas (290 mg/L), and Indianapolis are consistently ranked among the hardest. See our San Antonio water quality report for SA-specific data.',
   },
 ] as const;
 
@@ -327,6 +327,14 @@ export default function BestFilterHardWaterPage() {
             <strong style={{ color: '#e2e8f0' }}>Bottom line:</strong> Salt-free conditioners reduce scale buildup and are maintenance-free (no salt, no backwash). But they don&apos;t improve the feel of water for skin/hair and won&apos;t register as &quot;soft&quot; on a hardness test. For very hard water above 15 gpg, salt-based softeners are significantly more effective.
           </p>
         </div>
+
+        <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+          Very hard water cities: see our{' '}
+          <Link href="/water/san-antonio" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+            San Antonio water quality &amp; contamination report
+          </Link>{' '}
+          (272 mg/L hardness, PFAS data).
+        </p>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px' }}>FAQ</h2>

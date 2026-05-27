@@ -292,11 +292,13 @@ export default function PfasPage() {
           <span style={label}>RELATED GUIDES</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
+              { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter — NSF certified options' },
+              { href: '/water/san-antonio', label: 'PFAS in San Antonio water — free city report' },
               { href: '/lead', label: 'Lead in Tap Water — EPA Data, Health Risks, and Best Filters' },
               { href: '/well', label: 'Well Water Filter Guide — Unregulated Risks by State' },
               { href: '/contaminants', label: 'Water Contaminant Guide — Every Major Contaminant Explained' },
               { href: '/quiz', label: 'Take the Filter Quiz — Get Matched to the Right System' },
-              { href: '/', label: 'Check Your ZIP Code — Full EPA Water Report' },
+              { href: '/', label: 'Free water quality check by ZIP — full EPA report' },
             ].map(({ href, label: lbl }) => (
               <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#94a3b8', fontSize: 14, fontWeight: 600 }}>
                 {lbl} <span style={{ color: '#0891b2' }}>→</span>

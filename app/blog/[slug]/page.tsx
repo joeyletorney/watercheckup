@@ -225,7 +225,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>CHECK YOUR CITY'S WATER</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
             {[
-              { slug: 'san-antonio', name: 'San Antonio, TX' },
+              { slug: 'san-antonio', name: 'San Antonio water quality' },
+              { slug: 'gaithersburg', name: 'Gaithersburg water quality' },
               { slug: 'chicago', name: 'Chicago, IL' },
               { slug: 'houston', name: 'Houston, TX' },
               { slug: 'los-angeles', name: 'Los Angeles, CA' },

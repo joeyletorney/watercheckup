@@ -139,6 +139,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   /** Pinned URLs: override changeFrequency / priority (and dedupe same URL). */
   const pinned: MetadataRoute.Sitemap = [
     { url: `${base}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/gaithersburg`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${base}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/water/phoenix`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/best-water-filter-hard-water`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },

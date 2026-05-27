@@ -244,6 +244,18 @@ export const CITIES: Record<string, {
     ],
     urgency: 'high',
   },
+  'gaithersburg': {
+    name: 'Gaithersburg', state: 'MD', zip: '20877', population: '70K',
+    system: 'Washington Suburban Sanitary Commission (WSSC Water)', pwsid: 'MD0150005',
+    issues: ['Disinfection byproducts', 'PFAS monitoring', 'Lead in older home plumbing'],
+    facts: [
+      'Gaithersburg is served by WSSC Water, one of the largest utilities in the US (Montgomery & Prince George\'s counties).',
+      'WSSC draws primarily from the Potomac River and Patuxent River — surface water treated to federal standards.',
+      'PFAS has been monitored under EPA UCMR5; treat at the tap if you want extra protection beyond utility compliance.',
+      'Homes built before 1986 should test for lead from premise plumbing even when the utility meets EPA limits.',
+    ],
+    urgency: 'medium',
+  },
   'memphis': {
     name: 'Memphis', state: 'TN', zip: '38101', population: '630K',
     system: 'Memphis Light Gas and Water', pwsid: 'TN0000613',

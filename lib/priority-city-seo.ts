@@ -11,9 +11,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'NYC tap water contains PFAS and other contaminants above health guidelines. See the full EPA report for your neighborhood and the best filter for New York City tap water.',
   },
   'san-antonio': {
-    title: 'San Antonio Tap Water 2026 — Contamination Warning Issued',
+    title: 'San Antonio Water Quality 2026 — PFAS, Hardness & Contamination',
     description:
-      'San Antonio water has contaminants above EPA health guidelines including PFAS. See current levels, health risks, and certified filter recommendations. Free report.',
+      'Is San Antonio tap water safe? Free 2024–2025 SAWS report on water quality, PFAS, hardness, radium & contamination — plus NSF-certified filters for San Antonio homes.',
+  },
+  gaithersburg: {
+    title: 'Gaithersburg Water Quality 2026 — WSSC Tap Water Report (Free)',
+    description:
+      'Gaithersburg, MD water quality from WSSC Water: EPA violations, PFAS UCMR5 data, lead risk in older homes, and certified filter picks. Free Montgomery County report.',
   },
   'los-angeles': {
     title: 'Los Angeles Tap Water 2026 — Chromium-6 & PFAS Detected',
