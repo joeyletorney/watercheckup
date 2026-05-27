@@ -4433,6 +4433,8 @@ export default function WaterCheckup() {
             {[
               { href: '/water/san-antonio', label: 'San Antonio water quality' },
               { href: '/water/san-antonio', label: 'PFAS in San Antonio water' },
+              { href: '/blog/san-antonio-water-quality', label: 'San Antonio water contamination report' },
+              { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio water (2026)' },
               { href: '/water/gaithersburg', label: 'Gaithersburg water quality' },
               { href: '/blog/best-water-filter-for-lead-removal', label: 'Water filters that remove lead' },
               { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter' },

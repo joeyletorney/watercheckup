@@ -209,6 +209,18 @@ export default function WaterDirectoryPage() {
           >
             Gaithersburg water quality →
           </Link>
+          <Link
+            href="/blog/san-antonio-water-quality"
+            className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            San Antonio water contamination report →
+          </Link>
+          <Link
+            href="/blog/pfas-in-san-antonio-water"
+            className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            PFAS in San Antonio water →
+          </Link>
         </div>
         {/* ZIP search CTA */}
         <div className="bg-blue-600 text-white rounded-xl p-6 max-w-xl mx-auto">
