@@ -188,8 +188,11 @@ export default function SanAntonioWaterPage() {
         <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 8px' }}>
           San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2025 data
         </p>
-        <p style={{ fontSize: 13, color: '#475569', margin: '0 0 28px' }}>
+        <p style={{ fontSize: 13, color: '#475569', margin: '0 0 8px' }}>
           Source: SAWS 2025 Water Quality Report (2024 data) · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
+        </p>
+        <p style={{ fontSize: 12, color: '#334155', margin: '0 0 28px' }}>
+          Updated May 2026 · 2024 SAWS data
         </p>
 
         <div
@@ -461,6 +464,8 @@ export default function SanAntonioWaterPage() {
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RELATED GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
+              { href: '/blog/san-antonio-water-quality', label: 'San Antonio water quality 2026 — full SAWS report' },
+              { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio water — levels & filters' },
               { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter — NSF certified options' },
               { href: '/blog/best-water-filter-for-lead-removal', label: 'Water filters that remove lead (NSF 53)' },
               { href: '/blog/best-water-filter-hard-water', label: 'Best filters for hard water — San Antonio & more' },

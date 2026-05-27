@@ -25,6 +25,22 @@ const POST_BY_SLUG: Record<
   string,
   { title: string; excerpt: string; date: string; readTime: string; badge: string; badgeColor: string }
 > = {
+  'san-antonio-water-quality': {
+    title: 'San Antonio Water Quality Report 2026 — Is SAWS Water Safe?',
+    excerpt: 'San Antonio tap water meets EPA standards but contains PFAS, radium, and some of the hardest water in the US. Here\'s what the 2024 SAWS data actually shows.',
+    date: 'May 27, 2026',
+    readTime: '9 min read',
+    badge: 'San Antonio',
+    badgeColor: '#0891b2',
+  },
+  'pfas-in-san-antonio-water': {
+    title: 'PFAS in San Antonio Water — What the 2024 SAWS Data Shows',
+    excerpt: 'PFAS "forever chemicals" have been detected in San Antonio tap water. Here\'s exactly what was found, what the levels mean, and which filters actually remove PFAS from SAWS water.',
+    date: 'May 27, 2026',
+    readTime: '8 min read',
+    badge: 'PFAS',
+    badgeColor: '#ef4444',
+  },
   'is-new-york-city-tap-water-safe-2026': {
     title: 'Is New York City Tap Water Safe to Drink in 2026?',
     excerpt:
@@ -334,6 +350,8 @@ const POST_BY_SLUG: Record<
  * then filters & testing, contaminants & health, wells, then broader home / purity guides.
  */
 const BLOG_INDEX_ORDER = [
+  'san-antonio-water-quality',
+  'pfas-in-san-antonio-water',
   'is-new-york-city-tap-water-safe-2026',
   'pfas-in-new-york-city-water',
   'is-pfas-in-my-tap-water',
