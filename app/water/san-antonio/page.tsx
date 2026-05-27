@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import type { Metadata } from 'next';
+import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { CITIES } from '../[city]/cities-data';
 
@@ -153,9 +154,18 @@ const FAQS = [
   },
 ] as const;
 
+const sanAntonioFaqSchema = buildFaqPageSchema(
+  FAQS.map(({ q, a }) => ({ name: q, text: a })),
+  'https://watercheckup.com/water/san-antonio#faq'
+);
+
 export default function SanAntonioWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sanAntonioFaqSchema) }}
+      />
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>

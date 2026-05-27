@@ -14,6 +14,8 @@ import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
+import { buildFaqPageSchema } from '@/lib/build-faq-schema';
+import { isDedicatedWaterCitySlug } from '@/lib/dedicated-water-city-routes';
 import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
 import { computeWaterScore } from '@/lib/city-water-score';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
@@ -113,7 +115,9 @@ const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress
 };
 
 export async function generateStaticParams() {
-  return Object.keys(CITIES).map(city => ({ city }));
+  return Object.keys(CITIES)
+    .filter((city) => !isDedicatedWaterCitySlug(city))
+    .map((city) => ({ city }));
 }
 
 export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
@@ -177,54 +181,29 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const waterScore = cd ? computeWaterScore(cd.urgency, cd.issues, pfas) : null;
   const keyFinding = cd ? getCityKeyFinding(cd.urgency, cd.issues, pfas) : '';
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
+  const faqSchema = buildFaqPageSchema(
+    [
       {
-        '@type': 'Question',
         name: `Is ${cd?.name ?? cityName} tap water safe to drink in 2026?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: cd && waterScore
-            ? `${cd.name} earns Water Safety Grade ${waterScore.grade} (${waterScore.score}/100) on WaterCheckup — ${keyFinding}. ${cd.urgency === 'high' ? `Known issues include ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : 'EPA compliance does not mean contaminant-free; sensitive households should still consider NSF-certified filtration.'}`
-            : `See EPA monitoring data, PFAS UCMR5 results, and WaterCheckup's A–F grade for ${cd?.name ?? cityName} on this page.`,
-        },
+        text: cd && waterScore
+          ? `${cd.name} earns Water Safety Grade ${waterScore.grade} (${waterScore.score}/100) on WaterCheckup — ${keyFinding}. ${cd.urgency === 'high' ? `Known issues include ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : 'EPA compliance does not mean contaminant-free; sensitive households should still consider NSF-certified filtration.'}`
+          : `See EPA monitoring data, PFAS UCMR5 results, and WaterCheckup's A–F grade for ${cd?.name ?? cityName} on this page.`,
       },
       {
-        '@type': 'Question',
-        name: 'How is WaterCheckup different from other water quality checkers?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Most water quality checkers tap one EPA database. WaterCheckup combines five federal datasets plus EWG health guidelines — SDWIS violations, UCMR5 PFAS monitoring, enforcement history, lead tap sampling, and lead service line inventory — into one free report with an expert-backed Water Safety Grade.',
-        },
-      },
-      {
-        '@type': 'Question',
         name: `Does ${cd?.name ?? cityName} water have PFAS?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `EPA UCMR5 monitoring for ${cd?.name ?? cityName} (PWSID ${cd?.pwsid ?? ''}) is on this page. ${pfas?.compounds.length ? 'PFAS has been detected in federal monitoring for this system.' : 'Check the table below for the latest UCMR5 snapshot.'} Only reverse osmosis (NSF 58) or NSF P473-certified filters reliably remove PFAS; standard pitchers do not.`,
-        },
+        text: `EPA UCMR5 monitoring for ${cd?.name ?? cityName} (PWSID ${cd?.pwsid ?? ''}) is on this page. ${pfas?.compounds.length ? 'PFAS has been detected in federal monitoring for this system.' : 'Check the table below for the latest UCMR5 snapshot.'} Only reverse osmosis (NSF 58) or NSF P473-certified filters reliably remove PFAS; standard pitchers do not.`,
       },
       {
-        '@type': 'Question',
         name: `Does ${cd?.name ?? cityName} water have lead?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Lead usually comes from service lines and building plumbing in ${cd?.name ?? cityName}, not the treatment plant. Pre-1986 homes are highest risk. NSF 53-certified pitchers or reverse osmosis remove lead at the tap.`,
-        },
+        text: `Lead usually comes from service lines and building plumbing in ${cd?.name ?? cityName}, not the treatment plant. Pre-1986 homes are highest risk. NSF 53-certified pitchers or reverse osmosis remove lead at the tap.`,
       },
       {
-        '@type': 'Question',
         name: `What water filter is best for ${cd?.name ?? cityName}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `For ${cd?.name ?? cityName}'s profile (${keyFinding}), reverse osmosis covers PFAS, lead, and disinfection byproducts. Renters can use a countertop RO; homeowners often choose under-sink NSF 58 systems ranked on this page.`,
-        },
+        text: `For ${cd?.name ?? cityName}'s profile (${keyFinding}), reverse osmosis covers PFAS, lead, and disinfection byproducts. Renters can use a countertop RO; homeowners often choose under-sink NSF 58 systems ranked on this page.`,
       },
     ],
-  };
+    `https://watercheckup.com/water/${slug}#faq`
+  );
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>

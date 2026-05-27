@@ -1,9 +1,5 @@
-/** Shared FAQPage JSON-LD — homepage + differentiation in search */
-export const SITE_FAQ_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  '@id': 'https://watercheckup.com/#faq',
-  mainEntity: [
+/** Site-wide FAQ entities — use on homepage only (not in root layout @graph). */
+export const SITE_FAQ_MAIN_ENTITY = [
     {
       '@type': 'Question',
       name: 'How is WaterCheckup different from other water quality checkers?',
@@ -36,5 +32,12 @@ export const SITE_FAQ_SCHEMA = {
         text: 'Only reverse osmosis (NSF/ANSI 58) and select carbon systems (NSF 401 or P473) are certified to remove PFAS forever chemicals. Standard Brita pitchers improve taste but are not certified for PFAS. WaterCheckup shows PFAS levels for your utility and recommends NSF-certified systems matched to your water profile.',
       },
     },
-  ],
+] as const;
+
+/** Full FAQPage JSON-LD for the homepage */
+export const SITE_FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://watercheckup.com/#faq',
+  mainEntity: SITE_FAQ_MAIN_ENTITY,
 } as const;

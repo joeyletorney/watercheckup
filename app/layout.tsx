@@ -7,8 +7,6 @@ import { WaterCanvas } from './components/WaterCanvas'
 import { GaPageView } from './components/GaPageView'
 import { SiteFooter } from './components/SiteFooter'
 import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
-import { SITE_FAQ_SCHEMA } from '@/lib/site-faq-schema'
-
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -126,7 +124,6 @@ const jsonLd = {
       about: { '@id': 'https://watercheckup.com/#organization' },
       description: SITE_HOME_META_DESCRIPTION,
     },
-    SITE_FAQ_SCHEMA,
   ],
 }
 
