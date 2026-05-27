@@ -11,6 +11,7 @@ import path from "path";
 
 import { CITIES } from "../app/water/[city]/cities-data";
 import ucmr5Raw from "../lib/ucmr5.json";
+import { score88ToLetterGrade } from "../lib/water-grade";
 
 const CSV_URL =
   "https://raw.githubusercontent.com/grammakov/USA-cities-and-states/master/us_cities_states_counties.csv";
@@ -168,11 +169,12 @@ function computeWaterScoreNum(
 }
 
 function letterGradeFromScore(score: number): { grade: string; gradeColor: string } {
-  if (score >= 80) return { grade: "A", gradeColor: "#22d3ee" };
-  if (score >= 65) return { grade: "B", gradeColor: "#86efac" };
-  if (score >= 50) return { grade: "C", gradeColor: "#f59e0b" };
-  if (score >= 35) return { grade: "D", gradeColor: "#f97316" };
-  return { grade: "F", gradeColor: "#ef4444" };
+  const grade = score88ToLetterGrade(score);
+  if (grade.startsWith("A")) return { grade, gradeColor: "#22d3ee" };
+  if (grade.startsWith("B")) return { grade, gradeColor: "#86efac" };
+  if (grade.startsWith("C")) return { grade, gradeColor: "#f59e0b" };
+  if (grade.startsWith("D")) return { grade, gradeColor: "#f97316" };
+  return { grade, gradeColor: "#ef4444" };
 }
 
 function parsePopulation(pop: string): number {
@@ -270,27 +272,7 @@ async function main(): Promise<void> {
 
     const pfas = getPfasData(cd.pwsid);
     const score = computeWaterScoreNum(cd.urgency, cd.issues, pfas);
-    const { grade, gradeColor } = (() => {
-      let g: string;
-      let gc: string;
-      if (score >= 80) {
-        g = "A-";
-        gc = "#22d3ee";
-      } else if (score >= 65) {
-        g = "B";
-        gc = "#86efac";
-      } else if (score >= 50) {
-        g = "C";
-        gc = "#f59e0b";
-      } else if (score >= 35) {
-        g = "D";
-        gc = "#f97316";
-      } else {
-        g = "F";
-        gc = "#ef4444";
-      }
-      return { grade: g, gradeColor: gc };
-    })();
+    const { grade, gradeColor } = letterGradeFromScore(score);
 
     const band = cityRiskBand(cd.urgency, pfas);
     const contaminantsAboveLimit = pfas

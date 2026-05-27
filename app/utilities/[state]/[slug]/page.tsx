@@ -11,6 +11,7 @@ import EmailCapture from "@/app/water/[city]/EmailCapture";
 import TopPickBox from "@/app/water/[city]/TopPickBox";
 import { sdwisPublicReportUrl } from "@/lib/epa-data";
 import { stateLabel } from "@/lib/us-state-names";
+import { score88ToLetterGrade } from "@/lib/water-grade";
 import ucmr5Raw from "@/lib/ucmr5.json";
 import { getAllUtilityStaticParams, getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
 
@@ -169,27 +170,22 @@ function computeUtilityGrade(
   }
   score = Math.max(0, Math.min(88, score));
 
-  let grade: string;
+  const grade = score88ToLetterGrade(score);
   let gradeColor: string;
   let label: string;
-  if (score >= 80) {
-    grade = "A";
+  if (grade.startsWith("A")) {
     gradeColor = "#22d3ee";
     label = "Good";
-  } else if (score >= 65) {
-    grade = "B";
+  } else if (grade.startsWith("B")) {
     gradeColor = "#86efac";
     label = "Fair";
-  } else if (score >= 50) {
-    grade = "C";
+  } else if (grade.startsWith("C")) {
     gradeColor = "#f59e0b";
     label = "Concerning";
-  } else if (score >= 35) {
-    grade = "D";
+  } else if (grade.startsWith("D")) {
     gradeColor = "#f97316";
     label = "Poor";
   } else {
-    grade = "F";
     gradeColor = "#ef4444";
     label = "High risk";
   }

@@ -1,3 +1,5 @@
+import { score88ToLetterGrade } from './water-grade';
+
 /** UCMR5-shaped PFAS snapshot used for city score + SEO */
 export type CityPfasSnapshot = {
   maxPpt: number;
@@ -33,33 +35,28 @@ export function computeWaterScore(
 
   score = Math.max(0, Math.min(88, score));
 
-  let grade: string;
+  const grade = score88ToLetterGrade(score);
   let gradeColor: string;
   let label: string;
   let scoreColor: string;
 
-  if (score >= 80) {
-    grade = 'A-';
+  if (grade.startsWith('A')) {
     gradeColor = '#22d3ee';
     label = 'Good';
     scoreColor = '#22d3ee';
-  } else if (score >= 65) {
-    grade = 'B';
+  } else if (grade.startsWith('B')) {
     gradeColor = '#86efac';
     label = 'Fair';
     scoreColor = '#86efac';
-  } else if (score >= 50) {
-    grade = 'C';
+  } else if (grade.startsWith('C')) {
     gradeColor = '#f59e0b';
     label = 'Concerning';
     scoreColor = '#f59e0b';
-  } else if (score >= 35) {
-    grade = 'D';
+  } else if (grade.startsWith('D')) {
     gradeColor = '#f97316';
     label = 'Poor';
     scoreColor = '#f97316';
   } else {
-    grade = 'F';
     gradeColor = '#ef4444';
     label = 'High Risk';
     scoreColor = '#ef4444';

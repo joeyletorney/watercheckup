@@ -7,6 +7,7 @@ import EmailCapture from '../../[city]/EmailCapture';
 import ucmr5Raw from '../../../../lib/ucmr5.json';
 import { getCountiesForStateAbbr } from '@/lib/county-data';
 import { getAverageHardnessForState } from '@/lib/water-hardness';
+import { score88ToLetterGrade } from '@/lib/water-grade';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?]
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -59,22 +60,17 @@ function computeWaterScore(
     else if (pfasData.maxPpt > 10) score -= 4;
   }
   score = Math.max(0, Math.min(88, score));
-  let grade: string;
+  const grade = score88ToLetterGrade(score);
   let gradeColor: string;
-  if (score >= 80) {
-    grade = 'A-';
+  if (grade.startsWith('A')) {
     gradeColor = '#22d3ee';
-  } else if (score >= 65) {
-    grade = 'B';
+  } else if (grade.startsWith('B')) {
     gradeColor = '#86efac';
-  } else if (score >= 50) {
-    grade = 'C';
+  } else if (grade.startsWith('C')) {
     gradeColor = '#f59e0b';
-  } else if (score >= 35) {
-    grade = 'D';
+  } else if (grade.startsWith('D')) {
     gradeColor = '#f97316';
   } else {
-    grade = 'F';
     gradeColor = '#ef4444';
   }
   return { score, grade, gradeColor };

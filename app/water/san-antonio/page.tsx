@@ -211,7 +211,7 @@ export default function SanAntonioWaterPage() {
           <div style={{ textAlign: 'center', flexShrink: 0 }}>
             <div style={{ fontSize: 48, fontWeight: 900, color: '#f59e0b', lineHeight: 1 }}>63</div>
             <div style={{ fontSize: 12, color: '#64748b' }}>/ 88</div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: '#f59e0b' }}>C</div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: '#f59e0b' }}>C-</div>
           </div>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#f59e0b', marginBottom: 6 }}>Concerning</div>
