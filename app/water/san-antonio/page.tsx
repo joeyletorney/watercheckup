@@ -411,6 +411,82 @@ export default function SanAntonioWaterPage() {
           ))}
         </div>
 
+        {/* AdSense slot — mid-page (between filters and FAQ) */}
+        <div
+          id="wc-ad-mid"
+          style={{ margin: '0 0 20px', minHeight: 90, background: 'transparent', textAlign: 'center' }}
+          aria-label="Advertisement"
+        />
+
+        {/* Reddit community block */}
+        <div style={{ padding: '20px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#f97316', letterSpacing: 2, marginBottom: 4 }}>
+            WHAT SAN ANTONIO RESIDENTS SAY
+          </div>
+          <div style={{ fontSize: 12, color: '#475569', marginBottom: 16 }}>
+            Compiled from r/sanantonio and r/watertreatment discussions — summarized themes, not endorsements
+          </div>
+
+          {[
+            {
+              theme: '"The scale is real — water heater died in 4 years"',
+              detail: 'Hard water scale is the #1 complaint from SA residents. Multiple threads report water heaters, dishwashers, and coffee makers failing earlier than expected. The recurring fix: a whole-home salt-based softener paired with an RO for drinking.',
+              tag: 'Hard Water',
+              tagColor: '#f97316',
+            },
+            {
+              theme: '"RO under the sink was a game changer for taste"',
+              detail: 'The most-recommended fix for SA drinking water across Reddit threads is an under-sink reverse osmosis system. Users specifically cite the improvement in taste and the removal of the "mineral" aftertaste common with Edwards Aquifer water.',
+              tag: 'Filters',
+              tagColor: '#0891b2',
+            },
+            {
+              theme: '"I tested for PFAS after the EPA announcement"',
+              detail: 'After the EPA\'s 2024 PFAS rule, several SA residents posted about getting home tests or switching to RO pitchers. The Clearly Filtered pitcher is frequently mentioned as the most accessible no-install option for renters.',
+              tag: 'PFAS',
+              tagColor: '#ef4444',
+            },
+            {
+              theme: '"SAWS meets legal limits — but that\'s not the same as clean"',
+              detail: 'A recurring theme in r/sanantonio water threads: residents understanding the difference between EPA compliance and independent health guidelines. Many reference EWG data showing contaminants above health-advisory levels even when legal limits are met.',
+              tag: 'EPA Compliance',
+              tagColor: '#94a3b8',
+            },
+          ].map(({ theme, detail, tag, tagColor }) => (
+            <div
+              key={tag}
+              style={{
+                padding: '14px 16px',
+                background: '#0d2240',
+                border: '1px solid #0f2336',
+                borderRadius: 10,
+                marginBottom: 10,
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, padding: '2px 7px', borderRadius: 4, background: `${tagColor}22`, color: tagColor, border: `1px solid ${tagColor}44` }}>
+                  {tag}
+                </span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.4 }}>
+                  {theme}
+                </span>
+              </div>
+              <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.6 }}>{detail}</p>
+            </div>
+          ))}
+
+          <div style={{ marginTop: 14, fontSize: 12, color: '#334155' }}>
+            Sources:{' '}
+            <a href="https://www.reddit.com/r/sanantonio/search/?q=water+quality" target="_blank" rel="noopener noreferrer" style={{ color: '#475569', textDecoration: 'underline' }}>
+              r/sanantonio water discussions
+            </a>
+            {' · '}
+            <a href="https://www.reddit.com/r/watertreatment/search/?q=san+antonio" target="_blank" rel="noopener noreferrer" style={{ color: '#475569', textDecoration: 'underline' }}>
+              r/watertreatment
+            </a>
+          </div>
+        </div>
+
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             FREQUENTLY ASKED QUESTIONS
@@ -459,6 +535,13 @@ export default function SanAntonioWaterPage() {
             View SAWS Report →
           </a>
         </div>
+
+        {/* AdSense slot — below FAQ, above related guides */}
+        <div
+          id="wc-ad-bottom"
+          style={{ margin: '0 0 20px', minHeight: 90, background: 'transparent', textAlign: 'center' }}
+          aria-label="Advertisement"
+        />
 
         <div style={{ marginBottom: 28 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RELATED GUIDES</div>
