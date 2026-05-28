@@ -202,7 +202,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         text: `For ${cd?.name ?? cityName}'s profile (${keyFinding}), reverse osmosis covers PFAS, lead, and disinfection byproducts. Renters can use a countertop RO; homeowners often choose under-sink NSF 58 systems ranked on this page.`,
       },
     ],
-    `https://watercheckup.com/water/${slug}#faq`
+    `https://watercheckup.com/water/${slug}`
   );
 
   return (

@@ -134,7 +134,7 @@ const FAQS = [
   },
   {
     q: 'Why is San Antonio water so hard?',
-    a: 'SA water comes from the Edwards Aquifer, which runs through porous limestone rock. As water moves through the limestone, it dissolves calcium and magnesium — the minerals that cause hardness. At 272 mg/L, SA water is classified as “very hard.”',
+    a: 'SA water comes from the Edwards Aquifer, which runs through porous limestone rock. As water moves through the limestone, it dissolves calcium and magnesium — the minerals that cause hardness. At 272 mg/L, SA water is classified as very hard.',
   },
   {
     q: 'Does San Antonio water have PFAS?',
@@ -156,7 +156,7 @@ const FAQS = [
 
 const sanAntonioFaqSchema = buildFaqPageSchema(
   FAQS.map(({ q, a }) => ({ name: q, text: a })),
-  'https://watercheckup.com/water/san-antonio#faq'
+  'https://watercheckup.com/water/san-antonio'
 );
 
 export default function SanAntonioWaterPage() {
@@ -487,17 +487,24 @@ export default function SanAntonioWaterPage() {
           </div>
         </div>
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
-            FREQUENTLY ASKED QUESTIONS
-          </div>
+        <section
+          id="faq"
+          aria-labelledby="sa-faq-heading"
+          style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}
+        >
+          <h2
+            id="sa-faq-heading"
+            style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px', textTransform: 'uppercase' }}
+          >
+            Frequently asked questions
+          </h2>
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>
+              <h3 style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', margin: '0 0 6px', lineHeight: 1.4 }}>{faq.q}</h3>
               <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
             </div>
           ))}
-        </div>
+        </section>
 
         <div
           style={{
