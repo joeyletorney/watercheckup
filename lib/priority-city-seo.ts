@@ -26,14 +26,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       "LA's water has a complicated history. Check detected contaminants pulled from 5 EPA databases — free, no account needed.",
   },
   houston: {
-    title: 'Houston Tap Water 2026 — 5 Contaminants Above EPA Guidelines',
+    title: 'Houston Water Quality Report – Contaminants in Houston Tap Water',
     description:
-      'Houston water has 5 contaminants exceeding EPA health limits including PFAS and disinfection byproducts. Free report and filter recommendations.',
+      "Houston's water supply serves millions — but what's actually in it? Check detected contaminants from EPA data, free at WaterCheckup.com.",
   },
   philadelphia: {
-    title: 'Philadelphia Tap Water 2026 — PFOA Levels Above Health Limits',
+    title: "Philadelphia Water Quality Report – What's in Philly Tap Water?",
     description:
-      'Philadelphia water has some of the highest PFOA levels of any major US city. See the full EPA contamination report and filter recommendations.',
+      "Philadelphia's water has faced scrutiny for years. See exactly what contaminants are detected, pulled from 5 EPA databases. Free lookup.",
   },
   chicago: {
     title: 'Chicago Tap Water 2026 — Lead Pipes Still a Serious Risk',
@@ -41,9 +41,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Chicago has more lead service lines than almost any US city. See if your neighborhood is affected and what filter removes lead from tap water.',
   },
   phoenix: {
-    title: 'Phoenix Tap Water 2026 — Is It Safe to Drink?',
+    title: "Phoenix Water Quality Report – What's in Arizona Tap Water?",
     description:
-      'Phoenix water comes from the Colorado River and local groundwater. See current PFAS levels, contaminant data, and filter recommendations for your ZIP code.',
+      'Phoenix draws from the Colorado River — and that comes with tradeoffs. See detected contaminants from EPA data, free and no signup needed.',
   },
   boston: {
     title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes a Key Risk',

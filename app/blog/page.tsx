@@ -230,8 +230,8 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'what-water-filter-removes-pfas': {
-    title: 'PFAS Removal Water Filter — NSF 58 & P473 (2026)',
-    excerpt: 'Which water filters remove PFAS? Only NSF 58 reverse osmosis and P473 carbon systems are certified — ranked with real lab data.',
+    title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
+    excerpt: 'PFAS are in more tap water than most people realize. See which filter types are proven to remove them — and which ones don\'t cut it.',
     date: 'April 22, 2026',
     readTime: '9 min read',
     badge: 'PFAS',
@@ -280,8 +280,8 @@ const POST_BY_SLUG: Record<
     badgeColor: '#d97706',
   },
   'reverse-osmosis-pros-and-cons': {
-    title: 'Reverse Osmosis Water Filters: Pros, Cons, and Who Actually Needs One',
-    excerpt: 'RO removes more contaminants than any other home filter — but it also wastes water and removes minerals. Here is the honest tradeoff.',
+    title: "Reverse Osmosis: Pros, Cons & Whether It's Worth It (2026)",
+    excerpt: 'RO removes nearly everything — including things you might want to keep. Here\'s an honest breakdown before you buy.',
     date: 'April 18, 2026',
     readTime: '9 min read',
     badge: 'Guides',
