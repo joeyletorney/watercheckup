@@ -127,7 +127,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 880, margin: "0 auto", padding: "40px 24px 80px" }}>
-        <nav style={{ fontSize: 12, color: "#475569", marginBottom: 24 }}>
+        <nav style={{ fontSize: 13, color: "#94a3b8", marginBottom: 24 }}>
           <Link href="/" style={{ color: "#0891b2", textDecoration: "none" }}>
             Home
           </Link>
@@ -136,13 +136,13 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
             {rec.stateName}
           </Link>
           {" › "}
-          <span style={{ color: "#94a3b8" }}>{countyLabel(rec)}</span>
+          <span style={{ color: "#cbd5e1" }}>{countyLabel(rec)}</span>
         </nav>
 
         <div style={{ marginBottom: 32 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: "#0891b2",
               letterSpacing: 2,
@@ -154,7 +154,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
           <h1 style={{ fontSize: 30, fontWeight: 900, color: "#f1f5f9", margin: "0 0 14px", lineHeight: 1.2 }}>
             Is {countyLabel(rec)} Tap Water Safe in 2026?
           </h1>
-          <p style={{ fontSize: 15, color: "#94a3b8", lineHeight: 1.75, margin: "0 0 24px" }}>
+          <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.75, margin: "0 0 24px" }}>
             Population-weighted grade and city-level UCMR5 risk bands for {rec.totalCities} WaterCheckup cities in{" "}
             {countyLabel(rec)}. &quot;At Risk&quot; means at least one analyte above an EPA limit or a regulated PFAS
             violation for that system. &quot;Safe&quot; means no such flag and a low-concern city profile.
@@ -179,13 +179,13 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
                 minWidth: 120,
               }}
             >
-              <div style={{ fontSize: 10, fontWeight: 700, color: "#64748b", letterSpacing: 2, marginBottom: 6 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#a8b4c4", letterSpacing: 2, marginBottom: 6 }}>
                 COUNTY GRADE
               </div>
               <div style={{ fontSize: 42, fontWeight: 900, color: rec.countyGradeColor, lineHeight: 1 }}>
                 {rec.countyGrade}
               </div>
-              <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 6 }}>Score {rec.countyScore}</div>
+              <div style={{ fontSize: 13, color: "#cbd5e1", marginTop: 6 }}>Score {rec.countyScore}</div>
             </div>
           </div>
 
@@ -214,7 +214,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
                 }}
               >
                 <div style={{ fontSize: 22, fontWeight: 900, color: alert ? "#f87171" : "#f1f5f9" }}>{value}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 4, fontWeight: 700 }}>{label}</div>
+                <div style={{ fontSize: 13, color: "#a8b4c4", marginTop: 4, fontWeight: 700 }}>{label}</div>
               </div>
             ))}
           </div>
@@ -224,7 +224,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
           <div style={{ marginBottom: 36 }}>
             <div
               style={{
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: 700,
                 color: "#0891b2",
                 letterSpacing: 2,
@@ -235,7 +235,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
             >
               TOP CONTAMINANTS IN {countySectionHeading(rec)} (UCMR5)
             </div>
-            <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 16px", lineHeight: 1.55 }}>
+            <p style={{ fontSize: 13, color: "#a8b4c4", margin: "0 0 16px", lineHeight: 1.55 }}>
               Most common analytes with detections (&gt;0) across cities in this county — each city counted once per compound.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -253,7 +253,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
                   }}
                 >
                   <span style={{ fontSize: 14, fontWeight: 700, color: "#e2e8f0" }}>
-                    <span style={{ color: "#475569", marginRight: 8 }}>{i + 1}.</span>
+                    <span style={{ color: "#94a3b8", marginRight: 8 }}>{i + 1}.</span>
                     {c.name}
                   </span>
                   <span style={{ fontSize: 13, color: "#67e8f9", fontWeight: 700 }}>
@@ -268,7 +268,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
         <div style={{ marginBottom: 40 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: "#0891b2",
               letterSpacing: 2,
@@ -288,9 +288,9 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
                       key={h}
                       style={{
                         padding: "12px 14px",
-                        color: "#94a3b8",
+                        color: "#cbd5e1",
                         fontWeight: 800,
-                        fontSize: 10,
+                        fontSize: 13,
                         letterSpacing: 1,
                         borderBottom: "1px solid #1a3a5c",
                       }}
@@ -313,7 +313,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
                       <span
                         style={{
                           marginLeft: 8,
-                          fontSize: 10,
+                          fontSize: 13,
                           padding: "2px 6px",
                           borderRadius: 4,
                           background:
@@ -326,7 +326,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
                         {city.band === "at_risk" ? "AT RISK" : city.band === "monitor" ? "MONITOR" : "SAFE"}
                       </span>
                     </td>
-                    <td style={{ padding: "12px 14px", color: city.contaminantsAboveLimit > 0 ? "#f87171" : "#64748b" }}>
+                    <td style={{ padding: "12px 14px", color: city.contaminantsAboveLimit > 0 ? "#f87171" : "#a8b4c4" }}>
                       {city.contaminantsAboveLimit > 0 ? city.contaminantsAboveLimit : "—"}
                     </td>
                     <td style={{ padding: "12px 14px", color: "#cbd5e1" }}>{city.populationLabel}</td>
@@ -340,7 +340,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
         <div style={{ marginBottom: 8 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: "#0891b2",
               letterSpacing: 2,
@@ -351,7 +351,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
           >
             FILTER RECOMMENDATIONS
           </div>
-          <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 16px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 16px", lineHeight: 1.6 }}>
             Typical picks for households in {countyLabel(rec)} when UCMR5 shows PFAS or related analytes — same product
             lines we feature on city pages.
           </p>
@@ -387,7 +387,7 @@ export default async function CountyPage({ params }: { params: Promise<CountyRou
           }}
         >
           <div style={{ fontSize: 18, fontWeight: 800, color: "#f1f5f9", marginBottom: 8 }}>See all cities in {rec.stateName}</div>
-          <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: "#cbd5e1", marginBottom: 20, lineHeight: 1.6 }}>
             Compare grades, PFAS detections, and filter guidance statewide.
           </p>
           <Link

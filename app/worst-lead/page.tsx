@@ -63,13 +63,13 @@ export default async function WorstLeadPage() {
 
         {/* Hero */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             LEAD IN TAP WATER — 2025 EPA DATA
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Top 25 cities with the highest lead in tap water
           </h1>
-          <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
             The EPA has no safe level for lead exposure in children. Lead in tap water comes almost exclusively from pipes inside homes and buildings — not the treatment plant. Cities with aging infrastructure, pre-1986 homes, and unreplaced lead service lines carry the highest risk.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -80,7 +80,7 @@ export default async function WorstLeadPage() {
             ].map(({ stat, label }) => (
               <div key={stat} style={{ padding: '12px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textAlign: 'center', flex: '1 1 140px' }}>
                 <div style={{ fontSize: 20, fontWeight: 900, color: '#ef4444' }}>{stat}</div>
-                <div style={{ fontSize: 11, color: '#64748b', marginTop: 3, lineHeight: 1.4 }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 3, lineHeight: 1.4 }}>{label}</div>
               </div>
             ))}
           </div>
@@ -88,18 +88,18 @@ export default async function WorstLeadPage() {
 
         {/* Why lead matters */}
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 32 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>WHY THIS MATTERS</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 10px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>WHY THIS MATTERS</div>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 10px' }}>
             Lead leaches into water from pipes, solder, and fixtures — especially when water sits overnight or when water chemistry causes corrosion. Boiling does not remove lead. Standard pitcher filters (Brita, PUR) do not remove lead. Only reverse osmosis or NSF/ANSI 53-certified filters remove lead at the tap.
           </p>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
             The risk is highest in homes built before 1986 (when lead solder and lead pipes were banned), apartment buildings with brass fixtures, and cities with unreplaced lead service lines connecting the water main to the home.
           </p>
         </div>
 
         {/* City rankings — top 25 featured, rest compact */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             TOP 25 — HIGHEST LEAD RISK CITIES
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
@@ -110,19 +110,19 @@ export default async function WorstLeadPage() {
               return (
                 <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: isTop5 ? '18px 20px' : '14px 16px', background: '#071828', border: `1px solid ${isTop5 ? color + '50' : color + '25'}`, borderRadius: 12 }}>
-                    <div style={{ fontSize: isTop5 ? 22 : 17, fontWeight: 900, color: isTop5 ? color : '#334155', minWidth: 32, textAlign: 'center' }}>
+                    <div style={{ fontSize: isTop5 ? 22 : 17, fontWeight: 900, color: isTop5 ? color : '#94a3b8', minWidth: 32, textAlign: 'center' }}>
                       #{i + 1}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
                         <span style={{ fontSize: isTop5 ? 16 : 14, fontWeight: 800, color: '#f1f5f9' }}>{name}, {state}</span>
-                        <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 5, background: `${color}20`, color, letterSpacing: 0.5 }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, padding: '2px 8px', borderRadius: 5, background: `${color}20`, color, letterSpacing: 0.5 }}>
                           {URGENCY_LABEL[urgency]}
                         </span>
                       </div>
-                      <div style={{ fontSize: 12, color: '#64748b' }}>{leadIssue} · {population} residents</div>
+                      <div style={{ fontSize: 13, color: '#a8b4c4' }}>{leadIssue} · {population} residents</div>
                     </div>
-                    <div style={{ fontSize: 12, color: '#0891b2', fontWeight: 700, flexShrink: 0 }}>View report →</div>
+                    <div style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, flexShrink: 0 }}>View report →</div>
                   </div>
                 </Link>
               );
@@ -132,7 +132,7 @@ export default async function WorstLeadPage() {
           {/* Remaining cities — compact table */}
           {LEAD_CITIES.length > 25 && (
             <>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 12 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 12 }}>
                 ALL {LEAD_CITIES.length} CITIES WITH DOCUMENTED LEAD RISK
               </div>
               <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, overflow: 'hidden' }}>
@@ -142,10 +142,10 @@ export default async function WorstLeadPage() {
                     <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '11px 16px', borderBottom: '1px solid #0f2336' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                          <span style={{ fontSize: 12, color: '#334155', minWidth: 24 }}>#{i + 26}</span>
+                          <span style={{ fontSize: 13, color: '#94a3b8', minWidth: 24 }}>#{i + 26}</span>
                           <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>{name}, {state}</span>
                         </div>
-                        <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 4, background: `${color}15`, color }}>{URGENCY_LABEL[urgency]}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, padding: '2px 7px', borderRadius: 4, background: `${color}15`, color }}>{URGENCY_LABEL[urgency]}</span>
                       </div>
                     </Link>
                   );
@@ -157,7 +157,7 @@ export default async function WorstLeadPage() {
 
         {/* What to do */}
         <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHAT TO DO IF YOUR CITY IS ON THIS LIST</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHAT TO DO IF YOUR CITY IS ON THIS LIST</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {[
               { step: '1', text: 'Check your specific ZIP code — city-wide risk doesn\'t mean every home is affected equally. Newer buildings and those with plastic pipes have lower risk.' },
@@ -165,8 +165,8 @@ export default async function WorstLeadPage() {
               { step: '3', text: 'Filter at the tap — NSF/ANSI 53-certified pitchers (Clearly Filtered) or reverse osmosis systems remove lead. Run the water for 30 seconds first if your pipes may contain lead.' },
             ].map(({ step, text }) => (
               <div key={step} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{step}</div>
-                <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, margin: 0 }}>{text}</p>
+                <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{step}</div>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>{text}</p>
               </div>
             ))}
           </div>
@@ -174,7 +174,7 @@ export default async function WorstLeadPage() {
             <Link href="/" style={{ display: 'inline-block', padding: '11px 22px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
               Check My ZIP Code →
             </Link>
-            <Link href="/blog/best-water-filter-for-lead-removal" style={{ display: 'inline-block', padding: '11px 22px', background: 'transparent', border: '1px solid #1a3a5c', borderRadius: 9, color: '#94a3b8', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
+            <Link href="/blog/best-water-filter-for-lead-removal" style={{ display: 'inline-block', padding: '11px 22px', background: 'transparent', border: '1px solid #1a3a5c', borderRadius: 9, color: '#cbd5e1', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
               Best filters for lead →
             </Link>
           </div>
@@ -182,7 +182,7 @@ export default async function WorstLeadPage() {
 
         {/* Related pages */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
             {[
               { href: '/worst-water', label: 'Worst cities for PFAS', desc: 'Top 50 by PFAS contamination' },
@@ -192,14 +192,14 @@ export default async function WorstLeadPage() {
             ].map(({ href, label, desc }) => (
               <Link key={href} href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{label}</div>
-                <div style={{ fontSize: 11, color: '#64748b' }}>{desc}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{desc}</div>
               </Link>
             ))}
           </div>
         </div>
 
         {/* Related blog posts */}
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14 }}>RELATED GUIDES</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED GUIDES</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
           {[
             { slug: 'best-water-filter-for-lead-removal', title: 'Best Filters for Lead Removal' },
@@ -207,7 +207,7 @@ export default async function WorstLeadPage() {
             { slug: 'reverse-osmosis-pros-and-cons', title: 'Reverse Osmosis: Pros & Cons' },
             { slug: 'tap-water-safety-during-pregnancy', title: 'Tap Water Safety During Pregnancy' },
           ].map(({ slug, title }) => (
-            <Link key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', fontSize: 13, fontWeight: 600, color: '#94a3b8' }}>
+            <Link key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', fontSize: 13, fontWeight: 600, color: '#cbd5e1' }}>
               {title} →
             </Link>
           ))}

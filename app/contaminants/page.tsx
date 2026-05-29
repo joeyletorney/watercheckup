@@ -282,7 +282,7 @@ export default function ContaminantsPage() {
             style={{ objectFit: 'cover' }}
           />
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
-          <p style={{ fontSize: 17, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 17, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
             What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
           </p>
         </div>
@@ -296,7 +296,7 @@ export default function ContaminantsPage() {
           />
         </div>
 
-        <div style={{ fontSize: 13, color: '#334155', marginBottom: 20 }}>Showing {filtered.length} of {CONTAMINANTS.length} contaminants</div>
+        <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 20 }}>Showing {filtered.length} of {CONTAMINANTS.length} contaminants</div>
 
         {filtered.map(c => {
           const sev = SEV_COLORS[c.severity];
@@ -313,17 +313,17 @@ export default function ContaminantsPage() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: '#f1f5f9' }}>{c.name}</span>
-                    <span style={{ fontSize: 12, color: '#94a3b8' }}>{c.symbol}</span>
-                    <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: sev.bg, color: sev.text, border: `1px solid ${sev.border}` }}>{sev.label}</span>
+                    <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.symbol}</span>
+                    <span style={{ fontSize: 13, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: sev.bg, color: sev.text, border: `1px solid ${sev.border}` }}>{sev.label}</span>
                   </div>
                   <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 4 }}>
-                    <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.category}</span>
-                    <span style={{ fontSize: 13, color: '#334155' }}>EPA Limit: <strong style={{ color: '#94a3b8' }}>{c.epaLimit}</strong></span>
+                    <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.category}</span>
+                    <span style={{ fontSize: 13, color: '#94a3b8' }}>EPA Limit: <strong style={{ color: '#cbd5e1' }}>{c.epaLimit}</strong></span>
                   </div>
                   {/* Always-visible excerpt — indexed by search engines */}
-                  <p style={{ margin: 0, fontSize: 13, color: '#64748b', lineHeight: 1.5, maxWidth: 640 }}>{c.what.slice(0, 160)}{c.what.length > 160 ? '…' : ''}</p>
+                  <p style={{ margin: 0, fontSize: 13, color: '#a8b4c4', lineHeight: 1.5, maxWidth: 640 }}>{c.what.slice(0, 160)}{c.what.length > 160 ? '…' : ''}</p>
                 </div>
-                <span style={{ fontSize: 18, color: '#334155', flexShrink: 0, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▾</span>
+                <span style={{ fontSize: 18, color: '#94a3b8', flexShrink: 0, transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>▾</span>
               </button>
 
               {/* Expanded detail */}
@@ -332,12 +332,12 @@ export default function ContaminantsPage() {
                   <div style={{ paddingTop: 20, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
 
                     <Section title="What Is It?" color={c.color}>
-                      <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75 }}>{c.what}</p>
+                      <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75 }}>{c.what}</p>
                     </Section>
 
                     <Section title="Where Does It Come From?" color={c.color}>
                       <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        {c.sources.map(s => <li key={s} style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.6 }}>{s}</li>)}
+                        {c.sources.map(s => <li key={s} style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>{s}</li>)}
                       </ul>
                     </Section>
 
@@ -355,7 +355,7 @@ export default function ContaminantsPage() {
                   </div>
 
                   <div style={{ marginTop: 18, padding: '12px 16px', background: '#091825', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
-                    <span style={{ fontSize: 13, color: '#94a3b8' }}>Health goal (MCLG): <strong style={{ color: '#94a3b8' }}>{c.healthGoal}</strong></span>
+                    <span style={{ fontSize: 13, color: '#cbd5e1' }}>Health goal (MCLG): <strong style={{ color: '#cbd5e1' }}>{c.healthGoal}</strong></span>
                     <a href="/" style={{ padding: '8px 18px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 700 }}>
                       Check My Water for {c.name} →
                     </a>
@@ -373,7 +373,7 @@ export default function ContaminantsPage() {
 function Section({ title, color, children }: { title: string; color: string; children: React.ReactNode }) {
   return (
     <div style={{ background: '#091825', borderRadius: 10, padding: '14px 16px' }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color, letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase' }}>{title}</div>
+      <div style={{ fontSize: 13, fontWeight: 700, color, letterSpacing: 1, marginBottom: 10, textTransform: 'uppercase' }}>{title}</div>
       {children}
     </div>
   );

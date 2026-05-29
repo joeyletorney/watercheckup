@@ -222,11 +222,11 @@ export default function FAQPage() {
                       style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: '18px 22px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                     >
                       <span style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>{item.q}</span>
-                      <span style={{ fontSize: 20, color: '#334155', flexShrink: 0, transform: isOpen ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s' }}>+</span>
+                      <span style={{ fontSize: 20, color: '#94a3b8', flexShrink: 0, transform: isOpen ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s' }}>+</span>
                     </button>
                     {isOpen && (
                       <div style={{ padding: '0 22px 22px', borderTop: '1px solid #0f2336', paddingTop: 18 }}>
-                        <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.8 }}>{item.a}</p>
+                        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8 }}>{item.a}</p>
                       </div>
                     )}
                   </div>
@@ -239,7 +239,7 @@ export default function FAQPage() {
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginTop: 20 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Ready to check your actual water?</div>
-          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>Enter your ZIP code and get a free report pulled from 5 EPA databases and EWG health guidelines.</p>
+          <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>Enter your ZIP code and get a free report pulled from 5 EPA databases and EWG health guidelines.</p>
           <a href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, boxShadow: '0 4px 20px #0891b244' }}>
             Check My Water →
           </a>

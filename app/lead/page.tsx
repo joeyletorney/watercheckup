@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-const p = { fontSize: 15, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties;
+const p = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties;
 const h2 = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' } as React.CSSProperties;
-const label = { fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#f59e0b', marginBottom: 10, display: 'block' } as React.CSSProperties;
+const label = { fontSize: 13, fontWeight: 700, letterSpacing: 2, color: '#f59e0b', marginBottom: 10, display: 'block' } as React.CSSProperties;
 
 const LEAD_FACTS = [
   { stat: '0 ppb', desc: 'EPA maximum contaminant level goal (MCLG) for lead — no safe exposure level' },
@@ -118,7 +118,7 @@ export default function LeadPage() {
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px 100px' }}>
 
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>LEAD IN DRINKING WATER</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>LEAD IN DRINKING WATER</div>
           <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Lead in Tap Water — What It Is, How It Gets In, and What Actually Removes It
           </h1>
@@ -131,7 +131,7 @@ export default function LeadPage() {
             {LEAD_FACTS.map(f => (
               <div key={f.stat} style={{ flex: '1 1 160px', padding: '14px 16px', background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 10 }}>
                 <div style={{ fontSize: 22, fontWeight: 900, color: '#fcd34d', marginBottom: 4 }}>{f.stat}</div>
-                <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>{f.desc}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>{f.desc}</div>
               </div>
             ))}
           </div>
@@ -162,7 +162,7 @@ export default function LeadPage() {
                 <span style={{ fontSize: 20, flexShrink: 0 }}>{x.icon}</span>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{x.name}</div>
-                  <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65 }}>{x.desc}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65 }}>{x.desc}</div>
                 </div>
               </div>
             ))}
@@ -177,7 +177,7 @@ export default function LeadPage() {
             {HEALTH.map(h => (
               <div key={h.who} style={{ padding: '14px 16px', background: '#0d2240', border: '1px solid rgba(245,158,11,0.25)', borderLeft: '3px solid #f59e0b', borderRadius: 8 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#fcd34d', marginBottom: 4 }}>{h.who}</div>
-                <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>{h.detail}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6 }}>{h.detail}</div>
               </div>
             ))}
           </div>
@@ -222,20 +222,20 @@ export default function LeadPage() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 16, fontWeight: 900, color: '#94a3b8' }}>#{f.rank}</span>
+                      <span style={{ fontSize: 16, fontWeight: 900, color: '#cbd5e1' }}>#{f.rank}</span>
                       <span style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>{f.name}</span>
                       <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: f.badgeColor, color: '#fff', padding: '2px 8px', borderRadius: 4 }}>{f.badge}</span>
                     </div>
-                    <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 6 }}>{f.brand} · {f.price} · {f.cert}</div>
-                    <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, margin: 0 }}>{f.why}</p>
+                    <div style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 6 }}>{f.brand} · {f.price} · {f.cert}</div>
+                    <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>{f.why}</p>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                     {f.directLink ? (
                       <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Buy direct →</a>
+                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Buy direct →</a>
                     ) : null}
                     <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
-                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
+                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
                   </div>
                 </div>
               </div>
@@ -244,9 +244,9 @@ export default function LeadPage() {
         </div>
 
         <div style={{ marginBottom: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #f59e0b', borderRadius: 16, textAlign: 'center' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>FREE ZIP LOOKUP</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>FREE ZIP LOOKUP</div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>See lead-related data for your water system</h2>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
             Enter your ZIP for a full report — including Lead and Copper Rule sample results when published for your system, open violations, and filter picks matched to your water.
           </p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#f59e0b,#d97706)', borderRadius: 10, color: '#0f172a', fontSize: 16, fontWeight: 800, textDecoration: 'none' }}>
@@ -266,7 +266,7 @@ export default function LeadPage() {
             ].map(({ q, a }) => (
               <div key={q} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 8 }}>{q}</div>
-                <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{a}</p>
               </div>
             ))}
           </div>
@@ -282,7 +282,7 @@ export default function LeadPage() {
               { href: '/contaminants', label: 'Water Contaminant Guide' },
               { href: '/', label: 'Check Your ZIP — Full EPA Water Report' },
             ].map(({ href, label: lbl }) => (
-              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#94a3b8', fontSize: 14, fontWeight: 600 }}>
+              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#cbd5e1', fontSize: 14, fontWeight: 600 }}>
                 {lbl} <span style={{ color: '#0891b2' }}>→</span>
               </Link>
             ))}

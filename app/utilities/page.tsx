@@ -27,7 +27,7 @@ export default function UtilitiesIndexPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
         <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f1f5f9", margin: "0 0 12px" }}>Water utilities by state</h1>
-        <p style={{ fontSize: 15, color: "#94a3b8", margin: "0 0 20px", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 20px", lineHeight: 1.6 }}>
           Full PWS directory from EPA’s national SDWA release — same family of data as{" "}
           <Link href="https://echo.epa.gov/" style={{ color: "#22d3ee" }}>
             ECHO
@@ -68,7 +68,7 @@ export default function UtilitiesIndexPage() {
         </div>
 
         {states.length === 0 ? (
-          <p style={{ color: "#94a3b8" }}>
+          <p style={{ color: "#cbd5e1" }}>
             Run <code style={{ color: "#e2e8f0" }}>npm run fetch-utilities</code> to build{" "}
             <code style={{ color: "#e2e8f0" }}>data/utilities.json</code>.
           </p>

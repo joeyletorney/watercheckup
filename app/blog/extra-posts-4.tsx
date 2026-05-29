@@ -23,10 +23,10 @@ const TOP_3_PITCHER = [
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
 const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
-const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#94a3b8', lineHeight: 1.85 };
+const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#cbd5e1', lineHeight: 1.85 };
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
-const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#94a3b8', lineHeight: 1.75 };
-const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#94a3b8', lineHeight: 1.75 };
+const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 
 /** Editorial: large metros where regional geology and aquifers typically produce very hard tap water (not a single-utility ppm ranking). */
 const HARDEST_TEN_CITIES: readonly { slug: string; title: string; short: string; text: string }[] = [
@@ -330,7 +330,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
           React.createElement('div', { key: unit, style: { padding: '18px 20px', background: '#0d2240', border: `1px solid ${color}40`, borderLeft: `4px solid ${color}`, borderRadius: 10 } },
             React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 } },
               React.createElement('span', { style: { fontSize: 20, fontWeight: 900, color, minWidth: 48 } }, unit),
-              React.createElement('span', { style: { fontSize: 13, color: '#64748b' } }, full),
+              React.createElement('span', { style: { fontSize: 13, color: '#a8b4c4' } }, full),
             ),
             React.createElement('div', { style: { fontSize: 15, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 } }, `📍 ${pool}`),
             React.createElement('p', { style: { ...pStyle, margin: 0, fontSize: 14 } }, context),
@@ -396,10 +396,10 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
           { label: 'Lead is always in ppb', text: 'The EPA action level is 15 ppb. But the CDC and AAP say no level of lead is safe for children. If you see any lead detected, a certified filter is worth it.' },
         ].map(({ label, text }) =>
           React.createElement('div', { key: label, style: { display: 'flex', gap: 14, padding: '14px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10 } },
-            React.createElement('div', { style: { width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 } }, '✓'),
+            React.createElement('div', { style: { width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 } }, '✓'),
             React.createElement('div', null,
               React.createElement('strong', { style: { ...strongStyle, display: 'block', marginBottom: 4 } }, label),
-              React.createElement('span', { style: { color: '#94a3b8', fontSize: 14, lineHeight: 1.7 } }, text),
+              React.createElement('span', { style: { color: '#cbd5e1', fontSize: 14, lineHeight: 1.7 } }, text),
             )
           )
         )
@@ -442,7 +442,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
     dateDisplay: 'May 9, 2026',
     readTime: '9 min read',
     badge: 'Home',
-    badgeColor: '#94a3b8',
+    badgeColor: '#cbd5e1',
     topPicks: TOP_3_RO,
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -480,7 +480,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
       React.createElement('div', { style: { margin: '8px 0 28px', display: 'flex', flexDirection: 'column' as const, gap: 14 } },
         ...HARDEST_TEN_CITIES.map((c, i) =>
           React.createElement('div', { key: c.slug, style: { padding: '16px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 } },
-            React.createElement('div', { style: { fontSize: 11, fontWeight: 800, letterSpacing: 1.2, color: '#64748b', marginBottom: 6 } }, `NO. ${i + 1}`),
+            React.createElement('div', { style: { fontSize: 13, fontWeight: 800, letterSpacing: 1.2, color: '#a8b4c4', marginBottom: 6 } }, `NO. ${i + 1}`),
             React.createElement('div', { style: { fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 } }, c.title),
             React.createElement('p', { style: { ...pStyle, margin: '0 0 12px' } }, c.text),
             React.createElement('a', { href: `/water/${c.slug}`, style: { fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' } }, `Free ${c.short} water report (EPA data) →`),

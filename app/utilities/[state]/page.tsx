@@ -54,22 +54,22 @@ export default function UtilitiesStatePage({
     <div style={{ minHeight: "100vh", color: "#e2e8f0", fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
-        <nav style={{ fontSize: 12, color: "#64748b", marginBottom: 16 }}>
-          <Link href="/" style={{ color: "#64748b", textDecoration: "none" }}>
+        <nav style={{ fontSize: 13, color: "#a8b4c4", marginBottom: 16 }}>
+          <Link href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
             Home
           </Link>
           <span style={{ margin: "0 6px" }}>›</span>
-          <Link href="/utilities" style={{ color: "#64748b", textDecoration: "none" }}>
+          <Link href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
             Utilities
           </Link>
           <span style={{ margin: "0 6px" }}>›</span>
-          <span style={{ color: "#94a3b8" }}>{stName}</span>
+          <span style={{ color: "#cbd5e1" }}>{stName}</span>
         </nav>
 
         <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f1f5f9", margin: "0 0 12px" }}>
           Public water systems in {stName}
         </h1>
-        <p style={{ fontSize: 15, color: "#94a3b8", margin: "0 0 24px", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 24px", lineHeight: 1.6 }}>
           {totalInState.toLocaleString("en-US")} systems (SDWIS/Fed snapshot). Search or browse pages — open any row
           for PFAS monitoring, violation counts, and filter recommendations.
         </p>

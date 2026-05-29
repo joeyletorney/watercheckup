@@ -57,19 +57,19 @@ export default function UtilityClaimPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 20 }}>
-          <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 20 }}>
+          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/utilities" style={{ color: '#64748b', textDecoration: 'none' }}>
+          <Link href="/utilities" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Utilities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <span style={{ color: '#94a3b8' }}>Publish CCR</span>
+          <span style={{ color: '#cbd5e1' }}>Publish CCR</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
           FOR WATER OPERATORS
         </div>
 
@@ -77,7 +77,7 @@ export default function UtilityClaimPage() {
           Publish Your 2027-Compliant CCR Free
         </h1>
 
-        <p style={{ fontSize: 16, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 32px' }}>
+        <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 32px' }}>
           Meet the new EPA direct URL delivery requirement before the January 1, 2027 deadline — free forever, no
           credit card, no contracts.
         </p>
@@ -123,13 +123,13 @@ export default function UtilityClaimPage() {
             marginBottom: 32,
           }}
         >
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             CLAIM YOUR LISTING
           </div>
           <ClaimUtilitiesForm />
         </div>
 
-        <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65, margin: 0 }}>
+        <p style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.65, margin: 0 }}>
           Claims are reviewed manually. We match your PWSID to our EPA directory before publishing your CCR.{' '}
           <Link href="/faq" style={{ color: '#22d3ee' }}>
             FAQ

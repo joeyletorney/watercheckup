@@ -4,6 +4,7 @@ import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import type { Metadata } from 'next';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
+import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CITIES } from '../[city]/cities-data';
 
 const AMAZON_TAG = 'watercheck20-20';
@@ -169,29 +170,29 @@ export default function SanAntonioWaterPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
+          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/water" style={{ color: '#64748b', textDecoration: 'none' }}>
+          <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Cities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>San Antonio, TX</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
           San Antonio, TX Water Quality Report
         </h1>
-        <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 8px' }}>
+        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
           San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2025 data
         </p>
-        <p style={{ fontSize: 13, color: '#475569', margin: '0 0 8px' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 8px' }}>
           Source: SAWS 2025 Water Quality Report (2024 data) · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
         </p>
-        <p style={{ fontSize: 12, color: '#334155', margin: '0 0 28px' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>
           Updated May 2026 · 2024 SAWS data
         </p>
 
@@ -210,12 +211,12 @@ export default function SanAntonioWaterPage() {
         >
           <div style={{ textAlign: 'center', flexShrink: 0 }}>
             <div style={{ fontSize: 48, fontWeight: 900, color: '#f59e0b', lineHeight: 1 }}>63</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>/ 88</div>
+            <div style={{ fontSize: 13, color: '#a8b4c4' }}>/ 88</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: '#f59e0b' }}>C-</div>
           </div>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#f59e0b', marginBottom: 6 }}>Concerning</div>
-            <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
               San Antonio&apos;s water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2025.
             </p>
           </div>
@@ -227,7 +228,7 @@ export default function SanAntonioWaterPage() {
             ].map(({ label, value, color }) => (
               <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
                 <div style={{ fontSize: 16, fontWeight: 900, color }}>{value}</div>
-                <div style={{ fontSize: 10, color: '#64748b' }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{label}</div>
               </div>
             ))}
           </div>
@@ -248,7 +249,7 @@ export default function SanAntonioWaterPage() {
         >
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Get your specific ZIP code report</div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>78201, 78202, 78203 and all SA ZIP codes</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>78201, 78202, 78203 and all SA ZIP codes</div>
           </div>
           <Link
             href="/"
@@ -266,18 +267,12 @@ export default function SanAntonioWaterPage() {
           </Link>
         </div>
 
-        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px', lineHeight: 1.3 }}>
-          San Antonio water quality &amp; contamination (2026)
-        </h2>
-        <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 28px' }}>
-          This page summarizes <strong style={{ color: '#e2e8f0' }}>San Antonio water quality</strong> and{' '}
-          <strong style={{ color: '#e2e8f0' }}>water contamination</strong> data from SAWS and federal EPA monitoring — including{' '}
-          <strong style={{ color: '#e2e8f0' }}>PFAS in San Antonio water</strong>, extreme hardness (272 mg/L), radium, and disinfection byproducts.
-          Use the contaminant table below for levels, health context, and NSF-certified filters matched to SAWS water.
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 28px' }}>
+          {PRIORITY_CITY_INTROS['san-antonio']}
         </p>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             CONTAMINANTS IN SAN ANTONIO WATER — 2024 DATA
           </div>
 
@@ -286,10 +281,10 @@ export default function SanAntonioWaterPage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.level}</span>
+                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
                   <span
                     style={{
-                      fontSize: 11,
+                      fontSize: 13,
                       fontWeight: 700,
                       padding: '3px 8px',
                       borderRadius: 6,
@@ -301,19 +296,19 @@ export default function SanAntonioWaterPage() {
                   </span>
                 </div>
               </div>
-              <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
             </div>
           ))}
         </div>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
             WHERE DOES SAN ANTONIO WATER COME FROM?
           </div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
             San Antonio draws primarily from the <strong style={{ color: '#e2e8f0' }}>Edwards Aquifer</strong> — one of the most productive aquifers in the US, fed by rainfall in the Texas Hill Country that percolates through limestone rock. This limestone geology is what makes SA water naturally hard and high in calcium, magnesium, and radium.
           </p>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
             SAWS also draws from the <strong style={{ color: '#e2e8f0' }}>Carrizo Aquifer</strong>, <strong style={{ color: '#e2e8f0' }}>Simsboro Aquifer</strong> (via the Vista Ridge Pipeline), and surface water sources during high demand periods. This blended supply means water quality can vary slightly by neighborhood and season.
           </p>
         </div>
@@ -327,29 +322,29 @@ export default function SanAntonioWaterPage() {
             marginBottom: 20,
           }}
         >
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f97316', letterSpacing: 2, marginBottom: 12 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f97316', letterSpacing: 2, marginBottom: 12 }}>
             ⚠️ SAN ANTONIO&apos;S HARD WATER PROBLEM
           </div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
             At 272 mg/L, San Antonio has some of the <strong style={{ color: '#e2e8f0' }}>hardest tap water of any major US city</strong>. Hard water isn&apos;t a health hazard, but it causes real problems:
           </p>
-          <ul style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 12px', paddingLeft: 20 }}>
+          <ul style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px', paddingLeft: 20 }}>
             <li>Scale buildup clogs pipes and reduces water heater efficiency by up to 30%</li>
             <li>Dishwashers leave white spots and film on glasses</li>
             <li>Soap and shampoo don&apos;t lather well — you use more product</li>
             <li>Skin and hair feel dry after showering</li>
             <li>Appliances (washing machines, coffee makers) have shorter lifespans</li>
           </ul>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
             <strong style={{ color: '#e2e8f0' }}>Solution:</strong> A salt-based water softener is the most effective treatment for SA&apos;s hard water. For drinking water specifically, a reverse osmosis system removes hardness minerals along with PFAS, radium, arsenic, and sodium.
           </p>
         </div>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             BEST FILTERS FOR SAN ANTONIO WATER
           </div>
-          <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 16px' }}>
+          <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px' }}>
             Given SA&apos;s hard water, PFAS, radium, arsenic, and elevated sodium — here&apos;s what actually works:
           </p>
           {FILTER_PICKS.map((f, i) => (
@@ -386,8 +381,8 @@ export default function SanAntonioWaterPage() {
                     {f.badge}
                   </span>
                 </div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{f.price}</div>
-                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
                 <a
                   href={`https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
@@ -399,7 +394,7 @@ export default function SanAntonioWaterPage() {
                     border: f.best ? 'none' : '1px solid #1a3a5c',
                     borderRadius: 8,
                     color: '#fff',
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: 700,
                     textDecoration: 'none',
                   }}
@@ -420,10 +415,10 @@ export default function SanAntonioWaterPage() {
 
         {/* Reddit community block */}
         <div style={{ padding: '20px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f97316', letterSpacing: 2, marginBottom: 4 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f97316', letterSpacing: 2, marginBottom: 4 }}>
             WHAT SAN ANTONIO RESIDENTS SAY
           </div>
-          <div style={{ fontSize: 12, color: '#475569', marginBottom: 16 }}>
+          <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 16 }}>
             Compiled from r/sanantonio and r/watertreatment discussions — summarized themes, not endorsements
           </div>
 
@@ -450,7 +445,7 @@ export default function SanAntonioWaterPage() {
               theme: '"SAWS meets legal limits — but that\'s not the same as clean"',
               detail: 'A recurring theme in r/sanantonio water threads: residents understanding the difference between EPA compliance and independent health guidelines. Many reference EWG data showing contaminants above health-advisory levels even when legal limits are met.',
               tag: 'EPA Compliance',
-              tagColor: '#94a3b8',
+              tagColor: '#cbd5e1',
             },
           ].map(({ theme, detail, tag, tagColor }) => (
             <div
@@ -471,17 +466,17 @@ export default function SanAntonioWaterPage() {
                   {theme}
                 </span>
               </div>
-              <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.6 }}>{detail}</p>
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{detail}</p>
             </div>
           ))}
 
-          <div style={{ marginTop: 14, fontSize: 12, color: '#334155' }}>
+          <div style={{ marginTop: 14, fontSize: 13, color: '#94a3b8' }}>
             Sources:{' '}
-            <a href="https://www.reddit.com/r/sanantonio/search/?q=water+quality" target="_blank" rel="noopener noreferrer" style={{ color: '#475569', textDecoration: 'underline' }}>
+            <a href="https://www.reddit.com/r/sanantonio/search/?q=water+quality" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', textDecoration: 'underline' }}>
               r/sanantonio water discussions
             </a>
             {' · '}
-            <a href="https://www.reddit.com/r/watertreatment/search/?q=san+antonio" target="_blank" rel="noopener noreferrer" style={{ color: '#475569', textDecoration: 'underline' }}>
+            <a href="https://www.reddit.com/r/watertreatment/search/?q=san+antonio" target="_blank" rel="noopener noreferrer" style={{ color: '#94a3b8', textDecoration: 'underline' }}>
               r/watertreatment
             </a>
           </div>
@@ -494,14 +489,14 @@ export default function SanAntonioWaterPage() {
         >
           <h2
             id="sa-faq-heading"
-            style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px', textTransform: 'uppercase' }}
+            style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px', textTransform: 'uppercase' }}
           >
             Frequently asked questions
           </h2>
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <h3 style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', margin: '0 0 6px', lineHeight: 1.4 }}>{faq.q}</h3>
-              <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
+              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
             </div>
           ))}
         </section>
@@ -522,7 +517,7 @@ export default function SanAntonioWaterPage() {
         >
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 2 }}>📋 Official SAWS 2025 Water Quality Report</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>Complete 2024 test results direct from San Antonio Water System</div>
+            <div style={{ fontSize: 13, color: '#a8b4c4' }}>Complete 2024 test results direct from San Antonio Water System</div>
           </div>
           <a
             href="https://www.saws.org/your-water/water-quality/water-quality-report/"
@@ -551,7 +546,7 @@ export default function SanAntonioWaterPage() {
         />
 
         <div style={{ marginBottom: 28 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RELATED GUIDES</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RELATED GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
               { href: '/blog/san-antonio-water-quality', label: 'San Antonio water quality 2026 — full SAWS report' },
@@ -574,7 +569,7 @@ export default function SanAntonioWaterPage() {
                   border: '1px solid #1a3a5c',
                   borderRadius: 8,
                   textDecoration: 'none',
-                  color: '#94a3b8',
+                  color: '#cbd5e1',
                   fontSize: 14,
                   fontWeight: 600,
                 }}
@@ -601,12 +596,12 @@ export default function SanAntonioWaterPage() {
           >
             Check Your ZIP Code →
           </Link>
-          <p style={{ fontSize: 12, color: '#475569', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
         </div>
 
         <FounderCityAttribution />
 
-        <p style={{ fontSize: 11, color: '#334155', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Data sourced from SAWS 2025 Water Quality Report (2024 data), EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. WaterCheckup is not affiliated with SAWS or the EPA. Some filter links are affiliate links — we may earn a commission at no cost to you.
         </p>
       </div>

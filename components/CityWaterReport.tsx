@@ -25,7 +25,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 20 }}>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 20 }}>
           <Link href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Home
           </Link>
@@ -38,16 +38,16 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
             {city.state}
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <span style={{ color: '#94a3b8' }}>{city.name}</span>
+          <span style={{ color: '#cbd5e1' }}>{city.name}</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>
           CITY WATER SUMMARY
         </div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 12px' }}>
           {city.name}, {city.state} — tap water snapshot
         </h1>
-        <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.65, margin: '0 0 20px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 20px' }}>
           Quick read on your utility, EPA public system ID, and documented issues. For full PFAS tables, scores, and
           filter logic, open the detailed city report.
         </p>
@@ -61,7 +61,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
             marginBottom: 22,
           }}
         >
-          <span style={{ fontSize: 11, fontWeight: 800, color: u.color, letterSpacing: 1.2 }}>{u.label}</span>
+          <span style={{ fontSize: 13, fontWeight: 800, color: u.color, letterSpacing: 1.2 }}>{u.label}</span>
           <p style={{ margin: '8px 0 0', fontSize: 14, color: '#e2e8f0', lineHeight: 1.55 }}>
             {city.issues[0] ?? 'Review EPA and local data for your address.'}
           </p>
@@ -72,7 +72,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
           <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', lineHeight: 1.65 }}>
             <strong style={{ color: '#e2e8f0' }}>{city.system}</strong>
             <br />
-            <span style={{ color: '#64748b', fontSize: 13 }}>PWSID {city.pwsid}</span>
+            <span style={{ color: '#a8b4c4', fontSize: 13 }}>PWSID {city.pwsid}</span>
           </p>
         </section>
 
@@ -87,7 +87,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
 
         <section style={{ marginBottom: 28 }}>
           <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' }}>Context</h2>
-          <ul style={{ margin: 0, paddingLeft: 20, color: '#94a3b8', fontSize: 14, lineHeight: 1.65 }}>
+          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.65 }}>
             {city.facts.slice(0, 4).map((fact) => (
               <li key={fact.slice(0, 48)}>{fact}</li>
             ))}
@@ -130,7 +130,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
           >
             EPA SDWIS federal record (new tab) →
           </a>
-          <Link href={internalSdwisPath(city.pwsid)} style={{ fontSize: 13, color: '#64748b', textAlign: 'center' }}>
+          <Link href={internalSdwisPath(city.pwsid)} style={{ fontSize: 13, color: '#a8b4c4', textAlign: 'center' }}>
             Open framed SDWIS link on WaterCheckup
           </Link>
         </div>

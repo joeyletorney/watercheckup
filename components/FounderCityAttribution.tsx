@@ -8,7 +8,7 @@ export function FounderCityAttribution() {
         paddingTop: 24,
         borderTop: '1px solid #1a3a5c',
         fontSize: 13,
-        color: '#64748b',
+        color: '#a8b4c4',
         lineHeight: 1.65,
         textAlign: 'center',
       }}

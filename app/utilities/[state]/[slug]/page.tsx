@@ -249,33 +249,33 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         {!u.isClaimed ? <UtilityClaimTopBanner utilityName={u.name} /> : null}
 
         <div style={{ marginBottom: 32 }}>
-          <nav style={{ fontSize: 12, color: "#64748b", marginBottom: 14 }}>
-            <Link href="/" style={{ color: "#64748b", textDecoration: "none" }}>
+          <nav style={{ fontSize: 13, color: "#a8b4c4", marginBottom: 14 }}>
+            <Link href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
               Home
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
-            <Link href="/utilities" style={{ color: "#64748b", textDecoration: "none" }}>
+            <Link href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
               Utilities
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
             <Link
               href={`/utilities/${params.state.toLowerCase()}`}
-              style={{ color: "#64748b", textDecoration: "none" }}
+              style={{ color: "#a8b4c4", textDecoration: "none" }}
             >
               {stLabel}
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
-            <span style={{ color: "#94a3b8" }}>{u.name}</span>
+            <span style={{ color: "#cbd5e1" }}>{u.name}</span>
           </nav>
 
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 10 }}>
             PUBLIC WATER SYSTEM REPORT
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f1f5f9", lineHeight: 1.2, margin: "0 0 16px" }}>
             Is {u.name} Water Safe to Drink in 2026?
           </h1>
 
-          <p style={{ fontSize: 15, color: "#94a3b8", margin: "0 0 20px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 20px", lineHeight: 1.6 }}>
             {stLabel} · PWSID {u.pwsid}
             {u.primarySource ? ` · ${u.primarySource}` : ""}
           </p>
@@ -310,7 +310,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                   borderRadius: 10,
                 }}
               >
-                <div style={{ fontSize: 10, color: "#94a3b8", letterSpacing: 1, marginBottom: 4 }}>{k}</div>
+                <div style={{ fontSize: 13, color: "#cbd5e1", letterSpacing: 1, marginBottom: 4 }}>{k}</div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#e2e8f0", lineHeight: 1.35 }}>{v}</div>
               </div>
             ))}
@@ -342,11 +342,11 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
               {grade.grade}
             </div>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 800, color: grade.gradeColor, letterSpacing: 1 }}>
+              <div style={{ fontSize: 13, fontWeight: 800, color: grade.gradeColor, letterSpacing: 1 }}>
                 TAP WATER GRADE
               </div>
               <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginTop: 4 }}>{grade.label}</div>
-              <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 4 }}>
+              <div style={{ fontSize: 13, color: "#cbd5e1", marginTop: 4 }}>
                 Model score {grade.score}/88 from violations, PFAS profile, and monitoring signals — not a laboratory test
                 of your faucet.
               </div>
@@ -359,13 +359,13 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
               <span
                 key={i}
                 style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   fontWeight: 600,
                   padding: "4px 10px",
                   background: "#071828",
                   border: "1px solid #1a3a5c",
                   borderRadius: 6,
-                  color: "#94a3b8",
+                  color: "#cbd5e1",
                 }}
               >
                 {issue}
@@ -378,7 +378,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         <div style={{ marginBottom: 36 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: "#0891b2",
               letterSpacing: 2,
@@ -391,7 +391,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           </div>
           {!hasPfasTable ? (
             <div style={{ padding: "18px 20px", background: "#0d2240", border: "1px solid #1a3a5c", borderRadius: 12 }}>
-              <p style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontSize: 14, color: "#cbd5e1", lineHeight: 1.7, margin: 0 }}>
                 No UCMR5 PFAS detects on file for this PWS in our bundled national dataset — the system may be smaller than
                 UCMR5 thresholds, had non-detects, or results are not yet linked to this ID. Your retailer Annual Water Quality
                 Report lists other regulated contaminants (chlorine, DBPs, nitrates, etc.).
@@ -406,9 +406,9 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                       key={h}
                       style={{
                         padding: "10px 14px",
-                        fontSize: 10,
+                        fontSize: 13,
                         fontWeight: 800,
-                        color: "#64748b",
+                        color: "#a8b4c4",
                         letterSpacing: 1,
                         background: "#040d14",
                         borderBottom: "1px solid #1a3a5c",
@@ -446,7 +446,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                           >
                             {name}
                             {EPA_MCL[name] !== undefined && (
-                              <span style={{ fontSize: 10, color: "#64748b", marginLeft: 6 }}>regulated</span>
+                              <span style={{ fontSize: 13, color: "#a8b4c4", marginLeft: 6 }}>regulated</span>
                             )}
                           </div>
                           <div
@@ -454,7 +454,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                               padding: "10px 14px",
                               fontSize: 13,
                               fontWeight: 700,
-                              color: overHealth ? "#ef4444" : overEPA ? "#f59e0b" : "#94a3b8",
+                              color: overHealth ? "#ef4444" : overEPA ? "#f59e0b" : "#cbd5e1",
                               textAlign: "center",
                               borderBottom: idx < arr.length - 1 ? "1px solid #0f2336" : "none",
                             }}
@@ -464,11 +464,11 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                           <div
                             style={{
                               padding: "10px 14px",
-                              fontSize: 12,
+                              fontSize: 13,
                               textAlign: "center",
                               borderBottom: idx < arr.length - 1 ? "1px solid #0f2336" : "none",
                               color:
-                                EPA_MCL[name] !== undefined ? (overEPA ? "#ef4444" : "#22d3ee") : "#64748b",
+                                EPA_MCL[name] !== undefined ? (overEPA ? "#ef4444" : "#22d3ee") : "#a8b4c4",
                             }}
                           >
                             {EPA_MCL[name] !== undefined
@@ -478,10 +478,10 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                           <div
                             style={{
                               padding: "10px 14px",
-                              fontSize: 12,
+                              fontSize: 13,
                               textAlign: "center",
                               borderBottom: idx < arr.length - 1 ? "1px solid #0f2336" : "none",
-                              color: overHealth ? "#ef4444" : "#64748b",
+                              color: overHealth ? "#ef4444" : "#a8b4c4",
                             }}
                           >
                             {overHealth ? "Exceeds" : "Within / n/a"}
@@ -489,7 +489,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                           <div
                             style={{
                               padding: "10px 14px",
-                              fontSize: 11,
+                              fontSize: 13,
                               fontWeight: 700,
                               textAlign: "center",
                               color: statusColor,
@@ -503,7 +503,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                     })}
                 </div>
               </div>
-              <p style={{ fontSize: 12, color: "#64748b", margin: "12px 0 0", lineHeight: 1.6 }}>
+              <p style={{ fontSize: 13, color: "#a8b4c4", margin: "12px 0 0", lineHeight: 1.6 }}>
                 Source: EPA UCMR5 · ppt = parts per trillion · MCL = enforceable limit for regulated PFAS
               </p>
             </>
@@ -516,7 +516,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         <div style={{ marginBottom: 36 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: "#0891b2",
               letterSpacing: 2,
@@ -564,7 +564,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
                   textDecoration: "none",
                   fontSize: 13,
                   fontWeight: 700,
-                  color: "#94a3b8",
+                  color: "#cbd5e1",
                 }}
               >
                 SDWIS federal reports (PWS search) →
@@ -587,7 +587,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
             flexWrap: "wrap",
           }}
         >
-          <span style={{ fontSize: 13, color: "#94a3b8", flexShrink: 0 }}>
+          <span style={{ fontSize: 13, color: "#cbd5e1", flexShrink: 0 }}>
             Get alerts if this system&apos;s EPA data changes:
           </span>
           <EmailCapture
@@ -607,7 +607,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         <div style={{ marginBottom: 8 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: "#0891b2",
               letterSpacing: 2,
@@ -618,7 +618,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           >
             WHAT TO DO ABOUT IT
           </div>
-          <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 16px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 16px", lineHeight: 1.6 }}>
             Based on {u.name}&apos;s monitoring and violation profile, here are vetted filtration options — same picks framework
             as our city reports.
           </p>
@@ -660,7 +660,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           }}
         >
           <div style={{ fontSize: 18, fontWeight: 800, color: "#f1f5f9", marginBottom: 8 }}>Check your ZIP code</div>
-          <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 18, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: "#cbd5e1", marginBottom: 18, lineHeight: 1.6 }}>
             PWS-wide data may differ from the system serving your home. Enter your ZIP on the homepage for a tailored EPA
             report.
           </p>

@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-const p = { fontSize: 15, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties;
+const p = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties;
 const h2 = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' } as React.CSSProperties;
-const label = { fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#0891b2', marginBottom: 10, display: 'block' } as React.CSSProperties;
+const label = { fontSize: 13, fontWeight: 700, letterSpacing: 2, color: '#0891b2', marginBottom: 10, display: 'block' } as React.CSSProperties;
 
 const PFAS_FACTS = [
   { stat: '45%', desc: 'of US tap water contains detectable PFAS — USGS 2023 study' },
@@ -112,7 +112,7 @@ export default function PfasPage() {
 
         {/* Hero */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>PFAS FOREVER CHEMICALS</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>PFAS FOREVER CHEMICALS</div>
           <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             PFAS in Drinking Water — What It Is, Where It Is, and What Removes It
           </h1>
@@ -126,7 +126,7 @@ export default function PfasPage() {
             {PFAS_FACTS.map(f => (
               <div key={f.stat} style={{ flex: '1 1 160px', padding: '14px 16px', background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 10 }}>
                 <div style={{ fontSize: 26, fontWeight: 900, color: '#fca5a5', marginBottom: 4 }}>{f.stat}</div>
-                <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>{f.desc}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>{f.desc}</div>
               </div>
             ))}
           </div>
@@ -154,7 +154,7 @@ export default function PfasPage() {
                 <span style={{ fontSize: 20, flexShrink: 0 }}>{s.icon}</span>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>{s.name}</div>
-                  <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65 }}>{s.desc}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65 }}>{s.desc}</div>
                 </div>
               </div>
             ))}
@@ -170,7 +170,7 @@ export default function PfasPage() {
             {HEALTH_EFFECTS.map(h => (
               <div key={h.effect} style={{ padding: '14px 16px', background: '#0d2240', border: '1px solid rgba(239,68,68,0.2)', borderLeft: '3px solid #ef4444', borderRadius: 8 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#fca5a5', marginBottom: 4 }}>{h.effect}</div>
-                <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>{h.detail}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6 }}>{h.detail}</div>
               </div>
             ))}
           </div>
@@ -193,7 +193,7 @@ export default function PfasPage() {
               <div key={c.compound} style={{ flex: '1 1 120px', padding: '10px 14px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8 }}>
                 <div style={{ fontSize: 13, fontWeight: 800, color: '#ef4444' }}>{c.compound}</div>
                 <div style={{ fontSize: 16, fontWeight: 900, color: '#f1f5f9' }}>{c.limit}</div>
-                <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>{c.note}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 2 }}>{c.note}</div>
               </div>
             ))}
           </div>
@@ -224,35 +224,35 @@ export default function PfasPage() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
                   <div style={{ flex: 1, minWidth: 200 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 16, fontWeight: 900, color: '#94a3b8' }}>#{f.rank}</span>
+                      <span style={{ fontSize: 16, fontWeight: 900, color: '#cbd5e1' }}>#{f.rank}</span>
                       <span style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>{f.name}</span>
                       <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: f.badgeColor, color: '#fff', padding: '2px 8px', borderRadius: 4 }}>{f.badge}</span>
                     </div>
-                    <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 6 }}>{f.brand} · {f.price} · PFAS removal: {f.removal} · {f.cert}</div>
-                    <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.65, margin: 0 }}>{f.why}</p>
+                    <div style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 6 }}>{f.brand} · {f.price} · PFAS removal: {f.removal} · {f.cert}</div>
+                    <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>{f.why}</p>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                     {f.brand === 'Waterdrop' && f.directLink ? (
                       <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Buy direct →</a>
+                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Buy direct →</a>
                     ) : null}
                     <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
-                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: f.brand === 'Waterdrop' && f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
+                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: f.brand === 'Waterdrop' && f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 14, padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8, fontSize: 12, color: '#94a3b8' }}>
+          <div style={{ marginTop: 14, padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8, fontSize: 13, color: '#cbd5e1' }}>
             ⚠ Filters labeled &quot;NSF certified&quot; without a specific standard number do not necessarily remove PFAS. Look for NSF/ANSI 58 (RO) or NSF/ANSI P473 (PFOA/PFOS specific) on the certification label.
           </div>
         </div>
 
         {/* CTA */}
         <div style={{ marginBottom: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #ef4444', borderRadius: 16, textAlign: 'center' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>CHECK YOUR WATER</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>CHECK YOUR WATER</div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Is PFAS in your tap water?</h2>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>Enter your ZIP to see the EPA PFAS testing results for your exact water system — from the 2023-2025 federal monitoring program covering 6,151 systems nationwide.</p>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>Enter your ZIP to see the EPA PFAS testing results for your exact water system — from the 2023-2025 federal monitoring program covering 6,151 systems nationwide.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#ef4444,#dc2626)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
@@ -281,7 +281,7 @@ export default function PfasPage() {
             ].map(({ q, a }) => (
               <div key={q} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 8 }}>{q}</div>
-                <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{a}</p>
               </div>
             ))}
           </div>
@@ -300,7 +300,7 @@ export default function PfasPage() {
               { href: '/quiz', label: 'Take the Filter Quiz — Get Matched to the Right System' },
               { href: '/', label: 'Free water quality check by ZIP — full EPA report' },
             ].map(({ href, label: lbl }) => (
-              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#94a3b8', fontSize: 14, fontWeight: 600 }}>
+              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#cbd5e1', fontSize: 14, fontWeight: 600 }}>
                 {lbl} <span style={{ color: '#0891b2' }}>→</span>
               </Link>
             ))}

@@ -109,18 +109,18 @@ export default function WorstStatesPage() {
 
         {/* ── HERO ── */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             STATE WATER QUALITY RANKINGS — 2025
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Top 25 worst states for tap water quality
           </h1>
-          <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
             Ranked using EPA violation records, PFAS monitoring data, and lead risk across {Object.keys(CITIES).length}+ cities.
             States are scored based on the number of tracked cities rated "high concern" — the more high-risk cities, the worse the state scores.
           </p>
           <div style={{ padding: '14px 18px', background: '#071828', border: '1px solid #f59e0b30', borderRadius: 10 }}>
-            <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>
+            <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>
               ⚠️ <strong style={{ color: '#f59e0b' }}>Methodology note:</strong> Rankings reflect primarily larger population centers tracked by WaterCheckup.
               Rural areas and smaller systems may have different profiles. Always check your specific ZIP for the most accurate picture.
             </p>
@@ -129,7 +129,7 @@ export default function WorstStatesPage() {
 
         {/* ── TOP 25 ── */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 16 }}>
             TOP 25 WORST STATES
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -147,7 +147,7 @@ export default function WorstStatesPage() {
                       <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>
                         {STATE_FULL[state] || state}
                       </div>
-                      <div style={{ fontSize: 12, color: '#64748b', marginBottom: 10 }}>
+                      <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 10 }}>
                         {highCount} high-concern {highCount === 1 ? 'city' : 'cities'} · {medCount} to monitor · {totalCities} tracked total
                       </div>
                       {/* Risk bar */}
@@ -157,13 +157,13 @@ export default function WorstStatesPage() {
                       {/* Issue chips */}
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
                         {topIssues.map(issue => (
-                          <span key={issue} style={{ fontSize: 11, padding: '2px 8px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 5, color: '#94a3b8' }}>
+                          <span key={issue} style={{ fontSize: 13, padding: '2px 8px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 5, color: '#cbd5e1' }}>
                             {issue}
                           </span>
                         ))}
                       </div>
                       {/* Correct worst city link */}
-                      <Link href={`/water/${worstSlug}`} style={{ fontSize: 12, color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
+                      <Link href={`/water/${worstSlug}`} style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
                         Worst city: {worstCityName} → view full report
                       </Link>
                     </div>
@@ -172,7 +172,7 @@ export default function WorstStatesPage() {
                   {/* Narrative — specific data-backed context */}
                   {narrative && (
                     <div style={{ borderTop: '1px solid #0f2336', padding: '12px 20px 16px 70px' }}>
-                      <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.7, margin: 0 }}>{narrative}</p>
+                      <p style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.7, margin: 0 }}>{narrative}</p>
                     </div>
                   )}
                 </div>
@@ -183,13 +183,13 @@ export default function WorstStatesPage() {
 
         {/* ── FULL TABLE ── */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             ALL STATES — FULL RANKING
           </div>
           <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, overflow: 'hidden' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 80px 80px', padding: '10px 16px', background: '#040d14', borderBottom: '1px solid #1a3a5c', gap: 8 }}>
               {['#', 'State', 'High Risk', 'Tracked'].map(h => (
-                <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 1 }}>{h}</div>
+                <div key={h} style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1 }}>{h}</div>
               ))}
             </div>
             {rankings.map(({ state, highCount, totalCities }, i) => (
@@ -199,12 +199,12 @@ export default function WorstStatesPage() {
                 style={{ textDecoration: 'none' }}
               >
                 <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 80px 80px', padding: '12px 16px', borderBottom: '1px solid #0f2336', gap: 8, alignItems: 'center' }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#475569' }}>{i + 1}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8' }}>{i + 1}</div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: '#e2e8f0' }}>{STATE_FULL[state] || state}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: highCount > 3 ? '#ef4444' : highCount > 1 ? '#f59e0b' : '#22d3ee' }}>
                     {highCount} cities
                   </div>
-                  <div style={{ fontSize: 12, color: '#64748b' }}>{totalCities} total</div>
+                  <div style={{ fontSize: 13, color: '#a8b4c4' }}>{totalCities} total</div>
                 </div>
               </Link>
             ))}
@@ -214,7 +214,7 @@ export default function WorstStatesPage() {
         {/* ── CTA ── */}
         <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 40, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your exact water</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 18, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 18, lineHeight: 1.6 }}>
             State rankings show the big picture. Your specific water system may be better or worse than your state average. Enter your ZIP for the full report.
           </p>
           <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
@@ -223,7 +223,7 @@ export default function WorstStatesPage() {
         </div>
 
         {/* ── RELATED ── */}
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(180px,1fr))', gap: 10 }}>
           {[
             { href: '/worst-pfas',       label: 'Worst PFAS violations',   desc: 'Top 10 systems above EPA MCL' },
@@ -235,7 +235,7 @@ export default function WorstStatesPage() {
           ].map(({ href, label, desc }) => (
             <Link key={href} href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{label}</div>
-              <div style={{ fontSize: 11, color: '#64748b' }}>{desc}</div>
+              <div style={{ fontSize: 13, color: '#a8b4c4' }}>{desc}</div>
             </Link>
           ))}
         </div>

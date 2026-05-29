@@ -70,7 +70,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
             style={{
               padding: "11px 14px",
               fontSize: 14,
-              color: "#94a3b8",
+              color: "#cbd5e1",
               textDecoration: "none",
               alignSelf: "center",
             }}
@@ -80,7 +80,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
         ) : null}
       </form>
 
-      <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 16px" }}>
+      <p style={{ fontSize: 13, color: "#a8b4c4", margin: "0 0 16px" }}>
         Showing page {page} of {totalPages} ({total.toLocaleString("en-US")} system
         {total === 1 ? "" : "s"}
         {query ? ` matching “${query}”` : ""})
@@ -105,7 +105,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
           >
             <div style={{ minWidth: 0 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0" }}>{u.name}</div>
-              <div style={{ fontSize: 12, color: "#64748b", marginTop: 4 }}>
+              <div style={{ fontSize: 13, color: "#a8b4c4", marginTop: 4 }}>
                 {u.pwsid}
                 {u.populationServed != null ? ` · ${u.populationServed.toLocaleString("en-US")} served` : ""}
               </div>
@@ -114,10 +114,10 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
               <span
                 style={{
                   flexShrink: 0,
-                  fontSize: 10,
+                  fontSize: 13,
                   fontWeight: 700,
                   letterSpacing: 0.5,
-                  color: "#64748b",
+                  color: "#a8b4c4",
                   background: "#040d14",
                   padding: "4px 8px",
                   borderRadius: 6,
@@ -149,7 +149,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
               ← Previous
             </Link>
           ) : null}
-          <span style={{ fontSize: 13, color: "#94a3b8", padding: "0 8px" }}>
+          <span style={{ fontSize: 13, color: "#cbd5e1", padding: "0 8px" }}>
             Page {page} / {totalPages}
           </span>
           {page < totalPages ? (

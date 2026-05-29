@@ -77,13 +77,13 @@ export async function GET(req: Request) {
           flexShrink: 0,
         }}>
           <div style={{ fontSize: 88, fontWeight: 900, color: scoreColor, lineHeight: 1 }}>{score}</div>
-          <div style={{ fontSize: 24, color: '#94a3b8', marginTop: 4 }}>Grade: {grade}</div>
+          <div style={{ fontSize: 24, color: '#cbd5e1', marginTop: 4 }}>Grade: {grade}</div>
         </div>
 
         {/* Info */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ fontSize: 54, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.05 }}>{city}</div>
-          <div style={{ fontSize: 24, color: '#64748b', marginBottom: 8, display: 'flex' }}>Water Quality Report — EPA SDWIS · UCMR5 · EWG</div>
+          <div style={{ fontSize: 24, color: '#a8b4c4', marginBottom: 8, display: 'flex' }}>Water Quality Report — EPA SDWIS · UCMR5 · EWG</div>
 
           <div style={{ display: 'flex', gap: 16 }}>
             <div style={{
@@ -91,7 +91,7 @@ export async function GET(req: Request) {
               borderRadius: 12, padding: '14px 22px', display: 'flex', flexDirection: 'column',
             }}>
               <div style={{ fontSize: 42, fontWeight: 800, color: violNum > 0 ? '#f59e0b' : '#22d3ee' }}>{violations}</div>
-              <div style={{ fontSize: 16, color: '#475569' }}>Violations</div>
+              <div style={{ fontSize: 16, color: '#94a3b8' }}>Violations</div>
             </div>
             {pwsid && (
               <div style={{
@@ -99,7 +99,7 @@ export async function GET(req: Request) {
                 borderRadius: 12, padding: '14px 22px', display: 'flex', flexDirection: 'column',
               }}>
                 <div style={{ fontSize: 22, fontWeight: 700, color: '#22d3ee' }}>{pwsid}</div>
-                <div style={{ fontSize: 16, color: '#475569' }}>EPA PWSID</div>
+                <div style={{ fontSize: 16, color: '#94a3b8' }}>EPA PWSID</div>
               </div>
             )}
           </div>
@@ -138,7 +138,7 @@ export async function GET(req: Request) {
         position: 'relative',
         zIndex: 1,
       }}>
-        <div style={{ fontSize: 18, color: '#334155', display: 'flex' }}>Free water quality reports at</div>
+        <div style={{ fontSize: 18, color: '#94a3b8', display: 'flex' }}>Free water quality reports at</div>
         <div style={{ fontSize: 22, color: '#22d3ee', fontWeight: 700, display: 'flex' }}>watercheckup.com</div>
       </div>
     </div>,

@@ -71,11 +71,11 @@ export default function TopPickBox({
     <div style={{ marginBottom: 32 }}>
       <FilterRecommendationsBanner />
       <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>
-      <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
+      <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
         TOP PICKS FOR {cityName.toUpperCase()}
       </div>
 
-      <div style={{ fontSize: 11, color: '#ef4444', fontWeight: 700, letterSpacing: 1, marginBottom: 14, marginTop: 16 }}>
+      <div style={{ fontSize: 13, color: '#ef4444', fontWeight: 700, letterSpacing: 1, marginBottom: 14, marginTop: 16 }}>
         ⚠ {label}
       </div>
 
@@ -95,7 +95,7 @@ export default function TopPickBox({
               border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336',
             }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, flex: 1, minWidth: 180 }}>
-                <div style={{ fontSize: 15, fontWeight: 800, color: '#94a3b8', minWidth: 20, paddingTop: 2 }}>#{i + 1}</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: '#cbd5e1', minWidth: 20, paddingTop: 2 }}>#{i + 1}</div>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
                     <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>{pick.product}</div>
@@ -105,13 +105,13 @@ export default function TopPickBox({
                       </span>
                     )}
                   </div>
-                  <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{pick.brand} &nbsp;·&nbsp; {pick.price}</div>
-                  <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 4, lineHeight: 1.5 }}>{pick.reason}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 2 }}>{pick.brand} &nbsp;·&nbsp; {pick.price}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4, lineHeight: 1.5 }}>{pick.reason}</div>
                   {/* "Why this for [city]" — only shown on top pick */}
                   {i === 0 && whyText && (
                     <div style={{ marginTop: 10, padding: '8px 12px', background: 'rgba(8,145,178,0.1)', border: '1px solid rgba(8,145,178,0.2)', borderRadius: 7 }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 0.5 }}>WHY THIS FOR {cityName.toUpperCase()} · </span>
-                      <span style={{ fontSize: 12, color: '#94a3b8' }}>{whyText}</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 0.5 }}>WHY THIS FOR {cityName.toUpperCase()} · </span>
+                      <span style={{ fontSize: 13, color: '#cbd5e1' }}>{whyText}</span>
                     </div>
                   )}
                 </div>
@@ -124,7 +124,7 @@ export default function TopPickBox({
                     target="_blank"
                     rel="noopener noreferrer sponsored"
                     onClick={() => trackClick(pick.product, 'direct', cityName)}
-                    style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}
+                    style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}
                   >
                     Buy Direct →
                   </a>
@@ -134,7 +134,7 @@ export default function TopPickBox({
                   target="_blank"
                   rel="noopener noreferrer sponsored"
                   onClick={() => trackClick(pick.product, 'amazon', cityName)}
-                  style={{ display: 'block', padding: '6px 12px', background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(15,23,42,0.55)', color: amazonPrimary ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 11, fontWeight: 600, textAlign: 'center', border: amazonPrimary ? 'none' : '1px solid rgba(100,116,139,0.35)', whiteSpace: 'nowrap' }}
+                  style={{ display: 'block', padding: '6px 12px', background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(15,23,42,0.55)', color: amazonPrimary ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 600, textAlign: 'center', border: amazonPrimary ? 'none' : '1px solid rgba(100,116,139,0.35)', whiteSpace: 'nowrap' }}
                 >
                   Amazon →
                 </a>
@@ -144,7 +144,7 @@ export default function TopPickBox({
         })}
       </div>
 
-      <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #0f2336', fontSize: 12, color: '#94a3b8' }}>
+      <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #0f2336', fontSize: 13, color: '#cbd5e1' }}>
         Not sure which filter is right for you?{' '}
         <Link href="/quiz" style={{ color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
           Take the 3-question quiz →

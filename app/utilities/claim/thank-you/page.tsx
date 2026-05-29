@@ -47,7 +47,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
           You&apos;re All Set!
         </h1>
 
-        <p style={{ fontSize: 16, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 12px' }}>
+        <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 12px' }}>
           We&apos;ve received your claim for <strong style={{ color: '#e2e8f0' }}>{utilityName}</strong>. Our team will
           verify your credentials and set up your official CCR page within 2 business days.
         </p>
@@ -66,7 +66,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
             marginBottom: 32,
           }}
         >
-          <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px' }}>
             IN THE MEANTIME
           </p>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -75,7 +75,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
                 View your current utility listing →
               </Link>
               {stateCode ? (
-                <span style={{ display: 'block', fontSize: 12, color: '#64748b', marginTop: 4 }}>
+                <span style={{ display: 'block', fontSize: 13, color: '#a8b4c4', marginTop: 4 }}>
                   Browse {stateLabel(stateCode)} systems in our directory
                 </span>
               ) : null}
@@ -95,7 +95,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
 
         <Link
           href="/utilities/claim"
-          style={{ fontSize: 14, color: '#64748b', textDecoration: 'none' }}
+          style={{ fontSize: 14, color: '#a8b4c4', textDecoration: 'none' }}
         >
           ← Submit another claim
         </Link>

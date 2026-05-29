@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
+import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CITIES } from '../[city]/cities-data';
 
 const AMAZON_TAG = 'watercheck20-20';
@@ -140,26 +141,26 @@ export default function HoustonWaterPage() {
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
+          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/water" style={{ color: '#64748b', textDecoration: 'none' }}>
+          <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Cities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Houston, TX</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
           Houston, TX Water Quality Report
         </h1>
-        <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 8px' }}>
+        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
           Houston Water · Trinity River / Lake Houston source · 2024–2025 data
         </p>
-        <p style={{ fontSize: 13, color: '#475569', margin: '0 0 28px' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>
           Source: Houston Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
         </p>
 
@@ -178,12 +179,12 @@ export default function HoustonWaterPage() {
         >
           <div style={{ textAlign: 'center', flexShrink: 0 }}>
             <div style={{ fontSize: 48, fontWeight: 900, color: '#ef4444', lineHeight: 1 }}>48</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>/ 88</div>
+            <div style={{ fontSize: 13, color: '#a8b4c4' }}>/ 88</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: '#ef4444' }}>D+</div>
           </div>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#ef4444', marginBottom: 6 }}>Poor</div>
-            <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
               Houston has some of the most contaminated tap water of any major US city. Significant PFAS contamination from industrial sources, elevated arsenic, high disinfection byproducts, radium, and very high sodium. A reverse osmosis filter is strongly recommended.
             </p>
           </div>
@@ -195,7 +196,7 @@ export default function HoustonWaterPage() {
             ].map(({ label, value, color }) => (
               <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
                 <div style={{ fontSize: 16, fontWeight: 900, color }}>{value}</div>
-                <div style={{ fontSize: 10, color: '#64748b' }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{label}</div>
               </div>
             ))}
           </div>
@@ -216,7 +217,7 @@ export default function HoustonWaterPage() {
         >
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Get your specific ZIP code report</div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>77001, 77002, 77003 and all Houston ZIP codes</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>77001, 77002, 77003 and all Houston ZIP codes</div>
           </div>
           <Link
             href="/"
@@ -234,8 +235,12 @@ export default function HoustonWaterPage() {
           </Link>
         </div>
 
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 28px' }}>
+          {PRIORITY_CITY_INTROS.houston}
+        </p>
+
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             CONTAMINANTS IN HOUSTON WATER — 2024 DATA
           </div>
           {CONTAMINANTS.map((c, i) => (
@@ -243,10 +248,10 @@ export default function HoustonWaterPage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.level}</span>
+                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
                   <span
                     style={{
-                      fontSize: 11,
+                      fontSize: 13,
                       fontWeight: 700,
                       padding: '3px 8px',
                       borderRadius: 6,
@@ -258,7 +263,7 @@ export default function HoustonWaterPage() {
                   </span>
                 </div>
               </div>
-              <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
             </div>
           ))}
         </div>
@@ -272,20 +277,20 @@ export default function HoustonWaterPage() {
             marginBottom: 20,
           }}
         >
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>
             ⚠️ HOUSTON&apos;S PFAS PROBLEM
           </div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
             Houston&apos;s PFAS contamination is driven by its massive petrochemical and industrial complex. The Houston Ship Channel area has dozens of facilities that historically used PFAS-containing products including firefighting foam. This industrial PFAS has contaminated the Trinity River watershed that feeds Houston&apos;s water supply.
           </p>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
             At 22.4 ppt total PFAS, Houston exceeds the EPA&apos;s 2024 limits significantly.{' '}
             <strong style={{ color: '#e2e8f0' }}>Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.</strong> Standard pitcher filters, Brita, and PUR do not remove PFAS.
           </p>
         </div>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             BEST FILTERS FOR HOUSTON WATER
           </div>
           {FILTER_PICKS.map((f, i) => (
@@ -322,8 +327,8 @@ export default function HoustonWaterPage() {
                     {f.badge}
                   </span>
                 </div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{f.price}</div>
-                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
                 <a
                   href={`https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
@@ -335,7 +340,7 @@ export default function HoustonWaterPage() {
                     border: f.best ? 'none' : '1px solid #1a3a5c',
                     borderRadius: 8,
                     color: '#fff',
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: 700,
                     textDecoration: 'none',
                   }}
@@ -348,13 +353,13 @@ export default function HoustonWaterPage() {
         </div>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             FREQUENTLY ASKED QUESTIONS
           </div>
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>
-              <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
+              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
             </div>
           ))}
         </div>
@@ -375,7 +380,7 @@ export default function HoustonWaterPage() {
         >
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 2 }}>📋 Official Houston Water Quality Report</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>Complete 2024 test results from Houston Water</div>
+            <div style={{ fontSize: 13, color: '#a8b4c4' }}>Complete 2024 test results from Houston Water</div>
           </div>
           <a
             href="https://www.houstonwater.org/water-quality/"
@@ -412,12 +417,12 @@ export default function HoustonWaterPage() {
           >
             Check Your ZIP Code →
           </Link>
-          <p style={{ fontSize: 12, color: '#475569', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
         </div>
 
         <FounderCityAttribution />
 
-        <p style={{ fontSize: 11, color: '#334155', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Data sourced from Houston Water CCR 2024, EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. WaterCheckup is not affiliated with Houston Water or the EPA. Some filter links are affiliate links.
         </p>
       </div>

@@ -33,7 +33,7 @@ function formatLevelVal(level: number | string | null | undefined): string {
 function ContaminantBar({ c }: { c: any }) {
   const [open, setOpen] = useState(false);
   const sev = String(c.severity || '').toLowerCase();
-  const accent = SEVERITY_COLOR[sev] || c.statusColor || '#64748b';
+  const accent = SEVERITY_COLOR[sev] || c.statusColor || '#a8b4c4';
   const name = c.name || c.contaminant;
   const level = c.level ?? c.result;
   const unit = (c.unit || '').trim();
@@ -87,24 +87,24 @@ function ContaminantBar({ c }: { c: any }) {
         }}
       >
         <span style={{ fontSize: 14, fontWeight: 600, color: '#e2e8f0', flex: 1, minWidth: 0 }}>{name}</span>
-        <span style={{ fontSize: 13, color: '#94a3b8', whiteSpace: 'nowrap', textAlign: 'right' }}>
+        <span style={{ fontSize: 13, color: '#cbd5e1', whiteSpace: 'nowrap', textAlign: 'right' }}>
           {levelPart ? (
             <>
               {levelPart}
               {limitPart ? (
-                <span style={{ color: '#64748b' }}>
+                <span style={{ color: '#a8b4c4' }}>
                   {' '}
                   / limit {limitPart}
                 </span>
               ) : null}
             </>
           ) : (
-            <span style={{ color: '#64748b' }}>—</span>
+            <span style={{ color: '#a8b4c4' }}>—</span>
           )}
         </span>
         <span
           style={{
-            fontSize: 11,
+            fontSize: 13,
             fontWeight: 700,
             padding: '3px 8px',
             borderRadius: 6,
@@ -117,7 +117,7 @@ function ContaminantBar({ c }: { c: any }) {
           {statusLabel}
         </span>
         {hasExpand ? (
-          <span style={{ color: '#64748b', fontSize: 12, flexShrink: 0, width: 18 }} aria-hidden>
+          <span style={{ color: '#a8b4c4', fontSize: 13, flexShrink: 0, width: 18 }} aria-hidden>
             {open ? '▾' : '▸'}
           </span>
         ) : (
@@ -125,7 +125,7 @@ function ContaminantBar({ c }: { c: any }) {
         )}
       </button>
       {c.note && (!levelPart || c.violationBased) ? (
-        <p style={{ fontSize: 12, color: '#64748b', margin: '-4px 0 8px', lineHeight: 1.5, paddingRight: 8 }}>{c.note}</p>
+        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '-4px 0 8px', lineHeight: 1.5, paddingRight: 8 }}>{c.note}</p>
       ) : null}
       {open && hasExpand ? (
         <div
@@ -135,31 +135,31 @@ function ContaminantBar({ c }: { c: any }) {
             flexDirection: 'column',
             gap: 10,
             fontSize: 13,
-            color: '#94a3b8',
+            color: '#cbd5e1',
             lineHeight: 1.65,
           }}
         >
           {c.healthEffects ? (
             <div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 1, marginBottom: 4 }}>HEALTH EFFECTS</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1, marginBottom: 4 }}>HEALTH EFFECTS</div>
               <p style={{ margin: 0 }}>{c.healthEffects}</p>
             </div>
           ) : null}
           {c.healthSources ? (
             <div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 1, marginBottom: 4 }}>SOURCES IN WATER</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1, marginBottom: 4 }}>SOURCES IN WATER</div>
               <p style={{ margin: 0 }}>{c.healthSources}</p>
             </div>
           ) : null}
           {c.epaAction ? (
             <div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 1, marginBottom: 4 }}>EPA ACTION / LIMITS</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1, marginBottom: 4 }}>EPA ACTION / LIMITS</div>
               <p style={{ margin: 0 }}>{c.epaAction}</p>
             </div>
           ) : null}
           {c.ewgGuidelineLabel ? (
             <div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 1, marginBottom: 4 }}>EWG HEALTH GUIDELINE</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1, marginBottom: 4 }}>EWG HEALTH GUIDELINE</div>
               <p style={{ margin: 0 }}>{c.ewgGuidelineLabel}</p>
             </div>
           ) : null}
@@ -185,7 +185,7 @@ function ScoreDial({ rawScore }: { rawScore: number }) {
       </svg>
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontSize: 28, fontWeight: 900, color: sc, lineHeight: 1 }}>{capped}</span>
-        <span style={{ fontSize: 10, color: '#64748b', letterSpacing: 1 }}>/ 88</span>
+        <span style={{ fontSize: 13, color: '#a8b4c4', letterSpacing: 1 }}>/ 88</span>
         <span style={{ fontSize: 14, fontWeight: 800, color: sc, marginTop: 2 }}>{grade}</span>
       </div>
     </div>
@@ -218,7 +218,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       <div style={{ maxWidth: 680, margin: '80px auto', padding: '0 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🚱</div>
         <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>No data found for ZIP {zip}</h1>
-        <p style={{ color: '#94a3b8', marginBottom: 24 }}>This ZIP code may not be in our database yet, or it may be a rural area served by a private well.</p>
+        <p style={{ color: '#cbd5e1', marginBottom: 24 }}>This ZIP code may not be in our database yet, or it may be a rural area served by a private well.</p>
         <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: '#0891b2', borderRadius: 10, color: '#fff', fontWeight: 700, textDecoration: 'none' }}>
           Try another ZIP →
         </Link>
@@ -241,22 +241,22 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
       {/* ── HEADER ── */}
       <div style={{ marginBottom: 28 }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 12 }}>
-          <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>Home</Link>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 12 }}>
+          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Results</span>
           <span style={{ margin: '0 6px' }}>›</span>
-          <span style={{ color: '#94a3b8' }}>{zip}</span>
+          <span style={{ color: '#cbd5e1' }}>{zip}</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>
           WATER QUALITY REPORT
         </div>
 
         <h1 style={{ fontSize: 28, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 6px' }}>
           {data.city}
         </h1>
-        <p style={{ fontSize: 14, color: '#64748b', margin: '0 0 20px' }}>
+        <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 20px' }}>
           {data.systemName} · PWSID {data.pwsid} · {data.sourceType}
           {data.population ? ` · ${data.population} served` : ''}
         </p>
@@ -265,25 +265,25 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap', padding: '20px 24px', background: '#071828', border: `2px solid ${sc}30`, borderRadius: 16, marginBottom: 20 }}>
           <ScoreDial rawScore={data.score} />
           <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: sc, marginBottom: 6 }}>{SCORE_LABEL(cappedScore)}</div>
-            <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>{data.summary}</p>
+            <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>{data.summary}</p>
             {data.pfasSummary && (
               <p style={{ fontSize: 13, color: '#f59e0b', lineHeight: 1.6, margin: '6px 0 0' }}>{data.pfasSummary}</p>
             )}
-            <p style={{ fontSize: 11, color: '#475569', margin: '8px 0 0', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0', lineHeight: 1.5 }}>
               Max score is 88/88 — all municipal water contains chlorine and disinfection byproducts not captured in EPA records.
             </p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
             {[
               { label: 'Open Violations', value: data.openViolations, color: data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
-              { label: 'Total Violations', value: data.totalViolations, color: '#94a3b8' },
+              { label: 'Total Violations', value: data.totalViolations, color: '#cbd5e1' },
               { label: 'PFAS Detected', value: data.pfasCount, color: data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
             ].map(({ label, value, color }) => (
               <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
                 <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
-                <div style={{ fontSize: 10, color: '#64748b', letterSpacing: 0.5 }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', letterSpacing: 0.5 }}>{label}</div>
               </div>
             ))}
           </div>
@@ -294,12 +294,12 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`My ${data.city} tap water scored ${cappedScore}/88 (Grade: ${letterGrade}) on EPA data. Check yours free 💧 watercheckup.com/results/${zip}`)}`}
             target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: 12, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#94a3b8', textDecoration: 'none', fontWeight: 600 }}
+            style={{ fontSize: 13, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#cbd5e1', textDecoration: 'none', fontWeight: 600 }}
           >
             ↗ Share score
           </a>
           <Link href="/"
-            style={{ fontSize: 12, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#94a3b8', textDecoration: 'none', fontWeight: 600 }}
+            style={{ fontSize: 13, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#cbd5e1', textDecoration: 'none', fontWeight: 600 }}
           >
             🔍 Check another ZIP
           </Link>
@@ -315,19 +315,19 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               maxWidth: 560,
             }}
           >
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 1.2, marginBottom: 6 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1.2, marginBottom: 6 }}>
               OFFICIAL EPA TOOLS — VIEW ON WATERCHECKUP
             </div>
-            <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 10px', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 10px', lineHeight: 1.5 }}>
               Open EPA&apos;s own pages inside our site (your address bar stays on watercheckup.com). PWSID{' '}
-              <span style={{ color: '#cbd5e1', fontFamily: 'ui-monospace, monospace', fontSize: 11 }}>{data.pwsid}</span>
+              <span style={{ color: '#cbd5e1', fontFamily: 'ui-monospace, monospace', fontSize: 13 }}>{data.pwsid}</span>
               . If a page is blank, EPA may block embedding — use the direct EPA link at the bottom.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
               <Link
                 href={`/epa/sdwis/${encodeURIComponent(data.pwsid)}?return=${encodeURIComponent(`/results/${zip}`)}`}
                 style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   padding: '8px 14px',
                   background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
                   borderRadius: 8,
@@ -342,7 +342,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               <Link
                 href={`/epa/ccr-finder?return=${encodeURIComponent(`/results/${zip}`)}`}
                 style={{
-                  fontSize: 12,
+                  fontSize: 13,
                   padding: '7px 12px',
                   background: '#0d2240',
                   border: '1px solid #1a3a5c',
@@ -355,18 +355,18 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 Find Your Local CCR (in-site) →
               </Link>
             </div>
-            <p style={{ fontSize: 11, color: '#475569', margin: '10px 0 0', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 13, color: '#94a3b8', margin: '10px 0 0', lineHeight: 1.5 }}>
               Direct (new tab):{' '}
               <a
                 href={`https://sdwis.epa.gov/ords/sfdw_pub/f?p=SDWIS_FED_REPORTS_PUBLIC:PWS_SEARCH::::::PWSID:${encodeURIComponent(data.pwsid)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: '#64748b' }}
+                style={{ color: '#a8b4c4' }}
               >
                 SDWIS ↗
               </a>
               {' · '}
-              <a href="https://sdwis.epa.gov/fylccr" target="_blank" rel="noopener noreferrer" style={{ color: '#64748b' }}>
+              <a href="https://sdwis.epa.gov/fylccr" target="_blank" rel="noopener noreferrer" style={{ color: '#a8b4c4' }}>
                 CCR finder ↗
               </a>
             </p>
@@ -382,7 +382,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               flex: 1, padding: '10px 12px', borderRadius: 8, border: 'none', cursor: 'pointer',
               fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap',
               background: tab === t.id ? '#0891b2' : 'transparent',
-              color: tab === t.id ? '#fff' : '#64748b',
+              color: tab === t.id ? '#fff' : '#a8b4c4',
             }}
           >{t.label}</button>
         ))}
@@ -393,7 +393,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div>
           {/* What this means */}
           <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHAT THIS MEANS FOR YOU</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHAT THIS MEANS FOR YOU</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {data.openViolations > 0 && (
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -433,8 +433,8 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           {/* Contaminants */}
           {data.contaminants?.length > 0 && (
             <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>CONTAMINANTS DETECTED</div>
-              <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 14px' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>CONTAMINANTS DETECTED</div>
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 14px' }}>
                 {data.dataSources?.length
                   ? `Sources: ${data.dataSources.join(' · ')}`
                   : 'Sources: EPA SDWIS, UCMR5 PFAS, utility CCR where available'}
@@ -447,10 +447,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
           {/* Data sources */}
           <div style={{ padding: '14px 18px', background: '#040d14', border: '1px solid #0f2336', borderRadius: 10, marginBottom: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', letterSpacing: 2, marginBottom: 8 }}>DATA SOURCES</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 8 }}>DATA SOURCES</div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {(data.dataSources || [data.dataSource]).map((s: string) => (
-                <span key={s} style={{ fontSize: 11, fontWeight: 600, padding: '3px 9px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 6, color: '#0891b2' }}>{s}</span>
+                <span key={s} style={{ fontSize: 13, fontWeight: 600, padding: '3px 9px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 6, color: '#0891b2' }}>{s}</span>
               ))}
             </div>
           </div>
@@ -523,7 +523,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               <div style={{ marginBottom: 20 }}>
                 <FilterRecommendationsBanner />
                 <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '2px solid rgba(8,145,178,0.35)', borderRadius: 12 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RECOMMENDED FOR YOUR WATER</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RECOMMENDED FOR YOUR WATER</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {picks.map(({ prod, badge, reason, highlight }) => (
                     <div
@@ -556,8 +556,8 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                             {badge}
                           </span>
                         </div>
-                        <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{prod.price}</div>
-                        <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.6, margin: '0 0 10px' }}>{reason}</p>
+                        <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{prod.price}</div>
+                        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 10px' }}>{reason}</p>
                         <a
                           href={prod.amazon}
                           target="_blank"
@@ -569,7 +569,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                             border: highlight ? 'none' : '1px solid #1a3a5c',
                             borderRadius: 8,
                             color: '#fff',
-                            fontSize: 12,
+                            fontSize: 13,
                             fontWeight: 700,
                             textDecoration: 'none',
                           }}
@@ -590,7 +590,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                     background: 'transparent',
                     border: '1px solid #1a3a5c',
                     borderRadius: 8,
-                    color: '#94a3b8',
+                    color: '#cbd5e1',
                     fontSize: 13,
                     fontWeight: 600,
                     cursor: 'pointer',
@@ -618,13 +618,13 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 🧪
               </div>
               <div style={{ flex: 1, minWidth: 200 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#fbbf24', letterSpacing: 2, marginBottom: 6 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#fbbf24', letterSpacing: 2, marginBottom: 6 }}>
                   TEST YOUR ACTUAL TAP
                 </div>
                 <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
                   EPA data shows what&apos;s in your utility&apos;s water — not your specific tap
                 </div>
-                <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.6, margin: '0 0 14px' }}>
+                <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 14px' }}>
                   Lead leaches from your home&apos;s pipes and fixtures. PFAS levels vary by neighborhood. A certified lab test tells you exactly what&apos;s coming out of your faucet — not just your utility&apos;s average.
                 </p>
                 <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -646,7 +646,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                     Tap Score Lab Test — from $49 →
                   </a>
                 </div>
-                <p style={{ fontSize: 11, color: '#475569', margin: '10px 0 0' }}>
+                <p style={{ fontSize: 13, color: '#94a3b8', margin: '10px 0 0' }}>
                   Tap Score tests are processed by independently accredited labs. Turnaround is typically about a week; panels vary by price — results include personalized guidance.
                 </p>
               </div>
@@ -658,7 +658,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             const citySlug = data.city?.toLowerCase().split(',')[0].trim().replace(/\s+/g, '-');
             return (
               <div style={{ padding: '16px 20px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, marginBottom: 20 }}>
-                <p style={{ fontSize: 13, color: '#94a3b8', margin: 0 }}>
+                <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
                   Want the full city-level breakdown?{' '}
                   <Link href={`/water/${citySlug}`} style={{ color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
                     View the {data.city?.split(',')[0]} city water report →
@@ -674,13 +674,13 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       {tab === 'pfas' && (
         <div>
           <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>PFAS MONITORING — EPA UCMR5 (2023–2025)</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>PFAS MONITORING — EPA UCMR5 (2023–2025)</div>
             {data.pfasCount === 0 ? (
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <span style={{ fontSize: 24 }}>✅</span>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#22d3ee' }}>No PFAS detected</div>
-                  <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 4 }}>All 29 PFAS compounds tested below detection limits for this water system.</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4 }}>All 29 PFAS compounds tested below detection limits for this water system.</div>
                 </div>
               </div>
             ) : (
@@ -688,21 +688,21 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ display: 'flex', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
                   <div style={{ padding: '10px 16px', background: '#071828', borderRadius: 8, textAlign: 'center' }}>
                     <div style={{ fontSize: 22, fontWeight: 900, color: data.pfasAboveMcl > 0 ? '#ef4444' : '#f59e0b' }}>{data.pfasCount}</div>
-                    <div style={{ fontSize: 10, color: '#64748b' }}>Compounds detected</div>
+                    <div style={{ fontSize: 13, color: '#a8b4c4' }}>Compounds detected</div>
                   </div>
                   <div style={{ padding: '10px 16px', background: '#071828', borderRadius: 8, textAlign: 'center' }}>
                     <div style={{ fontSize: 22, fontWeight: 900, color: data.pfasAboveMcl > 0 ? '#ef4444' : '#22d3ee' }}>{data.pfasAboveMcl}</div>
-                    <div style={{ fontSize: 10, color: '#64748b' }}>Above EPA MCL</div>
+                    <div style={{ fontSize: 13, color: '#a8b4c4' }}>Above EPA MCL</div>
                   </div>
                   {data.ucmr5?.maxPfasPpt != null && (
                     <div style={{ padding: '10px 16px', background: '#071828', borderRadius: 8, textAlign: 'center' }}>
-                      <div style={{ fontSize: 22, fontWeight: 900, color: '#94a3b8' }}>{data.ucmr5.maxPfasPpt}</div>
-                      <div style={{ fontSize: 10, color: '#64748b' }}>Max ppt detected</div>
+                      <div style={{ fontSize: 22, fontWeight: 900, color: '#cbd5e1' }}>{data.ucmr5.maxPfasPpt}</div>
+                      <div style={{ fontSize: 13, color: '#a8b4c4' }}>Max ppt detected</div>
                     </div>
                   )}
                 </div>
                 <div style={{ padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8 }}>
-                  <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+                  <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
                     PFAS "forever chemicals" don't break down in the body and accumulate over time. The EPA set the first federal PFAS limits in April 2024 (4 ppt for PFOA/PFOS). <strong style={{ color: '#e2e8f0' }}>Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.</strong> Standard pitcher filters do not.
                   </p>
                 </div>
@@ -716,7 +716,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       {tab === 'violations' && (
         <div>
           <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>EPA VIOLATION HISTORY</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>EPA VIOLATION HISTORY</div>
             {!data.violations?.length ? (
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <span style={{ fontSize: 24 }}>✅</span>
@@ -729,18 +729,18 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
                       <div>
                         <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 2 }}>{v.rule}</div>
-                        {v.contaminant && <div style={{ fontSize: 12, color: '#94a3b8' }}>{v.contaminant}</div>}
+                        {v.contaminant && <div style={{ fontSize: 13, color: '#cbd5e1' }}>{v.contaminant}</div>}
                       </div>
                       <div style={{ display: 'flex', gap: 6, flexShrink: 0, alignItems: 'center' }}>
-                        <span style={{ fontSize: 11, color: '#64748b' }}>{v.year}</span>
-                        <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 5, background: `${v.statusColor}20`, color: v.statusColor }}>{v.status}</span>
+                        <span style={{ fontSize: 13, color: '#a8b4c4' }}>{v.year}</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, padding: '2px 8px', borderRadius: 5, background: `${v.statusColor}20`, color: v.statusColor }}>{v.status}</span>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             )}
-            <p style={{ fontSize: 11, color: '#64748b', margin: '14px 0 0', lineHeight: 1.6 }}>
+            <p style={{ fontSize: 13, color: '#a8b4c4', margin: '14px 0 0', lineHeight: 1.6 }}>
               Source: EPA SDWIS Safe Drinking Water Information System · Showing most recent violations
             </p>
           </div>
@@ -751,7 +751,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       {tab === 'filters' && (
         <div>
           <FilterRecommendationsBanner style={{ marginBottom: 20 }} />
-          <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 16, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 16, lineHeight: 1.6 }}>
             Based on <strong style={{ color: '#e2e8f0' }}>{data.city?.split(',')[0]}</strong>'s water profile — {data.pfasCount > 0 ? 'PFAS detected, ' : ''}{data.openViolations > 0 ? `${data.openViolations} open violations, ` : ''}score {cappedScore}/88 — here are the right filters for your home.
           </p>
           {[
@@ -792,17 +792,17 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                   <span style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>{f.name}</span>
                   <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, padding: '2px 7px', borderRadius: 4, background: f.best ? '#0891b2' : '#1e3a5f', color: '#fff' }}>{f.badge}</span>
                 </div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{f.price}</div>
-                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.5, marginBottom: 10 }}>{f.reason}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.reason}</div>
                 <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
-                  style={{ display: 'inline-block', padding: '8px 16px', background: f.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', border: f.best ? 'none' : '1px solid #1a3a5c', borderRadius: 8, color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none' }}>
+                  style={{ display: 'inline-block', padding: '8px 16px', background: f.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', border: f.best ? 'none' : '1px solid #1a3a5c', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                   View on Amazon →
                 </a>
               </div>
             </div>
           ))}
           <div style={{ marginTop: 16, padding: '14px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10 }}>
-            <p style={{ fontSize: 13, color: '#94a3b8', margin: 0 }}>
+            <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
               Not sure which is right for you?{' '}
               <Link href="/quiz" style={{ color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>Take the 3-question filter quiz →</Link>
             </p>
@@ -813,7 +813,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       {/* ── EMAIL ALERTS ── */}
       <div style={{ marginTop: 40, padding: '24px 24px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: 14 }}>
         <div style={{ fontSize: 17, fontWeight: 900, color: '#f8fafc', marginBottom: 8 }}>Get Alerts If Your Water Changes</div>
-        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 14px', lineHeight: 1.55 }}>
+        <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.55 }}>
           We'll notify you if new contaminants are detected or violations are filed for ZIP {zip}.
         </p>
         {alertSent ? (
@@ -848,7 +848,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             </button>
           </div>
         )}
-        <p style={{ fontSize: 11, color: '#64748b', margin: '10px 0 0' }}>No spam. Unsubscribe anytime.</p>
+        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '10px 0 0' }}>No spam. Unsubscribe anytime.</p>
       </div>
 
       {/* ── CHECK ANOTHER ZIP ── */}

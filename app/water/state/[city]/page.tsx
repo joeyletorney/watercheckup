@@ -213,7 +213,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
 
       <div style={{ maxWidth: 880, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <div style={{ fontSize: 12, color: '#475569', marginBottom: 24 }}>
+        <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 24 }}>
           <Link href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Home
           </Link>
@@ -226,13 +226,13 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
         </div>
 
         <div style={{ marginBottom: 32 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             EPA WATER QUALITY DATA · {stateAbbr}
           </div>
           <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 14px', lineHeight: 1.2 }}>
             {stateName} Tap Water Quality by City
           </h1>
-          <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 24px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 24px' }}>
             EPA UCMR5 PFAS monitoring, MCL / guideline flags, and WaterCheckup grades for {totalCities} cities in {stateName}.
             &quot;At Risk&quot; means at least one UCMR analyte flagged above an EPA limit or a regulated PFAS violation on record
             for that system. &quot;Monitor&quot; means no such flag in UCMR data, but the city profile is medium or high concern.
@@ -243,11 +243,11 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             const h = getAverageHardnessForState(stateAbbr);
             if (h.avgPpm == null || h.citiesTested === 0) return null;
             return (
-              <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.65, margin: '0 0 20px' }}>
+              <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 20px' }}>
                 <Link href="/water-hardness" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
                   Average water hardness in {stateName}: {h.avgPpm} ppm →
                 </Link>
-                <span style={{ fontSize: 13, color: '#64748b' }}>
+                <span style={{ fontSize: 13, color: '#a8b4c4' }}>
                   {' '}
                   Mean of UCMR5 values for {h.citiesTested} tracked {stateName} cities (not every utility).
                 </span>
@@ -280,9 +280,9 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                 }}
               >
                 <div style={{ fontSize: 22, fontWeight: 900, color: alert ? '#f87171' : '#f1f5f9' }}>{value}</div>
-                <div style={{ fontSize: 11, color: '#64748b', marginTop: 4, fontWeight: 700 }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 4, fontWeight: 700 }}>{label}</div>
                 {sub && (
-                  <div style={{ fontSize: 10, color: '#475569', marginTop: 3, lineHeight: 1.3 }}>{sub}</div>
+                  <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 3, lineHeight: 1.3 }}>{sub}</div>
                 )}
               </div>
             ))}
@@ -296,7 +296,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                 border: '1px solid #ef444430',
                 borderRadius: 10,
                 fontSize: 13,
-                color: '#94a3b8',
+                color: '#cbd5e1',
                 lineHeight: 1.6,
               }}
             >
@@ -315,7 +315,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
           <div style={{ marginBottom: 36 }}>
             <div
               style={{
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: 700,
                 color: '#0891b2',
                 letterSpacing: 2,
@@ -326,7 +326,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             >
               TOP CONTAMINANTS IN {stateName.toUpperCase()} (UCMR5)
             </div>
-            <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 16px', lineHeight: 1.55 }}>
+            <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px', lineHeight: 1.55 }}>
               Five most common UCMR analytes with detections (&gt;0) in our tracked {stateName} cities — each city counted once per
               compound.
             </p>
@@ -345,7 +345,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                   }}
                 >
                   <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>
-                    <span style={{ color: '#475569', marginRight: 8 }}>{i + 1}.</span>
+                    <span style={{ color: '#94a3b8', marginRight: 8 }}>{i + 1}.</span>
                     {c.name}
                   </span>
                   <span style={{ fontSize: 13, color: '#67e8f9', fontWeight: 700 }}>
@@ -360,7 +360,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
         <div style={{ marginBottom: 40 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: '#0891b2',
               letterSpacing: 2,
@@ -380,9 +380,9 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                       key={h}
                       style={{
                         padding: '12px 14px',
-                        color: '#94a3b8',
+                        color: '#cbd5e1',
                         fontWeight: 800,
-                        fontSize: 10,
+                        fontSize: 13,
                         letterSpacing: 1,
                         borderBottom: '1px solid #1a3a5c',
                       }}
@@ -399,14 +399,14 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                       <Link href={`/water/${city.slug}`} style={{ color: '#f1f5f9', fontWeight: 700, textDecoration: 'none' }}>
                         {city.name}
                       </Link>
-                      <div style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>{city.system}</div>
+                      <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 2 }}>{city.system}</div>
                     </td>
                     <td style={{ padding: '12px 14px' }}>
                       <span style={{ fontWeight: 900, color: city.gradeColor }}>{city.grade}</span>
                       <span
                         style={{
                           marginLeft: 8,
-                          fontSize: 10,
+                          fontSize: 13,
                           padding: '2px 6px',
                           borderRadius: 4,
                           background:
@@ -419,10 +419,10 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                         {city.band === 'at_risk' ? 'AT RISK' : city.band === 'monitor' ? 'MONITOR' : 'SAFE'}
                       </span>
                     </td>
-                    <td style={{ padding: '12px 14px', color: city.contaminantsAboveLimit > 0 ? '#f87171' : '#64748b' }}>
+                    <td style={{ padding: '12px 14px', color: city.contaminantsAboveLimit > 0 ? '#f87171' : '#a8b4c4' }}>
                       {city.contaminantsAboveLimit > 0 ? city.contaminantsAboveLimit : '—'}
                       {city.violations && city.violations > 0 ? (
-                        <span style={{ fontSize: 10, display: 'block', color: '#fca5a5', marginTop: 2 }}>
+                        <span style={{ fontSize: 13, display: 'block', color: '#fca5a5', marginTop: 2 }}>
                           {city.violations} MCL violation{city.violations !== 1 ? 's' : ''}
                         </span>
                       ) : null}
@@ -439,7 +439,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
           <div style={{ marginBottom: 40 }}>
             <div
               style={{
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: 700,
                 color: '#0891b2',
                 letterSpacing: 2,
@@ -450,7 +450,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             >
               COUNTIES IN {stateName.toUpperCase()}
             </div>
-            <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 16px', lineHeight: 1.55 }}>
+            <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px', lineHeight: 1.55 }}>
               County-level grades roll up every WaterCheckup city we map into the same county (via USPS city–county reference data).
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -495,17 +495,17 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             borderRadius: 12,
           }}
         >
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>
             ABOUT WATER QUALITY IN {stateName.toUpperCase()}
           </div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 12px' }}>
             {stateName} water quality varies by city and water system. UCMR5 reports PFAS and related analytes; the &quot;above
             limit&quot; column uses the EPA-limit flags bundled with each analyte in our dataset (same basis as city pages).
             {atRiskCount > 0
               ? ` Here, ${atRiskCount} of ${totalCities} tracked cities show at least one such flag or a regulated violation count.`
               : ` Here, no tracked city shows a compound flagged above its EPA limit in UCMR data; violations row still notes regulated tallies when present.`}
           </p>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
             SDWIS/City reports: use each city link for full narrative, picks, and EPA Consumer Confidence Report context.
           </p>
         </div>
@@ -520,7 +520,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
           }}
         >
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Not seeing your city?</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 20, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 20, lineHeight: 1.6 }}>
             Enter your ZIP code for the full EPA-linked report for your water system — PFAS, violations, and filter
             recommendations.
           </p>

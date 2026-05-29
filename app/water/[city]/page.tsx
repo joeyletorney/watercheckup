@@ -14,6 +14,7 @@ import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
+import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { isDedicatedWaterCitySlug } from '@/lib/dedicated-water-city-routes';
 import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
@@ -217,10 +218,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* ── HERO ── */}
         <div style={{ marginBottom: 32 }}>
-          <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 14 }}>
-            <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>Home</Link>
+          <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 14 }}>
+            <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
             <span style={{ margin: '0 6px' }}>›</span>
-            <Link href="/water" style={{ color: '#64748b', textDecoration: 'none' }}>Cities</Link>
+            <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Cities</Link>
             {cd?.state && (
               <>
                 <span style={{ margin: '0 6px' }}>›</span>
@@ -228,7 +229,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               </>
             )}
             <span style={{ margin: '0 6px' }}>›</span>
-            <span style={{ color: '#94a3b8' }}>{cd?.name ?? cityName}</span>
+            <span style={{ color: '#cbd5e1' }}>{cd?.name ?? cityName}</span>
           </nav>
 
           {cd && countyLink && countyLineLabel && (
@@ -244,7 +245,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
           <CityPageHeroImage cityLabel={cd ? `${cd.name}, ${cd.state}` : cityName} />
 
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             WATER QUALITY REPORT
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
@@ -260,7 +261,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <h2 style={{ fontSize: 20, fontWeight: 800, color: '#e2e8f0', margin: '0 0 10px', lineHeight: 1.3 }}>
                 Gaithersburg water quality (WSSC Water)
               </h2>
-              <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.7 }}>
+              <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.7 }}>
                 Gaithersburg is served by{' '}
                 <strong style={{ color: '#e2e8f0' }}>WSSC Water</strong> (Washington Suburban Sanitary Commission).
                 Below: EPA violation history, UCMR5 PFAS monitoring, lead risk in older homes, and NSF-certified filters
@@ -269,15 +270,21 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </>
           )}
 
-          {cd && slug !== 'gaithersburg' && (
-            <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.6 }}>
+          {cd && PRIORITY_CITY_INTROS[slug] && (
+            <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.75 }}>
+              {PRIORITY_CITY_INTROS[slug]}
+            </p>
+          )}
+
+          {cd && !PRIORITY_CITY_INTROS[slug] && slug !== 'gaithersburg' && (
+            <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>
               Serving {cd.population} residents via {cd.system}
               {cityBlurbText ? ` · ${cityBlurbText}` : ''}
             </p>
           )}
 
           {cd && slug === 'gaithersburg' && (
-            <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 18px', lineHeight: 1.6 }}>
+            <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>
               Serving {cd.population} residents via {cd.system}
             </p>
           )}
@@ -297,7 +304,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           {cd && (
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
               {cd.issues.map((issue, i) => (
-                <span key={i} style={{ fontSize: 12, fontWeight: 600, padding: '4px 10px', background: `${urg.color}18`, border: `1px solid ${urg.border}`, borderRadius: 6, color: urg.color }}>
+                <span key={i} style={{ fontSize: 13, fontWeight: 600, padding: '4px 10px', background: `${urg.color}18`, border: `1px solid ${urg.border}`, borderRadius: 6, color: urg.color }}>
                   {issue}
                 </span>
               ))}
@@ -326,14 +333,14 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     </svg>
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                       <span style={{ fontSize: 22, fontWeight: 900, color: ws.scoreColor, lineHeight: 1 }}>{ws.score}</span>
-                      <span style={{ fontSize: 9, color: '#64748b', letterSpacing: 1, marginTop: 2 }}>/ 100</span>
+                      <span style={{ fontSize: 9, color: '#a8b4c4', letterSpacing: 1, marginTop: 2 }}>/ 100</span>
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: '#64748b', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
                     <div style={{ fontSize: 28, fontWeight: 900, color: ws.gradeColor, lineHeight: 1 }}>Grade: {ws.grade}</div>
                     <div style={{ fontSize: 13, color: ws.scoreColor, fontWeight: 600, marginTop: 4 }}>{ws.label}</div>
-                    <div style={{ fontSize: 11, color: '#64748b', marginTop: 6 }}>Based on EPA violations, PFAS data &amp; contaminant profile</div>
+                    <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 6 }}>Based on EPA violations, PFAS data &amp; contaminant profile</div>
                   </div>
                 </div>
 
@@ -341,8 +348,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '10px 18px', background: urg.bg, border: `1px solid ${urg.border}`, borderRadius: 10, alignSelf: 'center' }}>
                   <span style={{ fontSize: 18 }}>{urg.icon}</span>
                   <div>
-                    <div style={{ fontSize: 11, fontWeight: 800, color: urg.color, letterSpacing: 1 }}>{urg.label}</div>
-                    <div style={{ fontSize: 12, color: '#94a3b8' }}>EPA violation status</div>
+                    <div style={{ fontSize: 13, fontWeight: 800, color: urg.color, letterSpacing: 1 }}>{urg.label}</div>
+                    <div style={{ fontSize: 13, color: '#cbd5e1' }}>EPA violation status</div>
                   </div>
                 </div>
               </div>
@@ -354,7 +361,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <>
             {/* ── STEP 1: THE PROBLEM ── */}
             <div style={{ marginBottom: 40 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                 WHAT YOU SHOULD KNOW ABOUT {cd.name.toUpperCase()} WATER
               </div>
 
@@ -379,8 +386,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {cd.facts.map((fact, i) => (
                   <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{i + 1}</div>
-                    <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{fact}</p>
+                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>{i + 1}</div>
+                    <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{fact}</p>
                   </div>
                 ))}
               </div>
@@ -391,16 +398,16 @@ export default function CityPage({ params }: { params: { city: string } }) {
               if (!pfas) {
                 return (
                   <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-                    <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING — EPA UCMR5 DATA</div>
-                    <div style={{ fontSize: 10, color: '#334155', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2025</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING — EPA UCMR5 DATA</div>
+                    <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2025</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                       <span style={{ fontSize: 20 }}>📋</span>
                       <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0' }}>No UCMR5 data on file for this system</div>
                     </div>
-                    <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+                    <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
                       The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) required systems serving 3,300+ people to test for 29 PFAS compounds between 2023–2025. This system either was not required to test, reported no detections, or has not yet submitted results to the federal database.
                     </p>
-                    <p style={{ fontSize: 12, color: '#64748b', margin: 0 }}>
+                    <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0 }}>
                       Source: EPA UCMR5 national dataset · Data current as of 2025
                     </p>
                   </div>
@@ -415,15 +422,15 @@ export default function CityPage({ params }: { params: { city: string } }) {
               return (
                 <div style={{ marginBottom: 40 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
-                    <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2 }}>PFAS TESTING DATA — EPA UCMR5</div>
-                    <div style={{ fontSize: 10, color: '#334155' }}>Testing period 2023–2025 · Last updated Q1 2025</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2 }}>PFAS TESTING DATA — EPA UCMR5</div>
+                    <div style={{ fontSize: 13, color: '#94a3b8' }}>Testing period 2023–2025 · Last updated Q1 2025</div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', background: `${statusColor}12`, border: `1px solid ${statusColor}35`, borderRadius: 10, marginBottom: 16 }}>
                     <span style={{ fontSize: 22 }}>{statusIcon}</span>
                     <div>
-                      <div style={{ fontSize: 12, fontWeight: 800, color: statusColor, letterSpacing: 1 }}>{statusLabel}</div>
-                      <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 3 }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: statusColor, letterSpacing: 1 }}>{statusLabel}</div>
+                      <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 3 }}>
                         {hasDetections
                           ? `Max detected: ${maxPpt} ppt · ${compounds.length} compound${compounds.length !== 1 ? 's' : ''} found · ${violations} EPA MCL violation${violations !== 1 ? 's' : ''}`
                           : 'All 29 PFAS compounds tested below detection limits'}
@@ -435,7 +442,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 120px 120px', gap: 0 }}>
                         {['Compound', 'Level (ppt)', 'EPA MCL', 'Health Limit'].map((h, i) => (
-                          <div key={h} style={{ padding: '10px 14px', fontSize: 10, fontWeight: 800, color: '#64748b', letterSpacing: 1, background: '#040d14', borderBottom: '1px solid #1a3a5c', textAlign: i > 0 ? 'center' : 'left' }}>
+                          <div key={h} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 800, color: '#a8b4c4', letterSpacing: 1, background: '#040d14', borderBottom: '1px solid #1a3a5c', textAlign: i > 0 ? 'center' : 'left' }}>
                             {h}
                           </div>
                         ))}
@@ -443,15 +450,15 @@ export default function CityPage({ params }: { params: { city: string } }) {
                           <>
                             <div key={`${name}-name`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 600, color: '#e2e8f0', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
                               {name}
-                              {EPA_MCL[name] !== undefined && <span style={{ fontSize: 10, color: '#64748b', marginLeft: 6 }}>regulated</span>}
+                              {EPA_MCL[name] !== undefined && <span style={{ fontSize: 13, color: '#a8b4c4', marginLeft: 6 }}>regulated</span>}
                             </div>
-                            <div key={`${name}-level`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 700, color: overHealth ? '#ef4444' : overEPA ? '#f59e0b' : '#94a3b8', textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
+                            <div key={`${name}-level`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 700, color: overHealth ? '#ef4444' : overEPA ? '#f59e0b' : '#cbd5e1', textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
                               {level.toFixed(1)}
                             </div>
-                            <div key={`${name}-epa`} style={{ padding: '10px 14px', fontSize: 12, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: EPA_MCL[name] !== undefined ? (overEPA ? '#ef4444' : '#22d3ee') : '#64748b' }}>
+                            <div key={`${name}-epa`} style={{ padding: '10px 14px', fontSize: 13, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: EPA_MCL[name] !== undefined ? (overEPA ? '#ef4444' : '#22d3ee') : '#a8b4c4' }}>
                               {EPA_MCL[name] !== undefined ? (overEPA ? `❌ >${EPA_MCL[name]} ppt` : `✓ <${EPA_MCL[name]} ppt`) : '—'}
                             </div>
-                            <div key={`${name}-health`} style={{ padding: '10px 14px', fontSize: 12, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: overHealth ? '#ef4444' : '#22d3ee' }}>
+                            <div key={`${name}-health`} style={{ padding: '10px 14px', fontSize: 13, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: overHealth ? '#ef4444' : '#22d3ee' }}>
                               {overHealth ? '❌ Exceeds' : '✓ Within'}
                             </div>
                           </>
@@ -462,7 +469,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
                   {hardness !== undefined && (
                     <div style={{ padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, marginBottom: 12 }}>
-                      <span style={{ fontSize: 12, color: '#64748b' }}>Water Hardness (from UCMR5): </span>
+                      <span style={{ fontSize: 13, color: '#a8b4c4' }}>Water Hardness (from UCMR5): </span>
                       <span style={{ fontSize: 13, fontWeight: 700, color: hardness > 250 ? '#f59e0b' : '#22d3ee' }}>
                         {hardness} mg/L as CaCO₃
                         {hardness > 250 ? ' — Hard (scale risk, reduced soap lather)' : hardness > 121 ? ' — Moderately hard' : ' — Relatively soft'}
@@ -470,7 +477,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     </div>
                   )}
 
-                  <p style={{ fontSize: 12, color: '#64748b', margin: 0, lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>
                     Source: EPA UCMR5 national monitoring dataset · Testing period 2023–2025 · MCL = Maximum Contaminant Level (legally enforceable limit) · Health limit = EPA health advisory threshold
                   </p>
                 </div>
@@ -479,22 +486,22 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
             {/* ── INLINE EMAIL CAPTURE — right after PFAS data while alarm is highest ── */}
             <div style={{ marginBottom: 24, padding: '14px 18px', background: 'rgba(8,145,178,0.07)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <span style={{ fontSize: 13, color: '#94a3b8', flexShrink: 0 }}>🔔 Get alerts if {cd.name}&apos;s water data changes:</span>
+              <span style={{ fontSize: 13, color: '#cbd5e1', flexShrink: 0 }}>🔔 Get alerts if {cd.name}&apos;s water data changes:</span>
               <EmailCapture cityName={cd.name} slug={slug} inline />
             </div>
 
             {/* ── STEP 3: FILTER RECOMMENDATION ── */}
             <div className="wc-filter-rec-accent-wrap" style={{ marginBottom: 8, overflow: 'hidden' }}>
               <FilterRecommendationsAccent />
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                 WHAT TO DO ABOUT IT
               </div>
-              <p style={{ fontSize: 14, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.6 }}>
+              <p style={{ fontSize: 14, color: '#cbd5e1', margin: '0 0 16px', lineHeight: 1.6 }}>
                 Based on {cd.name}&apos;s water profile above, here&apos;s the exact system we recommend — and why it&apos;s right for this water supply specifically.
               </p>
             </div>
 
-            <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 14px', lineHeight: 1.6 }}>
+            <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.6 }}>
               Recommendations by{' '}
               <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
                 Joe Letorney
@@ -512,7 +519,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
             {/* ── SYSTEM INFO ── */}
             <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>WATER SYSTEM -- EPA SDWIS</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>WATER SYSTEM -- EPA SDWIS</div>
               <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
                 {[
                   { l: 'System Name', v: cd.system },
@@ -521,7 +528,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                   { l: 'State', v: cd.state },
                 ].map(({ l, v }) => (
                   <div key={l}>
-                    <div style={{ fontSize: 10, color: '#94a3b8', letterSpacing: 1, marginBottom: 3 }}>{l}</div>
+                    <div style={{ fontSize: 13, color: '#cbd5e1', letterSpacing: 1, marginBottom: 3 }}>{l}</div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{v}</div>
                   </div>
                 ))}
@@ -529,7 +536,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </div>
           </>
         ) : (
-          <div style={{ textAlign: 'center', padding: '40px 0', color: '#94a3b8' }}>
+          <div style={{ textAlign: 'center', padding: '40px 0', color: '#cbd5e1' }}>
             <div style={{ fontSize: 18, marginBottom: 8 }}>City data coming soon</div>
             <p style={{ fontSize: 14 }}>Enter your ZIP code above to check your specific water system.</p>
           </div>
@@ -537,7 +544,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* ── FAQ ── */}
         <div style={{ marginBottom: 40 }}>
-          <h2 style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+          <h2 style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             COMMON QUESTIONS
           </h2>
           {[
@@ -564,16 +571,16 @@ export default function CityPage({ params }: { params: { city: string } }) {
           ].map(({ q, a }) => (
             <div key={q} style={{ marginBottom: 16, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', margin: '0 0 8px' }}>{q}</h3>
-              <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
+              <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{a}</p>
             </div>
           ))}
         </div>
 
         {/* ── LEAD SERVICE LINE ── */}
         <div style={{ marginBottom: 32, padding: '20px 22px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>LEAD SERVICE LINE RISK</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>LEAD SERVICE LINE RISK</div>
           <div style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Does your street have lead pipes?</div>
-          <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 16px' }}>
             As of October 2024, all US water utilities must publish a public inventory of their lead service lines —
             the pipes connecting the water main to your home. Even if your utility water tests clean at the treatment plant,
             lead can leach from these pipes into your tap. Homes built before 1986 are most at risk.
@@ -589,7 +596,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                       style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 9, textDecoration: 'none' }}>
                       <div>
                         <div style={{ fontSize: 13, fontWeight: 700, color: '#fbbf24' }}>{custom.label} →</div>
-                        <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>
+                        <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 2 }}>
                           {custom.hasAddress ? 'Enter your address to check your exact service line material' : 'Lead pipe replacement info and local resources'}
                         </div>
                       </div>
@@ -600,12 +607,12 @@ export default function CityPage({ params }: { params: { city: string } }) {
                       target="_blank" rel="noopener noreferrer"
                       style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 9, textDecoration: 'none' }}>
                       <div>
-                        <div style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8' }}>EPA Official Service Line Inventory →</div>
-                        <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>Federal LCRR inventory data for {cd?.system} · PWSID {pwsid}</div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1' }}>EPA Official Service Line Inventory →</div>
+                        <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 2 }}>Federal LCRR inventory data for {cd?.system} · PWSID {pwsid}</div>
                       </div>
                     </a>
                   )}
-                  <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 4, lineHeight: 1.6 }}>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4, lineHeight: 1.6 }}>
                     💡 Homes built before 1986 may have lead solder or service lines. A filter certified NSF/ANSI 53 removes lead at the tap regardless of pipe material.
                   </div>
                 </>
@@ -622,7 +629,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>
             Check your specific address
           </div>
-          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             City-wide data is just the start. Enter your ZIP to see your exact water system&apos;s EPA report, PFAS levels, and violation history — then get the right filter for your home.
           </p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
@@ -632,7 +639,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* ── RELATED BLOG POSTS ── */}
         <div style={{ marginBottom: 40 }}>
-          <h2 style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, margin: '0 0 14px' }}>RELATED GUIDES</h2>
+          <h2 style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, margin: '0 0 14px' }}>RELATED GUIDES</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
             {[
               { slug: 'is-pfas-in-my-tap-water', title: 'Is PFAS in My Tap Water?', badge: 'PFAS' },
@@ -643,7 +650,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               { slug: 'tap-water-safety-during-pregnancy', title: 'Tap Water Safety During Pregnancy', badge: 'Health' },
             ].map(({ slug, title, badge }) => (
               <Link key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
-                <div style={{ fontSize: 10, fontWeight: 700, color: '#0891b2', letterSpacing: 1, marginBottom: 4 }}>{badge}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 1, marginBottom: 4 }}>{badge}</div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>{title}</div>
               </Link>
             ))}
@@ -652,7 +659,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
         {/* ── NEARBY CITIES ── */}
         <div>
-          <h2 style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, margin: '0 0 14px' }}>COMPARE WATER QUALITY IN OTHER CITIES</h2>
+          <h2 style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, margin: '0 0 14px' }}>COMPARE WATER QUALITY IN OTHER CITIES</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10, marginBottom: 20 }}>
             {Object.entries(CITIES)
               .filter(([k]) => k !== params.city)
@@ -669,7 +676,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 return (
                   <Link key={slug} href={`/water/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{c.name}, {c.state}</div>
-                    <div style={{ fontSize: 11, color: uc.color }}>{uc.label} · {c.issues[0]}</div>
+                    <div style={{ fontSize: 13, color: uc.color }}>{uc.label} · {c.issues[0]}</div>
                   </Link>
                 );
               })}

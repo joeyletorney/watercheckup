@@ -27,9 +27,9 @@ export function EpaIframeShell({
         </Link>
         <h1 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '12px 0 6px', lineHeight: 1.25 }}>{title}</h1>
         {subtitle ? (
-          <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.55 }}>{subtitle}</p>
+          <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.55 }}>{subtitle}</p>
         ) : null}
-        <p style={{ fontSize: 12, color: '#64748b', margin: '12px 0 0', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '12px 0 0', lineHeight: 1.5 }}>
           You are still on WaterCheckup; EPA&apos;s site loads in the frame below. If it stays blank, federal policy may block embedding —{' '}
           <a href={src} target="_blank" rel="noopener noreferrer" style={{ color: '#22d3ee', fontWeight: 600 }}>
             open this tool on EPA.gov ↗

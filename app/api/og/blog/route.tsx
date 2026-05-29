@@ -8,7 +8,7 @@ const BADGE_COLORS: Record<string, string> = {
   'Filter Guide': '#0891b2',
   Health: '#f59e0b',
   Moving: '#22d3ee',
-  Comparison: '#94a3b8',
+  Comparison: '#cbd5e1',
   Well: '#a78bfa',
   Safety: '#22d3ee',
   'Hard Water': '#06b6d4',
@@ -88,14 +88,14 @@ export async function GET(req: Request) {
 
         {/* Excerpt */}
         {displayExcerpt && (
-          <div style={{ fontSize: 18, color: '#94a3b8', lineHeight: 1.55, marginBottom: 40, display: 'flex' }}>
+          <div style={{ fontSize: 18, color: '#cbd5e1', lineHeight: 1.55, marginBottom: 40, display: 'flex' }}>
             {displayExcerpt}
           </div>
         )}
 
         {/* Bottom bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          <div style={{ fontSize: 14, color: '#64748b', display: 'flex', gap: 20 }}>
+          <div style={{ fontSize: 14, color: '#a8b4c4', display: 'flex', gap: 20 }}>
             <span style={{ display: 'flex' }}>📊 5 EPA databases</span>
             <span style={{ display: 'flex' }}>🔬 PFAS monitoring data</span>
             <span style={{ display: 'flex' }}>✅ Free, no account required</span>

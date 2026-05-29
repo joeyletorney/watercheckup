@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
+import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CITIES } from '../[city]/cities-data';
 
 const AMAZON_TAG = 'watercheck20-20';
@@ -133,21 +134,21 @@ export default function PhoenixWaterPage() {
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
+          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/water" style={{ color: '#64748b', textDecoration: 'none' }}>
+          <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Cities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Phoenix, AZ</span>
         </nav>
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>Phoenix, AZ Water Quality Report</h1>
-        <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 8px' }}>Phoenix Water Services · Colorado River / Salt River Project · 2024–2025 data</p>
-        <p style={{ fontSize: 13, color: '#475569', margin: '0 0 28px' }}>Source: Phoenix Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database</p>
+        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>Phoenix Water Services · Colorado River / Salt River Project · 2024–2025 data</p>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: Phoenix Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database</p>
         <div
           style={{
             display: 'flex',
@@ -163,12 +164,12 @@ export default function PhoenixWaterPage() {
         >
           <div style={{ textAlign: 'center', flexShrink: 0 }}>
             <div style={{ fontSize: 48, fontWeight: 900, color: '#ef4444', lineHeight: 1 }}>62</div>
-            <div style={{ fontSize: 12, color: '#64748b' }}>/ 88</div>
+            <div style={{ fontSize: 13, color: '#a8b4c4' }}>/ 88</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: '#ef4444' }}>C</div>
           </div>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#ef4444', marginBottom: 6 }}>Concerning</div>
-            <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
               Phoenix water has chromium-6 above California health goals, significant PFAS from Luke Air Force Base contamination, high arsenic, and extremely hard water from the Colorado River. A reverse osmosis filter is strongly recommended.
             </p>
           </div>
@@ -180,7 +181,7 @@ export default function PhoenixWaterPage() {
             ].map(({ label, value, color }) => (
               <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
                 <div style={{ fontSize: 16, fontWeight: 900, color }}>{value}</div>
-                <div style={{ fontSize: 10, color: '#64748b' }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{label}</div>
               </div>
             ))}
           </div>
@@ -200,7 +201,7 @@ export default function PhoenixWaterPage() {
         >
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Get your specific ZIP code report</div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>85001, 85002, 85003 and all Phoenix ZIP codes</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>85001, 85002, 85003 and all Phoenix ZIP codes</div>
           </div>
           <Link
             href="/"
@@ -217,23 +218,26 @@ export default function PhoenixWaterPage() {
             Check My ZIP →
           </Link>
         </div>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 28px' }}>
+          {PRIORITY_CITY_INTROS.phoenix}
+        </p>
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>CONTAMINANTS IN PHOENIX WATER — 2024 DATA</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>CONTAMINANTS IN PHOENIX WATER — 2024 DATA</div>
           {CONTAMINANTS.map((c, i) => (
             <div key={c.name} style={{ padding: '14px 0', borderBottom: i < CONTAMINANTS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#94a3b8' }}>{c.level}</span>
-                  <span style={{ fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: `${c.color}20`, color: c.color }}>{c.status}</span>
+                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: `${c.color}20`, color: c.color }}>{c.status}</span>
                 </div>
               </div>
-              <p style={{ fontSize: 13, color: '#64748b', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
             </div>
           ))}
         </div>
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>BEST FILTERS FOR PHOENIX WATER</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>BEST FILTERS FOR PHOENIX WATER</div>
           {FILTERS.map((f) => (
             <div
               key={f.name}
@@ -268,8 +272,8 @@ export default function PhoenixWaterPage() {
                     {f.badge}
                   </span>
                 </div>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{f.price}</div>
-                <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
                 <a
                   href={f.link}
                   target="_blank"
@@ -281,7 +285,7 @@ export default function PhoenixWaterPage() {
                     border: f.best ? 'none' : '1px solid #1a3a5c',
                     borderRadius: 8,
                     color: '#fff',
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: 700,
                     textDecoration: 'none',
                   }}
@@ -293,11 +297,11 @@ export default function PhoenixWaterPage() {
           ))}
         </div>
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FREQUENTLY ASKED QUESTIONS</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FREQUENTLY ASKED QUESTIONS</div>
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>
-              <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
+              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
             </div>
           ))}
         </div>
@@ -317,11 +321,11 @@ export default function PhoenixWaterPage() {
           >
             Check Your ZIP Code →
           </Link>
-          <p style={{ fontSize: 12, color: '#475569', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
         </div>
         <FounderCityAttribution />
 
-        <p style={{ fontSize: 11, color: '#334155', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Data sourced from Phoenix Water CCR 2024, EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. Some filter links are affiliate links.
         </p>
       </div>

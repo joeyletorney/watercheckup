@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export const revalidate = 86400;
 
 const sectionTitle: CSSProperties = {
-  fontSize: 11,
+  fontSize: 13,
   fontWeight: 700,
   color: "#0891b2",
   letterSpacing: 2,
@@ -36,7 +36,7 @@ const sectionTitle: CSSProperties = {
   borderBottom: "1px solid #0f2336",
 };
 
-const pStyle: CSSProperties = { fontSize: 15, color: "#94a3b8", lineHeight: 1.75, margin: "0 0 14px" };
+const pStyle: CSSProperties = { fontSize: 15, color: "#cbd5e1", lineHeight: 1.75, margin: "0 0 14px" };
 
 const AMAZON = (q: string) => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=watercheck20-20`;
 
@@ -139,21 +139,21 @@ export default function WaterHardnessPage() {
       </section>
 
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "40px 24px 80px" }}>
-        <nav style={{ fontSize: 12, color: "#64748b", marginBottom: 20 }}>
-          <Link href="/" style={{ color: "#64748b", textDecoration: "none" }}>
+        <nav style={{ fontSize: 13, color: "#a8b4c4", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
             Home
           </Link>
           <span style={{ margin: "0 6px" }}>›</span>
-          <span style={{ color: "#94a3b8" }}>Water hardness</span>
+          <span style={{ color: "#cbd5e1" }}>Water hardness</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 24 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 24 }}>
           TOOLS · HOME &amp; APPLIANCES
         </div>
 
         <Suspense
           fallback={
-            <div style={{ padding: 24, color: "#64748b", fontSize: 14 }}>Loading calculator…</div>
+            <div style={{ padding: 24, color: "#a8b4c4", fontSize: 14 }}>Loading calculator…</div>
           }
         >
           <WaterHardnessClient />
@@ -283,9 +283,9 @@ export default function WaterHardnessPage() {
                     key={h}
                     style={{
                       padding: "12px 14px",
-                      color: "#94a3b8",
+                      color: "#cbd5e1",
                       fontWeight: 800,
-                      fontSize: 10,
+                      fontSize: 13,
                       letterSpacing: 1,
                       borderBottom: "1px solid #1a3a5c",
                     }}
@@ -306,8 +306,8 @@ export default function WaterHardnessPage() {
                   <td style={{ padding: "11px 14px", color: "#cbd5e1" }}>
                     {r.avgPpm != null ? r.avgPpm : "—"}
                   </td>
-                  <td style={{ padding: "11px 14px", color: "#94a3b8" }}>{r.classification}</td>
-                  <td style={{ padding: "11px 14px", color: "#64748b" }}>{r.citiesTested}</td>
+                  <td style={{ padding: "11px 14px", color: "#cbd5e1" }}>{r.classification}</td>
+                  <td style={{ padding: "11px 14px", color: "#a8b4c4" }}>{r.citiesTested}</td>
                 </tr>
               ))}
             </tbody>

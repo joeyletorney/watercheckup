@@ -60,17 +60,17 @@ export default function WorstThmPage() {
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
         <div style={{ marginBottom: 36 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>
             DISINFECTION BYPRODUCTS · THM / HAA
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Cities with the highest disinfection byproduct risk
           </h1>
-          <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
             Trihalomethanes (THMs) and haloacetic acids (HAAs) are regulated disinfection byproducts (DBPs): they form when chlorine or chloramine reacts with natural organic matter in rivers, lakes, and reservoirs. Long-term exposure above EPA limits is associated with elevated cancer risk. This page lists cities where our structured profiles explicitly call out THMs, HAAs, or disinfection byproducts in the issues field — not a fresh nationwide utility lab sort.
           </p>
 
-          <div style={{ padding: '14px 18px', background: '#f59e0b12', border: '1px solid #f59e0b35', borderLeft: '4px solid #f59e0b', borderRadius: 8, fontSize: 13, color: '#94a3b8', lineHeight: 1.65, marginBottom: 28 }}>
+          <div style={{ padding: '14px 18px', background: '#f59e0b12', border: '1px solid #f59e0b35', borderLeft: '4px solid #f59e0b', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, marginBottom: 28 }}>
             <strong style={{ color: '#fcd34d' }}>What we do and do not claim:</strong> Order reflects our editorial{' '}
             <strong style={{ color: '#e2e8f0' }}>urgency</strong> tiers (high → medium → low) plus alphabetical tie-breaking — mirroring how we prioritize cities internally. We do not recompute THM/TTHM concentrations from raw EPA stores on this page; for ZIP-level monitoring and MCL context, run a report from the homepage.
           </div>
@@ -93,29 +93,29 @@ export default function WorstThmPage() {
                 }}
               >
                 <div style={{ fontSize: 20, fontWeight: 900, color: '#f59e0b' }}>{stat}</div>
-                <div style={{ fontSize: 11, color: '#64748b', marginTop: 3, lineHeight: 1.4 }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 3, lineHeight: 1.4 }}>{label}</div>
               </div>
             ))}
           </div>
         </div>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 32 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>WHY THMs RUN HIGH</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 10px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>WHY THMs RUN HIGH</div>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 10px' }}>
             Utilities must disinfect — but oxidizing organic-rich surface water produces THMs and HAAs. Hot weather, algae, soil runoff, and long distribution-system residence times all raise DBP formation. Boiling concentrates DBPs; it does not remove them.
           </p>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
             <strong style={{ color: '#e2e8f0' }}>What helps at home:</strong> NSF/ANSI 53-certified carbon filters (pitcher or under-sink) reduce THMs and volatile DBPs when maintained on schedule. Reverse osmosis (NSF/ANSI 58) strips DBPs along with a wide range of other contaminants. Whole-house carbon can reduce shower inhalation exposure but requires proper sizing and replacement intervals.
           </p>
         </div>
 
         <div style={{ marginBottom: 36 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 16 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             RANKED CITIES — {THM_CITIES.length} TOTAL
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {THM_CITIES.map(({ slug, name, state, issues, urgency, population }, i) => {
-              const color = URGENCY_COLOR[urgency] ?? '#64748b';
+              const color = URGENCY_COLOR[urgency] ?? '#a8b4c4';
               const highlight = firstMatchingIssue(issues) ?? issues[0];
               return (
                 <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
@@ -140,7 +140,7 @@ export default function WorstThmPage() {
                         </span>
                         <span
                           style={{
-                            fontSize: 10,
+                            fontSize: 13,
                             fontWeight: 700,
                             padding: '2px 8px',
                             borderRadius: 5,
@@ -152,7 +152,7 @@ export default function WorstThmPage() {
                           {URGENCY_LABEL[urgency] ?? urgency}
                         </span>
                       </div>
-                      <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.45 }}>
+                      <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.45 }}>
                         {highlight} · {population} residents
                       </div>
                     </div>
@@ -165,8 +165,8 @@ export default function WorstThmPage() {
         </div>
 
         <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14, marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>NEXT STEP</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, margin: '0 0 16px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>NEXT STEP</div>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
             DBP risk varies by sampling location and season. Enter your ZIP for utility-specific contaminant language, violations, and filter ideas tied to what we parse for your system.
           </p>
           <Link
@@ -187,7 +187,7 @@ export default function WorstThmPage() {
         </div>
 
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
             {[
               { href: '/worst', label: 'All rankings hub', desc: 'PFAS, lead, violations, states' },
@@ -208,7 +208,7 @@ export default function WorstThmPage() {
                 }}
               >
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{label}</div>
-                <div style={{ fontSize: 11, color: '#64748b' }}>{desc}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{desc}</div>
               </Link>
             ))}
           </div>

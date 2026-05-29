@@ -8,6 +8,11 @@ html { scroll-behavior: smooth; }
 :root {
   /* Subtle film grain over the ocean gradient (low contrast, tiled) */
   --wc-bg-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  /* Readable text hierarchy on dark backgrounds */
+  --wc-text-primary: #e2e8f0;
+  --wc-text-secondary: #cbd5e1;
+  --wc-text-muted: #a8b4c4;
+  --wc-text-faint: #94a3b8;
 }
 
 body {
@@ -405,7 +410,7 @@ a.wc-site-nav-link[aria-current='page']:hover {
 @media (max-width: 640px) {
   .wc-nav-badges  { display: none !important; }
   .wc-hero-h1     { font-size: 2.125rem !important; }
-  .wc-hero-sub    { font-size: 14px !important; }
+  .wc-hero-sub    { font-size: 15px !important; }
   .wc-search-row  { flex-direction: column !important; align-items: stretch !important; }
   .wc-search-row input  { width: 100% !important; font-size: 18px !important; min-height: 58px !important; padding: 16px 18px !important; }
   .wc-search-input      { letter-spacing: 0.04em !important; }
@@ -416,12 +421,12 @@ a.wc-site-nav-link[aria-current='page']:hover {
   .wc-results-hdr { flex-direction: column !important; align-items: flex-start !important; }
   .wc-stat-row    { flex-wrap: wrap !important; gap: 14px !important; }
   .wc-tab-bar     { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
-  .wc-tab-bar button { font-size: 11px !important; padding: 8px 10px !important; white-space: nowrap; }
+  .wc-tab-bar button { font-size: 12px !important; padding: 8px 10px !important; white-space: nowrap; }
   .wc-steps-row   { display: none !important; }
   .wc-sit-grid    { grid-template-columns: 1fr 1fr !important; }
   .wc-prod-grid   { grid-template-columns: 1fr !important; }
   .wc-step4-grid  { grid-template-columns: 1fr !important; }
-  .wc-compare-table { font-size: 11px !important; }
+  .wc-compare-table { font-size: 12px !important; }
   .wc-compare-table th, .wc-compare-table td { padding: 8px 6px !important; }
 }
 
@@ -788,7 +793,7 @@ button.wc-search-submit.wc-hero-report-btn:not(:disabled) {
 
 /* Nav: WQA badge — hover needs CSS (inline styles would block :hover) */
 button.wc-nav-badge-wqa {
-  font-size: 11px;
+  font-size: 12px;
   padding: 3px 9px;
   border-radius: 20px;
   background: rgba(217, 119, 6, 0.125);
@@ -821,7 +826,7 @@ button.wc-nav-badge-wqa:focus-visible {
 
 /* Nav: NSF badge — same pattern as WQA (CSS so :hover works) */
 button.wc-nav-badge-nsf {
-  font-size: 11px;
+  font-size: 12px;
   padding: 3px 9px;
   border-radius: 20px;
   background: rgba(8, 145, 178, 0.125);
@@ -874,7 +879,7 @@ button.wc-nav-badge-nsf:focus-visible {
 
 /* City water page blurb — class names match common Tailwind tokens (Tailwind is not a project dependency). */
 .text-gray-600 {
-  color: #94a3b8;
+  color: #cbd5e1;
   font-size: 15px;
   line-height: 1.75;
 }
@@ -1010,13 +1015,13 @@ button.wc-nav-badge-nsf:focus-visible {
   gap: 8px;
 }
 .wc-hero-preview-chip {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   padding: 6px 11px;
   border-radius: 999px;
   border: 1px solid rgba(34, 211, 238, 0.28);
   background: rgba(13, 34, 64, 0.85);
-  color: #94a3b8;
+  color: #cbd5e1;
   animation: wcChipIn 0.45s ease-out both;
 }
 .wc-hero-preview-chip--accent {
@@ -1069,10 +1074,10 @@ button.wc-nav-badge-nsf:focus-visible {
   background: rgba(4, 14, 28, 0.55);
 }
 .wc-hero-trust-strip span {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #64748b;
+  color: #a8b4c4;
 }
 .wc-hero-trust-strip a {
   font-size: 12px;
@@ -1133,8 +1138,8 @@ button.wc-nav-badge-nsf:focus-visible {
   line-height: 1.3;
 }
 .wc-why-card__body {
-  font-size: 14px;
-  color: #94a3b8;
+  font-size: 15px;
+  color: #cbd5e1;
   line-height: 1.75;
   margin: 0;
 }
@@ -1160,11 +1165,11 @@ button.wc-nav-badge-nsf:focus-visible {
   vertical-align: middle;
 }
 .wc-compare-table thead th {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #64748b;
+  color: #a8b4c4;
   background: #040d14;
 }
 .wc-compare-table tbody th[scope='row'] {
@@ -1188,7 +1193,7 @@ button.wc-nav-badge-nsf:focus-visible {
 }
 .wc-compare-cell-text {
   font-size: 13px;
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 .wc-compare-icon--yes {
   filter: none;
@@ -1234,7 +1239,7 @@ button.wc-nav-badge-nsf:focus-visible {
   margin: 0 0 18px;
   font-size: 14px;
   line-height: 1.6;
-  color: #94a3b8;
+  color: #cbd5e1;
   font-weight: 500;
 }
 
@@ -1258,14 +1263,14 @@ button.wc-nav-badge-nsf:focus-visible {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #64748b;
+  color: #a8b4c4;
 }
 
 .wc-showcase-trim-disclaimer {
   margin: 12px 0 0;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
-  color: #64748b;
+  color: #a8b4c4;
   font-weight: 600;
 }
 
@@ -1330,7 +1335,7 @@ button.wc-nav-badge-nsf:focus-visible {
 
 .wc-simple-compare-fill--tap {
   width: 88%;
-  background: linear-gradient(90deg, #b45309 0%, #64748b 55%, #475569 100%);
+  background: linear-gradient(90deg, #b45309 0%, #a8b4c4 55%, #94a3b8 100%);
 }
 
 .wc-simple-compare-fill--filtered {
@@ -1340,8 +1345,8 @@ button.wc-nav-badge-nsf:focus-visible {
 }
 
 .wc-simple-compare-hint {
-  font-size: 11px;
-  color: #64748b;
+  font-size: 12px;
+  color: #a8b4c4;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -1350,7 +1355,7 @@ button.wc-nav-badge-nsf:focus-visible {
   display: grid;
   place-items: center;
   font-size: 20px;
-  color: #475569;
+  color: #94a3b8;
   padding: 4px 0;
 }
 
@@ -1513,8 +1518,8 @@ button.wc-nav-badge-nsf:focus-visible {
   line-height: 1.2;
 }
 .wc-coverage-stats__label {
-  font-size: 11px;
-  color: #94a3b8;
+  font-size: 12px;
+  color: #cbd5e1;
   letter-spacing: 0.04em;
   line-height: 1.35;
 }
@@ -1575,7 +1580,7 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-utility-claim-top-banner p {
   margin: 0;
   font-size: 13px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.65;
   text-align: center;
 }
@@ -1595,7 +1600,7 @@ button.wc-nav-badge-nsf:focus-visible {
   margin-bottom: 36px;
 }
 .wc-utility-ccr-section__title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: #0891b2;
   letter-spacing: 2px;
@@ -1623,7 +1628,7 @@ button.wc-nav-badge-nsf:focus-visible {
 }
 .wc-utility-ccr-section__verified {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.06em;
   color: #22d3ee;
@@ -1635,12 +1640,12 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-utility-ccr-section__meta,
 .wc-utility-ccr-section__publisher {
   font-size: 13px;
-  color: #64748b;
+  color: #a8b4c4;
   margin: 0 0 10px;
   line-height: 1.5;
 }
 .wc-utility-ccr-section__publisher {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 .wc-utility-ccr-section__meta strong,
 .wc-utility-ccr-section__publisher strong {
@@ -1660,11 +1665,11 @@ button.wc-nav-badge-nsf:focus-visible {
   margin: 0 0 12px;
 }
 .wc-utility-ccr-section__operator-prompt {
-  color: #94a3b8;
+  color: #cbd5e1;
 }
 .wc-utility-ccr-section__residents {
   font-size: 13px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.75;
   margin: 0;
 }
@@ -1703,7 +1708,7 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-utility-operator-cta {
   margin: 0;
   font-size: 14px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.65;
   text-align: center;
 }
@@ -1761,7 +1766,7 @@ button.wc-nav-badge-nsf:focus-visible {
 }
 .wc-claim-value-card__body {
   font-size: 14px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.65;
   margin: 0;
 }
@@ -1788,7 +1793,7 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-ccr-countdown__sub {
   margin: 0 0 24px;
   font-size: 15px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.6;
   max-width: 560px;
   margin-left: auto;
@@ -1821,11 +1826,11 @@ button.wc-nav-badge-nsf:focus-visible {
 }
 .wc-ccr-countdown__label {
   margin-top: 6px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #64748b;
+  color: #a8b4c4;
 }
 .wc-ccr-countdown__footer {
   margin: 0;
@@ -1850,7 +1855,7 @@ button.wc-nav-badge-nsf:focus-visible {
   margin: 0 auto;
   padding: 10px 24px;
   font-size: 13px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.5;
   text-align: center;
 }
@@ -1906,7 +1911,7 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-ccr-2027-changes__footer {
   margin: 0;
   font-size: 14px;
-  color: #94a3b8;
+  color: #cbd5e1;
   line-height: 1.65;
   padding-top: 4px;
   border-top: 1px solid #1a3a5c;

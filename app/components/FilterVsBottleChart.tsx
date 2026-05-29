@@ -27,11 +27,11 @@ export default function FilterVsBottleChart({ data }: { data: FilterVsBottleRow[
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="#0e2233" />
-        <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-        <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v: number) => `$${v}`} />
+        <XAxis dataKey="year" tick={{ fill: '#cbd5e1', fontSize: 13 }} />
+        <YAxis tick={{ fill: '#cbd5e1', fontSize: 13 }} tickFormatter={(v: number) => `$${v}`} />
         <Tooltip
           contentStyle={{ background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8 }}
-          labelStyle={{ color: '#94a3b8', fontSize: 11 }}
+          labelStyle={{ color: '#cbd5e1', fontSize: 13 }}
           formatter={(v: number) => [`$${v}`, '']}
         />
         <Area type="monotone" dataKey="filter" name="Filter System" stroke="#0891b2" fill="url(#gF)" strokeWidth={2} />

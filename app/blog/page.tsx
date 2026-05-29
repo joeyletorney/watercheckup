@@ -165,7 +165,7 @@ const POST_BY_SLUG: Record<
     date: 'April 4, 2026',
     readTime: '8 min read',
     badge: 'Home',
-    badgeColor: '#94a3b8',
+    badgeColor: '#cbd5e1',
   },
   'disinfection-byproducts-tthm-haa5-explained': {
     title: 'Disinfection Byproducts (TTHM & HAA5): What They Are and How to Reduce Them',
@@ -260,7 +260,7 @@ const POST_BY_SLUG: Record<
     date: 'May 9, 2026',
     readTime: '12 min read',
     badge: 'Home',
-    badgeColor: '#94a3b8',
+    badgeColor: '#cbd5e1',
   },
   'top-10-cities-hardest-tap-water': {
     title: 'Top 10 US Cities With the Hardest Tap Water (and What to Do About It)',
@@ -269,7 +269,7 @@ const POST_BY_SLUG: Record<
     date: 'May 9, 2026',
     readTime: '9 min read',
     badge: 'Home',
-    badgeColor: '#94a3b8',
+    badgeColor: '#cbd5e1',
   },
   'lead-in-tap-water-signs-and-symptoms': {
     title: 'Lead in Tap Water: Signs, Symptoms, and How to Know If Your Home Is at Risk',
@@ -301,7 +301,7 @@ const POST_BY_SLUG: Record<
     date: 'April 16, 2026',
     readTime: '7 min read',
     badge: 'Home',
-    badgeColor: '#94a3b8',
+    badgeColor: '#cbd5e1',
   },
   'is-tap-water-safe-to-drink': {
     title: 'Is Tap Water Safe to Drink? The Honest Answer by City and Water Source',
@@ -553,8 +553,8 @@ export default function BlogIndex() {
             className="learn-intro-accent"
             style={{ objectFit: 'cover' }}
           />
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
-          <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.7 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
+          <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.7 }}>
             Browse expert articles on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -563,7 +563,7 @@ export default function BlogIndex() {
                 key={cat.label}
                 href={`#cat-${cat.label.replace(/\s+/g, '_')}`}
                 style={{
-                  fontSize: 11,
+                  fontSize: 13,
                   fontWeight: 700,
                   padding: '4px 10px',
                   borderRadius: 6,
@@ -582,18 +582,18 @@ export default function BlogIndex() {
 
                 {/* Featured posts */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FEATURED</div>
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FEATURED</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             {featuredPosts.map(post => (
               <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
                 <div style={{ height: '100%', padding: '22px 22px 20px', background: 'linear-gradient(165deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderTop: `3px solid ${post.badgeColor}`, borderRadius: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.5, padding: '2px 8px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>{post.badge}</span>
-                    <span style={{ fontSize: 11, color: '#64748b' }}>{post.readTime}</span>
+                    <span style={{ fontSize: 13, color: '#a8b4c4' }}>{post.readTime}</span>
                   </div>
                   <h2 style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', margin: 0, lineHeight: 1.3, flex: 1 }}>{post.title}</h2>
-                  <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{post.excerpt}</p>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: post.badgeColor }}>Read more →</span>
+                  <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{post.excerpt}</p>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: post.badgeColor }}>Read more →</span>
                 </div>
               </Link>
             ))}
@@ -609,7 +609,7 @@ export default function BlogIndex() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, paddingBottom: 12, borderBottom: '1px solid #0f2336' }}>
                 <span style={{ fontSize: 18 }}>{cat.icon}</span>
                 <span style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', letterSpacing: 0.3 }}>{cat.label}</span>
-                <span style={{ fontSize: 11, color: '#334155', marginLeft: 4 }}>{catPosts.length} articles</span>
+                <span style={{ fontSize: 13, color: '#94a3b8', marginLeft: 4 }}>{catPosts.length} articles</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {catPosts.map(post => (
@@ -618,11 +618,11 @@ export default function BlogIndex() {
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3, flexWrap: 'wrap' }}>
                           <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, padding: '2px 7px', borderRadius: 3, background: post.badgeColor + '18', color: post.badgeColor, border: `1px solid ${post.badgeColor}33` }}>{post.badge}</span>
-                          <span style={{ fontSize: 11, color: '#475569' }}>{post.readTime}</span>
+                          <span style={{ fontSize: 13, color: '#94a3b8' }}>{post.readTime}</span>
                         </div>
                         <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.3 }}>{post.title}</div>
                       </div>
-                      <span style={{ fontSize: 12, fontWeight: 700, color: '#0891b2', flexShrink: 0 }}>Read →</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', flexShrink: 0 }}>Read →</span>
                     </div>
                   </Link>
                 ))}
@@ -634,7 +634,7 @@ export default function BlogIndex() {
         {/* CTA */}
         <div style={{ marginTop: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific water</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>
+          <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>

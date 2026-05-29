@@ -39,7 +39,7 @@ export default function Error({
         }}
       >
         <h1 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 12px', color: '#f1f5f9' }}>Something went wrong</h1>
-        <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65, margin: '0 0 22px' }}>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 22px' }}>
           A client error stopped this page from loading. You can try again or return home.
         </p>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -65,7 +65,7 @@ export default function Error({
               padding: '10px 20px',
               borderRadius: 8,
               border: '1px solid rgba(148, 163, 184, 0.35)',
-              color: '#94a3b8',
+              color: '#cbd5e1',
               fontSize: 14,
               fontWeight: 600,
               textDecoration: 'none',

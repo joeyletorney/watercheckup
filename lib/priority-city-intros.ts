@@ -1,0 +1,13 @@
+/** Editorial intros for high-traffic city water report pages */
+export const PRIORITY_CITY_INTROS: Record<string, string> = {
+  'san-antonio':
+    "San Antonio draws its drinking water primarily from the Edwards Aquifer, one of the most productive artesian aquifers in the world — but that doesn't mean it arrives at your tap without a trace. The San Antonio Water System serves over 2 million people across the region, and like all large utilities, it detects a range of contaminants during routine testing. Some are regulated and within legal limits; others exceed health guidelines set by independent scientists. The data below is pulled from 5 EPA databases so you can see exactly what's been found.",
+  'new-york':
+    'New York City has long marketed its tap water as some of the best in the country — and by many measures, that reputation holds. But "good" and "perfect" aren\'t the same thing. NYC\'s water travels from Catskill and Delaware watershed reservoirs through hundreds of miles of aging infrastructure before it reaches your glass, and what gets added or picked up along the way is worth knowing. Here\'s what EPA data actually shows for New York City\'s water supply.',
+  'los-angeles':
+    "Los Angeles gets its water from three main sources — the Los Angeles Aqueduct, the State Water Project, and the Colorado River — and blends them depending on availability and season. That complexity means the contaminant profile can shift, and what's in your water depends partly on where in the city you live. LA has a well-documented history with water quality issues including chromium-6 and PFAS. The data below reflects what's been detected and reported across EPA databases.",
+  houston:
+    "Houston's water comes primarily from surface sources — the Trinity and San Jacinto rivers — which are more vulnerable to agricultural runoff, industrial discharge, and storm events than groundwater systems. The city's water utility serves one of the largest metro populations in the country, treating millions of gallons daily. Testing has detected a range of contaminants over the years, some regulated, some not. See the full picture below pulled from 5 EPA databases.",
+  phoenix:
+    "Phoenix relies heavily on the Colorado River, delivered via the Central Arizona Project canal — an open-air system that picks up agricultural runoff, sediment, and other contaminants along its 336-mile route before reaching treatment plants. The city also draws from Salt River Project reservoirs and local groundwater, creating a blended supply that varies by season. Phoenix water meets federal standards, but several contaminants are detected at levels that exceed independent health benchmarks. Here's what the data shows.",
+};

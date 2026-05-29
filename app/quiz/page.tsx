@@ -99,8 +99,8 @@ const RECS: Record<string, Rec> = {
   'city-taste-renter':        { title: 'Waterdrop Pitcher Filter', tagline: 'Removes chlorine, chloramines, and VOCs. Better taste instantly.', why: 'Chlorine is what makes city water taste like a pool. Carbon filtration removes it completely — zero installation needed.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop_pitcher, link2: LINKS.amazon_pitcher, badge: 'CHLORINE REMOVAL', badgeColor: '#059669', alts: TOP_3_PITCHER },
   'city-taste-owner_simple':  { title: 'Waterdrop G3P800 RO', tagline: 'Crystal clear, great-tasting water from your tap. NSF 42 certified.', why: 'Under-sink RO removes chlorine taste, sediment, and dissolved minerals that make water taste flat or metallic. NSF 42 covers aesthetic improvement — you will notice the difference on day one.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_undersink, badge: 'BEST TASTE', badgeColor: '#059669', alts: TOP_3_RO },
   'city-taste-owner_full':    { title: 'Whole-House Carbon + Under-Sink RO', tagline: 'Every tap filtered. Better showers, laundry, and drinking water.', why: 'A whole-house carbon filter removes chlorine from all water entering your home — better for skin and hair. Pair with kitchen RO for the purest drinking water.', cta: 'RO on Waterdrop', cta2: 'Whole House on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_whole_house, badge: 'WHOLE HOME', badgeColor: '#059669', alts: TOP_3_RO, altsWholeHouse: TOP_3_WHOLE_HOUSE_CITY },
-  'city-general-renter':      { title: 'Clearly Filtered Pitcher', tagline: 'NSF 42/53/401/P473. 365+ contaminants. No tools.', why: 'For renters who want comprehensive protection without installation, Clearly Filtered is the strongest certified pitcher on the market — covering PFAS, lead, arsenic, chromium-6, and more.', cta: 'Clearly Filtered', cta2: 'See on Amazon', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', link2: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'ALL-IN-ONE', badgeColor: '#94a3b8', alts: TOP_3_PITCHER },
-  'city-general-owner_simple':{ title: 'Waterdrop G3P800 RO', tagline: 'NSF 42/53/58 certified. Removes 1000+ contaminants.', why: 'Reverse osmosis handles everything — PFAS, lead, nitrates, arsenic, chlorine, and more. The gold standard for home filtration and the most cost-effective per-gallon option long-term.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_undersink, badge: 'MOST COMPLETE', badgeColor: '#94a3b8', alts: TOP_3_RO },
+  'city-general-renter':      { title: 'Clearly Filtered Pitcher', tagline: 'NSF 42/53/401/P473. 365+ contaminants. No tools.', why: 'For renters who want comprehensive protection without installation, Clearly Filtered is the strongest certified pitcher on the market — covering PFAS, lead, arsenic, chromium-6, and more.', cta: 'Clearly Filtered', cta2: 'See on Amazon', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', link2: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'ALL-IN-ONE', badgeColor: '#cbd5e1', alts: TOP_3_PITCHER },
+  'city-general-owner_simple':{ title: 'Waterdrop G3P800 RO', tagline: 'NSF 42/53/58 certified. Removes 1000+ contaminants.', why: 'Reverse osmosis handles everything — PFAS, lead, nitrates, arsenic, chlorine, and more. The gold standard for home filtration and the most cost-effective per-gallon option long-term.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_undersink, badge: 'MOST COMPLETE', badgeColor: '#cbd5e1', alts: TOP_3_RO },
   'city-general-owner_full':  { title: 'Whole-House + Under-Sink RO', tagline: 'Total home protection. Every drop filtered twice.', why: 'Whole-house sediment/carbon at entry plus a dedicated RO at the kitchen sink. The most comprehensive setup available — covers drinking, cooking, showers, and laundry.', cta: 'RO on Waterdrop', cta2: 'Whole House on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_whole_house, badge: 'TOTAL PROTECTION', badgeColor: '#0f172a', alts: TOP_3_RO, altsWholeHouse: TOP_3_WHOLE_HOUSE_CITY },
   'well-pfas-renter':         { title: 'Clearly Filtered Pitcher', tagline: 'NSF P473 certified for PFAS. Works anywhere, no install.', why: 'Well PFAS contamination is common near agriculture and military sites. Clearly Filtered is certified specifically for PFAS reduction — the only pitcher that is.', cta: 'Clearly Filtered', cta2: 'See on Amazon', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', link2: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'WELL PFAS', badgeColor: '#166534', alts: TOP_3_PITCHER },
   'well-pfas-owner_simple':   { title: 'Waterdrop G3P800 RO', tagline: 'NSF 58 certified. Removes 99%+ PFAS. Handles well water hardness.', why: 'Well water needs filters rated for higher sediment and mineral content in addition to PFAS. The G3P800 handles all of it at the kitchen tap.', cta: 'Get on Waterdrop', cta2: 'See on Amazon', link: LINKS.waterdrop, link2: LINKS.amazon_well, badge: 'WELL + PFAS', badgeColor: '#166534', alts: TOP_3_RO },
@@ -127,14 +127,14 @@ const CERT_COLOR: Record<string, string> = {
   'NSF 401': '#7c3aed',
   'NSF 42': '#059669',
   'NSF 53': '#0891b2',
-  'NSF 61': '#64748b',
+  'NSF 61': '#a8b4c4',
   'NSF P473': '#ef4444',
   'NSF 244': '#f59e0b',
   'WQA tested': '#d97706',
 };
 
 function CertBadge({ cert }: { cert: string }) {
-  const color = CERT_COLOR[cert] || '#64748b';
+  const color = CERT_COLOR[cert] || '#a8b4c4';
   return (
     <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 0.5, padding: '2px 7px', borderRadius: 4, background: `${color}18`, border: `1px solid ${color}44`, color, display: 'inline-block' }}>
       {cert}
@@ -174,28 +174,28 @@ export default function QuizPage() {
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: 160 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 3 }}>
-                <span style={{ fontSize: 12, fontWeight: 800, color: '#64748b' }}>#{i + 1}</span>
+                <span style={{ fontSize: 13, fontWeight: 800, color: '#a8b4c4' }}>#{i + 1}</span>
                 <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>{alt.product}</span>
                 {alt.badge && <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: i === 0 ? '#0891b2' : '#1e3a5f', color: '#fff', padding: '2px 7px', borderRadius: 4 }}>{alt.badge}</span>}
               </div>
-              <div style={{ fontSize: 11, color: '#64748b', marginBottom: 4 }}>{alt.brand} · {alt.price}</div>
+              <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 4 }}>{alt.brand} · {alt.price}</div>
               {/* Certification badges */}
               {alt.certs && alt.certs.length > 0 && (
                 <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
                   {alt.certs.map(c => <CertBadge key={c} cert={c} />)}
                 </div>
               )}
-              <div style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.55 }}>{alt.reason}</div>
+              <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>{alt.reason}</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flexShrink: 0 }}>
               {showDirect && (
                 <a href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'direct', product: alt.product, page: 'quiz' })}
-                  style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
+                  style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
                   Buy Direct →
                 </a>
               )}
               <a href={alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'amazon', product: alt.product, page: 'quiz' })}
-                style={{ display: 'block', padding: '7px 14px', background: !showDirect && i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: !showDirect && i === 0 ? '#fff' : '#94a3b8', textDecoration: 'none', borderRadius: 7, fontSize: 12, fontWeight: !showDirect && i === 0 ? 700 : 600, textAlign: 'center', border: !showDirect && i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                style={{ display: 'block', padding: '7px 14px', background: !showDirect && i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: !showDirect && i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: !showDirect && i === 0 ? 700 : 600, textAlign: 'center', border: !showDirect && i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
                 Amazon →
               </a>
             </div>
@@ -204,7 +204,7 @@ export default function QuizPage() {
       );
     });
 
-  const p: React.CSSProperties = { fontSize: 14, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 14px' };
+  const p: React.CSSProperties = { fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 14px' };
   const h3: React.CSSProperties = { fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '28px 0 8px' };
 
   return (
@@ -215,18 +215,18 @@ export default function QuizPage() {
 
         {/* ── PAGE HEADER ── */}
         <div style={{ marginBottom: 36 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER FINDER</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER FINDER</div>
           <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 10px', lineHeight: 1.2 }}>Find Your Perfect Water Filter</h1>
-          <p style={{ fontSize: 15, color: '#94a3b8', margin: '0 0 20px', lineHeight: 1.6 }}>3 quick questions. We match you to the right filter type and technology based on your water source, your biggest concern, and your living situation — then show you the top certified options.</p>
+          <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.6 }}>3 quick questions. We match you to the right filter type and technology based on your water source, your biggest concern, and your living situation — then show you the top certified options.</p>
           {/* Trust badges */}
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 24 }}>
             {[
               { label: 'NSF Certified Picks', color: '#0891b2', icon: '✓' },
               { label: 'WQA Gold Seal Options', color: '#d97706', icon: '✓' },
               { label: 'No paid placements', color: '#059669', icon: '✓' },
-              { label: 'Based on EPA data', color: '#94a3b8', icon: '✓' },
+              { label: 'Based on EPA data', color: '#cbd5e1', icon: '✓' },
             ].map(b => (
-              <span key={b.label} style={{ fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 6, background: `${b.color}12`, border: `1px solid ${b.color}33`, color: b.color }}>
+              <span key={b.label} style={{ fontSize: 13, fontWeight: 700, padding: '4px 10px', borderRadius: 6, background: `${b.color}12`, border: `1px solid ${b.color}33`, color: b.color }}>
                 {b.icon} {b.label}
               </span>
             ))}
@@ -235,7 +235,7 @@ export default function QuizPage() {
 
         {/* ── WHY CERTIFICATIONS MATTER ── */}
         <div style={{ marginBottom: 32, padding: '20px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-          <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WHY CERTIFICATIONS MATTER</div>
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WHY CERTIFICATIONS MATTER</div>
           <p style={{ ...p, margin: '0 0 16px' }}>
             Any filter company can claim their product "removes 99% of contaminants." Certifications are what actually back that up. We only recommend filters with third-party certification — here is what each one means:
           </p>
@@ -249,13 +249,13 @@ export default function QuizPage() {
               { cert: 'WQA Gold Seal', color: '#d97706', desc: 'Water Quality Association independent lab testing against NSF/ANSI standards. Widely respected industry certification.' },
             ].map(({ cert, color, desc }) => (
               <div key={cert} style={{ padding: '10px 12px', background: `${color}0a`, border: `1px solid ${color}25`, borderRadius: 8 }}>
-                <div style={{ fontSize: 11, fontWeight: 800, color, marginBottom: 4 }}>{cert}</div>
-                <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.55 }}>{desc}</div>
+                <div style={{ fontSize: 13, fontWeight: 800, color, marginBottom: 4 }}>{cert}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.55 }}>{desc}</div>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: 12, color: '#475569', marginTop: 14, marginBottom: 0, lineHeight: 1.6 }}>
-            <strong style={{ color: '#64748b' }}>Tip:</strong> A box that says "NSF certified" without a standard number is not enough. Always match the certification to your specific concern — NSF 58 for RO/PFAS, NSF 53 for lead, NSF 401 or P473 for PFAS in pitcher filters.
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 14, marginBottom: 0, lineHeight: 1.6 }}>
+            <strong style={{ color: '#a8b4c4' }}>Tip:</strong> A box that says "NSF certified" without a standard number is not enough. Always match the certification to your specific concern — NSF 58 for RO/PFAS, NSF 53 for lead, NSF 401 or P473 for PFAS in pitcher filters.
           </p>
         </div>
 
@@ -263,7 +263,7 @@ export default function QuizPage() {
         {!done ? (
           <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, padding: '32px', marginBottom: 32 }}>
             <div style={{ marginBottom: 28 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#cbd5e1', marginBottom: 8 }}>
                 <span>QUESTION {step + 1} OF {QUESTIONS.length}</span>
                 <span>{Math.round(((step + 1) / QUESTIONS.length) * 100)}%</span>
               </div>
@@ -272,7 +272,7 @@ export default function QuizPage() {
               </div>
             </div>
             <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>{currentQ.question}</h2>
-            <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 24 }}>{currentQ.subtitle}</p>
+            <p style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 24 }}>{currentQ.subtitle}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {currentQ.options.map(opt => (
                 <button key={opt.value} onClick={() => handleSelect(opt.value)}
@@ -282,43 +282,43 @@ export default function QuizPage() {
                   <span style={{ fontSize: 22, flexShrink: 0 }}>{opt.icon}</span>
                   <div>
                     <div style={{ fontWeight: 700 }}>{opt.label}</div>
-                    {'desc' in opt && <div style={{ fontSize: 12, color: '#64748b', marginTop: 2, fontWeight: 400, lineHeight: 1.5 }}>{(opt as any).desc}</div>}
+                    {'desc' in opt && <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 2, fontWeight: 400, lineHeight: 1.5 }}>{(opt as any).desc}</div>}
                   </div>
                 </button>
               ))}
             </div>
-            {step > 0 && <button onClick={() => setStep(step - 1)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#94a3b8', marginTop: 20, padding: 0 }}>← Back</button>}
+            {step > 0 && <button onClick={() => setStep(step - 1)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#cbd5e1', marginTop: 20, padding: 0 }}>← Back</button>}
           </div>
         ) : rec ? (
           <div style={{ marginBottom: 32 }}>
             {/* Affiliate disclosure — right at the top of results */}
             <div style={{ marginBottom: 16, padding: '10px 14px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 8, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
               <span style={{ fontSize: 14, flexShrink: 0 }}>ℹ️</span>
-              <p style={{ fontSize: 11, color: '#78716c', lineHeight: 1.6, margin: 0 }}>
+              <p style={{ fontSize: 13, color: '#78716c', lineHeight: 1.6, margin: 0 }}>
                 <strong style={{ color: '#a16207' }}>Affiliate disclosure:</strong> Some links below are affiliate links — if you purchase through them, WaterCheckup may earn a small commission at no extra cost to you. This does not influence our recommendations, which are based solely on NSF/WQA certifications and independent test data. We never take paid placements.
               </p>
             </div>
 
             <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, padding: '28px' }}>
-              <div style={{ display: 'inline-block', background: rec.badgeColor, color: '#fff', fontSize: 10, fontWeight: 800, letterSpacing: 2, padding: '4px 12px', borderRadius: 4, marginBottom: 14 }}>{rec.badge}</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 6 }}>OUR RECOMMENDATION</div>
+              <div style={{ display: 'inline-block', background: rec.badgeColor, color: '#fff', fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '4px 12px', borderRadius: 4, marginBottom: 14 }}>{rec.badge}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 6 }}>OUR RECOMMENDATION</div>
               <h2 style={{ fontSize: 26, fontWeight: 900, color: '#f1f5f9', marginBottom: 6 }}>{rec.title}</h2>
               <p style={{ fontSize: 14, color: '#0891b2', fontStyle: 'italic', marginBottom: 18, lineHeight: 1.55 }}>{rec.tagline}</p>
               <div style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '14px 16px', marginBottom: 24 }}>
-                <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{rec.why}</p>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{rec.why}</p>
               </div>
 
               {/* Product results */}
               {rec.alts && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 2 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 2 }}>
                     {rec.altsWholeHouse?.length ? 'TOP PICKS — DRINKING & COOKING (UNDER-SINK / RO)' : 'TOP PICKS'}
                   </div>
                   {renderAltRows(rec.alts, 'pou')}
                   {rec.altsWholeHouse?.length ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 2 }}>TOP PICKS — WHOLE HOUSE (POINT OF ENTRY)</div>
-                      <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 4px', lineHeight: 1.5 }}>Treats water where it enters your home — showers, laundry, pipes. Pair with the under-sink picks above for the cleanest drinking water.</p>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 2 }}>TOP PICKS — WHOLE HOUSE (POINT OF ENTRY)</div>
+                      <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 4px', lineHeight: 1.5 }}>Treats water where it enters your home — showers, laundry, pipes. Pair with the under-sink picks above for the cleanest drinking water.</p>
                       {renderAltRows(rec.altsWholeHouse, 'poe')}
                     </div>
                   ) : null}
@@ -327,31 +327,31 @@ export default function QuizPage() {
 
               {/* Top 5 by type */}
               <div style={{ paddingTop: 20, borderTop: '1px solid #0f2336', display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 2 }}>TOP 5 ON AMAZON — ONE PICK PER FILTER TYPE</div>
-                <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 4px', lineHeight: 1.55 }}>Whole-house, under-sink RO, countertop RO, pitcher, and non-RO under-sink — the top NSF-certified pick in each category.</p>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 2 }}>TOP 5 ON AMAZON — ONE PICK PER FILTER TYPE</div>
+                <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 4px', lineHeight: 1.55 }}>Whole-house, under-sink RO, countertop RO, pitcher, and non-RO under-sink — the top NSF-certified pick in each category.</p>
                 {renderAltRows(TOP_5_AMAZON_DRINKING, 'amz5')}
               </div>
 
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
                 {Object.entries(answers).map(([k, v]) => (
-                  <span key={k} style={{ background: '#0d2240', border: '1px solid #1a3a5c', color: '#94a3b8', fontSize: 10, letterSpacing: 1, padding: '3px 8px', borderRadius: 4, textTransform: 'uppercase' }}>{v.replace('_', ' ')}</span>
+                  <span key={k} style={{ background: '#0d2240', border: '1px solid #1a3a5c', color: '#cbd5e1', fontSize: 13, letterSpacing: 1, padding: '3px 8px', borderRadius: 4, textTransform: 'uppercase' }}>{v.replace('_', ' ')}</span>
                 ))}
               </div>
-              <button onClick={restart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#94a3b8', padding: 0, textDecoration: 'underline' }}>Start over</button>
+              <button onClick={restart} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#cbd5e1', padding: 0, textDecoration: 'underline' }}>Start over</button>
             </div>
           </div>
         ) : null}
 
         {/* ── FILTER COMPARISON TABLE ── */}
         <div style={{ marginBottom: 40, padding: '24px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-          <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>FILTER TYPE COMPARISON</div>
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>FILTER TYPE COMPARISON</div>
           <p style={{ ...p, marginBottom: 16 }}>Not sure which filter type fits your life? Here is how they compare across the things that matter most.</p>
           <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, color: '#94a3b8' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, color: '#cbd5e1' }}>
               <thead>
                 <tr style={{ borderBottom: '1px solid #1a3a5c' }}>
                   {['Filter Type', 'Removes PFAS', 'Removes Lead', 'Installation', 'Cost', 'Best For'].map(h => (
-                    <th key={h} style={{ padding: '8px 10px', textAlign: 'left', fontSize: 10, fontWeight: 800, color: '#64748b', letterSpacing: 1, whiteSpace: 'nowrap' }}>{h}</th>
+                    <th key={h} style={{ padding: '8px 10px', textAlign: 'left', fontSize: 13, fontWeight: 800, color: '#a8b4c4', letterSpacing: 1, whiteSpace: 'nowrap' }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -376,14 +376,14 @@ export default function QuizPage() {
               </tbody>
             </table>
           </div>
-          <p style={{ fontSize: 11, color: '#334155', marginTop: 12, marginBottom: 0, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12, marginBottom: 0, lineHeight: 1.6 }}>
             * PFAS removal requires either RO (NSF 58) or a pitcher/filter specifically certified to NSF 401 or P473. Standard carbon block filters do not remove PFAS.
           </p>
         </div>
 
         {/* ── HOW WE PICK ── */}
         <div style={{ marginBottom: 40, padding: '24px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-          <div style={{ fontSize: 11, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>HOW WE PICK</div>
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>HOW WE PICK</div>
           <h3 style={h3}>Only certified products, period</h3>
           <p style={p}>Every filter we recommend has third-party NSF or WQA certification for the claims on its label. We do not recommend filters based on marketing claims alone. If a company says their filter "removes 99% of PFAS" without NSF 58, NSF 401, or NSF P473 certification, we do not include it.</p>
           <h3 style={h3}>We check the specific standard, not just "NSF certified"</h3>
@@ -395,7 +395,7 @@ export default function QuizPage() {
           <Link href="/" style={{ display: 'inline-block', marginTop: 14, padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', borderRadius: 8, fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Check My Water Report →</Link>
         </div>
 
-        <div style={{ textAlign: 'center', fontSize: 12, color: '#1e3a5f' }}>
+        <div style={{ textAlign: 'center', fontSize: 13, color: '#1e3a5f' }}>
           Picks are based on NSF/WQA certifications and independent data · <Link href="/" style={{ color: '#1e3a5f' }}>WaterCheckup.com</Link>
         </div>
       </div>

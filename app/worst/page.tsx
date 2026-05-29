@@ -68,13 +68,13 @@ export default function WorstHubPage() {
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
         <div style={{ marginBottom: 36 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             DATA-BACKED RANKINGS
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 14px' }}>
             Water quality rankings hub
           </h1>
-          <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
             Every page below pulls from EPA monitoring (UCMR5), Safe Drinking Water Information System violations, or structured profiles across 400,000+ local water utilities tracked. Use this hub to navigate stories that are designed to rank in search and hold up to scrutiny.
           </p>
         </div>
@@ -94,17 +94,17 @@ export default function WorstHubPage() {
                 transition: 'border-color 0.15s',
               }}
             >
-              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.2, color: '#64748b', marginBottom: 6 }}>{r.tag}</div>
+              <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1.2, color: '#a8b4c4', marginBottom: 6 }}>{r.tag}</div>
               <div style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>{r.title}</div>
-              <div style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.65 }}>{r.desc}</div>
+              <div style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65 }}>{r.desc}</div>
               <div style={{ fontSize: 13, color: '#22d3ee', fontWeight: 700, marginTop: 12 }}>Open ranking →</div>
             </Link>
           ))}
         </div>
 
         <div style={{ marginTop: 40, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', letterSpacing: 2, marginBottom: 10 }}>METHODOLOGY</div>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 12px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 10 }}>METHODOLOGY</div>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 12px' }}>
             Rankings combine federal datasets with editorial city profiles. Pages like PFAS-over-MCL lists cite exact monitoring values; THM/DBP lists explain when we are inferring risk from keywords in our city database rather than re-ranking every utility nationally.
           </p>
           <Link href="/methodology" style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>

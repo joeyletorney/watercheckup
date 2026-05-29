@@ -121,13 +121,13 @@ export default async function WorstPFASPage() {
 
         {/* Hero */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             EPA UCMR5 · REGULATED VIOLATIONS · 2025
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             10 water systems with the highest PFAS contamination
           </h1>
-          <p style={{ fontSize: 16, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 24px' }}>
+          <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 24px' }}>
             The EPA finalized enforceable PFAS limits in April 2024 — 4 ppt for PFOA and PFOS (others vary). These are the 10 water systems where regulated PFAS were found at the highest levels above those MCLs in EPA UCMR5 national monitoring. Each card lists every regulated compound over the limit with measured ppt and how many times above the limit. The worst single compound here is about {parseFloat(worstTimesOver).toFixed(0)}× over its MCL.
           </p>
 
@@ -139,12 +139,12 @@ export default async function WorstPFASPage() {
             ].map(({ label, value, color }) => (
               <div key={label} style={{ padding: '16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, textAlign: 'center' }}>
                 <div style={{ fontSize: 22, fontWeight: 900, color, marginBottom: 4 }}>{value}</div>
-                <div style={{ fontSize: 11, color: '#64748b', lineHeight: 1.4 }}>{label}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.4 }}>{label}</div>
               </div>
             ))}
           </div>
 
-          <div style={{ padding: '14px 18px', background: '#ef444412', border: '1px solid #ef444430', borderLeft: '4px solid #ef4444', borderRadius: 8, fontSize: 13, color: '#94a3b8', lineHeight: 1.6 }}>
+          <div style={{ padding: '14px 18px', background: '#ef444412', border: '1px solid #ef444430', borderLeft: '4px solid #ef4444', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.6 }}>
             <strong style={{ color: '#fca5a5' }}>What this list is:</strong> Rankings are based on the highest single regulated PFAS compound reading (one that has an EPA MCL) per water system, from the federal UCMR5 dataset. Systems with only unregulated PFAS detections are tracked on our{' '}
             <Link href="/worst-water" style={{ color: '#22d3ee' }}>broader PFAS ranking page</Link>.
           </div>
@@ -152,7 +152,7 @@ export default async function WorstPFASPage() {
 
         {/* Rankings */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             TOP 10 — HIGHEST REGULATED PFAS ABOVE EPA MCL
           </div>
 
@@ -174,7 +174,7 @@ export default async function WorstPFASPage() {
                       {sys.knownInfo ? (
                         <>
                           <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9', marginBottom: 2 }}>{sys.knownInfo.city}</div>
-                          <div style={{ fontSize: 12, color: '#94a3b8', marginBottom: 6 }}>{sys.knownInfo.name}</div>
+                          <div style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 6 }}>{sys.knownInfo.name}</div>
                         </>
                       ) : (
                         <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>
@@ -182,39 +182,39 @@ export default async function WorstPFASPage() {
                         </div>
                       )}
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: 10, fontWeight: 800, padding: '2px 8px', borderRadius: 4, background: `${rankColor}15`, border: `1px solid ${rankColor}40`, color: rankColor }}>
+                        <span style={{ fontSize: 13, fontWeight: 800, padding: '2px 8px', borderRadius: 4, background: `${rankColor}15`, border: `1px solid ${rankColor}40`, color: rankColor }}>
                           {sys.timesOver}× OVER EPA LIMIT
                         </span>
-                        <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 4, background: '#071828', border: '1px solid #1a3a5c', color: '#64748b' }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, padding: '2px 8px', borderRadius: 4, background: '#071828', border: '1px solid #1a3a5c', color: '#a8b4c4' }}>
                           {sys.regViolationCount} regulated violation{sys.regViolationCount !== 1 ? 's' : ''}
                         </span>
-                        <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 4, background: '#071828', border: '1px solid #1a3a5c', color: '#64748b' }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, padding: '2px 8px', borderRadius: 4, background: '#071828', border: '1px solid #1a3a5c', color: '#a8b4c4' }}>
                           {sys.stateName}
                         </span>
                       </div>
                     </div>
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
                       <div style={{ fontSize: 26, fontWeight: 900, color: rankColor }}>{sys.worstPpt >= 100 ? sys.worstPpt.toFixed(0) : sys.worstPpt.toFixed(1)}</div>
-                      <div style={{ fontSize: 10, color: '#64748b' }}>ppt {sys.worstCompound}</div>
-                      <div style={{ fontSize: 10, color: '#334155', marginTop: 1 }}>MCL: {EPA_MCL[sys.worstCompound]} ppt</div>
+                      <div style={{ fontSize: 13, color: '#a8b4c4' }}>ppt {sys.worstCompound}</div>
+                      <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 1 }}>MCL: {EPA_MCL[sys.worstCompound]} ppt</div>
                     </div>
                   </div>
 
                   {/* Compound-by-compound (every regulated analyte over MCL) */}
                   <div style={{ borderTop: '1px solid #0f2336', padding: '12px 20px 16px' }}>
                     {sys.knownInfo?.source ? (
-                      <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5, marginBottom: 12 }}>
-                        <span style={{ color: '#475569', fontWeight: 700 }}>Source: </span>
+                      <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.5, marginBottom: 12 }}>
+                        <span style={{ color: '#94a3b8', fontWeight: 700 }}>Source: </span>
                         {sys.knownInfo.source}
                       </div>
                     ) : null}
-                    <div style={{ fontSize: 11, fontWeight: 700, color: '#64748b', marginBottom: 8 }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', marginBottom: 8 }}>
                       Regulated PFAS above EPA MCL (compound-by-compound)
                     </div>
                     <div style={{ overflowX: 'auto' }}>
-                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                         <thead>
-                          <tr style={{ color: '#64748b', textAlign: 'left' }}>
+                          <tr style={{ color: '#a8b4c4', textAlign: 'left' }}>
                             <th style={{ padding: '6px 8px', borderBottom: '1px solid #0f2336', fontWeight: 700 }}>Compound</th>
                             <th style={{ padding: '6px 8px', borderBottom: '1px solid #0f2336', fontWeight: 700 }}>Detected</th>
                             <th style={{ padding: '6px 8px', borderBottom: '1px solid #0f2336', fontWeight: 700 }}>EPA MCL</th>
@@ -251,8 +251,8 @@ export default async function WorstPFASPage() {
                       </table>
                     </div>
                     {cmpInfo ? (
-                      <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5, marginTop: 12 }}>
-                        <span style={{ color: '#475569', fontWeight: 700 }}>
+                      <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.5, marginTop: 12 }}>
+                        <span style={{ color: '#94a3b8', fontWeight: 700 }}>
                           {sys.worstCompound} ({cmpInfo.full}):{' '}
                         </span>
                         {cmpInfo.notes}
@@ -267,7 +267,7 @@ export default async function WorstPFASPage() {
 
         {/* What is PFAS / health context */}
         <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             WHY THIS MATTERS
           </div>
           {[
@@ -290,7 +290,7 @@ export default async function WorstPFASPage() {
           ].map(({ q, a }) => (
             <div key={q} style={{ marginBottom: 12, padding: '16px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#f1f5f9', marginBottom: 8 }}>{q}</div>
-              <p style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.75, margin: 0 }}>{a}</p>
+              <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{a}</p>
             </div>
           ))}
         </div>
@@ -298,7 +298,7 @@ export default async function WorstPFASPage() {
         {/* CTA */}
         <div style={{ background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 40 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Check your ZIP for PFAS</div>
-          <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             Enter your ZIP to see the UCMR5 PFAS readings, MCL violations, and certified filter recommendations for your specific water system.
           </p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
@@ -308,7 +308,7 @@ export default async function WorstPFASPage() {
 
         {/* Related rankings */}
         <div style={{ marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>MORE RANKINGS</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>MORE RANKINGS</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
             {[
               { href: '/worst', label: 'Rankings hub', desc: 'All data-backed ranking pages' },
@@ -319,14 +319,14 @@ export default async function WorstPFASPage() {
             ].map(r => (
               <Link key={r.href} href={r.href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{r.label}</div>
-                <div style={{ fontSize: 11, color: '#64748b' }}>{r.desc}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{r.desc}</div>
               </Link>
             ))}
           </div>
         </div>
 
-        <div style={{ fontSize: 12, color: '#475569', lineHeight: 1.7, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
-          <strong style={{ color: '#64748b' }}>Data source:</strong> U.S. Environmental Protection Agency UCMR5 (5th Unregulated Contaminant Monitoring Rule), 2023–2025 national dataset. Rankings show only systems with confirmed detections above EPA Maximum Contaminant Levels for regulated PFAS compounds: PFOA (4 ppt), PFOS (4 ppt), PFNA (10 ppt), PFHxS (10 ppt), HFPO-DA/GenX (10 ppt). Not affiliated with the EPA.
+        <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
+          <strong style={{ color: '#a8b4c4' }}>Data source:</strong> U.S. Environmental Protection Agency UCMR5 (5th Unregulated Contaminant Monitoring Rule), 2023–2025 national dataset. Rankings show only systems with confirmed detections above EPA Maximum Contaminant Levels for regulated PFAS compounds: PFOA (4 ppt), PFOS (4 ppt), PFNA (10 ppt), PFHxS (10 ppt), HFPO-DA/GenX (10 ppt). Not affiliated with the EPA.
         </div>
       </div>
     </div>

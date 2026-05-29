@@ -30,7 +30,7 @@ const h2: React.CSSProperties = {
 
 const p: React.CSSProperties = {
   fontSize: 16,
-  color: '#94a3b8',
+  color: '#cbd5e1',
   lineHeight: 1.85,
   margin: '0 0 18px',
 };
@@ -239,7 +239,7 @@ export default function AboutPage() {
           />
           <div className="about-page-hero-bg__overlay" aria-hidden />
           <div className="about-page-hero-bg__content">
-            <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20 }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20 }}>
               ABOUT THE FOUNDER
             </p>
 
@@ -334,7 +334,7 @@ export default function AboutPage() {
             <CredentialCard key={line} line={line} />
           ))}
         </div>
-        <p style={{ fontSize: 13, color: '#64748b', margin: '0 0 16px', fontStyle: 'italic' }}>
+        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px', fontStyle: 'italic' }}>
           Credentials held during active practice with The WaterPro, Inc.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
@@ -364,7 +364,7 @@ export default function AboutPage() {
             >
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: 13,
                   fontWeight: 800,
                   color: '#0891b2',
                   letterSpacing: 1,
@@ -373,7 +373,7 @@ export default function AboutPage() {
               >
                 {group.title.toUpperCase()}
               </div>
-              <ul style={{ margin: 0, paddingLeft: 18, color: '#94a3b8', fontSize: 14, lineHeight: 1.7 }}>
+              <ul style={{ margin: 0, paddingLeft: 18, color: '#cbd5e1', fontSize: 14, lineHeight: 1.7 }}>
                 {group.items.map((item) => (
                   <li key={item} style={{ marginBottom: 6 }}>
                     {item}
@@ -403,7 +403,7 @@ export default function AboutPage() {
               }}
             >
               <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>{col.title}</div>
-              <p style={{ margin: 0, fontSize: 14, color: '#94a3b8', lineHeight: 1.65 }}>{col.body}</p>
+              <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', lineHeight: 1.65 }}>{col.body}</p>
             </div>
           ))}
         </div>
@@ -470,7 +470,7 @@ export default function AboutPage() {
           >
             Check Your Water Now →
           </Link>
-          <p style={{ margin: '20px 0 0', fontSize: 13, color: '#64748b' }}>
+          <p style={{ margin: '20px 0 0', fontSize: 13, color: '#a8b4c4' }}>
             <Link href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none' }}>
               How we source EPA data →
             </Link>

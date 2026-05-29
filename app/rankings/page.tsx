@@ -20,21 +20,21 @@ export default function RankingsPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
 
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#475569', marginBottom: 20 }}>
+        <nav style={{ fontSize: 13, color: '#94a3b8', marginBottom: 20 }}>
           <Link href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <span style={{ color: '#94a3b8' }}>Rankings</span>
+          <span style={{ color: '#cbd5e1' }}>Rankings</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
           NATIONAL COMPARISON · 50 STATES + DC
         </div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 16px' }}>
           Tap Water Quality Rankings by State 2026
         </h1>
-        <p style={{ fontSize: 15, color: '#94a3b8', lineHeight: 1.75, margin: '0 0 20px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 20px' }}>
           States are ordered by the share of <strong style={{ color: '#e2e8f0' }}>tracked cities</strong> with UCMR5 data flagged
           over an EPA limit or an active PFAS MCL violation (same bar as our state &amp; city reports). Grades use that
           percentage only; &quot;safe&quot; cities are tracked locations with no such flag and a low regional concern profile.
@@ -58,7 +58,7 @@ export default function RankingsPage() {
           </p>
         </div>
 
-        <div style={{ marginBottom: 14, fontSize: 12, color: '#64748b' }}>
+        <div style={{ marginBottom: 14, fontSize: 13, color: '#a8b4c4' }}>
           Click column headers to sort. Default: best rank (lowest % cities at risk) first.
         </div>
         <RankingsTable rows={rows} />
@@ -66,7 +66,7 @@ export default function RankingsPage() {
         <div style={{ marginTop: 48 }}>
           <div
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 700,
               color: '#0891b2',
               letterSpacing: 2,
@@ -77,7 +77,7 @@ export default function RankingsPage() {
           >
             WORST CITIES IN AMERICA (UCMR5 DETECTIONS)
           </div>
-          <p style={{ fontSize: 14, color: '#64748b', margin: '0 0 18px', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 18px', lineHeight: 1.6 }}>
             Top 20 tracked cities by count of distinct contaminants detected above zero in EPA UCMR5 data (not all are above
             health or legal limits — see each city report).
           </p>
@@ -100,9 +100,9 @@ export default function RankingsPage() {
                   }}
                 >
                   <div>
-                    <span style={{ color: '#475569', marginRight: 10, fontSize: 13 }}>{i + 1}.</span>
+                    <span style={{ color: '#94a3b8', marginRight: 10, fontSize: 13 }}>{i + 1}.</span>
                     <span style={{ fontWeight: 800, color: '#f1f5f9' }}>{c.name}</span>
-                    <span style={{ color: '#64748b', marginLeft: 8, fontSize: 13 }}>{c.state}</span>
+                    <span style={{ color: '#a8b4c4', marginLeft: 8, fontSize: 13 }}>{c.state}</span>
                   </div>
                   <span style={{ fontWeight: 800, color: '#f87171', fontSize: 14 }}>{c.contaminantCount} contaminants</span>
                 </div>
@@ -119,11 +119,11 @@ export default function RankingsPage() {
             border: '1px solid #1a3a5c',
             borderRadius: 12,
             fontSize: 13,
-            color: '#64748b',
+            color: '#a8b4c4',
             lineHeight: 1.65,
           }}
         >
-          <strong style={{ color: '#94a3b8' }}>Methodology:</strong> State letter grades are not EPA grades — they reflect the
+          <strong style={{ color: '#cbd5e1' }}>Methodology:</strong> State letter grades are not EPA grades — they reflect the
           percent of WaterCheckup city pages in that state with UCMR5 exceedance flags (A = 0–10% of those cities, B = 11–25%,
           C = 26–50%, D = 51–74%, F = 75% or more of those cities at risk). &quot;Worst contaminant&quot; is the analyte with
           the highest reported detection (ppt) among tracked cities in that state.

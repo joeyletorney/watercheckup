@@ -144,32 +144,32 @@ export default function BestFilterHardWaterPage() {
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Check your water →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
-        <nav style={{ fontSize: 12, color: '#64748b', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#64748b', textDecoration: 'none' }}>
+        <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
+          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/blog" style={{ color: '#64748b', textDecoration: 'none' }}>
+          <Link href="/blog" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Blog
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Best Filter for Hard Water</span>
         </nav>
 
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER GUIDE · 2025</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER GUIDE · 2025</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
           Best Water Filter for Hard Water 2025
         </h1>
-        <p style={{ fontSize: 16, color: '#94a3b8', margin: '0 0 8px', lineHeight: 1.6 }}>
+        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.6 }}>
           Hard water affects 85% of US homes. Scale buildup destroys appliances, spots dishes, dries out skin, and wastes money on soap. Here are the only solutions that actually work — ranked by effectiveness and budget.
         </p>
-        <p style={{ fontSize: 12, color: '#475569', margin: '0 0 32px' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 32px' }}>
           Updated May 2025 · NSF certifications verified · Some links are affiliate links
         </p>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>What is hard water?</h2>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
             Hard water contains high levels of dissolved calcium and magnesium — minerals picked up as water flows through limestone and chalk rock. It&apos;s measured in grains per gallon (gpg) or milligrams per liter (mg/L):
           </p>
           {HARDNESS_ROWS.map((row, i) => (
@@ -184,12 +184,12 @@ export default function BestFilterHardWaterPage() {
               }}
             >
               <span style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', minWidth: 140 }}>{row.level}</span>
-              <span style={{ fontSize: 13, color: '#94a3b8', minWidth: 80 }}>{row.gpg}</span>
-              <span style={{ fontSize: 13, color: '#94a3b8', minWidth: 100 }}>{row.mgL}</span>
-              <span style={{ fontSize: 13, color: '#64748b' }}>{row.cities}</span>
+              <span style={{ fontSize: 13, color: '#cbd5e1', minWidth: 80 }}>{row.gpg}</span>
+              <span style={{ fontSize: 13, color: '#cbd5e1', minWidth: 100 }}>{row.mgL}</span>
+              <span style={{ fontSize: 13, color: '#a8b4c4' }}>{row.cities}</span>
             </div>
           ))}
-          <p style={{ fontSize: 13, color: '#64748b', margin: '12px 0 0' }}>
+          <p style={{ fontSize: 13, color: '#a8b4c4', margin: '12px 0 0' }}>
             Don&apos;t know your hardness level?{' '}
             <Link href="/" style={{ color: '#0891b2' }}>
               Check your ZIP code →
@@ -212,7 +212,7 @@ export default function BestFilterHardWaterPage() {
               <span style={{ color: '#f59e0b', flexShrink: 0 }} aria-hidden>
                 ⚠️
               </span>
-              <span style={{ fontSize: 14, color: '#94a3b8' }}>{sign}</span>
+              <span style={{ fontSize: 14, color: '#cbd5e1' }}>{sign}</span>
             </div>
           ))}
         </div>
@@ -252,9 +252,9 @@ export default function BestFilterHardWaterPage() {
                   </span>
                 </div>
                 <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 12, color: '#64748b' }}>{pick.price}</span>
-                  <span style={{ fontSize: 12, color: '#0891b2' }}>{pick.nsf}</span>
-                  <span style={{ fontSize: 12, color: '#64748b' }}>Handles: {pick.hardness}</span>
+                  <span style={{ fontSize: 13, color: '#a8b4c4' }}>{pick.price}</span>
+                  <span style={{ fontSize: 13, color: '#0891b2' }}>{pick.nsf}</span>
+                  <span style={{ fontSize: 13, color: '#a8b4c4' }}>Handles: {pick.hardness}</span>
                 </div>
               </div>
             </div>
@@ -267,17 +267,17 @@ export default function BestFilterHardWaterPage() {
               }}
             >
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#22d3ee', marginBottom: 6 }}>PROS</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', marginBottom: 6 }}>PROS</div>
                 {pick.pros.map(p => (
-                  <div key={p} style={{ fontSize: 13, color: '#94a3b8', marginBottom: 4 }}>
+                  <div key={p} style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 4 }}>
                     ✓ {p}
                   </div>
                 ))}
               </div>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b', marginBottom: 6 }}>CONS</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 6 }}>CONS</div>
                 {pick.cons.map(c => (
-                  <div key={c} style={{ fontSize: 13, color: '#94a3b8', marginBottom: 4 }}>
+                  <div key={c} style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 4 }}>
                     ✗ {c}
                   </div>
                 ))}
@@ -286,7 +286,7 @@ export default function BestFilterHardWaterPage() {
             <p
               style={{
                 fontSize: 13,
-                color: '#94a3b8',
+                color: '#cbd5e1',
                 lineHeight: 1.6,
                 margin: '0 0 12px',
                 padding: '10px 12px',
@@ -320,15 +320,15 @@ export default function BestFilterHardWaterPage() {
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Salt-free softeners — do they work?</h2>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
             Salt-free &quot;softeners&quot; (also called water conditioners) use template-assisted crystallization (TAC) to change the structure of hardness minerals so they don&apos;t stick to surfaces. They don&apos;t actually remove calcium and magnesium — they just change how the minerals behave.
           </p>
-          <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
             <strong style={{ color: '#e2e8f0' }}>Bottom line:</strong> Salt-free conditioners reduce scale buildup and are maintenance-free (no salt, no backwash). But they don&apos;t improve the feel of water for skin/hair and won&apos;t register as &quot;soft&quot; on a hardness test. For very hard water above 15 gpg, salt-based softeners are significantly more effective.
           </p>
         </div>
 
-        <p style={{ fontSize: 14, color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
           Very hard water cities: see our{' '}
           <Link href="/water/san-antonio" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
             San Antonio water quality &amp; contamination report
@@ -341,7 +341,7 @@ export default function BestFilterHardWaterPage() {
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>
-              <p style={{ fontSize: 13, color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
+              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
             </div>
           ))}
         </div>
@@ -362,10 +362,10 @@ export default function BestFilterHardWaterPage() {
           >
             Check Your Water Hardness →
           </Link>
-          <p style={{ fontSize: 12, color: '#475569', marginTop: 12 }}>Free · Any US ZIP code · Instant results</p>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · Any US ZIP code · Instant results</p>
         </div>
 
-        <p style={{ fontSize: 11, color: '#334155', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Some links on this page are affiliate links — we may earn a commission at no cost to you. Our recommendations are based on NSF certifications and water quality data, not paid placements.
         </p>
       </div>

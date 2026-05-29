@@ -98,7 +98,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
         </div>
         {showCta ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-            <span style={{ fontSize: 11, color: '#64748b', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <span style={{ fontSize: 13, color: '#a8b4c4', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ color: '#22d3ee', fontWeight: 800 }}>10,000+</span> reports checked
             </span>
             <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>

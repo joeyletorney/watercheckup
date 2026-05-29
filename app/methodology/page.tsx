@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 
 const h2: React.CSSProperties = { fontSize: 20, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 12px', lineHeight: 1.3 };
 const h3: React.CSSProperties = { fontSize: 16, fontWeight: 700, color: '#e2e8f0', margin: '24px 0 8px' };
-const p: React.CSSProperties = { fontSize: 15, color: '#94a3b8', lineHeight: 1.8, margin: '0 0 18px' };
-const tag: React.CSSProperties = { display: 'inline-block', fontSize: 10, fontWeight: 800, letterSpacing: 1, padding: '2px 8px', borderRadius: 4, background: 'rgba(8,145,178,0.12)', border: '1px solid rgba(8,145,178,0.3)', color: '#38bdf8', marginRight: 8, verticalAlign: 'middle' };
+const p: React.CSSProperties = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 18px' };
+const tag: React.CSSProperties = { display: 'inline-block', fontSize: 13, fontWeight: 800, letterSpacing: 1, padding: '2px 8px', borderRadius: 4, background: 'rgba(8,145,178,0.12)', border: '1px solid rgba(8,145,178,0.3)', color: '#38bdf8', marginRight: 8, verticalAlign: 'middle' };
 const card: React.CSSProperties = { marginBottom: 16, padding: '18px 20px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10 };
-const warn: React.CSSProperties = { marginBottom: 20, padding: '16px 20px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 14, color: '#94a3b8', lineHeight: 1.75 };
+const warn: React.CSSProperties = { marginBottom: 20, padding: '16px 20px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 14, color: '#cbd5e1', lineHeight: 1.75 };
 
 export default function MethodologyPage() {
   return (
@@ -26,7 +26,7 @@ export default function MethodologyPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" />
 
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 100px' }}>
-        <p style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>TRUST & TRANSPARENCY</p>
+        <p style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>TRUST & TRANSPARENCY</p>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f8fafc', lineHeight: 1.15, margin: '0 0 16px' }}>
           Data sources & methodology
         </h1>
@@ -46,7 +46,7 @@ export default function MethodologyPage() {
           <p style={{ ...p, margin: '10px 0 0' }}>
             SDWIS is the EPA's master registry of all 150,000+ public water systems in the United States. It tracks every reported violation — health-based, monitoring, and reporting — along with enforcement actions, penalties, and compliance status. We query SDWIS live for every ZIP search so you always see the most current violation record on file. A "violation" means a utility exceeded an EPA limit or failed to properly test and report. Most violations are monitoring failures (late or missing tests), but health-based violations for things like PFAS, nitrates, or disinfection byproducts are the ones that matter most.
           </p>
-          <p style={{ fontSize: 12, color: '#475569', margin: '8px 0 0' }}>
+          <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EPA ECHO / SDWIS public API</a>
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function MethodologyPage() {
           <p style={{ ...p, margin: '10px 0 0' }}>
             The UCMR is how EPA tests for contaminants that don't yet have federal limits. UCMR5 is the fifth round and is the most comprehensive PFAS dataset ever collected — utilities were required to test for 29 PFAS compounds between 2023 and 2025 and report results to EPA. We ship a snapshot of the UCMR5 results database inside the app and match it to your water system by PWSID. This is how we show you specific PFAS compound levels (in parts per trillion) even before your utility is required to include them in their annual water quality report.
           </p>
-          <p style={{ fontSize: 12, color: '#475569', margin: '8px 0 0' }}>
+          <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://www.epa.gov/dwucmr" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EPA UCMR5 public dataset</a>
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function MethodologyPage() {
           <p style={{ ...p, margin: '10px 0 0' }}>
             Beyond violation records, ECHO tracks formal enforcement actions, inspection history, and penalty data. A utility can have an open violation and still be working toward compliance — or it can have a history of repeat violations that suggest a systemic problem. We use enforcement history to contextualize the violation record and flag utilities with patterns of non-compliance that a raw violation count might underrepresent.
           </p>
-          <p style={{ fontSize: 12, color: '#475569', margin: '8px 0 0' }}>
+          <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EPA ECHO Enforcement and Compliance History Online</a>
           </p>
         </div>
@@ -95,7 +95,7 @@ export default function MethodologyPage() {
           <p style={{ ...p, margin: '10px 0 0' }}>
             The EPA's legal limits (MCLs) are set with economic and technical feasibility in mind, not pure health science. The Environmental Working Group publishes independent health guidelines for many contaminants that are often much stricter than EPA limits — for example, the EWG health guideline for PFOA is 0.1 ppt, compared to EPA's legal limit of 4 ppt. We use EWG health guidelines as a secondary layer to show when your water may be technically "within limits" but still above a stricter independent health benchmark. This context is clearly labeled as a health guideline, not a legal limit.
           </p>
-          <p style={{ fontSize: 12, color: '#475569', margin: '8px 0 0' }}>
+          <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://www.ewg.org/tapwater/" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EWG Tap Water Database</a>
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function MethodologyPage() {
               <div style={{ width: 32, height: 32, borderRadius: 8, background: `${color as string}18`, border: `1px solid ${color as string}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 16, color: color as string, flexShrink: 0 }}>{grade}</div>
               <div>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{range}</span>
-                <span style={{ fontSize: 13, color: '#94a3b8', marginLeft: 8 }}>{desc}</span>
+                <span style={{ fontSize: 13, color: '#cbd5e1', marginLeft: 8 }}>{desc}</span>
               </div>
             </div>
           ))}
@@ -155,9 +155,9 @@ export default function MethodologyPage() {
 
         <div style={{ marginTop: 40, paddingTop: 28, borderTop: '1px solid #0f2336', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <Link href="/" style={{ color: '#22d3ee', fontWeight: 700, textDecoration: 'none', fontSize: 14 }}>← Check my water</Link>
-          <Link href="/faq" style={{ color: '#94a3b8', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>FAQ →</Link>
-          <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ color: '#94a3b8', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA ECHO →</a>
-          <a href="https://www.epa.gov/dwucmr" target="_blank" rel="noreferrer" style={{ color: '#94a3b8', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA UCMR →</a>
+          <Link href="/faq" style={{ color: '#cbd5e1', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>FAQ →</Link>
+          <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ color: '#cbd5e1', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA ECHO →</a>
+          <a href="https://www.epa.gov/dwucmr" target="_blank" rel="noreferrer" style={{ color: '#cbd5e1', fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA UCMR →</a>
         </div>
       </main>
     </div>

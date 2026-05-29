@@ -20,9 +20,9 @@ const inputStyle: CSSProperties = {
 
 const labelStyle: CSSProperties = {
   display: 'block',
-  fontSize: 12,
+  fontSize: 13,
   fontWeight: 700,
-  color: '#94a3b8',
+  color: '#cbd5e1',
   marginBottom: 6,
   letterSpacing: 0.5,
 };
@@ -217,10 +217,10 @@ export default function ClaimUtilitiesForm() {
             ...inputStyle,
             padding: '10px 14px',
             fontSize: 13,
-            color: '#94a3b8',
+            color: '#cbd5e1',
           }}
         />
-        <p style={{ fontSize: 11, color: '#64748b', margin: '6px 0 0', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '6px 0 0', lineHeight: 1.5 }}>
           PDF only, max 4 MB. You can also send your report after we verify your listing.
         </p>
       </div>

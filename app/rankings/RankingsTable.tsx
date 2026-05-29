@@ -9,9 +9,9 @@ type SortKey = 'rank' | 'state' | 'grade' | 'atRisk' | 'safe' | 'worst';
 
 const thBase: CSSProperties = {
   padding: '12px 10px',
-  color: '#94a3b8',
+  color: '#cbd5e1',
   fontWeight: 800,
-  fontSize: 10,
+  fontSize: 13,
   letterSpacing: 0.8,
   borderBottom: '1px solid #1a3a5c',
   textAlign: 'left',
@@ -80,7 +80,7 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
     const active = sortKey === key;
     return (
       <th
-        style={{ ...thBase, color: active ? '#67e8f9' : '#94a3b8' }}
+        style={{ ...thBase, color: active ? '#67e8f9' : '#cbd5e1' }}
         onClick={() => {
           if (sortKey === key) setSortDir((d) => -d);
           else {
@@ -118,21 +118,21 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
                     {r.stateName}
                   </Link>
                 ) : (
-                  <span style={{ color: '#64748b' }}>{r.stateName}</span>
+                  <span style={{ color: '#a8b4c4' }}>{r.stateName}</span>
                 )}
-                <div style={{ fontSize: 10, color: '#475569', marginTop: 2 }}>
+                <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 2 }}>
                   {r.totalCities > 0 ? `${r.totalCities} tracked` : 'No city data'}
                 </div>
               </td>
               <td style={{ padding: '11px 10px' }}>
                 <span style={{ fontWeight: 900, color: r.gradeColor, fontSize: 15 }}>{r.grade}</span>
                 {r.totalCities > 0 && (
-                  <span style={{ fontSize: 11, color: '#64748b', marginLeft: 6 }}>({r.pctAtRisk}% at risk)</span>
+                  <span style={{ fontSize: 13, color: '#a8b4c4', marginLeft: 6 }}>({r.pctAtRisk}% at risk)</span>
                 )}
               </td>
-              <td style={{ padding: '11px 10px', color: r.citiesAtRisk > 0 ? '#f87171' : '#64748b' }}>{r.citiesAtRisk}</td>
+              <td style={{ padding: '11px 10px', color: r.citiesAtRisk > 0 ? '#f87171' : '#a8b4c4' }}>{r.citiesAtRisk}</td>
               <td style={{ padding: '11px 10px', color: '#67e8f9' }}>{r.citiesSafe}</td>
-              <td style={{ padding: '11px 10px', color: '#cbd5e1', fontSize: 12 }}>{r.worstContaminant}</td>
+              <td style={{ padding: '11px 10px', color: '#cbd5e1', fontSize: 13 }}>{r.worstContaminant}</td>
             </tr>
           ))}
         </tbody>

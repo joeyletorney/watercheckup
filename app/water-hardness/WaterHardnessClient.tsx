@@ -47,7 +47,7 @@ function SolutionPicks({ tier }: { tier: HardnessTier | null }) {
   const t = tierForSolutions(tier);
   if (t === "none") {
     return (
-      <p style={{ fontSize: 14, color: "#64748b", margin: 0, lineHeight: 1.6 }}>
+      <p style={{ fontSize: 14, color: "#a8b4c4", margin: 0, lineHeight: 1.6 }}>
         Run the ZIP lookup or manual calculator above to see a tailored recommendation. General options are described in the{" "}
         <a href="#hard-water-solutions" style={{ color: "#67e8f9" }}>
           Hard water solutions
@@ -88,11 +88,11 @@ function SolutionPicks({ tier }: { tier: HardnessTier | null }) {
         borderRadius: 12,
       }}
     >
-      <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 8 }}>
+      <div style={{ fontSize: 13, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 8 }}>
         FOR YOUR RESULT
       </div>
       <div style={{ fontSize: 16, fontWeight: 800, color: "#e2e8f0", marginBottom: 8 }}>{rows.title}</div>
-      <p style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.65, margin: "0 0 14px" }}>{rows.body}</p>
+      <p style={{ fontSize: 14, color: "#cbd5e1", lineHeight: 1.65, margin: "0 0 14px" }}>{rows.body}</p>
       <a
         href={rows.href}
         target="_blank"
@@ -117,7 +117,7 @@ function ResultBlock({
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, marginBottom: 12 }}>
         <span
           style={{
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: 800,
             letterSpacing: 1,
             padding: "6px 12px",
@@ -130,7 +130,7 @@ function ResultBlock({
           {analysis.label.toUpperCase()}
         </span>
         <span style={{ fontSize: 18, fontWeight: 900, color: "#f1f5f9" }}>{analysis.ppm} ppm</span>
-        <span style={{ fontSize: 15, color: "#94a3b8" }}>{analysis.gpg} gpg</span>
+        <span style={{ fontSize: 15, color: "#cbd5e1" }}>{analysis.gpg} gpg</span>
       </div>
       <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 12px" }}>{analysis.explanation}</p>
       {extra}
@@ -217,7 +217,7 @@ export function WaterHardnessClient() {
               </Link>
             </p>
           ) : res.ok && data.city ? (
-            <p style={{ margin: "12px 0 0", fontSize: 14, color: "#64748b" }}>
+            <p style={{ margin: "12px 0 0", fontSize: 14, color: "#a8b4c4" }}>
               Area: {data.city}.{" "}
               <Link href={`/results/${z}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
                 Open ZIP report →
@@ -274,7 +274,7 @@ export function WaterHardnessClient() {
       <div style={{ marginBottom: 36 }} id="zip-lookup">
         <div
           style={{
-            fontSize: 11,
+            fontSize: 13,
             fontWeight: 700,
             color: "#0891b2",
             letterSpacing: 2,
@@ -283,12 +283,12 @@ export function WaterHardnessClient() {
         >
           LOOKUP BY ZIP
         </div>
-        <p style={{ fontSize: 14, color: "#94a3b8", margin: "0 0 14px", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 14px", lineHeight: 1.6 }}>
           Uses WaterCheckup&apos;s water API (EPA SDWIS, EWG Atlas hardness where published for your ZIP, and USGS state
           snapshots). If no hardness row is bundled for your utility yet, use the manual calculator.
         </p>
         <form onSubmit={submitZip} style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 16 }}>
-          <label style={{ display: "block", width: "100%", fontSize: 12, fontWeight: 700, color: "#94a3b8" }}>
+          <label style={{ display: "block", width: "100%", fontSize: 13, fontWeight: 700, color: "#cbd5e1" }}>
             Enter your ZIP code
           </label>
           <input
@@ -324,7 +324,7 @@ export function WaterHardnessClient() {
       <div style={{ marginBottom: 28 }}>
         <div
           style={{
-            fontSize: 11,
+            fontSize: 13,
             fontWeight: 700,
             color: "#0891b2",
             letterSpacing: 2,
@@ -334,7 +334,7 @@ export function WaterHardnessClient() {
           MANUAL CALCULATOR
         </div>
         <form onSubmit={submitManual} style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
-          <label style={{ fontSize: 12, fontWeight: 700, color: "#94a3b8" }}>
+          <label style={{ fontSize: 13, fontWeight: 700, color: "#cbd5e1" }}>
             Enter your hardness reading (from a test strip or utility report)
           </label>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
@@ -378,12 +378,12 @@ export function WaterHardnessClient() {
 
       {(zipAnalysis || manualAnalysis) && (
         <div style={{ marginBottom: 28 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 12 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 12 }}>
             RESULT
           </div>
           {zipAnalysis ? <ResultBlock analysis={zipAnalysis} extra={zipExtra} /> : null}
           {manualAnalysis && zipAnalysis ? (
-            <div style={{ fontSize: 12, color: "#64748b", margin: "8px 0" }}>Manual calculation (below):</div>
+            <div style={{ fontSize: 13, color: "#a8b4c4", margin: "8px 0" }}>Manual calculation (below):</div>
           ) : null}
           {manualAnalysis ? <ResultBlock analysis={manualAnalysis} /> : null}
         </div>

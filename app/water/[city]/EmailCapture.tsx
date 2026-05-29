@@ -84,17 +84,17 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
 
   // Inline variant — compact single-line form used inside a flex row
   if (inline) {
-    if (status === 'success') return <span style={{ fontSize: 12, color: '#4ade80', fontWeight: 700 }}>✓ You&apos;re on the list</span>;
+    if (status === 'success') return <span style={{ fontSize: 13, color: '#4ade80', fontWeight: 700 }}>✓ You&apos;re on the list</span>;
     return (
       <>
         <input type="email" placeholder="your@email.com" value={email}
           onChange={e => setEmail(e.target.value)} onKeyDown={e => e.key === 'Enter' && submit()}
           style={{ flex: '1 1 180px', minWidth: 0, padding: '7px 12px', background: 'rgba(4,22,48,0.9)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f1f5f9', fontSize: 13, outline: 'none' }} />
         <button onClick={submit} disabled={status === 'loading'}
-          style={{ padding: '7px 16px', borderRadius: 8, border: 'none', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 12, fontWeight: 800, cursor: status === 'loading' ? 'not-allowed' : 'pointer', flexShrink: 0 }}>
+          style={{ padding: '7px 16px', borderRadius: 8, border: 'none', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 13, fontWeight: 800, cursor: status === 'loading' ? 'not-allowed' : 'pointer', flexShrink: 0 }}>
           {status === 'loading' ? '…' : 'Notify me'}
         </button>
-        {status === 'error' && msg && <span style={{ fontSize: 11, color: '#f87171' }}>{msg}</span>}
+        {status === 'error' && msg && <span style={{ fontSize: 13, color: '#f87171' }}>{msg}</span>}
       </>
     );
   }
@@ -104,7 +104,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
       <div style={{ marginBottom: 40, padding: '24px 24px', background: '#0a2a1a', border: '1px solid #0f6e40', borderRadius: 12, textAlign: 'center' }}>
         <div style={{ fontSize: 20, marginBottom: 6 }}>✅</div>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You&apos;re in.</div>
-        <p style={{ fontSize: 13, color: '#94a3b8', margin: 0 }}>
+        <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
           We&apos;ll email you when new PFAS or contamination data drops for{' '}
           {isCounty ? countyLabelForTitle : displayName}. Check your inbox for a welcome note.
         </p>
@@ -114,7 +114,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
 
   return (
     <div style={{ marginBottom: 40, padding: '24px 24px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
-      <div style={{ fontSize: 11, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+      <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
         STAY INFORMED
       </div>
       <div style={{ fontSize: 16, fontWeight: 700, color: '#f1f5f9', marginBottom: 6 }}>
@@ -126,7 +126,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
               ? `Get water quality alerts for ${displayName}`
               : `Get ${displayName} water alerts`}
       </div>
-      <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.6 }}>
+      <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 16px', lineHeight: 1.6 }}>
         {isCounty
           ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect cities in ${countyLabelForTitle}. One email, no spam, unsubscribe any time.`
           : isState
@@ -163,7 +163,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
         </button>
       </div>
       {status === 'error' && msg && (
-        <p style={{ fontSize: 12, color: '#f87171', margin: '8px 0 0' }}>{msg}</p>
+        <p style={{ fontSize: 13, color: '#f87171', margin: '8px 0 0' }}>{msg}</p>
       )}
     </div>
   );
