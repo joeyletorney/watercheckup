@@ -60,9 +60,9 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'reverse-osmosis-vs-distilled-water': {
-    title: 'Reverse Osmosis vs Distilled Water — Which is Better? (2026)',
+    title: 'Distilled Water vs. Reverse Osmosis – Which Is Actually Purer?',
     excerpt:
-      'RO and distilled water are both highly purified but work completely differently. A 30-year water treatment expert explains which one is right for your home.',
+      'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
     date: 'May 18, 2026',
     readTime: '10 min read',
     badge: 'Purity',
@@ -212,9 +212,9 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Water Filters That Remove Lead — Best 2025–2026 (NSF 53)',
+    title: 'Best Water Filters for Lead Removal (2026) – Lab-Tested Options',
     excerpt:
-      'There is no safe level of lead in drinking water. These NSF 53-certified filters actually remove 99%+ lead — ranked by performance and price.',
+      'Lead in tap water is more common than you think. See which filters actually remove it — based on EPA data and independent testing.',
     date: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',

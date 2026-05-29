@@ -46,15 +46,10 @@ export function buildCityPageMetadata(
   const keyFinding = getCityKeyFinding(city.urgency, city.issues, pfas);
 
   const baseTitle = prioritySeo?.title ?? buildDefaultCityTitle(city.name, ws.grade, keyFinding);
-  const title = prioritySeo ? buildCityTitleTag(baseTitle, ws.grade, keyFinding) : baseTitle;
+  const title = prioritySeo ? prioritySeo.title : baseTitle;
 
-  const description = buildCityMetaDescription(
-    city,
-    ws.grade,
-    ws.score,
-    keyFinding,
-    prioritySeo?.description
-  );
+  const description = prioritySeo?.description
+    ?? buildCityMetaDescription(city, ws.grade, ws.score, keyFinding);
 
   const canonical = `https://watercheckup.com/water/${slug}`;
   const ogQuery = `city=${encodeURIComponent(city.name + ', ' + city.state)}&score=${ws.score}&grade=${encodeURIComponent(ws.grade)}&violations=${pfas?.violations ?? 0}`;

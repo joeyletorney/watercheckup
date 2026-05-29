@@ -6,14 +6,16 @@ import { BLOG_AUTHOR_BYLINE } from '@/lib/site-stats';
 const AMAZON_TAG = 'watercheck20-20';
 
 export const metadata: Metadata = {
-  title: 'Reverse Osmosis vs Distilled Water — Which is Better? (2026) | WaterCheckup',
+  title: {
+    absolute: 'Distilled Water vs. Reverse Osmosis – Which Is Actually Purer?',
+  },
   description:
-    'RO and distilled water are both highly purified but work completely differently. A 30-year water treatment expert explains which one is right for your home.',
+    'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
   alternates: { canonical: 'https://watercheckup.com/blog/reverse-osmosis-vs-distilled-water' },
   openGraph: {
-    title: 'Reverse Osmosis vs Distilled Water — Which is Better? (2026)',
+    title: 'Distilled Water vs. Reverse Osmosis – Which Is Actually Purer?',
     description:
-      'RO and distilled water are both highly purified but work completely differently. A 30-year water treatment expert explains which one is right for your home.',
+      'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
     type: 'article',
     publishedTime: '2026-05-18',
     authors: ['Joe Letorney'],

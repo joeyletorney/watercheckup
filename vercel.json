@@ -1,7 +1,8 @@
 {
   "version": 2,
   "redirects": [
-    { "source": "/press", "destination": "/", "permanent": true }
+    { "source": "/press", "destination": "/", "permanent": true },
+    { "source": "/blog/distilled-water-reverse-osmosis", "destination": "/blog/reverse-osmosis-vs-distilled-water", "permanent": true }
   ],
   "crons": [
     {

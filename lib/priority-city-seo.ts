@@ -6,14 +6,14 @@ import type { CityPfasSnapshot } from './city-water-score';
 /** High-traffic city pages — custom titles & descriptions for SEO */
 export const PRIORITY_CITY_SEO: Record<string, { title: string; description: string }> = {
   'new-york': {
-    title: 'New York City Tap Water 2026 — PFAS & Lead Contamination Report',
+    title: "New York City Water Quality – Contaminants Found in NYC Tap Water",
     description:
-      'NYC tap water contains PFAS and other contaminants above health guidelines. See the full EPA report for your neighborhood and the best filter for New York City tap water.',
+      "NYC tap water scores well — but contaminants are still detected. See the full breakdown from EPA data, free at WaterCheckup.com.",
   },
   'san-antonio': {
-    title: 'San Antonio Water Quality 2026 — PFAS, Hardness & Contamination',
+    title: "San Antonio Water Quality Report – What's Actually in Your Tap Water",
     description:
-      'Is San Antonio tap water safe? Free 2024–2025 SAWS report on water quality, PFAS, hardness, radium & contamination — plus NSF-certified filters for San Antonio homes.',
+      "See detected contaminants in San Antonio's tap water, sourced from 5 EPA databases. Free, no signup required. Updated regularly.",
   },
   gaithersburg: {
     title: 'Gaithersburg Water Quality 2026 — WSSC Tap Water Report (Free)',
@@ -21,9 +21,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Gaithersburg, MD water quality from WSSC Water: EPA violations, PFAS UCMR5 data, lead risk in older homes, and certified filter picks. Free Montgomery County report.',
   },
   'los-angeles': {
-    title: 'Los Angeles Tap Water 2026 — Chromium-6 & PFAS Detected',
+    title: "Los Angeles Water Quality Report – What's in LA Tap Water?",
     description:
-      'LA tap water contains chromium-6 and PFAS above health guidelines. See the full EPA data for your neighborhood and what filter removes it.',
+      "LA's water has a complicated history. Check detected contaminants pulled from 5 EPA databases — free, no account needed.",
   },
   houston: {
     title: 'Houston Tap Water 2026 — 5 Contaminants Above EPA Guidelines',
