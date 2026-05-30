@@ -6,6 +6,7 @@ import { SiteHeader } from '../../components/SiteHeader';
 import { BlogFeaturedImage } from '@/components/BlogFeaturedImage';
 import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
 import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
+import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -82,12 +83,23 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     },
   };
 
+  const pageUrl = `https://watercheckup.com/blog/${params.slug}`;
+  const faqLd = post.faq?.length
+    ? buildFaqPageSchema(
+        post.faq.map(({ q, a }) => ({ name: q, text: a })),
+        pageUrl
+      )
+    : null;
+
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
+      {faqLd ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      ) : null}
       <SiteHeader variant="inner" showCta />
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 24px 80px' }}>
@@ -139,6 +151,22 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div style={{ fontSize: 16, lineHeight: 1.85, color: '#cbd5e1' }}>
           {post.content}
         </div>
+
+        {post.faq && post.faq.length > 0 && (
+          <section id="faq" style={{ marginTop: 48 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 20px', lineHeight: 1.3 }}>
+              Frequently asked questions
+            </h2>
+            {post.faq.map(({ q, a }) => (
+              <div key={q} style={{ marginBottom: 24 }}>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: '#e2e8f0', margin: '0 0 8px', lineHeight: 1.4 }}>
+                  {q}
+                </h3>
+                <p style={{ fontSize: 15, color: '#cbd5e1', margin: 0, lineHeight: 1.75 }}>{a}</p>
+              </div>
+            ))}
+          </section>
+        )}
 
         {/* Top product picks */}
         <div style={{ marginTop: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>

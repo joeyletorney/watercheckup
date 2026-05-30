@@ -16,9 +16,36 @@ const TOP_3_RO = [
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
 ];
 const TOP_3_LEAD = [
-  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Best-certified pitcher on the market.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR LEAD + PFAS' },
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Under-sink RO removes 99.9% of lead at the tap. Best for homeowners with aging pipes throughout the home.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'NSF 42/53 certified. Reduces lead and chromium to zero. Includes TDS meter. Budget-friendly renter option.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  {
+    product: 'Clearly Filtered Water Pitcher',
+    brand: 'Clearly Filtered',
+    price: '~$90',
+    reason:
+      'NSF/ANSI 42 & 53 certified. Removes 99.5% of lead — the highest of any pitcher I\'ve tested. Best for renters or no-installation protection. Replaces every 100 gallons.',
+    link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
+    amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
+    badge: 'PITCHER',
+  },
+  {
+    product: 'Waterdrop K19-S Countertop RO',
+    brand: 'Waterdrop',
+    price: '~$199',
+    reason:
+      'Zero installation required — just plug it in. NSF certified, removes lead, PFAS, and heavy metals. Perfect for renters or anyone who can\'t drill under the sink.',
+    link: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb',
+    amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`,
+    badge: 'COUNTERTOP',
+  },
+  {
+    product: 'Waterdrop G3P800',
+    brand: 'Waterdrop',
+    price: '~$849',
+    reason:
+      'Top pick for homeowners. Tankless, 800 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.',
+    link: WATERDROP,
+    amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-COUNTER',
+  },
 ];
 const TOP_3_PITCHER = [
   { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. Handles 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
@@ -34,6 +61,29 @@ const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
 const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' };
+
+const LEAD_FILTER_FAQ = [
+  {
+    q: 'What is the best water filter for lead removal?',
+    a: 'The best water filter for lead removal depends on your situation. For under-sink installation, the Waterdrop G3P800 removes 99%+ of lead and is NSF 42/53/58 certified. For countertop use with no installation, the Waterdrop K19-S is ideal. For a pitcher, the Clearly Filtered Water Pitcher is NSF 42 and 53 certified and removes 99.5% of lead.',
+  },
+  {
+    q: 'Do all water filters remove lead?',
+    a: 'No. Most standard pitcher filters are not certified to remove lead. You need a filter certified to NSF/ANSI Standard 53 specifically for lead reduction. Always check the certification before buying.',
+  },
+  {
+    q: 'How does lead get into tap water?',
+    a: 'Lead almost always enters tap water from aging pipes, lead solder, or brass fittings inside your home — not from the treatment plant. Homes built before 1986 are most at risk.',
+  },
+  {
+    q: 'What NSF certification should I look for in a lead filter?',
+    a: 'Look for NSF/ANSI Standard 53, which certifies filters specifically for health-related contaminant reduction including lead. For reverse osmosis systems, also look for NSF/ANSI 58.',
+  },
+  {
+    q: 'Is there a safe level of lead in drinking water?',
+    a: 'No. The EPA has set the maximum contaminant level goal for lead at zero, meaning no amount of lead in drinking water is considered safe, particularly for children and pregnant women.',
+  },
+] as const;
 
 export const POSTS: Record<string, Post> = {
   'is-pfas-in-my-tap-water': {
@@ -158,6 +208,7 @@ export const POSTS: Record<string, Post> = {
     badge: 'Lead',
     badgeColor: '#d97706',
     topPicks: TOP_3_LEAD,
+    faq: [...LEAD_FILTER_FAQ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
         'The EPA says it plainly: ',
@@ -194,28 +245,49 @@ export const POSTS: Record<string, Post> = {
         'If a filter\'s box doesn\'t say "NSF/ANSI 53 — Lead Reduction" somewhere on it, assume it doesn\'t remove lead. Marketing language like "reduces contaminants" means nothing without the NSF stamp.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Best Filters for Lead Removal'),
-
-      React.createElement('h3', { style: h3Style }, '1. Under-Sink Reverse Osmosis — Best Overall'),
-      React.createElement('p', { style: pStyle },
-        'RO systems remove 99%+ of lead by forcing water through a membrane with pores smaller than any contaminant. The Waterdrop G3 and similar tankless RO systems are NSF 58 certified (which covers lead among hundreds of other contaminants). These install under your kitchen sink and give you clean water at the tap. Cost: $200-400 upfront, ~$0.10/gallon ongoing.'
+      React.createElement('h2', { style: h2Style }, 'Joe\'s Top Picks: Best NSF-Certified Filters for Lead Removal'),
+      React.createElement('p', { style: { ...pStyle, fontStyle: 'italic', color: '#a8b4c4' } },
+        'Recommendations from Joe Letorney, 30-year water treatment specialist'
       ),
 
-      React.createElement('h3', { style: h3Style }, '2. Under-Sink Filter (Non-RO) — Best Mid-Range'),
+      React.createElement('h3', { style: h3Style }, '🥇 Pitcher — Clearly Filtered Water Pitcher'),
       React.createElement('p', { style: pStyle },
-        'If you want under-sink performance without the RO price, a certified under-sink carbon block filter (NSF 53 for lead) is excellent. Waterdrop, iSpring, and Aquasana all make NSF 53 certified units in the $80-150 range. They don\'t remove as much as RO but they\'re certified for lead and very effective.'
+        'NSF/ANSI 42 & 53 certified. Removes 99.5% of lead — the highest of any pitcher I\'ve tested. Best choice for renters or anyone who wants no-installation protection. Replaces every 100 gallons.'
+      ),
+      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+        '👉 ',
+        React.createElement('a', { href: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
 
-      React.createElement('h3', { style: h3Style }, '3. Pitcher Filters — Best for Renters'),
+      React.createElement('h3', { style: h3Style }, '🥇 Countertop — Waterdrop K19-S Countertop RO'),
       React.createElement('p', { style: pStyle },
-        'Most pitcher filters (including standard Brita) are ',
-        React.createElement('strong', { style: strongStyle }, 'NOT certified for lead'),
-        '. The exceptions: the Brita Longlast+ filter (NSF 53 for lead), Pur Plus pitcher, and Epic Pure pitcher. These are your best no-installation option. Downside: slow filtration and filters need replacing every 2-3 months.'
+        'Zero installation required — just plug it in. NSF certified, removes lead, PFAS, and heavy metals. Perfect for renters or anyone who can\'t drill under the sink.'
+      ),
+      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+        '👉 ',
+        React.createElement('a', { href: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
 
-      React.createElement('h3', { style: h3Style }, '4. Faucet-Mount Filters — Convenient But Check the Cert'),
+      React.createElement('h3', { style: h3Style }, '🥇 Under-Counter — Waterdrop G3P800'),
       React.createElement('p', { style: pStyle },
-        'The PUR PLUS faucet mount is NSF 53 certified for lead and is one of the better options for renters who want faster throughput than a pitcher. The standard Brita faucet filter is NOT certified for lead — only the Brita Elite model is.'
+        'My top pick for homeowners. Tankless, 800 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.'
+      ),
+      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+        '👉 ',
+        React.createElement('a', { href: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'Concerned about lead in your tap water specifically? Check your city: ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio'),
+        ' · ',
+        React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'New York'),
+        ' · ',
+        React.createElement('a', { href: '/water/los-angeles', style: linkStyle }, 'Los Angeles'),
+        ' · ',
+        React.createElement('a', { href: '/water/philadelphia', style: linkStyle }, 'Philadelphia'),
+        ' · ',
+        React.createElement('a', { href: '/water/phoenix', style: linkStyle }, 'Phoenix')
       ),
 
       React.createElement('h2', { style: h2Style }, 'What Doesn\'t Work for Lead'),

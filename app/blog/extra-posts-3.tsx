@@ -19,6 +19,60 @@ const TOP_3_PITCHER = [
   { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
 ];
+const TOP_3_PFAS = [
+  {
+    product: 'Clearly Filtered Water Pitcher',
+    brand: 'Clearly Filtered',
+    price: '~$90',
+    reason:
+      'One of the only pitchers with documented PFAS removal. NSF/ANSI 42 & 53 certified, removes 99.9% of PFOA and PFOS. Most pitcher filters don\'t touch PFAS — this one does.',
+    link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
+    amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
+    badge: 'PITCHER',
+  },
+  {
+    product: 'Waterdrop K19-S Countertop RO',
+    brand: 'Waterdrop',
+    price: '~$199',
+    reason:
+      'Reverse osmosis is the gold standard for PFAS removal. No installation needed — plug in and pour. Certified to remove PFAS, lead, and 90+ contaminants. Best for renters.',
+    link: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb',
+    amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`,
+    badge: 'COUNTERTOP',
+  },
+  {
+    product: 'Waterdrop G3P800',
+    brand: 'Waterdrop',
+    price: '~$849',
+    reason:
+      'The most thorough PFAS solution for homeowners. Tankless RO, 800 GPD, removes 99%+ PFAS including PFOA, PFOS, and emerging PFAS variants. Smart TDS display.',
+    link: WATERDROP,
+    amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-COUNTER',
+  },
+];
+const PFAS_FILTER_FAQ = [
+  {
+    q: 'What water filters remove PFAS?',
+    a: 'Reverse osmosis systems and activated carbon filters certified for PFAS removal are the most effective. The Waterdrop G3P800 and Waterdrop K19-S countertop RO both remove 99%+ of PFAS. The Clearly Filtered pitcher is the best non-RO option for PFAS removal.',
+  },
+  {
+    q: 'Do Brita or PUR filters remove PFAS?',
+    a: 'Standard Brita and PUR pitcher filters are not certified to remove PFAS. You need a filter specifically certified for PFAS reduction such as the Clearly Filtered pitcher or a reverse osmosis system.',
+  },
+  {
+    q: 'What are PFAS and why are they dangerous?',
+    a: 'PFAS, or per- and polyfluoroalkyl substances, are a group of man-made chemicals used in industrial and consumer products since the 1940s. They are called forever chemicals because they do not break down in the environment or the human body. Exposure has been linked to cancer, thyroid disease, immune system disruption, and developmental issues in children.',
+  },
+  {
+    q: 'How do I know if my tap water has PFAS?',
+    a: 'You can check your city\'s PFAS levels for free at WaterCheckup.com, which pulls data from EPA databases including the UCMR5 PFAS testing program. You can also order a certified mail-in lab test for the most accurate results.',
+  },
+  {
+    q: 'Is reverse osmosis the best way to remove PFAS?',
+    a: 'Yes. Reverse osmosis is considered the gold standard for PFAS removal, capable of removing 99%+ of PFAS compounds including PFOA and PFOS. Activated carbon filters certified for PFAS can also be effective but vary by brand and certification.',
+  },
+] as const;
 
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
@@ -27,6 +81,7 @@ const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#cbd5e1', line
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
 const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' };
 
 export const EXTRA_POSTS_3: Record<string, Post> = {
   'is-tap-water-safe-to-drink': {
@@ -605,7 +660,8 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#0891b2',
-    topPicks: TOP_3_RO,
+    topPicks: TOP_3_PFAS,
+    faq: [...PFAS_FILTER_FAQ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
         'PFAS contamination affects roughly 45% of US tap water. But not every filter removes PFAS — in fact, most popular filters do almost nothing. This guide tells you exactly which filter technologies work, which certifications to look for, and how to match the right solution to your specific situation.'
@@ -616,24 +672,47 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         'PFAS compounds are extremely stable — that\'s the same property that makes them persist in the environment. They are dissolved in water at very low concentrations (parts per trillion), which means physical size-based filtration alone is not sufficient. Effective PFAS removal requires either adsorption (binding to filter media) or physical exclusion through an extremely tight membrane.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Filters That Remove PFAS'),
-      React.createElement('h3', { style: h3Style }, '1. Reverse Osmosis (Best Option)'),
-      React.createElement('p', { style: pStyle },
-        'RO membranes remove PFAS by physical exclusion — the membrane pores are too small for PFAS molecules to pass through. NSF 58-certified RO systems remove 94-99%+ of PFAS compounds including PFOA, PFOS, PFBS, GenX, and others. This is the most comprehensive and well-documented PFAS removal technology for home use.'
+      React.createElement('h2', { style: h2Style }, 'Joe\'s Top Picks: Best NSF-Certified Filters for PFAS Removal'),
+      React.createElement('p', { style: { ...pStyle, fontStyle: 'italic', color: '#a8b4c4' } },
+        'Recommendations from Joe Letorney, 30-year water treatment specialist'
       ),
+
+      React.createElement('h3', { style: h3Style }, '🥇 Pitcher — Clearly Filtered Water Pitcher'),
       React.createElement('p', { style: pStyle },
-        'Look for: NSF/ANSI 58 certification with specific PFAS compounds listed in the reduction claims. Not all RO systems are certified for PFAS — verify the specific listing.'
+        'One of the only pitchers with documented PFAS removal. NSF/ANSI 42 & 53 certified, removes 99.9% of PFOA and PFOS. Most pitcher filters don\'t touch PFAS — this one does.'
       ),
-      React.createElement('h3', { style: h3Style }, '2. Activated Carbon (Block or Granular)'),
-      React.createElement('p', { style: pStyle },
-        'High-quality activated carbon filters — specifically solid carbon block filters certified to NSF 53 or NSF 244 — can remove significant amounts of PFAS through adsorption. The effectiveness varies by PFAS compound, carbon contact time, and filter design.'
+      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+        '👉 ',
+        React.createElement('a', { href: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
+
+      React.createElement('h3', { style: h3Style }, '🥇 Countertop — Waterdrop K19-S Countertop RO'),
       React.createElement('p', { style: pStyle },
-        'The Clearly Filtered pitcher uses a high-capacity activated carbon block and is independently certified to remove 99%+ of PFAS compounds. Several under-sink carbon block systems (Aquasana, Berkey) also show strong PFAS reduction. Look for NSF 244 certification, which specifically covers PFAS.'
+        'Reverse osmosis is the gold standard for PFAS removal. No installation needed — just plug in and pour. Certified to remove PFAS, lead, and 90+ contaminants. Best option for renters.'
       ),
-      React.createElement('h3', { style: h3Style }, '3. Ion Exchange (Emerging)'),
+      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+        '👉 ',
+        React.createElement('a', { href: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
+      ),
+
+      React.createElement('h3', { style: h3Style }, '🥇 Under-Counter — Waterdrop G3P800'),
       React.createElement('p', { style: pStyle },
-        'Specialized ion exchange resins designed for PFAS removal are highly effective in municipal treatment plants and are becoming available in home systems. Some newer under-sink systems incorporate PFAS-specific ion exchange media alongside activated carbon.'
+        'The most thorough PFAS solution for homeowners. Tankless RO, 800 GPD, removes 99%+ PFAS including PFOA, PFOS, and emerging PFAS variants. Smart TDS display so you always know your water quality.'
+      ),
+      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+        '👉 ',
+        React.createElement('a', { href: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'Want to know if PFAS has been detected in your city\'s water? Check: ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio'),
+        ' · ',
+        React.createElement('a', { href: '/water/houston', style: linkStyle }, 'Houston'),
+        ' · ',
+        React.createElement('a', { href: '/water/los-angeles', style: linkStyle }, 'Los Angeles'),
+        ' · ',
+        React.createElement('a', { href: '/water/phoenix', style: linkStyle }, 'Phoenix')
       ),
 
       React.createElement('h2', { style: h2Style }, 'Filters That Do NOT Remove PFAS'),

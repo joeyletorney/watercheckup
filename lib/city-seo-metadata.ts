@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { computeWaterScore, getCityKeyFinding, type CityPfasSnapshot } from './city-water-score';
+import { computeWaterScore, type CityPfasSnapshot } from './city-water-score';
 
 type CityRecord = {
   name: string;
@@ -8,32 +8,13 @@ type CityRecord = {
   urgency: 'high' | 'medium' | 'low';
 };
 
-/** Prefix grade + key finding for higher CTR in search results */
-export function buildCityTitleTag(
-  baseTitle: string,
-  grade: string,
-  keyFinding: string
-): string {
-  return `Grade ${grade} · ${keyFinding} — ${baseTitle}`;
+/** Default SERP copy for city pages without hand-written priority SEO */
+export function buildDefaultCitySeoTitle(cityName: string): string {
+  return `${cityName} Water Quality Report – What's in ${cityName} Tap Water?`;
 }
 
-export function buildDefaultCityTitle(cityName: string, grade: string, keyFinding: string): string {
-  return `${cityName} Tap Water 2026 — Grade ${grade} · ${keyFinding}`;
-}
-
-export function buildCityMetaDescription(
-  city: CityRecord,
-  grade: string,
-  score: number,
-  keyFinding: string,
-  customDescription?: string
-): string {
-  const gradeLead = `${city.name} earns Water Safety Grade ${grade} (${score}/100). ${keyFinding}.`;
-  if (customDescription) {
-    return `${gradeLead} ${customDescription}`;
-  }
-  const topIssue = city.issues[0]?.toLowerCase() ?? 'contaminants';
-  return `${gradeLead} Free EPA report for ${city.name}, ${city.state}: ${topIssue}, PFAS UCMR5 data, lead risk & certified filter picks.`;
+export function buildDefaultCitySeoDescription(cityName: string): string {
+  return `See detected contaminants in ${cityName}'s tap water, sourced from 5 EPA databases. Free, no signup required. Updated regularly.`;
 }
 
 export function buildCityPageMetadata(
@@ -43,13 +24,9 @@ export function buildCityPageMetadata(
   prioritySeo?: { title: string; description: string }
 ): Metadata {
   const ws = computeWaterScore(city.urgency, city.issues, pfas);
-  const keyFinding = getCityKeyFinding(city.urgency, city.issues, pfas);
 
-  const baseTitle = prioritySeo?.title ?? buildDefaultCityTitle(city.name, ws.grade, keyFinding);
-  const title = prioritySeo ? prioritySeo.title : baseTitle;
-
-  const description = prioritySeo?.description
-    ?? buildCityMetaDescription(city, ws.grade, ws.score, keyFinding);
+  const title = prioritySeo?.title ?? buildDefaultCitySeoTitle(city.name);
+  const description = prioritySeo?.description ?? buildDefaultCitySeoDescription(city.name);
 
   const canonical = `https://watercheckup.com/water/${slug}`;
   const ogQuery = `city=${encodeURIComponent(city.name + ', ' + city.state)}&score=${ws.score}&grade=${encodeURIComponent(ws.grade)}&violations=${pfas?.violations ?? 0}`;

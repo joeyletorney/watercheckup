@@ -4,6 +4,7 @@ import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
+import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 
 const AMAZON_TAG = 'watercheck20-20';
@@ -221,6 +222,7 @@ export default function PhoenixWaterPage() {
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 28px' }}>
           {PRIORITY_CITY_INTROS.phoenix}
         </p>
+        <CityFilterGuideLinks />
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>CONTAMINANTS IN PHOENIX WATER — 2024 DATA</div>
           {CONTAMINANTS.map((c, i) => (

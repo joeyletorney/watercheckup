@@ -32,5 +32,7 @@ export type Post = {
   badge: string;
   badgeColor: string;
   topPicks: TopPickRow[];
+  /** FAQ items — rendered on-page and as FAQPage JSON-LD */
+  faq?: { q: string; a: string }[];
   content: ReactNode;
 };

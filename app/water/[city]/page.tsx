@@ -15,6 +15,7 @@ import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
 import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
+import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { isDedicatedWaterCitySlug } from '@/lib/dedicated-water-city-routes';
 import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
@@ -275,6 +276,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
               {PRIORITY_CITY_INTROS[slug]}
             </p>
           )}
+
+          {cd && (PRIORITY_CITY_INTROS[slug] || slug === 'philadelphia') && <CityFilterGuideLinks />}
 
           {cd && !PRIORITY_CITY_INTROS[slug] && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>
