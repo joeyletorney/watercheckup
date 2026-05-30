@@ -41,7 +41,7 @@ export function SiteFooter() {
           </a>
           {' · '}
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
-          <a href="/about" style={{ color: '#e2e8f0', textDecoration: 'none' }}>About Joe Letorney</a>
+          <a href="/about" style={{ color: '#e2e8f0', textDecoration: 'none' }}>ABOUT</a>
           {' · '}
           <a href="/methodology" style={{ color: '#e2e8f0', textDecoration: 'none' }}>Methodology</a>
           {' · '}
