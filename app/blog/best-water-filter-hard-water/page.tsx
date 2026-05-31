@@ -170,6 +170,13 @@ export default function BestFilterHardWaterPage() {
           </Link>{' '}
           for the full scored breakdown and filter picks.
         </p>
+        <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.75 }}>
+          Los Angeles water is very hard at 268 mg/L with chromium-6 and PFAS concerns — see our{' '}
+          <Link href="/water/los-angeles" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+            Los Angeles water quality report
+          </Link>{' '}
+          for the full scored breakdown.
+        </p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 32px' }}>
           Updated May 2025 · NSF certifications verified · Some links are affiliate links
         </p>

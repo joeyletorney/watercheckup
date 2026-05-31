@@ -125,6 +125,14 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
         ' the water leaves the reservoir. Lead in building plumbing, disinfection byproducts, and emerging PFAS detections are the issues that actually affect New Yorkers at the faucet.',
       ),
 
+      React.createElement(
+        'p',
+        { style: pStyle },
+        'For the scored breakdown with letter grade, PFAS data, and filter picks, see our ',
+        React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'New York City water quality report'),
+        '.',
+      ),
+
       React.createElement('h2', { style: h2Style }, 'What makes NYC water different'),
       React.createElement(
         'p',
@@ -305,6 +313,13 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
         'If you live in New York City and have heard about “forever chemicals” in tap water, you are not imagining it. ',
         React.createElement('strong', { style: strongStyle }, 'PFAS compounds have been detected'),
         ' in NYC’s water supply — typically at levels below new federal limits, but often above the far stricter health guidelines published by EWG and state agencies.',
+      ),
+      React.createElement(
+        'p',
+        { style: pStyle },
+        'For PFAS levels alongside lead risk and the full safety grade, see our ',
+        React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'New York City water quality report'),
+        '.',
       ),
       React.createElement(
         'p',

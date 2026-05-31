@@ -219,6 +219,14 @@ export const POSTS: Record<string, Post> = {
         'And here\'s what makes it especially dangerous: you cannot see it, smell it, or taste it. Lead contamination in tap water is completely invisible without testing or filtration.'
       ),
 
+      React.createElement('p', { style: pStyle },
+        'Chicago has 400,000+ lead service lines and Philadelphia has thousands still in use — see our ',
+        React.createElement('a', { href: '/water/chicago', style: linkStyle }, 'Chicago water quality report'),
+        ' and ',
+        React.createElement('a', { href: '/water/philadelphia', style: linkStyle }, 'Philadelphia water quality report'),
+        ' for scored breakdowns and NSF-certified filter picks.'
+      ),
+
       React.createElement('h2', { style: h2Style }, 'Where Does Lead Come From?'),
       React.createElement('p', { style: pStyle },
         'Lead almost never comes from the water source itself. It enters your water from lead service lines (the pipes connecting your house to the main), lead solder used in plumbing (legal until 1986), and brass fixtures. The water is actually the vehicle — it picks up lead as it travels through your home\'s plumbing.'

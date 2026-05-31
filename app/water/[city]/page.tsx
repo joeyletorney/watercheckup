@@ -13,7 +13,7 @@ import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
-import { PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
+import { PRIORITY_CITY_H1, PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
 import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
@@ -250,11 +250,12 @@ export default function CityPage({ params }: { params: { city: string } }) {
             WATER QUALITY REPORT
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
-            {slug === 'gaithersburg'
-              ? 'Gaithersburg, MD Water Quality Report'
-              : cd
-                ? `${cd.name}, ${cd.state} tap water: what\u2019s in it in 2026`
-                : `${cityName} tap water: what\u2019s in it in 2026`}
+            {PRIORITY_CITY_H1[slug]
+              ?? (slug === 'gaithersburg'
+                ? 'Gaithersburg, MD Water Quality Report'
+                : cd
+                  ? `${cd.name}, ${cd.state} tap water: what\u2019s in it in 2026`
+                  : `${cityName} tap water: what\u2019s in it in 2026`)}
           </h1>
 
           {slug === 'gaithersburg' && (

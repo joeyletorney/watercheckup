@@ -673,6 +673,20 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         ' for the scored breakdown, letter grade, and filter picks.'
       ),
 
+      React.createElement('p', { style: pStyle },
+        'Los Angeles has chromium-6 above California health goals and 11.4 ppt PFAS — see our ',
+        React.createElement('a', { href: '/water/los-angeles', style: linkStyle }, 'Los Angeles water quality report'),
+        ' for the full contaminant profile and filter recommendations.'
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'Philadelphia and Chicago both exceed EPA PFAS limits — see our ',
+        React.createElement('a', { href: '/water/philadelphia', style: linkStyle }, 'Philadelphia water quality report'),
+        ' and ',
+        React.createElement('a', { href: '/water/chicago', style: linkStyle }, 'Chicago water quality report'),
+        ' for city-specific grades and filter picks.'
+      ),
+
       React.createElement('h2', { style: h2Style }, 'What Makes PFAS Hard to Filter'),
       React.createElement('p', { style: pStyle },
         'PFAS compounds are extremely stable — that\'s the same property that makes them persist in the environment. They are dissolved in water at very low concentrations (parts per trillion), which means physical size-based filtration alone is not sufficient. Effective PFAS removal requires either adsorption (binding to filter media) or physical exclusion through an extremely tight membrane.'
