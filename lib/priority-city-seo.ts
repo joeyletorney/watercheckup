@@ -11,9 +11,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       "NYC tap water scores well — but contaminants are still detected. See the full breakdown from EPA data, free at WaterCheckup.com.",
   },
   'san-antonio': {
-    title: "San Antonio Water Quality Report – What's Actually in Your Tap Water",
+    title: 'San Antonio Tap Water 2026 — PFAS, Hardness & Safety Grade',
     description:
-      "See detected contaminants in San Antonio's tap water, sourced from 5 EPA databases. Free, no signup required. Updated regularly.",
+      'C- grade: SAWS tap water is very hard (272 mg/L), PFAS detected, and DBP violations on record. Free 2026 San Antonio water quality report from EPA data.',
   },
   gaithersburg: {
     title: 'Gaithersburg Water Quality 2026 — WSSC Tap Water Report (Free)',
