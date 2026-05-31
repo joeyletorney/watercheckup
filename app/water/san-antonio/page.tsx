@@ -183,9 +183,9 @@ export default function SanAntonioWaterPage() {
           <span>San Antonio, TX</span>
         </nav>
 
-        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
-          San Antonio, TX Water Quality Report
+          San Antonio Water Quality 2026
         </h1>
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
           San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2025 data

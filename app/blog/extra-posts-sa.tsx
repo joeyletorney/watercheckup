@@ -45,6 +45,12 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
         ' — a limestone aquifer under the Texas Hill Country. The source water is generally safe by EPA standards, but it comes with a specific set of concerns: extreme hardness, naturally occurring radium, detected PFAS, and elevated sodium. Here\'s what the 2024 data shows and what to do about it.'
       ),
 
+      React.createElement('p', { style: pStyle },
+        'For the scored breakdown with letter grade, contaminant levels, and filter picks, see our ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio water quality report'),
+        '.'
+      ),
+
       React.createElement('h2', { style: h2Style }, 'San Antonio Water Quality Overview (2024 Data)'),
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#f59e0b' } }, 'WaterCheckup grade: D (43/100). '),
@@ -179,6 +185,12 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('p', { style: pStyle },
         'The EPA\'s UCMR5 national monitoring program (2023–2025) tested over 6,000 water systems across the US for PFAS forever chemicals. San Antonio Water System (SAWS, PWSID TX2150001) was among those tested. Here\'s exactly what was found, what it means for your health, and what you can do about it.'
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'For PFAS levels alongside hardness, radium, and the full safety grade, see our ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio water quality report'),
+        '.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What PFAS Were Found in San Antonio Water?'),
