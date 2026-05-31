@@ -163,6 +163,13 @@ export default function BestFilterHardWaterPage() {
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.6 }}>
           Hard water affects 85% of US homes. Scale buildup destroys appliances, spots dishes, dries out skin, and wastes money on soap. Here are the only solutions that actually work — ranked by effectiveness and budget.
         </p>
+        <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.75 }}>
+          Phoenix has some of the hardest water in the US at 288 mg/L — see our{' '}
+          <Link href="/water/phoenix" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+            Phoenix water quality report
+          </Link>{' '}
+          for the full scored breakdown and filter picks.
+        </p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 32px' }}>
           Updated May 2025 · NSF certifications verified · Some links are affiliate links
         </p>

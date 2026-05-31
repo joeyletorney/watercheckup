@@ -667,6 +667,12 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         'PFAS contamination affects roughly 45% of US tap water. But not every filter removes PFAS — in fact, most popular filters do almost nothing. This guide tells you exactly which filter technologies work, which certifications to look for, and how to match the right solution to your specific situation.'
       ),
 
+      React.createElement('p', { style: pStyle },
+        'Houston has among the highest PFAS levels of any major US city — see our ',
+        React.createElement('a', { href: '/water/houston', style: linkStyle }, 'Houston water quality report'),
+        ' for the scored breakdown, letter grade, and filter picks.'
+      ),
+
       React.createElement('h2', { style: h2Style }, 'What Makes PFAS Hard to Filter'),
       React.createElement('p', { style: pStyle },
         'PFAS compounds are extremely stable — that\'s the same property that makes them persist in the environment. They are dissolved in water at very low concentrations (parts per trillion), which means physical size-based filtration alone is not sufficient. Effective PFAS removal requires either adsorption (binding to filter media) or physical exclusion through an extremely tight membrane.'

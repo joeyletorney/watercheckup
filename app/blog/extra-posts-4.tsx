@@ -185,6 +185,12 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         ', which specifically tests for PFAS reduction. Here are the systems that actually earn that certification and are worth your money.'
       ),
 
+      React.createElement('p', { style: pStyle },
+        'At 22.4 ppt total PFAS, Houston exceeds the EPA MCL — see our ',
+        React.createElement('a', { href: '/water/houston', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'Houston water quality report'),
+        ' for the full contaminant profile and city-specific filter recommendations.'
+      ),
+
       React.createElement('h2', { style: h2Style }, 'What to look for before buying'),
       React.createElement('p', { style: pStyle },
         'NSF 58 certification is the non-negotiable baseline. It means the system has been independently tested and verified to reduce PFAS compounds including PFOA, PFOS, and in most cases GenX. Without this certification, you are guessing. Check the manufacturer\'s NSF certification page -- not just their marketing copy.'
@@ -460,6 +466,12 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         ' produce very hard tap water. It is ',
         React.createElement('strong', { style: strongStyle }, 'not'),
         ' a milligram-for-milligram national utility leaderboard: your exact ZIP, well field, and seasonal blend can differ from a neighbor. Always read your Consumer Confidence Report or run a home hardness strip if you need a number for sizing a softener.'
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'Phoenix ranks among the hardest — see our ',
+        React.createElement('a', { href: '/water/phoenix', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'Phoenix water quality report'),
+        ' for the scored breakdown with PFAS, chromium-6, and the full safety grade.'
       ),
 
       React.createElement('div', { style: calloutStyle },

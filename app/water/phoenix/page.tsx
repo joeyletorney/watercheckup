@@ -146,8 +146,8 @@ export default function PhoenixWaterPage() {
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Phoenix, AZ</span>
         </nav>
-        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2025</div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>Phoenix, AZ Water Quality Report</h1>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>Phoenix Water Quality 2026</h1>
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>Phoenix Water Services · Colorado River / Salt River Project · 2024–2025 data</p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: Phoenix Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database</p>
         <div

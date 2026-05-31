@@ -26,9 +26,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       "LA's water has a complicated history. Check detected contaminants pulled from 5 EPA databases — free, no account needed.",
   },
   houston: {
-    title: 'Houston Water Quality Report – Contaminants in Houston Tap Water',
+    title: 'Houston Tap Water 2026 — PFAS, TTHMs & Safety Grade',
     description:
-      "Houston's water supply serves millions — but what's actually in it? Check detected contaminants from EPA data, free at WaterCheckup.com.",
+      'D+ grade: Houston tap water has 22.4 ppt PFAS (above EPA MCL), elevated arsenic, and TTHMs at 73% of the limit. Free 2026 Houston water quality report from EPA data.',
   },
   philadelphia: {
     title: "Philadelphia Water Quality Report – What's in Philly Tap Water?",
@@ -41,9 +41,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Chicago has more lead service lines than almost any US city. See if your neighborhood is affected and what filter removes lead from tap water.',
   },
   phoenix: {
-    title: "Phoenix Water Quality Report – What's in Arizona Tap Water?",
+    title: 'Phoenix Tap Water 2026 — PFAS, Hardness & Safety Grade',
     description:
-      'Phoenix draws from the Colorado River — and that comes with tradeoffs. See detected contaminants from EPA data, free and no signup needed.',
+      'C grade: Phoenix tap water has 7.4 ppt PFAS, chromium-6 above CA goals, and 288 mg/L hardness. Free 2026 Phoenix water quality report from EPA data.',
   },
   boston: {
     title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes a Key Risk',
