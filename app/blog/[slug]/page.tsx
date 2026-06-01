@@ -215,27 +215,16 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                     <a href={pick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
                       Buy Direct →
                     </a>
-                  ) : null}
+                  ) : (
                   <a
                     href={pick.amazon}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      display: 'block',
-                      padding: '8px 16px',
-                      background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
-                      color: amazonPrimary ? '#fff' : '#cbd5e1',
-                      textDecoration: 'none',
-                      borderRadius: 7,
-                      fontSize: 13,
-                      fontWeight: amazonPrimary ? 700 : 600,
-                      textAlign: 'center',
-                      border: amazonPrimary ? 'none' : '1px solid #1a3a5c',
-                      whiteSpace: 'nowrap',
-                    }}
+                    style={{ display: 'block', padding: '8px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none', whiteSpace: 'nowrap' }}
                   >
                     Amazon →
                   </a>
+                  )}
                 </div>
               </div>
               );

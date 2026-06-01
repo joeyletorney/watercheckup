@@ -127,7 +127,7 @@ export default function TopPickBox({
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                {showDirect && (
+                {showDirect ? (
                   <a
                     href={directUrl}
                     target="_blank"
@@ -137,16 +137,17 @@ export default function TopPickBox({
                   >
                     Buy Direct →
                   </a>
-                )}
+                ) : (
                 <a
                   href={amazonUrl}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
                   onClick={() => trackClick(pick.product, 'amazon', cityName)}
-                  style={{ display: 'block', padding: '6px 12px', background: amazonPrimary ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : 'rgba(15,23,42,0.55)', color: amazonPrimary ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 600, textAlign: 'center', border: amazonPrimary ? 'none' : '1px solid rgba(100,116,139,0.35)', whiteSpace: 'nowrap' }}
+                  style={{ display: 'block', padding: '6px 12px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 600, textAlign: 'center', border: 'none', whiteSpace: 'nowrap' }}
                 >
                   Amazon →
                 </a>
+                )}
               </div>
             </div>
           );

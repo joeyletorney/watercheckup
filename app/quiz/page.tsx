@@ -188,16 +188,17 @@ export default function QuizPage() {
               <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>{alt.reason}</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flexShrink: 0 }}>
-              {showDirect && (
+              {showDirect ? (
                 <a href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'direct', product: alt.product, page: 'quiz' })}
                   style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
                   Buy Direct →
                 </a>
-              )}
+              ) : (
               <a href={alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'amazon', product: alt.product, page: 'quiz' })}
-                style={{ display: 'block', padding: '7px 14px', background: !showDirect && i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: !showDirect && i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: !showDirect && i === 0 ? 700 : 600, textAlign: 'center', border: !showDirect && i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+                style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: i === 0 ? 700 : 600, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
                 Amazon →
               </a>
+              )}
             </div>
           </div>
         </div>
