@@ -92,6 +92,7 @@ const FILTERS: FilterPick[] = [
     why: 'Independently certified for lead reduction well beyond basic carbon pitchers — a practical option if you cannot install under-sink RO.',
     cert: 'NSF/ANSI 42, 53, 244, 401, P473',
     amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20',
+    outOfStock: true,
   },
   {
     rank: 3,

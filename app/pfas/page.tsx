@@ -95,6 +95,7 @@ const FILTERS: FilterPick[] = [
     why: 'The only pitcher certified to remove PFAS at 99.9%. NSF certified against 365+ contaminants. Best option for renters or anyone who can\'t install an under-sink system.',
     cert: 'NSF/ANSI 42, 53, 244, 401, P473',
     amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20',
+    outOfStock: true,
   },
 ];
 

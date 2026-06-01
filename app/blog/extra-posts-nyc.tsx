@@ -12,6 +12,7 @@ const TOP_3_PITCHER = [
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
     amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
     badge: 'BEST FOR NYC RENTERS',
+    outOfStock: true,
   },
   {
     product: 'Waterdrop Pitcher Filter',

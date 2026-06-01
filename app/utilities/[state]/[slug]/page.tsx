@@ -79,6 +79,7 @@ const PITCHER_PICKS = [
     link: "https://www.clearlyfiltered.com/products/filtered-water-pitcher",
     amazon: "https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20",
     badge: "BEST FOR PFAS & LEAD",
+    outOfStock: true,
   },
   {
     product: "Waterdrop Pitcher Filter",

@@ -6,7 +6,7 @@ const AMAZON_TAG = 'watercheck20-20';
 const TOP_3_RO = [
   { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, radium, arsenic, hardness. NSF 58 certified. Best for San Antonio\'s full contaminant profile.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes PFAS, radium, and 90+ contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
-  { product: 'Clearly Filtered Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF P473 certified for PFAS. Removes radium, arsenic, and 365+ contaminants. Best no-install option for SA renters.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS' },
+  { product: 'Clearly Filtered Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF P473 certified for PFAS. Removes radium, arsenic, and 365+ contaminants. Best no-install option for SA renters.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS', outOfStock: true },
 ];
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
