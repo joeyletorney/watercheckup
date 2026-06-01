@@ -203,6 +203,7 @@ export const POSTS: Record<string, Post> = {
       },
     },
     date: '2026-03-29',
+    dateModified: '2026-06-01',
     dateDisplay: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',

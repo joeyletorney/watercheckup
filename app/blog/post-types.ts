@@ -29,6 +29,8 @@ export type Post = {
   /** Optional SERP / social overrides; on-page `title` + `excerpt` stay as-is. */
   seo?: PostSeo;
   date: string;
+  /** ISO date of last meaningful content update — used in Article schema dateModified. Falls back to date. */
+  dateModified?: string;
   dateDisplay: string;
   readTime: string;
   badge: string;

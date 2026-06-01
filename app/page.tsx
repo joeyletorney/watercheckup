@@ -15,12 +15,38 @@ export const metadata: Metadata = {
   },
 };
 
+const ORGANIZATION_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'WaterCheckup',
+  url: 'https://watercheckup.com',
+  description: 'Free water quality database covering 400,000+ US utilities. Check PFAS, lead, EPA violations, and filter recommendations by ZIP code.',
+  author: {
+    '@type': 'Person',
+    name: 'Joe Letorney',
+    url: 'https://watercheckup.com/about',
+    jobTitle: 'Water Treatment Expert',
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://watercheckup.com/results/{search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
 export default function HomePage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_FAQ_SCHEMA) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_LD) }}
       />
       <HomeClient />
     </>

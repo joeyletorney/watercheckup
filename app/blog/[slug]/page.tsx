@@ -75,7 +75,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.dateModified ?? post.date,
     author: {
       '@type': 'Person',
       name: 'Joe Letorney',
