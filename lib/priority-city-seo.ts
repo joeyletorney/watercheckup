@@ -6,9 +6,9 @@ import type { CityPfasSnapshot } from './city-water-score';
 /** High-traffic city pages — custom titles & descriptions for SEO */
 export const PRIORITY_CITY_SEO: Record<string, { title: string; description: string }> = {
   'new-york': {
-    title: 'NYC Tap Water 2026 — Lead, PFAS & Safety Grade',
+    title: 'Is NYC Tap Water Safe to Drink in 2026? PFAS, Lead & Full Report',
     description:
-      'B+ grade: NYC source water ranks among the best in the US, but lead in pre-1986 buildings and PFAS detections are real faucet risks. Free 2026 New York City water quality report from EPA data.',
+      'EPA monitoring detected PFOS at 106 ppt in NYC water — 26x the legal limit. Lead pipes in pre-1986 buildings add more risk. See the 2026 New York City water quality report and what filter actually fixes it.',
   },
   'san-antonio': {
     title: 'San Antonio Water Contamination 2026 — PFAS, Lead & Quality Report',

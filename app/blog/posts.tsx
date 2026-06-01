@@ -295,7 +295,11 @@ export const POSTS: Record<string, Post> = {
         ' · ',
         React.createElement('a', { href: '/water/philadelphia', style: linkStyle }, 'Philadelphia'),
         ' · ',
-        React.createElement('a', { href: '/water/phoenix', style: linkStyle }, 'Phoenix')
+        React.createElement('a', { href: '/water/phoenix', style: linkStyle }, 'Phoenix'),
+        ' · ',
+        React.createElement('a', { href: '/water/houston', style: linkStyle }, 'Houston'),
+        ' · ',
+        React.createElement('a', { href: '/water/chicago', style: linkStyle }, 'Chicago')
       ),
 
       React.createElement('h2', { style: h2Style }, 'What Doesn\'t Work for Lead'),

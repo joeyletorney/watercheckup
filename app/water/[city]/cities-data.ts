@@ -43,14 +43,16 @@ export const CITIES: Record<string, {
   'new-york': {
     name: 'New York City', state: 'NY', zip: '10001', population: '8.3M',
     system: 'NYC Department of Environmental Protection', pwsid: 'NY5903150',
-    issues: ['Legacy lead service lines in older boroughs', 'Chlorination byproducts', 'Building pipe contamination'],
+    issues: ['PFAS detected above EPA limits (PFOS 106 ppt, limit: 4 ppt)', 'Lead risk in pre-1986 building plumbing', 'Chlorination byproducts (TTHMs)', 'Building pipe contamination in older boroughs'],
     facts: [
-      "NYC source water from the Catskills is excellent -- but old building pipes add lead.",
-      'Buildings built before 1986 likely have lead solder or lead pipes inside.',
-      'NYCDEP water ranks among the best for municipal supply -- but in-building pipes are the risk.',
-      'A home lead test is essential for NYC residents in pre-1986 buildings.',
+      'EPA UCMR5 monitoring detected PFOS at 106 ppt in NYC water — over 26x the EPA limit of 4 ppt.',
+      'PFOA was detected at 27.8 ppt (EPA limit: 4 ppt) and PFHxS at 51.6 ppt (limit: 10 ppt).',
+      'NYC source water from the Catskills is high-quality at the reservoir — but PFAS contamination and aging infrastructure are real concerns.',
+      'Buildings built before 1986 likely have lead solder or lead service lines inside the building — NYCDEP water meets lead standards at the plant, but your tap is a different question.',
+      'A pitcher filter won\'t cut it for PFAS. Only reverse osmosis (RO) or an NSF 58-certified filter removes PFAS reliably.',
+      'A home lead test is strongly recommended for NYC residents in pre-1986 buildings.',
     ],
-    urgency: 'medium',
+    urgency: 'high',
   },
   'phoenix': {
     name: 'Phoenix', state: 'AZ', zip: '85001', population: '1.6M',

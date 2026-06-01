@@ -278,7 +278,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </p>
           )}
 
-          {cd && (PRIORITY_CITY_INTROS[slug] || slug === 'philadelphia') && <CityFilterGuideLinks />}
+          {cd && <CityFilterGuideLinks />}
 
           {cd && !PRIORITY_CITY_INTROS[slug] && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>

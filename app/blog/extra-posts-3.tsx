@@ -647,12 +647,12 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     seo: {
       title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
       description:
-        'PFAS are in more tap water than most people realize. See which filter types are proven to remove them — and which ones don\'t cut it.',
+        'Most filters — including Brita — don\'t remove PFAS. Only RO and NSF 58/P473-certified filters reliably work. Here\'s exactly which ones passed independent testing and which ones to skip.',
       canonical: 'https://watercheckup.com/blog/what-water-filter-removes-pfas',
       openGraph: {
         title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
         description:
-          'PFAS are in more tap water than most people realize. See which filter types are proven to remove them — and which ones don\'t cut it.',
+          'Most filters — including Brita — don\'t remove PFAS. Only RO and NSF 58/P473-certified filters reliably work. Here\'s exactly which ones passed independent testing and which ones to skip.',
       },
     },
     date: '2026-04-22',
@@ -757,6 +757,12 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         'Enter your ZIP code on WaterCheckup to check your utility\'s PFAS testing results from the EPA\'s UCMR5 monitoring program. For example, see ',
         React.createElement('a', { href: '/water/san-antonio', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'PFAS in San Antonio water'),
         ' on our city report. If you are on well water, you need a certified lab test — well water is not included in the EPA monitoring data.'
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'Also worried about lead? Lead and PFAS often co-occur in older city water systems. See our ',
+        React.createElement('a', { href: '/blog/best-water-filter-for-lead-removal', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'best water filters for lead removal'),
+        ' guide — we break down which NSF 53-certified options handle both contaminants.'
       ),
     ),
   },
