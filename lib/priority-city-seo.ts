@@ -66,9 +66,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Detroit has a serious lead pipe problem and PFAS contamination. See current levels, health risks, and the exact filter that removes both lead and PFAS.',
   },
   parkersburg: {
-    title: 'Parkersburg WV Water 2026 — Ground Zero for PFAS Contamination',
+    title: 'Parkersburg WV Water 2026 — PFOA 179 ppt, 45× Over EPA Limit',
     description:
-      "Parkersburg WV is where America's PFAS crisis started. See current contamination levels, health risks, and how to protect your family from forever chemicals.",
+      "DuPont's Washington Works plant contaminated Parkersburg water with PFOA at 179.5 ppt — 45× the EPA limit of 4 ppt. See the full contamination report and the only filter that removes it.",
   },
   scottsdale: {
     title: 'Scottsdale Tap Water 2026 — Is It Safe to Drink?',
