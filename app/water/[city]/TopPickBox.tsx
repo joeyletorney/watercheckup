@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 
-type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string };
+type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string; outOfStock?: boolean };
 
 function showBuyDirectBrand(brand: string) {
   return brand === 'Waterdrop';
@@ -66,6 +66,9 @@ export default function TopPickBox({
   whyText?: string;
 }) {
   const slug = citySlug ?? cityName.toLowerCase().replace(/\s+/g, '-');
+  // Filter out any out-of-stock picks — next in line is automatically promoted to #1
+  const availablePicks = picks.filter(p => !p.outOfStock);
+  const skippedCount = picks.length - availablePicks.length;
 
   return (
     <div style={{ marginBottom: 32 }}>
@@ -79,8 +82,14 @@ export default function TopPickBox({
         ⚠ {label}
       </div>
 
+      {skippedCount > 0 && (
+        <div style={{ marginBottom: 12, padding: '7px 12px', background: 'rgba(234,179,8,0.08)', border: '1px solid rgba(234,179,8,0.25)', borderRadius: 7, fontSize: 12, color: '#fde68a' }}>
+          Our top pick is currently out of stock — showing the next best NSF-certified option.
+        </div>
+      )}
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {picks.map((pick, i) => {
+        {availablePicks.map((pick, i) => {
           const showDirect = showBuyDirectBrand(pick.brand);
           const amazonPrimary = !showDirect;
           const directUrl = showDirect ? buildWaterdropUrl(pick.link, pick.product, slug) : pick.link;

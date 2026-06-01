@@ -173,8 +173,13 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
             TOP PICKS
           </div>
+          {(() => { const skipped = post.topPicks.filter((p: any) => p.outOfStock).length; return skipped > 0 ? (
+            <div style={{ margin: '12px 0', padding: '7px 12px', background: 'rgba(234,179,8,0.08)', border: '1px solid rgba(234,179,8,0.25)', borderRadius: 7, fontSize: 12, color: '#fde68a' }}>
+              Our top pick is currently out of stock — showing the next best NSF-certified option.
+            </div>
+          ) : null; })()}
           <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {post.topPicks.map((pick: any, i: number) => {
+            {post.topPicks.filter((p: any) => !p.outOfStock).map((pick: any, i: number) => {
               const showDirect = pick.brand === 'Waterdrop';
               const amazonPrimary = !showDirect;
               return (
