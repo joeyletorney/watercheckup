@@ -11,9 +11,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'B+ grade: NYC source water ranks among the best in the US, but lead in pre-1986 buildings and PFAS detections are real faucet risks. Free 2026 New York City water quality report from EPA data.',
   },
   'san-antonio': {
-    title: 'San Antonio Tap Water 2026 — PFAS, Hardness & Safety Grade',
+    title: 'San Antonio Water Contamination 2026 — PFAS, Lead & Quality Report',
     description:
-      'C- grade: SAWS tap water is very hard (272 mg/L), PFAS detected, and DBP violations on record. Free 2026 San Antonio water quality report from EPA data.',
+      'San Antonio tap water has PFAS above EWG limits, 272 mg/L hardness, arsenic, and radium. See the full contamination report, safety grade, and which filter actually fixes it.',
   },
   gaithersburg: {
     title: 'Gaithersburg Water Quality 2026 — WSSC Tap Water Report (Free)',
@@ -31,9 +31,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'D+ grade: Houston tap water has 22.4 ppt PFAS (above EPA MCL), elevated arsenic, and TTHMs at 73% of the limit. Free 2026 Houston water quality report from EPA data.',
   },
   philadelphia: {
-    title: 'Philadelphia Tap Water 2026 — Lead, PFAS & Safety Grade',
+    title: 'Philadelphia Tap Water 2026 — Is It Safe? Lead, PFAS & Full Report',
     description:
-      'D+ grade: Philly tap water has 16.1 ppt PFAS, lead service lines citywide, and Delaware River DBPs. Free 2026 Philadelphia water quality report from EPA data.',
+      'D+ grade: Philly water has 16.1 ppt PFAS, lead service lines in 25% of homes, and Delaware River DBPs. See what\'s in your tap water and the one filter that removes all three.',
   },
   chicago: {
     title: 'Chicago Tap Water 2026 — Lead Pipes, PFAS & Safety Grade',

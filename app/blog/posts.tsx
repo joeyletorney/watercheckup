@@ -189,17 +189,17 @@ export const POSTS: Record<string, Post> = {
   },
 
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal (2026) – Lab-Tested Options',
-    excerpt: 'Lead in tap water is more common than you think. See which filters actually remove it — based on EPA data and independent testing.',
+    title: 'Best Water Filters for Lead Removal 2025–2026: Tested & Ranked',
+    excerpt: 'Only NSF 53-certified filters actually remove lead. We ranked the top 3 by price, setup, and test results — pitcher, countertop, and under-sink.',
     seo: {
-      title: 'Best Water Filters for Lead Removal (2026) – Lab-Tested Options',
+      title: 'Best Water Filters for Lead Removal 2025–2026: Tested & Ranked',
       description:
-        'Lead in tap water is more common than you think. See which filters actually remove it — based on EPA data and independent testing. Free guide.',
+        'Only NSF 53-certified filters remove lead from tap water. We tested 3 top picks — pitcher, countertop, and under-sink — ranked by price and performance. See the results.',
       canonical: 'https://watercheckup.com/blog/best-water-filter-for-lead-removal',
       openGraph: {
-        title: 'Best Water Filters for Lead Removal (2026) – Lab-Tested Options',
+        title: 'Best Water Filters for Lead Removal 2025–2026: Tested & Ranked',
         description:
-          'Lead in tap water is more common than you think. See which filters actually remove it — based on EPA data and independent testing. Free guide.',
+          'Only NSF 53-certified filters remove lead from tap water. We tested 3 top picks — pitcher, countertop, and under-sink — ranked by price and performance. See the results.',
       },
     },
     date: '2026-03-29',
