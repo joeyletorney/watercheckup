@@ -180,6 +180,16 @@ export default function CityPage({ params }: { params: { city: string } }) {
     },
   };
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
+      { '@type': 'ListItem', position: 2, name: 'Water Quality by City', item: 'https://watercheckup.com/water' },
+      { '@type': 'ListItem', position: 3, name: `${cd?.name ?? cityName} Water Quality`, item: `https://watercheckup.com/water/${slug}` },
+    ],
+  };
+
   const waterScore = cd ? computeWaterScore(cd.urgency, cd.issues, pfas) : null;
   const keyFinding = cd ? getCityKeyFinding(cd.urgency, cd.issues, pfas) : '';
 
@@ -211,6 +221,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageAuthorLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
@@ -658,6 +669,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>{title}</div>
               </Link>
             ))}
+            <Link href="/worst" style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 1, marginBottom: 4 }}>RANKINGS</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>Worst Water Systems in the US</div>
+            </Link>
           </div>
         </div>
 

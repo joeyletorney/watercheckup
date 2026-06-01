@@ -59,12 +59,23 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   const post = POSTS[params.slug];
   if (!post) notFound();
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://watercheckup.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://watercheckup.com/blog/${params.slug}` },
+    ],
+  };
+
   const articleLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
+    dateModified: post.date,
     author: {
       '@type': 'Person',
       name: 'Joe Letorney',
@@ -96,6 +107,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       {faqLd ? (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
