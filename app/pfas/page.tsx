@@ -292,6 +292,7 @@ export default function PfasPage() {
           <span style={label}>RELATED GUIDES</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
+              { href: '/worst-pfas', label: 'US water systems with the highest PFAS — ranked by ppt' },
               { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter — NSF certified options' },
               { href: '/water/san-antonio', label: 'PFAS in San Antonio water — free city report' },
               { href: '/lead', label: 'Lead in Tap Water — EPA Data, Health Risks, and Best Filters' },

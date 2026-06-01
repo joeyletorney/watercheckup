@@ -132,7 +132,7 @@ const FILTER_PICKS = [
 const FAQS = [
   {
     q: 'Is San Antonio tap water safe to drink?',
-    a: 'Yes — SAWS water meets all federal EPA drinking water standards. There are no open violations as of 2025. However, PFAS has been detected above stricter EWG health guidelines, and the water is very hard. Many residents choose to filter for taste, hardness, and PFAS.',
+    a: 'Yes — SAWS water meets all federal EPA drinking water standards. There are no open violations as of 2026. However, PFAS has been detected above stricter EWG health guidelines, and the water is very hard. Many residents choose to filter for taste, hardness, and PFAS.',
   },
   {
     q: 'Why is San Antonio water so hard?',
@@ -161,12 +161,26 @@ const sanAntonioFaqSchema = buildFaqPageSchema(
   'https://watercheckup.com/water/san-antonio'
 );
 
+const saBreadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
+    { '@type': 'ListItem', position: 2, name: 'Water Quality by City', item: 'https://watercheckup.com/water' },
+    { '@type': 'ListItem', position: 3, name: 'San Antonio Water Quality', item: 'https://watercheckup.com/water/san-antonio' },
+  ],
+};
+
 export default function SanAntonioWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sanAntonioFaqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(saBreadcrumbLd) }}
       />
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
 
@@ -218,7 +232,7 @@ export default function SanAntonioWaterPage() {
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#f59e0b', marginBottom: 6 }}>Concerning</div>
             <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
-              San Antonio&apos;s water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2025.
+              San Antonio&apos;s water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2026.
             </p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
@@ -558,6 +572,7 @@ export default function SanAntonioWaterPage() {
               { href: '/blog/best-water-filter-for-lead-removal', label: 'Water filters that remove lead (NSF 53)' },
               { href: '/blog/best-water-filter-hard-water', label: 'Best filters for hard water — San Antonio & more' },
               { href: '/pfas', label: 'PFAS in tap water — EPA limits & filters' },
+              { href: '/worst-pfas', label: 'US water systems with the highest PFAS — ranked' },
               { href: '/water', label: 'All city water quality reports' },
             ].map(({ href, label }) => (
               <Link

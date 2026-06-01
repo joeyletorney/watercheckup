@@ -276,9 +276,10 @@ export default function LeadPage() {
           <span style={label}>RELATED GUIDES</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
+              { href: '/worst-lead', label: 'US water systems with the highest lead — ranked' },
               { href: '/pfas', label: 'PFAS in Drinking Water — EPA Limits & Best Filters' },
               { href: '/well', label: 'Well Water Filter Guide — Private Well Risks by State' },
-              { href: '/blog/best-water-filter-for-lead-removal', label: 'Blog: Best Water Filters for Lead Removal' },
+              { href: '/blog/best-water-filter-for-lead-removal', label: 'Best Water Filters for Lead Removal 2025–2026' },
               { href: '/contaminants', label: 'Water Contaminant Guide' },
               { href: '/', label: 'Check Your ZIP — Full EPA Water Report' },
             ].map(({ href, label: lbl }) => (
