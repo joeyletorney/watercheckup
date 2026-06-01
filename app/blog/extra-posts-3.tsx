@@ -87,6 +87,15 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'is-tap-water-safe-to-drink': {
     title: 'Is Tap Water Safe to Drink? The Honest Answer by City and Water Source',
     excerpt: 'Most US tap water meets federal standards — but "meets standards" and "safe" are not the same thing. Here is what the data actually shows.',
+    seo: {
+      title: 'Is Tap Water Safe to Drink? The Honest Answer (2026)',
+      description: 'Most US tap water meets EPA standards — but 200 million Americans have PFAS in their water and 9 million homes still have lead pipes. Here\'s what "safe" actually means for your city.',
+      canonical: 'https://watercheckup.com/blog/is-tap-water-safe-to-drink',
+      openGraph: {
+        title: 'Is Tap Water Safe to Drink? The Honest Answer (2026)',
+        description: 'Most US tap water meets EPA standards — but 200 million Americans have PFAS in their water and 9 million homes still have lead pipes. Here\'s what "safe" actually means for your city.',
+      },
+    },
     date: '2026-04-15',
     dateDisplay: 'April 15, 2026',
     readTime: '9 min read',
