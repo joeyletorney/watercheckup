@@ -34,7 +34,7 @@ const TOP_3_PFAS = [
   {
     product: 'Waterdrop K19-S Countertop RO',
     brand: 'Waterdrop',
-    price: '~$199',
+    price: '~$249',
     reason:
       'Reverse osmosis is the gold standard for PFAS removal. No installation needed — plug in and pour. Certified to remove PFAS, lead, and 90+ contaminants. Best for renters.',
     link: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb',

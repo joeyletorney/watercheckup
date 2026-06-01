@@ -30,7 +30,7 @@ const TOP_3_LEAD = [
   {
     product: 'Waterdrop K19-S Countertop RO',
     brand: 'Waterdrop',
-    price: '~$199',
+    price: '~$249',
     reason:
       'Zero installation required — just plug it in. NSF certified, removes lead, PFAS, and heavy metals. Perfect for renters or anyone who can\'t drill under the sink.',
     link: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb',
