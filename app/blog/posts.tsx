@@ -4,6 +4,7 @@ import { EXTRA_POSTS } from './extra-posts';
 import { EXTRA_POSTS_2 } from './extra-posts-2';
 import { EXTRA_POSTS_3 } from './extra-posts-3';
 import { EXTRA_POSTS_4 } from './extra-posts-4';
+import { EXTRA_POSTS_5 } from './extra-posts-5';
 import { EXTRA_POSTS_NYC } from './extra-posts-nyc';
 import { EXTRA_POSTS_SA } from './extra-posts-sa';
 
@@ -432,5 +433,6 @@ export const POSTS: Record<string, Post> = {
   ...EXTRA_POSTS_3,
   ...EXTRA_POSTS_SA,
   ...EXTRA_POSTS_4,
+  ...EXTRA_POSTS_5,
   ...EXTRA_POSTS_NYC,
 };
