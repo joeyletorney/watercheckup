@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-16T04:04:05.322Z",
+  "generatedAt": "2026-06-02T02:45:37.155Z",
   "csvSource": "https://raw.githubusercontent.com/grammakov/USA-cities-and-states/master/us_cities_states_counties.csv",
-  "recordCount": 122,
+  "recordCount": 126,
   "counties": [
     {
       "countyDisplay": "Jefferson",
@@ -566,7 +566,7 @@
       "stateName": "California",
       "stateSlug": "california",
       "totalCities": 1,
-      "populationServed": 540000,
+      "populationServed": 546000,
       "citiesAtRisk": 1,
       "citiesSafe": 0,
       "citiesMonitor": 0,
@@ -612,8 +612,8 @@
         {
           "slug": "fresno",
           "name": "Fresno",
-          "populationLabel": "540K",
-          "popN": 540000,
+          "populationLabel": "546K",
+          "popN": 546000,
           "urgency": "high",
           "score": 0,
           "grade": "F",
@@ -873,12 +873,24 @@
       "stateName": "California",
       "stateSlug": "california",
       "totalCities": 1,
-      "populationServed": 520000,
+      "populationServed": 524000,
       "citiesAtRisk": 1,
       "citiesSafe": 0,
       "citiesMonitor": 0,
-      "mostCommonContaminant": "PFHxA",
+      "mostCommonContaminant": "PFBA",
       "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
         {
           "name": "PFHxA",
           "cityCount": 1
@@ -900,17 +912,17 @@
           "cityCount": 1
         }
       ],
-      "countyScore": 18,
+      "countyScore": 0,
       "countyGrade": "F",
       "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "sacramento",
           "name": "Sacramento",
-          "populationLabel": "520K",
-          "popN": 520000,
-          "urgency": "medium",
-          "score": 18,
+          "populationLabel": "524K",
+          "popN": 524000,
+          "urgency": "high",
+          "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
@@ -1738,6 +1750,70 @@
       ]
     },
     {
+      "countyDisplay": "Escambia",
+      "countySlug": "escambia",
+      "stateAbbr": "FL",
+      "stateName": "Florida",
+      "stateSlug": "florida",
+      "totalCities": 1,
+      "populationServed": 55000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "4:2 FTS",
+      "topContaminants": [
+        {
+          "name": "4:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFNA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "pensacola",
+          "name": "Pensacola",
+          "populationLabel": "55K",
+          "popN": 55000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 4
+        }
+      ]
+    },
+    {
       "countyDisplay": "Hillsborough",
       "countySlug": "hillsborough",
       "stateAbbr": "FL",
@@ -1936,7 +2012,7 @@
       "stateName": "Florida",
       "stateSlug": "florida",
       "totalCities": 2,
-      "populationServed": 690000,
+      "populationServed": 3020000,
       "citiesAtRisk": 2,
       "citiesSafe": 0,
       "citiesMonitor": 0,
@@ -1967,11 +2043,11 @@
           "cityCount": 2
         },
         {
-          "name": "PFOA",
+          "name": "PFNA",
           "cityCount": 2
         },
         {
-          "name": "PFOS",
+          "name": "PFOA",
           "cityCount": 2
         }
       ],
@@ -1982,14 +2058,14 @@
         {
           "slug": "miami",
           "name": "Miami",
-          "populationLabel": "470K",
-          "popN": 470000,
+          "populationLabel": "2.8M",
+          "popN": 2800000,
           "urgency": "high",
           "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
-          "contaminantsAboveLimit": 3
+          "contaminantsAboveLimit": 4
         },
         {
           "slug": "hialeah",
@@ -2292,8 +2368,8 @@
         }
       ],
       "countyScore": 41,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "atlanta",
@@ -2302,8 +2378,8 @@
           "popN": 500000,
           "urgency": "medium",
           "score": 41,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         }
@@ -2981,6 +3057,46 @@
           "popN": 580000,
           "urgency": "high",
           "score": 33,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "monitor",
+          "contaminantsAboveLimit": 0
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Montgomery",
+      "countySlug": "montgomery",
+      "stateAbbr": "MD",
+      "stateName": "Maryland",
+      "stateSlug": "maryland",
+      "totalCities": 1,
+      "populationServed": 70000,
+      "citiesAtRisk": 0,
+      "citiesSafe": 0,
+      "citiesMonitor": 1,
+      "mostCommonContaminant": "PFHxA",
+      "topContaminants": [
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 47,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "gaithersburg",
+          "name": "Gaithersburg",
+          "populationLabel": "70K",
+          "popN": 70000,
+          "urgency": "medium",
+          "score": 47,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "monitor",
@@ -4202,7 +4318,7 @@
           "cityCount": 1
         }
       ],
-      "countyScore": 10,
+      "countyScore": 0,
       "countyGrade": "F",
       "countyGradeColor": "#ef4444",
       "cities": [
@@ -4211,8 +4327,8 @@
           "name": "New York City",
           "populationLabel": "8.3M",
           "popN": 8300000.000000001,
-          "urgency": "medium",
-          "score": 10,
+          "urgency": "high",
+          "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
@@ -4591,8 +4707,8 @@
         }
       ],
       "countyScore": 43,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "fargo",
@@ -4601,8 +4717,8 @@
           "popN": 125000,
           "urgency": "medium",
           "score": 43,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         }
@@ -4675,7 +4791,7 @@
       "stateName": "Ohio",
       "stateSlug": "ohio",
       "totalCities": 1,
-      "populationServed": 900000,
+      "populationServed": 905000,
       "citiesAtRisk": 1,
       "citiesSafe": 0,
       "citiesMonitor": 0,
@@ -4710,17 +4826,17 @@
           "cityCount": 1
         }
       ],
-      "countyScore": 10,
+      "countyScore": 0,
       "countyGrade": "F",
       "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "columbus",
           "name": "Columbus",
-          "populationLabel": "900K",
-          "popN": 900000,
-          "urgency": "medium",
-          "score": 10,
+          "populationLabel": "905K",
+          "popN": 905000,
+          "urgency": "high",
+          "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
@@ -5711,8 +5827,8 @@
         }
       ],
       "countyScore": 43,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "san-antonio",
@@ -5721,8 +5837,8 @@
           "popN": 1500000,
           "urgency": "medium",
           "score": 43,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         }
@@ -5819,8 +5935,8 @@
         }
       ],
       "countyScore": 37,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "plano",
@@ -5829,8 +5945,8 @@
           "popN": 290000,
           "urgency": "medium",
           "score": 37,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         }
@@ -5882,7 +5998,7 @@
           "cityCount": 1
         }
       ],
-      "countyScore": 13.6,
+      "countyScore": 6.3,
       "countyGrade": "F",
       "countyGradeColor": "#ef4444",
       "cities": [
@@ -5891,8 +6007,8 @@
           "name": "Dallas",
           "populationLabel": "1.3M",
           "popN": 1300000,
-          "urgency": "medium",
-          "score": 10,
+          "urgency": "high",
+          "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
@@ -5905,8 +6021,8 @@
           "popN": 240000,
           "urgency": "medium",
           "score": 37,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         },
@@ -5985,6 +6101,70 @@
       ]
     },
     {
+      "countyDisplay": "Fort Bend",
+      "countySlug": "fort-bend",
+      "stateAbbr": "TX",
+      "stateName": "Texas",
+      "stateSlug": "texas",
+      "totalCities": 1,
+      "populationServed": 91000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "6:2 FTS",
+      "topContaminants": [
+        {
+          "name": "6:2 FTS",
+          "cityCount": 1
+        },
+        {
+          "name": "ADONA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "sugar-land",
+          "name": "Sugar Land",
+          "populationLabel": "91K",
+          "popN": 91000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 1
+        }
+      ]
+    },
+    {
       "countyDisplay": "Harris",
       "countySlug": "harris",
       "stateAbbr": "TX",
@@ -6015,8 +6195,8 @@
         }
       ],
       "countyScore": 37,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "houston",
@@ -6025,8 +6205,8 @@
           "popN": 2300000,
           "urgency": "medium",
           "score": 37,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         }
@@ -6163,8 +6343,8 @@
         }
       ],
       "countyScore": 43,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "corpus-christi",
@@ -6173,8 +6353,8 @@
           "popN": 320000,
           "urgency": "medium",
           "score": 43,
-          "grade": "D",
-          "gradeColor": "#f97316",
+          "grade": "F",
+          "gradeColor": "#ef4444",
           "band": "monitor",
           "contaminantsAboveLimit": 0
         }
@@ -6187,12 +6367,28 @@
       "stateName": "Texas",
       "stateSlug": "texas",
       "totalCities": 2,
-      "populationServed": 1310000,
-      "citiesAtRisk": 1,
+      "populationServed": 1326000,
+      "citiesAtRisk": 2,
       "citiesSafe": 0,
-      "citiesMonitor": 1,
-      "mostCommonContaminant": "6:2 FTS",
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
       "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 2
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 2
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 2
+        },
         {
           "name": "6:2 FTS",
           "cityCount": 1
@@ -6202,45 +6398,29 @@
           "cityCount": 1
         },
         {
-          "name": "PFBA",
-          "cityCount": 1
-        },
-        {
-          "name": "PFBS",
-          "cityCount": 1
-        },
-        {
           "name": "PFHpA",
           "cityCount": 1
         },
         {
-          "name": "PFHxA",
-          "cityCount": 1
-        },
-        {
-          "name": "PFOA",
-          "cityCount": 1
-        },
-        {
-          "name": "PFPeA",
+          "name": "PFHxS",
           "cityCount": 1
         }
       ],
-      "countyScore": 40.2,
-      "countyGrade": "D",
-      "countyGradeColor": "#f97316",
+      "countyScore": 2.9,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "fort-worth",
           "name": "Fort Worth",
-          "populationLabel": "920K",
-          "popN": 920000,
-          "urgency": "medium",
-          "score": 53,
-          "grade": "C",
-          "gradeColor": "#f59e0b",
-          "band": "monitor",
-          "contaminantsAboveLimit": 0
+          "populationLabel": "936K",
+          "popN": 936000,
+          "urgency": "high",
+          "score": 0,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
         },
         {
           "slug": "arlington",
@@ -6263,7 +6443,7 @@
       "stateName": "Texas",
       "stateSlug": "texas",
       "totalCities": 1,
-      "populationServed": 960000,
+      "populationServed": 1100000,
       "citiesAtRisk": 1,
       "citiesSafe": 0,
       "citiesMonitor": 0,
@@ -6294,17 +6474,17 @@
           "cityCount": 1
         }
       ],
-      "countyScore": 18,
+      "countyScore": 0,
       "countyGrade": "F",
       "countyGradeColor": "#ef4444",
       "cities": [
         {
           "slug": "austin",
           "name": "Austin",
-          "populationLabel": "960K",
-          "popN": 960000,
-          "urgency": "medium",
-          "score": 18,
+          "populationLabel": "1.1M",
+          "popN": 1100000,
+          "urgency": "high",
+          "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
@@ -6517,6 +6697,66 @@
           "popN": 155000,
           "urgency": "medium",
           "score": 14,
+          "grade": "F",
+          "gradeColor": "#ef4444",
+          "band": "at_risk",
+          "contaminantsAboveLimit": 2
+        }
+      ]
+    },
+    {
+      "countyDisplay": "Fairfax",
+      "countySlug": "fairfax",
+      "stateAbbr": "VA",
+      "stateName": "Virginia",
+      "stateSlug": "virginia",
+      "totalCities": 1,
+      "populationServed": 1100000,
+      "citiesAtRisk": 1,
+      "citiesSafe": 0,
+      "citiesMonitor": 0,
+      "mostCommonContaminant": "PFBA",
+      "topContaminants": [
+        {
+          "name": "PFBA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFBS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHpA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFHxA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOA",
+          "cityCount": 1
+        },
+        {
+          "name": "PFOS",
+          "cityCount": 1
+        },
+        {
+          "name": "PFPeA",
+          "cityCount": 1
+        }
+      ],
+      "countyScore": 0,
+      "countyGrade": "F",
+      "countyGradeColor": "#ef4444",
+      "cities": [
+        {
+          "slug": "fairfax-county",
+          "name": "Fairfax",
+          "populationLabel": "1.1M",
+          "popN": 1100000,
+          "urgency": "high",
+          "score": 0,
           "grade": "F",
           "gradeColor": "#ef4444",
           "band": "at_risk",
@@ -7210,36 +7450,6 @@
       "countyDisplay": "Bexar",
       "stateAbbr": "TX"
     },
-    "dallas": {
-      "stateSlug": "texas",
-      "countySlug": "dallas",
-      "countyDisplay": "Dallas",
-      "stateAbbr": "TX"
-    },
-    "garland": {
-      "stateSlug": "texas",
-      "countySlug": "dallas",
-      "countyDisplay": "Dallas",
-      "stateAbbr": "TX"
-    },
-    "irving": {
-      "stateSlug": "texas",
-      "countySlug": "dallas",
-      "countyDisplay": "Dallas",
-      "stateAbbr": "TX"
-    },
-    "miami": {
-      "stateSlug": "florida",
-      "countySlug": "miami-dade",
-      "countyDisplay": "Miami-Dade",
-      "stateAbbr": "FL"
-    },
-    "hialeah": {
-      "stateSlug": "florida",
-      "countySlug": "miami-dade",
-      "countyDisplay": "Miami-Dade",
-      "stateAbbr": "FL"
-    },
     "seattle": {
       "stateSlug": "washington",
       "countySlug": "king",
@@ -7312,6 +7522,12 @@
       "countyDisplay": "Baltimore City",
       "stateAbbr": "MD"
     },
+    "gaithersburg": {
+      "stateSlug": "maryland",
+      "countySlug": "montgomery",
+      "countyDisplay": "Montgomery",
+      "stateAbbr": "MD"
+    },
     "memphis": {
       "stateSlug": "tennessee",
       "countySlug": "shelby",
@@ -7341,12 +7557,6 @@
       "countySlug": "marion",
       "countyDisplay": "Marion",
       "stateAbbr": "IN"
-    },
-    "columbus": {
-      "stateSlug": "ohio",
-      "countySlug": "franklin",
-      "countyDisplay": "Franklin",
-      "stateAbbr": "OH"
     },
     "charlotte": {
       "stateSlug": "north-carolina",
@@ -7396,12 +7606,6 @@
       "countyDisplay": "Saint Louis City",
       "stateAbbr": "MO"
     },
-    "sacramento": {
-      "stateSlug": "california",
-      "countySlug": "sacramento",
-      "countyDisplay": "Sacramento",
-      "stateAbbr": "CA"
-    },
     "salt-lake-city": {
       "stateSlug": "utah",
       "countySlug": "salt-lake",
@@ -7425,12 +7629,6 @@
       "countySlug": "duval",
       "countyDisplay": "Duval",
       "stateAbbr": "FL"
-    },
-    "austin": {
-      "stateSlug": "texas",
-      "countySlug": "travis",
-      "countyDisplay": "Travis",
-      "stateAbbr": "TX"
     },
     "san-diego": {
       "stateSlug": "california",
@@ -7498,18 +7696,6 @@
       "countyDisplay": "Richmond City",
       "stateAbbr": "VA"
     },
-    "fort-worth": {
-      "stateSlug": "texas",
-      "countySlug": "tarrant",
-      "countyDisplay": "Tarrant",
-      "stateAbbr": "TX"
-    },
-    "arlington": {
-      "stateSlug": "texas",
-      "countySlug": "tarrant",
-      "countyDisplay": "Tarrant",
-      "stateAbbr": "TX"
-    },
     "el-paso": {
       "stateSlug": "texas",
       "countySlug": "el-paso",
@@ -7521,12 +7707,6 @@
       "countySlug": "oklahoma",
       "countyDisplay": "Oklahoma",
       "stateAbbr": "OK"
-    },
-    "fresno": {
-      "stateSlug": "california",
-      "countySlug": "fresno",
-      "countyDisplay": "Fresno",
-      "stateAbbr": "CA"
     },
     "virginia-beach": {
       "stateSlug": "virginia",
@@ -7545,6 +7725,18 @@
       "countySlug": "sedgwick",
       "countyDisplay": "Sedgwick",
       "stateAbbr": "KS"
+    },
+    "fort-worth": {
+      "stateSlug": "texas",
+      "countySlug": "tarrant",
+      "countyDisplay": "Tarrant",
+      "stateAbbr": "TX"
+    },
+    "arlington": {
+      "stateSlug": "texas",
+      "countySlug": "tarrant",
+      "countyDisplay": "Tarrant",
+      "stateAbbr": "TX"
     },
     "bakersfield": {
       "stateSlug": "california",
@@ -7648,6 +7840,24 @@
       "countyDisplay": "Lubbock",
       "stateAbbr": "TX"
     },
+    "dallas": {
+      "stateSlug": "texas",
+      "countySlug": "dallas",
+      "countyDisplay": "Dallas",
+      "stateAbbr": "TX"
+    },
+    "garland": {
+      "stateSlug": "texas",
+      "countySlug": "dallas",
+      "countyDisplay": "Dallas",
+      "stateAbbr": "TX"
+    },
+    "irving": {
+      "stateSlug": "texas",
+      "countySlug": "dallas",
+      "countyDisplay": "Dallas",
+      "stateAbbr": "TX"
+    },
     "winston-salem": {
       "stateSlug": "north-carolina",
       "countySlug": "forsyth",
@@ -7682,6 +7892,18 @@
       "stateSlug": "florida",
       "countySlug": "pinellas",
       "countyDisplay": "Pinellas",
+      "stateAbbr": "FL"
+    },
+    "miami": {
+      "stateSlug": "florida",
+      "countySlug": "miami-dade",
+      "countyDisplay": "Miami-Dade",
+      "stateAbbr": "FL"
+    },
+    "hialeah": {
+      "stateSlug": "florida",
+      "countySlug": "miami-dade",
+      "countyDisplay": "Miami-Dade",
       "stateAbbr": "FL"
     },
     "fremont": {
@@ -7941,6 +8163,48 @@
       "countySlug": "cumberland",
       "countyDisplay": "Cumberland",
       "stateAbbr": "ME"
+    },
+    "sugar-land": {
+      "stateSlug": "texas",
+      "countySlug": "fort-bend",
+      "countyDisplay": "Fort Bend",
+      "stateAbbr": "TX"
+    },
+    "columbus": {
+      "stateSlug": "ohio",
+      "countySlug": "franklin",
+      "countyDisplay": "Franklin",
+      "stateAbbr": "OH"
+    },
+    "sacramento": {
+      "stateSlug": "california",
+      "countySlug": "sacramento",
+      "countyDisplay": "Sacramento",
+      "stateAbbr": "CA"
+    },
+    "pensacola": {
+      "stateSlug": "florida",
+      "countySlug": "escambia",
+      "countyDisplay": "Escambia",
+      "stateAbbr": "FL"
+    },
+    "fresno": {
+      "stateSlug": "california",
+      "countySlug": "fresno",
+      "countyDisplay": "Fresno",
+      "stateAbbr": "CA"
+    },
+    "austin": {
+      "stateSlug": "texas",
+      "countySlug": "travis",
+      "countyDisplay": "Travis",
+      "stateAbbr": "TX"
+    },
+    "fairfax-county": {
+      "stateSlug": "virginia",
+      "countySlug": "fairfax",
+      "countyDisplay": "Fairfax",
+      "stateAbbr": "VA"
     }
   }
 }

@@ -25,6 +25,15 @@ const POST_BY_SLUG: Record<
   string,
   { title: string; excerpt: string; date: string; readTime: string; badge: string; badgeColor: string }
 > = {
+  'top-10-most-pfas-contaminated-cities': {
+    title: 'Top 10 Most PFAS-Contaminated Cities in America (2026 EPA Data)',
+    excerpt:
+      'Sugar Land TX leads at 672 ppt PFAS — 168× the EPA limit. EPA UCMR5 data ranks the worst forever-chemical contamination in US tap water, with links to every city report.',
+    date: 'June 1, 2026',
+    readTime: '10 min read',
+    badge: 'PFAS',
+    badgeColor: '#ef4444',
+  },
   'san-antonio-water-quality': {
     title: 'San Antonio Water Quality Report 2026 — Is SAWS Water Safe?',
     excerpt: 'San Antonio tap water meets EPA standards but contains PFAS, radium, and some of the hardest water in the US. Here\'s what the 2024 SAWS data actually shows.',
@@ -398,6 +407,7 @@ const POST_BY_SLUG: Record<
  * then filters & testing, contaminants & health, wells, then broader home / purity guides.
  */
 const BLOG_INDEX_ORDER = [
+  'top-10-most-pfas-contaminated-cities',
   'san-antonio-water-quality',
   'pfas-in-san-antonio-water',
   'is-new-york-city-tap-water-safe-2026',

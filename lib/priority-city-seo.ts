@@ -85,6 +85,56 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
     description:
       'Charlotte water quality report with current EPA contamination data, PFAS levels, and filter recommendations for Charlotte, NC residents.',
   },
+  'sugar-land': {
+    title: 'Sugar Land TX Water 2026 — PFAS at 672 ppt, Highest in Texas',
+    description:
+      'Sugar Land tap water has PFAS at 672 ppt — 168× the EPA limit and the highest reading of any large Texas water system. See the full contamination report and the only filter that removes it.',
+  },
+  miami: {
+    title: 'Miami Tap Water 2026 — PFAS, Lead & Full Contamination Report',
+    description:
+      'Miami-Dade water has PFOS at 33 ppt (8× EPA limit), PFOA, PFHxS, and PFNA all above MCLs. See the full 2026 MDWASA water quality report and filter recommendations.',
+  },
+  'fort-worth': {
+    title: 'Fort Worth TX Water 2026 — PFAS Violations & Safety Report',
+    description:
+      'Fort Worth tap water has PFAS at 102 ppt with PFHxS and PFOS above EPA limits. See the full 2026 contamination report, Trinity River source data, and filter picks for Fort Worth residents.',
+  },
+  columbus: {
+    title: 'Columbus OH Water 2026 — PFAS at 220 ppt, Lead & Safety Report',
+    description:
+      'Columbus water has PFAS at 220 ppt with PFOA and PFOS above EPA MCLs. Scioto River industrial contamination. See the full 2026 report and filter recommendations.',
+  },
+  dallas: {
+    title: 'Dallas Tap Water 2026 — PFAS Violations & Quality Report',
+    description:
+      'Dallas water has PFOA, PFOS, and PFHxS above EPA limits and elevated TTHMs from chloramine treatment. See the full 2026 Dallas Water Utilities report and filter picks.',
+  },
+  sacramento: {
+    title: 'Sacramento Water 2026 — Lead 70 ppb + PFAS 41 ppt Violations',
+    description:
+      'Sacramento tap water has lead at 70 ppb — nearly 5× the EPA action level — and PFAS at 41 ppt with 3 MCL violations. See the full 2026 report and the filters that remove both.',
+  },
+  pensacola: {
+    title: 'Pensacola FL Water 2026 — PFAS at 220 ppt (Eglin AFB Legacy)',
+    description:
+      'Pensacola/ECUA water has 220 ppt PFAS across 4 compounds above EPA MCLs — linked to Eglin Air Force Base AFFF contamination. See the 2026 report and filter recommendations.',
+  },
+  fresno: {
+    title: 'Fresno Tap Water 2026 — PFAS at 47 ppt & Safety Grade',
+    description:
+      'F grade: Fresno tap water has PFAS at 47 ppt with PFOS, PFOA, and PFHxS above EPA limits. Free 2026 Fresno water quality report from EPA UCMR5 data.',
+  },
+  austin: {
+    title: 'Austin Tap Water 2026 — PFAS at 8.4 ppt & Safety Grade',
+    description:
+      'PFOS above EPA limit: Austin tap water has 8.4 ppt PFAS in UCMR5 monitoring. Free 2026 Austin water quality report with filter picks from EPA data.',
+  },
+  'fairfax-county': {
+    title: 'Fairfax County Tap Water 2026 — PFAS at 21.9 ppt',
+    description:
+      'PFOA and PFOS above EPA MCLs: Fairfax County area water tested at 21.9 ppt PFAS. Free 2026 Northern Virginia water quality report from EPA data.',
+  },
 };
 
 /** H1 copy for priority city pages — matches 2026 title-tag pattern */
@@ -93,6 +143,16 @@ export const PRIORITY_CITY_H1: Record<string, string> = {
   'los-angeles': 'Los Angeles Water Quality 2026',
   philadelphia: 'Philadelphia Water Quality 2026',
   chicago: 'Chicago Water Quality 2026',
+  'sugar-land': 'Sugar Land Water Quality 2026',
+  miami: 'Miami Water Quality 2026',
+  'fort-worth': 'Fort Worth Water Quality 2026',
+  columbus: 'Columbus Water Quality 2026',
+  dallas: 'Dallas Water Quality 2026',
+  sacramento: 'Sacramento Water Quality 2026',
+  pensacola: 'Pensacola Water Quality 2026',
+  fresno: 'Fresno Water Quality 2026',
+  austin: 'Austin Water Quality 2026',
+  'fairfax-county': 'Fairfax County Water Quality 2026',
 };
 
 type PriorityCityRecord = {
