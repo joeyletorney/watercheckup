@@ -3,6 +3,8 @@ import type { Post } from './post-types';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
+const TAP_SCORE_CITY_URL = 'https://www.awin1.com/cread.php?awinmid=92253&awinaffid=2847509&ued=https%3A%2F%2Fmytapscore.com%2Fcollections%2Fcity-water-tests';
+const TAP_SCORE_WELL_URL = 'https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup';
 const WATERDROP_TAG = 'anbyjkqb';
 
 const TOP_3_COUNTERTOP = [
@@ -113,6 +115,15 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         ' to see your utility\'s PFAS levels, violations, and contaminant-matched filter recommendations — free, no login. If your city has PFAS above EPA limits, you need NSF 58. If lead is the concern, NSF 53 is sufficient. The right filter depends on your specific water.'
       ),
 
+      React.createElement('div', { style: { margin: '32px 0', padding: '18px 22px', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: 10 } },
+        React.createElement('div', { style: { fontSize: 11, fontWeight: 800, letterSpacing: 2, color: '#a78bfa', marginBottom: 8 } }, '🧪 NOT SURE WHAT\'S IN YOUR WATER?'),
+        React.createElement('p', { style: { margin: '0 0 12px', color: '#cbd5e1', fontSize: 14, lineHeight: 1.6 } },
+          'Before investing in a filter, a certified mail-in test tells you exactly what you\'re dealing with. Tap Score panels test for PFAS, lead, nitrates, bacteria, and 100+ contaminants — results in about a week with personalized guidance.'
+        ),
+        React.createElement('a', { href: TAP_SCORE_CITY_URL, target: '_blank', rel: 'noopener noreferrer sponsored', style: { display: 'inline-block', padding: '9px 18px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' } },
+          'Tap Score City Water Test — from $89 →'
+        )
+      ),
       React.createElement('p', { style: pStyle },
         'Also see: ',
         React.createElement('a', { href: '/blog/best-water-filter-for-lead-removal', style: linkStyle }, 'best filters for lead removal'),
@@ -285,6 +296,15 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         ' and we\'ll match you to the right system in 60 seconds.'
       ),
 
+      React.createElement('div', { style: { margin: '32px 0', padding: '18px 22px', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: 10 } },
+        React.createElement('div', { style: { fontSize: 11, fontWeight: 800, letterSpacing: 2, color: '#a78bfa', marginBottom: 8 } }, '🧪 NOT SURE WHAT\'S IN YOUR WATER?'),
+        React.createElement('p', { style: { margin: '0 0 12px', color: '#cbd5e1', fontSize: 14, lineHeight: 1.6 } },
+          'Before investing in a filter, a certified mail-in test tells you exactly what you\'re dealing with. Tap Score panels test for PFAS, lead, nitrates, bacteria, and 100+ contaminants — results in about a week with personalized guidance.'
+        ),
+        React.createElement('a', { href: TAP_SCORE_CITY_URL, target: '_blank', rel: 'noopener noreferrer sponsored', style: { display: 'inline-block', padding: '9px 18px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' } },
+          'Tap Score City Water Test — from $89 →'
+        )
+      ),
       React.createElement('p', { style: pStyle },
         'Also see: ',
         React.createElement('a', { href: '/blog/best-countertop-water-filter', style: linkStyle }, 'best countertop filters for renters'),
@@ -515,6 +535,15 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'WSSC serves all of Montgomery County, but your specific ZIP and building age affects your risk profile. ',
         React.createElement('a', { href: '/water/gaithersburg', style: linkStyle }, 'See the full Gaithersburg water quality report →'),
+      ),
+      React.createElement('div', { style: { margin: '32px 0', padding: '18px 22px', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: 10 } },
+        React.createElement('div', { style: { fontSize: 11, fontWeight: 800, letterSpacing: 2, color: '#a78bfa', marginBottom: 8 } }, '🧪 NOT SURE WHAT\'S IN YOUR WATER?'),
+        React.createElement('p', { style: { margin: '0 0 12px', color: '#cbd5e1', fontSize: 14, lineHeight: 1.6 } },
+          'Before investing in a filter, a certified mail-in test tells you exactly what you\'re dealing with. Tap Score panels test for PFAS, lead, nitrates, bacteria, and 100+ contaminants — results in about a week with personalized guidance.'
+        ),
+        React.createElement('a', { href: TAP_SCORE_CITY_URL, target: '_blank', rel: 'noopener noreferrer sponsored', style: { display: 'inline-block', padding: '9px 18px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' } },
+          'Tap Score City Water Test — from $89 →'
+        )
       ),
       React.createElement('p', { style: pStyle },
         'Also see: ',

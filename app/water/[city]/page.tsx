@@ -4,6 +4,7 @@ import { SiteHeader } from '../../components/SiteHeader';
 import { FilterRecommendationsAccent } from '@/components/FilterRecommendationsHero';
 import TopPickBox from './TopPickBox';
 import EmailCapture from './EmailCapture';
+import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
 import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
@@ -682,6 +683,18 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Fix My Water — Free →
           </Link>
+        </div>
+
+        {/* ── TEST YOUR WATER ── */}
+        <div style={{ background: 'linear-gradient(135deg,rgba(124,58,237,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 14, padding: '22px 24px', marginBottom: 32, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 800, color: '#a78bfa', letterSpacing: 1.5, marginBottom: 6 }}>🧪 WANT A LAB-CERTIFIED RESULT?</div>
+            <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>Test {cd?.name ?? 'your'} tap water with a certified lab</div>
+            <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>Mail-in panels test for PFAS, lead, nitrates, bacteria, and 100+ contaminants. Results in ~1 week with personalized guidance.</div>
+          </div>
+          <a href={SIMPLELAB_CITY_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored" style={{ display: 'inline-block', padding: '12px 22px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 9, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+            Tap Score Tests — from $89 →
+          </a>
         </div>
 
         {/* ── RELATED BLOG POSTS ── */}
