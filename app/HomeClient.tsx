@@ -1466,11 +1466,14 @@ function FilterCompareTab() {
           ))}
           <tr style={{ background: '#071525' }}>
             <td style={{ padding: '12px 10px', position: 'sticky', left: 0, background: '#071525' }} />
-            {prods.map(p => (
+            {prods.map(p => {
+              const buyUrl = p.brand === 'Waterdrop' && WATERDROP_DIRECT_BY_ID[p.id] ? WATERDROP_DIRECT_BY_ID[p.id]! : p.amazon;
+              return (
               <td key={p.id} style={{ padding: '12px 10px', textAlign: 'center' }}>
-                <a href={p.amazon} target="_blank" rel="noreferrer" style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+                <a href={buyUrl} target="_blank" rel="noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
               </td>
-            ))}
+              );
+            })}
           </tr>
         </tbody>
       </table>
@@ -4370,24 +4373,14 @@ export default function WaterCheckup() {
                   <div style={{ display: 'flex', flexDirection: direct ? 'column' : 'row', alignItems: direct ? 'stretch' : 'center', justifyContent: 'space-between', gap: direct ? 8 : 0, marginTop: 4, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                     <span style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b' }}>${price}</span>
                     {direct ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        <a
-                          href={direct}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          style={{ fontSize: 13, fontWeight: 800, color: '#0f172a', padding: '8px 10px', borderRadius: 8, textAlign: 'center', textDecoration: 'none', background: 'linear-gradient(135deg,#22d3ee,#06b6d4)', border: '1px solid rgba(34,211,238,0.5)' }}
-                        >
-                          Waterdrop.com →
-                        </a>
-                        <a
-                          href={amazon}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          style={{ fontSize: 13, fontWeight: 600, color: '#cbd5e1', padding: '6px 10px', borderRadius: 8, textAlign: 'center', textDecoration: 'none', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}
-                        >
-                          Amazon →
-                        </a>
-                      </div>
+                      <a
+                        href={direct}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        style={{ fontSize: 13, fontWeight: 800, color: '#0f172a', padding: '8px 10px', borderRadius: 8, textAlign: 'center', textDecoration: 'none', background: 'linear-gradient(135deg,#22d3ee,#06b6d4)', border: '1px solid rgba(34,211,238,0.5)' }}
+                      >
+                        Waterdrop.com →
+                      </a>
                     ) : (
                       <span style={{ fontSize: 13, fontWeight: 700, color: accent, padding: '5px 10px', borderRadius: 6, background: `${accent}15`, border: `1px solid ${accent}30` }}>Amazon →</span>
                     )}
