@@ -56,6 +56,7 @@ type FilterPick = {
   /** Waterdrop only — other brands are Amazon-only. */
   directLink?: string;
   amazon: string;
+  outOfStock?: boolean;
 };
 
 const FILTERS: FilterPick[] = [
