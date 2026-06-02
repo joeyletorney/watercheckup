@@ -296,4 +296,235 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       ),
     ),
   },
+
+  // ─── POST 4: WATERDROP G3P800 vs AQUASANA SMARTFLOW ──────────────────────
+  'waterdrop-g3p800-vs-aquasana-smartflow': {
+    title: 'Waterdrop G3P800 vs Aquasana SmartFlow RO: Which Should You Buy?',
+    excerpt: 'Two of the best under-sink RO systems — but very different products. Here\'s an honest comparison of performance, certifications, flow rate, and value.',
+    seo: {
+      title: 'Waterdrop G3P800 vs Aquasana SmartFlow: Honest 2026 Comparison',
+      description: 'Waterdrop G3P800 ($849) vs Aquasana SmartFlow ($449): we compare certifications, flow rate, filter cost, and real contaminant removal so you can decide which is worth the money.',
+      canonical: 'https://watercheckup.com/blog/waterdrop-g3p800-vs-aquasana-smartflow',
+      openGraph: {
+        title: 'Waterdrop G3P800 vs Aquasana SmartFlow: Which RO is Better? (2026)',
+        description: 'An honest head-to-head: certifications, flow rate, filter cost, and contaminant removal. One is worth the $400 price difference — here\'s which one.',
+      },
+    },
+    date: '2026-06-01',
+    dateModified: '2026-06-01',
+    dateDisplay: 'June 1, 2026',
+    readTime: '8 min read',
+    badge: 'Comparison',
+    badgeColor: '#7c3aed',
+    topPicks: [
+      { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Best overall: 800 GPD tankless, NSF 42/53/58 certified, smart TDS faucet display. Best for high-use households and homeowners who want the fastest flow and real-time monitoring.', link: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'BEST OVERALL' },
+      { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'Best value: WQA Gold Seal + NSF 42/53/58/401 — the most certifications of any under-sink RO. Best for buyers who want maximum certification coverage at a lower price.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+    ],
+    faq: [
+      { q: 'Is the Waterdrop G3P800 worth the extra $400 over the Aquasana SmartFlow?', a: 'For most households, the SmartFlow is the better value. The G3P800 wins on flow rate (800 GPD vs ~50 GPD) and has a smart TDS display, but both remove the same core contaminants. If you have a large family or want real-time water quality monitoring, the G3P800 is worth it. For a couple or small family, the SmartFlow is excellent at half the price.' },
+      { q: 'Does the Aquasana SmartFlow remove PFAS?', a: 'Yes. The SmartFlow is NSF/ANSI 58 certified, which covers reverse osmosis performance including PFAS removal. It also holds NSF 401 certification for emerging contaminants — a certification the G3P800 does not have.' },
+      { q: 'What is the difference in flow rate between the G3P800 and SmartFlow?', a: 'The Waterdrop G3P800 produces 800 gallons per day — fast enough that you never wait for water. The Aquasana SmartFlow produces roughly 50 GPD, which is typical for non-tankless RO systems and is adequate for drinking and cooking but noticeably slower at the faucet.' },
+      { q: 'Which has better filter replacement costs?', a: 'Both run $130–170/year in filter replacement. The G3P800 uses Waterdrop\'s sealed cartridge system (no mess, no tools). The SmartFlow uses standard quick-connect filters. Long-term costs are similar.' },
+    ],
+    content: React.createElement(React.Fragment, null,
+      React.createElement('p', { style: pStyle },
+        'The Waterdrop G3P800 and Aquasana SmartFlow are two of the most recommended under-sink RO systems — but they\'re targeting very different buyers. One is a premium performance system at $849. The other is a certification-heavy value play at $449. Here\'s what actually separates them.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'The Core Difference: Speed vs. Certifications'),
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: strongStyle }, 'Waterdrop G3P800: '),
+        '800 GPD tankless flow, NSF 42/53/58, smart LED TDS faucet. Best if you want fast water and real-time quality monitoring.',
+        React.createElement('br', null), React.createElement('br', null),
+        React.createElement('strong', { style: strongStyle }, 'Aquasana SmartFlow: '),
+        'WQA Gold Seal + NSF 42/53/58/401, ~50 GPD. Best if you want maximum third-party certification coverage at lower cost. The NSF 401 covers emerging contaminants the G3P800 isn\'t specifically tested for.',
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Certifications — Aquasana Wins'),
+      React.createElement('p', { style: pStyle },
+        'The SmartFlow holds WQA Gold Seal, NSF 42, NSF 53, NSF 58, and NSF 401 — the most certifications of any under-sink RO at its price. NSF 401 specifically covers emerging contaminants including certain microplastics and pharmaceuticals. The G3P800 holds NSF 42, 53, and 58 but lacks NSF 401 and WQA Gold Seal.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'For most people this doesn\'t matter — both systems remove PFAS, lead, arsenic, nitrates, and TDS at comparable rates. But if you specifically want the broadest certified coverage on paper, Aquasana wins.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Flow Rate — Waterdrop Wins by a Lot'),
+      React.createElement('p', { style: pStyle },
+        'This is the G3P800\'s biggest advantage. 800 gallons per day means your faucet delivers water instantly — same pressure as your regular tap. The SmartFlow, like most traditional RO systems, produces around 50 GPD. You won\'t run out of water, but there\'s a noticeable pause at the faucet. For large families or households that cook a lot, this matters.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Smart TDS Display — G3P800 Only'),
+      React.createElement('p', { style: pStyle },
+        'The G3P800 comes with a dedicated smart faucet that displays real-time TDS (total dissolved solids) so you can verify the filter is working every time you use it. When TDS climbs, it\'s time for a new filter. The SmartFlow has no monitoring — you change filters on a schedule and trust it\'s working. If you\'re treating serious contamination, the G3P800\'s monitoring gives real peace of mind.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Who Should Buy Which'),
+      React.createElement('p', { style: pStyle },
+        React.createElement('strong', { style: strongStyle }, 'Buy the G3P800 if: '),
+        'you have a large family, want instant-flow water, value real-time TDS monitoring, or are treating PFAS/lead in a heavily contaminated area and want the most reliable system.'
+      ),
+      React.createElement('p', { style: pStyle },
+        React.createElement('strong', { style: strongStyle }, 'Buy the SmartFlow if: '),
+        'budget matters, you want the broadest NSF certification coverage including NSF 401, or you\'re a couple/small household where 50 GPD flow is plenty.'
+      ),
+
+      React.createElement('p', { style: { ...pStyle, marginTop: 28 } },
+        'Check what\'s actually in your water before deciding — ',
+        React.createElement('a', { href: '/', style: linkStyle }, 'enter your ZIP on WaterCheckup'),
+        ' to see your utility\'s PFAS levels, lead violations, and a contaminant-matched recommendation. Or take the ',
+        React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
+        '.'
+      ),
+    ),
+  },
+
+  // ─── POST 5: WATERDROP K19-S vs AQUATRU CLASSIC ───────────────────────────
+  'waterdrop-k19s-vs-aquatru-classic': {
+    title: 'Waterdrop K19-S vs AquaTru Classic: Which Countertop RO Should You Buy?',
+    excerpt: 'Both are plug-in countertop RO systems with no installation. The AquaTru costs $226 more. Here\'s whether that extra money is worth it.',
+    seo: {
+      title: 'Waterdrop K19-S vs AquaTru Classic: 2026 Comparison',
+      description: 'Waterdrop K19-S ($249) vs AquaTru Classic ($475): plug-in countertop RO systems compared on certifications, tank size, filter cost, and contaminant removal. Which is worth the extra money?',
+      canonical: 'https://watercheckup.com/blog/waterdrop-k19s-vs-aquatru-classic',
+      openGraph: {
+        title: 'Waterdrop K19-S vs AquaTru Classic: Which Countertop RO Wins? (2026)',
+        description: 'Both plug in, both remove PFAS. One costs $226 more. Here\'s the honest comparison of certifications, tank size, and long-term filter costs.',
+      },
+    },
+    date: '2026-06-01',
+    dateModified: '2026-06-01',
+    dateDisplay: 'June 1, 2026',
+    readTime: '7 min read',
+    badge: 'Comparison',
+    badgeColor: '#0891b2',
+    topPicks: [
+      { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'Best value countertop RO. NSF 42/53/58 certified. 170 oz tank. Removes 99%+ PFAS, lead, arsenic. Plug-in, zero installation. Best for most renters and apartment dwellers.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+      { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'Best certification coverage: NSF 42/53/58/401. Adds NSF 401 for emerging contaminants beyond standard RO scope. Quick-change filters. Worth it if you want the widest certified coverage.', link: 'https://www.aquatruwater.com/aquatru-classic/', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+    ],
+    faq: [
+      { q: 'Is the AquaTru worth $226 more than the Waterdrop K19-S?', a: 'For most people, no. Both remove PFAS, lead, arsenic, and TDS via reverse osmosis. The AquaTru adds NSF 401 certification for emerging contaminants — if that specific certification matters to you, it\'s worth the premium. Otherwise the K19-S delivers comparable protection at nearly half the price.' },
+      { q: 'Which is better for renters?', a: 'Both require zero installation — just plug in. The K19-S is lighter and more compact, making it easier to move. At $249 vs $475, the K19-S is the more practical renter choice.' },
+      { q: 'How do filter replacement costs compare?', a: 'The Waterdrop K19-S runs about $110/year in filters. The AquaTru Classic runs about $130/year. The AquaTru uses a 4-stage system with quick-change cartridges; the K19-S uses 4 stages as well. Annual running costs are similar.' },
+      { q: 'Do both remove PFAS?', a: 'Yes. Both are reverse osmosis systems certified to NSF/ANSI 58, which covers PFAS removal. The AquaTru additionally holds NSF 401 for emerging contaminants. Check your city\'s PFAS levels for free at WaterCheckup.' },
+    ],
+    content: React.createElement(React.Fragment, null,
+      React.createElement('p', { style: pStyle },
+        'Both the Waterdrop K19-S and AquaTru Classic sit on your countertop, plug into a standard outlet, and remove PFAS, lead, and arsenic through reverse osmosis — no installation, no plumber, no landlord permission. The question is whether the AquaTru\'s $226 premium is worth it.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'What They Have in Common'),
+      React.createElement('p', { style: pStyle },
+        'Both are NSF 42/53/58 certified countertop RO systems. Both remove 99%+ PFAS, lead, arsenic, nitrates, and TDS. Both are genuinely plug-and-pour — the only setup is filling the reservoir. Both have quick-change filter cartridges. At the core contaminant removal level, they perform comparably.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Where the AquaTru Earns Its Premium: NSF 401'),
+      React.createElement('p', { style: pStyle },
+        'The AquaTru Classic holds NSF 401 certification — a standard covering emerging contaminants beyond the NSF 58 scope, including certain microplastics, pharmaceuticals, and industrial chemicals. The K19-S does not hold NSF 401. If your water contains emerging contaminants that specifically fall under NSF 401 (check your utility\'s UCMR5 data at ',
+        React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
+        '), the AquaTru\'s additional certification is meaningful.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Tank Size and Speed'),
+      React.createElement('p', { style: pStyle },
+        'The K19-S has a 170 oz (about 1.3 gallon) tank. The AquaTru Classic has a similar ~1 gallon tank. Neither will struggle for a couple or small family. Both refill automatically. Speed is comparable — typical countertop RO systems produce 50–200 GPD, adequate for drinking and cooking.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'The Verdict'),
+      React.createElement('p', { style: pStyle },
+        'For most renters and apartment dwellers, the ',
+        React.createElement('strong', { style: strongStyle }, 'Waterdrop K19-S is the better buy'),
+        '. It costs nearly half as much, removes the same core contaminants, and is NSF certified. The $226 you save goes toward nearly two years of filter replacements.'
+      ),
+      React.createElement('p', { style: pStyle },
+        'Choose the AquaTru if you specifically want NSF 401 certification or if the AquaTru brand\'s track record matters to you. It\'s a genuinely excellent machine — just not worth double the price for most households.'
+      ),
+
+      React.createElement('p', { style: { ...pStyle, marginTop: 28 } },
+        'Not sure which filter is right for your specific water? ',
+        React.createElement('a', { href: '/', style: linkStyle }, 'Check your ZIP on WaterCheckup'),
+        ' to see your utility\'s PFAS and lead data, then take the ',
+        React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
+        ' for a personalized recommendation.'
+      ),
+    ),
+  },
+
+  // ─── POST 6: BEST WATER FILTER FOR GAITHERSBURG MD ───────────────────────
+  'best-water-filter-gaithersburg-md': {
+    title: 'Best Water Filter for Gaithersburg, MD (WSSC Water) — 2026 Guide',
+    excerpt: 'WSSC water serves Gaithersburg from the Potomac and Patuxent rivers. Here\'s what EPA data shows — PFAS detected, DBPs present, lead risk in older homes — and the exact filter that addresses all three.',
+    seo: {
+      title: 'Best Water Filter for Gaithersburg MD 2026 — WSSC Water Guide',
+      description: 'WSSC water in Gaithersburg has PFAS detected, disinfection byproducts, and lead risk in pre-1986 homes. Here\'s the exact filter that removes all three — based on EPA UCMR5 data.',
+      canonical: 'https://watercheckup.com/blog/best-water-filter-gaithersburg-md',
+      openGraph: {
+        title: 'Best Water Filter for Gaithersburg MD 2026 — WSSC Water Report',
+        description: 'WSSC water has PFAS above EWG health guidelines, Potomac River DBPs, and lead risk in older homes. Here\'s what EPA data shows and the right filter for Gaithersburg residents.',
+      },
+    },
+    date: '2026-06-01',
+    dateModified: '2026-06-01',
+    dateDisplay: 'June 1, 2026',
+    readTime: '7 min read',
+    badge: 'Local',
+    badgeColor: '#059669',
+    topPicks: [
+      { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Best for Gaithersburg homeowners. Removes PFAS at 99%+, lead at 99%+, and DBPs from Potomac/Patuxent source water. NSF 58 certified. 800 GPD tankless with smart TDS display.', link: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'BEST FOR HOMEOWNERS' },
+      { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'Best for Gaithersburg renters. Same NSF 58 RO protection — no installation needed. Removes PFAS, lead, and DBPs. Plug-in, no landlord permission required.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS' },
+      { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Best mid-range option for Gaithersburg homeowners who want maximum certification coverage including NSF 401 for emerging contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+    ],
+    faq: [
+      { q: 'Is Gaithersburg tap water safe to drink?', a: 'WSSC water meets all federal EPA standards and has no active violations. However, EPA UCMR5 monitoring detected PFAS at 6.7 ppt in the WSSC system — above EWG health guidelines. Homes built before 1986 also face lead risk from premise plumbing. For the cleanest possible drinking water, a reverse osmosis filter certified to NSF 58 removes PFAS and lead at the tap.' },
+      { q: 'Does Gaithersburg water have PFAS?', a: 'Yes. EPA UCMR5 monitoring detected PFPeA at 6.7 ppt in the WSSC water system serving Gaithersburg. This is below the EPA\'s new legal limit of 10 ppt for PFPeA but above EWG\'s health guideline of 0.001 ppt. Only reverse osmosis or NSF 58/P473-certified filters remove PFAS reliably.' },
+      { q: 'Where does Gaithersburg water come from?', a: 'Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), one of the largest utilities in the US. WSSC draws primarily from the Potomac River at Little Falls and the Patuxent River at Rocky Gorge and Brighton Dam reservoirs.' },
+      { q: 'What filter removes DBPs from Gaithersburg water?', a: 'Disinfection byproducts (TTHMs and HAAs) form when chlorine reacts with organic matter in Potomac River source water. Reverse osmosis and activated carbon filters both reduce DBPs. NSF 58 certified RO systems like the Waterdrop G3P800 remove DBPs along with PFAS and lead in one system.' },
+    ],
+    content: React.createElement(React.Fragment, null,
+      React.createElement('p', { style: pStyle },
+        'Gaithersburg residents are served by WSSC Water — one of the largest utilities in the US, drawing from the Potomac and Patuxent rivers. By federal standards, WSSC water is compliant. But EPA UCMR5 monitoring tells a more complete story: PFAS has been detected, disinfection byproducts from Potomac source water are present, and homes built before 1986 carry lead risk from in-building plumbing. Here\'s what the data shows and the right filter for Gaithersburg.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'What EPA Data Shows for WSSC / Gaithersburg'),
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: strongStyle }, 'PFAS: '),
+        'PFPeA detected at 6.7 ppt in EPA UCMR5 monitoring. Below EPA\'s legal limit (10 ppt) but above EWG health guidelines (0.001 ppt).',
+        React.createElement('br', null), React.createElement('br', null),
+        React.createElement('strong', { style: strongStyle }, 'Disinfection Byproducts: '),
+        'WSSC uses chlorine treatment. Potomac River organic matter produces trihalomethanes (TTHMs) and haloacetic acids (HAAs) as byproducts. Below EPA limits but present at every tap.',
+        React.createElement('br', null), React.createElement('br', null),
+        React.createElement('strong', { style: strongStyle }, 'Lead: '),
+        'WSSC distribution water is lead-free, but homes built before 1986 may have lead solder or lead service lines inside the building. WSSC cannot fix your building\'s plumbing.',
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Why Reverse Osmosis is the Right Answer for Gaithersburg'),
+      React.createElement('p', { style: pStyle },
+        'Gaithersburg\'s contamination profile — PFAS, DBPs, and potential lead — requires a single technology that addresses all three. Reverse osmosis certified to NSF 58 removes PFAS at 99%+, lead at 99%+, and reduces disinfection byproducts significantly. A carbon-only filter handles DBPs and chlorine but won\'t touch PFAS. A pitcher handles lead but not PFAS. RO does all three.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'For Homeowners: Waterdrop G3P800'),
+      React.createElement('p', { style: pStyle },
+        'The G3P800 installs under the sink with a dedicated faucet. 800 GPD means no waiting — instant-pressure filtered water. NSF 42/53/58 certified. Smart LED faucet displays TDS in real time so you can verify it\'s working. Filter replacement runs about $170/year. Takes about an hour to install and Waterdrop includes a video guide.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'For Renters: Waterdrop K19-S'),
+      React.createElement('p', { style: pStyle },
+        'If you can\'t drill under the sink, the K19-S sits on the counter and plugs in. Same NSF 58 RO filtration — removes PFAS, lead, and DBPs. 170 oz tank. Zero installation. At $249, it\'s the most cost-effective PFAS protection available for renters in Gaithersburg.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Check Your Specific Address'),
+      React.createElement('p', { style: pStyle },
+        'WSSC serves all of Montgomery County, but your specific ZIP and building age affects your risk profile. ',
+        React.createElement('a', { href: '/water/gaithersburg', style: linkStyle }, 'See the full Gaithersburg water quality report →'),
+      ),
+      React.createElement('p', { style: pStyle },
+        'Also see: ',
+        React.createElement('a', { href: '/blog/what-water-filter-removes-pfas', style: linkStyle }, 'what filters remove PFAS'),
+        ' · ',
+        React.createElement('a', { href: '/blog/best-under-sink-water-filter', style: linkStyle }, 'best under-sink filters'),
+        ' · ',
+        React.createElement('a', { href: '/quiz', style: linkStyle }, 'take the filter quiz'),
+        '.'
+      ),
+    ),
+  },
 };
