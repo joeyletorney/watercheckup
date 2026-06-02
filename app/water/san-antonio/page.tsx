@@ -109,7 +109,7 @@ const FILTER_PICKS = [
     price: '~$849',
     why: 'Removes 99%+ PFAS, radium, arsenic, sodium, and hardness minerals. NSF 58 certified. Tankless design fits under most SA kitchen sinks. Handles the full SA contaminant profile.',
     dp: 'B0987FCQQW',
-    directLink: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${AMAZON_TAG === 'watercheck20-20' ? 'anbyjkqb' : 'anbyjkqb'}`,
+    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
     best: true,
   },
   {

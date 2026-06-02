@@ -19,7 +19,7 @@ const TOP_3_WHOLE_HOUSE = [
 
 const TOP_3_UNDERSINK = [
   { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. NSF 42/53/58 certified. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. Installs under the sink in about an hour.', link: WATERDROP, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401 — the most certifications of any under-sink RO. Removes 90+ contaminants including PFAS, fluoride, and microplastics.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
   { product: 'Frizzlife SK99 Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'NSF 42/53/401 certified. Removes lead at 99.9%, PFAS, chloramine, cysts — without a full RO system. Quick-change twist-off cartridges, no tools. Best budget under-sink.', link: 'https://frizzlife.com/products/sk99', amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
 ];
 
