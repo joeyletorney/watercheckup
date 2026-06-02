@@ -109,6 +109,7 @@ const FILTER_PICKS = [
     price: '~$849',
     why: 'Removes 99%+ PFAS, radium, arsenic, sodium, and hardness minerals. NSF 58 certified. Tankless design fits under most SA kitchen sinks. Handles the full SA contaminant profile.',
     dp: 'B0987FCQQW',
+    directLink: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${AMAZON_TAG === 'watercheck20-20' ? 'anbyjkqb' : 'anbyjkqb'}`,
     best: true,
   },
   {
@@ -401,7 +402,7 @@ export default function SanAntonioWaterPage() {
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
                 <a
-                  href={`https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
+                  href={(f as any).directLink || `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
                   style={{
@@ -416,7 +417,7 @@ export default function SanAntonioWaterPage() {
                     textDecoration: 'none',
                   }}
                 >
-                  View on Amazon →
+                  {(f as any).directLink ? 'Buy Direct →' : 'View on Amazon →'}
                 </a>
               </div>
             </div>

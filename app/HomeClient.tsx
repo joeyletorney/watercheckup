@@ -583,18 +583,12 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
     );
   }
 
-  if (isWaterdrop && directUrl && amazonUrl) {
+  if (isWaterdrop && directUrl) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: block ? '100%' : undefined }}>
-        <a href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
-          style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
-          Waterdrop.com →
-        </a>
-        <a href={amazonUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
-          style={{ display: 'block', textAlign: 'center', padding: block ? '7px 0' : '8px 16px', borderRadius: 10, fontSize: 13, fontWeight: 600, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#cbd5e1', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}>
-          Amazon →
-        </a>
-      </div>
+      <a href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+        style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
+        Waterdrop.com →
+      </a>
     );
   }
 
