@@ -4580,7 +4580,7 @@ export default function WaterCheckup() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
             {[
               { slug: 'is-pfas-in-my-tap-water', emoji: '☣️', tag: 'PFAS', title: 'Is PFAS in My Tap Water?', desc: 'PFAS found in 45% of US tap water. Here\'s how to check yours.', accent: '#ef4444' },
-              { slug: 'best-ro-system-for-pfas-removal', emoji: '🔬', tag: 'Filter Guide', title: 'Best RO Systems for PFAS 2025', desc: 'The certified filters that actually work, at every budget.', accent: '#0891b2' },
+              { slug: 'best-ro-system-for-pfas-removal', emoji: '🔬', tag: 'Filter Guide', title: 'Best RO Systems for PFAS 2026', desc: 'The certified filters that actually work, at every budget.', accent: '#0891b2' },
               { slug: 'tap-water-safety-during-pregnancy', emoji: '🤰', tag: 'Health', title: 'Tap Water Safety During Pregnancy', desc: 'Lead, nitrates, PFAS — what to filter and why.', accent: '#f59e0b' },
               { slug: 'moving-to-new-city-water-quality-check', emoji: '📦', tag: 'Moving', title: 'Moving? Check the Water First', desc: 'Water quality varies dramatically by city. Here\'s what to look for.', accent: '#22d3ee' },
               { slug: 'bottled-water-vs-tap-water-cost-safety-and-pfas', emoji: '🍶', tag: 'Comparison', title: 'Bottled Water vs. Tap Water', desc: 'Bottled water is not automatically purer. Here\'s the cost, safety, and PFAS reality.', accent: '#cbd5e1' },

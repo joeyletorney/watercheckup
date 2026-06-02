@@ -503,7 +503,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   },
 
   'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitchers of 2025: Ranked by What They Actually Remove',
+    title: 'Best Water Filter Pitchers of 2026: Ranked by What They Actually Remove',
     excerpt: 'Most pitcher filters only reduce chlorine taste. A few actually remove lead, PFAS, and other serious contaminants. Here is how they rank.',
     date: '2026-04-20',
     dateDisplay: 'April 20, 2026',

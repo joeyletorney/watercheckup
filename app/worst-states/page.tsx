@@ -4,11 +4,11 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'Worst States for Drinking Water Quality (2025 EPA Data) | WaterCheckup',
+  title: 'Worst States for Drinking Water Quality (2026 EPA Data) | WaterCheckup',
   description: 'US states ranked by tap water quality — based on city-level EPA violation data, PFAS detections, and lead risk. See which states have the worst drinking water.',
   alternates: { canonical: 'https://watercheckup.com/worst-states' },
   openGraph: {
-    title: 'Worst States for Drinking Water Quality — 2025 EPA Data',
+    title: 'Worst States for Drinking Water Quality — 2026 EPA Data',
     description: 'Which US states have the worst tap water? Ranked using EPA violation records, PFAS monitoring data, and lead risk across 400,000+ local water utilities tracked.',
   },
 };
@@ -110,7 +110,7 @@ export default function WorstStatesPage() {
         {/* ── HERO ── */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
-            STATE WATER QUALITY RANKINGS — 2025
+            STATE WATER QUALITY RANKINGS — 2026
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Top 25 worst states for tap water quality

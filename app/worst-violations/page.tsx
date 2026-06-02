@@ -4,11 +4,11 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'Top 25 Cities with the Most EPA Water Violations (2025) | WaterCheckup',
+  title: 'Top 25 Cities with the Most EPA Water Violations (2026) | WaterCheckup',
   description: 'The 25 US cities with the worst EPA Safe Drinking Water Act violation records — open violations, enforcement actions, and contaminant history. Based on federal SDWIS data.',
   alternates: { canonical: 'https://watercheckup.com/worst-violations' },
   openGraph: {
-    title: 'Top 25 Cities with the Most EPA Water Violations — 2025',
+    title: 'Top 25 Cities with the Most EPA Water Violations — 2026',
     description: 'Which US cities have the worst EPA drinking water compliance records? The top 25, ranked by violation history from the federal SDWIS database.',
   },
 };
@@ -40,7 +40,7 @@ export default function WorstViolationsPage() {
         {/* Hero */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
-            EPA VIOLATIONS — 2025 SDWIS DATA
+            EPA VIOLATIONS — 2026 SDWIS DATA
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Top 25 cities with the most EPA water violations

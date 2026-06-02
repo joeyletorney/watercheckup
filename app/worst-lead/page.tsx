@@ -4,11 +4,11 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'Top 25 Cities with the Highest Lead in Tap Water (2025) | WaterCheckup',
+  title: 'Top 25 Cities with the Highest Lead in Tap Water (2026) | WaterCheckup',
   description: 'The 25 US cities with the highest lead risk in tap water — ranked by EPA data, lead service line counts, and violation history. Free reports for each city.',
   alternates: { canonical: 'https://watercheckup.com/worst-lead' },
   openGraph: {
-    title: 'Top 25 Cities with the Highest Lead in Tap Water — 2025 EPA Data',
+    title: 'Top 25 Cities with the Highest Lead in Tap Water — 2026 EPA Data',
     description: 'Lead has no safe level for children. These US cities have the highest documented lead risk in their tap water systems.',
   },
 };
@@ -64,7 +64,7 @@ export default async function WorstLeadPage() {
         {/* Hero */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
-            LEAD IN TAP WATER — 2025 EPA DATA
+            LEAD IN TAP WATER — 2026 EPA DATA
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             Top 25 cities with the highest lead in tap water

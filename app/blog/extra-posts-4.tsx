@@ -170,7 +170,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
     ),
   },
   'best-ro-system-for-pfas-removal': {
-    title: 'Best Reverse Osmosis Systems for PFAS Removal in 2025',
+    title: 'Best Reverse Osmosis Systems for PFAS Removal in 2026',
     excerpt: 'Not all RO systems are certified to remove PFAS. Here are the ones that actually work, tested against NSF 58 standards, at every budget.',
     date: '2026-04-20',
     dateDisplay: 'April 20, 2026',

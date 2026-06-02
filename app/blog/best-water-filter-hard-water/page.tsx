@@ -5,12 +5,12 @@ import { SiteHeader } from '../../components/SiteHeader';
 const AMAZON_TAG = 'watercheck20-20';
 
 export const metadata: Metadata = {
-  title: 'Best Water Filter for Hard Water 2025 — Tested & Ranked | WaterCheckup',
+  title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked | WaterCheckup',
   description:
-    'The best water filters for hard water in 2025. Softeners, RO systems, and pitchers that actually remove calcium, magnesium, and scale. NSF-certified picks for every budget.',
+    'The best water filters for hard water in 2026. Softeners, RO systems, and pitchers that actually remove calcium, magnesium, and scale. NSF-certified picks for every budget.',
   alternates: { canonical: 'https://watercheckup.com/blog/best-water-filter-hard-water' },
   openGraph: {
-    title: 'Best Water Filter for Hard Water 2025 — Tested & Ranked',
+    title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked',
     description:
       'Hard water causing scale, dry skin, and spotted dishes? These NSF-certified filters and softeners actually fix it.',
   },
@@ -156,9 +156,9 @@ export default function BestFilterHardWaterPage() {
           <span>Best Filter for Hard Water</span>
         </nav>
 
-        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER GUIDE · 2025</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER GUIDE · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
-          Best Water Filter for Hard Water 2025
+          Best Water Filter for Hard Water 2026
         </h1>
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.6 }}>
           Hard water affects 85% of US homes. Scale buildup destroys appliances, spots dishes, dries out skin, and wastes money on soap. Here are the only solutions that actually work — ranked by effectiveness and budget.

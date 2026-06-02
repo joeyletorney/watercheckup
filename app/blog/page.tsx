@@ -294,7 +294,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitchers of 2025: Ranked by What They Actually Remove',
+    title: 'Best Water Filter Pitchers of 2026: Ranked by What They Actually Remove',
     excerpt: 'Filter pitchers vary wildly in what they remove. Here are the top options ranked by NSF certifications, not just taste.',
     date: 'April 20, 2026',
     readTime: '9 min read',
@@ -302,7 +302,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#06b6d4',
   },
   'best-water-filter-hard-water': {
-    title: 'Best Water Filter for Hard Water 2025 — Tested & Ranked',
+    title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked',
     excerpt:
       'Softeners, RO systems, and pitchers that actually address calcium, magnesium, and scale — with NSF-aligned picks for every budget.',
     date: 'May 9, 2026',
@@ -368,7 +368,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#8b5cf6',
   },
   'best-ro-system-for-pfas-removal': {
-    title: 'Best Reverse Osmosis Systems for PFAS Removal in 2025',
+    title: 'Best Reverse Osmosis Systems for PFAS Removal in 2026',
     excerpt: 'Not all RO systems are equal for PFAS. Here are the certified options that actually work, at every budget.',
     date: 'April 19, 2026',
     readTime: '9 min read',
