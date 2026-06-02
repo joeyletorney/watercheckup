@@ -315,6 +315,38 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </p>
           )}
 
+          {/* Water Profile — hardness, TDS, pH, treatment, fluoride, nitrate */}
+          {cd?.waterProfile && (() => {
+            const wp = cd.waterProfile!;
+            const hardnessLabel = !wp.hardness ? null : wp.hardness > 300 ? 'Very Hard' : wp.hardness > 150 ? 'Hard' : wp.hardness > 75 ? 'Moderately Hard' : 'Soft';
+            const hardnessColor = !wp.hardness ? '#22d3ee' : wp.hardness > 300 ? '#ef4444' : wp.hardness > 150 ? '#f97316' : wp.hardness > 75 ? '#f59e0b' : '#22d3ee';
+            const tdsLabel = !wp.tds ? null : wp.tds > 500 ? 'High' : wp.tds > 250 ? 'Moderate' : 'Low';
+            const nitrateSeverity = wp.nitrate && wp.nitrate > 8 ? '#ef4444' : wp.nitrate && wp.nitrate > 4 ? '#f59e0b' : '#22d3ee';
+            const items = [
+              wp.hardness && { label: 'Hardness', value: `${wp.hardness} mg/L`, tag: hardnessLabel!, color: hardnessColor },
+              wp.tds && { label: 'TDS', value: `${wp.tds} mg/L`, tag: tdsLabel!, color: '#a78bfa' },
+              wp.pH && { label: 'pH', value: `${wp.pH}`, tag: wp.pH > 8.0 ? 'Alkaline' : wp.pH < 7.0 ? 'Acidic' : 'Neutral', color: '#22d3ee' },
+              wp.treatment && { label: 'Disinfectant', value: wp.treatment === 'chloramine' ? 'Chloramine' : wp.treatment === 'ozone+chlorine' ? 'Ozone + Chlorine' : 'Chlorine', tag: wp.treatment === 'chloramine' ? '⚠ Standard filters don\'t remove' : null, color: wp.treatment === 'chloramine' ? '#f59e0b' : '#22d3ee' },
+              wp.fluoride && { label: 'Fluoride', value: `${wp.fluoride} mg/L`, tag: 'Added', color: '#22d3ee' },
+              wp.nitrate && { label: 'Nitrate', value: `${wp.nitrate} mg/L`, tag: wp.nitrate > 8 ? 'Near limit' : 'Below limit', color: nitrateSeverity },
+            ].filter(Boolean) as { label: string; value: string; tag: string | null; color: string }[];
+            if (!items.length) return null;
+            return (
+              <div style={{ marginBottom: 20, padding: '14px 16px', background: 'rgba(8,145,178,0.06)', border: '1px solid rgba(8,145,178,0.2)', borderRadius: 10 }}>
+                <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, color: '#67e8f9', marginBottom: 10 }}>WATER PROFILE — {wp.source}</div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 8 }}>
+                  {items.map(item => (
+                    <div key={item.label} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: 7, padding: '8px 10px' }}>
+                      <div style={{ fontSize: 11, color: '#a8b4c4', fontWeight: 600, letterSpacing: 0.5, marginBottom: 2 }}>{item.label}</div>
+                      <div style={{ fontSize: 14, fontWeight: 800, color: item.color }}>{item.value}</div>
+                      {item.tag && <div style={{ fontSize: 10, fontWeight: 700, color: item.color, opacity: 0.8, marginTop: 1 }}>{item.tag}</div>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
           {/* Issue tags */}
           {cd && (
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>

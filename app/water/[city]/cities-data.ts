@@ -1,8 +1,19 @@
+export type WaterProfile = {
+  hardness?: number;       // mg/L as CaCO3
+  tds?: number;            // mg/L Total Dissolved Solids
+  pH?: number;             // typical treated pH
+  treatment?: 'chlorine' | 'chloramine' | 'ozone+chlorine';
+  fluoride?: number;       // mg/L
+  nitrate?: number;        // mg/L (EPA limit 10)
+  source?: string;         // CCR citation
+};
+
 export const CITIES: Record<string, {
   name: string; state: string; zip: string; population: string;
   system: string; pwsid: string;
   issues: string[]; facts: string[];
   urgency: 'high' | 'medium' | 'low';
+  waterProfile?: WaterProfile;
 }> = {
   'chicago': {
     name: 'Chicago', state: 'IL', zip: '60601', population: '2.7M',
@@ -15,6 +26,7 @@ export const CITIES: Record<string, {
       'Only reverse osmosis removes lead to safe levels -- Brita and standard pitchers do not.',
     ],
     urgency: 'high',
+    waterProfile: { hardness: 145, tds: 280, pH: 7.8, treatment: 'chloramine', fluoride: 0.7, nitrate: 0.9, source: 'Chicago DWM CCR 2024' },
   },
   'los-angeles': {
     name: 'Los Angeles', state: 'CA', zip: '90001', population: '4M',
@@ -27,6 +39,7 @@ export const CITIES: Record<string, {
       'Only RO systems remove chromium-6 -- activated carbon does not.',
     ],
     urgency: 'high',
+    waterProfile: { hardness: 235, tds: 525, pH: 7.9, treatment: 'chloramine', fluoride: 0.7, nitrate: 2.8, source: 'LADWP CCR 2024' },
   },
   'houston': {
     name: 'Houston', state: 'TX', zip: '77001', population: '2.3M',
@@ -39,6 +52,7 @@ export const CITIES: Record<string, {
       'Carbon block or RO filtration is recommended for Houston residents.',
     ],
     urgency: 'medium',
+    waterProfile: { hardness: 175, tds: 350, pH: 8.0, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.3, source: 'Houston Water CCR 2024' },
   },
   'new-york': {
     name: 'New York City', state: 'NY', zip: '10001', population: '8.3M',
@@ -53,6 +67,7 @@ export const CITIES: Record<string, {
       'A home lead test is strongly recommended for NYC residents in pre-1986 buildings.',
     ],
     urgency: 'high',
+    waterProfile: { hardness: 75, tds: 65, pH: 7.4, treatment: 'chloramine', fluoride: 0.7, nitrate: 0.4, source: 'NYCDEP 2024 Water Quality Report' },
   },
   'phoenix': {
     name: 'Phoenix', state: 'AZ', zip: '85001', population: '1.6M',
@@ -65,6 +80,7 @@ export const CITIES: Record<string, {
       'RO is essential in Phoenix -- it removes TDS, arsenic, PFAS, and hard minerals.',
     ],
     urgency: 'high',
+    waterProfile: { hardness: 288, tds: 620, pH: 8.0, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.6, source: 'Phoenix Water Services CCR 2024' },
   },
   'philadelphia': {
     name: 'Philadelphia', state: 'PA', zip: '19101', population: '1.6M',
@@ -77,6 +93,7 @@ export const CITIES: Record<string, {
       'Both RO and Clearly Filtered-certified pitchers remove PFAS for Philly residents.',
     ],
     urgency: 'high',
+    waterProfile: { hardness: 90, tds: 175, pH: 7.6, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.5, source: 'Philadelphia Water Dept CCR 2024' },
   },
   'san-antonio': {
     name: 'San Antonio', state: 'TX', zip: '78201', population: '1.5M',
@@ -89,6 +106,7 @@ export const CITIES: Record<string, {
       'A whole-house softener combined with an under-sink RO is the gold standard for SA residents.',
     ],
     urgency: 'medium',
+    waterProfile: { hardness: 272, tds: 605, pH: 7.9, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.8, source: 'SAWS 2025 Water Quality Report' },
   },
   'dallas': {
     name: 'Dallas', state: 'TX', zip: '75201', population: '1.3M',
@@ -257,6 +275,7 @@ export const CITIES: Record<string, {
       'Homes built before 1986 should test for lead from premise plumbing even when the utility meets EPA limits.',
     ],
     urgency: 'medium',
+    waterProfile: { hardness: 105, tds: 210, pH: 7.5, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.1, source: 'WSSC Water CCR 2024' },
   },
   'memphis': {
     name: 'Memphis', state: 'TN', zip: '38101', population: '630K',
@@ -1652,6 +1671,7 @@ export const CITIES: Record<string, {
       'Reverse osmosis is the only certified technology that removes PFOA to safe levels at the tap.',
     ],
     urgency: 'high',
+    waterProfile: { hardness: 205, tds: 330, pH: 7.7, treatment: 'chlorine', fluoride: 0.7, nitrate: 2.1, source: 'Parkersburg Utility Board CCR 2024' },
   },
 
   'portsmouth-nh': {
