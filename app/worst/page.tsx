@@ -24,6 +24,12 @@ const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
     desc: 'Water systems with the highest regulated PFAS above federal limits — compound-by-compound ppt and how many times over the MCL.',
   },
   {
+    href: '/blog/top-10-most-pfas-contaminated-cities',
+    title: 'Top 10 most PFAS-contaminated cities (2026 EPA data)',
+    tag: 'Editorial · UCMR5 rankings',
+    desc: 'Sugar Land TX leads at 672 ppt PFAS. Ranked list with links to every city water quality report.',
+  },
+  {
     href: '/worst-thm',
     title: 'Top 10 cities with the highest chlorine byproduct risk',
     tag: 'Chlorine · chloramine · DBPs',
