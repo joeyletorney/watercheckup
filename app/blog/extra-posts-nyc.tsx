@@ -44,14 +44,14 @@ const TOP_3_RO = [
     amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
     badge: 'EDITORS PICK',
   },
-  {
-    product: 'Aquasana SmartFlow RO',
-    brand: 'Aquasana',
-    price: '~$449',
-    reason: 'WQA Gold Seal + NSF 42/53/58/401. Broad certification for PFAS and emerging contaminants.',
-    link: 'https://www.aquasana.com/under-sink-water-filters',
-    amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`,
-    badge: 'MOST CERTIFIED',
+    {
+    product: 'Waterdrop G3P600 RO',
+    brand: 'Waterdrop',
+    price: '~$439',
+    reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS, lead, and DBPs. Best value for NYC homeowners.',
+    link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`,
+    amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`,
+    badge: 'BEST VALUE',
   },
   {
     product: 'Epic Smart Shield Under-Sink',
