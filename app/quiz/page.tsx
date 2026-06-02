@@ -86,8 +86,8 @@ const QUESTIONS = [
   },
 ];
 
-type AltPick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge: string; certs?: string[]; categoryLabel?: string; };
-type Rec = { title: string; tagline: string; why: string; cta: string; cta2: string; link: string; link2: string; badge: string; badgeColor: string; alts?: AltPick[]; altsWholeHouse?: AltPick[]; };
+type AltPick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge: string; certs?: string[]; categoryLabel?: string; outOfStock?: boolean; };
+type Rec = { title: string; tagline: string; why: string; cta: string; cta2: string; link: string; link2: string; badge: string; badgeColor: string; alts?: AltPick[]; altsWholeHouse?: AltPick[]; outOfStock?: boolean; };
 
 const RECS: Record<string, Rec> = {
   'city-pfas-renter':         { title: 'Clearly Filtered Pitcher', tagline: 'NSF 42/53/401/P473 certified. Removes 99.9% PFAS. Zero installation.', why: 'PFAS accumulate silently. Clearly Filtered is the only pitcher with multiple NSF certifications specifically for PFAS — and requires zero tools or landlord permission.', cta: 'Clearly Filtered', cta2: 'See on Amazon', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', link2: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'PFAS CERTIFIED', badgeColor: '#0891b2', alts: TOP_3_PITCHER, outOfStock: true },
