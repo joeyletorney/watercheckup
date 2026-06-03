@@ -372,7 +372,8 @@ const PWSID_OVERRIDES: Record<string, { pwsid: string; city: string; utility: st
   '30354': { pwsid: 'GA1210001', city: 'Atlanta, GA', utility: 'City of Atlanta Department of Watershed Management' },
   // Texas
   '77001': { pwsid: 'TX1010013', city: 'Houston, TX',        utility: 'Houston Water' },
-  '78201': { pwsid: 'TX0150003', city: 'San Antonio, TX',    utility: 'San Antonio Water System (SAWS)' },
+  '78201': { pwsid: 'TX0150018', city: 'San Antonio, TX',    utility: 'San Antonio Water System (SAWS)' },
+  '78205': { pwsid: 'TX0150018', city: 'San Antonio, TX',    utility: 'San Antonio Water System (SAWS)' },
   '75201': { pwsid: 'TX0571550', city: 'Dallas, TX',         utility: 'Dallas Water Public water systems' },
   '76101': { pwsid: 'TX0439001', city: 'Fort Worth, TX',     utility: 'Fort Worth Water Department' },
   '78701': { pwsid: 'TX0155591', city: 'Austin, TX',         utility: 'Austin Water' },
@@ -1182,7 +1183,18 @@ export async function GET(req: NextRequest) {
           const rows: any[] = await epaGet(
             `WATER_SYSTEM/PWSID/${local.p}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
           ).catch(() => []);
-          if (Array.isArray(rows) && rows.length) systems = rows;
+          if (Array.isArray(rows) && rows.length) {
+            systems = rows;
+          } else {
+            const st = local.p.slice(0, 2);
+            systems = [{
+              pwsid: local.p,
+              pws_name: local.n,
+              state_code: st,
+              population_served_count: local.pop,
+              primary_source_code: local.src === 'SW' ? 'SW' : 'GW',
+            }];
+          }
         }
       }
       if (!Array.isArray(systems) || !systems.length) {
