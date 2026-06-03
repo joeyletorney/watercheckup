@@ -2411,7 +2411,7 @@ export default function WaterCheckup() {
               className="wc-hero-positioning"
               style={{ color: '#94a3b8', fontSize: 14, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.5, fontWeight: 500 }}
             >
-              {SITE_PUBLIC_WATER_SYSTEM_COUNT} utilities · Updated {SITE_DATA_FRESHNESS_LABEL} · Built by a 30-year water treatment expert
+              {SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems · Updated {SITE_DATA_FRESHNESS_LABEL} · Built by a 30-year water treatment expert
             </p>
 
           </div>

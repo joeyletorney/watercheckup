@@ -1,7 +1,9 @@
-/** Public coverage figures from public water systems.json and EPA scope — used sitewide for consistent copy. */
+/** Public coverage figures — used sitewide for consistent copy. */
 
-/** From data/utilities-index meta.json (EPA SDWIS scope). */
-export const SITE_PUBLIC_WATER_SYSTEM_COUNT = '430K+';
+/** EPA community water systems (CWS) — ~150K nationally; aligns with SDWIS public reporting. */
+export const SITE_PUBLIC_WATER_SYSTEM_COUNT = '150K+';
+
+export const SITE_PUBLIC_WATER_SYSTEM_LABEL = 'Community Water Systems';
 
 export const SITE_DATA_FRESHNESS_LABEL = 'June 2026';
 
@@ -14,7 +16,7 @@ export const SITE_HERO_EXAMPLE_ZIPS = [
 ] as const;
 
 export const SITE_COVERAGE_STATS = [
-  { stat: SITE_PUBLIC_WATER_SYSTEM_COUNT, label: 'Public Water Systems' },
+  { stat: SITE_PUBLIC_WATER_SYSTEM_COUNT, label: SITE_PUBLIC_WATER_SYSTEM_LABEL },
   { stat: 'All 50', label: 'States Covered' },
   { stat: SITE_CONTAMINANT_COVERAGE_LABEL, label: 'Contaminants Tracked' },
   { stat: '30+', label: 'Years of Expertise' },
@@ -45,7 +47,7 @@ export const SITE_FOOTER_AFFILIATE =
 
 export const SITE_HERO_TRUST_BANNER = [
   `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
-  `${SITE_PUBLIC_WATER_SYSTEM_COUNT} utilities`,
+  `${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems`,
   'EPA SDWIS + UCMR5 PFAS',
   'Free · No signup',
 ] as const;
@@ -78,7 +80,7 @@ export const SITE_COMPARISON_ROWS: {
   { feature: 'All 50 states', watercheckup: { type: 'yes', text: '' }, others: { type: 'warn', text: 'Most' } },
   { feature: 'Expert filter recommendations', watercheckup: { type: 'yes', text: 'Contaminant-matched' }, others: { type: 'no', text: 'Generic' } },
   { feature: 'Published water expert', watercheckup: { type: 'yes', text: 'Joe Letorney' }, others: { type: 'no', text: '' } },
-  { feature: 'WQA Credentials', watercheckup: { type: 'yes', text: 'Level VI' }, others: { type: 'no', text: '' } },
+  { feature: 'WQA credentials', watercheckup: { type: 'yes', text: 'Level VI (former)' }, others: { type: 'no', text: '' } },
   { feature: '100% Free', watercheckup: { type: 'yes', text: '' }, others: { type: 'yes', text: 'Most' } },
   { feature: 'EPA verified data', watercheckup: { type: 'yes', text: 'UCMR5 + SDWIS' }, others: { type: 'warn', text: 'Some' } },
 ];
