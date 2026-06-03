@@ -1,31 +1,31 @@
-/** Public coverage figures from utilities.json and EPA scope — used sitewide for consistent copy. */
+/** Public coverage figures from public water systems.json and EPA scope — used sitewide for consistent copy. */
 
 export const SITE_COVERAGE_STATS = [
-  { stat: '400,000+', label: 'Local Water Utilities Tracked' },
   { stat: 'All 50', label: 'States Covered' },
+  { stat: '100%', label: 'Free Access' },
   { stat: '300M+', label: 'Americans Served' },
   { stat: '30+', label: 'Years of Expertise' },
 ] as const;
 
-export const SITE_WATER_SYSTEMS_LABEL = '400,000+ local water utilities tracked';
+export const SITE_WATER_SYSTEMS_LABEL = 'All 50 states, all for free';
 
-export const VIEW_ALL_WATER_SYSTEMS_LINK = 'Browse 400,000+ local water utilities →';
+export const VIEW_ALL_WATER_SYSTEMS_LINK = 'Browse all 50 states — all free →';
 
 export const SITE_HERO_POSITIONING =
-  'The most comprehensive free water quality database in America — 400,000+ utilities, all 50 states, built by a 30-year water treatment expert.';
+  'The most comprehensive free water quality database in America — all 50 states, all for free, built by a 30-year water treatment expert.';
 
 export const SITE_HERO_TAGLINE =
-  'Enter your ZIP, city, county, or utility for EPA-backed reports and contaminant-matched filter picks — free, no login.';
+  'Enter your ZIP or city for EPA-backed reports and contaminant-matched filter picks — free, no login.';
 
 export const SITE_HOME_META_DESCRIPTION =
-  'Free water quality check by ZIP, city, or utility — the most comprehensive database in America. 400,000+ utilities, all 50 states, built by Joe Letorney, 30-year water treatment expert. EPA data, PFAS & filter picks.';
+  'Free water quality check by ZIP or city — the most comprehensive database in America. All 50 states, all for free, built by Joe Letorney, 30-year water treatment expert. EPA data, PFAS & filter picks.';
 
 export const SITE_FOOTER_TAGLINE =
   'WaterCheckup — The most comprehensive free water quality database in America. Built by a real water expert, not a tech company.';
 
 export const SITE_HERO_TRUST_BANNER = [
-  '400,000+ Utilities Covered',
   'All 50 States',
+  'All Free',
   '30 Years of Expertise',
   '100% Free',
 ] as const;
@@ -34,17 +34,12 @@ export const WHY_WATERCHECKUP_CARDS = [
   {
     icon: '🏆',
     title: 'Most Comprehensive Coverage',
-    body: '400,000+ local water utilities tracked across all 50 states. From major cities to small towns — if the EPA regulates it, WaterCheckup covers it. More coverage than any other free water quality site.',
+    body: 'Coverage across all 50 states, all for free. From major cities to small towns — if the EPA regulates it, WaterCheckup covers it. More coverage than any other free water quality site.',
   },
   {
     icon: '👨‍🔬',
     title: 'Real Expert Behind Every Recommendation',
     body: 'WaterCheckup was built by a 30-year water treatment veteran and published industry author. Not a tech company. Not an algorithm. A real water expert.',
-  },
-  {
-    icon: '🔬',
-    title: 'The Only Site That Does All Four',
-    body: 'Check your water by city, county, ZIP code, or water utility — all in one place, all for free. No other site covers all four.',
   },
 ] as const;
 
@@ -56,10 +51,10 @@ export const SITE_COMPARISON_ROWS: {
   others: ComparisonCell;
 }[] = [
   { feature: 'Built by a real water expert', watercheckup: { type: 'yes', text: '30+ years' }, others: { type: 'no', text: 'Tech companies' } },
-  { feature: 'Utilities covered', watercheckup: { type: 'yes', text: '400,000+' }, others: { type: 'no', text: '18,000 max' } },
+  { feature: 'Coverage', watercheckup: { type: 'yes', text: 'All 50 states, free' }, others: { type: 'no', text: 'Limited' } },
   { feature: 'Search by ZIP code', watercheckup: { type: 'yes', text: '' }, others: { type: 'yes', text: 'Some' } },
   { feature: 'Search by county', watercheckup: { type: 'yes', text: '' }, others: { type: 'no', text: '' } },
-  { feature: 'Search by utility', watercheckup: { type: 'yes', text: '400,000+' }, others: { type: 'warn', text: 'Limited' } },
+  { feature: 'Search by public water system', watercheckup: { type: 'yes', text: 'Nationwide' }, others: { type: 'warn', text: 'Limited' } },
   { feature: 'All 50 states', watercheckup: { type: 'yes', text: '' }, others: { type: 'warn', text: 'Most' } },
   { feature: 'Expert filter recommendations', watercheckup: { type: 'yes', text: 'Contaminant-matched' }, others: { type: 'no', text: 'Generic' } },
   { feature: 'Published water expert', watercheckup: { type: 'yes', text: 'Joe Letorney' }, others: { type: 'no', text: '' } },

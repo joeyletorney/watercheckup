@@ -9,7 +9,7 @@ const DEFAULT_REPORT_YEAR = 2026;
 
 export function UtilityClaimTopBanner({ utilityName, reportYear = DEFAULT_REPORT_YEAR }: Props) {
   return (
-    <div className="wc-utility-claim-top-banner" role="note">
+    <div className="wc-public water system-claim-top-banner" role="note">
       <p>
         Water operator for <strong>{utilityName}</strong>? Claim this free listing and publish your {reportYear} CCR
         where your customers are already looking.{' '}

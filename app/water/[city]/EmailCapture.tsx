@@ -19,7 +19,7 @@ type EmailCaptureProps = {
   stateScope?: { stateName: string; stateSlug: string };
   /** When set, copy targets a county hub page. */
   countyScope?: { countyDisplay: string; stateSlug: string; countySlug: string };
-  /** When set, copy targets a PWS utility page. */
+  /** When set, copy targets a PWS public water system page. */
   utilityScope?: { utilityName: string; stateParam: string; utilitySlug: string; pwsid?: string };
 };
 
@@ -41,7 +41,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
         ? `${countyScope!.countyDisplay} County`
         : '';
   const newsletterSource = isUtility
-    ? `utility-page-${utilityScope!.stateParam}-${utilityScope!.utilitySlug}`
+    ? `public water system-page-${utilityScope!.stateParam}-${utilityScope!.utilitySlug}`
     : isCounty
       ? `county-page-${countyScope!.stateSlug}-${countyScope!.countySlug}`
       : isState
@@ -130,7 +130,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
         {isCounty
           ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect cities in ${countyLabelForTitle}. One email, no spam, unsubscribe any time.`
           : isState
-            ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect utilities in ${displayName}. One email, no spam, unsubscribe any time.`
+            ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect public water systems in ${displayName}. One email, no spam, unsubscribe any time.`
             : isUtility
               ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect ${displayName}${utilityScope!.pwsid ? ` (PWS ${utilityScope!.pwsid})` : ''}. One email, no spam, unsubscribe any time.`
               : `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts drop for ${displayName}. One email, no spam, unsubscribe any time.`}

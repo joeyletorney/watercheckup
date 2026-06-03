@@ -187,7 +187,7 @@ export function WaterHardnessClient() {
         if (ppm === undefined) {
           setZipError(
             res.ok
-              ? "We found your utility but no hardness value is attached to this ZIP in our EPA/EWG snapshot yet. Use the manual calculator with a reading from your utility’s Consumer Confidence Report or a home test."
+              ? "We found your public water system but no hardness value is attached to this ZIP in our EPA/EWG snapshot yet. Use the manual calculator with a reading from your public water system’s Consumer Confidence Report or a home test."
               : typeof data.error === "string"
                 ? data.error
                 : "Could not look up that ZIP. Try another code or the manual calculator.",
@@ -285,7 +285,7 @@ export function WaterHardnessClient() {
         </div>
         <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 14px", lineHeight: 1.6 }}>
           Uses WaterCheckup&apos;s water API (EPA SDWIS, EWG Atlas hardness where published for your ZIP, and USGS state
-          snapshots). If no hardness row is bundled for your utility yet, use the manual calculator.
+          snapshots). If no hardness row is bundled for your public water system yet, use the manual calculator.
         </p>
         <form onSubmit={submitZip} style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 16 }}>
           <label style={{ display: "block", width: "100%", fontSize: 13, fontWeight: 700, color: "#cbd5e1" }}>
@@ -335,7 +335,7 @@ export function WaterHardnessClient() {
         </div>
         <form onSubmit={submitManual} style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
           <label style={{ fontSize: 13, fontWeight: 700, color: "#cbd5e1" }}>
-            Enter your hardness reading (from a test strip or utility report)
+            Enter your hardness reading (from a test strip or public water system report)
           </label>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
             <input

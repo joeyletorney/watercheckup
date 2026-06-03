@@ -279,7 +279,7 @@ export default function PfasPage() {
               { q: 'How long do PFAS stay in the body?', a: 'Elimination half-lives vary by compound — on the order of years for some legacy PFAS in blood. That is why they are called “forever chemicals”: they clear slowly and can accumulate with ongoing exposure. Reducing intake from water and dust helps; the science on reversing long-term body burden is still evolving.' },
               { q: 'What do NSF/ANSI 58 and P473 mean on a filter label?', a: 'NSF/ANSI 58 certifies reverse osmosis systems for structural integrity and contaminant reduction claims the certifier validates. NSF/ANSI P473 specifically covers PFOA and PFOS reduction in drinking water treatment devices. Always read which standard applies — a pitcher certified to P473 is not the same as an under-sink RO certified to 58.' },
               { q: 'Does distillation remove PFAS?', a: 'Distillation can remove many non-volatile contaminants, including PFAS, because they are left behind when water vapor condenses. Practical downsides include energy use, maintenance, and taste. If you choose distillation, use equipment designed for drinking water and follow cleaning instructions so residues do not build up.' },
-              { q: 'Should I worry about PFAS if my utility is "in compliance"?', a: 'Legal compliance means your system meets EPA enforceable limits on the schedule the rule requires — it does not mean zero PFAS. Many systems show detections below the new MCLs, or were not yet in violation when data were published. Your ZIP-level report shows what was measured, not just pass/fail language from a brochure.' },
+              { q: 'Should I worry about PFAS if my public water system is "in compliance"?', a: 'Legal compliance means your system meets EPA enforceable limits on the schedule the rule requires — it does not mean zero PFAS. Many systems show detections below the new MCLs, or were not yet in violation when data were published. Your ZIP-level report shows what was measured, not just pass/fail language from a brochure.' },
             ].map(({ q, a }) => (
               <div key={q} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 8 }}>{q}</div>
@@ -294,9 +294,14 @@ export default function PfasPage() {
           <span style={label}>RELATED GUIDES</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
-              { href: '/worst-pfas', label: 'US water systems with the highest PFAS — ranked by ppt' },
+              { href: '/blog/top-10-most-pfas-contaminated-cities', label: 'Top 10 most PFAS-contaminated US cities (2026 EPA data)' },
+              { href: '/water/sugar-land', label: 'Sugar Land TX water — 672 ppt 6:2 FTS in UCMR5' },
+              { href: '/worst-pfas', label: 'US water systems with the highest regulated PFAS violations' },
+              { href: '/worst-water', label: 'Top 50 cities by peak PFAS detections (all compounds)' },
               { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter — NSF certified options' },
               { href: '/water/san-antonio', label: 'PFAS in San Antonio water — free city report' },
+              { href: '/water/miami', label: 'Miami-Dade PFAS violations — free city report' },
+              { href: '/water/parkersburg', label: 'Parkersburg WV — DuPont PFOA legacy report' },
               { href: '/lead', label: 'Lead in Tap Water — EPA Data, Health Risks, and Best Filters' },
               { href: '/well', label: 'Well Water Filter Guide — Unregulated Risks by State' },
               { href: '/contaminants', label: 'Water Contaminant Guide — Every Major Contaminant Explained' },

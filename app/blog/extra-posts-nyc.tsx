@@ -140,7 +140,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
         { style: pStyle },
         'Unlike cities that rely heavily on groundwater or the Colorado River, NYC gets ',
         React.createElement('strong', { style: strongStyle }, 'surface water from protected upstate reservoirs'),
-        '. That means lower natural hardness, excellent baseline quality, and no need for the aggressive treatment some Southwest utilities use.',
+        '. That means lower natural hardness, excellent baseline quality, and no need for the aggressive treatment some Southwest public water systems use.',
       ),
       React.createElement(
         'p',
@@ -206,7 +206,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
       React.createElement(
         'p',
         { style: pStyle },
-        'PFAS (“forever chemicals”) have also been detected in NYC water at low levels in EPA monitoring and third-party databases. The EPA set enforceable limits for PFOA and PFOS in 2024. NYC utilities are working to meet them — but many health advocates argue even tiny amounts carry long-term risk.',
+        'PFAS (“forever chemicals”) have also been detected in NYC water at low levels in EPA monitoring and third-party databases. The EPA set enforceable limits for PFOA and PFOS in 2024. NYC public water systems are working to meet them — but many health advocates argue even tiny amounts carry long-term risk.',
       ),
       React.createElement(
         'p',
@@ -257,7 +257,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
           'li',
           { style: { marginBottom: 10 } },
           React.createElement('strong', { style: strongStyle }, 'Check your ZIP on WaterCheckup.'),
-          ' Enter your address to see EPA violation history, PFAS UCMR5 data, and contaminant levels for your utility: ',
+          ' Enter your address to see EPA violation history, PFAS UCMR5 data, and contaminant levels for your public water system: ',
           React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'NYC water quality report'),
           '.',
         ),
@@ -384,7 +384,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
       React.createElement(
         'p',
         { style: pStyle },
-        'Utilities nationwide — including NYCDEP — must comply. That is a major step forward. But EWG’s health guidelines for PFOA and PFOS are ',
+        'Public water systems nationwide — including NYCDEP — must comply. That is a major step forward. But EWG’s health guidelines for PFOA and PFOS are ',
         React.createElement('strong', { style: strongStyle }, '0.001 ppt'),
         ' — thousands of times lower than the legal limit. “Legal” and “optimal for health” are not the same.',
       ),
@@ -398,9 +398,9 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
       React.createElement(
         'p',
         { style: pStyle },
-        'To see PFAS and other contaminants tied to your utility and ZIP code, use our free report: ',
+        'To see PFAS and other contaminants tied to your public water system and ZIP code, use our free report: ',
         React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'New York City water quality data'),
-        '. Enter any NYC ZIP (10001, 11201, 10451, etc.) for utility-specific results.',
+        '. Enter any NYC ZIP (10001, 11201, 10451, etc.) for public water system-specific results.',
       ),
       React.createElement(
         'p',

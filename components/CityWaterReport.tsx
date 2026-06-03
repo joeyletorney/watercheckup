@@ -48,7 +48,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
           {city.name}, {city.state} — tap water snapshot
         </h1>
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 20px' }}>
-          Quick read on your utility, EPA public system ID, and documented issues. For full PFAS tables, scores, and
+          Quick read on your public water system, EPA public system ID, and documented issues. For full PFAS tables, scores, and
           filter logic, open the detailed city report.
         </p>
 
@@ -68,7 +68,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
         </div>
 
         <section style={{ marginBottom: 22 }}>
-          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' }}>Utility</h2>
+          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' }}>Public water system</h2>
           <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', lineHeight: 1.65 }}>
             <strong style={{ color: '#e2e8f0' }}>{city.system}</strong>
             <br />

@@ -119,7 +119,7 @@ let ccrOverlayByPwsid: Map<string, CcrOverlayEntry> | null = null;
 function loadCcrOverlayMap(): Map<string, CcrOverlayEntry> {
   if (ccrOverlayByPwsid) return ccrOverlayByPwsid;
   ccrOverlayByPwsid = new Map();
-  const p = path.join(process.cwd(), "data", "utility-ccr-overlays.json");
+  const p = path.join(process.cwd(), "data", "public water system-ccr-overlays.json");
   if (!fs.existsSync(p)) return ccrOverlayByPwsid;
   try {
     const raw = JSON.parse(fs.readFileSync(p, "utf8")) as { byPwsid?: Record<string, CcrOverlayEntry> };
@@ -132,7 +132,7 @@ function loadCcrOverlayMap(): Map<string, CcrOverlayEntry> {
   return ccrOverlayByPwsid;
 }
 
-/** Merge optional `data/utility-ccr-overlays.json` onto a raw utility row. */
+/** Merge optional `data/public water system-ccr-overlays.json` onto a raw public water system row. */
 export function mergeUtilityCcrData(u: UtilityJsonRecord): UtilityJsonRecord {
   const merged: UtilityJsonRecord = { ...u };
   const o = loadCcrOverlayMap().get(u.pwsid.trim().toUpperCase());

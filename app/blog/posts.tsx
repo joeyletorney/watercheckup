@@ -121,7 +121,7 @@ export const POSTS: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'How PFAS Gets Into Your Tap Water'),
       React.createElement('p', { style: pStyle },
-        'The main sources are military bases (AFFF firefighting foam), industrial manufacturing plants, landfills, and wastewater treatment plants that can\'t filter PFAS out. PFAS leach into groundwater and travel long distances — meaning your water utility\'s source water can be contaminated even if there\'s no PFAS facility nearby.'
+        'The main sources are military bases (AFFF firefighting foam), industrial manufacturing plants, landfills, and wastewater treatment plants that can\'t filter PFAS out. PFAS leach into groundwater and travel long distances — meaning your public water system\'s source water can be contaminated even if there\'s no PFAS facility nearby.'
       ),
       React.createElement('p', { style: pStyle },
         'The EPA finalized its first-ever PFAS drinking water standard in April 2024, setting limits for PFOA and PFOS at ',
@@ -139,7 +139,7 @@ export const POSTS: Record<string, Post> = {
       ),
       React.createElement('h3', { style: h3Style }, '2. Read Your Annual Water Quality Report (CCR)'),
       React.createElement('p', { style: pStyle },
-        'Every water utility is required to send customers an annual Consumer Confidence Report (CCR) by July 1st. Starting with the 2024 reporting year, utilities must include PFAS results if they\'re above the new EPA limits. Call your utility and ask for the most recent CCR.'
+        'Every public water system is required to send customers an annual Consumer Confidence Report (CCR) by July 1st. Starting with the 2024 reporting year, public water systems must include PFAS results if they\'re above the new EPA limits. Call your public water system and ask for the most recent CCR.'
       ),
       React.createElement('h3', { style: h3Style }, '3. Order a Home Water Test'),
       React.createElement('p', { style: pStyle },
@@ -223,7 +223,7 @@ export const POSTS: Record<string, Post> = {
       ),
 
       React.createElement('p', { style: pStyle },
-        'Chicago has 400,000+ lead service lines and Philadelphia has thousands still in use — see our ',
+        'Chicago has 150,000+ lead service lines and Philadelphia has thousands still in use — see our ',
         React.createElement('a', { href: '/water/chicago', style: linkStyle }, 'Chicago water quality report'),
         ' and ',
         React.createElement('a', { href: '/water/philadelphia', style: linkStyle }, 'Philadelphia water quality report'),
@@ -312,29 +312,29 @@ export const POSTS: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'How to Test Your Water for Lead'),
       React.createElement('p', { style: pStyle },
-        'The only way to know your lead level is to test. You can get an EPA-certified mail-in lead test for $15-30 (search "EPA certified lead water test"). Many cities also offer free lead testing for residents — call your water utility and ask. Renters in older buildings should always test before assuming they\'re safe.'
+        'The only way to know your lead level is to test. You can get an EPA-certified mail-in lead test for $15-30 (search "EPA certified lead water test"). Many cities also offer free lead testing for residents — call your public water system and ask. Renters in older buildings should always test before assuming they\'re safe.'
       ),
       React.createElement('p', { style: pStyle },
-        'You can also enter your ZIP above to check if your water system has any documented lead violations — it won\'t show your specific home\'s level but it tells you if your utility has a known problem.'
+        'You can also enter your ZIP above to check if your water system has any documented lead violations — it won\'t show your specific home\'s level but it tells you if your public water system has a known problem.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Bottom Line'),
       React.createElement('p', { style: pStyle },
-        'If your home was built before 1986, get a filter rated NSF 53 for lead — today. It\'s the single highest-impact thing you can do for your family\'s health and it costs less than a month of bottled water. Don\'t wait for a water crisis to hit your city. Don\'t assume your utility\'s compliance means you\'re safe. Filter at the tap.'
+        'If your home was built before 1986, get a filter rated NSF 53 for lead — today. It\'s the single highest-impact thing you can do for your family\'s health and it costs less than a month of bottled water. Don\'t wait for a water crisis to hit your city. Don\'t assume your public water system\'s compliance means you\'re safe. Filter at the tap.'
       ),
       React.createElement('p', { style: pStyle },
         'Also see our ',
         React.createElement('a', { href: '/blog/what-water-filter-removes-pfas', style: linkStyle }, 'PFAS removal water filter guide'),
         ' and run a free ',
         React.createElement('a', { href: '/', style: linkStyle }, 'water quality check by ZIP'),
-        ' for your utility\'s EPA data.'
+        ' for your public water system\'s EPA data.'
       ),
     ),
   },
 
   'what-does-epa-water-violation-mean': {
     title: 'What Does an EPA Water Violation Actually Mean for Your Health?',
-    excerpt: 'Your water utility sent a notice. Or you found a violation on EPA\'s database. Here\'s exactly what it means, what the risk is, and what to do.',
+    excerpt: 'Your public water system sent a notice. Or you found a violation on EPA\'s database. Here\'s exactly what it means, what the risk is, and what to do.',
     date: '2026-03-30',
     dateDisplay: 'March 30, 2026',
     readTime: '7 min read',
@@ -343,10 +343,10 @@ export const POSTS: Record<string, Post> = {
     topPicks: TOP_3_RO,
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'You got a notice in the mail. Or you ran your water system through a database and saw a red flag. Your water utility has an EPA violation. Now what?'
+        'You got a notice in the mail. Or you ran your water system through a database and saw a red flag. Your public water system has an EPA violation. Now what?'
       ),
       React.createElement('p', { style: pStyle },
-        'The first thing to understand: not all violations are created equal. Some mean your water had a dangerous contaminant above the legal limit. Others mean your utility forgot to file paperwork. Here\'s how to tell the difference — and what to actually do.'
+        'The first thing to understand: not all violations are created equal. Some mean your water had a dangerous contaminant above the legal limit. Others mean your public water system forgot to file paperwork. Here\'s how to tell the difference — and what to actually do.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Two Types of EPA Violations'),
@@ -361,7 +361,7 @@ export const POSTS: Record<string, Post> = {
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'Treatment technique (TT) violations:'),
-        ' The utility failed to properly disinfect water, failed to control corrosion (which causes lead leaching), or failed to filter surface water properly.'
+        ' The public water system failed to properly disinfect water, failed to control corrosion (which causes lead leaching), or failed to filter surface water properly.'
       ),
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#ef4444' } }, '⚠ If you received a "Boil Water Advisory" or "Do Not Drink" notice: '),
@@ -370,15 +370,15 @@ export const POSTS: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, '2. Monitoring and Reporting Violations'),
       React.createElement('p', { style: pStyle },
-        'These are administrative violations — the utility failed to test for something on schedule, or failed to report results to the state on time. They do NOT necessarily mean there\'s a problem with your water. But they do mean you have less information than you should. Take these as a reason to be more vigilant, not an emergency.'
+        'These are administrative violations — the public water system failed to test for something on schedule, or failed to report results to the state on time. They do NOT necessarily mean there\'s a problem with your water. But they do mean you have less information than you should. Take these as a reason to be more vigilant, not an emergency.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Notice You Received'),
       React.createElement('p', { style: pStyle },
-        'When a water utility has a health-based violation, federal law requires them to notify customers within a specific timeframe depending on the severity. The notice must tell you:'
+        'When a public water system has a health-based violation, federal law requires them to notify customers within a specific timeframe depending on the severity. The notice must tell you:'
       ),
       React.createElement('p', { style: pStyle },
-        '• What contaminant exceeded the limit and by how much\n• What the potential health effects are\n• What the utility is doing to fix it\n• What you can do in the meantime (alternative water sources, boiling, etc.)'
+        '• What contaminant exceeded the limit and by how much\n• What the potential health effects are\n• What the public water system is doing to fix it\n• What you can do in the meantime (alternative water sources, boiling, etc.)'
       ),
       React.createElement('p', { style: pStyle },
         'Read the notice carefully. The most important line is the one that tells you what the contaminant is and what the health risk is for different populations (infants, pregnant women, immunocompromised individuals are always at higher risk).'
@@ -405,7 +405,7 @@ export const POSTS: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, 'Short term'),
       React.createElement('p', { style: pStyle },
-        'Follow the utility\'s instructions. If there\'s a boil water advisory, boil. If they say use alternative water, use bottled water for drinking and cooking. Don\'t use tap water for infant formula during a microbiological violation.'
+        'Follow the public water system\'s instructions. If there\'s a boil water advisory, boil. If they say use alternative water, use bottled water for drinking and cooking. Don\'t use tap water for infant formula during a microbiological violation.'
       ),
 
       React.createElement('h3', { style: h3Style }, 'Medium term'),
@@ -415,12 +415,12 @@ export const POSTS: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, 'Long term'),
       React.createElement('p', { style: pStyle },
-        'Check your water regularly. Enter your ZIP on WaterCheckup to see your utility\'s current violation history and contaminant levels. Sign up for your utility\'s alert list if they have one. Read your annual CCR (Consumer Confidence Report) when it arrives.'
+        'Check your water regularly. Enter your ZIP on WaterCheckup to see your public water system\'s current violation history and contaminant levels. Sign up for your public water system\'s alert list if they have one. Read your annual CCR (Consumer Confidence Report) when it arrives.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How to Look Up Your Violations'),
       React.createElement('p', { style: pStyle },
-        'Enter your ZIP code above to see your water system\'s current EPA SDWIS data — including any active violations, historical violations, and the contaminants your utility monitors for. It\'s free and pulls directly from EPA\'s database in real time.'
+        'Enter your ZIP code above to see your water system\'s current EPA SDWIS data — including any active violations, historical violations, and the contaminants your public water system monitors for. It\'s free and pulls directly from EPA\'s database in real time.'
       ),
       React.createElement('p', { style: pStyle },
         'You can also search EPA\'s ECHO database directly at echo.epa.gov, but WaterCheckup presents the same data in a format that\'s actually readable.'

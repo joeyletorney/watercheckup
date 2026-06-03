@@ -6,7 +6,7 @@ import { SiteHeader } from '../components/SiteHeader';
 export const metadata = {
   title: 'Water Quality Reports by City',
   description:
-    'Free EPA-based water quality reports for 400,000+ local water utilities tracked. Check PFAS levels, lead violations, contaminant data, and filter recommendations for your area.',
+    'Free EPA-based water quality reports for all 50 states, all for free. Check PFAS levels, lead violations, contaminant data, and filter recommendations for your area.',
 };
 
 const cities = {
@@ -48,6 +48,7 @@ const cities = {
     { name: 'Lexington, KY', slug: 'lexington' },
     { name: 'Memphis, TN', slug: 'memphis' },
     { name: 'Miami, FL', slug: 'miami' },
+    { name: 'Pensacola, FL', slug: 'pensacola' },
     { name: 'Montgomery, AL', slug: 'montgomery' },
     { name: 'Murfreesboro, TN', slug: 'murfreesboro' },
     { name: 'Nashville, TN', slug: 'nashville' },
@@ -110,9 +111,11 @@ const cities = {
     { name: 'Oklahoma City, OK', slug: 'oklahoma-city' },
     { name: 'Plano, TX', slug: 'plano' },
     { name: 'San Antonio, TX', slug: 'san-antonio' },
+    { name: 'Sugar Land, TX', slug: 'sugar-land' },
   ],
   West: [
     { name: 'Alexandria, VA', slug: 'alexandria' },
+    { name: 'Fairfax, VA', slug: 'fairfax-county' },
     { name: 'Anaheim, CA', slug: 'anaheim' },
     { name: 'Anchorage, AK', slug: 'anchorage' },
     { name: 'Ann Arbor, MI', slug: 'ann-arbor' },
@@ -191,6 +194,18 @@ export default function WaterDirectoryPage() {
           <span>✅ 100% free, no login</span>
         </div>
         <div className="flex flex-wrap justify-center gap-3 text-sm mb-8">
+          <Link
+            href="/water/sugar-land"
+            className="font-semibold text-red-700 hover:text-red-900 underline-offset-2 hover:underline"
+          >
+            Sugar Land PFAS (672 ppt) →
+          </Link>
+          <Link
+            href="/blog/top-10-most-pfas-contaminated-cities"
+            className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
+          >
+            Top 10 PFAS cities →
+          </Link>
           <Link
             href="/water/san-antonio"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"

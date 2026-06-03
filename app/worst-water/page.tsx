@@ -186,7 +186,7 @@ export default async function WorstWaterPage() {
             },
             {
               q: 'Does this mean the water is unsafe to drink?',
-              a: 'If your water system is on this list with active MCL violations, the EPA requires the utility to notify customers and take remediation steps. In the meantime, a certified reverse osmosis filter is the only technology independently proven to remove PFAS to safe levels at the tap. Standard Brita-style pitchers do not remove PFAS effectively.'
+              a: 'If your water system is on this list with active MCL violations, the EPA requires the public water system to notify customers and take remediation steps. In the meantime, a certified reverse osmosis filter is the only technology independently proven to remove PFAS to safe levels at the tap. Standard Brita-style pitchers do not remove PFAS effectively.'
             },
             {
               q: 'Why are some PFAS compounds not shown as violations even at high levels?',
@@ -194,7 +194,7 @@ export default async function WorstWaterPage() {
             },
             {
               q: 'How do I check my specific water system?',
-              a: 'Enter your ZIP code on WaterCheckup to see the full EPA report for your local water utility, including PFAS detections, violation history, and filter recommendations matched to your actual contaminant profile.'
+              a: 'Enter your ZIP code on WaterCheckup to see the full EPA report for your local public water system, including PFAS detections, violation history, and filter recommendations matched to your actual contaminant profile.'
             },
           ].map(({ q, a }) => (
             <div key={q} style={{ marginBottom: 16, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
@@ -217,7 +217,7 @@ export default async function WorstWaterPage() {
 
         {/* Data source note */}
         <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
-          <strong style={{ color: '#a8b4c4' }}>Data source:</strong> U.S. Environmental Protection Agency, 5th Unregulated Contaminant Monitoring Rule (UCMR5) national dataset, 2023–2025. Rankings reflect maximum PFAS concentration across all sampling points per public water system ID. MCL = Maximum Contaminant Level. ppt = parts per trillion. Data current as of publication date. Water quality can change — always check your utility&apos;s most recent Consumer Confidence Report for the latest readings.
+          <strong style={{ color: '#a8b4c4' }}>Data source:</strong> U.S. Environmental Protection Agency, 5th Unregulated Contaminant Monitoring Rule (UCMR5) national dataset, 2023–2025. Rankings reflect maximum PFAS concentration across all sampling points per public water system ID. MCL = Maximum Contaminant Level. ppt = parts per trillion. Data current as of publication date. Water quality can change — always check your public water system&apos;s most recent Consumer Confidence Report for the latest readings.
         </div>
 
       </div>

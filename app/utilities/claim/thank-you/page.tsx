@@ -6,7 +6,7 @@ import { stateLabel } from '@/lib/us-state-names';
 
 export const metadata: Metadata = {
   title: 'Claim Received | WaterCheckup',
-  description: 'Your utility CCR claim has been received. We will verify and set up your official listing within 2 business days.',
+  description: 'Your public water system CCR claim has been received. We will verify and set up your official listing within 2 business days.',
   robots: { index: false, follow: false },
 };
 
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function UtilityClaimThankYouPage({ searchParams }: Props) {
-  const utilityName = searchParams.utility?.trim() || 'your utility';
+  const utilityName = searchParams.utility?.trim() || 'your public water system';
   const stateCode = searchParams.state?.trim().toUpperCase() || '';
   const email = searchParams.email?.trim() || 'the email you provided';
   const stateListingHref = stateCode ? `/utilities/${stateCode.toLowerCase()}` : '/utilities';
@@ -72,7 +72,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
             <li>
               <Link href={stateListingHref} style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
-                View your current utility listing →
+                View your current public water system listing →
               </Link>
               {stateCode ? (
                 <span style={{ display: 'block', fontSize: 13, color: '#a8b4c4', marginTop: 4 }}>

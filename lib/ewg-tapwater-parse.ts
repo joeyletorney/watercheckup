@@ -38,7 +38,7 @@ export function normalizeEwgContaminantName(raw: string): string {
     .replace(/\bPfas\b/i, 'PFAS');
 }
 
-/** Extract utility-average contaminants from EWG system.php HTML */
+/** Extract public water system-average contaminants from EWG system.php HTML */
 export function parseEwgSystemPageHtml(html: string): EwgParsedContaminant[] {
   const parts = html.split(/<h3[^>]*>/i);
   const out: EwgParsedContaminant[] = [];
@@ -53,7 +53,7 @@ export function parseEwgSystemPageHtml(html: string): EwgParsedContaminant[] {
     if (!rawName || rawName.length > 120) continue;
 
     const body = part.slice(close + 5);
-    const levelMatch = body.match(/This Utility:\s*([\d.]+)\s*(ppb|ppm|ppt|pCi\/L|NTU|μg\/L|ug\/L)/i);
+    const levelMatch = body.match(/This Public water system:\s*([\d.]+)\s*(ppb|ppm|ppt|pCi\/L|NTU|μg\/L|ug\/L)/i);
     if (!levelMatch) continue;
 
     const level = parseFloat(levelMatch[1]);

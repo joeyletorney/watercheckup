@@ -1,4 +1,4 @@
-/** USPS / common jurisdiction labels for utility `state` codes (from SDWIS PWSID / STATE_CODE). */
+/** USPS / common jurisdiction labels for public water system `state` codes (from SDWIS PWSID / STATE_CODE). */
 export const USPS_STATE_NAMES: Record<string, string> = {
   AL: "Alabama",
   AK: "Alaska",

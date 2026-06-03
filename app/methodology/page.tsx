@@ -31,7 +31,7 @@ export default function MethodologyPage() {
           Data sources & methodology
         </h1>
         <p style={{ ...p, fontSize: 16 }}>
-          WaterCheckup pulls from the same public federal databases that water utilities report to. We merge them by ZIP code, translate the results into plain language, and match them to filter recommendations. We are not a laboratory and we do not sample your tap.
+          WaterCheckup pulls from the same public federal databases that public water systems report to. We merge them by ZIP code, translate the results into plain language, and match them to filter recommendations. We are not a laboratory and we do not sample your tap.
         </p>
         <p style={{ ...p, marginBottom: 36 }}>
           This page explains every data source we use, how the Water Quality Score is calculated, and what our reports do — and don't — tell you.
@@ -44,7 +44,7 @@ export default function MethodologyPage() {
           <span style={tag}>SOURCE 1</span>
           <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>EPA SDWIS — Safe Drinking Water Information System</span>
           <p style={{ ...p, margin: '10px 0 0' }}>
-            SDWIS is the EPA's master registry of all 150,000+ public water systems in the United States. It tracks every reported violation — health-based, monitoring, and reporting — along with enforcement actions, penalties, and compliance status. We query SDWIS live for every ZIP search so you always see the most current violation record on file. A "violation" means a utility exceeded an EPA limit or failed to properly test and report. Most violations are monitoring failures (late or missing tests), but health-based violations for things like PFAS, nitrates, or disinfection byproducts are the ones that matter most.
+            SDWIS is the EPA's master registry of all 150,000+ public water systems in the United States. It tracks every reported violation — health-based, monitoring, and reporting — along with enforcement actions, penalties, and compliance status. We query SDWIS live for every ZIP search so you always see the most current violation record on file. A "violation" means a public water system exceeded an EPA limit or failed to properly test and report. Most violations are monitoring failures (late or missing tests), but health-based violations for things like PFAS, nitrates, or disinfection byproducts are the ones that matter most.
           </p>
           <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EPA ECHO / SDWIS public API</a>
@@ -55,7 +55,7 @@ export default function MethodologyPage() {
           <span style={tag}>SOURCE 2</span>
           <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>EPA UCMR5 — Unregulated Contaminant Monitoring Rule (2023–2025)</span>
           <p style={{ ...p, margin: '10px 0 0' }}>
-            The UCMR is how EPA tests for contaminants that don't yet have federal limits. UCMR5 is the fifth round and is the most comprehensive PFAS dataset ever collected — utilities were required to test for 29 PFAS compounds between 2023 and 2025 and report results to EPA. We ship a snapshot of the UCMR5 results database inside the app and match it to your water system by PWSID. This is how we show you specific PFAS compound levels (in parts per trillion) even before your utility is required to include them in their annual water quality report.
+            The UCMR is how EPA tests for contaminants that don't yet have federal limits. UCMR5 is the fifth round and is the most comprehensive PFAS dataset ever collected — public water systems were required to test for 29 PFAS compounds between 2023 and 2025 and report results to EPA. We ship a snapshot of the UCMR5 results database inside the app and match it to your water system by PWSID. This is how we show you specific PFAS compound levels (in parts per trillion) even before your public water system is required to include them in their annual water quality report.
           </p>
           <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://www.epa.gov/dwucmr" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EPA UCMR5 public dataset</a>
@@ -66,7 +66,7 @@ export default function MethodologyPage() {
           <span style={tag}>SOURCE 3</span>
           <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>EPA Lead & Copper Rule — Tap Sampling Results</span>
           <p style={{ ...p, margin: '10px 0 0' }}>
-            Lead doesn't come from source water — it leaches from aging lead service lines and in-home plumbing into your tap. The EPA's Lead & Copper Rule requires utilities to collect tap samples from high-risk homes (typically those with older plumbing) and report the 90th percentile result. We surface these results alongside a flag if the action level of 15 ppb has been approached or exceeded. Keep in mind: sampling is done at a limited number of high-risk homes, not at every tap. Your home's actual lead exposure depends on its plumbing age and whether your service line is lead.
+            Lead doesn't come from source water — it leaches from aging lead service lines and in-home plumbing into your tap. The EPA's Lead & Copper Rule requires public water systems to collect tap samples from high-risk homes (typically those with older plumbing) and report the 90th percentile result. We surface these results alongside a flag if the action level of 15 ppb has been approached or exceeded. Keep in mind: sampling is done at a limited number of high-risk homes, not at every tap. Your home's actual lead exposure depends on its plumbing age and whether your service line is lead.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default function MethodologyPage() {
           <span style={tag}>SOURCE 4</span>
           <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>EPA Lead Service Line Inventory</span>
           <p style={{ ...p, margin: '10px 0 0' }}>
-            As of October 2024, all US water utilities are required by federal rule to publish an inventory of their lead service lines. We pull this data where available to flag whether your utility has a significant number of known lead lines still in service. This is a utility-level number — it tells you whether lead line risk exists in your system, not whether your specific address is affected. For address-level lookup tools, we link to city-specific resources where they exist (e.g. Chicago, NYC, Philadelphia).
+            As of October 2024, all US public water systems are required by federal rule to publish an inventory of their lead service lines. We pull this data where available to flag whether your public water system has a significant number of known lead lines still in service. This is a public water system-level number — it tells you whether lead line risk exists in your system, not whether your specific address is affected. For address-level lookup tools, we link to city-specific resources where they exist (e.g. Chicago, NYC, Philadelphia).
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function MethodologyPage() {
           <span style={tag}>SOURCE 5</span>
           <span style={{ fontSize: 14, fontWeight: 800, color: '#f1f5f9' }}>EPA ECHO Enforcement & Compliance History</span>
           <p style={{ ...p, margin: '10px 0 0' }}>
-            Beyond violation records, ECHO tracks formal enforcement actions, inspection history, and penalty data. A utility can have an open violation and still be working toward compliance — or it can have a history of repeat violations that suggest a systemic problem. We use enforcement history to contextualize the violation record and flag utilities with patterns of non-compliance that a raw violation count might underrepresent.
+            Beyond violation records, ECHO tracks formal enforcement actions, inspection history, and penalty data. A public water system can have an open violation and still be working toward compliance — or it can have a history of repeat violations that suggest a systemic problem. We use enforcement history to contextualize the violation record and flag public water systems with patterns of non-compliance that a raw violation count might underrepresent.
           </p>
           <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0' }}>
             Source: <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ color: '#22d3ee' }}>EPA ECHO Enforcement and Compliance History Online</a>
@@ -106,7 +106,7 @@ export default function MethodologyPage() {
           Every ZIP report includes a Water Quality Score from 0–100 and a letter grade (A–F). The score is a summary of the regulatory and monitoring signals described above — it is not a lab test result and it is not a medical assessment. Here's how it works:
         </p>
         <h3 style={h3}>Starting point</h3>
-        <p style={p}>No public municipal water supply scores above 88. Even "clean" water has chlorine, disinfection byproducts, and trace unmonitored contaminants that federal testing doesn't fully capture. This floors the grade — no utility gets a perfect score.</p>
+        <p style={p}>No public municipal water supply scores above 88. Even "clean" water has chlorine, disinfection byproducts, and trace unmonitored contaminants that federal testing doesn't fully capture. This floors the grade — no public water system gets a perfect score.</p>
         <h3 style={h3}>Deductions</h3>
         <p style={p}>Points are deducted for: open health-based violations (−15 to −40 depending on severity), PFAS detections above the EPA MCL of 4 ppt (−25), multiple PFAS compound detections (−6 to −12), confirmed lead tap sample exceedances, and the number and type of issues flagged in the report. Monitoring/reporting violations count less than health-based violations.</p>
         <h3 style={h3}>Grade bands</h3>
@@ -132,7 +132,7 @@ export default function MethodologyPage() {
         <div style={warn}>
           <strong style={{ color: '#f87171' }}>What our reports don't tell you:</strong>
           <ul style={{ margin: '8px 0 0', paddingLeft: 20, lineHeight: 1.8 }}>
-            <li>Whether your specific home's plumbing adds contaminants (especially lead). In-home plumbing can leach lead regardless of what your utility reports.</li>
+            <li>Whether your specific home's plumbing adds contaminants (especially lead). In-home plumbing can leach lead regardless of what your public water system reports.</li>
             <li>Whether your private well is contaminated — SDWIS only covers public water systems. Well users should test annually through a certified lab.</li>
             <li>Contaminants that aren't federally regulated and haven't been tested under UCMR. There are thousands of chemicals in use that EPA hasn't set limits for.</li>
             <li>Very recent changes — EPA violation data can lag 30–90 days behind real-world events. A boil water advisory issued this week may not yet be in SDWIS.</li>
@@ -145,12 +145,12 @@ export default function MethodologyPage() {
           SDWIS violation data is queried live from the EPA ECHO API each time you search — it reflects whatever EPA has on file at that moment. UCMR5 PFAS data is a snapshot packaged into the app (the federal dataset was finalized in 2025 and updates infrequently). Lead pipe inventory data is pulled from federal reporting as of late 2024. Each report includes data freshness notes where we can surface them.
         </p>
         <p style={p}>
-          For the most current data, always cross-reference the official EPA links included in your report, and call your utility directly if you have concerns about recent events.
+          For the most current data, always cross-reference the official EPA links included in your report, and call your public water system directly if you have concerns about recent events.
         </p>
 
         <h2 style={h2}>Who we are</h2>
         <p style={p}>
-          WaterCheckup is an independent water quality information service. We are not affiliated with the EPA, the EWG, or any water utility. We earn revenue through affiliate links to water filters — our recommendations are based on certifications and third-party test data, not paid placements. The affiliate relationship does not influence which data we surface or how we calculate scores.
+          WaterCheckup is an independent water quality information service. We are not affiliated with the EPA, the EWG, or any public water system. We earn revenue through affiliate links to water filters — our recommendations are based on certifications and third-party test data, not paid placements. The affiliate relationship does not influence which data we surface or how we calculate scores.
         </p>
 
         <div style={{ marginTop: 40, paddingTop: 28, borderTop: '1px solid #0f2336', display: 'flex', gap: 20, flexWrap: 'wrap' }}>

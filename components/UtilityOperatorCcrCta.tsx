@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type Variant = 'utility-footer' | 'city-footer' | 'state-directory';
+type Variant = 'public water system-footer' | 'city-footer' | 'state-directory';
 
 type Props = {
   variant: Variant;
@@ -10,8 +10,8 @@ type Props = {
 export function UtilityOperatorCcrCta({ variant, utilityName }: Props) {
   if (variant === 'state-directory') {
     return (
-      <p className="wc-utility-operator-cta wc-utility-operator-cta--directory">
-        Is your utility listed?{' '}
+      <p className="wc-public water system-operator-cta wc-public water system-operator-cta--directory">
+        Is your public water system listed?{' '}
         <Link href="/utilities/claim">Claim your free listing →</Link>
       </p>
     );
@@ -19,15 +19,15 @@ export function UtilityOperatorCcrCta({ variant, utilityName }: Props) {
 
   if (variant === 'city-footer') {
     return (
-      <p className="wc-utility-operator-cta wc-utility-operator-cta--city">
-        Water utility operators:{' '}
+      <p className="wc-public water system-operator-cta wc-public water system-operator-cta--city">
+        Water public water system operators:{' '}
         <Link href="/utilities/claim">Publish your official CCR on WaterCheckup free →</Link>
       </p>
     );
   }
 
   return (
-    <p className="wc-utility-operator-cta wc-utility-operator-cta--utility-footer">
+    <p className="wc-public water system-operator-cta wc-public water system-operator-cta--public water system-footer">
       {utilityName ? (
         <>
           Water operator for {utilityName}?{' '}
@@ -35,7 +35,7 @@ export function UtilityOperatorCcrCta({ variant, utilityName }: Props) {
         </>
       ) : (
         <>
-          Water utility operator?{' '}
+          Water public water system operator?{' '}
           <Link href="/utilities/claim">Claim your free listing →</Link>
         </>
       )}

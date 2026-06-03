@@ -150,7 +150,7 @@ function getUtilityWhy(
   if ((u.primarySource ?? "").toLowerCase().includes("ground")) {
     return `Chosen for ${u.name} because groundwater supplies can carry nitrates, arsenic, and localized contamination. RO is the strongest barrier for sensitive households.`;
   }
-  return `Chosen for ${u.name} because utilities meet legal limits — not necessarily health-based thresholds for every contaminant. RO removes PFAS, lead from home plumbing, and disinfection byproducts in one system.`;
+  return `Chosen for ${u.name} because public water systems meet legal limits — not necessarily health-based thresholds for every contaminant. RO removes PFAS, lead from home plumbing, and disinfection byproducts in one system.`;
 }
 
 function computeUtilityGrade(
@@ -200,7 +200,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const u = getUtilityByStateSlug(params.state, params.slug);
   if (!u) {
-    return { title: "Utility report | WaterCheckup" };
+    return { title: "Public water system report | WaterCheckup" };
   }
   const path = `/utilities/${params.state.toLowerCase()}/${params.slug}`;
   return {
@@ -256,7 +256,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
             <Link href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
-              Utilities
+              Public water systems
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
             <Link
@@ -532,7 +532,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
             <p style={{ fontSize: 14, color: "#e2e8f0", lineHeight: 1.75, margin: "0 0 14px" }}>
               EPA’s national SDWA quarterly files associate{" "}
               <strong style={{ color: "#f1f5f9" }}>{vc}</strong> violation-related record
-              {vc === 1 ? "" : "s"} with this system in the same reporting quarter as the utility snapshot used on WaterCheckup.
+              {vc === 1 ? "" : "s"} with this system in the same reporting quarter as the public water system snapshot used on WaterCheckup.
               This is not a complete historical docket — see ECHO and SDWIS for full compliance context.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -633,7 +633,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
             href={`/utilities/${params.state.toLowerCase()}`}
             style={{ fontSize: 15, fontWeight: 700, color: "#0891b2", textDecoration: "none" }}
           >
-            See all utilities in {stLabel} →
+            See all public water systems in {stLabel} →
           </Link>
         </div>
 
@@ -648,7 +648,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           }}
         />
 
-        <UtilityOperatorCcrCta variant="utility-footer" utilityName={u.name} />
+        <UtilityOperatorCcrCta variant="public water system-footer" utilityName={u.name} />
 
         <div
           style={{

@@ -7,7 +7,7 @@ import { stateLabel } from "@/lib/us-state-names";
 import { getUniqueUtilityStatesLowercase } from "@/lib/utilities-data";
 
 export const metadata: Metadata = {
-  title: "Public water utilities (EPA) | WaterCheckup",
+  title: "Public Water Systems (EPA) | WaterCheckup",
   description: "Browse EPA SDWIS public water systems by state — violations snapshots, PFAS data, and filter guidance.",
   alternates: { canonical: "https://watercheckup.com/utilities" },
 };
@@ -26,7 +26,7 @@ export default function UtilitiesIndexPage() {
     <div style={{ minHeight: "100vh", color: "#e2e8f0", fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
-        <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f1f5f9", margin: "0 0 12px" }}>Water utilities by state</h1>
+        <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f1f5f9", margin: "0 0 12px" }}>Public water systems by state</h1>
         <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 20px", lineHeight: 1.6 }}>
           Full PWS directory from EPA’s national SDWA release — same family of data as{" "}
           <Link href="https://echo.epa.gov/" style={{ color: "#22d3ee" }}>

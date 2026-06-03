@@ -50,7 +50,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>How to read hardness</h2>
         <p style={pStyle}>
-          Utilities sometimes report hardness as mg/L CaCO₃ or grains per gallon (gpg). Your CCR may include it; if not, a home test strip or lab panel can quantify it.
+          Public water systems sometimes report hardness as mg/L CaCO₃ or grains per gallon (gpg). Your CCR may include it; if not, a home test strip or lab panel can quantify it.
         </p>
         <h2 style={h2Style}>Salt softeners vs. salt-free conditioners</h2>
         <p style={pStyle}>
@@ -130,7 +130,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>What EPA regulates</h2>
         <p style={pStyle}>
-          EPA sets a standard for <strong style={strongStyle}>total chromium</strong> in drinking water. Utilities may also monitor or report additional information depending on state rules and UCMR monitoring cycles. Your CCR is the first place to look for detections.
+          EPA sets a standard for <strong style={strongStyle}>total chromium</strong> in drinking water. Public water systems may also monitor or report additional information depending on state rules and UCMR monitoring cycles. Your CCR is the first place to look for detections.
         </p>
         <h2 style={h2Style}>Hollywood vs. your tap</h2>
         <p style={pStyle}>
@@ -297,7 +297,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          A <strong style={strongStyle}>boil water advisory</strong> usually means the utility suspects or confirms microbial contamination — or a loss of pressure that can let contaminated water into the system.
+          A <strong style={strongStyle}>boil water advisory</strong> usually means the public water system suspects or confirms microbial contamination — or a loss of pressure that can let contaminated water into the system.
         </p>
         <div style={warnStyle}>
           <strong style={{ color: '#ef4444' }}>Do this: </strong>
@@ -305,11 +305,11 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </div>
         <h2 style={h2Style}>What to avoid</h2>
         <p style={pStyle}>
-          Do not assume your refrigerator filter, pitcher, or shower filter removes bacteria. <strong style={strongStyle}>Home RO systems are not typically certified as microbiological purifiers</strong> for boil notices — follow utility guidance.
+          Do not assume your refrigerator filter, pitcher, or shower filter removes bacteria. <strong style={strongStyle}>Home RO systems are not typically certified as microbiological purifiers</strong> for boil notices — follow public water system guidance.
         </p>
         <h2 style={h2Style}>After it lifts</h2>
         <p style={pStyle}>
-          Flush taps as directed. Replace filters if your utility or manufacturer recommends it after contamination events.
+          Flush taps as directed. Replace filters if your public water system or manufacturer recommends it after contamination events.
         </p>
       </>
     ),

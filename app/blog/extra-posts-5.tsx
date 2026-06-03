@@ -112,7 +112,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Before buying any filter, check what\'s actually in your tap water. Enter your ZIP on ',
         React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
-        ' to see your utility\'s PFAS levels, violations, and contaminant-matched filter recommendations — free, no login. If your city has PFAS above EPA limits, you need NSF 58. If lead is the concern, NSF 53 is sufficient. The right filter depends on your specific water.'
+        ' to see your public water system\'s PFAS levels, violations, and contaminant-matched filter recommendations — free, no login. If your city has PFAS above EPA limits, you need NSF 58. If lead is the concern, NSF 53 is sufficient. The right filter depends on your specific water.'
       ),
 
       React.createElement('div', { style: { margin: '32px 0', padding: '18px 22px', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: 10 } },
@@ -201,7 +201,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Pelican PC600 — Best for Chloramine Cities'),
       React.createElement('p', { style: pStyle },
-        'About 30% of US utilities use chloramine instead of chlorine as a disinfectant. Chloramine is harder to remove than chlorine and requires a different carbon media. The Pelican PC600 is specifically formulated for chloramine reduction with a 6-year filter life and WQA Gold Seal. If your utility uses chloramine (check your annual CCR), this is the right system.'
+        'About 30% of US public water systems use chloramine instead of chlorine as a disinfectant. Chloramine is harder to remove than chlorine and requires a different carbon media. The Pelican PC600 is specifically formulated for chloramine reduction with a 6-year filter life and WQA Gold Seal. If your public water system uses chloramine (check your annual CCR), this is the right system.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Do You Need Whole-House or Just Under-Sink?'),
@@ -215,7 +215,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The right system depends entirely on what\'s in your water. Enter your ZIP on ',
         React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
-        ' to see your utility\'s contaminant profile — PFAS levels, THMs, violations, and contaminant-matched filter recommendations. If you\'re in a hard water area, see our ',
+        ' to see your public water system\'s contaminant profile — PFAS levels, THMs, violations, and contaminant-matched filter recommendations. If you\'re in a hard water area, see our ',
         React.createElement('a', { href: '/blog/best-water-filter-hard-water', style: linkStyle }, 'best hard water filter guide'),
         '. Or take the ',
         React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
@@ -291,7 +291,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The single most important step before buying is checking what\'s actually in your water. Enter your ZIP on ',
         React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
-        ' to see your utility\'s PFAS levels, lead testing results, violations, and a contaminant-matched filter recommendation. If PFAS is detected above EPA limits, get the G3P800 or SmartFlow. If lead is the only concern and your budget is tight, the SK99 is sufficient. Or take the ',
+        ' to see your public water system\'s PFAS levels, lead testing results, violations, and a contaminant-matched filter recommendation. If PFAS is detected above EPA limits, get the G3P800 or SmartFlow. If lead is the only concern and your budget is tight, the SK99 is sufficient. Or take the ',
         React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
         ' and we\'ll match you to the right system in 60 seconds.'
       ),
@@ -391,7 +391,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: { ...pStyle, marginTop: 28 } },
         'Check what\'s actually in your water before deciding — ',
         React.createElement('a', { href: '/', style: linkStyle }, 'enter your ZIP on WaterCheckup'),
-        ' to see your utility\'s PFAS levels, lead violations, and a contaminant-matched recommendation. Or take the ',
+        ' to see your public water system\'s PFAS levels, lead violations, and a contaminant-matched recommendation. Or take the ',
         React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
         '.'
       ),
@@ -439,7 +439,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Where the AquaTru Earns Its Premium: NSF 401'),
       React.createElement('p', { style: pStyle },
-        'The AquaTru Classic holds NSF 401 certification — a standard covering emerging contaminants beyond the NSF 58 scope, including certain microplastics, pharmaceuticals, and industrial chemicals. The K19-S does not hold NSF 401. If your water contains emerging contaminants that specifically fall under NSF 401 (check your utility\'s UCMR5 data at ',
+        'The AquaTru Classic holds NSF 401 certification — a standard covering emerging contaminants beyond the NSF 58 scope, including certain microplastics, pharmaceuticals, and industrial chemicals. The K19-S does not hold NSF 401. If your water contains emerging contaminants that specifically fall under NSF 401 (check your public water system\'s UCMR5 data at ',
         React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
         '), the AquaTru\'s additional certification is meaningful.'
       ),
@@ -462,7 +462,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: { ...pStyle, marginTop: 28 } },
         'Not sure which filter is right for your specific water? ',
         React.createElement('a', { href: '/', style: linkStyle }, 'Check your ZIP on WaterCheckup'),
-        ' to see your utility\'s PFAS and lead data, then take the ',
+        ' to see your public water system\'s PFAS and lead data, then take the ',
         React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
         ' for a personalized recommendation.'
       ),
@@ -496,12 +496,12 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     faq: [
       { q: 'Is Gaithersburg tap water safe to drink?', a: 'WSSC water meets all federal EPA standards and has no active violations. However, EPA UCMR5 monitoring detected PFAS at 6.7 ppt in the WSSC system — above EWG health guidelines. Homes built before 1986 also face lead risk from premise plumbing. For the cleanest possible drinking water, a reverse osmosis filter certified to NSF 58 removes PFAS and lead at the tap.' },
       { q: 'Does Gaithersburg water have PFAS?', a: 'Yes. EPA UCMR5 monitoring detected PFPeA at 6.7 ppt in the WSSC water system serving Gaithersburg. This is below the EPA\'s new legal limit of 10 ppt for PFPeA but above EWG\'s health guideline of 0.001 ppt. Only reverse osmosis or NSF 58/P473-certified filters remove PFAS reliably.' },
-      { q: 'Where does Gaithersburg water come from?', a: 'Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), one of the largest utilities in the US. WSSC draws primarily from the Potomac River at Little Falls and the Patuxent River at Rocky Gorge and Brighton Dam reservoirs.' },
+      { q: 'Where does Gaithersburg water come from?', a: 'Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), one of the largest public water systems in the US. WSSC draws primarily from the Potomac River at Little Falls and the Patuxent River at Rocky Gorge and Brighton Dam reservoirs.' },
       { q: 'What filter removes DBPs from Gaithersburg water?', a: 'Disinfection byproducts (TTHMs and HAAs) form when chlorine reacts with organic matter in Potomac River source water. Reverse osmosis and activated carbon filters both reduce DBPs. NSF 58 certified RO systems like the Waterdrop G3P800 remove DBPs along with PFAS and lead in one system.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Gaithersburg residents are served by WSSC Water — one of the largest utilities in the US, drawing from the Potomac and Patuxent rivers. By federal standards, WSSC water is compliant. But EPA UCMR5 monitoring tells a more complete story: PFAS has been detected, disinfection byproducts from Potomac source water are present, and homes built before 1986 carry lead risk from in-building plumbing. Here\'s what the data shows and the right filter for Gaithersburg.'
+        'Gaithersburg residents are served by WSSC Water — one of the largest public water systems in the US, drawing from the Potomac and Patuxent rivers. By federal standards, WSSC water is compliant. But EPA UCMR5 monitoring tells a more complete story: PFAS has been detected, disinfection byproducts from Potomac source water are present, and homes built before 1986 carry lead risk from in-building plumbing. Here\'s what the data shows and the right filter for Gaithersburg.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What EPA Data Shows for WSSC / Gaithersburg'),
@@ -560,14 +560,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
   // ─── POST 7: TOP 10 MOST PFAS-CONTAMINATED CITIES ────────────────────────
   'top-10-most-pfas-contaminated-cities': {
     title: 'Top 10 Most PFAS-Contaminated Cities in America (2026 EPA Data)',
-    excerpt: 'EPA UCMR5 monitoring revealed which US water systems have the highest PFAS levels above legal limits. Sugar Land TX leads at 672 ppt. Here are the worst 10 — and what residents can do.',
+    excerpt: 'EPA UCMR5 monitoring revealed which US water systems have the highest PFAS — regulated MCL violations and peak readings. Sugar Land TX leads Texas at 672 ppt 6:2 FTS. Here are the worst 10 — and what residents can do.',
     seo: {
       title: 'Top 10 Most PFAS-Contaminated Cities in America (2026 EPA Data)',
-      description: 'Based on EPA UCMR5 monitoring: the 10 US cities with the highest PFAS above EPA MCLs. Sugar Land TX tops the list at 672 ppt — 168× the legal limit. See if your city is on the list.',
+      description: 'Based on EPA UCMR5 monitoring: the 10 US cities with the worst PFAS in tap water — MCL violations and peak readings. Sugar Land TX has 672 ppt 6:2 FTS. See if your city is on the list.',
       canonical: 'https://watercheckup.com/blog/top-10-most-pfas-contaminated-cities',
       openGraph: {
         title: 'Top 10 Most PFAS-Contaminated Cities in the US (2026)',
-        description: 'Sugar Land TX has PFAS at 672 ppt — 168× the EPA limit. Based on federal UCMR5 data, here are the 10 worst PFAS-contaminated water systems in America.',
+        description: 'Sugar Land TX has 672 ppt 6:2 FTS in EPA monitoring — highest peak in Texas. Based on federal UCMR5 data, here are the 10 worst PFAS water systems in America.',
       },
     },
     date: '2026-06-01',
@@ -578,43 +578,49 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badgeColor: '#ef4444',
     topPicks: TOP_3_UNDERSINK,
     faq: [
-      { q: 'Which US city has the most PFAS in its tap water?', a: 'Based on EPA UCMR5 monitoring data, Sugar Land, Texas has the highest PFAS reading of any large US water system — 672 ppt, which is 168 times the EPA\'s legal limit for PFOA. Columbus, Ohio (220 ppt) and Pensacola, Florida (220 ppt) also rank among the worst nationally.' },
-      { q: 'How do I know if my city has PFAS in the water?', a: 'The EPA\'s UCMR5 program tested over 6,000 public water systems for PFAS between 2023 and 2025. You can check your specific utility\'s results for free at WaterCheckup.com — enter your ZIP code to see your utility\'s PFAS levels, violations, and filter recommendations.' },
+      { q: 'Which US city has the most PFAS in its tap water?', a: 'It depends how you rank. For peak UCMR5 readings, Sugar Land, Texas has 672 ppt of 6:2 FTS — the highest peak of any large Texas system (6:2 FTS is not yet EPA-regulated). For regulated MCL violations, Parkersburg WV (PFOA 179 ppt), NYC (PFOS 106 ppt), and Pensacola FL (four compounds over limits) rank among the worst.' },
+      { q: 'How do I know if my city has PFAS in the water?', a: 'The EPA\'s UCMR5 program tested over 6,000 public water systems for PFAS between 2023 and 2025. You can check your specific public water system\'s results for free at WaterCheckup.com — enter your ZIP code to see your public water system\'s PFAS levels, violations, and filter recommendations.' },
       { q: 'What removes PFAS from tap water?', a: 'Reverse osmosis (RO) certified to NSF/ANSI 58 is the gold standard for PFAS removal, removing 99%+ of all PFAS compounds. Some NSF P473-certified pitcher filters also remove PFAS. Standard carbon filters, including Brita, do NOT reliably remove PFAS.' },
-      { q: 'Is the EPA enforcing PFAS limits in drinking water?', a: 'Yes — the EPA finalized its first-ever PFAS drinking water standards in April 2024, setting MCLs of 4 ppt for PFOA and PFOS and 10 ppt for PFNA, PFHxS, and HFPO-DA. Utilities have until 2029 to comply. Many currently exceed these limits.' },
+      { q: 'Is the EPA enforcing PFAS limits in drinking water?', a: 'Yes — the EPA finalized its first-ever PFAS drinking water standards in April 2024, setting MCLs of 4 ppt for PFOA and PFOS and 10 ppt for PFNA, PFHxS, and HFPO-DA. Public water systems have until 2029 to comply. Many currently exceed these limits.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'In 2024, the EPA set its first-ever legal limits for PFAS "forever chemicals" in drinking water — 4 parts per trillion for PFOA and PFOS. Within months, it became clear that thousands of US water systems were already over the limit. The EPA\'s UCMR5 monitoring program tested over 6,000 utilities. The results were alarming. Here are the 10 most contaminated cities based on confirmed EPA data.'
+        'In 2024, the EPA set its first-ever legal limits for PFAS "forever chemicals" in drinking water — 4 parts per trillion for PFOA and PFOS. Within months, it became clear that thousands of US water systems were already over the limit. The EPA\'s UCMR5 monitoring program tested over 6,000 public water systems. The results were alarming. Here are the 10 most contaminated cities based on confirmed EPA data.'
       ),
       React.createElement('p', { style: pStyle },
         'For city-by-city grades, contaminant tables, and filter picks, start with our ',
         React.createElement('a', { href: '/water/sugar-land', style: linkStyle }, 'Sugar Land water quality report'),
-        ' — the highest PFAS reading of any large US system in the dataset at 672 ppt.',
+        ' — 672 ppt 6:2 FTS peak in EPA monitoring (highest in Texas).',
       ),
 
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#ef4444' } }, '⚠ Data source: '),
-        'All figures below come directly from the EPA\'s 5th Unregulated Contaminant Monitoring Rule (UCMR5) dataset, 2023–2025. MCL = Maximum Contaminant Level (the legal limit). ppt = parts per trillion.'
+        'All figures below come from the EPA UCMR5 dataset (2023–2025). MCL = Maximum Contaminant Level for regulated PFAS. Peak readings may include compounds not yet in the 2024 EPA rule — we label those separately. ppt = parts per trillion.'
       ),
 
-      React.createElement('h2', { style: h2Style }, '#1 — Sugar Land, TX: 672 ppt (168× the limit)'),
+      React.createElement('h2', { style: h2Style }, '#1 — Sugar Land, TX: 672 ppt 6:2 FTS (peak reading)'),
       React.createElement('p', { style: pStyle },
-        'Sugar Land, Texas has the highest PFAS reading of any large US water system in the UCMR5 dataset. Total PFAS: ',
-        React.createElement('strong', { style: strongStyle }, '672 ppt'),
-        ' — 168 times the EPA\'s 4 ppt limit for PFOA. The contamination is linked to industrial activity in the Brazos River corridor and Fort Bend County upstream sources. Sugar Land serves roughly 91,000 residents. ',
+        'Sugar Land has the highest ',
+        React.createElement('em', { style: { color: '#cbd5e1' } }, 'peak'),
+        ' PFAS reading of any large Texas water system in UCMR5: ',
+        React.createElement('strong', { style: strongStyle }, '672 ppt of 6:2 FTS'),
+        ' — a compound not yet covered by the EPA\'s six regulated PFAS limits. PFOA was also found at ',
+        React.createElement('strong', { style: strongStyle }, '4.1 ppt'),
+        ' (at the 4 ppt federal limit). Industrial activity in the Brazos River corridor is the likely source. ~91,000 residents. ',
         React.createElement('a', { href: '/water/sugar-land', style: linkStyle }, 'See the full Sugar Land water report →'),
+        ' · ',
+        React.createElement('a', { href: '/worst-pfas', style: linkStyle }, 'Regulated MCL rankings →'),
       ),
 
-      React.createElement('h2', { style: h2Style }, '#2 — Columbus, OH: 220 ppt (55× the limit)'),
+      React.createElement('h2', { style: h2Style }, '#2 — Columbus, OH: regulated PFAS above EPA limits'),
       React.createElement('p', { style: pStyle },
-        'Columbus water tested at 220 ppt total PFAS, with both PFOA (6.7 ppt) and PFOS (5.6 ppt) above EPA MCLs. The Scioto River — Columbus\'s primary source — has documented PFAS from upstream manufacturing in central Ohio. Columbus is Ohio\'s largest city, serving over 900,000 residents. ',
+        'Columbus Public Water System (OH2504412) had regulated PFAS above EPA MCLs in UCMR5 monitoring, with an 18.2 ppt peak reading. The Scioto River — Columbus\'s primary source — has documented PFAS from upstream manufacturing. Columbus serves over 900,000 residents. ',
         React.createElement('a', { href: '/water/columbus', style: linkStyle }, 'See the full Columbus water report →'),
       ),
 
       React.createElement('h2', { style: h2Style }, '#3 — Pensacola, FL: 220 ppt (4 MCL violations)'),
       React.createElement('p', { style: pStyle },
-        'The Emerald Coast Utilities Authority (ECUA) serving Pensacola and Escambia County tested at 220 ppt across four PFAS compounds above EPA limits: PFHxS (55.3 ppt — 5.5× the limit), PFOS (35.7 ppt), PFOA (25.8 ppt), and PFNA (16.2 ppt). The contamination is directly linked to AFFF firefighting foam use at Eglin Air Force Base over several decades. ',
+        'The Emerald Coast Public water systems Authority (ECUA) serving Pensacola and Escambia County tested at 220 ppt across four PFAS compounds above EPA limits: PFHxS (55.3 ppt — 5.5× the limit), PFOS (35.7 ppt), PFOA (25.8 ppt), and PFNA (16.2 ppt). The contamination is directly linked to AFFF firefighting foam use at Eglin Air Force Base over several decades. ',
         React.createElement('a', { href: '/water/pensacola', style: linkStyle }, 'See the full Pensacola water report →'),
       ),
 
@@ -642,7 +648,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, '#7 — Dallas, TX: 18 ppt (2 MCL violations)'),
       React.createElement('p', { style: pStyle },
-        'Dallas Water Utilities tested at 18.2 ppt total PFAS with PFOA (6.3 ppt), PFOS (5.1 ppt), and PFHxS (3.8 ppt) above or near EPA MCLs. Dallas also uses chloramine for disinfection — standard carbon filters don\'t remove it. ',
+        'Dallas Water Public water systems tested at 18.2 ppt total PFAS with PFOA (6.3 ppt), PFOS (5.1 ppt), and PFHxS (3.8 ppt) above or near EPA MCLs. Dallas also uses chloramine for disinfection — standard carbon filters don\'t remove it. ',
         React.createElement('a', { href: '/water/dallas', style: linkStyle }, 'See the full Dallas water report →'),
       ),
 

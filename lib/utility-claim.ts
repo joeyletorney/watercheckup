@@ -45,12 +45,12 @@ export function parseUtilityClaimFromJson(body: Record<string, unknown>): Utilit
     return {
       ok: false,
       error:
-        'Utility name, PWSID, state, contact name, title, email, and phone are required.',
+        'Public water system name, PWSID, state, contact name, title, email, and phone are required.',
     };
   }
 
   if (!authorized) {
-    return { ok: false, error: 'You must confirm you are an authorized representative of this utility.' };
+    return { ok: false, error: 'You must confirm you are an authorized representative of this public water system.' };
   }
 
   return {
@@ -135,7 +135,7 @@ export async function sendUtilityClaimNotification(
   const stateName = stateLabel(data.state);
 
   if (!apiKey) {
-    console.warn('RESEND_API_KEY not set — utility claim logged only', {
+    console.warn('RESEND_API_KEY not set — public water system claim logged only', {
       utility: data.utilityName,
       pwsid: data.pwsid,
     });
@@ -143,14 +143,14 @@ export async function sendUtilityClaimNotification(
   }
 
   const rows: [string, string][] = [
-    ['Utility name', data.utilityName],
+    ['Public water system name', data.utilityName],
     ['PWSID', data.pwsid],
     ['State', `${data.state} (${stateName})`],
     ['Contact name', data.contactName],
     ['Title / role', data.contactTitle],
     ['Email', data.email],
     ['Phone', data.phone],
-    ['Utility website', data.utilityWebsite || '—'],
+    ['Public water system website', data.utilityWebsite || '—'],
     ['CCR PDF attached', data.ccrPdf ? `Yes (${data.ccrPdf.filename})` : 'No'],
     ['Authorized representative', 'Yes'],
   ];
@@ -164,7 +164,7 @@ export async function sendUtilityClaimNotification(
 
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="margin:0;background:#0a1628;font-family:system-ui,sans-serif;color:#e2e8f0;padding:24px;">
-  <h1 style="font-size:18px;color:#67e8f9;">New utility CCR claim — WaterCheckup</h1>
+  <h1 style="font-size:18px;color:#67e8f9;">New public water system CCR claim — WaterCheckup</h1>
   <table style="border-collapse:collapse;font-size:14px;max-width:560px;">${tableRows}</table>
   ${
     data.message
@@ -178,7 +178,7 @@ export async function sendUtilityClaimNotification(
     from,
     to: [notifyTo],
     reply_to: data.email,
-    subject: `New Utility Claim: ${data.utilityName} - ${data.state}`,
+    subject: `New Public water system Claim: ${data.utilityName} - ${data.state}`,
     html,
   };
 

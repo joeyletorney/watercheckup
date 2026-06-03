@@ -28,17 +28,17 @@ export function UtilityCcrSection({
   const published = isClaimed && ccr;
 
   return (
-    <section className="wc-utility-ccr-section" aria-labelledby="utility-ccr-heading">
-      <h2 id="utility-ccr-heading" className="wc-utility-ccr-section__title">
+    <section className="wc-public water system-ccr-section" aria-labelledby="public water system-ccr-heading">
+      <h2 id="public water system-ccr-heading" className="wc-public water system-ccr-section__title">
         Official Consumer Confidence Report (CCR)
       </h2>
 
       {published ? (
-        <div className="wc-utility-ccr-section__published">
-          <div className="wc-utility-ccr-section__badge-row">
-            <span className="wc-utility-ccr-section__verified">✅ Verified by WaterCheckup</span>
+        <div className="wc-public water system-ccr-section__published">
+          <div className="wc-public water system-ccr-section__badge-row">
+            <span className="wc-public water system-ccr-section__verified">✅ Verified by WaterCheckup</span>
           </div>
-          <p className="wc-utility-ccr-section__meta">
+          <p className="wc-public water system-ccr-section__meta">
             Report year <strong>{ccr.reportYear}</strong>
             {ccr.lastUpdated ? (
               <>
@@ -47,26 +47,26 @@ export function UtilityCcrSection({
               </>
             ) : null}
           </p>
-          <p className="wc-utility-ccr-section__publisher">Published by {utilityName}</p>
-          <p className="wc-utility-ccr-section__findings">{ccr.keyFindings}</p>
+          <p className="wc-public water system-ccr-section__publisher">Published by {utilityName}</p>
+          <p className="wc-public water system-ccr-section__findings">{ccr.keyFindings}</p>
           {ccr.pdfUrl ? (
             <a
               href={ccr.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="wc-utility-ccr-section__pdf-link"
+              className="wc-public water system-ccr-section__pdf-link"
             >
               View full CCR (PDF) →
             </a>
           ) : null}
         </div>
       ) : isClaimed ? (
-        <div className="wc-utility-ccr-section__claimed-pending">
-          <div className="wc-utility-ccr-section__badge-row">
-            <span className="wc-utility-ccr-section__verified">✅ Verified by WaterCheckup</span>
+        <div className="wc-public water system-ccr-section__claimed-pending">
+          <div className="wc-public water system-ccr-section__badge-row">
+            <span className="wc-public water system-ccr-section__verified">✅ Verified by WaterCheckup</span>
           </div>
-          <p className="wc-utility-ccr-section__publisher">Published by {utilityName}</p>
-          <p className="wc-utility-ccr-section__findings">
+          <p className="wc-public water system-ccr-section__publisher">Published by {utilityName}</p>
+          <p className="wc-public water system-ccr-section__findings">
             This listing is operator-verified. The full {reportYear} CCR summary and PDF will appear here once your team
             publishes them through WaterCheckup.
           </p>
@@ -76,12 +76,12 @@ export function UtilityCcrSection({
         </div>
       ) : (
         <>
-          <div className="wc-utility-ccr-section__unpublished-banner">
-            <p className="wc-utility-ccr-section__banner-lead">
+          <div className="wc-public water system-ccr-section__unpublished-banner">
+            <p className="wc-public water system-ccr-section__banner-lead">
               <span aria-hidden>📋</span> The official {reportYear} CCR for <strong>{utilityName}</strong> has not yet
               been published on WaterCheckup.
             </p>
-            <p className="wc-utility-ccr-section__operator-prompt">
+            <p className="wc-public water system-ccr-section__operator-prompt">
               Are you the water operator for <strong>{utilityName}</strong>? Publish your official CCR here for free —
               your customers are already finding this page.
             </p>
@@ -89,8 +89,8 @@ export function UtilityCcrSection({
               Claim This Listing Free →
             </Link>
           </div>
-          <p className="wc-utility-ccr-section__residents">
-            <strong>Residents:</strong> Your utility is required by EPA to publish an annual CCR by July 1st each year.
+          <p className="wc-public water system-ccr-section__residents">
+            <strong>Residents:</strong> Your public water system is required by EPA to publish an annual CCR by July 1st each year.
             Contact <strong>{utilityName}</strong> directly to request a copy, or check the EPA&apos;s national CCR portal
             at{' '}
             <a href={EPA_CCR_PORTAL_URL} target="_blank" rel="noopener noreferrer">

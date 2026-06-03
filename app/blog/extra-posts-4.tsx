@@ -28,7 +28,7 @@ const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
 const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 
-/** Editorial: large metros where regional geology and aquifers typically produce very hard tap water (not a single-utility ppm ranking). */
+/** Editorial: large metros where regional geology and aquifers typically produce very hard tap water (not a single-public water system ppm ranking). */
 const HARDEST_TEN_CITIES: readonly { slug: string; title: string; short: string; text: string }[] = [
   {
     slug: 'san-antonio',
@@ -46,7 +46,7 @@ const HARDEST_TEN_CITIES: readonly { slug: string; title: string; short: string;
     slug: 'phoenix',
     title: 'Phoenix, Arizona',
     short: 'Phoenix',
-    text: 'Desert surface water and groundwater pick up carbonates and sulfates from long residence time in aquifers. Utilities treat for safety, but hardness minerals are left largely in place — so scale on fixtures is the norm.',
+    text: 'Desert surface water and groundwater pick up carbonates and sulfates from long residence time in aquifers. Public water systems treat for safety, but hardness minerals are left largely in place — so scale on fixtures is the norm.',
   },
   {
     slug: 'tucson',
@@ -82,7 +82,7 @@ const HARDEST_TEN_CITIES: readonly { slug: string; title: string; short: string;
     slug: 'kansas-city',
     title: 'Kansas City, Missouri',
     short: 'Kansas City',
-    text: 'Pennsylvanian–Permian limestone and dolomite underlie much of the metro. Utilities blend multiple wells and river intakes; hardness swings seasonally but typically stays in the hard band year-round.',
+    text: 'Pennsylvanian–Permian limestone and dolomite underlie much of the metro. Public water systems blend multiple wells and river intakes; hardness swings seasonally but typically stays in the hard band year-round.',
   },
   {
     slug: 'dallas',
@@ -123,7 +123,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'There is no safe level of lead exposure during pregnancy. Lead crosses the placental barrier and accumulates in fetal tissue, where it can cause permanent neurological damage, lower IQ, and behavioral problems. The CDC and WHO both confirm there is no established safe threshold.'
       ),
       React.createElement('p', { style: pStyle },
-        'The risk is not always from your utility -- lead often leaches from older service lines and building plumbing. If your home was built before 1986, your pipes may contain lead solder or lead fixtures even if your water utility tests clean.'
+        'The risk is not always from your public water system -- lead often leaches from older service lines and building plumbing. If your home was built before 1986, your pipes may contain lead solder or lead fixtures even if your public water system tests clean.'
       ),
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#ef4444' } }, 'Key fact: '),
@@ -148,12 +148,12 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, '4. Disinfection Byproducts (DBPs)'),
       React.createElement('p', { style: pStyle },
-        'Trihalomethanes (THMs) and haloacetic acids (HAAs) form when chlorine reacts with organic matter in source water. Long-term DBP exposure has been associated with increased miscarriage risk, preterm birth, and low birth weight in multiple epidemiological studies. Most US utilities use chlorine or chloramine and therefore produce DBPs -- the question is how much.'
+        'Trihalomethanes (THMs) and haloacetic acids (HAAs) form when chlorine reacts with organic matter in source water. Long-term DBP exposure has been associated with increased miscarriage risk, preterm birth, and low birth weight in multiple epidemiological studies. Most US public water systems use chlorine or chloramine and therefore produce DBPs -- the question is how much.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What does NOT need to filter during pregnancy'),
       React.createElement('p', { style: pStyle },
-        'Fluoride at standard US levels (0.7 mg/L) is considered safe during pregnancy by the CDC and WHO. Calcium and magnesium from hard water are not a concern and are actually beneficial. Standard chlorine at utility levels is not a pregnancy risk -- it is the byproducts formed when chlorine reacts with organic matter that are the concern.'
+        'Fluoride at standard US levels (0.7 mg/L) is considered safe during pregnancy by the CDC and WHO. Calcium and magnesium from hard water are not a concern and are actually beneficial. Standard chlorine at public water system levels is not a pregnancy risk -- it is the byproducts formed when chlorine reacts with organic matter that are the concern.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The best filter for pregnant women'),
@@ -348,7 +348,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, '🚰 Lead: 15 ppb — the EPA action level'),
       React.createElement('p', { style: pStyle },
-        'The EPA requires utilities to take action if lead in tap water exceeds 15 ppb. Here\'s the accurate way to picture it:'
+        'The EPA requires public water systems to take action if lead in tap water exceeds 15 ppb. Here\'s the accurate way to picture it:'
       ),
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, '15 ppb = 15 drops spread across 15 backyard swimming pools. '),
@@ -387,12 +387,12 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'Your body doesn\'t flush lead or PFAS like it does water. Lead binds to bone. PFAS bind to proteins in your blood and accumulate in organs. Every glass you drink adds to the total. A child who drinks water with 15 ppb lead every day for 10 years has been accumulating lead in their developing brain for a decade. The individual daily dose sounds harmless — the lifetime accumulation is not.'
       ),
       React.createElement('p', { style: pStyle },
-        'This is also why scientists often argue for limits far below what\'s legally allowed. The EPA sets MCLs based on a combination of health science and what\'s technically feasible for utilities to achieve. The Environmental Working Group\'s health guideline for PFOA is 0.1 ppt — 40 times stricter than the EPA\'s limit of 4 ppt. Both are based on health research. The difference is what regulators believe utilities can practically achieve.'
+        'This is also why scientists often argue for limits far below what\'s legally allowed. The EPA sets MCLs based on a combination of health science and what\'s technically feasible for public water systems to achieve. The Environmental Working Group\'s health guideline for PFOA is 0.1 ppt — 40 times stricter than the EPA\'s limit of 4 ppt. Both are based on health research. The difference is what regulators believe public water systems can practically achieve.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How to read your own water report'),
       React.createElement('p', { style: pStyle },
-        'When you look at a water quality report — whether from your utility\'s Consumer Confidence Report or from WaterCheckup — here\'s what to focus on:'
+        'When you look at a water quality report — whether from your public water system\'s Consumer Confidence Report or from WaterCheckup — here\'s what to focus on:'
       ),
       React.createElement('div', { style: { margin: '16px 0 28px', display: 'flex', flexDirection: 'column' as const, gap: 10 } },
         ...[
@@ -432,7 +432,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
   'top-10-cities-hardest-tap-water': {
     title: 'Top 10 US Cities With the Hardest Tap Water (and What to Do About It)',
     excerpt:
-      'Hard water is about geology, not bad utility work. These ten major metros sit on aquifers and river sources where calcium and magnesium are naturally high — plus practical fixes for scale and drinking water.',
+      'Hard water is about geology, not bad public water system work. These ten major metros sit on aquifers and river sources where calcium and magnesium are naturally high — plus practical fixes for scale and drinking water.',
     seo: {
       title: 'Top 10 US Cities With the Hardest Tap Water (2026) | WaterCheckup',
       description:
@@ -461,11 +461,11 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'This list highlights ',
         React.createElement('strong', { style: strongStyle }, 'ten large US metros'),
-        ' where regional geology and typical utility blends ',
+        ' where regional geology and typical public water system blends ',
         React.createElement('strong', { style: strongStyle }, 'most often'),
         ' produce very hard tap water. It is ',
         React.createElement('strong', { style: strongStyle }, 'not'),
-        ' a milligram-for-milligram national utility leaderboard: your exact ZIP, well field, and seasonal blend can differ from a neighbor. Always read your Consumer Confidence Report or run a home hardness strip if you need a number for sizing a softener.'
+        ' a milligram-for-milligram national public water system leaderboard: your exact ZIP, well field, and seasonal blend can differ from a neighbor. Always read your Consumer Confidence Report or run a home hardness strip if you need a number for sizing a softener.'
       ),
 
       React.createElement('p', { style: pStyle },
@@ -483,7 +483,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Quick refresher: gpg vs mg/L'),
       React.createElement('p', { style: pStyle },
-        'Most utilities report hardness as CaCO₃. Rough guide: ',
+        'Most public water systems report hardness as CaCO₃. Rough guide: ',
         React.createElement('strong', { style: strongStyle }, '1 gpg ≈ 17.1 mg/L'),
         '. Water under ~60 mg/L (~3.5 gpg) feels soft; above ~120 mg/L (~7 gpg) most people call it hard; above ~180 mg/L (~10.5 gpg) is often labeled very hard in consumer literature. Your CCR may use either unit.'
       ),
@@ -538,7 +538,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         React.createElement('strong', { style: { color: '#fbbf24' } }, 'Heads-up: '),
         'If you see blue-green staining or pinhole leaks, that can signal ',
         React.createElement('strong', { style: strongStyle }, 'corrosive'),
-        ' water (low pH), not just hardness. Treating hardness without addressing corrosivity can worsen copper or lead release — get a full panel or ask your utility about LCR corrosion control.'
+        ' water (low pH), not just hardness. Treating hardness without addressing corrosivity can worsen copper or lead release — get a full panel or ask your public water system about LCR corrosion control.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Check your own ZIP'),

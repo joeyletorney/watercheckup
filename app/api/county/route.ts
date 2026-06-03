@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ utilities: [], county }, { headers: H });
     }
 
-    // For each utility get violation count
+    // For each public water system get violation count
     const utilities = await Promise.all(
       countyRows
         .sort((a, b) => (parseInt(f(b,'population_served_count'))||0) - (parseInt(f(a,'population_served_count'))||0))

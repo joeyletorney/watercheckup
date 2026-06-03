@@ -42,10 +42,10 @@ export const EXTRA_POSTS: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          The <strong style={strongStyle}>Consumer Confidence Report (CCR)</strong> is the annual water quality report your utility must provide (by July 1 for the previous calendar year). If you get a water bill, you should get a CCR — often by mail, email, or a link on the utility website.
+          The <strong style={strongStyle}>Consumer Confidence Report (CCR)</strong> is the annual water quality report your public water system must provide (by July 1 for the previous calendar year). If you get a water bill, you should get a CCR — often by mail, email, or a link on the public water system website.
         </p>
         <p style={pStyle}>
-          Think of it as the utility&apos;s report card: what was detected, at what levels, and how that compares to EPA limits. It is not a substitute for testing <em>your</em> plumbing, but it is the best free overview of your supplier&apos;s water.
+          Think of it as the public water system&apos;s report card: what was detected, at what levels, and how that compares to EPA limits. It is not a substitute for testing <em>your</em> plumbing, but it is the best free overview of your supplier&apos;s water.
         </p>
 
         <h2 style={h2Style}>Where to get your CCR</h2>
@@ -60,7 +60,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
         </p>
         <h3 style={h3Style}>2. Detected vs. not detected</h3>
         <p style={pStyle}>
-          Utilities test for many contaminants; <strong style={strongStyle}>“not detected”</strong> does not always mean zero — it means below the lab&apos;s reporting limit for that test. A detection at any level deserves context next to the EPA limit.
+          Public water systems test for many contaminants; <strong style={strongStyle}>“not detected”</strong> does not always mean zero — it means below the lab&apos;s reporting limit for that test. A detection at any level deserves context next to the EPA limit.
         </p>
         <h3 style={h3Style}>3. The MCL column</h3>
         <p style={pStyle}>
@@ -118,7 +118,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
 
         <div style={warnStyle}>
           <strong style={{ color: '#f59e0b' }}>Filter shopping: </strong>
-          A filter that only claims “chlorine reduction” may not perform the same for chloramine. Look for explicit chloramine reduction language and NSF listings that match what your utility uses.
+          A filter that only claims “chlorine reduction” may not perform the same for chloramine. Look for explicit chloramine reduction language and NSF listings that match what your public water system uses.
         </div>
 
         <h2 style={h2Style}>Byproducts: TTHM and HAA5 still apply</h2>
@@ -138,7 +138,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
 
         <h2 style={h2Style}>How to know which you have</h2>
         <p style={pStyle}>
-          Read your CCR or call your utility — they will state whether the residual disinfectant is chlorine, chloramine, or a combination. Match that to your filter&apos;s certifications.
+          Read your CCR or call your public water system — they will state whether the residual disinfectant is chlorine, chloramine, or a combination. Match that to your filter&apos;s certifications.
         </p>
       </>
     ),
@@ -157,7 +157,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          If you drink from a <strong style={strongStyle}>private well</strong>, you are your own water utility. There is no annual CCR in the mailbox — safety depends on regular testing and maintaining pumps, casings, and any treatment equipment.
+          If you drink from a <strong style={strongStyle}>private well</strong>, you are your own public water system. There is no annual CCR in the mailbox — safety depends on regular testing and maintaining pumps, casings, and any treatment equipment.
         </p>
 
         <div style={warnStyle}>
@@ -218,7 +218,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
 
         <h2 style={h2Style}>What TTHM and HAA5 are (in plain English)</h2>
         <p style={pStyle}>
-          They are families of chemical byproducts formed when disinfectants react with organics in source water. Utilities manage them with source-water treatment, coagulation, and careful dosing — but levels can still approach limits during certain seasons or conditions.
+          They are families of chemical byproducts formed when disinfectants react with organics in source water. Public water systems manage them with source-water treatment, coagulation, and careful dosing — but levels can still approach limits during certain seasons or conditions.
         </p>
 
         <h2 style={h2Style}>How EPA regulates them</h2>
@@ -233,7 +233,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
 
         <h2 style={h2Style}>Health context (high level)</h2>
         <p style={pStyle}>
-          Regulatory limits for DBPs balance long-term health risk against feasibility. If you want the deep dive, read your utility&apos;s CCR language on health effects — it is written for consumers and reviewed for accuracy.
+          Regulatory limits for DBPs balance long-term health risk against feasibility. If you want the deep dive, read your public water system&apos;s CCR language on health effects — it is written for consumers and reviewed for accuracy.
         </p>
 
         <h2 style={h2Style}>Practical ways to reduce exposure</h2>

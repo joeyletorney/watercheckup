@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { buildCityPageMetadata } from './city-seo-metadata';
 import { getCityPfasData } from './ucmr5-city-pfas';
+import { resolveCityPwsid } from './city-pwsid';
 import type { CityPfasSnapshot } from './city-water-score';
 
 /** High-traffic city pages — custom titles & descriptions for SEO */
@@ -38,7 +39,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
   chicago: {
     title: 'Chicago Tap Water 2026 — Lead Pipes, PFAS & Safety Grade',
     description:
-      'D+ grade: Chicago has 400,000+ lead service lines, 14.2 ppt PFAS, and chloramine DBPs. Free 2026 Chicago water quality report from EPA data.',
+      'D+ grade: Chicago has 150,000+ lead service lines, 14.2 ppt PFAS, and chloramine DBPs. Free 2026 Chicago water quality report from EPA data.',
   },
   phoenix: {
     title: 'Phoenix Tap Water 2026 — PFAS, Hardness & Safety Grade',
@@ -86,9 +87,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Charlotte water quality report with current EPA contamination data, PFAS levels, and filter recommendations for Charlotte, NC residents.',
   },
   'sugar-land': {
-    title: 'Sugar Land TX Water 2026 — PFAS at 672 ppt, Highest in Texas',
+    title: 'Sugar Land TX Water 2026 — 672 ppt 6:2 FTS, PFOA at EPA Limit',
     description:
-      'Sugar Land tap water has PFAS at 672 ppt — 168× the EPA limit and the highest reading of any large Texas water system. See the full contamination report and the only filter that removes it.',
+      'EPA UCMR5 found 672 ppt 6:2 FTS in Sugar Land water — the highest peak reading of any large Texas system. PFOA was detected at 4.1 ppt (at the EPA limit). See the full 2026 report and NSF 58 filter picks.',
   },
   miami: {
     title: 'Miami Tap Water 2026 — PFAS, Lead & Full Contamination Report',
@@ -101,14 +102,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Fort Worth tap water has PFAS at 102 ppt with PFHxS and PFOS above EPA limits. See the full 2026 contamination report, Trinity River source data, and filter picks for Fort Worth residents.',
   },
   columbus: {
-    title: 'Columbus OH Water 2026 — PFAS at 220 ppt, Lead & Safety Report',
+    title: 'Columbus OH Water 2026 — PFAS Violations & Safety Report',
     description:
-      'Columbus water has PFAS at 220 ppt with PFOA and PFOS above EPA MCLs. Scioto River industrial contamination. See the full 2026 report and filter recommendations.',
+      'Columbus Public Water System has regulated PFAS above EPA limits in UCMR5 monitoring (18 ppt peak). Scioto River source water. See the full 2026 Columbus water quality report and filter recommendations.',
   },
   dallas: {
     title: 'Dallas Tap Water 2026 — PFAS Violations & Quality Report',
     description:
-      'Dallas water has PFOA, PFOS, and PFHxS above EPA limits and elevated TTHMs from chloramine treatment. See the full 2026 Dallas Water Utilities report and filter picks.',
+      'Dallas water has PFOA, PFOS, and PFHxS above EPA limits and elevated TTHMs from chloramine treatment. See the full 2026 Dallas Water Public water systems report and filter picks.',
   },
   sacramento: {
     title: 'Sacramento Water 2026 — Lead 70 ppb + PFAS 41 ppt Violations',
@@ -173,7 +174,7 @@ export function metadataForPriorityCity(
   if (!seo) return null;
 
   if (city) {
-    return buildCityPageMetadata(slug, city, pfas ?? getCityPfasData(city.pwsid), seo);
+    return buildCityPageMetadata(slug, city, pfas ?? getCityPfasData(resolveCityPwsid(slug, city.pwsid)), seo);
   }
 
   const canonical = `https://watercheckup.com/water/${slug}`;

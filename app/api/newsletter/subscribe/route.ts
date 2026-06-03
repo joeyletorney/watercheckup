@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
         <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:8px">What triggers an alert:</div>
         <ul style="margin:0;padding-left:18px;color:#475569;font-size:13px;line-height:1.7">
           <li>New health-based violation reported in EPA SDWIS</li>
-          <li>Status changes on open violations in your local utility</li>
+          <li>Status changes on open violations in your local public water system</li>
           <li>Major contaminant risk updates tied to your ZIP</li>
         </ul>
       </div>
@@ -133,14 +133,14 @@ export async function POST(req: NextRequest) {
       </div>
 
       <div style="font-size:15px;color:#334155;line-height:1.7;margin-bottom:24px">
-        You're in${zip ? ` — we'll keep an eye on water quality near ZIP <strong style="color:#0f172a">${zip}</strong>` : ''}. Each week we'll send you one concise update: contaminant alerts, utility violations, and practical steps to protect your household.
+        You're in${zip ? ` — we'll keep an eye on water quality near ZIP <strong style="color:#0f172a">${zip}</strong>` : ''}. Each week we'll send you one concise update: contaminant alerts, public water system violations, and practical steps to protect your household.
       </div>
 
       <div style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:12px">The 4 contaminants most people don't know about</div>
 
       <div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:6px;padding:14px 16px;margin-bottom:10px">
         <div style="font-size:14px;font-weight:700;color:#dc2626;margin-bottom:4px">Lead</div>
-        <div style="font-size:13px;color:#475569;line-height:1.6">There is no safe level of lead exposure. It leaches from older pipes and fixtures — even if your utility water tests clean, it can contaminate at the tap. Children and pregnant women are most at risk.</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6">There is no safe level of lead exposure. It leaches from older pipes and fixtures — even if your public water system water tests clean, it can contaminate at the tap. Children and pregnant women are most at risk.</div>
       </div>
 
       <div style="background:#fff7ed;border-left:4px solid #f97316;border-radius:6px;padding:14px 16px;margin-bottom:10px">
@@ -155,11 +155,11 @@ export async function POST(req: NextRequest) {
 
       <div style="background:#f5f3ff;border-left:4px solid #8b5cf6;border-radius:6px;padding:14px 16px;margin-bottom:24px">
         <div style="font-size:14px;font-weight:700;color:#7c3aed;margin-bottom:4px">Disinfection Byproducts (DBPs)</div>
-        <div style="font-size:13px;color:#475569;line-height:1.6">Formed when chlorine or chloramine reacts with organic matter in water. Long-term exposure is associated with bladder cancer and adverse birth outcomes. Most utilities don't report these at the individual tap level.</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6">Formed when chlorine or chloramine reacts with organic matter in water. Long-term exposure is associated with bladder cancer and adverse birth outcomes. Most public water systems don't report these at the individual tap level.</div>
       </div>
 
       <div style="font-size:13px;color:#64748b;line-height:1.7;margin-bottom:20px">
-        Run your free local report to see what's actually in your water supply, your utility's violation history, and which filter — if any — is worth it for your situation.
+        Run your free local report to see what's actually in your water supply, your public water system's violation history, and which filter — if any — is worth it for your situation.
       </div>
 
       <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700">Run my free water report →</a>

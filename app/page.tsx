@@ -20,7 +20,7 @@ const ORGANIZATION_LD = {
   '@type': 'WebSite',
   name: 'WaterCheckup',
   url: 'https://watercheckup.com',
-  description: 'Free water quality database covering 400,000+ US utilities. Check PFAS, lead, EPA violations, and filter recommendations by ZIP code.',
+  description: 'Free water quality database covering all 50 states, all for free. Check PFAS, lead, EPA violations, and filter recommendations by ZIP code.',
   author: {
     '@type': 'Person',
     name: 'Joe Letorney',

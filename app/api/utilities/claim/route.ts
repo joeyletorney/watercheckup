@@ -5,7 +5,7 @@ import { parseUtilityClaimFromJson, sendUtilityClaimNotification } from '@/lib/u
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
 
-/** Legacy JSON endpoint — prefer POST /api/claim-utility with multipart. */
+/** Legacy JSON endpoint — prefer POST /api/claim-public water system with multipart. */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));

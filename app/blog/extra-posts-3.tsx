@@ -116,7 +116,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'What "Safe" Means Under US Law'),
       React.createElement('p', { style: pStyle },
-        'The EPA regulates tap water through the Safe Drinking Water Act (SDWA). It sets Maximum Contaminant Levels (MCLs) for about 90 contaminants. If your utility\'s water meets all MCLs, it is legally considered safe.'
+        'The EPA regulates tap water through the Safe Drinking Water Act (SDWA). It sets Maximum Contaminant Levels (MCLs) for about 90 contaminants. If your public water system\'s water meets all MCLs, it is legally considered safe.'
       ),
       React.createElement('p', { style: pStyle },
         'The problem: there are ',
@@ -137,7 +137,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Lead does not come from the water source — it comes from aging pipes and fixtures. The EPA estimates ',
         React.createElement('strong', { style: strongStyle }, '9 to 12 million homes'),
-        ' still have lead service lines connecting them to the water main. Even if your utility reports lead-free water at the treatment plant, it can pick up lead between there and your tap.'
+        ' still have lead service lines connecting them to the water main. Even if your public water system reports lead-free water at the treatment plant, it can pick up lead between there and your tap.'
       ),
       React.createElement('h3', { style: h3Style }, 'Communities near industrial sites or military bases'),
       React.createElement('p', { style: pStyle },
@@ -189,7 +189,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('h2', { style: h2Style }, '1. Chlorine or Bleach Taste'),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'What it is:'),
-        ' Water utilities add chlorine to kill bacteria. The taste varies — some people find it mild, others find it overwhelming, especially right after a utility flushes its lines.'
+        ' Water public water systems add chlorine to kill bacteria. The taste varies — some people find it mild, others find it overwhelming, especially right after a public water system flushes its lines.'
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'Fix:'),
@@ -199,7 +199,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('h2', { style: h2Style }, '2. Chloramine (Swimming Pool Smell)'),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'What it is:'),
-        ' Many utilities switched from chlorine to chloramine (chlorine + ammonia) because it lasts longer in the distribution system. Chloramine has a distinct "swimming pool" or chemical smell that is harder to remove than chlorine.'
+        ' Many public water systems switched from chlorine to chloramine (chlorine + ammonia) because it lasts longer in the distribution system. Chloramine has a distinct "swimming pool" or chemical smell that is harder to remove than chlorine.'
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'Fix:'),
@@ -351,7 +351,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
 
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, 'Bottom line: '),
-        'The evidence for dental benefits is strong. The neurological risk evidence is emerging but contested, and primarily at levels above 1.5 mg/L. If you have young children and want to minimize fluoride exposure as a precaution, an RO system is the most effective option. Check your utility report to see your actual fluoride level.'
+        'The evidence for dental benefits is strong. The neurological risk evidence is emerging but contested, and primarily at levels above 1.5 mg/L. If you have young children and want to minimize fluoride exposure as a precaution, an RO system is the most effective option. Check your public water system report to see your actual fluoride level.'
       ),
     ),
   },
@@ -447,7 +447,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       ),
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#ef4444' } }, '⚠ No safe level: '),
-        'The CDC states explicitly that there is no known safe blood lead level in children. Even low-level chronic exposure causes irreversible cognitive effects. The EPA\'s "action level" of 15 ppb in water is a trigger for utility action — not a threshold below which lead is safe.'
+        'The CDC states explicitly that there is no known safe blood lead level in children. Even low-level chronic exposure causes irreversible cognitive effects. The EPA\'s "action level" of 15 ppb in water is a trigger for public water system action — not a threshold below which lead is safe.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How Lead Gets Into Tap Water'),
@@ -457,7 +457,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The EPA estimates ',
         React.createElement('strong', { style: strongStyle }, '9 to 12 million homes'),
-        ' in the US still have lead service lines. The Biden administration\'s Lead and Copper Rule requires utilities to replace all lead service lines within 10 years — but replacement is slow and many homes won\'t be done for years.'
+        ' in the US still have lead service lines. The Biden administration\'s Lead and Copper Rule requires public water systems to replace all lead service lines within 10 years — but replacement is slow and many homes won\'t be done for years.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Signs and Symptoms of Lead Exposure'),
@@ -481,13 +481,13 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         React.createElement('strong', { style: strongStyle }, '1986'),
         ' are most likely to have lead solder in plumbing and may have lead service lines. Homes built before 1978 may also have lead paint that can contaminate water if pipes are disturbed. Homes built between 1986 and 2014 can still have "lead-free" brass fixtures that contain up to 8% lead under the pre-2014 standard.'
       ),
-      React.createElement('h3', { style: h3Style }, 'Check with your utility'),
+      React.createElement('h3', { style: h3Style }, 'Check with your public water system'),
       React.createElement('p', { style: pStyle },
-        'Call your water utility and ask if you have a lead service line. Under the revised Lead and Copper Rule, utilities are required to maintain inventories of lead service lines and make them available to customers.'
+        'Call your public water system and ask if you have a lead service line. Under the revised Lead and Copper Rule, public water systems are required to maintain inventories of lead service lines and make them available to customers.'
       ),
       React.createElement('h3', { style: h3Style }, 'Test your water'),
       React.createElement('p', { style: pStyle },
-        'A first-draw water test (water collected first thing in the morning after sitting overnight in pipes) gives the most accurate picture of lead at the tap. Send it to a certified lab — DIY test strips are not reliable enough for lead. Run your ZIP on WaterCheckup to see if your utility has lead violations on record.'
+        'A first-draw water test (water collected first thing in the morning after sitting overnight in pipes) gives the most accurate picture of lead at the tap. Send it to a certified lab — DIY test strips are not reliable enough for lead. Run your ZIP on WaterCheckup to see if your public water system has lead violations on record.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What Actually Removes Lead From Water'),
@@ -766,7 +766,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'How to Know If You Have PFAS in Your Water'),
       React.createElement('p', { style: pStyle },
-        'Enter your ZIP code on WaterCheckup to check your utility\'s PFAS testing results from the EPA\'s UCMR5 monitoring program. For example, see ',
+        'Enter your ZIP code on WaterCheckup to check your public water system\'s PFAS testing results from the EPA\'s UCMR5 monitoring program. For example, see ',
         React.createElement('a', { href: '/water/san-antonio', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'PFAS in San Antonio water'),
         ' on our city report. If you are on well water, you need a certified lab test — well water is not included in the EPA monitoring data.'
       ),

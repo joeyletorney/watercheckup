@@ -155,7 +155,7 @@ export const EXTRA_HEALTH_CONTEXT: Record<string, { effects: string; sources: st
     epa_action: 'EPA secondary standard (aesthetic): 500 mg/L.',
   },
   Turbidity: {
-    effects: 'Cloudiness can shield pathogens from disinfection. Utilities must meet treatment technique limits.',
+    effects: 'Cloudiness can shield pathogens from disinfection. Public water systems must meet treatment technique limits.',
     sources: 'Soil runoff, algae, treatment upsets, and distribution disturbances.',
     epa_action: 'EPA MCL: 1 NTU (4 NTU for combined filter effluent in some systems).',
   },

@@ -126,7 +126,7 @@ Post when: someone asks "is SA water safe?" or "what water filter for SA?"
 Your link: watercheckup.com/water/san-antonio
 Sample comment: *"I built a tool that pulls EPA data for SAWS — watercheckup.com/water/san-antonio. Shows PFAS levels, hardness, radium, and filter recommendations for SA specifically."*
 
-### r/nyc (400K+ members)
+### r/nyc (150,000+ members)
 Same pattern — answer water quality questions
 Your link: watercheckup.com/water/new-york
 Note: NYC has PFOS at 106 ppt — 26× EPA limit. This is genuinely alarming and will get upvotes.

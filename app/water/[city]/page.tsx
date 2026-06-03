@@ -23,6 +23,7 @@ import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
 import { computeWaterScore } from '@/lib/city-water-score';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { getCityKeyFinding } from '@/lib/city-water-score';
+import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -113,7 +114,7 @@ const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress
   'washington-dc': { url: 'https://dcwater.com/lead', label: 'DC Water Lead Info', hasAddress: false },
   'minneapolis': { url: 'https://www.minneapolismn.gov/resident-services/home-property/water/lead/', label: 'Minneapolis Lead Info', hasAddress: false },
   'st-louis': { url: 'https://www.stlwater.com/lead-service-line-inventory/', label: 'St. Louis Lead Service Line Inventory', hasAddress: false },
-  'indianapolis': { url: 'https://www.citizensenergygroup.com/My-Home/Utilities/Water/Lead-Service-Lines', label: 'Indianapolis Lead Service Lines', hasAddress: false },
+  'indianapolis': { url: 'https://www.citizensenergygroup.com/My-Home/Public water systems/Water/Lead-Service-Lines', label: 'Indianapolis Lead Service Lines', hasAddress: false },
   'baltimore': { url: 'https://www.bwsh2o.com/lead', label: 'Baltimore Water Lead Info', hasAddress: false },
 };
 
@@ -127,7 +128,8 @@ export async function generateMetadata({ params }: { params: { city: string } })
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
 
-  const pfas = getCityPfasData(cd.pwsid);
+  const pwsid = resolveCityPwsid(params.city, cd.pwsid);
+  const pfas = getCityPfasData(pwsid);
   const prioritySeo = PRIORITY_CITY_SEO[params.city];
   return buildCityPageMetadata(params.city, cd, pfas, prioritySeo);
 }
@@ -155,8 +157,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
-  // Compute pfas early so getCityWhy can use the real UCMR5 numbers
-  const pfas = cd ? getPfasData(cd.pwsid) : null;
+  const pwsid = cd ? resolveCityPwsid(slug, cd.pwsid) : '';
+  const pfas = cd ? getPfasData(pwsid) : null;
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
   const countyLink = cd ? getCountyLinkForCitySlug(slug) : undefined;
@@ -447,7 +449,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 return (
                   <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING — EPA UCMR5 DATA</div>
-                    <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2025</div>
+                    <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2026</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                       <span style={{ fontSize: 20 }}>📋</span>
                       <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0' }}>No UCMR5 data on file for this system</div>
@@ -456,7 +458,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                       The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) required systems serving 3,300+ people to test for 29 PFAS compounds between 2023–2025. This system either was not required to test, reported no detections, or has not yet submitted results to the federal database.
                     </p>
                     <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0 }}>
-                      Source: EPA UCMR5 national dataset · Data current as of 2025
+                      Source: EPA UCMR5 national dataset · Data current as of 2026
                     </p>
                   </div>
                 );
@@ -471,7 +473,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 <div style={{ marginBottom: 40 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2 }}>PFAS TESTING DATA — EPA UCMR5</div>
-                    <div style={{ fontSize: 13, color: '#94a3b8' }}>Testing period 2023–2025 · Last updated Q1 2025</div>
+                    <div style={{ fontSize: 13, color: '#94a3b8' }}>Testing period 2023–2025 · Last updated Q1 2026</div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', background: `${statusColor}12`, border: `1px solid ${statusColor}35`, borderRadius: 10, marginBottom: 16 }}>
@@ -571,7 +573,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
                 {[
                   { l: 'System Name', v: cd.system },
-                  { l: 'EPA PWSID', v: cd.pwsid },
+                  { l: 'EPA PWSID', v: pwsid },
                   { l: 'Population Served', v: cd.population },
                   { l: 'State', v: cd.state },
                 ].map(({ l, v }) => (
@@ -597,7 +599,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           </h2>
           {[
             {
-              q: `Is ${cd?.name ?? cityName} tap water safe to drink in 2025?`,
+              q: `Is ${cd?.name ?? cityName} tap water safe to drink in 2026?`,
               a: `${cd?.name ?? cityName} water meets EPA legal standards, but meeting legal standards is not the same as being free of health concerns. EPA limits are set based on treatment feasibility, not always on what independent scientists consider safe. ${cd?.urgency === 'high' ? `${cd.name} has ${cd.issues[0]?.toLowerCase()} which is a significant concern — certified filtration is strongly recommended.` : `The main concerns for ${cd?.name ?? cityName} residents are ${cd?.issues.slice(0, 2).join(' and ').toLowerCase()}. Enter your ZIP above to see the full violation history for your specific water system.`}`,
             },
             {
@@ -629,8 +631,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>LEAD SERVICE LINE RISK</div>
           <div style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Does your street have lead pipes?</div>
           <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 16px' }}>
-            As of October 2024, all US water utilities must publish a public inventory of their lead service lines —
-            the pipes connecting the water main to your home. Even if your utility water tests clean at the treatment plant,
+            As of October 2024, all US public water systems must publish a public inventory of their lead service lines —
+            the pipes connecting the water main to your home. Even if your public water system water tests clean at the treatment plant,
             lead can leach from these pipes into your tap. Homes built before 1986 are most at risk.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

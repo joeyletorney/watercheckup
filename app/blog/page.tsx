@@ -28,7 +28,7 @@ const POST_BY_SLUG: Record<
   'top-10-most-pfas-contaminated-cities': {
     title: 'Top 10 Most PFAS-Contaminated Cities in America (2026 EPA Data)',
     excerpt:
-      'Sugar Land TX leads at 672 ppt PFAS — 168× the EPA limit. EPA UCMR5 data ranks the worst forever-chemical contamination in US tap water, with links to every city report.',
+      'Sugar Land TX leads Texas at 672 ppt 6:2 FTS in EPA UCMR5 data. Ranked list of the worst PFAS in US tap water — MCL violations and peak readings — with links to every city report.',
     date: 'June 1, 2026',
     readTime: '10 min read',
     badge: 'PFAS',
@@ -214,7 +214,7 @@ const POST_BY_SLUG: Record<
   },
   'what-does-epa-water-violation-mean': {
     title: 'What Does an EPA Water Violation Actually Mean for Your Health?',
-    excerpt: "Your water utility sent a notice. Or you found a violation on EPA's database. Here's exactly what it means, what the risk is, and what to do.",
+    excerpt: "Your public water system sent a notice. Or you found a violation on EPA's database. Here's exactly what it means, what the risk is, and what to do.",
     date: 'March 30, 2026',
     readTime: '7 min read',
     badge: 'EPA',

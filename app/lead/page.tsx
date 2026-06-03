@@ -45,7 +45,7 @@ const PATHWAYS = [
   {
     name: 'Building plumbing — not the treatment plant',
     icon: '🏠',
-    desc: 'Treatment plants reduce corrosion, but lead at your tap usually comes from pipes and fixtures on the way to your glass — which is why your home’s age and your utility’s service line inventory matter.',
+    desc: 'Treatment plants reduce corrosion, but lead at your tap usually comes from pipes and fixtures on the way to your glass — which is why your home’s age and your public water system’s service line inventory matter.',
   },
 ];
 
@@ -144,14 +144,14 @@ export default function LeadPage() {
 
         <div style={{ marginBottom: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
           <span style={label}>WHAT YOUR WATERCHECKUP REPORT SHOWS</span>
-          <h2 style={h2}>Lead tap sampling &amp; your utility</h2>
+          <h2 style={h2}>Lead tap sampling &amp; your public water system</h2>
           <p style={p}>
             For public water systems, we pull <strong style={{ color: '#e2e8f0' }}>Lead and Copper Rule (LCR) sample results</strong> from EPA Envirofacts when available —
             so you can see recent system-level tap sampling tied to your ZIP&apos;s water system (not a lab test of your kitchen tap).
           </p>
           <p style={{ ...p, margin: 0 }}>
-            Utilities also maintain <strong style={{ color: '#e2e8f0' }}>service line inventories</strong> (lead, non-lead, or unknown) under federal rules.
-            Check your utility&apos;s public map or consumer confidence report (CCR) for whether <em>your</em> line is lead — that&apos;s separate from our EPA sample pull but essential context.
+            Public water systems also maintain <strong style={{ color: '#e2e8f0' }}>service line inventories</strong> (lead, non-lead, or unknown) under federal rules.
+            Check your public water system&apos;s public map or consumer confidence report (CCR) for whether <em>your</em> line is lead — that&apos;s separate from our EPA sample pull but essential context.
           </p>
         </div>
 
@@ -189,11 +189,11 @@ export default function LeadPage() {
           <span style={{ ...label, color: '#f59e0b' }}>LEAD &amp; COPPER RULE (BASICS)</span>
           <h2 style={h2}>Action level vs. the health goal</h2>
           <p style={p}>
-            The <strong style={{ color: '#e2e8f0' }}>15 µg/L (ppb) “action level”</strong> applies to a statistical measure of utility tap samples (the 90th percentile), not to every individual tap every day.
+            The <strong style={{ color: '#e2e8f0' }}>15 µg/L (ppb) “action level”</strong> applies to a statistical measure of public water system tap samples (the 90th percentile), not to every individual tap every day.
             If a system exceeds it, corrosion control and other responses are triggered — but <strong style={{ color: '#e2e8f0' }}>your tap can still have lead</strong> if you have a lead service line or lead-bearing plumbing, even when the system is “in compliance.”
           </p>
           <p style={{ ...p, margin: 0 }}>
-            EPA has proposed strengthening the Lead and Copper Rule over time (sampling, line replacement timelines, and communication). Always read your utility&apos;s latest CCR for local status.
+            EPA has proposed strengthening the Lead and Copper Rule over time (sampling, line replacement timelines, and communication). Always read your public water system&apos;s latest CCR for local status.
           </p>
         </div>
 
@@ -202,7 +202,7 @@ export default function LeadPage() {
           <h2 style={h2}>Where lead service lines are a known national issue</h2>
           <p style={p}>
             Many systems still have large inventories of lead or unknown service lines. Replacement programs are underway nationwide, but progress varies by city.
-            This is not an exhaustive list — your utility inventory is the source of truth.
+            This is not an exhaustive list — your public water system inventory is the source of truth.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {CITIES_HIGH_LSL.map(c => (
@@ -262,8 +262,8 @@ export default function LeadPage() {
             {[
               { q: 'Does boiling water remove lead?', a: 'No. Boiling does not remove lead and can concentrate contaminants if water evaporates. Use a certified filter or bottled water from a trusted source, or fix the lead source (line replacement).' },
               { q: 'Does a Brita filter remove lead?', a: 'Some Brita filters are certified for lead reduction for specific standards — check the exact model and its NSF certification listing. Many basic pitchers are not sufficient for high lead risk. NSF/ANSI 53 (lead) or NSF/ANSI 58 (RO) are the certifications to verify.' },
-              { q: 'If my utility is “in compliance,” can I still have lead?', a: 'Yes. Compliance is based on system-wide sampling protocols. Lead is highly localized to plumbing and service lines. A lead gooseneck or lead service line at your property can cause exposure even when the system passes LCR sampling.' },
-              { q: 'How do I know if I have a lead service line?', a: 'Check your utility’s public service line inventory or map, or inspection guidance they publish. Many utilities offer verification or replacement programs. Your WaterCheckup ZIP report summarizes EPA data for your system but cannot see your private plumbing.' },
+              { q: 'If my public water system is “in compliance,” can I still have lead?', a: 'Yes. Compliance is based on system-wide sampling protocols. Lead is highly localized to plumbing and service lines. A lead gooseneck or lead service line at your property can cause exposure even when the system passes LCR sampling.' },
+              { q: 'How do I know if I have a lead service line?', a: 'Check your public water system’s public service line inventory or map, or inspection guidance they publish. Many public water systems offer verification or replacement programs. Your WaterCheckup ZIP report summarizes EPA data for your system but cannot see your private plumbing.' },
               { q: 'Should I test my own tap water?', a: 'If you are pregnant, have young children, or suspect a lead line, a certified lab test of your tap is the most direct answer for your home. Public data is a strong starting point but is not a substitute for sampling your own tap in high-risk situations.' },
             ].map(({ q, a }) => (
               <div key={q} style={{ padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>

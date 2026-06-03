@@ -249,7 +249,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                 </Link>
                 <span style={{ fontSize: 13, color: '#a8b4c4' }}>
                   {' '}
-                  Mean of UCMR5 values for {h.citiesTested} tracked {stateName} cities (not every utility).
+                  Mean of UCMR5 values for {h.citiesTested} tracked {stateName} cities (not every public water system).
                 </span>
               </p>
             );

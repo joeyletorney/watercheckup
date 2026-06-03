@@ -1,6 +1,6 @@
 /**
  * CCR / state monitoring averages keyed by PWSID — used when live EPA sample APIs
- * return only LCR lead/copper (common) but utility reporting has fuller chemistry.
+ * return only LCR lead/copper (common) but public water system reporting has fuller chemistry.
  *
  * Data file: `data/pwsid-ccr-contaminants.json` (built via scripts/build-pwsid-ccr-contaminants.ts)
  */
@@ -45,7 +45,7 @@ function toContaminantRows(rows: StoredRow[]): ContaminantRow[] {
     unit: r.unit,
     severity: r.severity,
     note: r.note,
-    source: r.source ?? 'Utility CCR / state monitoring',
+    source: r.source ?? 'Public water system CCR / state monitoring',
   }));
 }
 

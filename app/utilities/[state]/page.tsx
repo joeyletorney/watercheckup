@@ -67,7 +67,7 @@ export default function UtilitiesStatePage({
         </nav>
 
         <h1 style={{ fontSize: 28, fontWeight: 900, color: "#f1f5f9", margin: "0 0 12px" }}>
-          Public water systems in {stName}
+          Utilities in {stName}
         </h1>
         <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 24px", lineHeight: 1.6 }}>
           {totalInState.toLocaleString("en-US")} systems (SDWIS/Fed snapshot). Search or browse pages — open any row

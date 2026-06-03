@@ -27,7 +27,7 @@ const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
     href: '/blog/top-10-most-pfas-contaminated-cities',
     title: 'Top 10 most PFAS-contaminated cities (2026 EPA data)',
     tag: 'Editorial · UCMR5 rankings',
-    desc: 'Sugar Land TX leads at 672 ppt PFAS. Ranked list with links to every city water quality report.',
+    desc: 'Sugar Land TX: 672 ppt 6:2 FTS peak in EPA data. Ranked list with links to every city water quality report.',
   },
   {
     href: '/worst-thm',
@@ -39,7 +39,7 @@ const RANKINGS: { href: string; title: string; tag: string; desc: string }[] = [
     href: '/worst-water',
     title: 'Top 50 cities with the most PFAS contamination',
     tag: 'EPA UCMR5 · all detections',
-    desc: 'Largest aggregate PFAS readings across utilities, including compounds without an EPA MCL yet.',
+    desc: 'Largest aggregate PFAS readings across public water systems, including compounds without an EPA MCL yet.',
   },
   {
     href: '/worst-lead',
@@ -81,7 +81,7 @@ export default function WorstHubPage() {
             Water quality rankings hub
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
-            Every page below pulls from EPA monitoring (UCMR5), Safe Drinking Water Information System violations, or structured profiles across 400,000+ local water utilities tracked. Use this hub to navigate stories that are designed to rank in search and hold up to scrutiny.
+            Every page below pulls from EPA monitoring (UCMR5), Safe Drinking Water Information System violations, or structured profiles across all 50 states, all for free. Use this hub to navigate stories that are designed to rank in search and hold up to scrutiny.
           </p>
         </div>
 
@@ -111,7 +111,7 @@ export default function WorstHubPage() {
         <div style={{ marginTop: 40, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 10 }}>METHODOLOGY</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 12px' }}>
-            Rankings combine federal datasets with editorial city profiles. Pages like PFAS-over-MCL lists cite exact monitoring values; THM/DBP lists explain when we are inferring risk from keywords in our city database rather than re-ranking every utility nationally.
+            Rankings combine federal datasets with editorial city profiles. Pages like PFAS-over-MCL lists cite exact monitoring values; THM/DBP lists explain when we are inferring risk from keywords in our city database rather than re-ranking every public water system nationally.
           </p>
           <Link href="/methodology" style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>
             How we source and interpret data →

@@ -39,11 +39,11 @@ const STATE_NAMES: Record<string, string> = {
 
 // Known system names for the worst offenders
 const SYSTEM_NAMES: Record<string, { name: string; city: string; source: string }> = {
-  'NC0464020': { name: 'Cape Fear Public Utility Authority', city: 'Wilmington, NC', source: 'Cape Fear River — downstream of Chemours Fayetteville Works GenX plant' },
+  'NC0464020': { name: 'Cape Fear Public Public water system Authority', city: 'Wilmington, NC', source: 'Cape Fear River — downstream of Chemours Fayetteville Works GenX plant' },
   'CA3700963': { name: 'San Gabriel Valley Water District', city: 'San Gabriel, CA', source: 'Groundwater — contaminated by historic aerospace and industrial activity' },
   'CA3610062': { name: 'San Bernardino Valley Municipal Water District', city: 'San Bernardino, CA', source: 'Groundwater — former military base and industrial contamination' },
   'PA1460022': { name: 'Warminster Township Water Authority', city: 'Warminster, PA', source: 'Groundwater — contaminated by AFFF firefighting foam at Naval Air Station Warminster' },
-  'WV3305404': { name: 'Parkersburg Utility Board', city: 'Parkersburg, WV', source: 'Ohio River — downstream of DuPont Washington Works PFOA plant' },
+  'WV3305404': { name: 'Parkersburg Public water system Board', city: 'Parkersburg, WV', source: 'Ohio River — downstream of DuPont Washington Works PFOA plant' },
   'WA5303160': { name: 'City of Tacoma Water Division', city: 'Tacoma, WA', source: 'Surface water — contaminated by AFFF use at McChord Air Force Base' },
   'PA3390032': { name: 'Horsham Water & Sewer Authority', city: 'Horsham, PA', source: 'Groundwater — contaminated by AFFF at Naval Air Station Joint Reserve Base Willow Grove' },
   'NC0392373': { name: 'Fayetteville Public Works Commission', city: 'Fayetteville, NC', source: 'Cape Fear River — downstream of Chemours Fayetteville Works' },
@@ -122,7 +122,7 @@ export default async function WorstPFASPage() {
         {/* Hero */}
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
-            EPA UCMR5 · REGULATED VIOLATIONS · 2025
+            EPA UCMR5 · REGULATED VIOLATIONS · 2026
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
             10 water systems with the highest PFAS contamination
@@ -145,8 +145,10 @@ export default async function WorstPFASPage() {
           </div>
 
           <div style={{ padding: '14px 18px', background: '#ef444412', border: '1px solid #ef444430', borderLeft: '4px solid #ef4444', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.6 }}>
-            <strong style={{ color: '#fca5a5' }}>What this list is:</strong> Rankings are based on the highest single regulated PFAS compound reading (one that has an EPA MCL) per water system, from the federal UCMR5 dataset. Systems with only unregulated PFAS detections are tracked on our{' '}
-            <Link href="/worst-water" style={{ color: '#22d3ee' }}>broader PFAS ranking page</Link>.
+            <strong style={{ color: '#fca5a5' }}>What this list is:</strong> Rankings are based on the highest single regulated PFAS compound reading (one that has an EPA MCL) per water system, from the federal UCMR5 dataset. Systems with only unregulated PFAS detections — e.g.{' '}
+            <Link href="/water/sugar-land" style={{ color: '#22d3ee' }}>Sugar Land TX (672 ppt 6:2 FTS)</Link> — are on our{' '}
+            <Link href="/worst-water" style={{ color: '#22d3ee' }}>peak PFAS ranking page</Link> and{' '}
+            <Link href="/blog/top-10-most-pfas-contaminated-cities" style={{ color: '#22d3ee' }}>Top 10 PFAS cities report</Link>.
           </div>
         </div>
 
@@ -285,7 +287,7 @@ export default async function WorstPFASPage() {
             },
             {
               q: 'How do I know if my system is affected?',
-              a: 'Enter your ZIP code above to see the UCMR5 PFAS data, violation history, and contaminant profile for your specific water utility.',
+              a: 'Enter your ZIP code above to see the UCMR5 PFAS data, violation history, and contaminant profile for your specific public water system.',
             },
           ].map(({ q, a }) => (
             <div key={q} style={{ marginBottom: 12, padding: '16px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>

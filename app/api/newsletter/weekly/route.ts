@@ -32,7 +32,7 @@ const ISSUES: Issue[] = [
   {
     subject: "The invisible lead risk in your home's water",
     headline: "Lead: the contaminant hiding in plain sight",
-    intro: "Lead contamination rarely comes from the water source — it comes from the pipes and fixtures inside your home. Even if your utility reports clean water, it can pick up lead on the way to your tap.",
+    intro: "Lead contamination rarely comes from the water source — it comes from the pipes and fixtures inside your home. Even if your public water system reports clean water, it can pick up lead on the way to your tap.",
     sections: [
       { color: "#dc2626", title: "Why it matters", body: "There is no safe level of lead exposure. It causes irreversible cognitive damage in children and is linked to hypertension and kidney disease in adults. The CDC says no blood lead level is safe for children." },
       { color: "#ea580c", title: "Who is most at risk", body: "Homes built before 1986 are most likely to have lead solder or pipes. Renters in older apartment buildings often have no idea what's in their plumbing. Low-income communities are disproportionately affected." },
@@ -53,7 +53,7 @@ const ISSUES: Issue[] = [
     sections: [
       { color: "#7c3aed", title: "What makes them dangerous", body: "PFAS accumulate in the body over time. Long-term exposure is linked to kidney and testicular cancer, thyroid disease, immune dysfunction, and adverse pregnancy outcomes. They don't break down in the environment or in your body." },
       { color: "#ea580c", title: "Where they come from", body: "Military bases and airports that used PFAS-containing firefighting foam are the most common sources. Industrial sites, wastewater treatment plants, and landfills also contribute. Many water systems near these sites are contaminated." },
-      { color: "#059669", title: "How to protect yourself", body: "Activated carbon filters (NSF 58 certified) and reverse osmosis systems are the most effective at removing PFAS. Boiling does not remove PFAS — it concentrates them. Check your utility's annual report for PFAS testing results." },
+      { color: "#059669", title: "How to protect yourself", body: "Activated carbon filters (NSF 58 certified) and reverse osmosis systems are the most effective at removing PFAS. Boiling does not remove PFAS — it concentrates them. Check your public water system's annual report for PFAS testing results." },
     ],
     action: "See if PFAS have been detected in your water system",
     products: [
@@ -66,13 +66,13 @@ const ISSUES: Issue[] = [
   {
     subject: "The hidden byproducts of 'safe' treated water",
     headline: "Disinfection byproducts: the tradeoff in treated water",
-    intro: "Utilities add chlorine or chloramine to kill bacteria — which is a good thing. But when these disinfectants react with naturally occurring organic matter in water, they form a class of chemicals called disinfection byproducts (DBPs).",
+    intro: "Public water systems add chlorine or chloramine to kill bacteria — which is a good thing. But when these disinfectants react with naturally occurring organic matter in water, they form a class of chemicals called disinfection byproducts (DBPs).",
     sections: [
       { color: "#dc2626", title: "The most common DBPs", body: "Trihalomethanes (THMs) and haloacetic acids (HAAs) are the most studied DBPs. Long-term exposure is associated with bladder cancer, colorectal cancer, and adverse birth outcomes including low birth weight and neural tube defects." },
-      { color: "#ca8a04", title: "Are they regulated?", body: "Yes — but the EPA's limits were set decades ago and many researchers believe they're not protective enough. Utilities test for DBPs but averages can mask spikes that occur seasonally when organic matter is highest." },
+      { color: "#ca8a04", title: "Are they regulated?", body: "Yes — but the EPA's limits were set decades ago and many researchers believe they're not protective enough. Public water systems test for DBPs but averages can mask spikes that occur seasonally when organic matter is highest." },
       { color: "#0891b2", title: "How to reduce exposure", body: "Activated carbon filters (NSF 42 or 53 certified) effectively reduce THMs and HAAs. Letting water sit uncovered in the fridge for a few hours also allows some volatile DBPs to off-gas. Reverse osmosis removes them almost entirely." },
     ],
-    action: "Check your utility's THM and HAA5 levels",
+    action: "Check your public water system's THM and HAA5 levels",
     products: [
       { name: "APEC ROES-50 Reverse Osmosis System", tag: "NSF 58 · removes DBPs completely", why: "For those who want the most thorough protection, RO removes virtually all disinfection byproducts. This is the most complete solution if DBPs are a concern in your area.", search: "APEC ROES-50 reverse osmosis system" },
       { name: "Aquasana Countertop Water Filter", tag: "NSF 42 & 53 · no installation needed", why: "Sits on your counter and connects to your faucet. Certified to reduce chlorine, chloramine, DBPs, lead, and PFAS. A strong mid-range option with no under-sink installation required.", search: "Aquasana countertop water filter" },
@@ -102,7 +102,7 @@ const ISSUES: Issue[] = [
     headline: "Microplastics: the contaminant science is still catching up to",
     intro: "A 2017 study found microplastics in 83% of tap water samples worldwide. Researchers are still working to understand the full health implications — but the plastics are definitely there.",
     sections: [
-      { color: "#7c3aed", title: "How they get in", body: "Microplastics enter water from plastic pipes, bottle caps, clothing fibers, and industrial runoff. Conventional water treatment was not designed to remove particles this small, and most utilities don't test for them." },
+      { color: "#7c3aed", title: "How they get in", body: "Microplastics enter water from plastic pipes, bottle caps, clothing fibers, and industrial runoff. Conventional water treatment was not designed to remove particles this small, and most public water systems don't test for them." },
       { color: "#dc2626", title: "What the research shows", body: "Studies have found microplastics in human blood, lung tissue, and placentas. While direct causation is hard to establish, microplastics can carry toxic chemicals including heavy metals and pesticides into the body." },
       { color: "#059669", title: "Reducing your exposure", body: "Reverse osmosis filters with membranes fine enough to block particles smaller than 1 micron are the most effective option. Avoiding single-use plastic bottles also reduces exposure since plastic leaches into the water inside them." },
     ],
@@ -132,15 +132,15 @@ const ISSUES: Issue[] = [
     ],
   },
   {
-    subject: "How to actually read your water utility's annual report",
-    headline: "Your utility's annual report: what the numbers mean",
-    intro: "Every year, your water utility is required by law to send you a Consumer Confidence Report (CCR). Most people throw it away. Here's how to read it in under 5 minutes.",
+    subject: "How to actually read your public water system's annual report",
+    headline: "Your public water system's annual report: what the numbers mean",
+    intro: "Every year, your public water system is required by law to send you a Consumer Confidence Report (CCR). Most people throw it away. Here's how to read it in under 5 minutes.",
     sections: [
       { color: "#0891b2", title: "Find the contaminant table", body: "The CCR includes a table listing contaminants detected, their levels, and the EPA's Maximum Contaminant Level (MCL). If a contaminant shows 'ND' (not detected), that's good. Look for anything approaching or exceeding the MCL." },
-      { color: "#ca8a04", title: "Watch out for averages", body: "Utilities report annual averages. A low annual average can hide seasonal spikes — especially for disinfection byproducts, which peak in summer when organic matter is highest. Ask your utility for quarterly data if you're concerned." },
-      { color: "#7c3aed", title: "Violations vs. detections", body: "A detection means a contaminant was found. A violation means the level exceeded the legal limit. Utilities are required to notify you of violations — but not all contaminants have legal limits yet (like PFAS until recently)." },
+      { color: "#ca8a04", title: "Watch out for averages", body: "Public water systems report annual averages. A low annual average can hide seasonal spikes — especially for disinfection byproducts, which peak in summer when organic matter is highest. Ask your public water system for quarterly data if you're concerned." },
+      { color: "#7c3aed", title: "Violations vs. detections", body: "A detection means a contaminant was found. A violation means the level exceeded the legal limit. Public water systems are required to notify you of violations — but not all contaminants have legal limits yet (like PFAS until recently)." },
     ],
-    action: "Run your free WaterCheckup report to see your utility's data",
+    action: "Run your free WaterCheckup report to see your public water system's data",
     products: [
       { name: "Safe Home COMPLETE Water Quality Test Kit", tag: "Tests 200+ contaminants", why: "One of the most comprehensive DIY water test kits available. Tests for 200+ parameters including heavy metals, pesticides, bacteria, and PFAS. Results from a certified lab in about a week.", search: "Safe Home COMPLETE water quality test kit" },
       { name: "WaterCheck by National Testing Laboratories", tag: "City water test · 93 contaminants", why: "A well-established lab testing service covering 93 contaminants including lead, nitrates, bacteria, and disinfection byproducts. Comes with a detailed interpretation guide.", search: "WaterCheck National Testing Laboratories city water test" },
@@ -170,11 +170,11 @@ const ISSUES: Issue[] = [
     headline: "Chromium-6: the contaminant that sparked a landmark lawsuit",
     intro: "Chromium-6 (hexavalent chromium) was made famous by Erin Brockovich. Despite that, millions of Americans still drink water with chromium-6 levels above what scientists consider safe — and the EPA's current limit was set for total chromium, not the more toxic hexavalent form.",
     sections: [
-      { color: "#dc2626", title: "Why it's more dangerous than the limit suggests", body: "The EPA's MCL for total chromium is 100 ppb. But the California Office of Environmental Health Hazard Assessment set a public health goal of 0.02 ppb for chromium-6 specifically — 5,000 times stricter. Most utilities reporting compliance are still far above California's science-based threshold." },
+      { color: "#dc2626", title: "Why it's more dangerous than the limit suggests", body: "The EPA's MCL for total chromium is 100 ppb. But the California Office of Environmental Health Hazard Assessment set a public health goal of 0.02 ppb for chromium-6 specifically — 5,000 times stricter. Most public water systems reporting compliance are still far above California's science-based threshold." },
       { color: "#ea580c", title: "Where it comes from", body: "Chromium-6 occurs naturally in some rock formations and also enters water from industrial discharge, especially from steel and pulp mills, electroplating facilities, and sites where it was used as a corrosion inhibitor in cooling towers." },
       { color: "#059669", title: "How to remove it", body: "Reverse osmosis (NSF 58 certified) removes chromium-6 effectively. Strong base anion exchange filters also work. Standard carbon filters and most pitcher filters do not remove chromium-6." },
     ],
-    action: "Check your utility's chromium levels in your local report",
+    action: "Check your public water system's chromium levels in your local report",
     products: [
       { name: "Waterdrop G3 Tankless RO System", tag: "Removes chromium-6 · tankless design", why: "NSF 58 certified RO system that removes chromium-6, PFAS, lead, and arsenic. Tankless design means no bulky storage tank and faster flow.", search: "Waterdrop G3 tankless reverse osmosis system" },
       { name: "APEC ROES-50 Reverse Osmosis System", tag: "NSF 58 · trusted chromium-6 removal", why: "A top-rated under-sink RO system consistently reviewed for effective chromium-6 removal along with lead, PFAS, nitrates, and arsenic.", search: "APEC ROES-50 reverse osmosis system" },
@@ -201,10 +201,10 @@ const ISSUES: Issue[] = [
   },
   {
     subject: "Private well water: what 43 million Americans need to test for",
-    headline: "Well water safety: you're your own utility",
+    headline: "Well water safety: you're your own public water system",
     intro: "43 million Americans rely on private wells. Unlike public water, well water is not regulated or tested by the EPA. If you use a well — or are considering buying a home with one — you are entirely responsible for knowing what's in it.",
     sections: [
-      { color: "#dc2626", title: "What the EPA doesn't cover", body: "The Safe Drinking Water Act does not apply to private wells. Your utility doesn't test your water. Your state may have guidelines, but enforcement is rare. Most well owners have never tested their water — and many have contaminants they don't know about." },
+      { color: "#dc2626", title: "What the EPA doesn't cover", body: "The Safe Drinking Water Act does not apply to private wells. Your public water system doesn't test your water. Your state may have guidelines, but enforcement is rare. Most well owners have never tested their water — and many have contaminants they don't know about." },
       { color: "#ea580c", title: "The most common well water contaminants", body: "Bacteria (coliform, E. coli), nitrates from agricultural runoff, arsenic from natural rock formations, radon, iron, manganese, hardness minerals, and — increasingly — PFAS from nearby industrial or military sites. The contaminant profile depends heavily on your geography and surroundings." },
       { color: "#059669", title: "How often to test", body: "The CDC recommends testing well water at least once a year for bacteria and nitrates. Test immediately after flooding, nearby land use changes, or if your water changes in taste, smell, or appearance. Test for a comprehensive panel before buying a home with a well." },
     ],
@@ -242,7 +242,7 @@ const ISSUES: Issue[] = [
       { color: "#ea580c", title: "The emerging concerns", body: "A 2020 meta-analysis and a 2023 NTP review found associations between fluoride exposure above 1.5 mg/L and lower IQ scores in children. The EPA's current legal limit is 4 mg/L. Many researchers argue the margin between the recommended level and potentially harmful levels is narrower than previously thought." },
       { color: "#7c3aed", title: "If you want to reduce your exposure", body: "Reverse osmosis systems remove fluoride — standard carbon filters and most pitcher filters do not. If you have young children and want to minimize their fluoride intake from drinking water, an RO system under the sink is the most reliable option." },
     ],
-    action: "Check your utility's fluoride levels in your local report",
+    action: "Check your public water system's fluoride levels in your local report",
     products: [
       { name: "Waterdrop G3 Tankless RO System", tag: "Removes fluoride · modern design", why: "RO effectively removes fluoride along with PFAS, lead, nitrates, and arsenic. The G3's tankless design is one of the most space-efficient RO systems available.", search: "Waterdrop G3 tankless reverse osmosis fluoride" },
       { name: "APEC ROES-50 Reverse Osmosis System", tag: "NSF 58 · removes fluoride", why: "A proven under-sink RO system that removes fluoride to near-undetectable levels. One of the most trusted RO systems for comprehensive contaminant removal.", search: "APEC ROES-50 reverse osmosis system" },
@@ -340,7 +340,7 @@ function buildWeeklyHtml(issue: Issue, email: string): string {
     </div>
     <div style="font-size:14px;color:#475569;line-height:1.7;margin-bottom:24px">${issue.intro}</div>
     ${sectionsHtml}
-    <div style="margin-top:24px;margin-bottom:20px;font-size:13px;color:#64748b;line-height:1.7">${issue.action} — your free local report pulls live data from the EPA and your utility.</div>
+    <div style="margin-top:24px;margin-bottom:20px;font-size:13px;color:#64748b;line-height:1.7">${issue.action} — your free local report pulls live data from the EPA and your public water system.</div>
     <a href="https://watercheckup.com" style="display:inline-block;padding:12px 20px;background:#0891b2;border-radius:8px;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700">Run my free water report →</a>
 
     <div style="margin-top:32px;border-top:1px solid #e2e8f0;padding-top:24px">

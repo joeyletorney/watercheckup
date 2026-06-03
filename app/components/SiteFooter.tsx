@@ -37,7 +37,7 @@ export function SiteFooter() {
         </p>
         <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', textAlign: 'center', lineHeight: 1.7 }}>
           <a href="/utilities/claim" style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
-            For Water Utilities
+            For Water Public water systems
           </a>
           {' · '}
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
@@ -50,7 +50,7 @@ export function SiteFooter() {
           <a href="/blog" style={{ color: '#e2e8f0', textDecoration: 'none' }}>Blog</a>
         </p>
         <p style={{ margin: 0, fontSize: 14, color: '#94a3b8', textAlign: 'center', lineHeight: 1.7, maxWidth: 680 }}>
-          Water data is sourced from public EPA databases and may reflect reporting periods from the past 1–3 years due to federal reporting cycles. Always confirm critical results with a certified lab or your local utility.
+          Water data is sourced from public EPA databases and may reflect reporting periods from the past 1–3 years due to federal reporting cycles. Always confirm critical results with a certified lab or your local public water system.
         </p>
         <p style={{ margin: 0, fontSize: 14, color: '#94a3b8', textAlign: 'center', lineHeight: 1.7, maxWidth: 680 }}>
           WaterCheckup is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. Some links on this site are affiliate links — if you purchase a filter through one of our links, we may earn a small commission at no extra cost to you. This does not influence our recommendations.

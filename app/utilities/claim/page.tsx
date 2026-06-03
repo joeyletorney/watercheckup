@@ -32,7 +32,7 @@ const VALUE_CARDS = [
   {
     icon: '✅',
     title: 'Your Customers Are Already Here',
-    body: '400,000+ utilities are listed on WaterCheckup. Your customers are searching for you right now.',
+    body: 'WaterCheckup covers all 50 states, all for free. Your customers are searching for you right now.',
   },
   {
     icon: '✅',
@@ -136,7 +136,7 @@ export default function UtilityClaimPage() {
           </Link>{' '}
           ·{' '}
           <Link href="/utilities" style={{ color: '#22d3ee' }}>
-            Utility directory
+            Public water system directory
           </Link>
         </p>
       </div>

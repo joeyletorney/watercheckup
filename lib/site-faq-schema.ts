@@ -13,7 +13,7 @@ export const SITE_FAQ_MAIN_ENTITY = [
       name: 'What is the WaterCheckup Water Safety Grade?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Each city and ZIP report includes a Water Safety Score (0–100) and letter grade (A– through F) based on EPA violation history, PFAS UCMR5 detections, contaminant severity, and how levels compare to health guidelines — not just whether your utility meets legal limits. Grades are explained in plain language with filter recommendations from a 30-year water treatment expert.',
+        text: 'Each city and ZIP report includes a Water Safety Score (0–100) and letter grade (A– through F) based on EPA violation history, PFAS UCMR5 detections, contaminant severity, and how levels compare to health guidelines — not just whether your public water system meets legal limits. Grades are explained in plain language with filter recommendations from a 30-year water treatment expert.',
       },
     },
     {
@@ -29,7 +29,7 @@ export const SITE_FAQ_MAIN_ENTITY = [
       name: 'What water filter removes PFAS?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Only reverse osmosis (NSF/ANSI 58) and select carbon systems (NSF 401 or P473) are certified to remove PFAS forever chemicals. Standard Brita pitchers improve taste but are not certified for PFAS. WaterCheckup shows PFAS levels for your utility and recommends NSF-certified systems matched to your water profile.',
+        text: 'Only reverse osmosis (NSF/ANSI 58) and select carbon systems (NSF 401 or P473) are certified to remove PFAS forever chemicals. Standard Brita pitchers improve taste but are not certified for PFAS. WaterCheckup shows PFAS levels for your public water system and recommends NSF-certified systems matched to your water profile.',
       },
     },
 ] as const;

@@ -67,7 +67,7 @@ export default function WorstThmPage() {
             Cities with the highest disinfection byproduct risk
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
-            Trihalomethanes (THMs) and haloacetic acids (HAAs) are regulated disinfection byproducts (DBPs): they form when chlorine or chloramine reacts with natural organic matter in rivers, lakes, and reservoirs. Long-term exposure above EPA limits is associated with elevated cancer risk. This page lists cities where our structured profiles explicitly call out THMs, HAAs, or disinfection byproducts in the issues field — not a fresh nationwide utility lab sort.
+            Trihalomethanes (THMs) and haloacetic acids (HAAs) are regulated disinfection byproducts (DBPs): they form when chlorine or chloramine reacts with natural organic matter in rivers, lakes, and reservoirs. Long-term exposure above EPA limits is associated with elevated cancer risk. This page lists cities where our structured profiles explicitly call out THMs, HAAs, or disinfection byproducts in the issues field — not a fresh nationwide public water system lab sort.
           </p>
 
           <div style={{ padding: '14px 18px', background: '#f59e0b12', border: '1px solid #f59e0b35', borderLeft: '4px solid #f59e0b', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, marginBottom: 28 }}>
@@ -102,7 +102,7 @@ export default function WorstThmPage() {
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 32 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>WHY THMs RUN HIGH</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 10px' }}>
-            Utilities must disinfect — but oxidizing organic-rich surface water produces THMs and HAAs. Hot weather, algae, soil runoff, and long distribution-system residence times all raise DBP formation. Boiling concentrates DBPs; it does not remove them.
+            Public water systems must disinfect — but oxidizing organic-rich surface water produces THMs and HAAs. Hot weather, algae, soil runoff, and long distribution-system residence times all raise DBP formation. Boiling concentrates DBPs; it does not remove them.
           </p>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
             <strong style={{ color: '#e2e8f0' }}>What helps at home:</strong> NSF/ANSI 53-certified carbon filters (pitcher or under-sink) reduce THMs and volatile DBPs when maintained on schedule. Reverse osmosis (NSF/ANSI 58) strips DBPs along with a wide range of other contaminants. Whole-house carbon can reduce shower inhalation exposure but requires proper sizing and replacement intervals.
@@ -167,7 +167,7 @@ export default function WorstThmPage() {
         <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14, marginBottom: 40 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>NEXT STEP</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
-            DBP risk varies by sampling location and season. Enter your ZIP for utility-specific contaminant language, violations, and filter ideas tied to what we parse for your system.
+            DBP risk varies by sampling location and season. Enter your ZIP for public water system-specific contaminant language, violations, and filter ideas tied to what we parse for your system.
           </p>
           <Link
             href="/"

@@ -206,7 +206,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'How Do San Antonio\'s PFAS Levels Compare?'),
       React.createElement('p', { style: pStyle },
-        'PFBA at 15 ppt puts San Antonio in the middle range nationally — below cities with serious PFAS contamination (some utilities show PFAS above 100 ppt) but well above the most conservative health guidelines:'
+        'PFBA at 15 ppt puts San Antonio in the middle range nationally — below cities with serious PFAS contamination (some public water systems show PFAS above 100 ppt) but well above the most conservative health guidelines:'
       ),
       React.createElement('ul', { style: { ...pStyle, paddingLeft: 20 } },
         React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'EPA MCL (PFOA/PFOS): '), '4 ppt — PFBA is not currently subject to this limit'),
@@ -238,7 +238,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
         'SAWS has not implemented full-scale PFAS treatment as of 2025. The detected level (PFBA at 15 ppt) is below the compounds covered by the EPA\'s April 2024 rule, so SAWS is not currently required to treat for it. This may change as EPA expands PFAS regulation to include short-chain compounds.'
       ),
       React.createElement('p', { style: pStyle },
-        'In the meantime, point-of-use filtration at your tap is the most reliable way to reduce PFAS in your drinking water regardless of what the utility does upstream.'
+        'In the meantime, point-of-use filtration at your tap is the most reliable way to reduce PFAS in your drinking water regardless of what the public water system does upstream.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What Filters Remove PFAS from San Antonio Water?'),

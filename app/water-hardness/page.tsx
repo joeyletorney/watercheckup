@@ -166,7 +166,7 @@ export default function WaterHardnessPage() {
           nutrient intake—but they change how water behaves in your home. Hard water leaves mineral scale when it is heated or
           evaporates, which coats electric elements, lowers heat transfer in tank water heaters, and narrows pipes over many
           years. Soft water has fewer of those ions, so it rinses cleaner and feels slicker on skin, but it can taste flat or
-          slightly salty after traditional ion-exchange softening because sodium replaces the hardness minerals. Most utilities
+          slightly salty after traditional ion-exchange softening because sodium replaces the hardness minerals. Most public water systems
           report hardness as milligrams per liter (mg/L) of calcium carbonate equivalent—the same numeric value as parts per
           million (ppm) for practical purposes. You will also see grains per gallon (gpg) on some softener packaging; we convert
           both on this page so you can compare your test strip, lab report, or Consumer Confidence Report to common treatment
@@ -201,7 +201,7 @@ export default function WaterHardnessPage() {
           <li style={{ marginBottom: 8 }}>A slippery, “not fully rinsed” feeling in the shower for some people</li>
           <li style={{ marginBottom: 8 }}>
             Aggressiveness toward legacy lead or copper plumbing if water is very low in minerals and pH is not controlled —
-            often managed by utilities; worth monitoring after installing aggressive treatment
+            often managed by public water systems; worth monitoring after installing aggressive treatment
           </li>
         </ul>
 
@@ -211,7 +211,7 @@ export default function WaterHardnessPage() {
           <strong style={{ color: "#e2e8f0" }}>about 60–120 ppm (3.5–7 gpg)</strong> a comfortable middle ground: enough
           mineral to taste familiar, not so much that scale and soap waste dominate. The U.S. Geological Survey and World Health
           Organization use slightly different cut points for labeling bands; the calculator on this page uses the practical
-          buckets (soft through very hard) shown in your results. If your utility lands in the moderate band, focus on hot-water
+          buckets (soft through very hard) shown in your results. If your public water system lands in the moderate band, focus on hot-water
           appliances first; if you are very hard, whole-home softening plus a drinking-water path (often reverse osmosis) is a
           common professional recommendation.
         </p>

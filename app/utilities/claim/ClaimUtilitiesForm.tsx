@@ -48,7 +48,7 @@ export default function ClaimUtilitiesForm() {
     setErr('');
 
     if (!authorized) {
-      setErr('You must confirm you are an authorized representative of this water utility.');
+      setErr('You must confirm you are an authorized representative of this public water system.');
       return;
     }
 
@@ -67,7 +67,7 @@ export default function ClaimUtilitiesForm() {
       form.set('authorized', 'on');
       if (ccrPdf) form.set('ccrPdf', ccrPdf);
 
-      const res = await fetch('/api/claim-utility', {
+      const res = await fetch('/api/claim-public water system', {
         method: 'POST',
         body: form,
       });
@@ -99,7 +99,7 @@ export default function ClaimUtilitiesForm() {
   return (
     <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
       <div>
-        <label style={labelStyle}>Utility name *</label>
+        <label style={labelStyle}>Public water system name *</label>
         <input
           required
           name="utilityName"
@@ -194,7 +194,7 @@ export default function ClaimUtilitiesForm() {
       </div>
 
       <div>
-        <label style={labelStyle}>Utility website (optional)</label>
+        <label style={labelStyle}>Public water system website (optional)</label>
         <input
           type="url"
           name="utilityWebsite"
@@ -255,7 +255,7 @@ export default function ClaimUtilitiesForm() {
           required
           style={{ marginTop: 3, flexShrink: 0, width: 16, height: 16, accentColor: '#0891b2' }}
         />
-        <span>I confirm I am an authorized representative of this water utility</span>
+        <span>I confirm I am an authorized representative of this public water system</span>
       </label>
 
       {status === 'error' && err && (

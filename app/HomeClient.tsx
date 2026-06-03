@@ -855,7 +855,7 @@ function PFASAwarenessBanner() {
             <span style={{ fontSize: 13, color: '#a8b4c4', marginLeft: 6 }}>(EPA rule · CDC/USGS context)</span>
           </p>
           <p style={{ margin: '0 0 10px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
-            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> Limits and estimates describe population-level patterns. Your ZIP report shows what is on file for your utility — use that as the practical next step.
+            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> Limits and estimates describe population-level patterns. Your ZIP report shows what is on file for your public water system — use that as the practical next step.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer" style={{ padding: '5px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Best RO for PFAS →</a>
@@ -891,7 +891,7 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
             }
           </p>
           <p style={{ margin: '0 0 10px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
-            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This is a utility-level monitoring snapshot, not a test of your kitchen tap today. If you need certainty for pregnancy, infants, or immunocompromised households, consider a certified lab test of your tap.
+            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This is a public water system-level monitoring snapshot, not a test of your kitchen tap today. If you need certainty for pregnancy, infants, or immunocompromised households, consider a certified lab test of your tap.
           </p>
           {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#cbd5e1', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -1148,7 +1148,7 @@ function CountyComparison({ pwsid }: { pwsid: string }) {
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid #0e2233' }}>
-                    {['Utility','City','Population','Source','Open Violations','Total Violations'].map(h => (
+                    {['Public water system','City','Population','Source','Open Violations','Total Violations'].map(h => (
                       <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 13, color: '#cbd5e1', letterSpacing: 0.5, fontWeight: 700, whiteSpace: 'nowrap' }}>{h.toUpperCase()}</th>
                     ))}
                   </tr>
@@ -1350,7 +1350,7 @@ function ResourcesTab({ data }: { data: any }) {
       { name: 'EPA Safe Drinking Water Search', url: `https://www.epa.gov/sdwa/safe-drinking-water-hotline`, desc: 'Official EPA drinking water information' },
       { name: 'EPA UCMR5 PFAS Data', url: 'https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule', desc: '2023-2025 PFAS monitoring — 6,000+ water systems' },
       { name: `EPA SDWIS — Your system (PWSID: ${data?.pwsid || ' — '})`, url: sdwisPwsUrl, desc: 'Federal violation and facility record for this water system ID' },
-      { name: 'Find Consumer Confidence Report (annual PDF)', url: 'https://sdwis.epa.gov/fylccr', desc: 'EPA search tool for utility-submitted annual water quality reports' },
+      { name: 'Find Consumer Confidence Report (annual PDF)', url: 'https://sdwis.epa.gov/fylccr', desc: 'EPA search tool for public water system-submitted annual water quality reports' },
       { name: 'EPA ECHO Enforcement', url: `https://echo.epa.gov/`, desc: 'Enforcement actions and inspection history' },
       { name: 'EPA Certified Lab Finder', url: 'https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water', desc: 'Find a state-certified lab in your state' },
     ]},
@@ -1782,6 +1782,9 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'sacramento', name: 'Sacramento, CA' },
   { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
   { slug: 'san-antonio', name: 'San Antonio, TX' },
+  { slug: 'sugar-land', name: 'Sugar Land, TX' },
+  { slug: 'pensacola', name: 'Pensacola, FL' },
+  { slug: 'fairfax-county', name: 'Fairfax, VA' },
   { slug: 'san-diego', name: 'San Diego, CA' },
   { slug: 'san-francisco', name: 'San Francisco, CA' },
   { slug: 'san-jose', name: 'San Jose, CA' },
@@ -1880,7 +1883,7 @@ function riskVerdictFromData(data: any): {
       tier: 'moderate',
       icon: '🟡',
       title: 'MODERATE RISK',
-      subtitle: 'Limited contaminant data for this ZIP — confirm with your utility or a certified test if unsure',
+      subtitle: 'Limited contaminant data for this ZIP — confirm with your public water system or a certified test if unsure',
       accent: '#fde047',
       border: 'rgba(245,158,11,0.45)',
       bg: 'linear-gradient(165deg, rgba(120,53,15,0.35) 0%, rgba(24,18,8,0.5) 100%)',
@@ -2966,7 +2969,7 @@ export default function WaterCheckup() {
                         <strong style={{ color: '#e2e8f0' }}>{data.dataFreshness.ucmr5SnapshotLabel}</strong>.
                       </div>
                       <div style={{ marginTop: 6 }}>
-                        <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead tap samples (EPA SDWIS — utility reporting database):</strong>{' '}
+                        <strong style={{ color: '#cbd5e1' }}>Violations &amp; lead tap samples (EPA SDWIS — public water system reporting database):</strong>{' '}
                         {data.dataFreshness.sdwisLiveNote}
                       </div>
                       <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -3001,10 +3004,10 @@ export default function WaterCheckup() {
                           rel="noreferrer"
                           style={{ fontSize: 13, color: '#cbd5e1' }}
                         >
-                          How to find your utility CCR →
+                          How to find your public water system CCR →
                         </a>
                         <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.45 }}>
-                          CCR lists plant and distribution detections; if not on ECHO, check your bill or utility site.
+                          CCR lists plant and distribution detections; if not on ECHO, check your bill or public water system site.
                         </div>
                       </div>
                     </div>
@@ -3027,7 +3030,7 @@ export default function WaterCheckup() {
 
               {data.violations?.length > 0 ? (
                 <>
-                  <div style={{ fontSize: 13, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>Violation history (EPA records for your utility)</div>
+                  <div style={{ fontSize: 13, letterSpacing: 0.5, color: '#0891b2', marginBottom: 10 }}>Violation history (EPA records for your public water system)</div>
                   <div style={{ background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 8, marginBottom: 14, overflow: 'hidden' }}>
                     {data.violations.map((v: any, i: number) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '7px 12px', borderBottom: i < data.violations.length-1 ? '1px solid #0d2240' : 'none', gap: 10 }}>
@@ -3513,12 +3516,12 @@ export default function WaterCheckup() {
                   label: 'of US tap water samples had PFAS detected (national study)',
                   source: 'USGS national reconnaissance, 2023–2025',
                   meaning:
-                    'A detection is not automatically an emergency — it means PFAS showed up at least once in that sampling effort. Your report shows whether your utility had detections and how they compare to EPA limits.',
+                    'A detection is not automatically an emergency — it means PFAS showed up at least once in that sampling effort. Your report shows whether your public water system had detections and how they compare to EPA limits.',
                 },
                 {
                   stat: 'Millions',
                   label: 'of lead service lines remain nationwide (replacement ongoing)',
-                  source: 'EPA lead service line inventories (utilities reporting)',
+                  source: 'EPA lead service line inventories (public water system reporting)',
                   meaning:
                     'This is an infrastructure snapshot, not your personal tap result. Lead risk still depends on your building’s plumbing and how long water sits in pipes.',
                 },
@@ -3568,7 +3571,7 @@ export default function WaterCheckup() {
                   icon: '⚗️',
                   title: 'Chlorine byproducts (THMs & HAAs)',
                   risk: 'Probable carcinogens · In most tap water',
-                  body: 'When chlorine — added by utilities to kill bacteria — mixes with organic matter, it forms trihalomethanes (THMs) and haloacetic acids (HAAs). Both are classified as probable carcinogens by the EPA and are present in nearly all treated US tap water. Removed by: activated carbon filter or reverse osmosis.',
+                  body: 'When chlorine — added by public water systems to kill bacteria — mixes with organic matter, it forms trihalomethanes (THMs) and haloacetic acids (HAAs). Both are classified as probable carcinogens by the EPA and are present in nearly all treated US tap water. Removed by: activated carbon filter or reverse osmosis.',
                   color: '#a78bfa',
                 },
                 {
@@ -4291,7 +4294,7 @@ export default function WaterCheckup() {
               { quote: 'Moved to a new city and checked the water before I even unpacked. Three open violations. Bought a filter before my first glass.', name: 'Priya S.', location: 'Chicago, IL', stars: 5 },
               { quote: 'My daughter has been drinking this water for two years. Seeing the lead risk on here convinced me to get a filter immediately. Should have found this sooner.', name: 'Marcus T.', location: 'Baltimore, MD', stars: 5 },
               { quote: 'We’re on a tight budget, so “free” mattered. Same EPA numbers I’d dig for myself, but in one screen — I finally understood what to filter for.', name: 'James R.', location: 'Denver, CO', stars: 5 },
-              { quote: 'I compared our report to the utility’s PDF and it lined up. Gave me confidence to pick an RO system instead of guessing off a blog post.', name: 'Elena V.', location: 'Austin, TX', stars: 5 },
+              { quote: 'I compared our report to the public water system’s PDF and it lined up. Gave me confidence to pick an RO system instead of guessing off a blog post.', name: 'Elena V.', location: 'Austin, TX', stars: 5 },
             ].map(({ quote, name, location, stars }) => (
               <div key={`${name}-${location}`} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ color: '#f59e0b', fontSize: 13, letterSpacing: 1 }}>{'★'.repeat(stars)}</div>
@@ -4326,8 +4329,7 @@ export default function WaterCheckup() {
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 48 }}>
           {[
             { emoji: '🔬', stat: '45%', desc: 'of US tap water has detectable PFAS — most people have no idea' },
-            { emoji: '🚰', stat: '400K+', desc: 'lead service lines still in use across the US as of 2025' },
-            { emoji: '📋', stat: '70%+', desc: 'of Americans have never read their utility\'s water quality report' },
+            { emoji: '📋', stat: '70%+', desc: 'of Americans have never read their public water system\'s water quality report' },
           ].map(({ emoji, stat, desc }) => (
             <div key={stat} style={{ flex: '1 1 200px', padding: '18px 20px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #1a3a5c', borderRadius: 12, textAlign: 'center' }}>
               <div style={{ fontSize: 24, marginBottom: 6 }}>{emoji}</div>

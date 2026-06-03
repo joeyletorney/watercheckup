@@ -11,18 +11,33 @@
 - NSF/WQA-certified water filter recommendations matched to detected contaminants
 - Well water risk profiles by state (USGS groundwater data)
 - Water hardness detection and water softener recommendations
-- Acidic well water detection and acid neutralizer recommendations
-- City-specific water quality pages for 50+ major US cities
+- City-specific water quality pages for 100+ major US metros
+- EPA UCMR5 PFAS monitoring data matched to public water systems by PWSID
 
 ## Key Pages
 
 - [Home — ZIP Code Water Quality Lookup](https://watercheckup.com/)
 - [FAQ — Tap Water Safety Questions](https://watercheckup.com/faq)
 - [Contaminants Guide — Lead, PFAS, Arsenic & More](https://watercheckup.com/contaminants)
-- [Chicago Water Quality Report](https://watercheckup.com/water/chicago)
+- [PFAS Forever Chemicals Guide](https://watercheckup.com/pfas)
+- [Top 10 PFAS-Contaminated Cities (2026)](https://watercheckup.com/blog/top-10-most-pfas-contaminated-cities)
+- [Worst PFAS — Regulated MCL Violations](https://watercheckup.com/worst-pfas)
+- [Worst PFAS — Peak Detections (50 cities)](https://watercheckup.com/worst-water)
+- [Water Quality Rankings Hub](https://watercheckup.com/worst)
+- [Sugar Land TX Water Report — 672 ppt 6:2 FTS](https://watercheckup.com/water/sugar-land)
+- [New York City Water Quality Report](https://watercheckup.com/water/new-york)
 - [Los Angeles Water Quality Report](https://watercheckup.com/water/los-angeles)
 - [Houston Water Quality Report](https://watercheckup.com/water/houston)
-- [New York Water Quality Report](https://watercheckup.com/water/new-york)
+- [San Antonio Water Quality Report](https://watercheckup.com/water/san-antonio)
+- [Miami Water Quality Report](https://watercheckup.com/water/miami)
+- [Columbus OH Water Quality Report](https://watercheckup.com/water/columbus)
+- [Pensacola FL Water Quality Report](https://watercheckup.com/water/pensacola)
+- [Parkersburg WV Water Quality Report](https://watercheckup.com/water/parkersburg)
+- [Fairfax County VA Water Quality Report](https://watercheckup.com/water/fairfax-county)
+- [Philadelphia Water Quality Report](https://watercheckup.com/water/philadelphia)
+- [Chicago Water Quality Report](https://watercheckup.com/water/chicago)
+- [Phoenix Water Quality Report](https://watercheckup.com/water/phoenix)
+- [All city water reports](https://watercheckup.com/water)
 
 ## Data Sources
 

@@ -75,7 +75,7 @@ export default async function WorstLeadPage() {
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             {[
               { stat: `${LEAD_CITIES.length}+`, label: 'Cities with documented lead risk' },
-              { stat: '400K+', label: 'Lead service lines in Chicago alone' },
+              { stat: '150,000+', label: 'Lead service lines in Chicago alone' },
               { stat: '1986', label: 'Homes built before this year are at highest risk' },
             ].map(({ stat, label }) => (
               <div key={stat} style={{ padding: '12px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textAlign: 'center', flex: '1 1 140px' }}>

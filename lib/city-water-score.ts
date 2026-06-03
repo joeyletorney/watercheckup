@@ -1,5 +1,22 @@
 import { score88ToLetterGrade } from './water-grade';
 
+/** EPA MCL (ppt) for regulated PFAS — used for score penalties, not unregulated peaks like 6:2 FTS */
+const REGULATED_PFAS_MCL: Record<string, number> = {
+  PFOA: 4,
+  PFOS: 4,
+  PFNA: 10,
+  PFHxS: 10,
+  'HFPO-DA': 10,
+};
+
+function maxRegulatedPpt(compounds: [string, number, number, number][]): number {
+  let max = 0;
+  for (const [name, level] of compounds) {
+    if (REGULATED_PFAS_MCL[name] !== undefined) max = Math.max(max, level);
+  }
+  return max;
+}
+
 /** UCMR5-shaped PFAS snapshot used for city score + SEO */
 export type CityPfasSnapshot = {
   maxPpt: number;
@@ -16,21 +33,24 @@ export function computeWaterScore(
 ): { score: number; grade: string; gradeColor: string; label: string; scoreColor: string } {
   let score = 88;
 
-  if (urgency === 'high') score -= 40;
-  if (urgency === 'medium') score -= 20;
+  if (urgency === 'high') score -= 32;
+  if (urgency === 'medium') score -= 18;
 
-  score -= Math.min(issues.length * 5, 20);
+  score -= Math.min(issues.length * 4, 16);
 
   if (pfasData) {
-    if (pfasData.violations > 0) score -= 25;
-    else if (pfasData.compounds.length > 3) score -= 12;
-    else if (pfasData.compounds.length > 0) score -= 6;
+    const regMax = maxRegulatedPpt(pfasData.compounds);
+    if (pfasData.violations > 1) score -= 22;
+    else if (pfasData.violations === 1) score -= 14;
+    else if (pfasData.compounds.length > 3) score -= 10;
+    else if (pfasData.compounds.length > 0) score -= 5;
 
     const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
-    if (overHealth) score -= 10;
+    if (overHealth) score -= 8;
 
-    if (pfasData.maxPpt > 50) score -= 8;
-    else if (pfasData.maxPpt > 10) score -= 4;
+    if (regMax > 50) score -= 10;
+    else if (regMax > 10) score -= 6;
+    else if (pfasData.maxPpt > 100 && pfasData.violations === 0) score -= 5;
   }
 
   score = Math.max(0, Math.min(88, score));

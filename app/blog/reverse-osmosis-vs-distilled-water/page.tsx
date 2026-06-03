@@ -286,7 +286,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           <Link href="/" style={{ color: '#0891b2' }}>
             WaterCheckup
           </Link>{' '}
-          and your utility&apos;s{' '}
+          and your public water system&apos;s{' '}
           <Link href="/blog/how-to-read-your-consumer-confidence-report" style={{ color: '#0891b2' }}>
             Consumer Confidence Report
           </Link>{' '}
@@ -404,7 +404,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           >
             Check Your Tap Water Quality →
           </Link>
-          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · Any US ZIP · See what your utility reports</p>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · Any US ZIP · See what your public water system reports</p>
         </div>
 
         <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>

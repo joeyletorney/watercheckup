@@ -399,7 +399,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <span style={{ color: '#ef4444', fontSize: 16, flexShrink: 0 }}>🚨</span>
                   <p style={{ fontSize: 14, color: '#e2e8f0', margin: 0, lineHeight: 1.6 }}>
-                    <strong>{data.openViolations} open EPA violation{data.openViolations !== 1 ? 's' : ''}</strong> — your utility is currently out of compliance with federal drinking water standards.
+                    <strong>{data.openViolations} open EPA violation{data.openViolations !== 1 ? 's' : ''}</strong> — your public water system is currently out of compliance with federal drinking water standards.
                   </p>
                 </div>
               )}
@@ -437,7 +437,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 14px' }}>
                 {data.dataSources?.length
                   ? `Sources: ${data.dataSources.join(' · ')}`
-                  : 'Sources: EPA SDWIS, UCMR5 PFAS, utility CCR where available'}
+                  : 'Sources: EPA SDWIS, UCMR5 PFAS, public water system CCR where available'}
               </p>
               {data.contaminants.map((c: any, i: number) => (
                 <ContaminantBar key={`${c.name || c.contaminant || 'c'}-${i}`} c={c} />
@@ -622,10 +622,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                   TEST YOUR ACTUAL TAP
                 </div>
                 <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
-                  EPA data shows what&apos;s in your utility&apos;s water — not your specific tap
+                  EPA data shows what&apos;s in your public water system&apos;s water — not your specific tap
                 </div>
                 <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 14px' }}>
-                  Lead leaches from your home&apos;s pipes and fixtures. PFAS levels vary by neighborhood. A certified lab test tells you exactly what&apos;s coming out of your faucet — not just your utility&apos;s average.
+                  Lead leaches from your home&apos;s pipes and fixtures. PFAS levels vary by neighborhood. A certified lab test tells you exactly what&apos;s coming out of your faucet — not just your public water system&apos;s average.
                 </p>
                 <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                   <a

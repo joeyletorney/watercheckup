@@ -22,7 +22,7 @@ export default function EpaCcrFinderEmbedPage({ searchParams }: { searchParams: 
       <EpaIframeShell
         src={FYLCCR_ENTRY}
         title="EPA — Find Your Local CCR"
-        subtitle="Search EPA’s Consumer Confidence Report finder by state, county, or system name. Not every utility files a link here."
+        subtitle="Search EPA’s Consumer Confidence Report finder by state, county, or system name. Not every public water system files a link here."
         backHref={back}
         backLabel="← Back to your report"
       />

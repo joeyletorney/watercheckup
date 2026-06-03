@@ -23,7 +23,7 @@ export async function generateMetadata({
   const top = cd.issues[0] ?? 'Tap water quality';
   return {
     title: `${cd.name}, ${cd.state} Water Summary | WaterCheckup`,
-    description: `${cd.name} (${cd.state}): ${top}. Utility ${cd.system}. EPA PWSID ${cd.pwsid}. Open the full report for PFAS data and filter picks.`,
+    description: `${cd.name} (${cd.state}): ${top}. Public water system ${cd.system}. EPA PWSID ${cd.pwsid}. Open the full report for PFAS data and filter picks.`,
     alternates: {
       canonical: `https://watercheckup.com/water/area/${state}/${city}`,
     },

@@ -5,7 +5,7 @@ import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { getTopUtilityStaticParamsByPopulation, getUniqueUtilityStatesLowercase } from '@/lib/utilities-data'
 import { getAllCountyStaticParams } from '@/lib/county-data'
 
-/** Full utility + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
+/** Full public water system + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
 const SITEMAP_TOP_UTILITIES_BY_POP = 1_500
 
 const STATE_NAMES: Record<string, string> = {
@@ -54,18 +54,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: p.priority,
   }))
 
-  const blogPostEntries = Object.entries(POSTS).map(([slug, post]) => ({
+  const HIGH_PRIORITY_BLOG = new Set([
+    'top-10-most-pfas-contaminated-cities',
+    'san-antonio-water-quality',
+    'pfas-in-san-antonio-water',
+  ]);
+  const HIGH_PRIORITY_CITIES = new Set([
+    'sugar-land', 'miami', 'new-york', 'houston', 'san-antonio', 'phoenix',
+    'los-angeles', 'philadelphia', 'chicago', 'columbus', 'pensacola',
+    'parkersburg', 'fort-worth', 'dallas', 'sacramento', 'fresno', 'austin',
+    'fairfax-county',
+  ]);
+
+  const blogPostEntries = Object.entries(POSTS).map(([slug]) => ({
     url: `${base}/blog/${slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'monthly' as const,
-    priority:1,
+    priority: HIGH_PRIORITY_BLOG.has(slug) ? 0.9 : 0.75,
   }))
 
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
     url: `${base}/water/${slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: 'monthly' as const,
-    priority: 1,
+    priority: HIGH_PRIORITY_CITIES.has(slug) ? 0.85 : 0.7,
   }))
 
   // State hub pages at /water/state/[slug] — dedupe via object keys
@@ -123,7 +135,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     })
   } catch {
-    // data/utilities.json not generated — skip utility URLs
+    // data/utilities.json not generated — skip public water system URLs
   }
 
   const merged: MetadataRoute.Sitemap = [
@@ -142,7 +154,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/water/gaithersburg`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${base}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/water/phoenix`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/water/sugar-land`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${base}/water/sugar-land`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/water/pensacola`, lastModified: now, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${base}/water/fairfax-county`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${base}/water/miami`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
     { url: `${base}/blog/san-antonio-water-quality`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
