@@ -1111,87 +1111,6 @@ function DIYGuidePanel({ cat }: { cat: string }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// COUNTY COMPARISON
-// ─────────────────────────────────────────────────────────────────────────────
-function CountyComparison({ pwsid }: { pwsid: string }) {
-  const [data, setData]       = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen]       = useState(false);
-
-  const load = async () => {
-    if (data || loading) { setOpen(x => !x); return; }
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/county?pwsid=${pwsid}`);
-      const json = await res.json();
-      setData(json);
-      setOpen(true);
-    } catch { setData({ utilities: [], county: 'Unknown' }); setOpen(true); }
-    setLoading(false);
-  };
-
-  const utils = data?.utilities || [];
-  return (
-    <div style={{ marginBottom: 18 }}>
-      <button onClick={load} style={{ width: '100%', background: '#0b1e36', border: '1px solid #0e2233', borderRadius: 10, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', color: '#e2e8f0' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: 16 }}>🗺️</span>
-          <div style={{ textAlign: 'left' }}>
-            <div style={{ fontSize: 13, fontWeight: 700 }}>Compare All Utilities in Your County</div>
-            <div style={{ fontSize: 13, color: '#cbd5e1' }}>See how your water ranks against neighbors</div>
-          </div>
-        </div>
-        <span style={{ color: '#cbd5e1', fontSize: 14 }}>
-          {loading ? '⏳' : open ? '▲' : '▼'}
-        </span>
-      </button>
-      {open && data && (
-        <div style={{ background: '#060e17', border: '1px solid #0e2233', borderTop: 'none', borderRadius: '0 0 10px 10px', padding: '12px 16px' }}>
-          {data.county && <div style={{ fontSize: 13, color: '#cbd5e1', letterSpacing: 1, marginBottom: 10 }}>{data.county.toUpperCase()} — {utils.length} PUBLIC WATER SYSTEMS</div>}
-          {utils.length === 0 ? (
-            <div style={{ fontSize: 13, color: '#cbd5e1', padding: '8px 0' }}>County data not available for this system.</div>
-          ) : (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid #0e2233' }}>
-                    {['Public water system','City','Population','Source','Open Violations','Total Violations'].map(h => (
-                      <th key={h} style={{ padding: '6px 8px', textAlign: 'left', fontSize: 13, color: '#cbd5e1', letterSpacing: 0.5, fontWeight: 700, whiteSpace: 'nowrap' }}>{h.toUpperCase()}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {utils.map((u: any, i: number) => (
-                    <tr key={i} style={{ background: u.isCurrent ? '#0e2545' : i % 2 === 0 ? '#0b1828' : 'transparent', borderBottom: '1px solid #0a1520' }}>
-                      <td style={{ padding: '8px 8px', color: u.isCurrent ? '#22d3ee' : '#e2e8f0', fontWeight: u.isCurrent ? 700 : 400, whiteSpace: 'nowrap' }}>
-                        {u.isCurrent ? '▶ ' : ''}
-                        {(() => {
-                          const nm = typeof u.name === 'string' ? u.name : '—';
-                          return nm.length > 30 ? `${nm.slice(0, 28)}…` : nm;
-                        })()}
-                      </td>
-                      <td style={{ padding: '8px 8px', color: '#cbd5e1' }}>{u.city ?? '—'}</td>
-                      <td style={{ padding: '8px 8px', color: '#cbd5e1', textAlign: 'right' }}>{Number(u.population || 0).toLocaleString()}</td>
-                      <td style={{ padding: '8px 8px', color: '#cbd5e1' }}>{u.sourceLabel}</td>
-                      <td style={{ padding: '8px 8px', textAlign: 'center' }}>
-                        <span style={{ color: u.openViolations > 0 ? '#ef4444' : '#22d3ee', fontWeight: 700 }}>{u.openViolations}</span>
-                      </td>
-                      <td style={{ padding: '8px 8px', textAlign: 'center' }}>
-                        <span style={{ color: u.totalViolations > 5 ? '#f59e0b' : '#cbd5e1' }}>{u.totalViolations}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // NATIONAL PERCENTILE
 // ─────────────────────────────────────────────────────────────────────────────
 function NationalPercentile({ pct }: { pct: number }) {
@@ -3056,7 +2975,6 @@ export default function WaterCheckup() {
 
               {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
-              {data.pwsid && <CountyComparison pwsid={data.pwsid} />}
 
               {data.violations?.length > 0 ? (
                 <>

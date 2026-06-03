@@ -5,7 +5,6 @@ import { SiteHeader } from '../../../components/SiteHeader';
 import { CITIES } from '../../[city]/cities-data';
 import EmailCapture from '../../[city]/EmailCapture';
 import ucmr5Raw from '../../../../lib/ucmr5.json';
-import { getCountiesForStateAbbr } from '@/lib/county-data';
 import { getAverageHardnessForState } from '@/lib/water-hardness';
 import { computeCityWaterScore } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
@@ -156,8 +155,6 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
 
   const rows = buildStateRows(stateAbbr);
   if (rows.length === 0) notFound();
-
-  const countyRows = getCountiesForStateAbbr(stateAbbr);
 
   const totalCities = rows.length;
   const atRiskCount = rows.filter((r) => r.band === 'at_risk').length;
@@ -399,53 +396,6 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             </table>
           </div>
         </div>
-
-        {countyRows.length > 0 && (
-          <div style={{ marginBottom: 40 }}>
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: 700,
-                color: '#0891b2',
-                letterSpacing: 2,
-                marginBottom: 16,
-                paddingBottom: 10,
-                borderBottom: '1px solid #0f2336',
-              }}
-            >
-              COUNTIES IN {stateName.toUpperCase()}
-            </div>
-            <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px', lineHeight: 1.55 }}>
-              County-level grades roll up every WaterCheckup city we map into the same county (via USPS city–county reference data).
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {countyRows.map((co) => (
-                <Link
-                  key={`${co.stateSlug}-${co.countySlug}`}
-                  href={`/water/county/${co.stateSlug}/${co.countySlug}`}
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    padding: '12px 16px',
-                    background: '#071828',
-                    border: '1px solid #1a3a5c',
-                    borderRadius: 10,
-                    textDecoration: 'none',
-                  }}
-                >
-                  <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>
-                    {co.countySlug === 'district-of-columbia' ? 'District of Columbia' : `${co.countyDisplay} County`}
-                  </span>
-                  <span style={{ fontSize: 13, color: '#67e8f9', fontWeight: 700 }}>
-                    {co.totalCities} {co.totalCities === 1 ? 'city' : 'cities'} · Grade{' '}
-                    <span style={{ color: co.countyGradeColor }}>{co.countyGrade}</span>
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
 
         <div style={{ marginBottom: 40 }}>
           <EmailCapture cityName={stateName} slug={stateSlug} stateScope={{ stateName, stateSlug }} />

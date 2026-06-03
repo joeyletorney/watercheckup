@@ -17,43 +17,28 @@ type EmailCaptureProps = {
   inline?: boolean;
   /** When set, copy targets a whole state (e.g. Texas / texas). */
   stateScope?: { stateName: string; stateSlug: string };
-  /** When set, copy targets a county hub page. */
-  countyScope?: { countyDisplay: string; stateSlug: string; countySlug: string };
   /** When set, copy targets a PWS public water system page. */
   utilityScope?: { utilityName: string; stateParam: string; utilitySlug: string; pwsid?: string };
 };
 
-export default function EmailCapture({ cityName, slug, inline, stateScope, countyScope, utilityScope }: EmailCaptureProps) {
+export default function EmailCapture({ cityName, slug, inline, stateScope, utilityScope }: EmailCaptureProps) {
   const isUtility = !!utilityScope;
-  const isCounty = !!countyScope;
   const isState = !!stateScope;
   const displayName = isUtility
     ? utilityScope!.utilityName
-    : isCounty
-      ? countyScope!.countyDisplay
-      : isState
-        ? stateScope!.stateName
-        : cityName;
-  const countyLabelForTitle =
-    isCounty && countyScope!.countySlug === 'district-of-columbia'
-      ? 'District of Columbia'
-      : isCounty
-        ? `${countyScope!.countyDisplay} County`
-        : '';
+    : isState
+      ? stateScope!.stateName
+      : cityName;
   const newsletterSource = isUtility
     ? `public water system-page-${utilityScope!.stateParam}-${utilityScope!.utilitySlug}`
-    : isCounty
-      ? `county-page-${countyScope!.stateSlug}-${countyScope!.countySlug}`
-      : isState
-        ? `state-page-${stateScope!.stateSlug}`
-        : `city-page-${slug}`;
+    : isState
+      ? `state-page-${stateScope!.stateSlug}`
+      : `city-page-${slug}`;
   const pagePathForGtag = isUtility
     ? `/utilities/${utilityScope!.stateParam}/${utilityScope!.utilitySlug}`
-    : isCounty
-      ? `/water/county/${countyScope!.stateSlug}/${countyScope!.countySlug}`
-      : isState
-        ? `/water/state/${stateScope!.stateSlug}`
-        : `/water/${slug}`;
+    : isState
+      ? `/water/state/${stateScope!.stateSlug}`
+      : `/water/${slug}`;
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [msg, setMsg] = useState('');
@@ -105,8 +90,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
         <div style={{ fontSize: 20, marginBottom: 6 }}>✅</div>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You&apos;re in.</div>
         <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
-          We&apos;ll email you when new PFAS or contamination data drops for{' '}
-          {isCounty ? countyLabelForTitle : displayName}. Check your inbox for a welcome note.
+          We&apos;ll email you when new PFAS or contamination data drops for {displayName}. Check your inbox for a welcome note.
         </p>
       </div>
     );
@@ -118,22 +102,18 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, count
         STAY INFORMED
       </div>
       <div style={{ fontSize: 16, fontWeight: 700, color: '#f1f5f9', marginBottom: 6 }}>
-        {isCounty
-          ? `Get water alerts for ${countyLabelForTitle}`
-          : isState
+        {isState
+          ? `Get water quality alerts for ${displayName}`
+          : isUtility
             ? `Get water quality alerts for ${displayName}`
-            : isUtility
-              ? `Get water quality alerts for ${displayName}`
-              : `Get ${displayName} water alerts`}
+            : `Get ${displayName} water alerts`}
       </div>
       <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 16px', lineHeight: 1.6 }}>
-        {isCounty
-          ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect cities in ${countyLabelForTitle}. One email, no spam, unsubscribe any time.`
-          : isState
-            ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect public water systems in ${displayName}. One email, no spam, unsubscribe any time.`
-            : isUtility
-              ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect ${displayName}${utilityScope!.pwsid ? ` (PWS ${utilityScope!.pwsid})` : ''}. One email, no spam, unsubscribe any time.`
-              : `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts drop for ${displayName}. One email, no spam, unsubscribe any time.`}
+        {isState
+          ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect public water systems in ${displayName}. One email, no spam, unsubscribe any time.`
+          : isUtility
+            ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect ${displayName}${utilityScope!.pwsid ? ` (PWS ${utilityScope!.pwsid})` : ''}. One email, no spam, unsubscribe any time.`
+            : `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts drop for ${displayName}. One email, no spam, unsubscribe any time.`}
       </p>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <input

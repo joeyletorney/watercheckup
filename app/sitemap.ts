@@ -3,7 +3,6 @@ import { POSTS } from './blog/posts'
 import { TOP_RESULT_ZIPS } from './results/top-result-zips'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { getTopUtilityStaticParamsByPopulation, getUniqueUtilityStatesLowercase } from '@/lib/utilities-data'
-import { getAllCountyStaticParams } from '@/lib/county-data'
 import { SITE_ORIGIN } from '@/lib/site-url'
 
 /** Full public water system + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
@@ -101,14 +100,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   })
 
-  const countyStatic = getAllCountyStaticParams()
-  const countyEntries = countyStatic.map(({ state, countySlug }) => ({
-    url: `${base}/water/county/${state}/${countySlug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
   // Result pages are ISR for arbitrary ZIPs; only list high-value ZIPs here (not full national index).
   const zipResultEntries: MetadataRoute.Sitemap = TOP_RESULT_ZIPS.map((zip) => ({
     url: `${base}/results/${zip}`,
@@ -149,7 +140,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticEntries,
     ...blogPostEntries,
     ...stateEntries,
-    ...countyEntries,
     ...cityEntries,
     ...zipResultEntries,
     ...utilityEntries,

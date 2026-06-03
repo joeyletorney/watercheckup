@@ -9,7 +9,6 @@ import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
 import cityBlurbs from '@/lib/cityBlurbs';
-import { getCountyLinkForCitySlug } from '@/lib/county-data';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
@@ -172,13 +171,6 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const contaminantRows = cd ? buildCityContaminantDisplay(slug, cd.pwsid, cd.waterProfile, 18, cd.zip) : [];
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
-  const countyLink = cd ? getCountyLinkForCitySlug(slug) : undefined;
-  const countyLineLabel =
-    countyLink &&
-    (countyLink.countySlug === 'district-of-columbia'
-      ? 'District of Columbia'
-      : `${countyLink.countyDisplay} County`);
-
   const webPageAuthorLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -257,17 +249,6 @@ export default function CityPage({ params }: { params: { city: string } }) {
             <span style={{ margin: '0 6px' }}>›</span>
             <span style={{ color: '#cbd5e1' }}>{cd?.name ?? cityName}</span>
           </nav>
-
-          {cd && countyLink && countyLineLabel && (
-            <div style={{ marginBottom: 14, fontSize: 14 }}>
-              <Link
-                href={`/water/county/${countyLink.stateSlug}/${countyLink.countySlug}`}
-                style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}
-              >
-                {cd.name} is in {countyLineLabel} →
-              </Link>
-            </div>
-          )}
 
           <CityPageHeroImage cityLabel={cd ? `${cd.name}, ${cd.state}` : cityName} />
 
