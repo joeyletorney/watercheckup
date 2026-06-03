@@ -551,6 +551,10 @@ export default function SanAntonioWaterPage() {
               { href: '/blog/best-water-filter-hard-water', label: 'Best filters for hard water — San Antonio & more' },
               { href: '/pfas', label: 'PFAS in tap water — EPA limits & filters' },
               { href: '/worst-pfas', label: 'US water systems with the highest PFAS — ranked' },
+              { href: '/worst-pfas-cities', label: 'Worst cities for PFAS (MCL + peaks)' },
+              { href: '/best-cities', label: 'Best tap water cities (safety score)' },
+              { href: '/worst-hardness', label: 'Hardest tap water in America' },
+              { href: '/rankings', label: 'State water quality rankings' },
               { href: '/water', label: 'All city water quality reports' },
             ].map(({ href, label }) => (
               <Link

@@ -27,7 +27,7 @@ export function buildCityPageMetadata(
 
   const title = prioritySeo?.title ?? buildDefaultCitySeoTitle(city.name);
   const description = prioritySeo
-    ? formatPrioritySeoDescription(prioritySeo.description, ws.grade)
+    ? formatPrioritySeoDescription(prioritySeo.description, ws.grade, ws.score)
     : buildDefaultCitySeoDescription(city.name);
 
   const canonical = `https://watercheckup.com/water/${slug}`;

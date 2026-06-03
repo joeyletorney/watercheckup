@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { buildStateRankingRows, STATE_NAMES } from '@/lib/water-rankings';
 import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
+import { SearchDemandCities } from '@/components/SearchDemandCities';
 import { RankingsTable } from './RankingsTable';
 
 export const metadata: Metadata = {
@@ -59,6 +60,8 @@ export default function RankingsPage() {
             city.
           </p>
         </div>
+
+        <SearchDemandCities title="High-traffic city reports (from search demand)" compact />
 
         <div style={{ marginBottom: 14, fontSize: 13, color: '#a8b4c4' }}>
           Click column headers to sort. Default: best rank (lowest % cities at risk) first.

@@ -309,12 +309,38 @@ export default function CityPage({ params }: { params: { city: string } }) {
           )}
 
           {cd && slug === 'gaithersburg' && (
-            <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>
-              Serving {cd.population} residents via {cd.system}
-            </p>
+            <>
+              <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 12px', lineHeight: 1.6 }}>
+                Serving {cd.population} residents via {cd.system}
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 18 }}>
+                {[
+                  { href: `/water-hardness?zip=${encodeURIComponent(cd.zip)}`, label: 'Water testing & hardness by ZIP' },
+                  { href: '/worst-hardness', label: 'Hardest tap water rankings' },
+                  { href: '/rankings', label: 'Maryland / state rankings' },
+                  { href: '/best-cities', label: 'Best tap water cities' },
+                ].map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: '#67e8f9',
+                      textDecoration: 'none',
+                      padding: '6px 10px',
+                      background: 'rgba(8,145,178,0.12)',
+                      borderRadius: 8,
+                    }}
+                  >
+                    {label} →
+                  </Link>
+                ))}
+              </div>
+            </>
           )}
 
-          {cd && (
+          {cd && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 14, margin: '0 0 18px' }}>
               <Link
                 href={`/water-hardness?zip=${encodeURIComponent(cd.zip)}`}

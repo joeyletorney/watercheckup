@@ -21,11 +21,16 @@ export async function generateMetadata({
   if (!row) return { title: 'Water quality | WaterCheckup' };
   const { data: cd } = row;
   const top = cd.issues[0] ?? 'Tap water quality';
+  const primaryUrl = `https://watercheckup.com/water/${row.slug}`;
   return {
     title: `${cd.name}, ${cd.state} Water Summary | WaterCheckup`,
     description: `${cd.name} (${cd.state}): ${top}. Public water system ${cd.system}. EPA PWSID ${cd.pwsid}. Open the full report for PFAS data and filter picks.`,
     alternates: {
-      canonical: `https://watercheckup.com/water/area/${state}/${city}`,
+      canonical: primaryUrl,
+    },
+    robots: {
+      index: false,
+      follow: true,
     },
     openGraph: {
       title: `${cd.name}, ${cd.state} — water summary`,

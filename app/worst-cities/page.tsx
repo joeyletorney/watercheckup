@@ -4,6 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CityRankingList } from '@/components/CityRankingList';
 import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
+import { SearchDemandCities } from '@/components/SearchDemandCities';
 
 export const metadata: Metadata = {
   title: '20 Worst Cities for Tap Water Quality (2026 Safety Score) | WaterCheckup',
@@ -45,6 +46,8 @@ export default function WorstCitiesPage() {
             <Link href="/worst-pfas-cities" style={{ color: '#22d3ee' }}>PFAS MCL cities</Link>.
           </p>
         </div>
+
+        <SearchDemandCities title="Also ranking well in Google search" compact />
 
         <CityRankingList
           items={cities.map((c) => ({

@@ -6,7 +6,8 @@ import { getTopUtilityStaticParamsByPopulation, getUniqueUtilityStatesLowercase 
 import { getAllCountyStaticParams } from '@/lib/county-data'
 
 /** Full public water system + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
-const SITEMAP_TOP_UTILITIES_BY_POP = 1_500
+/** Keep utility URLs in sitemap smaller so crawl budget favors city + ranking pages. */
+const SITEMAP_TOP_UTILITIES_BY_POP = 400
 
 const STATE_NAMES: Record<string, string> = {
   AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
@@ -67,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'sugar-land', 'miami', 'new-york', 'houston', 'san-antonio', 'phoenix',
     'los-angeles', 'philadelphia', 'chicago', 'columbus', 'pensacola',
     'parkersburg', 'fort-worth', 'dallas', 'sacramento', 'fresno', 'austin',
-    'fairfax-county',
+    'fairfax-county', 'gaithersburg',
   ]);
 
   const blogPostEntries = Object.entries(POSTS).map(([slug]) => ({
@@ -94,7 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${base}/water/state/${slug}`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'monthly' as const,
-      priority:1,
+      priority: 0.72,
     }
   })
 
@@ -111,7 +112,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}/results/${zip}`,
     lastModified: now,
     changeFrequency: 'weekly' as const,
-    priority: 0.9,
+    priority: 0.55,
   }))
 
   let utilityEntries: MetadataRoute.Sitemap = []
@@ -121,7 +122,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${base}/utilities/${state}/${slug}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      priority: 0.45,
     }))
     const utilStates = getUniqueUtilityStatesLowercase()
     utilityEntries = utilityEntries.concat(
@@ -129,14 +130,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${base}/utilities/${st}`,
         lastModified: now,
         changeFrequency: 'monthly' as const,
-        priority: 0.6,
+        priority: 0.45,
       })),
     )
     utilityEntries.push({
       url: `${base}/utilities`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      priority: 0.5,
     })
   } catch {
     // data/utilities.json not generated — skip public water system URLs
@@ -154,8 +155,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   /** Pinned URLs: override changeFrequency / priority (and dedupe same URL). */
   const pinned: MetadataRoute.Sitemap = [
-    { url: `${base}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/water/gaithersburg`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${base}/water/san-antonio`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/water/gaithersburg`, lastModified: now, changeFrequency: 'weekly', priority: 0.92 },
     { url: `${base}/water/houston`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/water/phoenix`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/water/sugar-land`, lastModified: now, changeFrequency: 'weekly', priority: 0.95 },

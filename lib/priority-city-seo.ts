@@ -12,14 +12,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'EPA monitoring detected PFOS at 106 ppt in NYC water — 26x the legal limit. Lead pipes in pre-1986 buildings add more risk. See the 2026 New York City water quality report and what filter actually fixes it.',
   },
   'san-antonio': {
-    title: 'San Antonio Water Contamination 2026 — PFAS, Lead & Quality Report',
+    title: 'San Antonio Water Quality 2026 — PFAS, Hardness & Contamination',
     description:
-      'San Antonio tap water has PFAS above EWG limits, 272 mg/L hardness, arsenic, and radium. See the full contamination report, safety grade, and which filter actually fixes it.',
+      'San Antonio tap water: PFAS in UCMR5, 272 mg/L hardness, arsenic, and radium. Full 2026 SAWS contamination report with safety grade and NSF filter picks.',
   },
   gaithersburg: {
-    title: 'Gaithersburg Water Quality 2026 — WSSC Tap Water Report (Free)',
+    title: 'Gaithersburg MD Water Quality & Testing — WSSC Report 2026',
     description:
-      'Gaithersburg, MD water quality from WSSC Water: EPA violations, PFAS UCMR5 data, lead risk in older homes, and certified filter picks. Free Montgomery County report.',
+      'Gaithersburg & Montgomery County tap water (WSSC): PFAS UCMR5 data, water testing context, lead in older homes, and certified filters for Maryland.',
   },
   'los-angeles': {
     title: 'Los Angeles Tap Water 2026 — Chromium-6, PFAS & Safety Grade',

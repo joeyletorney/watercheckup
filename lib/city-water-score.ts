@@ -171,11 +171,14 @@ export function getCityKeyFinding(
   return 'EPA Report Available';
 }
 
-/** Sync priority meta descriptions that lead with a letter grade */
-export function formatPrioritySeoDescription(description: string, grade: string): string {
-  const cleaned = description.replace(/^[A-F][+-]?\s+grade:\s*/i, '');
-  if (/^[A-F][+-]?\s+grade:/i.test(description)) {
-    return `${grade} grade: ${cleaned}`;
-  }
-  return description;
+/** SERP description: grade + score upfront, free/no-signup CTA when missing */
+export function formatPrioritySeoDescription(
+  description: string,
+  grade: string,
+  score?: number
+): string {
+  const cleaned = description.replace(/^[A-F][+-]?\s+grade:\s*/i, '').trim();
+  const scoreBit = score != null ? ` · ${score}/88` : '';
+  const freeBit = /no signup|free report|free ·/i.test(cleaned) ? '' : ' Free EPA report · no signup.';
+  return `${grade} grade${scoreBit}: ${cleaned}${freeBit}`;
 }

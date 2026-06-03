@@ -4420,16 +4420,40 @@ export default function WaterCheckup() {
         {/* Browse by city */}
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>BROWSE BY CITY</div>
-          <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 8, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>
+            {[
+              { href: '/water/san-antonio', name: 'San Antonio, TX', grade: 'A-', score: '82/88', detail: 'PFAS · 272 mg/L hardness' },
+              { href: '/water/gaithersburg', name: 'Gaithersburg, MD', grade: 'B', score: '74/88', detail: 'WSSC · water testing & PFAS' },
+            ].map(({ href, name, grade, score, detail }) => (
+              <a
+                key={href}
+                href={href}
+                style={{
+                  display: 'block',
+                  padding: '14px 16px',
+                  background: 'linear-gradient(165deg, rgba(13,34,64,0.95), rgba(7,24,40,0.92))',
+                  border: '1px solid rgba(34,211,238,0.4)',
+                  borderRadius: 12,
+                  textDecoration: 'none',
+                }}
+              >
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>{name}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#67e8f9', marginBottom: 6 }}>Grade {grade} · {score}</div>
+                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{detail}</div>
+                <div style={{ fontSize: 13, color: '#22d3ee', fontWeight: 700, marginTop: 8 }}>Free full report →</div>
+              </a>
+            ))}
+          </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
             {[
-              { href: '/water/san-antonio', label: 'San Antonio water quality' },
-              { href: '/water/san-antonio', label: 'PFAS in San Antonio water' },
-              { href: '/blog/san-antonio-water-quality', label: 'San Antonio water contamination report' },
+              { href: '/water/san-antonio', label: 'San Antonio water contamination' },
               { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio water (2026)' },
               { href: '/water/gaithersburg', label: 'Gaithersburg water quality' },
-              { href: '/blog/best-water-filter-for-lead-removal', label: 'Water filters that remove lead' },
-              { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS removal water filter' },
+              { href: '/water-hardness?zip=20878', label: 'Gaithersburg water testing / hardness' },
+              { href: '/worst-hardness', label: 'Hardest tap water in America' },
+              { href: '/worst-cities', label: 'Worst cities by safety score' },
+              { href: '/rankings', label: 'State rankings' },
             ].map(({ href, label }) => (
               <Link
                 key={`${href}-${label}`}
