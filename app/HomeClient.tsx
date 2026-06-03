@@ -9,6 +9,7 @@ import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsH
 import { SiteHeader } from './components/SiteHeader';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
 import { HomeComparisonTable } from '@/components/HomeComparisonTable';
+import { TrustedFilterCategories } from '@/components/TrustedFilterCategories';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES } from '@/app/water/[city]/cities-data';
 import {
@@ -171,6 +172,22 @@ const PRODUCTS: any[] = [
   { id:42, cat:'acid-neutralizer', catLabel:'Acid Neutralizer', name:'AFWFilters 1.5 cu.ft. Calcite Neutralizer', brand:'AFWFilters', price:459, filterCostPerYear:40, rating:4.5, reviews:780, gpd:null, stages:1, cert:['NSF/ANSI 61'], certColor:'#22d3ee', removes:['Low pH','Corrosive water','Copper leaching','Lead leaching from pipes'], bestFor:['Acidic pH','Corrosion','Blue-green staining'], pros:['Raises pH naturally — no chemicals','Whole-house point-of-entry','10+ yr calcite media life'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, acidNeutralizer:true, expertPick:true, expertReason:'Calcite media dissolves slowly to raise pH naturally — no pumps, chemicals, or electricity. Whole-house protection stops corrosive water from leaching copper and lead from pipes. Best value acid neutralizer for private wells.', img:'https://cdn11.bigcommerce.com/s-zo9s1d/images/stencil/1280x1280/products/1473/3842/5600SXT-FLTR__11655.1653653032.jpg?c=2', amazon:`https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=${TAG}` },
   { id:43, cat:'acid-neutralizer', catLabel:'Acid Neutralizer', name:'Fleck 5600SXT Calcite/Corosex System', brand:'Fleck', price:649, filterCostPerYear:50, rating:4.6, reviews:420, gpd:null, stages:1, cert:['NSF/ANSI 61'], certColor:'#22d3ee', removes:['Low pH','Corrosive water','Copper leaching','Lead leaching from pipes'], bestFor:['Acidic pH','Corrosion','Blue-green staining'], pros:['Digital metered valve — auto backwash','Calcite + Corosex blend for very low pH','30-yr Fleck valve warranty'], diyDiff:'Hard', situations:['homeowner'], well:true, wholeHouse:true, acidNeutralizer:true, expertPick:true, expertReason:'The Fleck 5600SXT valve is the most trusted name in residential water treatment. The Calcite/Corosex blend handles even very acidic well water (pH 5.0–6.5). Automatic backwash keeps the bed clean. Best premium acid neutralizer.', img:'https://flecksystems.com/cdn/shop/files/fleck-5600-sxt.jpg?v=1686769528', amazon:`https://www.amazon.com/s?k=Fleck+5600SXT+calcite+acid+neutralizer&tag=${TAG}` },
 ];
+
+const TRUSTED_PRODUCTS_BY_ID = Object.fromEntries(
+  PRODUCTS.map((p) => [
+    p.id,
+    {
+      id: p.id,
+      name: p.name,
+      brand: p.brand,
+      price: p.price,
+      cert: p.cert as string[] | undefined,
+      catLabel: p.catLabel as string | undefined,
+      amazon: p.amazon as string | undefined,
+      outOfStock: p.outOfStock as boolean | undefined,
+    },
+  ]),
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SITUATION → product recommendations
@@ -4286,83 +4303,7 @@ export default function WaterCheckup() {
           ))}
         </div>
 
-        {/* ── TOP FILTER PICKS — affiliate CTA ─────────────────────── */}
-        <div style={{ marginBottom: 56 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6 }}>MOST TRUSTED FILTERS</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.55, margin: '0 0 18px' }}>
-            Not sure where to start? These are our most recommended filters across every situation — all certified, all quick-change.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
-            {[
-              { id: 3,  emoji: '🏆', label: 'Best overall RO',      name: 'Waterdrop G3P800',         price: 849, tag: 'NSF 42 · NSF 53 · NSF 58 · 800 GPD',     accent: '#22d3ee', amazon: WATERDROP_AMAZON_BY_ID[3]!, direct: WATERDROP_DIRECT_BY_ID[3]! },
-              { id: 47, emoji: '💎', label: 'Best value RO',         name: 'Waterdrop G3P600',         price: 439, tag: 'NSF 42 · NSF 53 · NSF 58 · Smart faucet',  accent: '#22d3ee', amazon: WATERDROP_AMAZON_BY_ID[47]!, direct: WATERDROP_DIRECT_BY_ID[47]! },
-              { id: 6,  emoji: '🪣', label: 'Best for renters',     name: 'Waterdrop K19-S Countertop RO',  price: 249, tag: 'NSF 42 · NSF 53 · NSF 58 · No install',  accent: '#06b6d4', amazon: WATERDROP_AMAZON_BY_ID[6]!, direct: WATERDROP_DIRECT_BY_ID[6]! },
-              { id: 31, emoji: '🏠', label: 'Best whole-house',     name: 'Aquasana Rhino EQ-1000',   price: 999, tag: 'WQA Gold Seal · NSF 42 · NSF 61',         accent: '#34d399', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
-              { id: 20, emoji: '🚿', label: 'Best shower filter',   name: 'AquaBliss SF100',          price: 35,  tag: '42K+ reviews · KDF/GAC certified',        accent: '#a78bfa', amazon: `https://www.amazon.com/dp/B01MUBU0YC?tag=${TAG}` },
-            ].map((row) => {
-              const { id, emoji, label, name, price, tag, accent, amazon } = row;
-              const direct = 'direct' in row ? row.direct : undefined;
-              const cardStyle: CSSProperties = {
-                display: 'flex', flexDirection: 'column', gap: 8,
-                padding: '16px 16px 14px',
-                background: 'linear-gradient(165deg,rgba(7,24,40,0.95),rgba(4,14,32,0.92))',
-                border: `1px solid ${accent}30`,
-                borderTop: `2px solid ${accent}`,
-                borderRadius: 10,
-                textDecoration: 'none',
-              };
-              const inner = (
-                <>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span style={{ fontSize: 20 }}>{emoji}</span>
-                    <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, color: accent, padding: '2px 6px', borderRadius: 4, background: `${accent}15`, border: `1px solid ${accent}30` }}>{label.toUpperCase()}</span>
-                  </div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: '#e2e8f0', lineHeight: 1.3 }}>{name}</div>
-                  <div style={{ fontSize: 13, color: '#a8b4c4', letterSpacing: 0.3 }}>{tag}</div>
-                  <div style={{ display: 'flex', flexDirection: direct ? 'column' : 'row', alignItems: direct ? 'stretch' : 'center', justifyContent: 'space-between', gap: direct ? 8 : 0, marginTop: 4, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                    <span style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b' }}>${price}</span>
-                    {direct ? (
-                      <a
-                        href={direct}
-                        target="_blank"
-                        rel="noopener noreferrer sponsored"
-                        style={{ fontSize: 13, fontWeight: 800, color: '#0f172a', padding: '8px 10px', borderRadius: 8, textAlign: 'center', textDecoration: 'none', background: 'linear-gradient(135deg,#22d3ee,#06b6d4)', border: '1px solid rgba(34,211,238,0.5)' }}
-                      >
-                        Waterdrop.com →
-                      </a>
-                    ) : (
-                      <span style={{ fontSize: 13, fontWeight: 700, color: accent, padding: '5px 10px', borderRadius: 6, background: `${accent}15`, border: `1px solid ${accent}30` }}>Amazon →</span>
-                    )}
-                  </div>
-                </>
-              );
-              if (direct) {
-                return (
-                  <div key={`trusted-${id}`} style={cardStyle}>
-                    {inner}
-                  </div>
-                );
-              }
-              return (
-                <a key={`trusted-${id}`} href={amazon} target="_blank" rel="noopener noreferrer sponsored" style={cardStyle}>
-                  {inner}
-                </a>
-              );
-            })}
-          </div>
-          <p
-            style={{
-              fontSize: 13,
-              fontWeight: 500,
-              color: '#cbd5e1',
-              marginTop: 12,
-              lineHeight: 1.55,
-              maxWidth: 720,
-            }}
-          >
-            * Affiliate links — we may earn a commission at no cost to you. Our recommendations are based on certifications and data, not paid placements.
-          </p>
-        </div>
+        <TrustedFilterCategories productsById={TRUSTED_PRODUCTS_BY_ID} />
 
         {/* Browse by city */}
         <div style={{ marginBottom: 56 }}>
