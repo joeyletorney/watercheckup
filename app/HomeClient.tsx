@@ -2439,9 +2439,6 @@ export default function WaterCheckup() {
               </Link>
             ))}
           </div>
-          <p style={{ margin: '12px 0 0', fontSize: 13, color: '#a8b4c4', letterSpacing: 0.2, textAlign: 'center' }}>
-            EPA SDWIS · UCMR5 PFAS · Lead &amp; Copper Rule — no account required.
-          </p>
         </div>
 
       </div>
