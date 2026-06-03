@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const ITEMS: [string, string][] = [
-  ['/', 'Home'],
   ['/#wc-hero-anchor', 'Check Your Water'],
   ['/contaminants', 'Contaminants'],
   ['/water-hardness', 'Hardness'],
@@ -21,7 +20,6 @@ const ITEMS: [string, string][] = [
 
 /** Inline on small screens; rest live under “More”. */
 const MOBILE_PRIMARY: [string, string][] = [
-  ['/', 'Home'],
   ['/#wc-hero-anchor', 'Check Your Water'],
   ['/contaminants', 'Contaminants'],
   ['/water-hardness', 'Hardness'],
@@ -44,6 +42,7 @@ function useNarrowNav() {
 }
 
 function isActive(pathname: string, href: string) {
+  if (href === '/#wc-hero-anchor') return pathname === '/';
   if (href.startsWith('/#')) return false;
   return (
     pathname === href ||
