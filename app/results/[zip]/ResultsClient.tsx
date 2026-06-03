@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
+import { quizHrefFromReport } from '@/lib/results-quiz-link';
 
 const TAG = 'watercheck20-20';
 
@@ -227,6 +228,13 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
   const sc = data.scoreColor || SCORE_COLOR(cappedScore);
   const letterGrade = data.grade || '—';
   const scoreLabel = data.scoreLabel || SCORE_LABEL(cappedScore);
+  const quizHref = quizHrefFromReport({
+    zip,
+    pfasAboveMcl: data.pfasAboveMcl,
+    pfasCount: data.pfasCount,
+    openViolations: data.openViolations,
+  });
+  const citySlug = data.city?.toLowerCase().split(',')[0].trim().replace(/\s+/g, '-');
   const tabs = [
     { id: 'report', label: '📊 Report' },
     { id: 'pfas', label: '☣️ PFAS' },
@@ -272,6 +280,39 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0', lineHeight: 1.5 }}>
               Max score is 88/88 — all municipal water contains chlorine and disinfection byproducts not captured in EPA records.
             </p>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
+              <Link
+                href={quizHref}
+                style={{
+                  display: 'inline-block',
+                  padding: '10px 16px',
+                  background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
+                  borderRadius: 8,
+                  color: '#fff',
+                  fontSize: 13,
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                }}
+              >
+                Filters matched to this report →
+              </Link>
+              <button
+                type="button"
+                onClick={() => setTab('filters')}
+                style={{
+                  padding: '10px 14px',
+                  background: '#0d2240',
+                  border: '1px solid #1a3a5c',
+                  borderRadius: 8,
+                  color: '#cbd5e1',
+                  fontSize: 13,
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                }}
+              >
+                Shop filters
+              </button>
+            </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
             {[
@@ -301,6 +342,14 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           >
             🔍 Check another ZIP
           </Link>
+          {citySlug ? (
+            <Link
+              href={`/water/${citySlug}`}
+              style={{ fontSize: 13, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#67e8f9', textDecoration: 'none', fontWeight: 600 }}
+            >
+              Full {data.city?.split(',')[0]} city report →
+            </Link>
+          ) : null}
         </div>
         {data.pwsid ? (
           <div

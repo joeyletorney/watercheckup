@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { SiteHeader } from '../components/SiteHeader';
 
 const WATERDROP_TAG = 'anbyjkqb';
@@ -143,11 +144,27 @@ function CertBadge({ cert }: { cert: string }) {
 }
 
 export default function QuizPage() {
+  const searchParams = useSearchParams();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
+  const [fromReport, setFromReport] = useState(false);
   const currentQ = QUESTIONS[step];
   const rec = done ? getRec(answers) : null;
+
+  useEffect(() => {
+    const source = searchParams.get('source');
+    const concern = searchParams.get('concern');
+    const situation = searchParams.get('situation') || 'owner_simple';
+    if (!source || !concern) return;
+    if (source !== 'city' && source !== 'well') return;
+    if (!['pfas', 'lead', 'taste', 'general'].includes(concern)) return;
+    if (!['renter', 'owner_simple', 'owner_full'].includes(situation)) return;
+    setAnswers({ source, concern, situation });
+    setDone(true);
+    setStep(QUESTIONS.length);
+    setFromReport(searchParams.get('from') === 'results');
+  }, [searchParams]);
 
   const handleSelect = (value: string) => {
     const newAnswers = { ...answers, [currentQ.id]: value };
@@ -163,7 +180,12 @@ export default function QuizPage() {
     }
   };
 
-  const restart = () => { setAnswers({}); setStep(0); setDone(false); };
+  const restart = () => {
+    setAnswers({});
+    setStep(0);
+    setDone(false);
+    setFromReport(false);
+  };
 
   const renderAltRows = (alts: AltPick[], keyPrefix: string) =>
     alts.map((alt, i) => {
@@ -292,6 +314,31 @@ export default function QuizPage() {
           </div>
         ) : rec ? (
           <div style={{ marginBottom: 32 }}>
+            {fromReport ? (
+              <div
+                style={{
+                  marginBottom: 14,
+                  padding: '12px 14px',
+                  background: 'rgba(8,145,178,0.12)',
+                  border: '1px solid rgba(34,211,238,0.35)',
+                  borderRadius: 10,
+                  fontSize: 13,
+                  color: '#cbd5e1',
+                  lineHeight: 1.55,
+                }}
+              >
+                <strong style={{ color: '#67e8f9' }}>Matched to your ZIP report.</strong> We pre-selected your biggest concern from
+                PFAS and violation data — adjust picks below or{' '}
+                <button
+                  type="button"
+                  onClick={restart}
+                  style={{ background: 'none', border: 'none', padding: 0, color: '#38bdf8', cursor: 'pointer', fontWeight: 700, textDecoration: 'underline' }}
+                >
+                  retake the quiz
+                </button>
+                .
+              </div>
+            ) : null}
             {/* Affiliate disclosure — right at the top of results */}
             <div style={{ marginBottom: 16, padding: '10px 14px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 8, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
               <span style={{ fontSize: 14, flexShrink: 0 }}>ℹ️</span>

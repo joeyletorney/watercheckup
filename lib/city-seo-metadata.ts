@@ -17,11 +17,11 @@ type CityRecord = {
 
 /** Default SERP copy for city pages without hand-written priority SEO */
 export function buildDefaultCitySeoTitle(cityName: string): string {
-  return `${cityName} Water Quality Report – What's in ${cityName} Tap Water?`;
+  return `${cityName} Tap Water 2026 — PFAS, Lead & Safety Grade`;
 }
 
 export function buildDefaultCitySeoDescription(cityName: string): string {
-  return `See detected contaminants in ${cityName}'s tap water, sourced from 5 EPA databases. Free, no signup required. Updated regularly.`;
+  return `${cityName} tap water: EPA violations, UCMR5 PFAS, and contaminants vs health guidelines. Free 2026 report with letter grade and NSF filter picks.`;
 }
 
 export function buildCityPageMetadata(

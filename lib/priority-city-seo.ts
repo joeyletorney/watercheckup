@@ -47,9 +47,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'C grade: Phoenix tap water has 7.4 ppt PFAS, chromium-6 above CA goals, and 288 mg/L hardness. Free 2026 Phoenix water quality report from EPA data.',
   },
   boston: {
-    title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes a Key Risk',
+    title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes',
     description:
-      'Boston source water is clean but lead service lines in older neighborhoods are a real concern. Check your ZIP and get filter recommendations.',
+      'MWRA source water is strong but lead service lines in pre-1980 homes are the main tap risk. UCMR5 PFAS snapshot. Free 2026 Boston report.',
   },
   milwaukee: {
     title: 'Milwaukee Tap Water 2026 — Lead Contamination Risk Report',
@@ -77,14 +77,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Scottsdale water comes from Colorado River and local groundwater. See current PFAS and contaminant levels, and get filter recommendations for your home.',
   },
   nashville: {
-    title: 'Nashville Tap Water 2026 — Contamination Report',
+    title: 'Nashville Tap Water 2026 — PFAS & Chloramine',
     description:
-      'Nashville tap water quality report with current EPA data on contaminants, PFAS levels, and certified filter recommendations for Nashville residents.',
+      'Metro Nashville tap water: Cumberland River source, UCMR5 PFAS, chloramine DBPs. Free 2026 Nashville water report with NSF filter picks.',
   },
   charlotte: {
-    title: 'Charlotte Tap Water 2026 — Water Quality Report',
+    title: 'Charlotte Tap Water 2026 — PFAS & Hardness',
     description:
-      'Charlotte water quality report with current EPA contamination data, PFAS levels, and filter recommendations for Charlotte, NC residents.',
+      'Charlotte Water: Catawba River source, UCMR5 PFAS monitoring, regional hardness. Free 2026 Charlotte NC tap water report.',
   },
   'sugar-land': {
     title: 'Sugar Land TX Water 2026 — 672 ppt 6:2 FTS, PFOA at EPA Limit',
@@ -135,6 +135,76 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
     title: 'Fairfax County Tap Water 2026 — PFAS at 21.9 ppt',
     description:
       'PFOA and PFOS above EPA MCLs: Fairfax County area water tested at 21.9 ppt PFAS. Free 2026 Northern Virginia water quality report from EPA data.',
+  },
+  seattle: {
+    title: 'Seattle Tap Water 2026 — Safe to Drink? PFAS & Chloramine',
+    description:
+      'Seattle Public Utilities: UCMR5 PFAS snapshot, chloramine disinfection, and Pacific Northwest source water. Free 2026 report with grade and NSF filter picks.',
+  },
+  denver: {
+    title: 'Denver Tap Water 2026 — PFAS, Hardness & Safety Grade',
+    description:
+      'Denver Water: mountain source water with hardness and UCMR5 PFAS monitoring. Free 2026 Denver tap water report from EPA data.',
+  },
+  atlanta: {
+    title: 'Atlanta Tap Water 2026 — PFAS & Chloramine Report',
+    description:
+      'Atlanta Watershed tap water: PFAS UCMR5, chloramine DBPs, and Chattahoochee source. Free 2026 Atlanta water quality report.',
+  },
+  minneapolis: {
+    title: 'Minneapolis Tap Water 2026 — Lead Risk & PFAS',
+    description:
+      'Minneapolis tap water: Mississippi River source, lead service line risk in older homes, UCMR5 PFAS. Free 2026 report and filter picks.',
+  },
+  portland: {
+    title: 'Portland OR Tap Water 2026 — PFAS & Bull Run Source',
+    description:
+      'Portland Bull Run tap water: low chlorine taste, UCMR5 PFAS monitoring, regional hardness. Free 2026 Portland water report.',
+  },
+  'las-vegas': {
+    title: 'Las Vegas Tap Water 2026 — Hardness & PFAS',
+    description:
+      'Las Vegas Valley Water: Colorado River source, very hard water, UCMR5 PFAS snapshot. Free 2026 Las Vegas tap water report.',
+  },
+  baltimore: {
+    title: 'Baltimore Tap Water 2026 — Lead & PFAS Report',
+    description:
+      'Baltimore City tap water: aging infrastructure, lead risk in older homes, UCMR5 PFAS. Free 2026 EPA-backed report.',
+  },
+  tampa: {
+    title: 'Tampa Tap Water 2026 — PFAS & Chloramine',
+    description:
+      'Tampa Bay Water: Florida chloramine treatment, UCMR5 PFAS, hardness. Free 2026 Tampa tap water quality report.',
+  },
+  'st-louis': {
+    title: 'St. Louis Tap Water 2026 — Lead Pipes & PFAS',
+    description:
+      'St. Louis tap water: Mississippi River source, lead service line concern, UCMR5 PFAS monitoring. Free 2026 report.',
+  },
+  'san-diego': {
+    title: 'San Diego Tap Water 2026 — PFAS & Hardness',
+    description:
+      'San Diego imported Colorado River water: hardness, chloramine, UCMR5 PFAS. Free 2026 San Diego water quality report.',
+  },
+  orlando: {
+    title: 'Orlando Tap Water 2026 — Is It Safe to Drink?',
+    description:
+      'Orlando Utilities Commission: Florida groundwater blend, chloramine, UCMR5 PFAS. Free 2026 Orlando tap water report.',
+  },
+  'new-orleans': {
+    title: 'New Orleans Tap Water 2026 — Lead & DBP Report',
+    description:
+      'New Orleans Sewerage & Water Board: Mississippi River source, lead and disinfection byproduct concerns. Free 2026 report.',
+  },
+  pittsburgh: {
+    title: 'Pittsburgh Tap Water 2026 — Lead & PFAS',
+    description:
+      'Pittsburgh Water: Allegheny River source, lead service lines, UCMR5 PFAS. Free 2026 Pittsburgh tap water report.',
+  },
+  'san-jose': {
+    title: 'San Jose Tap Water 2026 — PFAS & Chromium-6',
+    description:
+      'San Jose tap water: South Bay blend, California health guideline concerns, UCMR5 PFAS. Free 2026 report.',
   },
 };
 

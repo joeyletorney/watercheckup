@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'What Water Filter Do I Need? — 3-Question Quiz | WaterCheckup',
@@ -15,5 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function QuizLayout({ children }: { children: ReactNode }) {
-  return children;
+  return <Suspense fallback={null}>{children}</Suspense>;
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { SiteHeader } from '../../components/SiteHeader';
 import ResultsClient from './ResultsClient';
+import { buildZipResultsDescription, buildZipResultsTitle } from '@/lib/zip-results-seo';
 
 /** ZIP result pages are generated on first request (ISR), not at build — avoids 40k+ prerenders and remote fetch timeouts. */
 export const dynamicParams = true;
@@ -17,15 +18,32 @@ async function fetchWaterData(zip: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await fetchWaterData(params.zip);
-  if (!data) return { title: 'Water Quality Report | WaterCheckup' };
+  if (!data) {
+    return {
+      title: `ZIP ${params.zip} Water Quality — Check Tap Water | WaterCheckup`,
+      description: `Free EPA tap water report for ZIP ${params.zip}. PFAS, lead, violations, and NSF filter picks — no signup.`,
+      alternates: { canonical: `https://watercheckup.com/results/${params.zip}` },
+    };
+  }
   const displayScore = Math.min(typeof data.score === 'number' ? data.score : 0, 88);
+  const seoIn = {
+    zip: params.zip,
+    city: data.city,
+    score: displayScore,
+    grade: data.grade,
+    openViolations: data.openViolations,
+    pfasCount: data.pfasCount,
+    pfasAboveMcl: data.pfasAboveMcl,
+  };
+  const title = buildZipResultsTitle(seoIn);
+  const description = buildZipResultsDescription(seoIn);
   return {
-    title: `${data.city} Water Quality Report — Score ${displayScore}/88 | WaterCheckup`,
-    description: `${data.city} tap water: ${data.openViolations} open violations, ${data.pfasCount} PFAS compounds detected. Free EPA report with filter recommendations.`,
+    title,
+    description,
     alternates: { canonical: `https://watercheckup.com/results/${params.zip}` },
     openGraph: {
-      title: `${data.city} Water Safety Score: ${displayScore}/88`,
-      description: `Free EPA water quality report for ${data.city}. ${data.summary}`,
+      title,
+      description,
       images: [{ url: `https://watercheckup.com/api/og?city=${encodeURIComponent(data.city)}&score=${displayScore}&grade=${data.grade}&violations=${data.openViolations}`, width: 1200, height: 630 }],
     },
   };
