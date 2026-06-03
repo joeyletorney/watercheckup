@@ -3,7 +3,8 @@
  *
  * Usage:
  *   npx tsx scripts/build-pwsid-ccr-contaminants.ts --limit 500
- *   npx tsx scripts/build-pwsid-ccr-contaminants.ts --pwsid MA3229000 --force
+ *   npx tsx scripts/build-pwsid-ccr-contaminants.ts --worst-cities=25
+ *   npx tsx scripts/build-pwsid-ccr-contaminants.ts --pwsid TX0150018 --force
  *   npx tsx scripts/build-pwsid-ccr-contaminants.ts --dry-run --limit 10
  *
  * Respects EWG: use a modest --delay (default 2000ms). Re-run weekly or after fetch-utilities.
@@ -16,6 +17,9 @@ import {
   parseEwgSystemPageHtml,
   severityFromLevel,
 } from '../lib/ewg-tapwater-parse';
+import { CITIES } from '../app/water/[city]/cities-data';
+import { buildWorstCitiesBySafetyScore } from '../lib/city-rankings';
+import { resolveCityPwsid } from '../lib/city-pwsid';
 import { pwsidCcrContaminantsDataPath } from '../lib/pwsid-ccr-contaminants';
 
 const ROOT = process.cwd();
@@ -79,6 +83,18 @@ function loadExisting(): Payload {
     recordCount: raw.recordCount ?? 0,
     byPwsid: raw.byPwsid ?? {},
   };
+}
+
+function loadWorstCityUtilities(limit: number): UtilityRef[] {
+  return buildWorstCitiesBySafetyScore(limit).map((row) => {
+    const cd = CITIES[row.slug];
+    return {
+      pwsid: resolveCityPwsid(row.slug, cd.pwsid),
+      name: cd.system,
+      state: cd.state,
+      slug: row.slug,
+    };
+  });
 }
 
 function loadTopUtilities(limit: number): UtilityRef[] {
@@ -165,6 +181,7 @@ async function fetchEwgContaminants(pwsid: string): Promise<StoredRow[] | null> 
 
 async function main() {
   const limit = argNum('--limit', 500);
+  const worstCities = argNum('--worst-cities', 0);
   const delayMs = argNum('--delay', 2000);
   const minRows = argNum('--min-rows', 3);
   const dryRun = hasFlag('--dry-run');
@@ -174,7 +191,9 @@ async function main() {
   const payload = loadExisting();
   const targets = onlyPwsid
     ? [{ pwsid: onlyPwsid, name: onlyPwsid, state: '', slug: '' }]
-    : loadTopUtilities(limit);
+    : worstCities > 0
+      ? loadWorstCityUtilities(worstCities)
+      : loadTopUtilities(limit);
 
   let added = 0;
   let skipped = 0;

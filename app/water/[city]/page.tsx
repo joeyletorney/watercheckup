@@ -24,6 +24,8 @@ import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
 import { computeCityWaterScore, concernLevelFromScore, getCityKeyFinding } from '@/lib/city-water-score';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
+import { buildCityContaminantDisplay } from '@/lib/city-contaminant-display';
+import { CityContaminantTable } from '@/components/CityContaminantTable';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -167,6 +169,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
   const pwsid = pwsidResolved;
   const pfas = cd ? pfasForScore : null;
+  const contaminantRows = cd ? buildCityContaminantDisplay(slug, cd.pwsid, cd.waterProfile) : [];
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
   const countyLink = cd ? getCountyLinkForCitySlug(slug) : undefined;
@@ -468,6 +471,14 @@ export default function CityPage({ params }: { params: { city: string } }) {
                   </div>
                 ))}
               </div>
+
+              {contaminantRows.length > 0 ? (
+                <CityContaminantTable
+                  cityName={cd.name}
+                  rows={contaminantRows}
+                  sourceNote="EPA UCMR5 PFAS plus utility/EWG averages from our contaminant bundle. Run a ZIP report for live SDWIS samples at your address."
+                />
+              ) : null}
 
               {/* Facts */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>

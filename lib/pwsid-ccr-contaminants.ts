@@ -97,6 +97,14 @@ export function mergePwsidCcrContaminants(
   }
 }
 
+/** Contaminant rows for a PWSID from the packaged CCR/EWG bundle (empty if not built yet). */
+export function getPwsidCcrContaminants(pwsid: string): ContaminantRow[] {
+  const key = pwsid.trim().toUpperCase();
+  const map = loadByPwsidMap();
+  const rows = map.get(key) ?? map.get(PWSID_EWG_ALIASES[key] ?? '');
+  return rows ? [...rows] : [];
+}
+
 /** For scripts / admin: path to the JSON bundle */
 export function pwsidCcrContaminantsDataPath(): string {
   return DATA_PATH;

@@ -7,12 +7,12 @@ import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { SearchDemandCities } from '@/components/SearchDemandCities';
 
 export const metadata: Metadata = {
-  title: '20 Worst Cities for Tap Water Quality (2026 Safety Score) | WaterCheckup',
+  title: '25 Worst Cities for Tap Water Quality (2026 Safety Score) | WaterCheckup',
   description:
-    'The 20 US cities with the lowest Water Safety Scores on WaterCheckup — composite grades from EPA UCMR5 PFAS, violations, and contaminant profiles. Free city reports.',
+    'The 25 US cities with the lowest Water Safety Scores on WaterCheckup — composite grades from EPA UCMR5 PFAS, violations, and contaminant profiles. Free city reports.',
   alternates: { canonical: 'https://watercheckup.com/worst-cities' },
   openGraph: {
-    title: '20 Worst Cities for Tap Water — 2026 Water Safety Score',
+    title: '25 Worst Cities for Tap Water — 2026 Water Safety Score',
     description: 'Ranked by our 0–88 exposure profile score across tracked city water reports.',
   },
 };
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export const revalidate = 86400;
 
 export default function WorstCitiesPage() {
-  const cities = buildWorstCitiesBySafetyScore(20);
+  const cities = buildWorstCitiesBySafetyScore(25);
 
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
@@ -32,7 +32,7 @@ export default function WorstCitiesPage() {
             WATER SAFETY SCORE · 0–88
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
-            20 worst cities for tap water quality
+            25 worst cities for tap water quality
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 16px' }}>
             Ranked by our <strong style={{ color: '#e2e8f0' }}>Water Safety Score</strong> — the same 0–88 exposure
