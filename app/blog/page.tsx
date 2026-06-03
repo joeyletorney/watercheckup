@@ -254,8 +254,8 @@ const POST_BY_SLUG: Record<
     badge: 'Wells',
     badgeColor: '#a855f7',
   },
-  'waterdrop-g3p800-vs-aquasana-smartflow': {
-    title: 'Waterdrop G3P800 vs Aquasana SmartFlow RO: Which Should You Buy?',
+  'waterdrop-g3p600-vs-aquasana-smartflow': {
+    title: 'Waterdrop G3P600 vs Aquasana SmartFlow RO: Which Should You Buy?',
     excerpt: 'Two of the best under-sink RO systems — but very different products. An honest comparison of certifications, flow rate, filter cost, and real contaminant removal.',
     date: 'June 1, 2026',
     readTime: '8 min read',
@@ -296,7 +296,7 @@ const POST_BY_SLUG: Record<
   },
   'best-under-sink-water-filter': {
     title: 'Best Under-Sink Water Filters 2025–2026: What Actually Works',
-    excerpt: 'From $126 carbon filters to $849 RO systems — here\'s which under-sink filter you actually need based on what\'s in your water and which certifications matter.',
+    excerpt: 'From $126 carbon filters to $439 RO systems — here\'s which under-sink filter you actually need based on what\'s in your water and which certifications matter.',
     date: 'June 1, 2026',
     readTime: '10 min read',
     badge: 'Filters',
@@ -414,7 +414,7 @@ const BLOG_INDEX_ORDER = [
   'pfas-in-new-york-city-water',
   'is-pfas-in-my-tap-water',
   'what-water-filter-removes-pfas',
-  'waterdrop-g3p800-vs-aquasana-smartflow',
+  'waterdrop-g3p600-vs-aquasana-smartflow',
   'waterdrop-k19s-vs-aquatru-classic',
   'best-water-filter-gaithersburg-md',
   'best-under-sink-water-filter',

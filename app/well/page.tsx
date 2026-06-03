@@ -104,16 +104,16 @@ const CONTAMINANTS = [
 const PRODUCTS = [
   {
     rank: 1,
-    name: 'Waterdrop G3P800 RO System',
+    name: 'Waterdrop G3P600 RO System',
     brand: 'Waterdrop',
-    price: '~$849',
+    price: '~$439',
     badge: 'BEST FOR ARSENIC, NITRATES & PFAS',
     badgeColor: '#0891b2',
     removes: ['Arsenic >99%', 'Nitrates >97%', 'PFAS >99%', 'Lead >99%', 'Heavy metals', 'TDS'],
-    why: 'Reverse osmosis is the only affordable residential technology that handles arsenic, nitrates, and PFAS simultaneously. The G3P800 is the highest-rated under-sink RO on the market — 800 GPD, tankless, 10-stage filtration.',
+    why: 'Reverse osmosis is the only affordable residential technology that handles arsenic, nitrates, and PFAS simultaneously. The G3P600 is the highest-rated under-sink RO on the market — 600 GPD, tankless, 10-stage filtration.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
-    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
-    amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20',
+    directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
+    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20',
   },
   {
     rank: 2,

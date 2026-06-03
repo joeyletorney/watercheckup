@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Post } from './post-types';
 
-const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
+const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 const TAP_SCORE_CITY_URL = 'https://www.awin1.com/cread.php?awinmid=92253&awinaffid=2847509&ued=https%3A%2F%2Fmytapscore.com%2Fcollections%2Fcity-water-tests';
 const TAP_SCORE_WELL_URL = 'https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup';
@@ -20,8 +20,8 @@ const TOP_3_WHOLE_HOUSE = [
 ];
 
 const TOP_3_UNDERSINK = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. NSF 42/53/58 certified. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. Installs under the sink in about an hour.', link: WATERDROP, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
+
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
   { product: 'Frizzlife SK99 Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'NSF 42/53/401 certified. Removes lead at 99.9%, PFAS, chloramine, cysts — without a full RO system. Quick-change twist-off cartridges, no tools. Best budget under-sink.', link: 'https://frizzlife.com/products/sk99', amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
 ];
 
@@ -227,7 +227,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
   // ─── POST 3: BEST UNDER-SINK WATER FILTER ────────────────────────────────
   'best-under-sink-water-filter': {
     title: 'Best Under-Sink Water Filters 2025–2026: What Actually Works',
-    excerpt: 'Under-sink filters range from $126 carbon filters to $849 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
+    excerpt: 'Under-sink filters range from $126 carbon filters to $439 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
     seo: {
       title: 'Best Under-Sink Water Filters 2025–2026: Tested & Ranked',
       description: 'Not all under-sink filters are equal. We ranked the best by NSF certifications and actual contaminant removal — from budget carbon filters to full reverse osmosis systems for PFAS, lead, and arsenic.',
@@ -245,15 +245,15 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badgeColor: '#0891b2',
     topPicks: TOP_3_UNDERSINK,
     faq: [
-      { q: 'What is the best under-sink water filter?', a: 'For comprehensive contaminant removal including PFAS and lead, the Waterdrop G3P800 RO is our top pick — NSF 42/53/58 certified, tankless, and 800 GPD. For the best budget option, the Frizzlife SK99 removes lead at 99.9% and PFAS without a full RO system at $126.' },
+      { q: 'What is the best under-sink water filter?', a: 'For comprehensive contaminant removal including PFAS and lead, the Waterdrop G3P600 RO is our top pick — NSF 42/53/58 certified, tankless, and 600 GPD. For the best budget option, the Frizzlife SK99 removes lead at 99.9% and PFAS without a full RO system at $126.' },
       { q: 'Do I need reverse osmosis or will a carbon filter work?', a: 'It depends on your water. If you have PFAS, nitrates, arsenic, or high TDS, reverse osmosis is the only certified solution. If your main concerns are lead and chlorine, an NSF 42/53 certified carbon filter like the Frizzlife SK99 works at much lower cost. Check your water at WaterCheckup first.' },
-      { q: 'How hard is it to install an under-sink water filter?', a: 'Most under-sink filters require connecting to the cold water line under your sink and drilling a small hole for the dedicated faucet. Most homeowners can install in 30–60 minutes with basic tools. The Waterdrop G3P800 includes an installation kit and video guide. If you rent, ask your landlord — most allow it since it\'s reversible.' },
-      { q: 'Do under-sink RO systems waste a lot of water?', a: 'Traditional RO systems waste 3–4 gallons for every 1 gallon purified. Newer tankless systems like the Waterdrop G3P800 use a 3:1 ratio — 3 gallons purified per 1 wasted, which is significantly more efficient. Look for tankless RO systems for better water efficiency.' },
-      { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99): $126 upfront + $60/year in filters. Mid-range RO (Aquasana SmartFlow): $449 upfront + $145/year. Premium RO (Waterdrop G3P800): $849 upfront + $170/year. Over 5 years, all three are dramatically cheaper than bottled water.' },
+      { q: 'How hard is it to install an under-sink water filter?', a: 'Most under-sink filters require connecting to the cold water line under your sink and drilling a small hole for the dedicated faucet. Most homeowners can install in 30–60 minutes with basic tools. The Waterdrop G3P600 includes an installation kit and video guide. If you rent, ask your landlord — most allow it since it\'s reversible.' },
+      { q: 'Do under-sink RO systems waste a lot of water?', a: 'Traditional RO systems waste 3–4 gallons for every 1 gallon purified. Newer tankless systems like the Waterdrop G3P600 use a 3:1 ratio — 3 gallons purified per 1 wasted, which is significantly more efficient. Look for tankless RO systems for better water efficiency.' },
+      { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99): $126 upfront + $60/year in filters. Mid-range RO (Aquasana SmartFlow): $449 upfront + $145/year. Premium RO (Waterdrop G3P600): $439 upfront + $170/year. Over 5 years, all three are dramatically cheaper than bottled water.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Under-sink water filters are the most popular home water treatment option — and the most confusing to buy. There are $126 carbon filters and $849 reverse osmosis systems, and the marketing on both sounds similar. The difference is what they actually remove. This guide cuts through the noise.'
+        'Under-sink water filters are the most popular home water treatment option — and the most confusing to buy. There are $126 carbon filters and $439 reverse osmosis systems, and the marketing on both sounds similar. The difference is what they actually remove. This guide cuts through the noise.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Under-Sink Carbon Filter vs. Reverse Osmosis: The Real Difference'),
@@ -261,13 +261,13 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         React.createElement('strong', { style: strongStyle }, 'Under-sink carbon filter (e.g., Frizzlife SK99, $126): '),
         'Removes lead, chlorine, chloramine, PFAS, cysts, and VOCs. Does NOT remove nitrates, arsenic, fluoride, or TDS. Best for homes where lead and chlorine are the primary concerns.',
         React.createElement('br', null), React.createElement('br', null),
-        React.createElement('strong', { style: strongStyle }, 'Under-sink reverse osmosis (e.g., Waterdrop G3P800, $849): '),
+        React.createElement('strong', { style: strongStyle }, 'Under-sink reverse osmosis (e.g., Waterdrop G3P600, $439): '),
         'Removes 99%+ of virtually all contaminants — PFAS, lead, arsenic, nitrates, fluoride, TDS, radium, and more. The most comprehensive drinking water solution available for residential use.',
       ),
 
-      React.createElement('h2', { style: h2Style }, 'The Waterdrop G3P800 — Best Overall Under-Sink RO'),
+      React.createElement('h2', { style: h2Style }, 'The Waterdrop G3P600 — Best Overall Under-Sink RO'),
       React.createElement('p', { style: pStyle },
-        'The G3P800 is the best-selling under-sink RO for a reason. Tankless design means no bulky storage tank under your sink. 800 GPD flow rate — you won\'t wait for water. NSF 42/53/58 certified. Smart LED faucet displays real-time TDS so you can see the system is working. Twist-off sealed cartridges make filter changes tool-free and mess-free.'
+        'The G3P600 is the best-selling under-sink RO for a reason. Tankless design means no bulky storage tank under your sink. 600 GPD flow rate — you won\'t wait for water. NSF 42/53/58 certified. Smart LED faucet displays real-time TDS so you can see the system is working. Twist-off sealed cartridges make filter changes tool-free and mess-free.'
       ),
       React.createElement('p', { style: pStyle },
         'Installation takes about an hour and a basic understanding of plumbing. Waterdrop provides a detailed video guide. If you have PFAS in your city water, lead pipes in an older home, or you simply want the cleanest possible drinking and cooking water, this is the right system.'
@@ -275,7 +275,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Aquasana SmartFlow — Best Mid-Range for Certification Coverage'),
       React.createElement('p', { style: pStyle },
-        'The SmartFlow carries WQA Gold Seal plus NSF 42/53/58/401 — the most third-party certifications of any under-sink RO at its price point. NSF 401 certification covers emerging contaminants that standard RO testing doesn\'t include, like certain microplastics and pharmaceuticals. At $449 with a $145/year filter cost, it\'s meaningfully cheaper than the G3P800 if the smart faucet isn\'t important to you.'
+        'The SmartFlow carries WQA Gold Seal plus NSF 42/53/58/401 — the most third-party certifications of any under-sink RO at its price point. NSF 401 certification covers emerging contaminants that standard RO testing doesn\'t include, like certain microplastics and pharmaceuticals. At $449 with a $145/year filter cost, it\'s meaningfully cheaper than the G3P600 if the smart faucet isn\'t important to you.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Frizzlife SK99 — Best Budget Under-Sink Filter (No RO Needed)'),
@@ -291,7 +291,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The single most important step before buying is checking what\'s actually in your water. Enter your ZIP on ',
         React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
-        ' to see your public water system\'s PFAS levels, lead testing results, violations, and a contaminant-matched filter recommendation. If PFAS is detected above EPA limits, get the G3P800 or SmartFlow. If lead is the only concern and your budget is tight, the SK99 is sufficient. Or take the ',
+        ' to see your public water system\'s PFAS levels, lead testing results, violations, and a contaminant-matched filter recommendation. If PFAS is detected above EPA limits, get the G3P600 or SmartFlow. If lead is the only concern and your budget is tight, the SK99 is sufficient. Or take the ',
         React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
         ' and we\'ll match you to the right system in 60 seconds.'
       ),
@@ -317,17 +317,17 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     ),
   },
 
-  // ─── POST 4: WATERDROP G3P800 vs AQUASANA SMARTFLOW ──────────────────────
-  'waterdrop-g3p800-vs-aquasana-smartflow': {
-    title: 'Waterdrop G3P800 vs Aquasana SmartFlow RO: Which Should You Buy?',
+  // ─── POST 4: WATERDROP G3P600 vs AQUASANA SMARTFLOW ──────────────────────
+  'waterdrop-g3p600-vs-aquasana-smartflow': {
+    title: 'Waterdrop G3P600 vs Aquasana SmartFlow RO: Which Should You Buy?',
     excerpt: 'Two of the best under-sink RO systems — but very different products. Here\'s an honest comparison of performance, certifications, flow rate, and value.',
     seo: {
-      title: 'Waterdrop G3P800 vs Aquasana SmartFlow: Honest 2026 Comparison',
-      description: 'Waterdrop G3P800 ($849) vs Aquasana SmartFlow ($449): we compare certifications, flow rate, filter cost, and real contaminant removal so you can decide which is worth the money.',
-      canonical: 'https://watercheckup.com/blog/waterdrop-g3p800-vs-aquasana-smartflow',
+      title: 'Waterdrop G3P600 vs Aquasana SmartFlow: Honest 2026 Comparison',
+      description: 'Waterdrop G3P600 ($439) vs Aquasana SmartFlow ($449): we compare certifications, flow rate, filter cost, and real contaminant removal so you can decide which is worth the money.',
+      canonical: 'https://watercheckup.com/blog/waterdrop-g3p600-vs-aquasana-smartflow',
       openGraph: {
-        title: 'Waterdrop G3P800 vs Aquasana SmartFlow: Which RO is Better? (2026)',
-        description: 'An honest head-to-head: certifications, flow rate, filter cost, and contaminant removal. One is worth the $400 price difference — here\'s which one.',
+        title: 'Waterdrop G3P600 vs Aquasana SmartFlow: Which RO is Better? (2026)',
+        description: 'An honest head-to-head: certifications, flow rate, filter cost, and contaminant removal at similar price points — here\'s which one.',
       },
     },
     date: '2026-06-01',
@@ -337,32 +337,32 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badge: 'Comparison',
     badgeColor: '#7c3aed',
     topPicks: [
-      { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Best overall: 800 GPD tankless, NSF 42/53/58 certified, smart TDS faucet display. Best for high-use households and homeowners who want the fastest flow and real-time monitoring.', link: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'BEST OVERALL' },
-      { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'Best value: WQA Gold Seal + NSF 42/53/58/401 — the most certifications of any under-sink RO. Best for buyers who want maximum certification coverage at a lower price.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+      { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless 600 GPD flow with smart LED TDS faucet. NSF 42/53/58 certified. Best if you want instant-flow water and real-time quality monitoring.', link: WATERDROP, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, badge: 'FASTEST FLOW' },
+      { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401 — the broadest certification stack at this price. Best if NSF 401 emerging-contaminant coverage matters most.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
     ],
     faq: [
-      { q: 'Is the Waterdrop G3P800 worth the extra $400 over the Aquasana SmartFlow?', a: 'For most households, the SmartFlow is the better value. The G3P800 wins on flow rate (800 GPD vs ~50 GPD) and has a smart TDS display, but both remove the same core contaminants. If you have a large family or want real-time water quality monitoring, the G3P800 is worth it. For a couple or small family, the SmartFlow is excellent at half the price.' },
-      { q: 'Does the Aquasana SmartFlow remove PFAS?', a: 'Yes. The SmartFlow is NSF/ANSI 58 certified, which covers reverse osmosis performance including PFAS removal. It also holds NSF 401 certification for emerging contaminants — a certification the G3P800 does not have.' },
-      { q: 'What is the difference in flow rate between the G3P800 and SmartFlow?', a: 'The Waterdrop G3P800 produces 800 gallons per day — fast enough that you never wait for water. The Aquasana SmartFlow produces roughly 50 GPD, which is typical for non-tankless RO systems and is adequate for drinking and cooking but noticeably slower at the faucet.' },
-      { q: 'Which has better filter replacement costs?', a: 'Both run $130–170/year in filter replacement. The G3P800 uses Waterdrop\'s sealed cartridge system (no mess, no tools). The SmartFlow uses standard quick-connect filters. Long-term costs are similar.' },
+      { q: 'Is the Waterdrop G3P600 or Aquasana SmartFlow a better buy?', a: 'They are similarly priced (~$439 vs ~$449). The G3P600 wins on flow rate (600 GPD vs ~50 GPD) and has a smart TDS display. The SmartFlow wins on certification breadth (adds NSF 401 and WQA Gold Seal). Both remove PFAS, lead, and core contaminants via NSF 58 RO.' },
+      { q: 'Does the Aquasana SmartFlow remove PFAS?', a: 'Yes. The SmartFlow is NSF/ANSI 58 certified, which covers reverse osmosis performance including PFAS removal. It also holds NSF 401 certification for emerging contaminants — a certification the G3P600 does not have.' },
+      { q: 'What is the difference in flow rate between the G3P600 and SmartFlow?', a: 'The Waterdrop G3P600 produces 600 gallons per day — fast enough that you never wait for water. The Aquasana SmartFlow produces roughly 50 GPD, which is typical for non-tankless RO systems and is adequate for drinking and cooking but noticeably slower at the faucet.' },
+      { q: 'Which has better filter replacement costs?', a: 'Both run $130–170/year in filter replacement. The G3P600 uses Waterdrop\'s sealed cartridge system (no mess, no tools). The SmartFlow uses standard quick-connect filters. Long-term costs are similar.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'The Waterdrop G3P800 and Aquasana SmartFlow are two of the most recommended under-sink RO systems — but they\'re targeting very different buyers. One is a premium performance system at $849. The other is a certification-heavy value play at $449. Here\'s what actually separates them.'
+        'The Waterdrop G3P600 and Aquasana SmartFlow are two of the most recommended under-sink RO systems — but they\'re targeting very different buyers. One is a premium performance system at $439. The other is a certification-heavy value play at $449. Here\'s what actually separates them.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Core Difference: Speed vs. Certifications'),
       React.createElement('div', { style: calloutStyle },
-        React.createElement('strong', { style: strongStyle }, 'Waterdrop G3P800: '),
-        '800 GPD tankless flow, NSF 42/53/58, smart LED TDS faucet. Best if you want fast water and real-time quality monitoring.',
+        React.createElement('strong', { style: strongStyle }, 'Waterdrop G3P600: '),
+        '600 GPD tankless flow, NSF 42/53/58, smart LED TDS faucet. Best if you want fast water and real-time quality monitoring.',
         React.createElement('br', null), React.createElement('br', null),
         React.createElement('strong', { style: strongStyle }, 'Aquasana SmartFlow: '),
-        'WQA Gold Seal + NSF 42/53/58/401, ~50 GPD. Best if you want maximum third-party certification coverage at lower cost. The NSF 401 covers emerging contaminants the G3P800 isn\'t specifically tested for.',
+        'WQA Gold Seal + NSF 42/53/58/401, ~50 GPD. Best if you want maximum third-party certification coverage at lower cost. The NSF 401 covers emerging contaminants the G3P600 isn\'t specifically tested for.',
       ),
 
       React.createElement('h2', { style: h2Style }, 'Certifications — Aquasana Wins'),
       React.createElement('p', { style: pStyle },
-        'The SmartFlow holds WQA Gold Seal, NSF 42, NSF 53, NSF 58, and NSF 401 — the most certifications of any under-sink RO at its price. NSF 401 specifically covers emerging contaminants including certain microplastics and pharmaceuticals. The G3P800 holds NSF 42, 53, and 58 but lacks NSF 401 and WQA Gold Seal.'
+        'The SmartFlow holds WQA Gold Seal, NSF 42, NSF 53, NSF 58, and NSF 401 — the most certifications of any under-sink RO at its price. NSF 401 specifically covers emerging contaminants including certain microplastics and pharmaceuticals. The G3P600 holds NSF 42, 53, and 58 but lacks NSF 401 and WQA Gold Seal.'
       ),
       React.createElement('p', { style: pStyle },
         'For most people this doesn\'t matter — both systems remove PFAS, lead, arsenic, nitrates, and TDS at comparable rates. But if you specifically want the broadest certified coverage on paper, Aquasana wins.'
@@ -370,17 +370,17 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Flow Rate — Waterdrop Wins by a Lot'),
       React.createElement('p', { style: pStyle },
-        'This is the G3P800\'s biggest advantage. 800 gallons per day means your faucet delivers water instantly — same pressure as your regular tap. The SmartFlow, like most traditional RO systems, produces around 50 GPD. You won\'t run out of water, but there\'s a noticeable pause at the faucet. For large families or households that cook a lot, this matters.'
+        'This is the G3P600\'s biggest advantage. 600 gallons per day means your faucet delivers water instantly — same pressure as your regular tap. The SmartFlow, like most traditional RO systems, produces around 50 GPD. You won\'t run out of water, but there\'s a noticeable pause at the faucet. For large families or households that cook a lot, this matters.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Smart TDS Display — G3P800 Only'),
+      React.createElement('h2', { style: h2Style }, 'Smart TDS Display — G3P600 Only'),
       React.createElement('p', { style: pStyle },
-        'The G3P800 comes with a dedicated smart faucet that displays real-time TDS (total dissolved solids) so you can verify the filter is working every time you use it. When TDS climbs, it\'s time for a new filter. The SmartFlow has no monitoring — you change filters on a schedule and trust it\'s working. If you\'re treating serious contamination, the G3P800\'s monitoring gives real peace of mind.'
+        'The G3P600 comes with a dedicated smart faucet that displays real-time TDS (total dissolved solids) so you can verify the filter is working every time you use it. When TDS climbs, it\'s time for a new filter. The SmartFlow has no monitoring — you change filters on a schedule and trust it\'s working. If you\'re treating serious contamination, the G3P600\'s monitoring gives real peace of mind.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Who Should Buy Which'),
       React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Buy the G3P800 if: '),
+        React.createElement('strong', { style: strongStyle }, 'Buy the G3P600 if: '),
         'you have a large family, want instant-flow water, value real-time TDS monitoring, or are treating PFAS/lead in a heavily contaminated area and want the most reliable system.'
       ),
       React.createElement('p', { style: pStyle },
@@ -422,7 +422,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'Best certification coverage: NSF 42/53/58/401. Adds NSF 401 for emerging contaminants beyond standard RO scope. Quick-change filters. Worth it if you want the widest certified coverage.', link: 'https://www.aquatruwater.com/aquatru-classic/', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
     ],
     faq: [
-      { q: 'Is the AquaTru worth $226 more than the Waterdrop K19-S?', a: 'For most people, no. Both remove PFAS, lead, arsenic, and TDS via reverse osmosis. The AquaTru adds NSF 401 certification for emerging contaminants — if that specific certification matters to you, it\'s worth the premium. Otherwise the K19-S delivers comparable protection at nearly half the price.' },
+      { q: 'Is the AquaTru worth $226 more than the Waterdrop K19-S?', a: 'For most people, no. Both remove PFAS, lead, arsenic, and TDS via reverse osmosis. The AquaTru adds NSF 401 certification for emerging contaminants — if that specific certification matters to you, it\'s worth the premium. Otherwise the K19-S delivers comparable protection with strong NSF certification.' },
       { q: 'Which is better for renters?', a: 'Both require zero installation — just plug in. The K19-S is lighter and more compact, making it easier to move. At $249 vs $475, the K19-S is the more practical renter choice.' },
       { q: 'How do filter replacement costs compare?', a: 'The Waterdrop K19-S runs about $110/year in filters. The AquaTru Classic runs about $130/year. The AquaTru uses a 4-stage system with quick-change cartridges; the K19-S uses 4 stages as well. Annual running costs are similar.' },
       { q: 'Do both remove PFAS?', a: 'Yes. Both are reverse osmosis systems certified to NSF/ANSI 58, which covers PFAS removal. The AquaTru additionally holds NSF 401 for emerging contaminants. Check your city\'s PFAS levels for free at WaterCheckup.' },
@@ -489,7 +489,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badge: 'Local',
     badgeColor: '#059669',
     topPicks: [
-      { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Best for Gaithersburg homeowners. Removes PFAS at 99%+, lead at 99%+, and DBPs from Potomac/Patuxent source water. NSF 58 certified. 800 GPD tankless with smart TDS display.', link: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'BEST FOR HOMEOWNERS' },
+
       { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'Best for Gaithersburg renters. Same NSF 58 RO protection — no installation needed. Removes PFAS, lead, and DBPs. Plug-in, no landlord permission required.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS' },
       { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Best mid-range option for Gaithersburg homeowners who want maximum certification coverage including NSF 401 for emerging contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
     ],
@@ -497,7 +497,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       { q: 'Is Gaithersburg tap water safe to drink?', a: 'WSSC water meets all federal EPA standards and has no active violations. However, EPA UCMR5 monitoring detected PFAS at 6.7 ppt in the WSSC system — above EWG health guidelines. Homes built before 1986 also face lead risk from premise plumbing. For the cleanest possible drinking water, a reverse osmosis filter certified to NSF 58 removes PFAS and lead at the tap.' },
       { q: 'Does Gaithersburg water have PFAS?', a: 'Yes. EPA UCMR5 monitoring detected PFPeA at 6.7 ppt in the WSSC water system serving Gaithersburg. This is below the EPA\'s new legal limit of 10 ppt for PFPeA but above EWG\'s health guideline of 0.001 ppt. Only reverse osmosis or NSF 58/P473-certified filters remove PFAS reliably.' },
       { q: 'Where does Gaithersburg water come from?', a: 'Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), one of the largest public water systems in the US. WSSC draws primarily from the Potomac River at Little Falls and the Patuxent River at Rocky Gorge and Brighton Dam reservoirs.' },
-      { q: 'What filter removes DBPs from Gaithersburg water?', a: 'Disinfection byproducts (TTHMs and HAAs) form when chlorine reacts with organic matter in Potomac River source water. Reverse osmosis and activated carbon filters both reduce DBPs. NSF 58 certified RO systems like the Waterdrop G3P800 remove DBPs along with PFAS and lead in one system.' },
+      { q: 'What filter removes DBPs from Gaithersburg water?', a: 'Disinfection byproducts (TTHMs and HAAs) form when chlorine reacts with organic matter in Potomac River source water. Reverse osmosis and activated carbon filters both reduce DBPs. NSF 58 certified RO systems like the Waterdrop G3P600 remove DBPs along with PFAS and lead in one system.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -521,9 +521,9 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'Gaithersburg\'s contamination profile — PFAS, DBPs, and potential lead — requires a single technology that addresses all three. Reverse osmosis certified to NSF 58 removes PFAS at 99%+, lead at 99%+, and reduces disinfection byproducts significantly. A carbon-only filter handles DBPs and chlorine but won\'t touch PFAS. A pitcher handles lead but not PFAS. RO does all three.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'For Homeowners: Waterdrop G3P800'),
+      React.createElement('h2', { style: h2Style }, 'For Homeowners: Waterdrop G3P600'),
       React.createElement('p', { style: pStyle },
-        'The G3P800 installs under the sink with a dedicated faucet. 800 GPD means no waiting — instant-pressure filtered water. NSF 42/53/58 certified. Smart LED faucet displays TDS in real time so you can verify it\'s working. Filter replacement runs about $170/year. Takes about an hour to install and Waterdrop includes a video guide.'
+        'The G3P600 installs under the sink with a dedicated faucet. 600 GPD means no waiting — instant-pressure filtered water. NSF 42/53/58 certified. Smart LED faucet displays TDS in real time so you can verify it\'s working. Filter replacement runs about $170/year. Takes about an hour to install and Waterdrop includes a video guide.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'For Renters: Waterdrop K19-S'),
@@ -698,8 +698,8 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'For renters and apartment dwellers: the ',
         React.createElement('a', { href: '/blog/best-countertop-water-filter', style: linkStyle }, 'Waterdrop K19-S countertop RO'),
         ' ($249) requires zero installation and removes 99%+ PFAS. For homeowners: the ',
-        React.createElement('a', { href: '/blog/best-under-sink-water-filter', style: linkStyle }, 'Waterdrop G3P800 under-sink RO'),
-        ' ($849) or the G3P600 ($439) are the best under-sink options.'
+        React.createElement('a', { href: '/blog/best-under-sink-water-filter', style: linkStyle }, 'Waterdrop G3P600 under-sink RO'),
+        ' ($439) or the G3P600 ($439) are the best under-sink options.'
       ),
       React.createElement('p', { style: pStyle },
         'Not sure what\'s in your specific water? Enter your ZIP at ',

@@ -512,10 +512,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             const baseProducts = [
               {
                 key: 'waterdrop',
-                name: 'Waterdrop G3P800 RO',
-                price: '~$849',
-                amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
-                reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 800 GPD, smart TDS display.',
+                name: 'Waterdrop G3P600 RO',
+                price: '~$439',
+                amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
+                reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
               },
               {
                 key: 'aquasana',
@@ -803,11 +803,11 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           </p>
           {[
             {
-              name: 'Waterdrop G3P800 RO',
+              name: 'Waterdrop G3P600 RO',
               badge: 'EDITORS PICK',
-              price: '~$849',
-              reason: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 800 GPD, smart TDS display.',
-              amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
+              price: '~$439',
+              reason: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
+              amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
               best: true,
             },
             {

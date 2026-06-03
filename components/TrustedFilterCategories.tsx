@@ -29,9 +29,7 @@ function certLine(certs?: string[]) {
 }
 
 function brandSiteLabel(brand: string): string {
-  if (brand === 'Epic Water Filters') return 'EpicWaterFilters.com →';
   if (brand === 'Clearly Filtered') return 'ClearlyFiltered.com →';
-  if (brand === 'Brita') return 'Brita.com →';
   return 'Brand site →';
 }
 

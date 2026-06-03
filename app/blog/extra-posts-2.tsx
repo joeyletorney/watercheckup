@@ -1,17 +1,17 @@
 import React from 'react';
 import type { Post } from './post-types';
 
-const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
+const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 // Shared top-3 pick sets used across blog posts
 const TOP_3_RO = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. 10-stage filtration.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
+
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
 ];
 const TOP_3_LEAD = [
   { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Best-certified pitcher on the market.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR LEAD + PFAS', outOfStock: true },
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Under-sink RO removes 99.9% of lead at the tap. Best for homeowners with aging pipes throughout the home.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'NSF 42/53 certified. Reduces lead and chromium to zero. Includes TDS meter. Budget-friendly renter option.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
 ];
 const TOP_3_PITCHER = [

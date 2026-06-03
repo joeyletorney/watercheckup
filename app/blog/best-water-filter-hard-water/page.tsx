@@ -55,13 +55,13 @@ const PICKS = [
   },
   {
     rank: '🥈',
-    name: 'Waterdrop G3P800 Reverse Osmosis',
+    name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR DRINKING WATER',
-    price: '~$849',
+    price: '~$439',
     nsf: 'NSF 42, 53, 58 certified',
     hardness: 'Up to 2,000 ppm TDS',
     best: false,
-    dp: 'B0987FCQQW',
+    dp: 'B07P1XFYJP',
     pros: [
       'Removes hardness minerals from drinking water',
       'Also removes PFAS, arsenic, lead, radium',
@@ -131,7 +131,7 @@ const FAQS = [
   },
   {
     q: 'How much does a water softener cost?',
-    a: 'Salt-based softeners run $800–$2,500 for the unit plus $200–$500 for installation. Salt costs $10–$25/month. A flagship tankless RO (e.g. Waterdrop G3P800) is typically around $849 plus filter replacements ($50–$150/year); basic RO systems are often $300–$600. The ROI is significant — softeners extend appliance and water heater life by years.',
+    a: 'Salt-based softeners run $800–$2,500 for the unit plus $200–$500 for installation. Salt costs $10–$25/month. A flagship tankless RO (e.g. Waterdrop G3P600) is typically around $439 plus filter replacements ($50–$150/year); basic RO systems are often $300–$600. The ROI is significant — softeners extend appliance and water heater life by years.',
   },
   {
     q: 'What cities have the hardest water?',

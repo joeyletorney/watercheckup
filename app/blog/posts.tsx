@@ -8,12 +8,12 @@ import { EXTRA_POSTS_5 } from './extra-posts-5';
 import { EXTRA_POSTS_NYC } from './extra-posts-nyc';
 import { EXTRA_POSTS_SA } from './extra-posts-sa';
 
-const WATERDROP = 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb';
+const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
 // Shared top-3 pick sets used across blog posts
 const TOP_3_RO = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, lead, arsenic, nitrates. Smart TDS faucet display. 10-stage filtration.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
+
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
 ];
 const TOP_3_LEAD = [
@@ -39,13 +39,13 @@ const TOP_3_LEAD = [
     badge: 'COUNTERTOP',
   },
   {
-    product: 'Waterdrop G3P800',
+    product: 'Waterdrop G3P600',
     brand: 'Waterdrop',
-    price: '~$849',
+    price: '~$439',
     reason:
-      'Top pick for homeowners. Tankless, 800 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.',
+      'Top pick for homeowners. Tankless, 600 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.',
     link: WATERDROP,
-    amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
 ];
@@ -67,7 +67,7 @@ const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, text
 const LEAD_FILTER_FAQ = [
   {
     q: 'What is the best water filter for lead removal?',
-    a: 'The best water filter for lead removal depends on your situation. For under-sink installation, the Waterdrop G3P800 removes 99%+ of lead and is NSF 42/53/58 certified. For countertop use with no installation, the Waterdrop K19-S is ideal. For a pitcher, the Clearly Filtered Water Pitcher is NSF 42 and 53 certified and removes 99.5% of lead.',
+    a: 'The best water filter for lead removal depends on your situation. For under-sink installation, the Waterdrop G3P600 removes 99%+ of lead and is NSF 42/53/58 certified. For countertop use with no installation, the Waterdrop K19-S is ideal. For a pitcher, the Clearly Filtered Water Pitcher is NSF 42 and 53 certified and removes 99.5% of lead.',
   },
   {
     q: 'Do all water filters remove lead?',
@@ -166,7 +166,7 @@ export const POSTS: Record<string, Post> = {
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'Certified activated carbon block filters'),
-        ' — Some high-end pitcher and countertop filters like the Epic Pure are NSF 53/58 certified for PFAS removal. They\'re less effective than RO but better than nothing and require no installation.'
+        ' — Some high-end pitcher and countertop filters like certified countertop RO units are NSF 53/58 certified for PFAS removal. They\'re less effective than RO but better than nothing and require no installation.'
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'Granular activated carbon (GAC)'),
@@ -180,7 +180,7 @@ export const POSTS: Record<string, Post> = {
         ' is the gold standard. The Waterdrop G3 and G2 series are NSF 58 certified, install under your kitchen sink in about 30 minutes, and produce clean water at the tap. At roughly $0.10 per gallon, it\'s far cheaper than bottled water and far more effective than most pitcher filters.'
       ),
       React.createElement('p', { style: pStyle },
-        'If you\'re a renter with no plumbing access, the Epic Pure pitcher is the best no-install option with genuine PFAS certification.'
+        'If you\'re a renter with no plumbing access, the Waterdrop K19-S countertop RO is the best no-install option with genuine PFAS certification.'
       ),
       React.createElement('p', { style: pStyle },
         'The most important thing: ',
@@ -291,13 +291,13 @@ export const POSTS: Record<string, Post> = {
         React.createElement('a', { href: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
 
-      React.createElement('h3', { style: h3Style }, '🥇 Under-Counter — Waterdrop G3P800'),
+      React.createElement('h3', { style: h3Style }, '🥇 Under-Counter — Waterdrop G3P600'),
       React.createElement('p', { style: pStyle },
-        'My top pick for homeowners. Tankless, 800 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.'
+        'My top pick for homeowners. Tankless, 600 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.'
       ),
       React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
         '👉 ',
-        React.createElement('a', { href: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
+        React.createElement('a', { href: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
 
       React.createElement('p', { style: pStyle },

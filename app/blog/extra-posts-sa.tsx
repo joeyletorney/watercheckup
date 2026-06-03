@@ -4,8 +4,8 @@ import type { Post } from './post-types';
 const AMAZON_TAG = 'watercheck20-20';
 
 const TOP_3_RO = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD. Removes 99%+ PFAS, radium, arsenic, hardness. NSF 58 certified. Best for San Antonio\'s full contaminant profile.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS and radium. Best value for SA homeowners.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
+
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS and radium. Best value for SA homeowners.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
   { product: 'Clearly Filtered Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF P473 certified for PFAS. Removes radium, arsenic, and 365+ contaminants. Best no-install option for SA renters.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS', outOfStock: true },
 ];
 

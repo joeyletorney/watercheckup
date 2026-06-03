@@ -38,11 +38,11 @@ const COMPARE_ROWS = [
 const RO_PICKS = [
   {
     rank: '🥇',
-    name: 'Waterdrop G3P800 Tankless RO',
+    name: 'Waterdrop G3P600 Tankless RO',
     badge: 'BEST FOR MOST HOMES',
-    price: '~$849',
+    price: '~$439',
     cert: 'NSF 42, 53, 58',
-    dp: 'B0987FCQQW',
+    dp: 'B07P1XFYJP',
     best: true,
     why: 'High flow, smart TDS faucet, strong PFAS/lead reduction. The practical choice when you want distilled-level purity for daily drinking without batch waiting.',
   },

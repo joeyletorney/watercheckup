@@ -43,7 +43,7 @@ function getPfasData(pwsid: string) {
 }
 
 const RO_PICKS = [
-  { product: 'Waterdrop G3P800 RO', brand: 'Waterdrop', price: '~$849', reason: 'Tankless 800 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.', link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20', badge: 'EDITORS PICK' },
+
   { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20', badge: 'MOST CERTIFIED' },
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters, no tools. Compact tankless design, 4-stage filtration.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: 'https://www.amazon.com/dp/B0GGTSFZMY?tag=watercheck20-20', badge: 'EASIEST FILTER CHANGE' },
 ];
@@ -641,7 +641,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             },
             {
               q: `What water filter is best for ${cd?.name ?? cityName}?`,
-              a: `For ${cd?.name ?? cityName}'s water profile — ${cd?.issues.slice(0, 2).join(', ').toLowerCase() ?? 'typical municipal contaminants'} — a reverse osmosis system addresses the widest range of contaminants. Under-sink RO (Waterdrop G3P800, Aquasana SmartFlow) is the gold standard for homeowners. Renters can use a countertop RO like the Waterdrop K19-S Countertop RO — zero installation required. Clearly Filtered pitchers are the best non-RO option for PFAS and lead.`,
+              a: `For ${cd?.name ?? cityName}'s water profile — ${cd?.issues.slice(0, 2).join(', ').toLowerCase() ?? 'typical municipal contaminants'} — a reverse osmosis system addresses the widest range of contaminants. Under-sink RO (Waterdrop G3P600, Aquasana SmartFlow) is the gold standard for homeowners. Renters can use a countertop RO like the Waterdrop K19-S Countertop RO — zero installation required. Clearly Filtered pitchers are the best non-RO option for PFAS and lead.`,
             },
             {
               q: `How do I get my ${cd?.name ?? cityName} water tested?`,

@@ -16,7 +16,7 @@ export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
     label: 'Best overall RO',
     accent: '#22d3ee',
     summary: 'Under-sink reverse osmosis — top NSF 58 picks',
-    productIds: [3, 5, 47, 28, 27, 26],
+    productIds: [5, 47, 28, 27, 26],
   },
   {
     id: 'value-ro',
@@ -24,7 +24,7 @@ export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
     label: 'Best value RO',
     accent: '#22d3ee',
     summary: 'Strong certification without overspending',
-    productIds: [47, 26, 28, 3, 5, 27],
+    productIds: [47, 26, 28, 5, 27],
   },
   {
     id: 'renters',
@@ -32,7 +32,7 @@ export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
     label: 'Best for renters',
     accent: '#06b6d4',
     summary: 'No drilling — countertop, pitcher, plug-in',
-    productIds: [6, 31, 29, 9, 10, 12],
+    productIds: [6, 31, 9, 10, 11],
   },
   {
     id: 'whole-house',

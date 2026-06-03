@@ -22,7 +22,7 @@ const CONTAMINANTS = [
     what: 'Per- and polyfluoroalkyl substances (PFAS) are a group of over 12,000 man-made chemicals used in non-stick cookware coatings, firefighting foam (AFFF), food packaging, stain-resistant fabrics, and industrial processes. They earned the name "forever chemicals" because they don\'t break down in the environment or the human body.',
     sources: ['Military bases and airports using firefighting foam (AFFF)', 'Industrial facilities and chemical plants', 'Non-stick cookware and food packaging manufacturing', 'Landfills receiving PFAS-containing products', 'Agricultural use of PFAS-contaminated sludge as fertilizer'],
     healthEffects: ['Kidney and testicular cancer', 'Thyroid disease and hormone disruption', 'Immune system suppression (reduced vaccine effectiveness)', 'High cholesterol and cardiovascular disease', 'Developmental problems in children and infants', 'Liver damage'],
-    removes: ['Reverse Osmosis — removes >99%', 'Granular Activated Carbon (GAC) — removes 60–90%', 'High-pressure membrane filtration', 'Waterdrop G3P800 & iSpring RCC7AK specifically tested for PFAS'],
+    removes: ['Reverse Osmosis — removes >99%', 'Granular Activated Carbon (GAC) — removes 60–90%', 'High-pressure membrane filtration', 'Waterdrop G3P600 & iSpring RCC7AK specifically tested for PFAS'],
     color: '#f97316', icon: '🧪',
   },
   {

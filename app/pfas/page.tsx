@@ -62,16 +62,16 @@ type FilterPick = {
 const FILTERS: FilterPick[] = [
   {
     rank: 1,
-    name: 'Waterdrop G3P800 Under-Sink RO',
+    name: 'Waterdrop G3P600 Under-Sink RO',
     brand: 'Waterdrop',
-    price: '~$849',
+    price: '~$439',
     removal: '>99%',
     badge: 'EDITORS PICK',
     badgeColor: '#0891b2',
-    why: 'Reverse osmosis is the gold standard for PFAS removal — the only residential technology proven to remove PFAS at >99%. The G3P800 is NSF 58 certified, tankless, 800 GPD, and removes PFOA, PFOS, GenX, and all 6 EPA-regulated PFAS compounds.',
+    why: 'Reverse osmosis is the gold standard for PFAS removal — the only residential technology proven to remove PFAS at >99%. The G3P600 is NSF 58 certified, tankless, 600 GPD, and removes PFOA, PFOS, GenX, and all 6 EPA-regulated PFAS compounds.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
-    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
-    amazon: 'https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20',
+    directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
+    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20',
   },
   {
     rank: 2,

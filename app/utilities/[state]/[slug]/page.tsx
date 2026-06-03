@@ -38,13 +38,13 @@ const EPA_MCL: Record<string, number> = {
 
 const RO_PICKS = [
   {
-    product: "Waterdrop G3P800 RO",
+    product: "Waterdrop G3P600 RO",
     brand: "Waterdrop",
-    price: "~$849",
+    price: "~$439",
     reason:
-      "Tankless 800 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.",
-    link: "https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb",
-    amazon: "https://www.amazon.com/dp/B0987FCQQW?tag=watercheck20-20",
+      "Tankless 600 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.",
+    link: "https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb",
+    amazon: "https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20",
     badge: "EDITORS PICK",
   },
   {

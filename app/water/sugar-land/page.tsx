@@ -54,11 +54,11 @@ const CONTAMINANTS = [
 
 const FILTERS = [
   {
-    name: 'Waterdrop G3P800 Reverse Osmosis',
+    name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR SUGAR LAND',
-    price: '~$849',
+    price: '~$439',
     why: 'Removes 6:2 FTS, PFOA, and other PFAS at 99%+ when certified to NSF 58. Essential for Sugar Land’s peak UCMR5 readings and regulated PFOA at the limit.',
-    link: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
+    link: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     best: true,
   },
   {

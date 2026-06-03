@@ -36,19 +36,19 @@ const TOP_3_PITCHER = [
 
 const TOP_3_RO = [
   {
-    product: 'Waterdrop G3P800 RO',
+    product: 'Waterdrop G3P600 RO',
     brand: 'Waterdrop',
-    price: '~$849',
+    price: '~$439',
     reason: 'Tankless RO removes 99%+ PFAS, lead, and DBPs. Strong choice for NYC homeowners who control their plumbing.',
-    link: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
+    link: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
+    amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     badge: 'EDITORS PICK',
   },
     {
     product: 'Waterdrop G3P600 RO',
     brand: 'Waterdrop',
     price: '~$439',
-    reason: 'Same smart LED faucet and tankless design as the G3P800 — at nearly half the price. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS, lead, and DBPs. Best value for NYC homeowners.',
+    reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS, lead, and DBPs. Best value for NYC homeowners.',
     link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`,
     amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`,
     badge: 'BEST VALUE',

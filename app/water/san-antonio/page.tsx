@@ -108,12 +108,12 @@ const CONTAMINANTS = [
 
 const FILTER_PICKS = [
   {
-    name: 'Waterdrop G3P800 Reverse Osmosis',
+    name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR SA WATER',
-    price: '~$849',
+    price: '~$439',
     why: 'Removes 99%+ PFAS, radium, arsenic, sodium, and hardness minerals. NSF 58 certified. Tankless design fits under most SA kitchen sinks. Handles the full SA contaminant profile.',
-    dp: 'B0987FCQQW',
-    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
+    dp: 'B07P1XFYJP',
+    directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
     best: true,
   },
   {
@@ -153,7 +153,7 @@ const FAQS = [
   },
   {
     q: 'What is the best water filter for San Antonio?',
-    a: "Given SA's hard water, PFAS, radium, and elevated sodium, a reverse osmosis system is the most comprehensive solution. The Waterdrop G3P800 RO handles all of SA's main water concerns. For whole-home hard water, pair it with a salt-based water softener.",
+    a: "Given SA's hard water, PFAS, radium, and elevated sodium, a reverse osmosis system is the most comprehensive solution. The Waterdrop G3P600 RO handles all of SA's main water concerns. For whole-home hard water, pair it with a salt-based water softener.",
   },
   {
     q: 'Does SAWS add fluoride to the water?',

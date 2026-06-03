@@ -31,6 +31,15 @@ const nextConfig = {
       destination: `/water/state/${slug}`,
     }));
   },
+  async redirects() {
+    return [
+      {
+        source: '/blog/waterdrop-g3p800-vs-aquasana-smartflow',
+        destination: '/blog/waterdrop-g3p600-vs-aquasana-smartflow',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

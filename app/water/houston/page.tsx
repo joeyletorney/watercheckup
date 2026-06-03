@@ -92,12 +92,12 @@ const CONTAMINANTS = [
 
 const FILTER_PICKS = [
   {
-    name: 'Waterdrop G3P800 Reverse Osmosis',
+    name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR HOUSTON WATER',
-    price: '~$849',
+    price: '~$439',
     why: "Removes 99%+ PFAS, arsenic, radium, TTHMs, sodium, and hardness. NSF 42/53/58 certified. The right choice for Houston's high PFAS and arsenic levels.",
-    dp: 'B0987FCQQW',
-    directLink: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb',
+    dp: 'B07P1XFYJP',
+    directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
     best: true,
   },
   {
@@ -137,7 +137,7 @@ const FAQS = [
   },
   {
     q: 'What is the best water filter for Houston?',
-    a: "Given Houston's high PFAS, arsenic, TTHMs, and elevated sodium, a reverse osmosis system is the best choice. The Waterdrop G3P800 or Aquasana SmartFlow RO handle Houston's full contaminant profile. For renters, the Clearly Filtered pitcher removes PFAS without installation.",
+    a: "Given Houston's high PFAS, arsenic, TTHMs, and elevated sodium, a reverse osmosis system is the best choice. The Waterdrop G3P600 or Aquasana SmartFlow RO handle Houston's full contaminant profile. For renters, the Clearly Filtered pitcher removes PFAS without installation.",
   },
 ] as const;
 

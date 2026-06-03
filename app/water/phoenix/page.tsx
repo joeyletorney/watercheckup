@@ -85,11 +85,11 @@ const CONTAMINANTS = [
 
 const FILTERS = [
   {
-    name: 'Waterdrop G3P800 Reverse Osmosis',
+    name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR PHOENIX',
-    price: '~$849',
+    price: '~$439',
     why: "Removes chromium-6, PFAS, arsenic, hardness, and sodium. The only filter type that handles Phoenix's full contaminant profile. NSF 42/53/58 certified.",
-    link: `https://www.amazon.com/dp/B0987FCQQW?tag=${AMAZON_TAG}`,
+    link: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     best: true,
   },
   {
@@ -129,7 +129,7 @@ const FAQS = [
   },
   {
     q: 'What is the best water filter for Phoenix?',
-    a: "Given Phoenix's chromium-6, PFAS, arsenic, and extreme hardness, a reverse osmosis system is essential. The Waterdrop G3P800 handles Phoenix's full contaminant profile. Pair with a water softener for whole-home hard water protection.",
+    a: "Given Phoenix's chromium-6, PFAS, arsenic, and extreme hardness, a reverse osmosis system is essential. The Waterdrop G3P600 handles Phoenix's full contaminant profile. Pair with a water softener for whole-home hard water protection.",
   },
 ];
 
