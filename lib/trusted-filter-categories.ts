@@ -40,7 +40,7 @@ export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
     label: 'Best whole-house',
     accent: '#34d399',
     summary: 'Every tap and shower — carbon & sediment',
-    productIds: [32, 34, 19, 33, 18],
+    productIds: [32, 19, 33, 18],
   },
   {
     id: 'shower',

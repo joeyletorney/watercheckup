@@ -150,7 +150,7 @@ const PRODUCTS: any[] = [
   { id:14, cat:'faucet', catLabel:'Faucet Mount', name:'Brita Complete Faucet Filtration', brand:'Brita', price:30, filterCostPerYear:70, rating:4.4, reviews:19000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead','Asbestos','Benzene','Chlorine','Chloramine'], bestFor:['Lead','Chlorine','Chloramine','Asbestos'], pros:['Easy faucet attachment','3-way diverter','No tools needed'], diyDiff:'Easy', situations:['renter','family'], img:'https://images.ctfassets.net/bugnyha6so6z/7J48JJcS8QKR5EDvlOXyvF/911c777794cec4fd4e823ab8c66f048a/PCP_-_Elite_Faucet_-_Silver_-_1_filter_1x.webp', amazon:`https://www.amazon.com/dp/B00006IV0P?tag=${TAG}` },
 
   // ── WHOLE HOUSE ─────────────────────────────────────────────────────────────
-  { id:18, cat:'whole', catLabel:'Whole-House', name:'Pelican PC600 Whole-House', brand:'Pelican Water', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Strong whole-home carbon option with a long advertised filter life and WQA Gold Seal on listings. Compare install scope and ongoing costs to other systems for your home size.', img:'https://cdn.shopify.com/s/files/1/0509/5918/8143/files/Gemini_Generated_Image_mf212bmf212bmf21.png?v=1757187780', amazon:`https://www.amazon.com/dp/B001JM5OQ0?tag=${TAG}` },
+  { id:18, cat:'whole', catLabel:'Whole-House', name:'Pelican PC600 Whole-House', brand:'Pelican Water', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Strong whole-home carbon option with a long advertised filter life and WQA Gold Seal on listings. Compare install scope and ongoing costs to other systems for your home size.', img:'https://cdn.shopify.com/s/files/1/0509/5918/8143/files/Gemini_Generated_Image_mf212bmf212bmf21.png?v=1757187780', brandLink:'https://www.pentair.com/en-us/water-softening-filtration/whole-house/products/whole-house-water-filters.html' },
   { id:19, cat:'whole', catLabel:'Whole-House', name:'iSpring WGB32B Whole House 3-Stage', brand:'iSpring', price:420, filterCostPerYear:70, rating:4.7, reviews:2532, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Iron'], bestFor:['Chlorine','Chloramine','Sediment','Iron'], pros:['Most affordable whole-house','DIY-friendly','Large flow rate'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.ispringwatersystems.com/wp-content/uploads/2023/06/WGB32B_main_jpg-103980-2400x2400-2.jpg', amazon:`https://www.amazon.com/gp/product/B008GNRMYK?tag=${TAG}` },
   { id:32, cat:'whole', catLabel:'Whole-House', name:'Aquasana Rhino EQ-1000', brand:'Aquasana', price:999, filterCostPerYear:100, rating:4.7, reviews:3400, gpd:null, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >99%','Chloramine','THMs','VOCs','PFAS','Sediment'], bestFor:['Chloramine','PFAS','THMs','VOCs'], pros:['10-year/1M gallon life','PFAS reduction','WQA certified'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Long advertised filter life and WQA Gold Seal on listings. Reduces PFAS and chloramine at every tap and shower in the home — confirm flow and capacity for your household.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwe94bfae0/images/large/WH-1000.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
   { id:33, cat:'whole', catLabel:'Whole-House', name:'Express Water WH300SCKS', brand:'Express Water', price:548, filterCostPerYear:90, rating:4.5, reviews:2900, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','Heavy metals','Scale'], bestFor:['Chlorine','Chloramine','Scale','Sediment'], pros:['Includes pressure gauges','Easy DIY install','6-month filters'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.expresswater.com/cdn/shop/files/WH300SCKS-01_1292x.jpg?v=1771889437', amazon:`https://www.amazon.com/dp/B01LFMTYBM?tag=${TAG}` },
@@ -184,6 +184,7 @@ const TRUSTED_PRODUCTS_BY_ID = Object.fromEntries(
       cert: p.cert as string[] | undefined,
       catLabel: p.catLabel as string | undefined,
       amazon: p.amazon as string | undefined,
+      brandLink: p.brandLink as string | undefined,
       outOfStock: p.outOfStock as boolean | undefined,
     },
   ]),
@@ -595,12 +596,22 @@ function isAmazonProductUrl(url: string | undefined): boolean {
 function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   const isWaterdrop = p.brand === 'Waterdrop';
   const directUrl = isWaterdrop ? WATERDROP_DIRECT_BY_ID[p.id] : null;
+  const brandUrl = (p.brandLink as string | undefined) ?? null;
   const amazonUrl = isWaterdrop
     ? (WATERDROP_AMAZON_BY_ID[p.id] ?? (isAmazonProductUrl(p.amazon) ? p.amazon : null))
-    : p.amazon;
+    : (isAmazonProductUrl(p.amazon) ? p.amazon : null);
 
   const pad = block ? '11px 0' : '10px 20px';
   const flex = block ? 1 : undefined;
+
+  if (brandUrl && !amazonUrl && !directUrl) {
+    return (
+      <a href={brandUrl} target="_blank" rel="noopener noreferrer" className="wc-buy"
+        style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(217,119,6,0.35),rgba(245,158,11,0.2))', color: '#f1f5f9' }}>
+        Pentair.com →
+      </a>
+    );
+  }
 
   if (!amazonUrl && !directUrl) {
     return (

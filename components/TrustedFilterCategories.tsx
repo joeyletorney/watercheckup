@@ -30,6 +30,7 @@ export type TrustedFilterProduct = {
   cert?: string[];
   catLabel?: string;
   amazon?: string;
+  brandLink?: string;
   outOfStock?: boolean;
 };
 
@@ -47,6 +48,27 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     p.brand === 'Waterdrop'
       ? WATERDROP_AMAZON[p.id] ?? p.amazon
       : p.amazon;
+
+  if (p.brandLink && !amazon) {
+    return (
+      <a
+        href={p.brandLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          fontSize: 12,
+          fontWeight: 800,
+          color: '#0f172a',
+          padding: '7px 12px',
+          borderRadius: 7,
+          textDecoration: 'none',
+          background: 'linear-gradient(135deg,#f59e0b,#d97706)',
+        }}
+      >
+        Pentair.com →
+      </a>
+    );
+  }
 
   if (p.outOfStock) {
     return (
