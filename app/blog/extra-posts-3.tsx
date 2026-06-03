@@ -76,12 +76,12 @@ const PFAS_FILTER_FAQ = [
 ] as const;
 
 
-const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
-const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
+const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };
+const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '40px 0 14px' };
 const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#cbd5e1', lineHeight: 1.85 };
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
-const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
-const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const calloutStyle: React.CSSProperties = { margin: '40px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const warnStyle: React.CSSProperties = { margin: '40px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' };
 
 export const EXTRA_POSTS_3: Record<string, Post> = {
@@ -719,7 +719,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'One of the only pitchers with documented PFAS removal. NSF/ANSI 42 & 53 certified, removes 99.9% of PFOA and PFOS. Most pitcher filters don\'t touch PFAS — this one does.'
       ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
         React.createElement('a', { href: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
@@ -728,7 +728,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Reverse osmosis is the gold standard for PFAS removal. No installation needed — just plug in and pour. Certified to remove PFAS, lead, and 90+ contaminants. Best option for renters.'
       ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
         React.createElement('a', { href: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
@@ -737,7 +737,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The most thorough PFAS solution for homeowners. Tankless RO, 600 GPD, removes 99%+ PFAS including PFOA, PFOS, and emerging PFAS variants. Smart TDS display so you always know your water quality.'
       ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
         React.createElement('a', { href: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),

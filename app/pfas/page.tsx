@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-const p = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties;
-const h2 = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' } as React.CSSProperties;
-const label = { fontSize: 13, fontWeight: 700, letterSpacing: 2, color: '#0891b2', marginBottom: 10, display: 'block' } as React.CSSProperties;
+const p = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' } as React.CSSProperties;
+const h2 = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 18px' } as React.CSSProperties;
+const label = { fontSize: 13, fontWeight: 700, letterSpacing: 2, color: '#0891b2', marginBottom: 14, display: 'block' } as React.CSSProperties;
 
 const PFAS_FACTS = [
   { stat: '45%', desc: 'of US tap water contains detectable PFAS — USGS 2023 study' },
@@ -113,9 +113,9 @@ export default function PfasPage() {
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px 100px' }}>
 
         {/* Hero */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>PFAS FOREVER CHEMICALS</div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             PFAS in Drinking Water — What It Is, Where It Is, and What Removes It
           </h1>
           <p style={p}>
@@ -138,7 +138,7 @@ export default function PfasPage() {
         </div>
 
         {/* What are PFAS */}
-        <div style={{ marginBottom: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
+        <div style={{ marginBottom: 96, padding: '24px 26px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
           <span style={label}>WHAT ARE PFAS?</span>
           <h2 style={h2}>Why they&apos;re called &quot;forever chemicals&quot;</h2>
           <p style={p}>PFAS stands for per- and polyfluoroalkyl substances. The name comes from the carbon-fluorine bond — the strongest bond in organic chemistry. That bond is why PFAS don&apos;t break down. Not in soil. Not in water. Not in your body. They accumulate over a lifetime of exposure.</p>
@@ -147,7 +147,7 @@ export default function PfasPage() {
         </div>
 
         {/* Sources */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>WHERE PFAS COMES FROM</span>
           <h2 style={h2}>How PFAS gets into drinking water</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -164,7 +164,7 @@ export default function PfasPage() {
         </div>
 
         {/* Health effects */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>HEALTH EFFECTS</span>
           <h2 style={h2}>What PFAS does to your body</h2>
           <p style={p}>PFAS accumulate in blood and organs over time. Health effects are linked to long-term low-level exposure, not single acute events. The science has strengthened considerably since 2015.</p>
@@ -179,7 +179,7 @@ export default function PfasPage() {
         </div>
 
         {/* EPA 2024 rule */}
-        <div style={{ marginBottom: 48, padding: '24px 26px', background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 14 }}>
+        <div style={{ marginBottom: 96, padding: '24px 26px', background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 14 }}>
           <span style={{ ...label, color: '#ef4444' }}>EPA 2024 PFAS RULE</span>
           <h2 style={h2}>The first legally enforceable PFAS limits in US history</h2>
           <p style={p}>In April 2024, the EPA finalized the first-ever legally enforceable Maximum Contaminant Levels (MCLs) for PFAS in drinking water:</p>
@@ -203,7 +203,7 @@ export default function PfasPage() {
         </div>
 
         {/* High risk states */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>HIGHEST RISK STATES</span>
           <h2 style={h2}>Where PFAS contamination is most documented</h2>
           <p style={p}>PFAS contamination has been found in all 50 states, but these states have the highest documented levels based on EPA monitoring data and state testing programs:</p>
@@ -216,7 +216,7 @@ export default function PfasPage() {
         </div>
 
         {/* Filters */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>WHAT ACTUALLY REMOVES PFAS</span>
           <h2 style={h2}>The only filters proven to remove PFAS</h2>
           <p style={p}>Not all filters remove PFAS. Standard carbon pitcher filters (Brita, PUR) do not remove PFAS effectively. Reverse osmosis and certified activated carbon block filters are the only residential technologies with documented PFAS removal.</p>
@@ -252,17 +252,17 @@ export default function PfasPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ marginBottom: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #ef4444', borderRadius: 16, textAlign: 'center' }}>
+        <div style={{ marginBottom: 96, padding: '28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #ef4444', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>CHECK YOUR WATER</div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Is PFAS in your tap water?</h2>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>Enter your ZIP to see the EPA PFAS testing results for your exact water system — from the 2023-2025 federal monitoring program covering 6,151 systems nationwide.</p>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>Enter your ZIP to see the EPA PFAS testing results for your exact water system — from the 2023-2025 federal monitoring program covering 6,151 systems nationwide.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#ef4444,#dc2626)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
         </div>
 
         {/* FAQ */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>FREQUENTLY ASKED QUESTIONS</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[

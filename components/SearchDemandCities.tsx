@@ -15,7 +15,7 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
   return (
     <div
       style={{
-        marginBottom: compact ? 24 : 32,
+        marginBottom: compact ? 48 : 64,
         padding: compact ? '16px 18px' : '20px 22px',
         background: 'linear-gradient(165deg, rgba(8,145,178,0.12), rgba(7,24,40,0.85))',
         border: '1px solid rgba(34,211,238,0.35)',

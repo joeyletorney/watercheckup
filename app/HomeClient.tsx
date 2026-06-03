@@ -885,7 +885,7 @@ function PFASAwarenessBanner() {
             EPA set the first federal drinking water limits for PFAS at <strong style={{ color: '#fbbf24' }}>4 ppt</strong> (rule finalized 2024). National studies have estimated tens of millions of Americans have had detectable PFAS in drinking water.
             <span style={{ fontSize: 13, color: '#a8b4c4', marginLeft: 6 }}>(EPA rule · CDC/USGS context)</span>
           </p>
-          <p style={{ margin: '0 0 10px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
+          <p style={{ margin: '0 0 18px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
             <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> Limits and estimates describe population-level patterns. Your ZIP report shows what is on file for your public water system — use that as the practical next step.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -921,10 +921,10 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
               : <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — below the 4 ppt MCL in this snapshot but still a “detection.” If you want extra margin for drinking/cooking, RO or a certified PFAS-rated filter is the typical approach.</>
             }
           </p>
-          <p style={{ margin: '0 0 10px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
+          <p style={{ margin: '0 0 18px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
             <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This is a public water system-level monitoring snapshot, not a test of your kitchen tap today. If you need certainty for pregnancy, infants, or immunocompromised households, consider a certified lab test of your tap.
           </p>
-          {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#cbd5e1', lineHeight: 1.7 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
+          {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#cbd5e1', lineHeight: 1.8 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href={`https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P600 — PFAS &gt;99%</a>
             <a href={`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
@@ -1221,7 +1221,7 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
   return (
     <div style={{ background: 'rgba(3,12,28,0.65)', backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)', border: '1px solid rgba(255,255,255,0.06)', borderTop: 'none', borderRadius: '0 0 12px 12px', padding: 24, boxShadow: '0 24px 48px rgba(0,4,18,0.45)' }}>
       {/* Affiliate disclosure */}
-      <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 16px', lineHeight: 1.5 }}>
+      <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 22px', lineHeight: 1.5 }}>
         Some links below are affiliate links. If you buy through one, we may earn a small commission at no extra cost to you. This doesn&apos;t influence our recommendations.
       </p>
       {/* Situation selector */}
@@ -1237,7 +1237,7 @@ function SolutionsTab({ data, contaminantNames }: { data: any; contaminantNames:
       {/* Situation header */}
       <div style={{ background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 10, padding: '16px 18px', marginBottom: 22 }}>
         <div style={{ fontSize: 14, fontWeight: 800, color: '#22d3ee', marginBottom: 6 }}>{cfg.headline}</div>
-        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 10px' }}>{cfg.description}</p>
+        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 18px' }}>{cfg.description}</p>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 13, letterSpacing: 0.3, color: '#ef4444', marginBottom: 4, fontWeight: 700 }}>AVOID</div>
@@ -1345,7 +1345,7 @@ function ResourcesTab({ data }: { data: any }) {
 
       <div style={{ background: 'linear-gradient(135deg,#0d2240,#0b1e36)', border: '1px solid #7c3aed30', borderRadius: 10, padding: '16px 18px', marginTop: 8 }}>
         <div style={{ fontSize: 13, letterSpacing: 0.3, color: '#7c3aed', marginBottom: 8, fontWeight: 700 }}>🧪 GET YOUR WATER TESTED</div>
-        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
           This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test from SimpleLab (Tap Score). Your municipal supply may be clean but your home&apos;s pipes could add lead or other contaminants.
         </p>
         <a href={SIMPLELAB_HOME_URL} target="_blank" rel="noopener noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
@@ -1482,7 +1482,7 @@ function ShareModal({ data, onClose }: { data: any; onClose: () => void }) {
         </div>
 
         {/* Preview card */}
-        <div style={{ background: '#071525', border: '1px solid #1a3a5c', borderRadius: 10, padding: '16px', marginBottom: 16, fontFamily: 'monospace', fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+        <div style={{ background: '#071525', border: '1px solid #1a3a5c', borderRadius: 10, padding: '16px', marginBottom: 16, fontFamily: 'monospace', fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
           {text}
         </div>
 
@@ -1517,17 +1517,17 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
   return (
     <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 20px 80px' }}>
       {/* Header */}
-      <div style={{ marginBottom: 28, padding: '20px 24px', background: 'linear-gradient(135deg,rgba(5,18,42,0.9),rgba(2,8,20,0.95))', border: '1px solid rgba(120,80,255,0.3)', borderRadius: 12, boxShadow: '0 8px 32px rgba(120,80,255,0.15)' }}>
+      <div style={{ marginBottom: 56, padding: '20px 24px', background: 'linear-gradient(135deg,rgba(5,18,42,0.9),rgba(2,8,20,0.95))', border: '1px solid rgba(120,80,255,0.3)', borderRadius: 12, boxShadow: '0 8px 32px rgba(120,80,255,0.15)' }}>
         <div style={{ fontSize: 13, letterSpacing: 1.5, color: '#a78bfa', fontWeight: 800, marginBottom: 8 }}>PRIVATE WELL · {stateCode} STATE RISK PROFILE</div>
         <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff', marginBottom: 8 }}>Well Water Risks in Your Area</div>
-        <p style={{ fontSize: 14, color: '#cbd5e1', margin: 0, lineHeight: 1.7 }}>
+        <p style={{ fontSize: 14, color: '#cbd5e1', margin: 0, lineHeight: 1.8 }}>
           Private wells are <strong style={{ color: '#e2e8f0' }}>not regulated by the EPA</strong> — you are responsible for your own testing and treatment. The risks below are based on USGS and EPA groundwater data for {stateCode}. Test your well annually.
         </p>
       </div>
 
       {/* Risk cards */}
       <div style={{ fontSize: 13, letterSpacing: 1.5, color: '#7c3aed', fontWeight: 800, marginBottom: 14 }}>COMMON CONTAMINANTS — {stateCode} WELL WATER</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 64 }}>
         {risks.map((r) => (
           <div key={r.name} style={{ padding: '14px 18px', background: 'rgba(3,12,28,0.7)', border: `1px solid ${r.color}33`, borderLeft: `3px solid ${r.color}`, borderRadius: 10 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
@@ -1541,9 +1541,9 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
       </div>
 
       {/* Lab test CTA */}
-      <div style={{ marginBottom: 32, padding: '18px 22px', background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 12 }}>
+      <div style={{ marginBottom: 64, padding: '18px 22px', background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 12 }}>
         <div style={{ fontSize: 13, fontWeight: 800, color: '#a78bfa', marginBottom: 8 }}>⚗️ STEP 1 — TEST YOUR WELL FIRST</div>
-        <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.7 }}>
+        <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.8 }}>
           Before buying any filter, get a certified lab test. You need to know exactly what&apos;s in your water to choose the right treatment system. You can also use the{' '}
           <a href="https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water" target="_blank" rel="noreferrer" style={{ color: '#a78bfa', fontWeight: 700 }}>EPA certified lab finder</a>
           {' '}to locate a state-certified lab near you.
@@ -2547,7 +2547,7 @@ export default function WaterCheckup() {
 {error && (
             <div style={{ marginTop: 18, padding: '12px 16px', background: '#1a0a0a', border: '1px solid #ef4444', borderRadius: 8, textAlign: 'left' }}>
               <div style={{ color: '#ef4444', fontSize: 14, fontWeight: 700, marginBottom: 4 }}>Couldn&apos;t load municipal report</div>
-              <div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.7 }}>{error}</div>
+              <div style={{ color: '#fca5a5', fontSize: 13, lineHeight: 1.8 }}>{error}</div>
               {waterLookupErrorExtra?.hintWell && (
                 <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(239,68,68,0.35)' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#c4b5fd', marginBottom: 6 }}>Private well?</div>
@@ -3259,7 +3259,7 @@ export default function WaterCheckup() {
           {(() => {
             const featured = PRODUCTS.filter((p: any) => p.expertPick).slice(0, 3);
             return (
-              <div style={{ marginBottom: 48 }}>
+              <div style={{ marginBottom: 96 }}>
                 <div style={{ marginBottom: 20 }}>
                   <div style={{ fontSize: 13, color: '#0891b2', fontWeight: 800, letterSpacing: 2, marginBottom: 4 }}>EDITOR&apos;S CHOICE</div>
                   <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f9ff' }}>Top Expert Picks</div>
@@ -3277,7 +3277,7 @@ export default function WaterCheckup() {
           })()}
 
           {/* Category filter */}
-          <div style={{ display: 'flex', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 56, flexWrap: 'wrap' }}>
             {catFilters.map(cat => {
               const active = productFilter === cat;
               const count = cat === 'all' ? PRODUCTS.length : PRODUCTS.filter((p: any) => p.cat === cat).length;
@@ -3425,7 +3425,7 @@ export default function WaterCheckup() {
             style={{
               display: 'flex',
               gap: 10,
-              marginBottom: 28,
+              marginBottom: 56,
               flexWrap: 'wrap',
               borderBottom: '1px solid rgba(255,255,255,0.08)',
               paddingBottom: 14,
@@ -3634,7 +3634,7 @@ export default function WaterCheckup() {
 
           {homeFunnelTab === 'report' && (
           <>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, marginBottom: 28 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, marginBottom: 56 }}>
             Tell us about your home and browse filters — or open{' '}
             <button
               type="button"
@@ -3647,7 +3647,7 @@ export default function WaterCheckup() {
           </p>
 
           {/* ── STEP 1: YOUR SITUATION ─────────────────────────────── */}
-          <div className="wc-fadein-2" style={{ marginBottom: 48 }}>
+          <div className="wc-fadein-2" style={{ marginBottom: 96 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
               <div className="wc-step" style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>1</div>
               <div>
@@ -3657,7 +3657,7 @@ export default function WaterCheckup() {
             </div>
 
             {/* Situation selector */}
-            <div className="wc-sit-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 32 }}>
+            <div className="wc-sit-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 64 }}>
               {SITUATIONS.map(s => (
                 <button key={s.id} onClick={() => setSituation(situation === s.id ? null : s.id)}
                   className="wc-sit"
@@ -3671,7 +3671,7 @@ export default function WaterCheckup() {
 
             {/* ── HOMEOWNER DETAIL PANEL ── shown when homeowner selected */}
             {situation === 'homeowner' && (
-              <div style={{ animation: 'wcFadeUp .4s ease-out both', marginBottom: 28, padding: '20px 22px', background: 'rgba(4,14,32,0.70)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: '1px solid rgba(6,182,212,0.18)', borderTop: '1px solid rgba(6,182,212,0.28)', borderRadius: 14, boxShadow: '0 8px 32px rgba(0,4,18,0.35)' }}>
+              <div style={{ animation: 'wcFadeUp .4s ease-out both', marginBottom: 56, padding: '20px 22px', background: 'rgba(4,14,32,0.70)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', border: '1px solid rgba(6,182,212,0.18)', borderTop: '1px solid rgba(6,182,212,0.28)', borderRadius: 14, boxShadow: '0 8px 32px rgba(0,4,18,0.35)' }}>
                 <div style={{ fontSize: 13, letterSpacing: 1.5, color: '#0891b2', fontWeight: 800, marginBottom: 16 }}>TELL US ABOUT YOUR HOME</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
                   {/* People */}
@@ -3700,7 +3700,7 @@ export default function WaterCheckup() {
                   </div>
                   {/* Tip based on selections */}
                   {(homePeople || homeBaths) && (
-                    <div style={{ padding: '12px 14px', background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.7 }}>
+                    <div style={{ padding: '12px 14px', background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.2)', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.8 }}>
                       {(homePeople === '5+' || homePeople === '5') && homeBaths === '3+'
                         ? '🏠 Large home — a high-flow whole-house system + under-sink RO for drinking is your best setup. Look for systems rated 15+ GPM.'
                         : (homePeople === '5+' || homePeople === '5')
@@ -4159,7 +4159,7 @@ export default function WaterCheckup() {
                 <strong style={{ color: '#e2e8f0' }}>which NSF/ANSI standard</strong> it is certified to, because each standard covers different claims.
               </p>
               <p style={{ margin: '0 0 12px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, fontWeight: 600 }}>Common standards for drinking-water devices</p>
-              <ul style={{ margin: '0 0 16px', paddingLeft: 20, fontSize: 14, color: '#cbd5e1', lineHeight: 1.8 }}>
+              <ul style={{ margin: '0 0 22px', paddingLeft: 20, fontSize: 14, color: '#cbd5e1', lineHeight: 1.85 }}>
                 <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 42</strong> — aesthetic effects such as chlorine taste and odor.</li>
                 <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 53</strong> — health-related contaminants the standard lists (e.g. many systems are certified for lead reduction when labeled that way).</li>
                 <li style={{ marginBottom: 8 }}><strong style={{ color: '#e2e8f0' }}>NSF/ANSI 58</strong> — reverse osmosis systems (broad contaminant reduction scope defined by the standard).</li>
@@ -4261,7 +4261,7 @@ export default function WaterCheckup() {
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '64px 24px 80px' }}>
 
         {/* Testimonials */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20, textAlign: 'center' }}>WHAT PEOPLE ARE SAYING</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
             {[
@@ -4274,7 +4274,7 @@ export default function WaterCheckup() {
             ].map(({ quote, name, location, stars }) => (
               <div key={`${name}-${location}`} style={{ background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ color: '#f59e0b', fontSize: 13, letterSpacing: 1 }}>{'★'.repeat(stars)}</div>
-                <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>&ldquo;{quote}&rdquo;</p>
+                <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: 0, fontStyle: 'italic' }}>&ldquo;{quote}&rdquo;</p>
                 <div style={{ marginTop: 'auto' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>{name}</div>
                   <div style={{ fontSize: 13, color: '#a8b4c4' }}>{location}</div>
@@ -4285,7 +4285,7 @@ export default function WaterCheckup() {
         </div>
 
         {/* Why WaterCheckup */}
-        <section style={{ marginBottom: 48 }} aria-labelledby="why-watercheckup-heading">
+        <section style={{ marginBottom: 96 }} aria-labelledby="why-watercheckup-heading">
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP</div>
           <h2 id="why-watercheckup-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 20px' }}>
             Why WaterCheckup
@@ -4304,7 +4304,7 @@ export default function WaterCheckup() {
         <HomeComparisonTable />
 
         {/* Social comparison hook */}
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 48 }}>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 96 }}>
           {[
             { emoji: '🔬', stat: '45%', desc: 'of US tap water has detectable PFAS — most people have no idea' },
             { emoji: '📋', stat: '70%+', desc: 'of Americans have never read their public water system\'s water quality report' },
@@ -4320,7 +4320,7 @@ export default function WaterCheckup() {
         <TrustedFilterCategories productsById={TRUSTED_PRODUCTS_BY_ID} />
 
         {/* Browse by city */}
-        <div style={{ marginBottom: 56 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>BROWSE BY CITY</div>
           <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>

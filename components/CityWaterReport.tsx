@@ -68,7 +68,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
         </div>
 
         <section style={{ marginBottom: 22 }}>
-          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' }}>Public water system</h2>
+          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 18px' }}>Public water system</h2>
           <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', lineHeight: 1.65 }}>
             <strong style={{ color: '#e2e8f0' }}>{city.system}</strong>
             <br />
@@ -77,16 +77,16 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
         </section>
 
         <section style={{ marginBottom: 22 }}>
-          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' }}>Issues we flag</h2>
-          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.7 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 18px' }}>Issues we flag</h2>
+          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.8 }}>
             {city.issues.map((issue) => (
               <li key={issue}>{issue}</li>
             ))}
           </ul>
         </section>
 
-        <section style={{ marginBottom: 28 }}>
-          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' }}>Context</h2>
+        <section style={{ marginBottom: 56 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '0 0 18px' }}>Context</h2>
           <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.65 }}>
             {city.facts.slice(0, 4).map((fact) => (
               <li key={fact.slice(0, 48)}>{fact}</li>

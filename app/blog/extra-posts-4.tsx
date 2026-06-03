@@ -21,12 +21,12 @@ const TOP_3_PITCHER = [
 ];
 
 
-const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
-const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
+const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };
+const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '40px 0 14px' };
 const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#cbd5e1', lineHeight: 1.85 };
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
-const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
-const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const calloutStyle: React.CSSProperties = { margin: '40px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const warnStyle: React.CSSProperties = { margin: '40px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 
 /** Editorial: large metros where regional geology and aquifers typically produce very hard tap water (not a single-public water system ppm ranking). */
 const HARDEST_TEN_CITIES: readonly { slug: string; title: string; short: string; text: string }[] = [
@@ -327,7 +327,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'All three measure concentration — how much of something is dissolved in your water. Think of it like drops of food coloring in a swimming pool. The units just tell you how many drops, and how big the pool is.'
       ),
 
-      React.createElement('div', { style: { margin: '28px 0', display: 'grid', gap: 12 } },
+      React.createElement('div', { style: { margin: '40px 0', display: 'grid', gap: 12 } },
         ...[
           { unit: 'PPM', full: 'Parts Per Million', pool: '1 drop in a 13-gallon aquarium', color: '#0891b2', context: 'Used for common minerals like calcium, magnesium, and chlorine. Tap water hardness is often 100–400 ppm. Your morning coffee is about 500 ppm dissolved solids. 1 million drops of water = 13 gallons, so 1 ppm = 1 drop per 13 gallons.' },
           { unit: 'PPB', full: 'Parts Per Billion', pool: '1 drop in a 13,000-gallon backyard pool', color: '#f59e0b', context: 'Used for lead, arsenic, and nitrates. 1 billion drops = 13,000 gallons — roughly a standard backyard swimming pool. The EPA lead action level is 15 ppb, meaning 15 drops spread across 15 backyard pools.' },
@@ -405,7 +405,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
             React.createElement('div', { style: { width: 24, height: 24, borderRadius: '50%', background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 } }, '✓'),
             React.createElement('div', null,
               React.createElement('strong', { style: { ...strongStyle, display: 'block', marginBottom: 4 } }, label),
-              React.createElement('span', { style: { color: '#cbd5e1', fontSize: 14, lineHeight: 1.7 } }, text),
+              React.createElement('span', { style: { color: '#cbd5e1', fontSize: 14, lineHeight: 1.8 } }, text),
             )
           )
         )

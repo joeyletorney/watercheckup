@@ -137,14 +137,14 @@ export default function WorstHubPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             DATA-BACKED RANKINGS
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 14px' }}>
             Water quality rankings hub
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             Rankings use different lenses: <strong style={{ color: '#e2e8f0' }}>Water Safety Score</strong> (city
             exposure profile), <strong style={{ color: '#e2e8f0' }}>PFAS UCMR5</strong> (monitoring),{' '}
             <strong style={{ color: '#e2e8f0' }}>state % at risk</strong> (geography), and{' '}
@@ -154,7 +154,7 @@ export default function WorstHubPage() {
         </div>
 
         {SECTIONS.map((section) => (
-          <div key={section.title} style={{ marginBottom: 32 }}>
+          <div key={section.title} style={{ marginBottom: 64 }}>
             <div style={{ fontSize: 13, fontWeight: 800, color: '#94a3b8', letterSpacing: 2, marginBottom: 12 }}>
               {section.title.toUpperCase()}
             </div>

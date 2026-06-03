@@ -45,7 +45,7 @@ export async function GET(req: Request) {
       }} />
 
       {/* Logo row */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 48 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 96 }}>
         <div style={{
           width: 48, height: 48, borderRadius: 12,
           background: 'linear-gradient(135deg, #0891b2, #06b6d4)',

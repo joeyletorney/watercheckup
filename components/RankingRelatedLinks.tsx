@@ -15,7 +15,7 @@ type Props = {
 
 export function RankingRelatedLinks({ links = DEFAULT_LINKS, title = 'More rankings' }: Props) {
   return (
-    <div style={{ marginTop: 40 }}>
+    <div style={{ marginTop: 72 }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>{title}</div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {links.map((l) => (

@@ -22,21 +22,21 @@ export default function WorstHardnessPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check hardness →" ctaHref="/water-hardness" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>
             HARDNESS · MG/L AS CACO₃
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Hardest tap water in America
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             Hard water is mostly a <strong style={{ color: '#e2e8f0' }}>nuisance and appliance issue</strong> (scale,
             soap, water heaters) — not the same as PFAS or lead safety. Rankings use Consumer Confidence Report values
             where we have them, otherwise averages from EPA UCMR5 hardness fields on tracked city PWSIDs.
           </p>
         </div>
 
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>
             TOP 20 STATES (AVERAGE HARDNESS)
           </div>

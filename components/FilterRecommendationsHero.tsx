@@ -79,7 +79,7 @@ export function FilterRecommendationsBanner({ style }: { style?: React.CSSProper
               fontWeight: 900,
               color: '#f1f5f9',
               lineHeight: 1.15,
-              margin: '0 0 10px',
+              margin: '0 0 18px',
               textShadow: '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >

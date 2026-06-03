@@ -86,7 +86,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
 
   if (status === 'success') {
     return (
-      <div style={{ marginBottom: 40, padding: '24px 24px', background: '#0a2a1a', border: '1px solid #0f6e40', borderRadius: 12, textAlign: 'center' }}>
+      <div style={{ marginBottom: 72, padding: '24px 24px', background: '#0a2a1a', border: '1px solid #0f6e40', borderRadius: 12, textAlign: 'center' }}>
         <div style={{ fontSize: 20, marginBottom: 6 }}>✅</div>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You&apos;re in.</div>
         <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
@@ -97,7 +97,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
   }
 
   return (
-    <div style={{ marginBottom: 40, padding: '24px 24px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+    <div style={{ marginBottom: 72, padding: '24px 24px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
         STAY INFORMED
       </div>
@@ -108,7 +108,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
             ? `Get water quality alerts for ${displayName}`
             : `Get ${displayName} water alerts`}
       </div>
-      <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 16px', lineHeight: 1.6 }}>
+      <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 22px', lineHeight: 1.6 }}>
         {isState
           ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect public water systems in ${displayName}. One email, no spam, unsubscribe any time.`
           : isUtility

@@ -120,18 +120,18 @@ export default async function WorstPFASPage() {
       <div style={{ maxWidth: 820, margin: '0 auto', padding: '40px 24px 80px' }}>
 
         {/* Hero */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             EPA UCMR5 · REGULATED VIOLATIONS · 2026
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             10 water systems with the highest PFAS contamination
           </h1>
-          <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 24px' }}>
+          <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 24px' }}>
             The EPA finalized enforceable PFAS limits in April 2024 — 4 ppt for PFOA and PFOS (others vary). These are the 10 water systems where regulated PFAS were found at the highest levels above those MCLs in EPA UCMR5 national monitoring. Each card lists every regulated compound over the limit with measured ppt and how many times above the limit. The worst single compound here is about {parseFloat(worstTimesOver).toFixed(0)}× over its MCL.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 28 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 56 }}>
             {[
               { label: 'Highest single reading', value: `${systems[0]?.worstPpt ?? '--'} ppt`, color: '#ef4444' },
               { label: 'Times over EPA limit (worst)', value: `${parseFloat(worstTimesOver).toFixed(0)}×`, color: '#ef4444' },
@@ -153,7 +153,7 @@ export default async function WorstPFASPage() {
         </div>
 
         {/* Rankings */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             TOP 10 — HIGHEST REGULATED PFAS ABOVE EPA MCL
           </div>
@@ -268,7 +268,7 @@ export default async function WorstPFASPage() {
         </div>
 
         {/* What is PFAS / health context */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             WHY THIS MATTERS
           </div>
@@ -298,7 +298,7 @@ export default async function WorstPFASPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 40 }}>
+        <div style={{ background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 72 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Check your ZIP for PFAS</div>
           <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             Enter your ZIP to see the UCMR5 PFAS readings, MCL violations, and certified filter recommendations for your specific water system.
@@ -309,7 +309,7 @@ export default async function WorstPFASPage() {
         </div>
 
         {/* Related rankings */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>MORE RANKINGS</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
             {[
@@ -327,7 +327,7 @@ export default async function WorstPFASPage() {
           </div>
         </div>
 
-        <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
+        <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.8, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
           <strong style={{ color: '#a8b4c4' }}>Data source:</strong> U.S. Environmental Protection Agency UCMR5 (5th Unregulated Contaminant Monitoring Rule), 2023–2025 national dataset. Rankings show only systems with confirmed detections above EPA Maximum Contaminant Levels for regulated PFAS compounds: PFOA (4 ppt), PFOS (4 ppt), PFNA (10 ppt), PFHxS (10 ppt), HFPO-DA/GenX (10 ppt). Not affiliated with the EPA.
         </div>
       </div>

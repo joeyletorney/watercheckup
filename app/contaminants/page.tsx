@@ -272,7 +272,7 @@ export default function ContaminantsPage() {
       </section>
 
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px 80px' }}>
-        <div className="contam-intro-section" style={{ marginBottom: 32 }}>
+        <div className="contam-intro-section" style={{ marginBottom: 64 }}>
           <Image
             src={HERO_IMAGE}
             alt={HERO_ALT}
@@ -282,12 +282,12 @@ export default function ContaminantsPage() {
             style={{ objectFit: 'cover' }}
           />
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 3, marginBottom: 12 }}>EPA DATA · HEALTH RESEARCH · INDEPENDENT TESTING</div>
-          <p style={{ fontSize: 17, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 17, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             What each contaminant is, where it comes from, what it does to your body, and exactly what removes it — based on data from 5 EPA databases and independent health research.
           </p>
         </div>
 
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
+        <div style={{ textAlign: 'center', marginBottom: 72 }}>
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}

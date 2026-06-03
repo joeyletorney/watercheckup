@@ -235,7 +235,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
 
         {/* ── HERO ── */}
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 64 }}>
           <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 14 }}>
             <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
             <span style={{ margin: '0 6px' }}>›</span>
@@ -266,10 +266,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
           {slug === 'gaithersburg' && (
             <>
-              <h2 style={{ fontSize: 20, fontWeight: 800, color: '#e2e8f0', margin: '0 0 10px', lineHeight: 1.3 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 800, color: '#e2e8f0', margin: '0 0 18px', lineHeight: 1.3 }}>
                 Gaithersburg water quality (WSSC Water)
               </h2>
-              <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.7 }}>
+              <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.8 }}>
                 Gaithersburg is served by{' '}
                 <strong style={{ color: '#e2e8f0' }}>WSSC Water</strong> (Washington Suburban Sanitary Commission).
                 Below: EPA violation history, UCMR5 PFAS monitoring, lead risk in older homes, and NSF-certified filters
@@ -431,14 +431,14 @@ export default function CityPage({ params }: { params: { city: string } }) {
         {cd ? (
           <>
             {/* ── STEP 1: THE PROBLEM ── */}
-            <div style={{ marginBottom: 40 }}>
+            <div style={{ marginBottom: 72 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                 WHAT YOU SHOULD KNOW ABOUT {cd.name.toUpperCase()} WATER
               </div>
 
               {/* Context banner */}
               <div style={{ padding: '16px 20px', background: `${urg.color}10`, border: `1px solid ${urg.border}`, borderRadius: 12, marginBottom: 20 }}>
-                <p style={{ fontSize: 14, color: '#e2e8f0', lineHeight: 1.7, margin: 0 }}>
+                <p style={{ fontSize: 14, color: '#e2e8f0', lineHeight: 1.8, margin: 0 }}>
                   {getUrgencyContext(concernLevel, cd.issues, cd.name)}
                 </p>
               </div>
@@ -476,14 +476,14 @@ export default function CityPage({ params }: { params: { city: string } }) {
             {(() => {
               if (!pfas) {
                 return (
-                  <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+                  <div style={{ marginBottom: 72, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING — EPA UCMR5 DATA</div>
                     <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2026</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                       <span style={{ fontSize: 20 }}>📋</span>
                       <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0' }}>No UCMR5 data on file for this system</div>
                     </div>
-                    <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+                    <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
                       The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) required systems serving 3,300+ people to test for 29 PFAS compounds between 2023–2025. This system either was not required to test, reported no detections, or has not yet submitted results to the federal database.
                     </p>
                     <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0 }}>
@@ -499,7 +499,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               const statusIcon = violations > 0 ? '🚨' : hasDetections ? '⚠️' : '✅';
 
               return (
-                <div style={{ marginBottom: 40 }}>
+                <div style={{ marginBottom: 72 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2 }}>PFAS TESTING DATA — EPA UCMR5</div>
                     <div style={{ fontSize: 13, color: '#94a3b8' }}>Testing period 2023–2025 · Last updated Q1 2026</div>
@@ -575,7 +575,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                 WHAT TO DO ABOUT IT
               </div>
-              <p style={{ fontSize: 14, color: '#cbd5e1', margin: '0 0 16px', lineHeight: 1.6 }}>
+              <p style={{ fontSize: 14, color: '#cbd5e1', margin: '0 0 22px', lineHeight: 1.6 }}>
                 Based on {cd.name}&apos;s water profile above, here&apos;s the exact system we recommend — and why it&apos;s right for this water supply specifically.
               </p>
             </div>
@@ -597,7 +597,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             />
 
             {/* ── SYSTEM INFO ── */}
-            <div style={{ marginBottom: 40, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+            <div style={{ marginBottom: 72, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>WATER SYSTEM -- EPA SDWIS</div>
               <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
                 {[
@@ -622,7 +622,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         )}
 
         {/* ── FAQ ── */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <h2 style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             COMMON QUESTIONS
           </h2>
@@ -656,10 +656,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
         </div>
 
         {/* ── LEAD SERVICE LINE ── */}
-        <div style={{ marginBottom: 32, padding: '20px 22px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
+        <div style={{ marginBottom: 64, padding: '20px 22px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>LEAD SERVICE LINE RISK</div>
           <div style={{ fontSize: 17, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Does your street have lead pipes?</div>
-          <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 22px' }}>
             As of October 2024, all US public water systems must publish a public inventory of their lead service lines —
             the pipes connecting the water main to your home. Even if your public water system water tests clean at the treatment plant,
             lead can leach from these pipes into your tap. Homes built before 1986 are most at risk.
@@ -714,7 +714,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         <EmailCapture cityName={cd?.name ?? cityName} slug={params.city} />
 
         {/* ── STEP 5: ZIP CTA ── */}
-        <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 48 }}>
+        <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 96 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>
             Check your specific address
           </div>
@@ -727,7 +727,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         </div>
 
         {/* ── TEST YOUR WATER ── */}
-        <div style={{ background: 'linear-gradient(135deg,rgba(124,58,237,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 14, padding: '22px 24px', marginBottom: 32, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+        <div style={{ background: 'linear-gradient(135deg,rgba(124,58,237,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(124,58,237,0.3)', borderRadius: 14, padding: '22px 24px', marginBottom: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
           <div>
             <div style={{ fontSize: 13, fontWeight: 800, color: '#a78bfa', letterSpacing: 1.5, marginBottom: 6 }}>🧪 WANT A LAB-CERTIFIED RESULT?</div>
             <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>Test {cd?.name ?? 'your'} tap water with a certified lab</div>
@@ -739,7 +739,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         </div>
 
         {/* ── RELATED BLOG POSTS ── */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <h2 style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, margin: '0 0 14px' }}>RELATED GUIDES</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
             {[

@@ -176,7 +176,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '36px 0 14px' }}>
           RO vs distilled at a glance
         </h2>
-        <div style={{ overflowX: 'auto', marginBottom: 28 }}>
+        <div style={{ overflowX: 'auto', marginBottom: 56 }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
             <thead>
               <tr style={{ borderBottom: '1px solid #1a3a5c' }}>
@@ -200,12 +200,12 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         </div>
 
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>How reverse osmosis works</h2>
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 16px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' }}>
           RO forces tap water through a semi-permeable membrane under pressure. Dissolved contaminants — including many
           ions, PFAS, lead, nitrate, and arsenic species on certified systems — are rejected and flushed to drain as
           concentrate. Prefilters (sediment and carbon) protect the membrane and reduce chlorine that would damage it.
         </p>
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 16px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' }}>
           <strong style={{ color: '#e2e8f0' }}>What RO is great at:</strong> Daily drinking and cooking water with
           strong contaminant reduction, reasonable flow, and established NSF/ANSI 58 certification paths you can verify
           before you buy.
@@ -217,13 +217,13 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         </p>
 
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>How distillation works</h2>
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 16px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' }}>
           A distiller boils water into steam, then condenses that steam back into liquid. Most minerals, metals, and
           non-volatile contaminants stay in the boiling chamber. You are not filtering — you are{' '}
           <strong style={{ color: '#e2e8f0' }}>changing phase</strong>, which is why distillers routinely hit extremely
           low TDS.
         </p>
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 16px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' }}>
           <strong style={{ color: '#e2e8f0' }}>What distillation is great at:</strong> Ultra-low dissolved solids in
           modest daily volumes; simple chemistry; no membrane fouling from hardness or iron.
         </p>
@@ -243,7 +243,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           }}
         >
           <strong style={{ color: '#f87171' }}>Important: </strong>
-          <span style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7 }}>
+          <span style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8 }}>
             Neither RO nor distillation replaces a{' '}
             <Link href="/blog/boil-water-advisory-what-to-do-and-how-long" style={{ color: '#22d3ee' }}>
               boil-water advisory
@@ -255,8 +255,8 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>Which is better for your home?</h2>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 16 }}>
-          <h3 style={{ fontSize: 17, fontWeight: 800, color: '#22d3ee', margin: '0 0 10px' }}>Choose reverse osmosis if…</h3>
-          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.8 }}>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: '#22d3ee', margin: '0 0 18px' }}>Choose reverse osmosis if…</h3>
+          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.85 }}>
             <li>You want high-purity drinking and cooking water every day</li>
             <li>Your tap water has PFAS, lead, nitrate, arsenic, or high TDS you want reduced</li>
             <li>You need reasonable flow (tankless RO systems fill a glass in seconds)</li>
@@ -265,8 +265,8 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         </div>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 24 }}>
-          <h3 style={{ fontSize: 17, fontWeight: 800, color: '#e2e8f0', margin: '0 0 10px' }}>Choose distillation if…</h3>
-          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.8 }}>
+          <h3 style={{ fontSize: 17, fontWeight: 800, color: '#e2e8f0', margin: '0 0 18px' }}>Choose distillation if…</h3>
+          <ul style={{ margin: 0, paddingLeft: 20, color: '#cbd5e1', fontSize: 14, lineHeight: 1.85 }}>
             <li>You need the lowest practical TDS for CPAP, humidifiers, or specialty equipment</li>
             <li>You are OK with batch production (gallons per day, not on-demand flow)</li>
             <li>You prefer evaporation-based separation over membranes</li>
@@ -275,7 +275,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         </div>
 
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>Minerals, taste, and “dead water”</h2>
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 16px' }}>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' }}>
           Ultra-pure water tastes flat because it has little mineral content. That is a flavor issue, not proof that RO
           or distilled water is dangerous. Many RO systems include a remineralization stage; others add a pinch of
           mineral blend or mix with a small amount of tap water for taste.
@@ -293,8 +293,8 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           before choosing equipment.
         </p>
 
-        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px' }}>Best RO systems for home purity (2026)</h2>
-        <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 16px' }}>
+        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>Best RO systems for home purity (2026)</h2>
+        <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 22px' }}>
           If RO is the right fit, buy certified equipment — not generic “5-stage” kits with no test data. These are
           systems I recommend frequently for PFAS, lead, and general dissolved contaminant reduction:
         </p>
@@ -360,7 +360,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         ))}
 
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>Related reading</h2>
-        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 24px' }}>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 24px' }}>
           <Link href="/blog/reverse-osmosis-pros-and-cons" style={{ color: '#22d3ee' }}>
             Reverse osmosis pros and cons
           </Link>
@@ -379,7 +379,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         </p>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 24 }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px' }}>FAQ</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>FAQ</h2>
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>

@@ -22,14 +22,14 @@ export default function BestCitiesPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', letterSpacing: 2, marginBottom: 10 }}>
             WATER SAFETY SCORE · 0–88
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             10 best cities for tap water quality
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             Among WaterCheckup&apos;s tracked city guides, these metros score highest on our exposure profile (88 =
             best possible — no municipal supply is perfect). &quot;Best&quot; here means fewer UCMR5 MCL flags and lighter
             contaminant profiles in our database — not a guarantee for every home. Older plumbing can still add lead at

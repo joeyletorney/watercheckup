@@ -38,14 +38,14 @@ export default function WorstViolationsPage() {
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
 
         {/* Hero */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             EPA VIOLATIONS — 2026 SDWIS DATA
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Top 25 cities with the most EPA water violations
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             The EPA's Safe Drinking Water Information System tracks violations at every public water system in the country. A violation means a public water system failed to meet a federal standard — either by exceeding a maximum contaminant level, failing to monitor, or failing to notify residents. Here are the cities with the worst records.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -63,9 +63,9 @@ export default function WorstViolationsPage() {
         </div>
 
         {/* What violations mean */}
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 32 }}>
+        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 64 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>WHAT AN EPA VIOLATION ACTUALLY MEANS</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 10px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 18px' }}>
             A violation doesn't always mean your water is dangerous right now — but it does mean your public water system failed to meet a federal standard at some point. Health-based violations (exceeding a maximum contaminant level) are the most serious. Monitoring violations mean the public water system failed to test and report as required.
           </p>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
@@ -74,7 +74,7 @@ export default function WorstViolationsPage() {
         </div>
 
         {/* All cities ranked */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             TOP 25 CITIES — RANKED BY VIOLATION CONCERN
           </div>
@@ -102,7 +102,7 @@ export default function WorstViolationsPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 40, textAlign: 'center' }}>
+        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 72, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific ZIP code</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 18, lineHeight: 1.6 }}>City-wide rankings show the pattern — your specific water system may be better or worse. Enter your ZIP for a full EPA report on your exact public water system.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>

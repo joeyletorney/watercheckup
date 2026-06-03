@@ -26,14 +26,14 @@ export default function WorstPfasCitiesPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             EPA UCMR5 · CITY REPORTS
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Worst cities for PFAS in tap water
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             Two lists: cities with <strong style={{ color: '#e2e8f0' }}>regulated PFAS over EPA MCLs</strong> (PFOA, PFOS,
             PFHxS, etc.), and cities with the highest <strong style={{ color: '#e2e8f0' }}>unregulated peaks</strong> where
             MCL violation counts are still zero (e.g. high 6:2 FTS). For raw PWSID leaderboards see{' '}
@@ -42,7 +42,7 @@ export default function WorstPfasCitiesPage() {
           </p>
         </div>
 
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>
             TOP 20 — PFAS MCL VIOLATIONS (TRACKED CITIES)
           </div>
@@ -64,7 +64,7 @@ export default function WorstPfasCitiesPage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>
             TOP 20 — HIGHEST UNREGULATED PFAS PEAKS (NO MCL VIOLATION COUNT)
           </div>
-          <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.6, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.6, margin: '0 0 22px' }}>
             These peaks are still serious forever chemicals — they are not yet counted as federal MCL violations in UCMR5
             violation fields.
           </p>

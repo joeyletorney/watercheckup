@@ -246,7 +246,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
     <div style={{ maxWidth: 720, margin: '0 auto', padding: '32px 24px 80px' }}>
 
       {/* ── HEADER ── */}
-      <div style={{ marginBottom: 28 }}>
+      <div style={{ marginBottom: 56 }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 12 }}>
           <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -365,7 +365,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1.2, marginBottom: 6 }}>
               OFFICIAL EPA TOOLS — VIEW ON WATERCHECKUP
             </div>
-            <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 10px', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.5 }}>
               Open EPA&apos;s own pages inside our site (your address bar stays on watercheckup.com). PWSID{' '}
               <span style={{ color: '#cbd5e1', fontFamily: 'ui-monospace, monospace', fontSize: 13 }}>{data.pwsid}</span>
               . If a page is blank, EPA may block embedding — use the direct EPA link at the bottom.
@@ -604,7 +604,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                           </span>
                         </div>
                         <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{prod.price}</div>
-                        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 10px' }}>{reason}</p>
+                        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>{reason}</p>
                         <a
                           href={prod.amazon}
                           target="_blank"
@@ -749,7 +749,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                   )}
                 </div>
                 <div style={{ padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8 }}>
-                  <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+                  <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
                     PFAS "forever chemicals" don't break down in the body and accumulate over time. The EPA set the first federal PFAS limits in April 2024 (4 ppt for PFOA/PFOS). <strong style={{ color: '#e2e8f0' }}>Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.</strong> Standard pitcher filters do not.
                   </p>
                 </div>
@@ -858,7 +858,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       )}
 
       {/* ── EMAIL ALERTS ── */}
-      <div style={{ marginTop: 40, padding: '24px 24px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: 14 }}>
+      <div style={{ marginTop: 72, padding: '24px 24px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: 14 }}>
         <div style={{ fontSize: 17, fontWeight: 900, color: '#f8fafc', marginBottom: 8 }}>Get Alerts If Your Water Changes</div>
         <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.55 }}>
           We'll notify you if new contaminants are detected or violations are filed for ZIP {zip}.

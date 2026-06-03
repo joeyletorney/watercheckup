@@ -129,7 +129,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
         <BlogFeaturedImage slug={params.slug} title={post.title} badge={post.badge} />
 
-        <header style={{ marginBottom: 32 }}>
+        <header style={{ marginBottom: 64 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
               {post.badge}
@@ -198,20 +198,20 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         )}
 
         {post.faq && post.faq.length > 0 && (
-          <section id="faq" className="wc-reading-faq" style={{ marginTop: 48 }}>
+          <section id="faq" className="wc-reading-faq" style={{ marginTop: 96 }}>
             <h2 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 20px', lineHeight: 1.3 }}>
               Frequently asked questions
             </h2>
             {post.faq.map(({ q, a }) => (
-              <div key={q} style={{ marginBottom: 24 }}>
-                <h3 style={{ fontSize: 17, fontWeight: 700, margin: '0 0 8px', lineHeight: 1.4 }}>{q}</h3>
-                <p style={{ fontSize: 15, margin: 0, lineHeight: 1.75 }}>{a}</p>
+              <div key={q} style={{ marginBottom: 32 }}>
+                <h3 style={{ fontSize: 17, fontWeight: 700, margin: '0 0 12px', lineHeight: 1.4 }}>{q}</h3>
+                <p style={{ fontSize: 15, margin: 0, lineHeight: 1.85 }}>{a}</p>
               </div>
             ))}
           </section>
         )}
 
-        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 48, position: 'relative' }}>
+        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 96, position: 'relative' }}>
           <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
             TOP PICKS
           </div>
@@ -259,7 +259,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <div className="wc-reading-inset" style={{ marginTop: 48 }}>
+        <div className="wc-reading-inset" style={{ marginTop: 96 }}>
           <div className="wc-reading-inset__label">MORE GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {Object.entries(POSTS).filter(([slug]) => slug !== params.slug).map(([slug, p]) => (
@@ -284,7 +284,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </Link>
         </div>
 
-        <div className="wc-reading-inset" style={{ marginTop: 40 }}>
+        <div className="wc-reading-inset" style={{ marginTop: 72 }}>
           <div className="wc-reading-inset__label">CHECK YOUR CITY&apos;S WATER</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
             {[
@@ -326,7 +326,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </Link>
         </div>
 
-        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 40, textAlign: 'center' }}>
+        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 72, textAlign: 'center' }}>
           <div className="wc-reading-inset__title" style={{ marginBottom: 8 }}>Check your exact water report</div>
           <p className="wc-reading-inset__text" style={{ marginBottom: 20 }}>
             Live EPA data, PFAS results, and violation history for your ZIP — free.

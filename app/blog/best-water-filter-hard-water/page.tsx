@@ -183,7 +183,7 @@ export default function BestFilterHardWaterPage() {
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>What is hard water?</h2>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
             Hard water contains high levels of dissolved calcium and magnesium — minerals picked up as water flows through limestone and chalk rock. It&apos;s measured in grains per gallon (gpg) or milligrams per liter (mg/L):
           </p>
           {HARDNESS_ROWS.map((row, i) => (
@@ -231,7 +231,7 @@ export default function BestFilterHardWaterPage() {
           ))}
         </div>
 
-        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px' }}>Best filters for hard water — 2025 picks</h2>
+        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>Best filters for hard water — 2025 picks</h2>
 
         {PICKS.map((pick, i) => (
           <div
@@ -334,15 +334,15 @@ export default function BestFilterHardWaterPage() {
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Salt-free softeners — do they work?</h2>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
             Salt-free &quot;softeners&quot; (also called water conditioners) use template-assisted crystallization (TAC) to change the structure of hardness minerals so they don&apos;t stick to surfaces. They don&apos;t actually remove calcium and magnesium — they just change how the minerals behave.
           </p>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             <strong style={{ color: '#e2e8f0' }}>Bottom line:</strong> Salt-free conditioners reduce scale buildup and are maintenance-free (no salt, no backwash). But they don&apos;t improve the feel of water for skin/hair and won&apos;t register as &quot;soft&quot; on a hardness test. For very hard water above 15 gpg, salt-based softeners are significantly more effective.
           </p>
         </div>
 
-        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
           Very hard water cities: see our{' '}
           <Link href="/water/san-antonio" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
             San Antonio water quality &amp; contamination report
@@ -351,7 +351,7 @@ export default function BestFilterHardWaterPage() {
         </p>
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px' }}>FAQ</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>FAQ</h2>
           {FAQS.map((faq, i) => (
             <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>

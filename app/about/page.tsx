@@ -334,10 +334,10 @@ export default function AboutPage() {
             <CredentialCard key={line} line={line} />
           ))}
         </div>
-        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px', fontStyle: 'italic' }}>
+        <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 22px', fontStyle: 'italic' }}>
           Credentials held during active practice with The WaterPro, Inc.
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 64 }}>
           {CREDENTIALS_REST.map((line) => (
             <CredentialCard key={line} line={line} />
           ))}
@@ -373,7 +373,7 @@ export default function AboutPage() {
               >
                 {group.title.toUpperCase()}
               </div>
-              <ul style={{ margin: 0, paddingLeft: 18, color: '#cbd5e1', fontSize: 14, lineHeight: 1.7 }}>
+              <ul style={{ margin: 0, paddingLeft: 18, color: '#cbd5e1', fontSize: 14, lineHeight: 1.8 }}>
                 {group.items.map((item) => (
                   <li key={item} style={{ marginBottom: 6 }}>
                     {item}
@@ -441,7 +441,7 @@ export default function AboutPage() {
 
         <div
           style={{
-            marginTop: 48,
+            marginTop: 96,
             padding: '32px 28px',
             background: 'linear-gradient(135deg, #071828, #040d14)',
             border: '1px solid #0f2d40',

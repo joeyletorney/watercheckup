@@ -136,7 +136,7 @@ export function TrustedFilterCategories({ productsById }: Props) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div style={{ marginBottom: 56 }}>
+    <div style={{ marginBottom: 96 }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6 }}>
         MOST TRUSTED FILTERS
       </div>

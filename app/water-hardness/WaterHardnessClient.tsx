@@ -132,7 +132,7 @@ function ResultBlock({
         <span style={{ fontSize: 18, fontWeight: 900, color: "#f1f5f9" }}>{analysis.ppm} ppm</span>
         <span style={{ fontSize: 15, color: "#cbd5e1" }}>{analysis.gpg} gpg</span>
       </div>
-      <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 12px" }}>{analysis.explanation}</p>
+      <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.8, margin: "0 0 12px" }}>{analysis.explanation}</p>
       {extra}
     </div>
   );
@@ -271,7 +271,7 @@ export function WaterHardnessClient() {
 
   return (
     <div id="tools">
-      <div style={{ marginBottom: 36 }} id="zip-lookup">
+      <div style={{ marginBottom: 72 }} id="zip-lookup">
         <div
           style={{
             fontSize: 13,
@@ -321,7 +321,7 @@ export function WaterHardnessClient() {
         {zipExtra}
       </div>
 
-      <div style={{ marginBottom: 28 }}>
+      <div style={{ marginBottom: 56 }}>
         <div
           style={{
             fontSize: 13,
@@ -377,7 +377,7 @@ export function WaterHardnessClient() {
       </div>
 
       {(zipAnalysis || manualAnalysis) && (
-        <div style={{ marginBottom: 28 }}>
+        <div style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 12 }}>
             RESULT
           </div>

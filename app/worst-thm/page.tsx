@@ -59,18 +59,18 @@ export default function WorstThmPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>
             DISINFECTION BYPRODUCTS · THM / HAA
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Cities with the highest disinfection byproduct risk
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             Trihalomethanes (THMs) and haloacetic acids (HAAs) are regulated disinfection byproducts (DBPs): they form when chlorine or chloramine reacts with natural organic matter in rivers, lakes, and reservoirs. Long-term exposure above EPA limits is associated with elevated cancer risk. This page lists cities where our structured profiles explicitly call out THMs, HAAs, or disinfection byproducts in the issues field — not a fresh nationwide public water system lab sort.
           </p>
 
-          <div style={{ padding: '14px 18px', background: '#f59e0b12', border: '1px solid #f59e0b35', borderLeft: '4px solid #f59e0b', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, marginBottom: 28 }}>
+          <div style={{ padding: '14px 18px', background: '#f59e0b12', border: '1px solid #f59e0b35', borderLeft: '4px solid #f59e0b', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, marginBottom: 56 }}>
             <strong style={{ color: '#fcd34d' }}>What we do and do not claim:</strong> Order reflects our editorial{' '}
             <strong style={{ color: '#e2e8f0' }}>urgency</strong> tiers (high → medium → low) plus alphabetical tie-breaking — mirroring how we prioritize cities internally. We do not recompute THM/TTHM concentrations from raw EPA stores on this page; for ZIP-level monitoring and MCL context, run a report from the homepage.
           </div>
@@ -99,9 +99,9 @@ export default function WorstThmPage() {
           </div>
         </div>
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 32 }}>
+        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 64 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>WHY THMs RUN HIGH</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 10px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 18px' }}>
             Public water systems must disinfect — but oxidizing organic-rich surface water produces THMs and HAAs. Hot weather, algae, soil runoff, and long distribution-system residence times all raise DBP formation. Boiling concentrates DBPs; it does not remove them.
           </p>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
@@ -109,7 +109,7 @@ export default function WorstThmPage() {
           </p>
         </div>
 
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             RANKED CITIES — {THM_CITIES.length} TOTAL
           </div>
@@ -164,9 +164,9 @@ export default function WorstThmPage() {
           </div>
         </div>
 
-        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14, marginBottom: 40 }}>
+        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14, marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>NEXT STEP</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 22px' }}>
             DBP risk varies by sampling location and season. Enter your ZIP for public water system-specific contaminant language, violations, and filter ideas tied to what we parse for your system.
           </p>
           <Link
@@ -186,7 +186,7 @@ export default function WorstThmPage() {
           </Link>
         </div>
 
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
             {[

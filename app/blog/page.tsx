@@ -608,7 +608,7 @@ export default function BlogIndex() {
       </section>
 
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div className="learn-intro-section" style={{ marginBottom: 40 }}>
+        <div className="learn-intro-section" style={{ marginBottom: 72 }}>
           <Image
             src={LEARN_HERO_IMAGE}
             alt={LEARN_HERO_ALT}
@@ -618,7 +618,7 @@ export default function BlogIndex() {
             style={{ objectFit: 'cover' }}
           />
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WATER QUALITY GUIDES</div>
-          <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.8 }}>
             Browse expert articles on tap water safety, PFAS, lead, and EPA violations — backed by the only free tool that combines 5 EPA databases.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -645,7 +645,7 @@ export default function BlogIndex() {
         </div>
 
                 {/* Featured posts */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FEATURED</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             {featuredPosts.map(post => (
@@ -696,7 +696,7 @@ export default function BlogIndex() {
         })}
 
         {/* CTA */}
-        <div style={{ marginTop: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
+        <div style={{ marginTop: 96, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific water</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>
           <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>

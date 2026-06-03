@@ -71,7 +71,7 @@ export default function TopPickBox({
   const skippedCount = picks.length - availablePicks.length;
 
   return (
-    <div style={{ marginBottom: 32 }}>
+    <div style={{ marginBottom: 64 }}>
       <FilterRecommendationsBanner />
       <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>
       <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>

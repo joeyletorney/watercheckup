@@ -73,7 +73,7 @@ export default function UtilityClaimPage() {
           FOR WATER OPERATORS
         </div>
 
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
           Publish Your 2027-Compliant CCR Free
         </h1>
 
@@ -120,7 +120,7 @@ export default function UtilityClaimPage() {
             background: '#0d2240',
             border: '1px solid #1a3a5c',
             borderRadius: 14,
-            marginBottom: 32,
+            marginBottom: 64,
           }}
         >
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>

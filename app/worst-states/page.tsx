@@ -53,14 +53,14 @@ export default function WorstStatesPage() {
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
 
         {/* ── HERO ── */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             STATE WATER QUALITY RANKINGS — 2026
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Top 25 worst states for tap water quality
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             Same methodology as our{' '}
             <Link href="/rankings" style={{ color: '#22d3ee' }}>
               state rankings table
@@ -82,7 +82,7 @@ export default function WorstStatesPage() {
         </div>
 
         {/* ── TOP 25 ── */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 16 }}>
             TOP 25 WORST STATES
           </div>
@@ -132,7 +132,7 @@ export default function WorstStatesPage() {
                   {/* Narrative — specific data-backed context */}
                   {narrative && (
                     <div style={{ borderTop: '1px solid #0f2336', padding: '12px 20px 16px 70px' }}>
-                      <p style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.7, margin: 0 }}>{narrative}</p>
+                      <p style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.8, margin: 0 }}>{narrative}</p>
                     </div>
                   )}
                 </div>
@@ -142,7 +142,7 @@ export default function WorstStatesPage() {
         </div>
 
         {/* ── FULL TABLE ── */}
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             ALL STATES — FULL RANKING
           </div>
@@ -168,7 +168,7 @@ export default function WorstStatesPage() {
         </div>
 
         {/* ── CTA ── */}
-        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 40, textAlign: 'center' }}>
+        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 72, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your exact water</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 18, lineHeight: 1.6 }}>
             State rankings show the big picture. Your specific water system may be better or worse than your state average. Enter your ZIP for the full report.

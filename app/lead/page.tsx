@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-const p = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 16px' } as React.CSSProperties;
-const h2 = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 10px' } as React.CSSProperties;
-const label = { fontSize: 13, fontWeight: 700, letterSpacing: 2, color: '#f59e0b', marginBottom: 10, display: 'block' } as React.CSSProperties;
+const p = { fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 22px' } as React.CSSProperties;
+const h2 = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 18px' } as React.CSSProperties;
+const label = { fontSize: 13, fontWeight: 700, letterSpacing: 2, color: '#f59e0b', marginBottom: 14, display: 'block' } as React.CSSProperties;
 
 const LEAD_FACTS = [
   { stat: '0 ppb', desc: 'EPA maximum contaminant level goal (MCLG) for lead — no safe exposure level' },
@@ -119,9 +119,9 @@ export default function LeadPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check My ZIP →" />
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px 100px' }}>
 
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 12 }}>LEAD IN DRINKING WATER</div>
-          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 36, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Lead in Tap Water — What It Is, How It Gets In, and What Actually Removes It
           </h1>
           <p style={p}>
@@ -147,7 +147,7 @@ export default function LeadPage() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
+        <div style={{ marginBottom: 96, padding: '24px 26px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
           <span style={label}>WHAT YOUR WATERCHECKUP REPORT SHOWS</span>
           <h2 style={h2}>Lead tap sampling &amp; your public water system</h2>
           <p style={p}>
@@ -160,7 +160,7 @@ export default function LeadPage() {
           </p>
         </div>
 
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>HOW LEAD ENTERS TAP WATER</span>
           <h2 style={h2}>Pathways from the street to your glass</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -176,7 +176,7 @@ export default function LeadPage() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>HEALTH EFFECTS</span>
           <h2 style={h2}>Why there is no “safe” lead level</h2>
           <p style={p}>Health agencies treat lead as a cumulative hazard — small exposures add up over time. The priority populations are children and pregnant people.</p>
@@ -190,7 +190,7 @@ export default function LeadPage() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 48, padding: '24px 26px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14 }}>
+        <div style={{ marginBottom: 96, padding: '24px 26px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14 }}>
           <span style={{ ...label, color: '#f59e0b' }}>LEAD &amp; COPPER RULE (BASICS)</span>
           <h2 style={h2}>Action level vs. the health goal</h2>
           <p style={p}>
@@ -202,7 +202,7 @@ export default function LeadPage() {
           </p>
         </div>
 
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>CITIES WITH DOCUMENTED LSL CHALLENGES</span>
           <h2 style={h2}>Where lead service lines are a known national issue</h2>
           <p style={p}>
@@ -216,7 +216,7 @@ export default function LeadPage() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>WHAT REMOVES LEAD</span>
           <h2 style={h2}>Certified filters — not guesswork</h2>
           <p style={p}>
@@ -251,10 +251,10 @@ export default function LeadPage() {
           </div>
         </div>
 
-        <div style={{ marginBottom: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #f59e0b', borderRadius: 16, textAlign: 'center' }}>
+        <div style={{ marginBottom: 96, padding: '28px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #f59e0b', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', letterSpacing: 2, marginBottom: 10 }}>FREE ZIP LOOKUP</div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>See lead-related data for your water system</h2>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             Enter your ZIP for a full report — including Lead and Copper Rule sample results when published for your system, open violations, and filter picks matched to your water.
           </p>
           <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#f59e0b,#d97706)', borderRadius: 10, color: '#0f172a', fontSize: 16, fontWeight: 800, textDecoration: 'none' }}>
@@ -262,7 +262,7 @@ export default function LeadPage() {
           </Link>
         </div>
 
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <span style={label}>FREQUENTLY ASKED QUESTIONS</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[

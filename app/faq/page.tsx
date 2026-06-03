@@ -226,7 +226,7 @@ export default function FAQPage() {
                     </button>
                     {isOpen && (
                       <div style={{ padding: '0 22px 22px', borderTop: '1px solid #0f2336', paddingTop: 18 }}>
-                        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8 }}>{item.a}</p>
+                        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85 }}>{item.a}</p>
                       </div>
                     )}
                   </div>

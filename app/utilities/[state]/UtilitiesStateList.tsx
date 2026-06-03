@@ -80,7 +80,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
         ) : null}
       </form>
 
-      <p style={{ fontSize: 13, color: "#a8b4c4", margin: "0 0 16px" }}>
+      <p style={{ fontSize: 13, color: "#a8b4c4", margin: "0 0 22px" }}>
         Showing page {page} of {totalPages} ({total.toLocaleString("en-US")} system
         {total === 1 ? "" : "s"}
         {query ? ` matching “${query}”` : ""})

@@ -82,19 +82,19 @@ export default async function WorstWaterPage() {
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 24px 80px' }}>
 
         {/* Hero */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             EPA UCMR5 DATA · UPDATED 2026
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             50 Most PFAS-Contaminated Water Systems in America
           </h1>
-          <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 24px' }}>
+          <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 24px' }}>
             The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) tested over 7,000 public water systems for 29 PFAS &ldquo;forever chemicals&rdquo; between 2023 and 2025. The results revealed widespread contamination — with some systems delivering water at levels more than 100 times the EPA&apos;s own limits. These are the worst 50, ranked by maximum detected concentration.
           </p>
 
           {/* Key stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 64 }}>
             {[
               { label: 'Systems with MCL violations', value: '800+' },
               { label: 'People served by top 50 worst systems', value: totalPeopleAffected },
@@ -113,7 +113,7 @@ export default async function WorstWaterPage() {
         </div>
 
         {/* Ranking table */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             RANKED: HIGHEST PFAS DETECTIONS WITH MCL VIOLATIONS
           </div>
@@ -174,7 +174,7 @@ export default async function WorstWaterPage() {
         </div>
 
         {/* What to do section */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 96 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             WHAT THESE NUMBERS MEAN — AND WHAT TO DO
           </div>
@@ -205,7 +205,7 @@ export default async function WorstWaterPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 40 }}>
+        <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 72 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Check if your ZIP is affected</div>
           <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             Enter your ZIP code to see the full EPA PFAS report, violation history, and certified filter recommendations for your specific water system.
@@ -216,7 +216,7 @@ export default async function WorstWaterPage() {
         </div>
 
         {/* Data source note */}
-        <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.7, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
+        <div style={{ fontSize: 13, color: '#94a3b8', lineHeight: 1.8, borderTop: '1px solid #0f2336', paddingTop: 20 }}>
           <strong style={{ color: '#a8b4c4' }}>Data source:</strong> U.S. Environmental Protection Agency, 5th Unregulated Contaminant Monitoring Rule (UCMR5) national dataset, 2023–2025. Rankings reflect maximum PFAS concentration across all sampling points per public water system ID. MCL = Maximum Contaminant Level. ppt = parts per trillion. Data current as of publication date. Water quality can change — always check your public water system&apos;s most recent Consumer Confidence Report for the latest readings.
         </div>
 

@@ -234,7 +234,7 @@ export default function SanAntonioWaterPage() {
             padding: '16px 20px',
             background: '#0891b2',
             borderRadius: 12,
-            marginBottom: 28,
+            marginBottom: 56,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -302,10 +302,10 @@ export default function SanAntonioWaterPage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
             WHERE DOES SAN ANTONIO WATER COME FROM?
           </div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
             San Antonio draws primarily from the <strong style={{ color: '#e2e8f0' }}>Edwards Aquifer</strong> — one of the most productive aquifers in the US, fed by rainfall in the Texas Hill Country that percolates through limestone rock. This limestone geology is what makes SA water naturally hard and high in calcium, magnesium, and radium.
           </p>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             SAWS also draws from the <strong style={{ color: '#e2e8f0' }}>Carrizo Aquifer</strong>, <strong style={{ color: '#e2e8f0' }}>Simsboro Aquifer</strong> (via the Vista Ridge Pipeline), and surface water sources during high demand periods. This blended supply means water quality can vary slightly by neighborhood and season.
           </p>
         </div>
@@ -322,17 +322,17 @@ export default function SanAntonioWaterPage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#f97316', letterSpacing: 2, marginBottom: 12 }}>
             ⚠️ SAN ANTONIO&apos;S HARD WATER PROBLEM
           </div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
             At 272 mg/L, San Antonio has some of the <strong style={{ color: '#e2e8f0' }}>hardest tap water of any major US city</strong>. Hard water isn&apos;t a health hazard, but it causes real problems:
           </p>
-          <ul style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px', paddingLeft: 20 }}>
+          <ul style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 12px', paddingLeft: 20 }}>
             <li>Scale buildup clogs pipes and reduces water heater efficiency by up to 30%</li>
             <li>Dishwashers leave white spots and film on glasses</li>
             <li>Soap and shampoo don&apos;t lather well — you use more product</li>
             <li>Skin and hair feel dry after showering</li>
             <li>Appliances (washing machines, coffee makers) have shorter lifespans</li>
           </ul>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             <strong style={{ color: '#e2e8f0' }}>Solution:</strong> A salt-based water softener is the most effective treatment for SA&apos;s hard water. For drinking water specifically, a reverse osmosis system removes hardness minerals along with PFAS, radium, arsenic, and sodium.
           </p>
         </div>
@@ -341,7 +341,7 @@ export default function SanAntonioWaterPage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
             BEST FILTERS FOR SAN ANTONIO WATER
           </div>
-          <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px' }}>
+          <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 22px' }}>
             Given SA&apos;s hard water, PFAS, radium, arsenic, and elevated sodium — here&apos;s what actually works:
           </p>
           {FILTER_PICKS.map((f, i) => (
@@ -486,7 +486,7 @@ export default function SanAntonioWaterPage() {
         >
           <h2
             id="sa-faq-heading"
-            style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px', textTransform: 'uppercase' }}
+            style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 22px', textTransform: 'uppercase' }}
           >
             Frequently asked questions
           </h2>
@@ -550,7 +550,7 @@ export default function SanAntonioWaterPage() {
           compact
         />
 
-        <div style={{ marginBottom: 28 }}>
+        <div style={{ marginBottom: 56 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RELATED GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[

@@ -26,7 +26,7 @@ export default function MethodologyPage() {
         <p style={{ fontSize: 16 }}>
           WaterCheckup pulls from the same public federal databases that public water systems report to. We merge them by ZIP code, translate the results into plain language, and match them to filter recommendations. We are not a laboratory and we do not sample your tap.
         </p>
-        <p style={{ marginBottom: 36 }}>
+        <p style={{ marginBottom: 72 }}>
           This page explains every data source we use, how the Water Quality Score is calculated, and what our reports do — and don't — tell you.
         </p>
 
@@ -124,7 +124,7 @@ export default function MethodologyPage() {
         <h2 >Important limitations</h2>
         <div className="wc-method-warn">
           <strong style={{ color: '#f87171' }}>What our reports don't tell you:</strong>
-          <ul style={{ margin: '8px 0 0', paddingLeft: 20, lineHeight: 1.8 }}>
+          <ul style={{ margin: '8px 0 0', paddingLeft: 20, lineHeight: 1.85 }}>
             <li>Whether your specific home's plumbing adds contaminants (especially lead). In-home plumbing can leach lead regardless of what your public water system reports.</li>
             <li>Whether your private well is contaminated — SDWIS only covers public water systems. Well users should test annually through a certified lab.</li>
             <li>Contaminants that aren't federally regulated and haven't been tested under UCMR. There are thousands of chemicals in use that EPA hasn't set limits for.</li>
@@ -146,7 +146,7 @@ export default function MethodologyPage() {
           WaterCheckup is an independent water quality information service. We are not affiliated with the EPA, the EWG, or any public water system. We earn revenue through affiliate links to water filters — our recommendations are based on certifications and third-party test data, not paid placements. The affiliate relationship does not influence which data we surface or how we calculate scores.
         </p>
 
-        <div style={{ marginTop: 40, paddingTop: 28, borderTop: '1px solid #e2e8f0', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+        <div style={{ marginTop: 72, paddingTop: 28, borderTop: '1px solid #e2e8f0', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <Link href="/" style={{ fontWeight: 700, textDecoration: 'none', fontSize: 14 }}>← Check my water</Link>
           <Link href="/faq" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>FAQ →</Link>
           <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA ECHO →</a>

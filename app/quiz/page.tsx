@@ -227,7 +227,7 @@ export default function QuizPage() {
       );
     });
 
-  const p: React.CSSProperties = { fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 14px' };
+  const p: React.CSSProperties = { fontSize: 14, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 14px' };
   const h3: React.CSSProperties = { fontSize: 16, fontWeight: 800, color: '#f1f5f9', margin: '28px 0 8px' };
 
   return (
@@ -237,9 +237,9 @@ export default function QuizPage() {
       <div style={{ maxWidth: 680, margin: '0 auto', padding: '48px 24px 100px' }}>
 
         {/* ── PAGE HEADER ── */}
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>FILTER FINDER</div>
-          <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 10px', lineHeight: 1.2 }}>Find Your Perfect Water Filter</h1>
+          <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 18px', lineHeight: 1.2 }}>Find Your Perfect Water Filter</h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.6 }}>3 quick questions. We match you to the right filter type and technology based on your water source, your biggest concern, and your living situation — then show you the top certified options.</p>
           {/* Trust badges */}
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 24 }}>
@@ -257,9 +257,9 @@ export default function QuizPage() {
         </div>
 
         {/* ── WHY CERTIFICATIONS MATTER ── */}
-        <div style={{ marginBottom: 32, padding: '20px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+        <div style={{ marginBottom: 64, padding: '20px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>WHY CERTIFICATIONS MATTER</div>
-          <p style={{ ...p, margin: '0 0 16px' }}>
+          <p style={{ ...p, margin: '0 0 22px' }}>
             Any filter company can claim their product "removes 99% of contaminants." Certifications are what actually back that up. We only recommend filters with third-party certification — here is what each one means:
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
@@ -284,8 +284,8 @@ export default function QuizPage() {
 
         {/* ── QUIZ / RESULTS ── */}
         {!done ? (
-          <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, padding: '32px', marginBottom: 32 }}>
-            <div style={{ marginBottom: 28 }}>
+          <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 16, padding: '32px', marginBottom: 64 }}>
+            <div style={{ marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#cbd5e1', marginBottom: 8 }}>
                 <span>QUESTION {step + 1} OF {QUESTIONS.length}</span>
                 <span>{Math.round(((step + 1) / QUESTIONS.length) * 100)}%</span>
@@ -313,7 +313,7 @@ export default function QuizPage() {
             {step > 0 && <button onClick={() => setStep(step - 1)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#cbd5e1', marginTop: 20, padding: 0 }}>← Back</button>}
           </div>
         ) : rec ? (
-          <div style={{ marginBottom: 32 }}>
+          <div style={{ marginBottom: 64 }}>
             {fromReport ? (
               <div
                 style={{
@@ -391,7 +391,7 @@ export default function QuizPage() {
         ) : null}
 
         {/* ── FILTER COMPARISON TABLE ── */}
-        <div style={{ marginBottom: 40, padding: '24px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+        <div style={{ marginBottom: 72, padding: '24px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>FILTER TYPE COMPARISON</div>
           <p style={{ ...p, marginBottom: 16 }}>Not sure which filter type fits your life? Here is how they compare across the things that matter most.</p>
           <div style={{ overflowX: 'auto' }}>
@@ -430,7 +430,7 @@ export default function QuizPage() {
         </div>
 
         {/* ── HOW WE PICK ── */}
-        <div style={{ marginBottom: 40, padding: '24px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
+        <div style={{ marginBottom: 72, padding: '24px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 14 }}>HOW WE PICK</div>
           <h3 style={h3}>Only certified products, period</h3>
           <p style={p}>Every filter we recommend has third-party NSF or WQA certification for the claims on its label. We do not recommend filters based on marketing claims alone. If a company says their filter "removes 99% of PFAS" without NSF 58, NSF 401, or NSF P473 certification, we do not include it.</p>

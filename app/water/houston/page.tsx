@@ -198,7 +198,7 @@ export default function HoustonWaterPage() {
             padding: '16px 20px',
             background: '#0891b2',
             borderRadius: 12,
-            marginBottom: 28,
+            marginBottom: 56,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -273,10 +273,10 @@ export default function HoustonWaterPage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 12 }}>
             ⚠️ HOUSTON&apos;S PFAS PROBLEM
           </div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
             Houston&apos;s PFAS contamination is driven by its massive petrochemical and industrial complex. The Houston Ship Channel area has dozens of facilities that historically used PFAS-containing products including firefighting foam. This industrial PFAS has contaminated the Trinity River watershed that feeds Houston&apos;s water supply.
           </p>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.7, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
             At 22.4 ppt total PFAS, Houston exceeds the EPA&apos;s 2024 limits significantly.{' '}
             <strong style={{ color: '#e2e8f0' }}>Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.</strong> Standard pitcher filters, Brita, and PUR do not remove PFAS.
           </p>

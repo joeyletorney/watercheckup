@@ -183,7 +183,7 @@ export default function WaterHardnessPage() {
             style={{ objectFit: "cover" }}
           />
           <h2 style={{ ...sectionTitle, marginTop: 0 }}>Hard water problems</h2>
-          <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 16px", paddingLeft: 22 }}>
+          <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.8, margin: "0 0 22px", paddingLeft: 22 }}>
             <li style={{ marginBottom: 8 }}>Scale buildup on pipes, faucets, and heating elements in appliances</li>
             <li style={{ marginBottom: 8 }}>Soap and detergent that refuses to lather—film on tubs and sinks</li>
             <li style={{ marginBottom: 8 }}>Dry skin and dull hair after showering</li>
@@ -196,7 +196,7 @@ export default function WaterHardnessPage() {
         </div>
 
         <h2 style={{ ...sectionTitle, marginTop: 36 }}>Soft water problems</h2>
-        <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: "0 0 16px", paddingLeft: 22 }}>
+        <ul style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.8, margin: "0 0 22px", paddingLeft: 22 }}>
           <li style={{ marginBottom: 8 }}>Salty or flat taste if you drink straight from a salt-based softener</li>
           <li style={{ marginBottom: 8 }}>A slippery, “not fully rinsed” feeling in the shower for some people</li>
           <li style={{ marginBottom: 8 }}>
@@ -236,7 +236,7 @@ export default function WaterHardnessPage() {
           Match treatment to severity. The calculator above highlights one affiliate starting point based on your reading; the
           three categories below cover the same ground with static Amazon search links (tag <code>watercheck20-20</code>).
         </p>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 56 }}>
           <div style={{ padding: "16px 18px", background: "#0d2240", border: "1px solid #ef444440", borderRadius: 12 }}>
             <div style={{ fontWeight: 800, color: "#f87171", marginBottom: 6 }}>Very hard water</div>
             <p style={{ ...pStyle, marginBottom: 10 }}>

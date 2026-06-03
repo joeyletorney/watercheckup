@@ -35,7 +35,7 @@ export function SiteFooter() {
         <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', textAlign: 'center', lineHeight: 1.65, maxWidth: 640, fontWeight: 500 }}>
           {SITE_FOOTER_TAGLINE}
         </p>
-        <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', textAlign: 'center', lineHeight: 1.7 }}>
+        <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', textAlign: 'center', lineHeight: 1.8 }}>
           <a href="/utilities/claim" style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
             For public water systems
           </a>

@@ -32,14 +32,14 @@ export default function WorstLeadPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             LEAD AT THE TAP — 2026
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             Top 25 cities with the highest lead pipe risk
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             The EPA has no safe level for lead exposure in children. Lead in tap water usually comes from pipes, solder,
             and fixtures — not the treatment plant. This list includes only tracked cities where our profiles explicitly
             flag <strong style={{ color: '#e2e8f0' }}>lead service lines or plumbing risk</strong>, ordered by{' '}
@@ -70,9 +70,9 @@ export default function WorstLeadPage() {
           </div>
         </div>
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 32 }}>
+        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 64 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>WHY THIS MATTERS</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 10px' }}>
+          <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 18px' }}>
             Boiling does not remove lead. Standard pitcher filters (Brita, PUR) do not remove lead. Only reverse osmosis
             or NSF/ANSI 53-certified filters remove lead at the tap.
           </p>
@@ -81,7 +81,7 @@ export default function WorstLeadPage() {
           </p>
         </div>
 
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>
             TOP 25 — LEAD PIPE RISK (BY SAFETY SCORE)
           </div>
@@ -104,7 +104,7 @@ export default function WorstLeadPage() {
         </div>
 
         {rest.length > 0 && (
-          <div style={{ marginBottom: 40 }}>
+          <div style={{ marginBottom: 72 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 12 }}>
               ALL {leadCities.length} CITIES WITH LEAD RISK FLAGS
             </div>
@@ -141,7 +141,7 @@ export default function WorstLeadPage() {
             background: 'linear-gradient(135deg, #071828, #040d14)',
             border: '1px solid rgba(8,145,178,0.3)',
             borderRadius: 14,
-            marginBottom: 40,
+            marginBottom: 72,
           }}
         >
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>

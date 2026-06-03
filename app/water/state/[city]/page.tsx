@@ -187,7 +187,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
           {stateName}
         </div>
 
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 64 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
             EPA WATER QUALITY DATA · {stateAbbr}
           </div>
@@ -274,7 +274,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
         </div>
 
         {topChems.length > 0 && (
-          <div style={{ marginBottom: 36 }}>
+          <div style={{ marginBottom: 72 }}>
             <div
               style={{
                 fontSize: 13,
@@ -288,7 +288,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             >
               TOP CONTAMINANTS IN {stateName.toUpperCase()} (UCMR5)
             </div>
-            <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 16px', lineHeight: 1.55 }}>
+            <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 22px', lineHeight: 1.55 }}>
               Five most common UCMR analytes with detections (&gt;0) in our tracked {stateName} cities — each city counted once per
               compound.
             </p>
@@ -319,7 +319,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
           </div>
         )}
 
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <div
             style={{
               fontSize: 13,
@@ -397,13 +397,13 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
           </div>
         </div>
 
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 72 }}>
           <EmailCapture cityName={stateName} slug={stateSlug} stateScope={{ stateName, stateSlug }} />
         </div>
 
         <div
           style={{
-            marginBottom: 40,
+            marginBottom: 72,
             padding: '24px',
             background: '#071828',
             border: '1px solid #1a3a5c',

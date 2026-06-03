@@ -92,7 +92,7 @@ export function NewsletterSignup({
           fontSize: 14,
           color: light ? '#475569' : '#cbd5e1',
           lineHeight: 1.6,
-          margin: '0 0 16px',
+          margin: '0 0 22px',
         }}
       >
         {description}

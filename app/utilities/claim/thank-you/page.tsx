@@ -43,7 +43,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
           ✓
         </div>
 
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', margin: '0 0 16px', lineHeight: 1.2 }}>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', margin: '0 0 22px', lineHeight: 1.2 }}>
           You&apos;re All Set!
         </h1>
 
@@ -63,10 +63,10 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
             background: '#0d2240',
             border: '1px solid #1a3a5c',
             borderRadius: 12,
-            marginBottom: 32,
+            marginBottom: 64,
           }}
         >
-          <p style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 22px' }}>
             IN THE MEANTIME
           </p>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>

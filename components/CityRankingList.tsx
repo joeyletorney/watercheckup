@@ -19,7 +19,7 @@ type Props = {
 
 export function CityRankingList({ items, startRank = 1, highlightTop = 5 }: Props) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 64, marginBottom: 64 }}>
       {items.map((item, i) => {
         const rank = startRank + i;
         const color = item.badgeColor ?? '#94a3b8';

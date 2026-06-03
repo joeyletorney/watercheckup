@@ -8,11 +8,11 @@ const cellStyle = (type: 'yes' | 'no' | 'warn') => {
 
 export function HomeComparisonTable() {
   return (
-    <section style={{ marginBottom: 48 }} aria-labelledby="wc-compare-heading">
+    <section style={{ marginBottom: 96 }} aria-labelledby="wc-compare-heading">
       <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
         VS OTHER SITES
       </div>
-      <h2 id="wc-compare-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 16px' }}>
+      <h2 id="wc-compare-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>
         WaterCheckup vs typical ZIP lookup tools
       </h2>
       <div style={{ overflowX: 'auto', border: '1px solid #1a3a5c', borderRadius: 12 }}>

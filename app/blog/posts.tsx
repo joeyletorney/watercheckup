@@ -56,12 +56,12 @@ const TOP_3_PITCHER = [
 ];
 
 
-const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '40px 0 14px', lineHeight: 1.3 };
-const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '28px 0 10px' };
+const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };
+const h3Style: React.CSSProperties = { fontSize: 18, fontWeight: 700, color: '#e2e8f0', margin: '40px 0 14px' };
 const pStyle: React.CSSProperties = { margin: '0 0 20px', color: '#cbd5e1', lineHeight: 1.85 };
 const strongStyle: React.CSSProperties = { color: '#e2e8f0', fontWeight: 700 };
-const calloutStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
-const warnStyle: React.CSSProperties = { margin: '28px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const calloutStyle: React.CSSProperties = { margin: '40px 0', padding: '18px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
+const warnStyle: React.CSSProperties = { margin: '40px 0', padding: '18px 22px', background: '#ef444410', border: '1px solid #ef444430', borderRadius: 10, fontSize: 15, color: '#cbd5e1', lineHeight: 1.75 };
 const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' };
 
 const LEAD_FILTER_FAQ = [
@@ -277,7 +277,7 @@ export const POSTS: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'NSF/ANSI 42 & 53 certified. Removes 99.5% of lead — the highest of any pitcher I\'ve tested. Best choice for renters or anyone who wants no-installation protection. Replaces every 100 gallons.'
       ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
         React.createElement('a', { href: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
@@ -286,7 +286,7 @@ export const POSTS: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Zero installation required — just plug it in. NSF certified, removes lead, PFAS, and heavy metals. Perfect for renters or anyone who can\'t drill under the sink.'
       ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
         React.createElement('a', { href: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
@@ -295,7 +295,7 @@ export const POSTS: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'My top pick for homeowners. Tankless, 600 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.'
       ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 28 } },
+      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
         React.createElement('a', { href: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),

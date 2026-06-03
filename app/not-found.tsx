@@ -17,7 +17,7 @@ export default function NotFound() {
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', marginBottom: 16, lineHeight: 1.2 }}>
           This page drifted downstream
         </h1>
-        <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.7, marginBottom: 32 }}>
+        <p style={{ fontSize: 16, color: '#cbd5e1', lineHeight: 1.8, marginBottom: 64 }}>
           The link may be outdated or the URL was mistyped. Use the navigation above or head home to check your water
           by ZIP code.
         </p>

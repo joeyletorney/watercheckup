@@ -209,7 +209,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
         {!u.isClaimed ? <UtilityClaimTopBanner utilityName={u.name} /> : null}
 
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 64 }}>
           <nav style={{ fontSize: 13, color: "#a8b4c4", marginBottom: 14 }}>
             <Link href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
               Home
@@ -232,7 +232,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           <div style={{ fontSize: 13, fontWeight: 700, color: "#0891b2", letterSpacing: 2, marginBottom: 10 }}>
             PUBLIC WATER SYSTEM REPORT
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f1f5f9", lineHeight: 1.2, margin: "0 0 16px" }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f1f5f9", lineHeight: 1.2, margin: "0 0 22px" }}>
             Is {u.name} Water Safe to Drink in 2026?
           </h1>
 
@@ -287,7 +287,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
               background: `${grade.gradeColor}14`,
               border: `1px solid ${grade.gradeColor}44`,
               borderRadius: 12,
-              marginBottom: 28,
+              marginBottom: 56,
             }}
           >
             <div
@@ -336,7 +336,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         </div>
 
         {/* Contaminants table — UCMR5 */}
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div
             style={{
               fontSize: 13,
@@ -352,7 +352,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           </div>
           {!hasPfasTable ? (
             <div style={{ padding: "18px 20px", background: "#0d2240", border: "1px solid #1a3a5c", borderRadius: 12 }}>
-              <p style={{ fontSize: 14, color: "#cbd5e1", lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontSize: 14, color: "#cbd5e1", lineHeight: 1.8, margin: 0 }}>
                 No UCMR5 PFAS detects on file for this PWS in our bundled national dataset — the system may be smaller than
                 UCMR5 thresholds, had non-detects, or results are not yet linked to this ID. Your retailer Annual Water Quality
                 Report lists other regulated contaminants (chlorine, DBPs, nitrates, etc.).
@@ -474,7 +474,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         <UtilityCcrSection utilityName={u.name} isClaimed={u.isClaimed === true} ccr={u.ccr} />
 
         {/* Violations */}
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div
             style={{
               fontSize: 13,
@@ -579,7 +579,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
           >
             WHAT TO DO ABOUT IT
           </div>
-          <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 16px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, color: "#cbd5e1", margin: "0 0 22px", lineHeight: 1.6 }}>
             Based on {u.name}&apos;s monitoring and violation profile, here are vetted filtration options — same picks framework
             as our city reports.
           </p>
@@ -588,7 +588,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         <TopPickBox picks={picks} label={pickLabel} cityName={u.name} citySlug={pickSlug} whyText={whyText} />
 
         {/* State link */}
-        <div style={{ marginBottom: 32, textAlign: "center" }}>
+        <div style={{ marginBottom: 64, textAlign: "center" }}>
           <Link
             href={`/utilities/${params.state.toLowerCase()}`}
             style={{ fontSize: 15, fontWeight: 700, color: "#0891b2", textDecoration: "none" }}

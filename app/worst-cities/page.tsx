@@ -27,14 +27,14 @@ export default function WorstCitiesPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check my water →" ctaHref="/" />
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 80px' }}>
-        <div style={{ marginBottom: 36 }}>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>
             WATER SAFETY SCORE · 0–88
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             25 worst cities for tap water quality
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 16px' }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 22px' }}>
             Ranked by our <strong style={{ color: '#e2e8f0' }}>Water Safety Score</strong> — the same 0–88 exposure
             profile used on each city report. Regulatory PFAS MCL violations weigh heaviest; monitoring detections and
             lead, DBP, and chromium flags in our profiles add smaller penalties. This is not your ZIP&apos;s live SDWIS

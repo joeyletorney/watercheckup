@@ -34,7 +34,7 @@ export default function RankingsPage() {
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
           NATIONAL COMPARISON · 50 STATES + DC
         </div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 16px' }}>
+        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 22px' }}>
           Tap Water Quality Rankings by State 2026
         </h1>
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 20px' }}>
@@ -46,7 +46,7 @@ export default function RankingsPage() {
 
         <div
           style={{
-            marginBottom: 28,
+            marginBottom: 56,
             padding: '18px 22px',
             background: 'rgba(8,145,178,0.1)',
             border: '1px solid rgba(8,145,178,0.35)',
@@ -68,7 +68,7 @@ export default function RankingsPage() {
         </div>
         <RankingsTable rows={rows} />
 
-        <div style={{ marginTop: 48 }}>
+        <div style={{ marginTop: 96 }}>
           <div
             style={{
               fontSize: 13,
@@ -88,7 +88,7 @@ export default function RankingsPage() {
               Full ranking →
             </Link>
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 40 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 72 }}>
             {worstByScore.map((c, i) => (
               <Link key={c.slug} href={`/water/${c.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div
@@ -164,7 +164,7 @@ export default function RankingsPage() {
 
         <div
           style={{
-            marginTop: 40,
+            marginTop: 72,
             padding: '20px',
             background: '#071828',
             border: '1px solid #1a3a5c',

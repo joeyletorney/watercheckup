@@ -88,7 +88,7 @@ export async function GET(req: Request) {
 
         {/* Excerpt */}
         {displayExcerpt && (
-          <div style={{ fontSize: 18, color: '#cbd5e1', lineHeight: 1.55, marginBottom: 40, display: 'flex' }}>
+          <div style={{ fontSize: 18, color: '#cbd5e1', lineHeight: 1.55, marginBottom: 72, display: 'flex' }}>
             {displayExcerpt}
           </div>
         )}
