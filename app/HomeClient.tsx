@@ -13,12 +13,10 @@ import { TrustedFilterCategories } from '@/components/TrustedFilterCategories';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES } from '@/app/water/[city]/cities-data';
 import {
-  SITE_HERO_POSITIONING,
   SITE_HERO_TAGLINE,
   SITE_HERO_TRUST_BANNER,
   SITE_HERO_EXAMPLE_ZIPS,
-  SITE_DATA_FRESHNESS_LABEL,
-  SITE_PUBLIC_WATER_SYSTEM_COUNT,
+  SITE_HERO_POSITIONING,
   VIEW_ALL_WATER_SYSTEMS_LINK,
   WHY_WATERCHECKUP_CARDS,
 } from '@/lib/site-stats';
@@ -2361,7 +2359,7 @@ export default function WaterCheckup() {
               className="wc-hero-positioning"
               style={{ color: '#94a3b8', fontSize: 14, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.5, fontWeight: 500 }}
             >
-              {SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems · Updated {SITE_DATA_FRESHNESS_LABEL} · Built by a 30-year water treatment expert
+              {SITE_HERO_POSITIONING}
             </p>
 
           </div>

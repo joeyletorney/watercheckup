@@ -1,9 +1,18 @@
 /** Public coverage figures — used sitewide for consistent copy. */
 
+/** ZIP codes in lib/zip-lookup.json — mapped to EPA SDWIS for live lookups. */
+export const SITE_ZIP_LOOKUP_COUNT = '21,000+';
+
+/** Curated city water guides (app/water/[city]/cities-data.ts). */
+export const SITE_CITY_GUIDE_COUNT = '140+';
+
 /** EPA community water systems (CWS) — ~150K nationally; aligns with SDWIS public reporting. */
 export const SITE_PUBLIC_WATER_SYSTEM_COUNT = '150K+';
 
 export const SITE_PUBLIC_WATER_SYSTEM_LABEL = 'Community Water Systems';
+
+/** UCMR5 PFAS monitoring systems in lib/ucmr5.json (federal 2023–2025 round). */
+export const SITE_UCMR5_PFAS_SYSTEM_COUNT = '6,151';
 
 export const SITE_DATA_FRESHNESS_LABEL = 'June 2026';
 
@@ -16,21 +25,26 @@ export const SITE_HERO_EXAMPLE_ZIPS = [
 ] as const;
 
 export const SITE_COVERAGE_STATS = [
+  { stat: SITE_ZIP_LOOKUP_COUNT, label: 'ZIP Codes Mapped' },
   { stat: SITE_PUBLIC_WATER_SYSTEM_COUNT, label: SITE_PUBLIC_WATER_SYSTEM_LABEL },
-  { stat: 'All 50', label: 'States Covered' },
+  { stat: SITE_UCMR5_PFAS_SYSTEM_COUNT, label: 'PFAS Systems (UCMR5)' },
   { stat: SITE_CONTAMINANT_COVERAGE_LABEL, label: 'Contaminants Tracked' },
-  { stat: '30+', label: 'Years of Expertise' },
 ] as const;
 
 export const SITE_WATER_SYSTEMS_LABEL = 'All 50 states, all for free';
 
 export const VIEW_ALL_WATER_SYSTEMS_LINK = 'Browse all 50 states — all free →';
 
-export const SITE_HERO_POSITIONING =
-  'Free tap water reports for all 50 states — Water Safety Score, PFAS, lead, and expert filter picks. Built by a 30-year water treatment specialist.';
+export const SITE_HERO_POSITIONING = [
+  `${SITE_ZIP_LOOKUP_COUNT} ZIP codes`,
+  `${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems (EPA SDWIS)`,
+  `${SITE_UCMR5_PFAS_SYSTEM_COUNT} PFAS systems (UCMR5)`,
+  `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
+  'Built by a 30-year water treatment expert',
+].join(' · ');
 
 export const SITE_HERO_TAGLINE =
-  'Free Tap Water report in seconds — PFAS, Lead, Hardness, and NSF filter picks matched to your ZIP CODE.';
+  'Free tap water report in seconds — Water Safety Score (0–88), PFAS, lead, hardness, and NSF filter picks for your ZIP.';
 
 export const SITE_HOME_META_DESCRIPTION =
   'Free tap water report by ZIP — Water Safety Score (0–88), PFAS, lead, hardness & EPA violations. NSF filter picks from a 30-year water expert. No signup.';
@@ -46,8 +60,9 @@ export const SITE_FOOTER_AFFILIATE =
   'Amazon Associates participant — some filter links are affiliate (no extra cost). Recommendations follow NSF certifications, not paid placements.';
 
 export const SITE_HERO_TRUST_BANNER = [
-  `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
-  `${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems`,
+  `${SITE_ZIP_LOOKUP_COUNT} ZIP codes`,
+  `${SITE_PUBLIC_WATER_SYSTEM_COUNT} EPA community water systems`,
+  `${SITE_UCMR5_PFAS_SYSTEM_COUNT} PFAS systems (UCMR5)`,
   'Free · No signup',
 ] as const;
 
@@ -55,7 +70,7 @@ export const WHY_WATERCHECKUP_CARDS = [
   {
     icon: '📍',
     title: 'Free tap water reports by ZIP',
-    body: `All 50 states. Look up your ZIP for a Water Safety Score (0–88), PFAS and violation signals, and NSF-certified filter options matched to your report — no signup. ${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems in our directory.`,
+    body: `All 50 states. Look up your ZIP for a Water Safety Score (0–88), PFAS and violation signals, and NSF-certified filter options matched to your report — no signup. We map ${SITE_ZIP_LOOKUP_COUNT} ZIP codes to EPA records (${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems nationally; ${SITE_UCMR5_PFAS_SYSTEM_COUNT} in UCMR5 PFAS monitoring).`,
   },
   {
     icon: '👨‍🔬',
