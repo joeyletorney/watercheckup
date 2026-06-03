@@ -159,6 +159,7 @@ export const PRIORITY_CITY_H1: Record<string, string> = {
 type PriorityCityRecord = {
   name: string;
   state: string;
+  zip?: string;
   issues: string[];
   urgency: 'high' | 'medium' | 'low';
   pwsid: string;
@@ -174,7 +175,12 @@ export function metadataForPriorityCity(
   if (!seo) return null;
 
   if (city) {
-    return buildCityPageMetadata(slug, city, pfas ?? getCityPfasData(resolveCityPwsid(slug, city.pwsid)), seo);
+    return buildCityPageMetadata(
+      slug,
+      city,
+      pfas ?? getCityPfasData(resolveCityPwsid(slug, city.pwsid, city.zip)),
+      seo,
+    );
   }
 
   const canonical = `https://watercheckup.com/water/${slug}`;

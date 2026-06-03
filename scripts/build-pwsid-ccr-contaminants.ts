@@ -89,7 +89,7 @@ function loadWorstCityUtilities(limit: number): UtilityRef[] {
   return buildWorstCitiesBySafetyScore(limit).map((row) => {
     const cd = CITIES[row.slug];
     return {
-      pwsid: resolveCityPwsid(row.slug, cd.pwsid),
+      pwsid: resolveCityPwsid(row.slug, cd.pwsid, cd.zip),
       name: cd.system,
       state: cd.state,
       slug: row.slug,

@@ -28,7 +28,7 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12 }}>
         {SEARCH_DEMAND_CITIES.map((c) => {
           const cd = CITIES[c.slug];
-          const pfas = cd ? getCityPfasData(resolveCityPwsid(c.slug, cd.pwsid)) : null;
+          const pfas = cd ? getCityPfasData(resolveCityPwsid(c.slug, cd.pwsid, cd.zip)) : null;
           const ws = cd ? computeCityWaterScore(cd, pfas) : null;
           return (
             <Link

@@ -240,7 +240,8 @@ async function main(): Promise<void> {
       continue;
     }
 
-    const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid));
+    const pwsid = resolveCityPwsid(slug, cd.pwsid, cd.zip);
+    const pfas = getPfasData(pwsid);
     const { score, grade, gradeColor } = computeCityWaterScore(cd, pfas);
 
     const band = cityRiskBand(cd.urgency, pfas);

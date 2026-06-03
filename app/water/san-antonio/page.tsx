@@ -220,7 +220,7 @@ export default function SanAntonioWaterPage() {
           urgency={CITIES['san-antonio'].urgency}
           issues={CITIES['san-antonio'].issues}
           waterProfile={CITIES['san-antonio'].waterProfile}
-          pfas={getCityPfasData(resolveCityPwsid('san-antonio', CITIES['san-antonio'].pwsid))}
+          pfas={getCityPfasData(resolveCityPwsid('san-antonio', CITIES['san-antonio'].pwsid, CITIES['san-antonio'].zip))}
           summary="San Antonio's water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2026."
           stats={[
             { label: 'Open Violations', value: '0', color: '#22d3ee' },

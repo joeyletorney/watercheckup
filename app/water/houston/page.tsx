@@ -184,7 +184,7 @@ export default function HoustonWaterPage() {
           urgency={CITIES.houston.urgency}
           issues={CITIES.houston.issues}
           waterProfile={CITIES.houston.waterProfile}
-          pfas={getCityPfasData(resolveCityPwsid('houston', CITIES.houston.pwsid))}
+          pfas={getCityPfasData(resolveCityPwsid('houston', CITIES.houston.pwsid, CITIES.houston.zip))}
           summary="Houston has some of the most contaminated tap water of any major US city. Significant PFAS contamination from industrial sources, elevated arsenic, high disinfection byproducts, radium, and very high sodium. A reverse osmosis filter is strongly recommended."
           stats={[
             { label: 'Open Violations', value: '0', color: '#22d3ee' },

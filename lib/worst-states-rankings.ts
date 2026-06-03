@@ -35,7 +35,7 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
       let worstScore = 999;
 
       for (const [slug, cd] of cityEntries) {
-        const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid));
+        const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
         const ws = computeCityWaterScore(cd, pfas);
         if (ws.score < worstScore) {
           worstScore = ws.score;

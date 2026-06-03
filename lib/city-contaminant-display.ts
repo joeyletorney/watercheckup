@@ -64,8 +64,9 @@ export function buildCityContaminantDisplay(
   fallbackPwsid: string,
   waterProfile?: WaterProfile,
   limit = 18,
+  zip?: string,
 ): ContaminantRow[] {
-  const pwsid = resolveCityPwsid(slug, fallbackPwsid);
+  const pwsid = resolveCityPwsid(slug, fallbackPwsid, zip);
   const pfas = getCityPfasData(pwsid);
   const rows = mergeByName([
     ...pfasRows(pfas),

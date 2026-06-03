@@ -1,6 +1,10 @@
+import zipLookupRaw from './zip-lookup.json';
+
+const ZIP_LOOKUP = zipLookupRaw as Record<string, { p: string }>;
+
 /**
  * Correct EPA PWSIDs for city slugs where cities-data.ts had duplicate/wrong IDs
- * (e.g. multiple TX cities on Sugar Land's TX0790005, OH cities on Newton Falls OH7802311).
+ * (e.g. multiple AZ cities on AZ0404008) or anchor ZIP is missing from zip-lookup.
  */
 export const CITY_PWSID_OVERRIDES: Record<string, string> = {
   gilbert: 'AZ0407092',
@@ -32,8 +36,37 @@ export const CITY_PWSID_OVERRIDES: Record<string, string> = {
   lubbock: 'TX1520002',
   irving: 'TX0570050',
   pittsburgh: 'PA5020038',
+  'san-antonio': 'TX0150018',
+  'new-york': 'NY7003493',
+  chandler: 'AZ0407090',
+  fremont: 'CA0110001',
+  'glendale-az': 'AZ0407093',
+  'glendale-ca': 'CA1910043',
+  'long-beach': 'CA1910065',
+  'san-francisco': 'CA3810011',
+  scottsdale: 'AZ0407025',
+  tempe: 'AZ0407098',
+  tucson: 'AZ0410112',
+  'cape-coral': 'FL5360325',
+  charlotte: 'NC0160010',
+  denver: 'CO0116001',
+  lakewood: 'CO0116001',
+  'winston-salem': 'NC0234010',
+  mesa: 'AZ0407095',
+  aurora: 'CO0116001',
+  'colorado-springs': 'CO0121150',
+  spokane: 'WA5383100',
+  tacoma: 'WA5386800',
+  seattle: 'WA5377050',
+  'west-palm-beach': 'FL4504393',
+  buffalo: 'NY1400422',
 };
 
-export function resolveCityPwsid(slug: string, fallbackPwsid: string): string {
-  return CITY_PWSID_OVERRIDES[slug] ?? fallbackPwsid;
+export function resolveCityPwsid(slug: string, fallbackPwsid: string, zip?: string): string {
+  if (CITY_PWSID_OVERRIDES[slug]) return CITY_PWSID_OVERRIDES[slug];
+  if (zip) {
+    const fromZip = ZIP_LOOKUP[zip]?.p;
+    if (fromZip) return fromZip;
+  }
+  return fallbackPwsid;
 }

@@ -19,7 +19,7 @@ export type CityScoreRow = {
 
 function buildAllCityScoreRows(): CityScoreRow[] {
   return Object.entries(CITIES).map(([slug, cd]) => {
-    const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid));
+    const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     const ws = computeCityWaterScore(cd, pfas);
     return {
       slug,
@@ -73,7 +73,7 @@ export type CityHardnessRow = {
 function cityHardnessMgL(slug: string, cd: (typeof CITIES)[string]): number | null {
   const profile = cd.waterProfile?.hardness;
   if (profile != null && Number.isFinite(profile)) return profile;
-  const ucmr = getUcmrHardnessMgL(resolveCityPwsid(slug, cd.pwsid));
+  const ucmr = getUcmrHardnessMgL(resolveCityPwsid(slug, cd.pwsid, cd.zip));
   return ucmr;
 }
 
@@ -110,7 +110,7 @@ export type CityPfasMclRow = {
 export function buildCitiesWithPfasMclViolations(limit = 20): CityPfasMclRow[] {
   const rows: CityPfasMclRow[] = [];
   for (const [slug, cd] of Object.entries(CITIES)) {
-    const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid));
+    const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     if (!pfas) continue;
     const overMcl = pfas.compounds.filter(([, , overEpa]) => overEpa > 0);
     if (pfas.violations === 0 && overMcl.length === 0) continue;
@@ -142,7 +142,7 @@ export type CityUnregulatedPeakRow = {
 export function buildCitiesWithUnregulatedPfasPeaks(limit = 20): CityUnregulatedPeakRow[] {
   const rows: CityUnregulatedPeakRow[] = [];
   for (const [slug, cd] of Object.entries(CITIES)) {
-    const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid));
+    const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     if (!pfas || pfas.violations > 0 || pfas.maxPpt < 20) continue;
     const overMcl = pfas.compounds.some(([, , overEpa]) => overEpa > 0);
     if (overMcl) continue;

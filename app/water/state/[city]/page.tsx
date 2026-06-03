@@ -75,7 +75,7 @@ function buildStateRows(stateAbbr: string) {
   return Object.entries(CITIES)
     .filter(([, cd]) => cd.state === stateAbbr)
     .map(([slug, cd]) => {
-      const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid));
+      const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
       const { grade, gradeColor } = computeCityWaterScore(cd, pfas);
       const contaminantsAboveLimit = pfas
         ? pfas.compounds.filter(([, , overEpa]) => overEpa > 0).length

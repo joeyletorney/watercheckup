@@ -130,7 +130,7 @@ export async function generateMetadata({ params }: { params: { city: string } })
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
 
-  const pwsid = resolveCityPwsid(params.city, cd.pwsid);
+  const pwsid = resolveCityPwsid(params.city, cd.pwsid, cd.zip);
   const pfas = getCityPfasData(pwsid);
   const prioritySeo = PRIORITY_CITY_SEO[params.city];
   return buildCityPageMetadata(params.city, cd, pfas, prioritySeo);
@@ -157,7 +157,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const slug = params.city;
   const cd = CITIES[slug];
   const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  const pwsidResolved = cd ? resolveCityPwsid(slug, cd.pwsid) : '';
+  const pwsidResolved = cd ? resolveCityPwsid(slug, cd.pwsid, cd.zip) : '';
   const pfasForScore = cd ? getCityPfasData(pwsidResolved) : null;
   const waterScorePreview = cd
     ? computeCityWaterScore(cd, pfasForScore)
@@ -169,7 +169,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
   const pwsid = pwsidResolved;
   const pfas = cd ? pfasForScore : null;
-  const contaminantRows = cd ? buildCityContaminantDisplay(slug, cd.pwsid, cd.waterProfile) : [];
+  const contaminantRows = cd ? buildCityContaminantDisplay(slug, cd.pwsid, cd.waterProfile, 18, cd.zip) : [];
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
   const countyLink = cd ? getCountyLinkForCitySlug(slug) : undefined;
