@@ -75,7 +75,6 @@ export const SITE_COMPARISON_ROWS: {
   { feature: 'Built by a real water expert', watercheckup: { type: 'yes', text: '30+ years' }, others: { type: 'no', text: 'Tech companies' } },
   { feature: 'Coverage', watercheckup: { type: 'yes', text: 'All 50 states, free' }, others: { type: 'no', text: 'Limited' } },
   { feature: 'Search by ZIP code', watercheckup: { type: 'yes', text: '' }, others: { type: 'yes', text: 'Some' } },
-  { feature: 'Search by county', watercheckup: { type: 'yes', text: '' }, others: { type: 'no', text: '' } },
   { feature: 'Search by public water system', watercheckup: { type: 'yes', text: 'Nationwide' }, others: { type: 'warn', text: 'Limited' } },
   { feature: 'All 50 states', watercheckup: { type: 'yes', text: '' }, others: { type: 'warn', text: 'Most' } },
   { feature: 'Expert filter recommendations', watercheckup: { type: 'yes', text: 'Contaminant-matched' }, others: { type: 'no', text: 'Generic' } },
