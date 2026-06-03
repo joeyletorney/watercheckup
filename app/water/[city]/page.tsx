@@ -212,7 +212,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
       {
         name: `Is ${cd?.name ?? cityName} tap water safe to drink in 2026?`,
         text: cd && waterScore
-          ? `${cd.name} earns Water Safety Grade ${waterScore.grade} (${waterScore.score}/100) on WaterCheckup — ${keyFinding}. ${cd.urgency === 'high' ? `Known issues include ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : 'EPA compliance does not mean contaminant-free; sensitive households should still consider NSF-certified filtration.'}`
+          ? `${cd.name} earns Water Safety Grade ${waterScore.grade} (${waterScore.score}/88) on WaterCheckup — ${keyFinding}. ${cd.urgency === 'high' ? `Known issues include ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : 'EPA compliance does not mean contaminant-free; sensitive households should still consider NSF-certified filtration.'}`
           : `See EPA monitoring data, PFAS UCMR5 results, and WaterCheckup's A–F grade for ${cd?.name ?? cityName} on this page.`,
       },
       {
@@ -428,8 +428,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     <div style={{ fontSize: 28, fontWeight: 900, color: ws.gradeColor, lineHeight: 1 }}>Grade: {ws.grade}</div>
                     <div style={{ fontSize: 13, color: ws.scoreColor, fontWeight: 600, marginTop: 4 }}>{ws.label}</div>
                     <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 6 }}>
-                      Exposure profile from UCMR5 PFAS &amp; contaminant monitoring —{' '}
-                      <Link href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>check your ZIP</Link> for live utility compliance
+                      Same score for your ZIP —{' '}
+                      <Link href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>look up your ZIP</Link> for the full contaminant report
                     </div>
                   </div>
                 </div>

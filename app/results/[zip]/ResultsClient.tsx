@@ -2,20 +2,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
-import { scoreToLetterGrade } from '@/lib/water-grade';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
 const TAG = 'watercheck20-20';
 
 const SCORE_COLOR = (s: number) =>
-  s >= 80 ? '#22d3ee' : s >= 65 ? '#86efac' : s >= 50 ? '#f59e0b' : s >= 35 ? '#f97316' : '#ef4444';
+  s >= 80 ? '#22d3ee' : s >= 62 ? '#86efac' : s >= 50 ? '#f59e0b' : s >= 35 ? '#f97316' : '#ef4444';
 
 const SCORE_LABEL = (s: number) =>
-  s >= 80 ? 'Good' : s >= 65 ? 'Fair' : s >= 50 ? 'Concerning' : s >= 35 ? 'Poor' : 'High Risk';
+  s >= 80 ? 'Excellent' : s >= 62 ? 'Fair' : s >= 50 ? 'Concerning' : s >= 35 ? 'Poor' : 'High Risk';
 
-// Max possible score is 88 — all municipal water has chlorine, DBPs, and unmonitored contaminants.
-// "No violations on record" does not mean perfectly safe water.
-const CAP_SCORE = (s: number) => Math.min(s, 88);
+const CAP_SCORE = (s: number) => Math.min(Math.max(0, s), 88);
 
 const SEVERITY_COLOR: Record<string, string> = {
   high: '#ef4444',
@@ -169,9 +166,9 @@ function ContaminantBar({ c }: { c: any }) {
   );
 }
 
-function ScoreDial({ rawScore }: { rawScore: number }) {
-  const capped = CAP_SCORE(rawScore);
-  const grade = scoreToLetterGrade(rawScore);
+function ScoreDial({ score, grade }: { score: number; grade: string }) {
+  const capped = CAP_SCORE(score);
+  const gradeStr = grade || '—';
   const r = 52;
   const circ = 2 * Math.PI * r;
   const offset = circ - (capped / 88) * circ;
@@ -186,7 +183,7 @@ function ScoreDial({ rawScore }: { rawScore: number }) {
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontSize: 28, fontWeight: 900, color: sc, lineHeight: 1 }}>{capped}</span>
         <span style={{ fontSize: 13, color: '#a8b4c4', letterSpacing: 1 }}>/ 88</span>
-        <span style={{ fontSize: 14, fontWeight: 800, color: sc, marginTop: 2 }}>{grade}</span>
+        <span style={{ fontSize: 14, fontWeight: 800, color: sc, marginTop: 2 }}>{gradeStr}</span>
       </div>
     </div>
   );
@@ -226,9 +223,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
     );
   }
 
-  const sc = SCORE_COLOR(CAP_SCORE(data.score));
   const cappedScore = CAP_SCORE(data.score);
-  const letterGrade = scoreToLetterGrade(data.score);
+  const sc = data.scoreColor || SCORE_COLOR(cappedScore);
+  const letterGrade = data.grade || '—';
+  const scoreLabel = data.scoreLabel || SCORE_LABEL(cappedScore);
   const tabs = [
     { id: 'report', label: '📊 Report' },
     { id: 'pfas', label: '☣️ PFAS' },
@@ -263,10 +261,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
         {/* Score + summary row */}
         <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap', padding: '20px 24px', background: '#071828', border: `2px solid ${sc}30`, borderRadius: 16, marginBottom: 20 }}>
-          <ScoreDial rawScore={data.score} />
+          <ScoreDial score={cappedScore} grade={letterGrade} />
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: sc, marginBottom: 6 }}>{SCORE_LABEL(cappedScore)}</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: sc, marginBottom: 6 }}>{scoreLabel}</div>
             <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>{data.summary}</p>
             {data.pfasSummary && (
               <p style={{ fontSize: 13, color: '#f59e0b', lineHeight: 1.6, margin: '6px 0 0' }}>{data.pfasSummary}</p>
@@ -459,7 +457,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           {(() => {
             const hasPfas = data.pfasCount > 0;
             const hasViolations = data.openViolations > 0;
-            const needsRO = hasPfas || hasViolations || data.score < 65;
+            const needsRO = hasPfas || hasViolations || cappedScore < 57;
 
             const roTopReason = `Removes ${hasPfas ? 'PFAS, ' : ''}lead, and disinfection byproducts — the primary concerns for this water supply.`;
             const baseProducts = [

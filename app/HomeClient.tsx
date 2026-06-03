@@ -459,8 +459,10 @@ function HomeEmailCapture() {
   );
 }
 
+const SCORE_MAX = 88;
+
 function ScoreDial({ score, grade }: { score: number; grade: string }) {
-  const safe = Number.isFinite(Number(score)) ? Math.max(0, Math.min(100, Number(score))) : 0;
+  const safe = Number.isFinite(Number(score)) ? Math.max(0, Math.min(SCORE_MAX, Number(score))) : 0;
   const gradeStr = grade != null && grade !== '' ? String(grade) : '—';
   const [arc, setArc]         = useState(0);
   const [display, setDisplay] = useState(0);
@@ -491,14 +493,15 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
     const p1 = pt(s), p2 = pt(e), lg = e - s > 180 ? 1 : 0;
     return `M ${p1.x} ${p1.y} A ${r} ${r} 0 ${lg} 1 ${p2.x} ${p2.y}`;
   };
-  const color = safe >= 80 ? '#22d3ee' : safe >= 65 ? '#f59e0b' : '#ef4444';
+  const color = safe >= 80 ? '#22d3ee' : safe >= 62 ? '#86efac' : safe >= 50 ? '#f59e0b' : '#ef4444';
   return (
     <svg width="180" height="160" viewBox="0 0 180 160">
       <path d={mkArc(210, 510)} fill="none" stroke="#1e3a4a" strokeWidth="10" strokeLinecap="round" />
-      <path d={mkArc(210, 210 + 300 * (arc / 100))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
+      <path d={mkArc(210, 210 + 300 * (arc / SCORE_MAX))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
         style={{ transition: 'all 1.4s cubic-bezier(0.34,1.56,0.64,1)' }} filter={`drop-shadow(0 0 10px ${color}99)`} />
-      <text x={cx} y={cy + 8}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{display}</text>
-      <text x={cx} y={cy + 28} textAnchor="middle" fontSize="12" fill="#cbd5e1" fontFamily="inherit">Grade: {gradeStr}</text>
+      <text x={cx} y={cy + 4}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{display}</text>
+      <text x={cx} y={cy + 22} textAnchor="middle" fontSize="11" fill="#94a3b8" fontFamily="inherit">/ {SCORE_MAX}</text>
+      <text x={cx} y={cy + 38} textAnchor="middle" fontSize="12" fill="#cbd5e1" fontFamily="inherit">Grade: {gradeStr}</text>
     </svg>
   );
 }
@@ -1494,14 +1497,14 @@ function FilterCompareTab() {
 function ShareModal({ data, onClose }: { data: any; onClose: () => void }) {
   const [copied, setCopied] = useState(false);
 
-  const scoreColor = data.score >= 80 ? 'GOOD' : data.score >= 65 ? 'MODERATE' : 'POOR';
+  const scoreColor = data.score >= 80 ? 'GOOD' : data.score >= 62 ? 'MODERATE' : 'POOR';
   const text = [
     `💧 WaterCheckup Report`,
     `━━━━━━━━━━━━━━━━━━━━`,
     `📍 ${data.systemName}`,
     `   ${data.city} · PWSID: ${data.pwsid}`,
     ``,
-    `📊 Score: ${data.score}/100 (Grade: ${data.grade}) — ${scoreColor}`,
+    `📊 Water Safety Score: ${data.score}/88 (Grade: ${data.grade}) — ${scoreColor}`,
     data.totalViolations > 0
       ? `⚠️  ${data.totalViolations} violation(s) on record${data.openViolations > 0 ? ` · ${data.openViolations} open` : ' · all resolved'}`
       : `✅  No violations on record`,
@@ -1538,7 +1541,7 @@ function ShareModal({ data, onClose }: { data: any; onClose: () => void }) {
             {copied ? '✓ Copied!' : '📋 Copy to Clipboard'}
           </button>
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`My ${data.city} tap water scored ${data.score}/100 on the EPA's SDWIS data via @WaterCheckup. Check yours free 💧\nwatercheckup.com`)}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`My ${data.city} tap water scored ${data.score}/88 (Grade: ${data.grade}) on WaterCheckup. Check yours free 💧\nwatercheckup.com`)}`}
             target="_blank" rel="noreferrer"
             style={{ padding: '10px 16px', background: '#1a1a2e', border: '1px solid #333', borderRadius: 8, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}
           >
@@ -1973,7 +1976,7 @@ function nationalComparisonMetrics(data: any): null | {
   hasOpenViolations: boolean;
 } {
   if (!data || data.limitedData) return null;
-  const score = Math.max(0, Math.min(100, Math.round(Number(data.score) || 0)));
+  const score = Math.max(0, Math.min(88, Math.round(Number(data.score) || 0)));
   const cont = Array.isArray(data.contaminants) ? data.contaminants : [];
   const n = cont.length;
   let nExceed = cont.filter(
@@ -1996,8 +1999,8 @@ function nationalComparisonMetrics(data: any): null | {
   }
   const hasOpenViolations = Number(data.openViolations || 0) > 0;
   const loadSignal = Math.min(95, n * 5 + nExceed * 10 + (hasOpenViolations ? 15 : 0));
-  const worseThanZipPct = Math.min(90, Math.max(18, Math.round((100 - score) * 0.55 + loadSignal * 0.35)));
-  const kind = score >= 72 ? 'above_avg' : score >= 55 ? 'mid' : 'below_avg';
+  const worseThanZipPct = Math.min(90, Math.max(18, Math.round((88 - score) * 0.55 + loadSignal * 0.35)));
+  const kind = score >= 63 ? 'above_avg' : score >= 48 ? 'mid' : 'below_avg';
   return {
     kind,
     beatZipPct: score,
@@ -2028,13 +2031,13 @@ function formatResultsLead(data: any): { found: string; todo: string } {
       todo: 'For drinking water, reverse osmosis (often sold as NSF/ANSI 58) or a filter with a published PFAS listing (e.g. NSF P473) is the usual approach—see Shop for options.',
     };
   }
-  if (data.score < 65) {
+  if (data.score < 57) {
     return {
       found: `Your system’s EPA-based summary is on the lower side—there are items worth reviewing in this report.`,
       todo: 'Scan contaminants next, then match a filter type to what showed up (under-sink RO covers the widest range).',
     };
   }
-  if (data.score >= 80 && (data.totalViolations || 0) === 0) {
+  if (data.score >= 70 && (data.totalViolations || 0) === 0) {
     return {
       found: `For ${system}, EPA data in this panel looks relatively clean—no violations in what we track here.`,
       todo: 'Many households still add a filter for taste, plumbing lead, or PFAS—see top picks and the PFAS tab if you want extra margin.',
@@ -2328,7 +2331,7 @@ export default function WaterCheckup() {
   const catFilters = ['all','undersink','undersink-filter','countertop','countertop-filter','distiller','pitcher','faucet','whole','softener','acid-neutralizer','shower'];
   const catLabels: Record<string,string> = { all:'All', undersink:'Under-Sink RO', 'undersink-filter':'Under-Sink Filter', countertop:'Countertop RO', 'countertop-filter':'Countertop Filter', distiller:'Distiller', pitcher:'Pitcher', faucet:'Faucet Mount', whole:'Whole House', softener:'Water Softener', 'acid-neutralizer':'Acid Neutralizer', shower:'Shower' };
   const filteredProds = productFilter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === productFilter);
-  const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 65 ? '#f59e0b' : '#ef4444';
+  const scoreColor = !data ? '#22d3ee' : data.score >= 80 ? '#22d3ee' : data.score >= 62 ? '#86efac' : data.score >= 50 ? '#f59e0b' : '#ef4444';
   const pfasLevel = data?.ucmr5?.maxPfasPpt ?? data?.contaminants?.find((c: any) => c.isPFAS || c.name?.includes('PFAS'))?.level ?? null;
   const pfasContaminants = data?.contaminants?.filter((c: any) => c.isPFAS) ?? [];
   const contaminantNames = data?.contaminants?.map((c: any) => c.name) ?? [];

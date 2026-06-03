@@ -115,7 +115,7 @@ const FAQS = [
       },
       {
         q: 'How is the Water Quality Score calculated?',
-        a: 'The WaterCheckup score (0–100) is calculated based on: violation history weighted by severity (health-based violations score worse than reporting violations), the number of open vs. resolved violations, detection of high-priority contaminants like PFAS and lead, and how close detected contaminant levels are to EPA limits. A score of 80+ means no significant issues on record. 65–79 indicates elevated contaminants or past violations worth monitoring. Below 65 indicates serious issues — multiple violations, open enforcement actions, or detection of health-critical contaminants. A high score still doesn\'t mean you shouldn\'t filter — it means your public water system is compliant, not that your water is contaminant-free.',
+        a: 'The Water Safety Score (0–88) blends EPA violation history, PFAS UCMR5 detections, hardness, and contaminants above health guidelines — not legal compliance alone. City and ZIP lookups use the same formula, so you see one grade everywhere. Scores in the A range (~80+) reflect relatively clean profiles; the B–C range flags hardness, PFAS, or metals worth filtering; D and below indicate stacked risks or MCL violations. A higher score still doesn\'t mean you shouldn\'t filter — it means fewer documented concerns in the data we show, not contaminant-free water at your tap.',
       },
       {
         q: 'What is the UCMR, and why does it show up in my report?',

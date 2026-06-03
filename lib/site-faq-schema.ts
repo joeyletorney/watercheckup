@@ -13,7 +13,7 @@ export const SITE_FAQ_MAIN_ENTITY = [
       name: 'What is the WaterCheckup Water Safety Grade?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Each city and ZIP report includes a Water Safety Score (0–100) and letter grade (A– through F) based on EPA violation history, PFAS UCMR5 detections, contaminant severity, and how levels compare to health guidelines — not just whether your public water system meets legal limits. Grades are explained in plain language with filter recommendations from a 30-year water treatment expert.',
+        text: 'Each city and ZIP report includes one Water Safety Score (0–88) and letter grade (A– through F) based on EPA violation history, PFAS UCMR5 detections, hardness, and contaminants above health guidelines — not just whether your public water system meets legal limits. Grades are explained in plain language with filter recommendations from a 30-year water treatment expert.',
       },
     },
     {

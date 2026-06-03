@@ -4,7 +4,10 @@ import ucmr5Raw from '@/lib/ucmr5.json';
 import zipLookupRaw from '@/lib/zip-lookup.json';
 import lcrDataRaw from '@/lib/lcr-data.json';
 import { getDataFreshness } from '@/lib/water-data-meta';
-import { scoreToLetterGrade } from '@/lib/water-grade';
+import {
+  computeZipWaterScore,
+  nationalPercentileFromSafetyScore,
+} from '@/lib/zip-water-score';
 import { mergePwsidCcrContaminants } from '@/lib/pwsid-ccr-contaminants';
 import {
   buildDynamicSampleContaminants,
@@ -1270,53 +1273,11 @@ export async function GET(req: NextRequest) {
       return bestRaw;
     };
 
-    // ─── Scoring ────────────────────────────────────────────────────────────
-    let score = 100;
-    const openV   = viols.filter(v => (f(v, 'violation_status_code') || '') === 'O');
+    const openV = viols.filter(v => (f(v, 'violation_status_code') || '') === 'O');
     const healthV = viols.filter(v => ['MCL', 'MRDL', 'TT'].includes(f(v, 'violation_category_code') || ''));
-    score -= Math.min(openV.length * 8, 40);
-    score -= Math.min(healthV.length * 6, 30);
-
-    const leadS = allSamples.filter(s => ['PB90', '1040'].includes(f(s, 'contaminant_code') || ''));
-    const leadPpbFromApi = maxSampleLevel(leadS, 'ppb');
-    const leadMgCsv = LCR_DATA[pwsid]?.lead;
-    const leadPpb = Math.max(
-      leadPpbFromApi,
-      leadMgCsv != null && Number.isFinite(leadMgCsv) ? leadMgCsv * 1000 : 0,
-    );
-    if (leadPpb > 0) {
-      if (leadPpb > 15) score -= 20;
-      else if (leadPpb > 10) score -= 12;
-      else if (leadPpb > 5) score -= 5;
-    }
-
     const pfasContaminants = getPfasForPwsid(pwsid);
-    const pfasAboveMcl     = pfasContaminants.filter(p => p.severity === 'high');
-    score -= Math.min(pfasAboveMcl.length * 10, 25);
-
+    const pfasAboveMcl = pfasContaminants.filter(p => p.severity === 'high');
     const ewg = EWG[zip];
-    if (ewg?.score !== undefined) {
-      score = Math.round(score * 0.6 + ewg.score * 0.4);
-    }
-    score = Math.max(Math.min(score, 100), 10);
-
-    // Consumer-facing offset — chlorine/DBPs, taste/odor, and plumbing risks not fully
-    // reflected in EPA violation summaries. Applied here so home, /results/[zip], and OG tags match.
-    score = Math.max(0, score - 10);
-
-    // ─── National percentile (based on score distribution) ──────────────────
-    // Score distribution approximation from EPA SDWIS + UCMR5 population
-    // ~45M Americans have PFAS > MCL → roughly bottom 35% of population
-    const nationalPercentile =
-      score >= 90 ? 95 :
-      score >= 85 ? 88 :
-      score >= 80 ? 78 :
-      score >= 75 ? 68 :
-      score >= 70 ? 58 :
-      score >= 65 ? 45 :
-      score >= 60 ? 33 :
-      score >= 55 ? 22 :
-      score >= 50 ? 15 : 8;
 
     // ─── Contaminants ────────────────────────────────────────────────────────
     const contaminants: ContaminantRow[] = buildEpaCatalogContaminants(
@@ -1461,6 +1422,21 @@ export async function GET(req: NextRequest) {
 
     const sortedContaminants = sortContaminants(contaminants);
 
+    const ucmrHardness =
+      ucmr5Row && typeof ucmr5Row[3] === 'number' && ucmr5Row[3] >= 40 ? ucmr5Row[3] : undefined;
+    const safety = computeZipWaterScore({
+      pwsid,
+      zip,
+      contaminants: sortedContaminants,
+      openViolations: openV.length,
+      hardnessMgL: ucmrHardness,
+    });
+    const score = safety.score;
+    const grade = safety.grade;
+    const scoreLabel = safety.label;
+    const scoreColor = safety.scoreColor;
+    const nationalPercentile = nationalPercentileFromSafetyScore(score);
+
     // ─── Format violations ───────────────────────────────────────────────────
     const fmtViols = [...viols]
       .sort((a, b) =>
@@ -1532,7 +1508,9 @@ export async function GET(req: NextRequest) {
       pwsid,
       stateCode,
       score,
-      grade:            scoreToLetterGrade(score),
+      grade,
+      scoreLabel,
+      scoreColor,
       nationalPercentile,
       population:       popCount ? parseInt(popCount).toLocaleString() : null,
       sourceType:       srcCode === 'SW' ? 'Surface Water'
