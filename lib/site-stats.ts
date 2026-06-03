@@ -27,7 +27,7 @@ export const SITE_WATER_SYSTEMS_LABEL = 'All 50 states, all for free';
 export const VIEW_ALL_WATER_SYSTEMS_LINK = 'Browse all 50 states — all free →';
 
 export const SITE_HERO_POSITIONING =
-  'The most comprehensive free water quality database in America — all 50 states, all for free, built by a 30-year water treatment expert.';
+  'Free tap water reports for all 50 states — Water Safety Score, PFAS, lead, and expert filter picks. Built by a 30-year water treatment specialist.';
 
 export const SITE_HERO_TAGLINE =
   'Free Tap Water report in seconds — PFAS, Lead, Hardness, and NSF filter picks matched to your ZIP CODE.';
@@ -36,7 +36,7 @@ export const SITE_HOME_META_DESCRIPTION =
   'Free tap water report by ZIP — Water Safety Score (0–88), PFAS, lead, hardness & EPA violations. NSF filter picks from a 30-year water expert. No signup.';
 
 export const SITE_FOOTER_TAGLINE =
-  'WaterCheckup — The most comprehensive free water quality database in America. Built by a real water expert, not a tech company.';
+  'WaterCheckup — Free tap water reports by ZIP. Built by a real water expert, not a tech company.';
 
 /** Short sitewide disclaimers — full detail lives on /methodology and near filter picks. */
 export const SITE_FOOTER_DISCLAIMER =
@@ -53,13 +53,13 @@ export const SITE_HERO_TRUST_BANNER = [
 
 export const WHY_WATERCHECKUP_CARDS = [
   {
-    icon: '🏆',
-    title: 'Most Comprehensive Coverage',
-    body: 'Coverage across all 50 states, all for free. From major cities to small towns — if the EPA regulates it, WaterCheckup covers it. More coverage than any other free water quality site.',
+    icon: '📍',
+    title: 'Free tap water reports by ZIP',
+    body: `All 50 states. Look up your ZIP for a Water Safety Score (0–88), PFAS and violation signals, and NSF-certified filter options matched to your report — no signup. ${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems in our directory.`,
   },
   {
     icon: '👨‍🔬',
-    title: 'Real Expert Behind Every Recommendation',
+    title: 'Real expert behind every recommendation',
     body: 'WaterCheckup was built by a 30-year water treatment veteran and published industry author. Not a tech company. Not an algorithm. A real water expert.',
   },
 ] as const;
