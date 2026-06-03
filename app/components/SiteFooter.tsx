@@ -37,7 +37,7 @@ export function SiteFooter() {
         </p>
         <p style={{ margin: 0, fontSize: 14, color: '#cbd5e1', textAlign: 'center', lineHeight: 1.7 }}>
           <a href="/utilities/claim" style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
-            For Water Public water systems
+            For public water systems
           </a>
           {' · '}
           © {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA ·{' '}
@@ -49,9 +49,14 @@ export function SiteFooter() {
           {' · '}
           <a href="/blog" style={{ color: '#e2e8f0', textDecoration: 'none' }}>Blog</a>
         </p>
-        <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55, maxWidth: 520 }}>
-          {SITE_FOOTER_DISCLAIMER} {SITE_FOOTER_AFFILIATE}
-        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, maxWidth: 520 }}>
+          <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
+            {SITE_FOOTER_DISCLAIMER}
+          </p>
+          <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
+            {SITE_FOOTER_AFFILIATE}
+          </p>
+        </div>
       </div>
     </footer>
   );
