@@ -5,6 +5,10 @@ export type WaterProfile = {
   treatment?: 'chlorine' | 'chloramine' | 'ozone+chlorine';
   fluoride?: number;       // mg/L
   nitrate?: number;        // mg/L (EPA limit 10)
+  /** CCR average — scored vs EWG 0.004 ppb guideline when present */
+  arsenicPpb?: number;
+  /** Combined radium pCi/L — scored vs ~1 pCi/L health advisory when present */
+  radiumPciL?: number;
   source?: string;         // CCR citation
 };
 
@@ -106,7 +110,17 @@ export const CITIES: Record<string, {
       'A whole-house softener combined with an under-sink RO is the gold standard for SA residents.',
     ],
     urgency: 'medium',
-    waterProfile: { hardness: 272, tds: 605, pH: 7.9, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.8, source: 'SAWS 2025 Water Quality Report' },
+    waterProfile: {
+      hardness: 272,
+      tds: 605,
+      pH: 7.9,
+      treatment: 'chloramine',
+      fluoride: 0.7,
+      nitrate: 1.8,
+      arsenicPpb: 3.8,
+      radiumPciL: 3.4,
+      source: 'SAWS 2025 Water Quality Report',
+    },
   },
   'seattle': {
     name: 'Seattle', state: 'WA', zip: '98101', population: '750K',

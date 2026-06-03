@@ -11,7 +11,7 @@ import path from "path";
 
 import { CITIES } from "../app/water/[city]/cities-data";
 import ucmr5Raw from "../lib/ucmr5.json";
-import { computeWaterScore, waterScoreResult } from "../lib/city-water-score";
+import { computeCityWaterScore, waterScoreResult } from "../lib/city-water-score";
 import { resolveCityPwsid } from "../lib/city-pwsid";
 
 const CSV_URL =
@@ -241,7 +241,7 @@ async function main(): Promise<void> {
     }
 
     const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid));
-    const { score, grade, gradeColor } = computeWaterScore(cd.urgency, cd.issues, pfas);
+    const { score, grade, gradeColor } = computeCityWaterScore(cd, pfas);
 
     const band = cityRiskBand(cd.urgency, pfas);
     const contaminantsAboveLimit = pfas

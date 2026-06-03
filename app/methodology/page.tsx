@@ -96,19 +96,19 @@ export default function MethodologyPage() {
         {/* ── SCORE ── */}
         <h2 >How the Water Quality Score is calculated</h2>
         <p >
-          Every ZIP report includes a Water Quality Score from 0–100 and a letter grade (A–F). The score is a summary of the regulatory and monitoring signals described above — it is not a lab test result and it is not a medical assessment. Here's how it works:
+          Every city and ZIP report includes a Water Safety Score from 0–88 and a letter grade (A–F). The score blends EPA compliance with real-world concerns — hardness, PFAS detections, and contaminants above independent health guidelines (similar in spirit to the <a href="https://www.ewg.org/tapwater/" target="_blank" rel="noreferrer">EWG Tap Water Database</a>, which does <em>not</em> publish letter grades). It is not a lab test result and it is not a medical assessment.
         </p>
         <h3 >Starting point</h3>
-        <p >No public municipal water supply scores above 88. Even "clean" water has chlorine, disinfection byproducts, and trace unmonitored contaminants that federal testing doesn't fully capture. This floors the grade — no public water system gets a perfect score.</p>
+        <p >No public municipal water supply scores above 88. Even clean supplies have chlorine, disinfection byproducts, and trace detections federal testing does not fully capture.</p>
         <h3 >Deductions</h3>
-        <p >Points are deducted for: open health-based violations (−15 to −40 depending on severity), PFAS detections above the EPA MCL of 4 ppt (−25), multiple PFAS compound detections (−6 to −12), confirmed lead tap sample exceedances, and the number and type of issues flagged in the report. Monitoring/reporting violations count less than health-based violations.</p>
-        <h3 >Grade bands</h3>
+        <p >Points are deducted for: open SDWIS violations; PFAS above EPA MCLs; any PFAS detection; very hard water (plumbing, taste, appliances); arsenic or radium above EWG-style health guidelines even when under EPA legal limits; and profile issues such as lead risk or disinfection byproducts. Meeting EPA limits alone does not earn an A — systems with hardness, PFAS, or metals flagged in the CCR are scored down accordingly.</p>
+        <h3 >Grade bands (0–88 scale)</h3>
         <div style={{ marginBottom: 20 }}>
-          {[['A', '90–100', 'No open violations. No PFAS above limits. Clean record.', '#22d3ee'],
-            ['B', '80–89', 'Minor monitoring issues only. No health-based violations.', '#22d3ee'],
-            ['C', '65–79', 'PFAS detected or moderate concerns. Worth filtering.', '#f59e0b'],
-            ['D', '50–64', 'Health-based violations or PFAS above EPA MCL.', '#f87171'],
-            ['F', '0–49', 'Serious ongoing violations or multiple PFAS exceedances.', '#ef4444'],
+          {[['A', '80–88', 'Compliant, soft/moderate hardness, few or no PFAS detections.', '#22d3ee'],
+            ['B', '70–79', 'Compliant but hard water and/or PFAS detected — filter often recommended.', '#86efac'],
+            ['C', '60–69', 'Multiple concern signals (e.g. very hard + PFAS + metals above health guidelines).', '#f59e0b'],
+            ['D', '50–59', 'PFAS MCL issues, repeated violations, or stacked risks.', '#f87171'],
+            ['F', '0–49', 'Serious ongoing violations or heavy PFAS above EPA limits.', '#ef4444'],
           ].map(([grade, range, desc, color]) => (
             <div key={grade as string} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 8 }}>
               <div style={{ width: 32, height: 32, borderRadius: 8, background: `${color as string}18`, border: `1px solid ${color as string}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 16, color: color as string, flexShrink: 0 }}>{grade}</div>

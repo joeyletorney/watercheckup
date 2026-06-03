@@ -21,7 +21,7 @@ import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { isDedicatedWaterCitySlug } from '@/lib/dedicated-water-city-routes';
 import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
-import { computeWaterScore, concernLevelFromScore, getCityKeyFinding } from '@/lib/city-water-score';
+import { computeCityWaterScore, concernLevelFromScore, getCityKeyFinding } from '@/lib/city-water-score';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
@@ -158,7 +158,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const pwsidResolved = cd ? resolveCityPwsid(slug, cd.pwsid) : '';
   const pfasForScore = cd ? getCityPfasData(pwsidResolved) : null;
   const waterScorePreview = cd
-    ? computeWaterScore(cd.urgency, cd.issues, pfasForScore)
+    ? computeCityWaterScore(cd, pfasForScore)
     : null;
   const concernLevel = waterScorePreview
     ? concernLevelFromScore(waterScorePreview.score)
@@ -201,7 +201,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
     ],
   };
 
-  const waterScore = cd ? computeWaterScore(cd.urgency, cd.issues, pfas) : null;
+  const waterScore = cd ? computeCityWaterScore(cd, pfas) : null;
   const keyFinding = cd ? getCityKeyFinding(cd.urgency, cd.issues, pfas) : '';
 
   const faqSchema = buildFaqPageSchema(
@@ -397,7 +397,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
           {/* Water Safety Score + Urgency badge */}
           {cd && (() => {
-            const ws = computeWaterScore(cd.urgency, cd.issues, pfas);
+            const ws = computeCityWaterScore(cd, pfas);
             const circumference = 2 * Math.PI * 36;
             const dashOffset = circumference - (ws.score / 88) * circumference;
             return (

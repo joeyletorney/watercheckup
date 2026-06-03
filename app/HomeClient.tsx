@@ -4452,7 +4452,7 @@ export default function WaterCheckup() {
           <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>
             {[
-              { href: '/water/san-antonio', name: 'San Antonio, TX', grade: 'A-', score: '82/88', detail: 'PFAS · 272 mg/L hardness' },
+              { href: '/water/san-antonio', name: 'San Antonio, TX', grade: 'D+', score: '58/88', detail: 'PFAS · 272 mg/L hardness' },
               { href: '/water/gaithersburg', name: 'Gaithersburg, MD', grade: 'B', score: '74/88', detail: 'WSSC · water testing & PFAS' },
             ].map(({ href, name, grade, score, detail }) => (
               <a

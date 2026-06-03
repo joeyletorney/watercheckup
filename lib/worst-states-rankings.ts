@@ -2,7 +2,7 @@ import { CITIES } from '@/app/water/[city]/cities-data';
 import { buildStateRankingRows } from './water-rankings';
 import { resolveCityPwsid } from './city-pwsid';
 import { getCityPfasData } from './ucmr5-city-pfas';
-import { computeWaterScore } from './city-water-score';
+import { computeCityWaterScore } from './city-water-score';
 
 export type WorstStateRow = {
   stateAbbr: string;
@@ -36,7 +36,7 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
 
       for (const [slug, cd] of cityEntries) {
         const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid));
-        const ws = computeWaterScore(cd.urgency, cd.issues, pfas);
+        const ws = computeCityWaterScore(cd, pfas);
         if (ws.score < worstScore) {
           worstScore = ws.score;
           worstSlug = slug;

@@ -7,7 +7,7 @@ import EmailCapture from '../../[city]/EmailCapture';
 import ucmr5Raw from '../../../../lib/ucmr5.json';
 import { getCountiesForStateAbbr } from '@/lib/county-data';
 import { getAverageHardnessForState } from '@/lib/water-hardness';
-import { computeWaterScore } from '@/lib/city-water-score';
+import { computeCityWaterScore } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?]
@@ -76,7 +76,7 @@ function buildStateRows(stateAbbr: string) {
     .filter(([, cd]) => cd.state === stateAbbr)
     .map(([slug, cd]) => {
       const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid));
-      const { grade, gradeColor } = computeWaterScore(cd.urgency, cd.issues, pfas);
+      const { grade, gradeColor } = computeCityWaterScore(cd, pfas);
       const contaminantsAboveLimit = pfas
         ? pfas.compounds.filter(([, , overEpa]) => overEpa > 0).length
         : 0;

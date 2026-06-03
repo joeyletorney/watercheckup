@@ -156,6 +156,7 @@ export default function PhoenixWaterPage() {
         <CityDedicatedScoreHero
           urgency={CITIES.phoenix.urgency}
           issues={CITIES.phoenix.issues}
+          waterProfile={CITIES.phoenix.waterProfile}
           pfas={getCityPfasData(resolveCityPwsid('phoenix', CITIES.phoenix.pwsid))}
           summary="Phoenix water has chromium-6 above California health goals, significant PFAS from Luke Air Force Base contamination, high arsenic, and extremely hard water from the Colorado River. A reverse osmosis filter is strongly recommended."
           stats={[

@@ -25,12 +25,12 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     seo: {
       title: 'San Antonio Water Quality & Contamination — Free 2026 Report',
       description:
-        'San Antonio water quality & contamination: 272 mg/L hardness, PFAS in UCMR5, radium. Links to full graded SAWS report (A-) — free, no signup.',
+        'San Antonio water quality & contamination: 272 mg/L hardness, PFAS in UCMR5, radium. Links to full graded SAWS report — free, no signup.',
       canonical: 'https://watercheckup.com/water/san-antonio',
       openGraph: {
         title: 'San Antonio Water Quality & Contamination — Free 2026 Report',
         description:
-          'San Antonio water quality & contamination: 272 mg/L hardness, PFAS in UCMR5, radium. Links to full graded SAWS report (A-) — free, no signup.',
+          'San Antonio water quality & contamination: 272 mg/L hardness, PFAS in UCMR5, radium. Links to full graded SAWS report — free, no signup.',
       },
     },
     date: '2026-05-27',
@@ -58,7 +58,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
         React.createElement('strong', { style: { color: '#22d3ee' } }, 'Full report: '),
         'See our ',
         React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio water quality report'),
-        ' for the current Water Safety Score (A- · 82/88), PFAS detail, and filter picks. SAWS meets federal EPA limits; PFAS, hardness, and radium still matter for long-term exposure.'
+        ' for the current Water Safety Score (D+ · 58/88), PFAS detail, and filter picks. SAWS meets federal EPA limits; hardness, PFAS, and radium still matter for long-term exposure.'
       ),
 
       React.createElement('h3', { style: h3Style }, 'What\'s in San Antonio Tap Water'),

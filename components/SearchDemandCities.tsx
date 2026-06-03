@@ -3,7 +3,7 @@ import { SEARCH_DEMAND_CITIES, SEARCH_DEMAND_EXTRA_LINKS } from '@/lib/search-de
 import { CITIES } from '@/app/water/[city]/cities-data';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
-import { computeWaterScore } from '@/lib/city-water-score';
+import { computeCityWaterScore } from '@/lib/city-water-score';
 
 type Props = {
   title?: string;
@@ -29,7 +29,7 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
         {SEARCH_DEMAND_CITIES.map((c) => {
           const cd = CITIES[c.slug];
           const pfas = cd ? getCityPfasData(resolveCityPwsid(c.slug, cd.pwsid)) : null;
-          const ws = cd ? computeWaterScore(cd.urgency, cd.issues, pfas) : null;
+          const ws = cd ? computeCityWaterScore(cd, pfas) : null;
           return (
             <Link
               key={c.slug}

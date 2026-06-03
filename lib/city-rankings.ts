@@ -1,6 +1,6 @@
 import { CITIES } from '@/app/water/[city]/cities-data';
 import { resolveCityPwsid } from './city-pwsid';
-import { computeWaterScore, getCityKeyFinding } from './city-water-score';
+import { computeCityWaterScore, getCityKeyFinding } from './city-water-score';
 import { getCityPfasData } from './ucmr5-city-pfas';
 import { getUcmrHardnessMgL, buildStateHardnessTable } from './water-hardness';
 import { analyzeHardnessMgL } from './water-hardness-shared';
@@ -20,7 +20,7 @@ export type CityScoreRow = {
 function buildAllCityScoreRows(): CityScoreRow[] {
   return Object.entries(CITIES).map(([slug, cd]) => {
     const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid));
-    const ws = computeWaterScore(cd.urgency, cd.issues, pfas);
+    const ws = computeCityWaterScore(cd, pfas);
     return {
       slug,
       name: cd.name,

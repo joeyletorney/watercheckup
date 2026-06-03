@@ -682,7 +682,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'San Antonio is a top search for PFAS & water quality — see our ',
         React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio water quality report'),
-        ' (graded A- · 82/88). '
+        ' (graded D+ · 58/88). '
       ),
 
       React.createElement('p', { style: pStyle },

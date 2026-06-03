@@ -1,4 +1,4 @@
-import { computeWaterScore, type CityPfasSnapshot } from '@/lib/city-water-score';
+import { computeCityWaterScore, type CityPfasSnapshot, type ScoreWaterProfile } from '@/lib/city-water-score';
 
 type Stat = { label: string; value: string; color: string };
 
@@ -6,13 +6,14 @@ type Props = {
   urgency: 'high' | 'medium' | 'low';
   issues: string[];
   pfas: CityPfasSnapshot;
+  waterProfile?: ScoreWaterProfile;
   summary: string;
   stats?: Stat[];
 };
 
 /** Score + grade block for dedicated `/water/{city}` routes */
-export function CityDedicatedScoreHero({ urgency, issues, pfas, summary, stats }: Props) {
-  const ws = computeWaterScore(urgency, issues, pfas);
+export function CityDedicatedScoreHero({ urgency, issues, pfas, waterProfile, summary, stats }: Props) {
+  const ws = computeCityWaterScore({ urgency, issues, waterProfile }, pfas);
 
   return (
     <div
@@ -35,7 +36,10 @@ export function CityDedicatedScoreHero({ urgency, issues, pfas, summary, stats }
       </div>
       <div style={{ flex: 1, minWidth: 200 }}>
         <div style={{ fontSize: 18, fontWeight: 800, color: ws.scoreColor, marginBottom: 6 }}>{ws.label}</div>
-        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>{summary}</p>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 6px' }}>{summary}</p>
+        <p style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5, margin: 0 }}>
+          Grade reflects EPA compliance plus hardness, PFAS detections, and metals above health guidelines — not legal limits alone.
+        </p>
       </div>
       {stats && stats.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>

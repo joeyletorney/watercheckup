@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import {
-  computeWaterScore,
+  computeCityWaterScore,
   formatPrioritySeoDescription,
   formatPrioritySeoTitle,
   type CityPfasSnapshot,
+  type ScoreWaterProfile,
 } from './city-water-score';
 
 type CityRecord = {
@@ -11,6 +12,7 @@ type CityRecord = {
   state: string;
   issues: string[];
   urgency: 'high' | 'medium' | 'low';
+  waterProfile?: ScoreWaterProfile;
 };
 
 /** Default SERP copy for city pages without hand-written priority SEO */
@@ -28,7 +30,7 @@ export function buildCityPageMetadata(
   pfas: CityPfasSnapshot,
   prioritySeo?: { title: string; description: string }
 ): Metadata {
-  const ws = computeWaterScore(city.urgency, city.issues, pfas);
+  const ws = computeCityWaterScore(city, pfas);
 
   const title = prioritySeo?.title
     ? formatPrioritySeoTitle(prioritySeo.title, ws.grade, ws.score)
