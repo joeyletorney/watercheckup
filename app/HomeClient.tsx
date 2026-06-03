@@ -2397,7 +2397,7 @@ export default function WaterCheckup() {
         <div className="wc-hero-split">
           <div className="wc-hero-split-copy">
             <h1 className="wc-hero-h1">
-              What&apos;s In Your Tap Water?<br />Free ZIP Report
+              What&apos;s In Your Tap Water?<br />Free Tap water report in seconds!
             </h1>
 
             <p className="wc-hero-sub" style={{ color: '#e2e8f0', fontSize: 17, margin: '0 auto 14px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}>
