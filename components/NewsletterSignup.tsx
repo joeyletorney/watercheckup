@@ -8,6 +8,8 @@ type Props = {
   title?: string;
   description?: string;
   compact?: boolean;
+  /** Use on light article panels (blog) */
+  variant?: 'dark' | 'light';
 };
 
 export function NewsletterSignup({
@@ -16,7 +18,9 @@ export function NewsletterSignup({
   title = 'Weekly water quality alerts',
   description = 'PFAS updates, violations, and score changes for your area — one email per week, no spam.',
   compact = false,
+  variant = 'dark',
 }: Props) {
+  const light = variant === 'light';
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -49,19 +53,50 @@ export function NewsletterSignup({
 
   return (
     <div
+      className={light ? 'wc-newsletter-light' : undefined}
       style={{
         marginBottom: compact ? 28 : 40,
         padding: compact ? '16px 18px' : '22px 24px',
-        background: 'linear-gradient(135deg,rgba(8,145,178,0.12),rgba(7,24,40,0.9))',
-        border: '1px solid rgba(34,211,238,0.35)',
+        background: light
+          ? '#f0f9ff'
+          : 'linear-gradient(135deg,rgba(8,145,178,0.12),rgba(7,24,40,0.9))',
+        border: light ? '1px solid #7dd3fc' : '1px solid rgba(34,211,238,0.35)',
         borderRadius: 14,
       }}
     >
-      <div style={{ fontSize: 12, fontWeight: 800, color: '#67e8f9', letterSpacing: 1.5, marginBottom: 8 }}>
+      <div
+        style={{
+          fontSize: 12,
+          fontWeight: 800,
+          color: light ? '#0369a1' : '#67e8f9',
+          letterSpacing: 1.5,
+          marginBottom: 8,
+        }}
+      >
         STAY INFORMED
       </div>
-      <div style={{ fontSize: compact ? 17 : 20, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>{title}</div>
-      <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 16px' }}>{description}</p>
+      <div
+        className={light ? 'wc-newsletter-light__title' : undefined}
+        style={{
+          fontSize: compact ? 17 : 20,
+          fontWeight: 800,
+          color: light ? '#0f172a' : '#f1f5f9',
+          marginBottom: 6,
+        }}
+      >
+        {title}
+      </div>
+      <p
+        className={light ? 'wc-newsletter-light__desc' : undefined}
+        style={{
+          fontSize: 14,
+          color: light ? '#475569' : '#cbd5e1',
+          lineHeight: 1.6,
+          margin: '0 0 16px',
+        }}
+      >
+        {description}
+      </p>
       {sent ? (
         <div style={{ fontSize: 14, fontWeight: 700, color: '#4ade80' }}>You&apos;re subscribed — watch for weekly updates.</div>
       ) : (
@@ -104,7 +139,12 @@ export function NewsletterSignup({
         </div>
       )}
       {err && <p style={{ fontSize: 13, color: '#fca5a5', marginTop: 10, marginBottom: 0 }}>{err}</p>}
-      <p style={{ fontSize: 12, color: '#64748b', marginTop: 12, marginBottom: 0 }}>Unsubscribe anytime.</p>
+      <p
+        className={light ? 'wc-newsletter-light__fine' : undefined}
+        style={{ fontSize: 12, color: light ? '#64748b' : '#64748b', marginTop: 12, marginBottom: 0 }}
+      >
+        Unsubscribe anytime.
+      </p>
     </div>
   );
 }

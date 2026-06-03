@@ -104,7 +104,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     : null;
 
   return (
-    <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+    <div className="wc-reading-layout" style={{ minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
@@ -118,39 +118,34 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       ) : null}
       <SiteHeader variant="inner" showCta />
 
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 24px 80px' }}>
-        {/* Breadcrumb */}
-        <div style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 32 }}>
-          <Link href="/" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Home</Link>
+      <article className="wc-reading-panel">
+        <nav className="wc-reading-breadcrumb" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
           {' · '}
-          <Link href="/blog" style={{ color: '#cbd5e1', textDecoration: 'none' }}>Blog</Link>
+          <Link href="/blog">Blog</Link>
           {' · '}
-          <span style={{ color: '#cbd5e1' }}>{post.badge}</span>
-        </div>
+          <span>{post.badge}</span>
+        </nav>
 
         <BlogFeaturedImage slug={params.slug} title={post.title} badge={post.badge} />
 
-        {/* Header */}
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+        <header style={{ marginBottom: 32 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
               {post.badge}
             </span>
-            <span style={{ fontSize: 13, color: '#cbd5e1' }}>{post.dateDisplay}</span>
-            <span style={{ fontSize: 13, color: '#cbd5e1' }}>·</span>
-            <span style={{ fontSize: 13, color: '#cbd5e1' }}>{post.readTime}</span>
+            <span className="wc-reading-meta">{post.dateDisplay}</span>
+            <span className="wc-reading-meta">·</span>
+            <span className="wc-reading-meta">{post.readTime}</span>
           </div>
-          <h1 style={{ fontSize: 34, fontWeight: 900, color: '#f1f5f9', margin: '0 0 12px', lineHeight: 1.2 }}>{post.title}</h1>
-          <p style={{ fontSize: 14, color: '#cbd5e1', margin: '0 0 16px', lineHeight: 1.6 }}>
-            By{' '}
-            <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
-              {BLOG_AUTHOR_BYLINE.name}
-            </Link>
+          <h1 className="wc-reading-title">{post.title}</h1>
+          <p className="wc-reading-meta" style={{ margin: '0 0 12px' }}>
+            By <Link href="/about">{BLOG_AUTHOR_BYLINE.name}</Link>
             {' | '}
             {BLOG_AUTHOR_BYLINE.credentials}
           </p>
-          <p style={{ fontSize: 17, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
-        </div>
+          <p className="wc-reading-excerpt">{post.excerpt}</p>
+        </header>
 
         {/* Check ZIP CTA — top (slug-specific copy for high-impression posts) */}
         {(() => {
@@ -175,20 +170,19 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             btn: 'Check My ZIP →',
           };
           return (
-            <div style={{ marginBottom: 40, padding: '18px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+            <div className="wc-reading-cta">
               <div>
-                <div style={{ fontSize: 13, fontWeight: 800, color: '#f1f5f9', marginBottom: 2 }}>{cta.headline}</div>
-                <div style={{ fontSize: 13, color: '#cbd5e1' }}>{cta.sub}</div>
+                <div className="wc-reading-cta__title">{cta.headline}</div>
+                <div className="wc-reading-cta__sub">{cta.sub}</div>
               </div>
-              <Link href={cta.href} style={{ padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              <Link href={cta.href} className="wc-reading-cta__btn">
                 {cta.btn}
               </Link>
             </div>
           );
         })()}
 
-        {/* Post content */}
-        <div style={{ fontSize: 16, lineHeight: 1.85, color: '#cbd5e1' }}>
+        <div className="wc-reading-prose" style={{ fontSize: 16 }}>
           {post.content}
         </div>
 
@@ -199,28 +193,26 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             title="Get alerts when EPA data changes for your ZIP"
             description="Weekly digest: new PFAS readings, violations, and boil-water notices — matched to your area."
             compact
+            variant="light"
           />
         )}
 
         {post.faq && post.faq.length > 0 && (
-          <section id="faq" style={{ marginTop: 48 }}>
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 20px', lineHeight: 1.3 }}>
+          <section id="faq" className="wc-reading-faq" style={{ marginTop: 48 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 20px', lineHeight: 1.3 }}>
               Frequently asked questions
             </h2>
             {post.faq.map(({ q, a }) => (
               <div key={q} style={{ marginBottom: 24 }}>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: '#e2e8f0', margin: '0 0 8px', lineHeight: 1.4 }}>
-                  {q}
-                </h3>
-                <p style={{ fontSize: 15, color: '#cbd5e1', margin: 0, lineHeight: 1.75 }}>{a}</p>
+                <h3 style={{ fontSize: 17, fontWeight: 700, margin: '0 0 8px', lineHeight: 1.4 }}>{q}</h3>
+                <p style={{ fontSize: 15, margin: 0, lineHeight: 1.75 }}>{a}</p>
               </div>
             ))}
           </section>
         )}
 
-        {/* Top product picks */}
-        <div style={{ marginTop: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 14, position: 'relative' }}>
-          <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
+        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 48, position: 'relative' }}>
+          <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
             TOP PICKS
           </div>
           {(() => { const skipped = post.topPicks.filter((p: any) => p.outOfStock).length; return skipped > 0 ? (
@@ -233,16 +225,16 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               const showDirect = pick.brand === 'Waterdrop';
               const amazonPrimary = !showDirect;
               return (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 16px', background: i === 0 ? 'rgba(8,145,178,0.08)' : 'rgba(255,255,255,0.02)', borderRadius: 10, border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336' }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 16px', background: '#fff', borderRadius: 10, border: i === 0 ? '1px solid #7dd3fc' : '1px solid #e2e8f0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 180 }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: '#cbd5e1', minWidth: 20 }}>#{i + 1}</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: '#64748b', minWidth: 20 }}>#{i + 1}</div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                      <div style={{ fontSize: 15, fontWeight: 800, color: '#f1f5f9' }}>{pick.product}</div>
+                      <div style={{ fontSize: 15, fontWeight: 800, color: '#0f172a' }}>{pick.product}</div>
                       {pick.badge && <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: i === 0 ? '#0891b2' : '#1e3a5f', color: '#fff', padding: '2px 7px', borderRadius: 4 }}>{pick.badge}</span>}
                     </div>
-                    <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 2 }}>{pick.brand} &nbsp;·&nbsp; {pick.price}</div>
-                    <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4, lineHeight: 1.5 }}>{pick.reason}</div>
+                    <div style={{ fontSize: 13, color: '#64748b', marginTop: 2 }}>{pick.brand} &nbsp;·&nbsp; {pick.price}</div>
+                    <div style={{ fontSize: 13, color: '#475569', marginTop: 4, lineHeight: 1.5 }}>{pick.reason}</div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
@@ -267,34 +259,33 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        {/* Related posts */}
-        <div style={{ marginTop: 48 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>MORE GUIDES</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div className="wc-reading-inset" style={{ marginTop: 48 }}>
+          <div className="wc-reading-inset__label">MORE GUIDES</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {Object.entries(POSTS).filter(([slug]) => slug !== params.slug).map(([slug, p]) => (
-              <Link key={slug} href={`/blog/${slug}`} style={{ textDecoration: 'none', padding: '16px 20px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.4 }}>{p.title}</span>
-                <span style={{ fontSize: 13, color: '#0891b2', flexShrink: 0 }}>→</span>
+              <Link key={slug} href={`/blog/${slug}`} className="wc-reading-link-card">
+                <span className="wc-reading-link-card__title">{p.title}</span>
+                <span className="wc-reading-link-card__arrow">→</span>
               </Link>
             ))}
           </div>
         </div>
 
-        {/* Filter quiz CTA */}
-        <div style={{ marginTop: 40, padding: '22px 24px', background: 'linear-gradient(135deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.35)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 32, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 1.5, marginBottom: 6 }}>NOT SURE WHICH FILTER IS RIGHT FOR YOU?</div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>Take the 3-question filter quiz</div>
-            <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>Answer 3 questions about your water source, biggest concern, and home situation — we match you to the right certified filter.</div>
+            <div className="wc-reading-inset__label" style={{ color: '#0369a1' }}>NOT SURE WHICH FILTER?</div>
+            <div className="wc-reading-inset__title">Take the 3-question filter quiz</div>
+            <p className="wc-reading-inset__text" style={{ marginTop: 8, marginBottom: 0 }}>
+              Match a certified filter to your water source, concern, and home situation.
+            </p>
           </div>
-          <Link href="/quiz" style={{ display: 'inline-block', padding: '12px 22px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+          <Link href="/quiz" className="wc-reading-cta__btn">
             Find My Filter →
           </Link>
         </div>
 
-        {/* Check your city */}
-        <div style={{ marginTop: 48 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 16 }}>CHECK YOUR CITY'S WATER</div>
+        <div className="wc-reading-inset" style={{ marginTop: 40 }}>
+          <div className="wc-reading-inset__label">CHECK YOUR CITY&apos;S WATER</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
             {[
               { slug: 'san-antonio', name: 'San Antonio water quality' },
@@ -311,23 +302,40 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               { slug: 'denver', name: 'Denver, CO' },
               { slug: 'new-york', name: 'New York, NY' },
             ].map(({ slug, name }) => (
-              <Link key={slug} href={`/water/${slug}`} style={{ display: 'block', padding: '10px 14px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', fontSize: 13, fontWeight: 600, color: '#cbd5e1' }}>
+              <Link
+                key={slug}
+                href={`/water/${slug}`}
+                style={{
+                  display: 'block',
+                  padding: '10px 14px',
+                  background: '#fff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 8,
+                  textDecoration: 'none',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: '#334155',
+                }}
+              >
                 {name} →
               </Link>
             ))}
           </div>
-          <Link href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
+          <Link href="/utilities" style={{ fontSize: 13, color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>
+            {VIEW_ALL_WATER_SYSTEMS_LINK}
+          </Link>
         </div>
 
-        {/* Bottom CTA */}
-        <div style={{ marginTop: 48, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
-          <div style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your exact water report</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to see live EPA data, PFAS results, and violation history for your specific water system.</p>
-          <Link href="/" style={{ display: 'inline-block', padding: '13px 30px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
+        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 40, textAlign: 'center' }}>
+          <div className="wc-reading-inset__title" style={{ marginBottom: 8 }}>Check your exact water report</div>
+          <p className="wc-reading-inset__text" style={{ marginBottom: 20 }}>
+            Live EPA data, PFAS results, and violation history for your ZIP — free.
+          </p>
+          <Link href="/" className="wc-reading-cta__btn" style={{ display: 'inline-block' }}>
             Check My Water Free →
           </Link>
         </div>
-      </div>
+      </article>
     </div>
   );
 }
