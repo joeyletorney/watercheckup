@@ -137,13 +137,13 @@ const PRODUCTS: any[] = [
   { id:45, cat:'distiller', catLabel:'Countertop Distiller', name:'CO-Z 4L Brushed Stainless Distiller', brand:'CO-Z', price:119, filterCostPerYear:35, rating:4.5, reviews:8900, gpd:null, stages:2, cert:['Steam distillation','304 stainless boil chamber','Glass carafe (most kits)'], certColor:'#14b8a6', removes:['Heavy metals >99%','Fluoride','Nitrates','TDS','Bacteria','Cysts','Dissolved solids'], bestFor:['Fluoride','Nitrates','Lead','TDS','Arsenic','PFAS'], pros:['Excellent Amazon value','Auto shut-off','750W — common 4L design'], diyDiff:'None', situations:['homeowner','family'], expertPick:true, expertReason:'CO-Z’s 4L stainless countertop distiller is one of Amazon’s best-selling alternatives to premium brands — strong ratings and review count for the price. Same distillation physics as units costing 2×: boil, condense, collect; descale often and replace carbon sachets on schedule.', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80', amazon:`https://www.amazon.com/dp/B078GHJ921?tag=${TAG}` },
 
   // ── COUNTERTOP FILTER (non-RO) ───────────────────────────────────────────────
-  { id:29, cat:'countertop-filter', catLabel:'Countertop Filter', name:'Epic Pure Pitcher', brand:'Epic Water Filters', price:50, filterCostPerYear:80, rating:4.7, reviews:2800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Arsenic >99%','Chromium-6','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Removes PFAS — rare for pitcher','No installation','Best-value pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Certified PFAS reduction claims at 99%+ on listings — strong for a countertop pitcher. Also targets lead, arsenic, and microplastics; verify the cartridge listing matches what you buy.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Purehero1080.png?v=1773943609', amazon:`https://www.amazon.com/dp/B08PPLVFBN?tag=${TAG}`, outOfStock: true },
+  { id:29, cat:'countertop-filter', catLabel:'Countertop Filter', name:'Epic Pure Pitcher', brand:'Epic Water Filters', price:50, filterCostPerYear:80, rating:4.7, reviews:2800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Arsenic >99%','Chromium-6','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Removes PFAS — rare for pitcher','No installation','Best-value pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Certified PFAS reduction claims at 99%+ on listings — strong for a countertop pitcher. Also targets lead, arsenic, and microplastics; verify the cartridge listing matches what you buy.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Purehero1080.png?v=1773943609', outOfStock: true, brandLink:'https://www.epicwaterfilters.com/products/pure-water-filter-pitcher' },
 
   // ── PITCHER FILTERS ─────────────────────────────────────────────────────────
-  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Strong published reduction claims for PFAS on certified listings, plus broad contaminant coverage. Popular with reviewers for lead and arsenic. A solid pick for renters and dorms if listings match your needs.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', amazon:`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`, outOfStock: true },
+  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Strong published reduction claims for PFAS on certified listings, plus broad contaminant coverage. Popular with reviewers for lead and arsenic. A solid pick for renters and dorms if listings match your needs.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', outOfStock: true, brandLink:'https://www.clearlyfiltered.com/products/filtered-water-pitcher' },
   { id:10, cat:'pitcher', catLabel:'Pitcher Filter', name:'ZeroWater 10-Cup Pitcher', brand:'ZeroWater', price:40, filterCostPerYear:100, rating:4.5, reviews:31000, gpd:null, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Chromium 100%','TDS to 0','Mercury','Arsenic'], bestFor:['Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes TDS to 0','Includes TDS meter','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://shop.culligan.com/cdn/shop/files/UMC_10C_White_Zoom_IAPMO.jpg?v=1769531157', amazon:`https://www.amazon.com/dp/B0DWTTYTQN?tag=${TAG}` },
   { id:11, cat:'pitcher', catLabel:'Pitcher Filter', name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://www.pur.com/wp-content/uploads/product_ppt111w_pour_digital.png', amazon:`https://www.amazon.com/dp/B09LKTLVNR?tag=${TAG}` },
-  { id:12, cat:'pitcher', catLabel:'Pitcher Filter', name:'Brita Large 10-Cup Everyday', brand:'Brita', price:28, filterCostPerYear:65, rating:4.6, reviews:62000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Chlorine taste/odor','Mercury','Cadmium','Copper'], bestFor:['Chlorine','Copper','Mercury'], pros:['Most popular pitcher','Budget-friendly','Widely available'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://images.ctfassets.net/bugnyha6so6z/acBjvgL2C42mltLEu67e3/21192a304f339de2a3a278b90ed318e7/PDP_hero_-_denali_-_white_-_original_-_desktop_1x.webp', amazon:`https://www.amazon.com/dp/B00008WOPI?tag=${TAG}`, outOfStock: true },
+  { id:12, cat:'pitcher', catLabel:'Pitcher Filter', name:'Brita Large 10-Cup Everyday', brand:'Brita', price:28, filterCostPerYear:65, rating:4.6, reviews:62000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Chlorine taste/odor','Mercury','Cadmium','Copper'], bestFor:['Chlorine','Copper','Mercury'], pros:['Most popular pitcher','Budget-friendly','Widely available'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://images.ctfassets.net/bugnyha6so6z/acBjvgL2C42mltLEu67e3/21192a304f339de2a3a278b90ed318e7/PDP_hero_-_denali_-_white_-_original_-_desktop_1x.webp', outOfStock: true, brandLink:'https://www.brita.com/us/water-filter-products/water-filter-pitchers/' },
 
   // ── FAUCET MOUNT ────────────────────────────────────────────────────────────
   { id:13, cat:'faucet', catLabel:'Faucet Mount', name:'PUR PLUS Faucet Mount FM2000B', brand:'PUR', price:35, filterCostPerYear:80, rating:4.5, reviews:28000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 99%','Arsenic 96%','Mercury','Chlorine','Microbial cysts'], bestFor:['Lead','Arsenic','Mercury','Chlorine'], pros:['Attaches to faucet','No permanent install','One-click on/off'], diyDiff:'Easy', situations:['renter','family','dorm'], img:'https://www.pur.com/wp-content/uploads/pfm200ba_product_on.png', amazon:`https://www.amazon.com/dp/B009V9K6BY?tag=${TAG}` },
@@ -183,7 +183,7 @@ const TRUSTED_PRODUCTS_BY_ID = Object.fromEntries(
       price: p.price,
       cert: p.cert as string[] | undefined,
       catLabel: p.catLabel as string | undefined,
-      amazon: p.amazon as string | undefined,
+      amazon: p.outOfStock ? undefined : (p.amazon as string | undefined),
       brandLink: p.brandLink as string | undefined,
       outOfStock: p.outOfStock as boolean | undefined,
     },
@@ -597,12 +597,27 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   const isWaterdrop = p.brand === 'Waterdrop';
   const directUrl = isWaterdrop ? WATERDROP_DIRECT_BY_ID[p.id] : null;
   const brandUrl = (p.brandLink as string | undefined) ?? null;
-  const amazonUrl = isWaterdrop
-    ? (WATERDROP_AMAZON_BY_ID[p.id] ?? (isAmazonProductUrl(p.amazon) ? p.amazon : null))
-    : (isAmazonProductUrl(p.amazon) ? p.amazon : null);
+  const amazonUrl = p.outOfStock
+    ? null
+    : isWaterdrop
+      ? (WATERDROP_AMAZON_BY_ID[p.id] ?? (isAmazonProductUrl(p.amazon) ? p.amazon : null))
+      : (isAmazonProductUrl(p.amazon) ? p.amazon : null);
 
   const pad = block ? '11px 0' : '10px 20px';
   const flex = block ? 1 : undefined;
+
+  if (p.outOfStock) {
+    return brandUrl ? (
+      <a href={brandUrl} target="_blank" rel="noopener noreferrer" className="wc-buy"
+        style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#f59e0b', border: '1px solid rgba(245,158,11,0.35)', background: 'rgba(245,158,11,0.08)' }}>
+        Often out of stock — brand site →
+      </a>
+    ) : (
+      <span style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 700, color: '#f59e0b', flex }}>
+        Often out of stock — check brand site
+      </span>
+    );
+  }
 
   if (brandUrl && !amazonUrl && !directUrl) {
     return (

@@ -42,7 +42,39 @@ function certLine(certs?: string[]) {
     .join(' · ');
 }
 
+function brandSiteLabel(brand: string): string {
+  if (brand === 'Pelican Water') return 'Pentair.com →';
+  if (brand === 'Epic Water Filters') return 'EpicWaterFilters.com →';
+  if (brand === 'Clearly Filtered') return 'ClearlyFiltered.com →';
+  if (brand === 'Brita') return 'Brita.com →';
+  return 'Brand site →';
+}
+
 function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
+  if (p.outOfStock) {
+    return p.brandLink ? (
+      <a
+        href={p.brandLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          fontSize: 12,
+          fontWeight: 700,
+          color: '#f59e0b',
+          padding: '7px 12px',
+          borderRadius: 7,
+          textDecoration: 'none',
+          border: '1px solid rgba(245,158,11,0.35)',
+          background: 'rgba(245,158,11,0.08)',
+        }}
+      >
+        Often out of stock — {brandSiteLabel(p.brand)}
+      </a>
+    ) : (
+      <span style={{ fontSize: 12, fontWeight: 700, color: '#f59e0b' }}>Often out of stock — check brand site</span>
+    );
+  }
+
   const direct = p.brand === 'Waterdrop' ? WATERDROP_DIRECT[p.id] : undefined;
   const amazon =
     p.brand === 'Waterdrop'
@@ -65,14 +97,8 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
           background: 'linear-gradient(135deg,#f59e0b,#d97706)',
         }}
       >
-        Pentair.com →
+        {brandSiteLabel(p.brand)}
       </a>
-    );
-  }
-
-  if (p.outOfStock) {
-    return (
-      <span style={{ fontSize: 12, fontWeight: 700, color: '#f59e0b' }}>Often out of stock — check brand site</span>
     );
   }
 
