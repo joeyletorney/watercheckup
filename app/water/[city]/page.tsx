@@ -17,6 +17,7 @@ import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_H1, PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
 import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { isDedicatedWaterCitySlug } from '@/lib/dedicated-water-city-routes';
 import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
@@ -706,6 +707,16 @@ export default function CityPage({ params }: { params: { city: string } }) {
             })()}
           </div>
         </div>
+
+        {slug === 'gaithersburg' && cd && (
+          <NewsletterSignup
+            source="water-gaithersburg"
+            zip={cd.zip}
+            title="Gaithersburg & Montgomery County water alerts"
+            description="Water testing context, PFAS UCMR5, and WSSC updates for your ZIP — weekly, no spam."
+            compact
+          />
+        )}
 
         {/* ── STEP 4: EMAIL CAPTURE ── */}
         <EmailCapture cityName={cd?.name ?? cityName} slug={params.city} />

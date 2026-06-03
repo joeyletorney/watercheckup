@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 
 export const metadata: Metadata = {
   title: 'Water Quality Rankings Hub — PFAS, Lead, Violations & More | WaterCheckup',
@@ -182,6 +183,13 @@ export default function WorstHubPage() {
             </div>
           </div>
         ))}
+
+        <NewsletterSignup
+          source="rankings-hub"
+          title="Weekly rankings & violation alerts"
+          description="PFAS MCL changes, new violations, and safety-score updates — one email per week."
+          compact
+        />
 
         <div style={{ marginTop: 8, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 10 }}>METHODOLOGY</div>

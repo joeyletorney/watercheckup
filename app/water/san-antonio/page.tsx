@@ -8,6 +8,7 @@ import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
@@ -538,6 +539,14 @@ export default function SanAntonioWaterPage() {
           id="wc-ad-bottom"
           style={{ margin: '0 0 20px', minHeight: 90, background: 'transparent', textAlign: 'center' }}
           aria-label="Advertisement"
+        />
+
+        <NewsletterSignup
+          source="water-san-antonio"
+          zip="78205"
+          title="San Antonio water alerts"
+          description="Weekly updates when SAWS EPA data, PFAS UCMR5, or violations change for your ZIP."
+          compact
         />
 
         <div style={{ marginBottom: 28 }}>

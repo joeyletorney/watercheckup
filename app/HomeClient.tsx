@@ -8,12 +8,16 @@ import { HOME_HERO_ALT, HOME_HERO_IMAGE } from '@/lib/unsplash-images';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { SiteHeader } from './components/SiteHeader';
 import { HomeVisualShowcase } from './components/HomeVisualShowcase';
+import { HomeComparisonTable } from '@/components/HomeComparisonTable';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { CITIES } from '@/app/water/[city]/cities-data';
 import {
   SITE_HERO_POSITIONING,
   SITE_HERO_TAGLINE,
   SITE_HERO_TRUST_BANNER,
+  SITE_HERO_EXAMPLE_ZIPS,
+  SITE_DATA_FRESHNESS_LABEL,
+  SITE_PUBLIC_WATER_SYSTEM_COUNT,
   VIEW_ALL_WATER_SYSTEMS_LINK,
   WHY_WATERCHECKUP_CARDS,
 } from '@/lib/site-stats';
@@ -2393,18 +2397,18 @@ export default function WaterCheckup() {
         <div className="wc-hero-split">
           <div className="wc-hero-split-copy">
             <h1 className="wc-hero-h1">
-              See What&apos;s Really In<br />Your Tap Water
+              What&apos;s In Your Tap Water?<br />Free ZIP Report
             </h1>
+
+            <p className="wc-hero-sub" style={{ color: '#e2e8f0', fontSize: 17, margin: '0 auto 14px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}>
+              {SITE_HERO_TAGLINE}
+            </p>
 
             <p
               className="wc-hero-positioning"
-              style={{ color: '#67e8f9', fontSize: 15, margin: '0 auto 14px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}
+              style={{ color: '#94a3b8', fontSize: 14, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.5, fontWeight: 500 }}
             >
-              {SITE_HERO_POSITIONING}
-            </p>
-
-            <p className="wc-hero-sub" style={{ color: '#cbd5e1', fontSize: 16, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.65, fontWeight: 500 }}>
-              {SITE_HERO_TAGLINE}
+              {SITE_PUBLIC_WATER_SYSTEM_COUNT} utilities · Updated {SITE_DATA_FRESHNESS_LABEL} · Built by a 30-year water treatment expert
             </p>
 
           </div>
@@ -2470,10 +2474,12 @@ export default function WaterCheckup() {
               >
                 {loading ? 'Loading…' : 'Check My Water'}
               </button>
-              <button
-                type="button"
-                onClick={() => { setShowSample(true); setSampleSent(false); setSampleErr(null); }}
+              <Link
+                href="/sample-report"
                 style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   padding: '18px 28px',
                   minHeight: 58,
                   borderRadius: 14,
@@ -2482,16 +2488,37 @@ export default function WaterCheckup() {
                   border: '1px solid rgba(103, 232, 249, 0.45)',
                   background: 'rgba(8, 42, 72, 0.55)',
                   color: '#e0f2fe',
-                  cursor: 'pointer',
+                  textDecoration: 'none',
                   flex: '1 1 200px',
                 }}
               >
-                View Sample Report
-              </button>
+                View sample report (no email)
+              </Link>
             </div>
           </div>
-          <p style={{ margin: '14px 0 0', fontSize: 13, color: '#a8b4c4', letterSpacing: 0.2, textAlign: 'center' }}>
-            Discover hidden contaminants in your tap — drawn from federal Safe Drinking Water records. No account required.
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 14 }}>
+            <span style={{ fontSize: 12, color: '#64748b', alignSelf: 'center' }}>Try:</span>
+            {SITE_HERO_EXAMPLE_ZIPS.map(({ zip, label }) => (
+              <Link
+                key={zip}
+                href={`/results/${zip}`}
+                style={{
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: '#67e8f9',
+                  textDecoration: 'none',
+                  padding: '6px 12px',
+                  background: 'rgba(8,145,178,0.12)',
+                  border: '1px solid rgba(34,211,238,0.3)',
+                  borderRadius: 8,
+                }}
+              >
+                {label} ({zip})
+              </Link>
+            ))}
+          </div>
+          <p style={{ margin: '12px 0 0', fontSize: 13, color: '#a8b4c4', letterSpacing: 0.2, textAlign: 'center' }}>
+            EPA SDWIS · UCMR5 PFAS · Lead &amp; Copper Rule — no account required.
           </p>
         </div>
 
@@ -4324,6 +4351,8 @@ export default function WaterCheckup() {
             ))}
           </div>
         </section>
+
+        <HomeComparisonTable />
 
         {/* Social comparison hook */}
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 48 }}>

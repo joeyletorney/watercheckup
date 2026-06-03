@@ -7,6 +7,7 @@ import { BlogFeaturedImage } from '@/components/BlogFeaturedImage';
 import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
 import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -190,6 +191,16 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div style={{ fontSize: 16, lineHeight: 1.85, color: '#cbd5e1' }}>
           {post.content}
         </div>
+
+        {(params.slug === 'best-water-filter-for-lead-removal' ||
+          params.slug === 'what-water-filter-removes-pfas') && (
+          <NewsletterSignup
+            source={`blog-${params.slug}`}
+            title="Get alerts when EPA data changes for your ZIP"
+            description="Weekly digest: new PFAS readings, violations, and boil-water notices — matched to your area."
+            compact
+          />
+        )}
 
         {post.faq && post.faq.length > 0 && (
           <section id="faq" style={{ marginTop: 48 }}>

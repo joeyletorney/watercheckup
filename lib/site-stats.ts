@@ -1,9 +1,22 @@
 /** Public coverage figures from public water systems.json and EPA scope — used sitewide for consistent copy. */
 
+/** From data/utilities-index meta.json (EPA SDWIS scope). */
+export const SITE_PUBLIC_WATER_SYSTEM_COUNT = '430K+';
+
+export const SITE_DATA_FRESHNESS_LABEL = 'June 2026';
+
+export const SITE_CONTAMINANT_COVERAGE_LABEL = '170+';
+
+export const SITE_HERO_EXAMPLE_ZIPS = [
+  { zip: '78205', label: 'San Antonio' },
+  { zip: '10001', label: 'New York' },
+  { zip: '20878', label: 'Gaithersburg' },
+] as const;
+
 export const SITE_COVERAGE_STATS = [
+  { stat: SITE_PUBLIC_WATER_SYSTEM_COUNT, label: 'Public Water Systems' },
   { stat: 'All 50', label: 'States Covered' },
-  { stat: '100%', label: 'Free Access' },
-  { stat: '300M+', label: 'Americans Served' },
+  { stat: SITE_CONTAMINANT_COVERAGE_LABEL, label: 'Contaminants Tracked' },
   { stat: '30+', label: 'Years of Expertise' },
 ] as const;
 
@@ -15,7 +28,7 @@ export const SITE_HERO_POSITIONING =
   'The most comprehensive free water quality database in America — all 50 states, all for free, built by a 30-year water treatment expert.';
 
 export const SITE_HERO_TAGLINE =
-  'Enter your ZIP or city for EPA-backed reports and contaminant-matched filter picks — free, no login.';
+  'Free EPA tap water report in 30 seconds — PFAS, lead, hardness, and NSF filter picks matched to your ZIP.';
 
 export const SITE_HOME_META_DESCRIPTION =
   'Free water quality check by ZIP or city — the most comprehensive database in America. All 50 states, all for free, built by Joe Letorney, 30-year water treatment expert. EPA data, PFAS & filter picks.';
@@ -24,10 +37,10 @@ export const SITE_FOOTER_TAGLINE =
   'WaterCheckup — The most comprehensive free water quality database in America. Built by a real water expert, not a tech company.';
 
 export const SITE_HERO_TRUST_BANNER = [
-  'All 50 States',
-  'All Free',
-  '30 Years of Expertise',
-  '100% Free',
+  `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
+  `${SITE_PUBLIC_WATER_SYSTEM_COUNT} utilities`,
+  'EPA SDWIS + UCMR5 PFAS',
+  'Free · No signup',
 ] as const;
 
 export const WHY_WATERCHECKUP_CARDS = [
