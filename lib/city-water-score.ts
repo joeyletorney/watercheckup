@@ -171,6 +171,15 @@ export function getCityKeyFinding(
   return 'EPA Report Available';
 }
 
+/** Appends (grade · score) to priority titles when room allows — visible in SERPs on page 2–3. */
+export function formatPrioritySeoTitle(title: string, grade: string, score?: number): string {
+  if (/grade\s*[A-F]/i.test(title) || /\d+\/88/.test(title)) return title;
+  const suffix = score != null ? ` (${grade} · ${score}/88)` : ` (${grade})`;
+  if (title.length + suffix.length <= 62) return title + suffix;
+  const trimmed = title.slice(0, Math.max(20, 62 - suffix.length)).trim();
+  return trimmed + suffix;
+}
+
 /** SERP description: grade + score upfront, free/no-signup CTA when missing */
 export function formatPrioritySeoDescription(
   description: string,

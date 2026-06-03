@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { SITE_ORIGIN } from '@/lib/site-url'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -30,7 +31,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://watercheckup.com/sitemap.xml',
-    host: 'https://watercheckup.com',
+    sitemap: `${SITE_ORIGIN}/sitemap.xml`,
+    host: 'watercheckup.com',
   }
 }

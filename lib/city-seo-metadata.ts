@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
-import { computeWaterScore, formatPrioritySeoDescription, type CityPfasSnapshot } from './city-water-score';
+import {
+  computeWaterScore,
+  formatPrioritySeoDescription,
+  formatPrioritySeoTitle,
+  type CityPfasSnapshot,
+} from './city-water-score';
 
 type CityRecord = {
   name: string;
@@ -25,7 +30,9 @@ export function buildCityPageMetadata(
 ): Metadata {
   const ws = computeWaterScore(city.urgency, city.issues, pfas);
 
-  const title = prioritySeo?.title ?? buildDefaultCitySeoTitle(city.name);
+  const title = prioritySeo?.title
+    ? formatPrioritySeoTitle(prioritySeo.title, ws.grade, ws.score)
+    : buildDefaultCitySeoTitle(city.name);
   const description = prioritySeo
     ? formatPrioritySeoDescription(prioritySeo.description, ws.grade, ws.score)
     : buildDefaultCitySeoDescription(city.name);

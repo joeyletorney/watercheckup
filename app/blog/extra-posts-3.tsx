@@ -360,14 +360,14 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     title: "Reverse Osmosis: Pros, Cons & Whether It's Worth It (2026)",
     excerpt: 'RO removes nearly everything — including things you might want to keep. Here\'s an honest breakdown before you buy.',
     seo: {
-      title: "Reverse Osmosis: Pros, Cons & Whether It's Worth It (2026)",
+      title: 'Reverse Osmosis Pros and Cons (2026) — Worth It for PFAS?',
       description:
-        'RO removes nearly everything — including things you might want to keep. Here\'s an honest breakdown before you buy.',
+        'Reverse osmosis pros and cons for tap water: PFAS, lead, minerals, cost. Honest 2026 guide + link to free ZIP water quality check.',
       canonical: 'https://watercheckup.com/blog/reverse-osmosis-pros-and-cons',
       openGraph: {
-        title: "Reverse Osmosis: Pros, Cons & Whether It's Worth It (2026)",
+        title: 'Reverse Osmosis Pros and Cons (2026) — Worth It for PFAS?',
         description:
-          'RO removes nearly everything — including things you might want to keep. Here\'s an honest breakdown before you buy.',
+          'Reverse osmosis pros and cons for tap water: PFAS, lead, minerals, cost. Honest 2026 guide + link to free ZIP water quality check.',
       },
     },
     date: '2026-04-18',
@@ -656,14 +656,14 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
     excerpt: 'PFAS are in more tap water than most people realize. See which filter types are proven to remove them — and which ones don\'t cut it.',
     seo: {
-      title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
+      title: 'What Water Filter Removes PFAS? Best 3 Picks (2026)',
       description:
-        'Most filters — including Brita — don\'t remove PFAS. Only RO and NSF 58/P473-certified filters reliably work. Here\'s exactly which ones passed independent testing and which ones to skip.',
+        'What water filter removes PFAS? Only NSF 58 / P473 RO & carbon — not Brita. 3 tested picks + free ZIP check. San Antonio & Houston reports linked.',
       canonical: 'https://watercheckup.com/blog/what-water-filter-removes-pfas',
       openGraph: {
-        title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
+        title: 'What Water Filter Removes PFAS? Best 3 Picks (2026)',
         description:
-          'Most filters — including Brita — don\'t remove PFAS. Only RO and NSF 58/P473-certified filters reliably work. Here\'s exactly which ones passed independent testing and which ones to skip.',
+          'What water filter removes PFAS? Only NSF 58 / P473 RO & carbon — not Brita. 3 tested picks + free ZIP check. San Antonio & Houston reports linked.',
       },
     },
     date: '2026-04-22',
@@ -677,6 +677,12 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
         'PFAS contamination affects roughly 45% of US tap water. But not every filter removes PFAS — in fact, most popular filters do almost nothing. This guide tells you exactly which filter technologies work, which certifications to look for, and how to match the right solution to your specific situation.'
+      ),
+
+      React.createElement('p', { style: pStyle },
+        'San Antonio is a top search for PFAS & water quality — see our ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio water quality report'),
+        ' (graded A- · 82/88). '
       ),
 
       React.createElement('p', { style: pStyle },

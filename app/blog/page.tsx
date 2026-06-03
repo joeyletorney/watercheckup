@@ -221,7 +221,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal (2026) – Lab-Tested Options',
+    title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
     excerpt:
       'Lead in tap water is more common than you think. See which filters actually remove it — based on EPA data and independent testing.',
     date: 'March 29, 2026',
@@ -239,7 +239,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'what-water-filter-removes-pfas': {
-    title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
+    title: 'What Water Filter Removes PFAS? Best 3 Picks (2026)',
     excerpt: 'PFAS are in more tap water than most people realize. See which filter types are proven to remove them — and which ones don\'t cut it.',
     date: 'April 22, 2026',
     readTime: '9 min read',

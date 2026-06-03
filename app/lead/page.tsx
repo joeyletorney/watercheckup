@@ -137,9 +137,14 @@ export default function LeadPage() {
               </div>
             ))}
           </div>
-          <Link href="/" style={{ display: 'inline-block', padding: '12px 24px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
-            Check Your ZIP for Lead (EPA LCR Data) →
-          </Link>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
+            <Link href="/" style={{ display: 'inline-block', padding: '12px 24px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+              Check Your ZIP for Lead (EPA LCR Data) →
+            </Link>
+            <Link href="/blog/best-water-filter-for-lead-removal" style={{ fontSize: 14, fontWeight: 700, color: '#67e8f9', textDecoration: 'none' }}>
+              Water filters that remove lead (2025–2026 picks) →
+            </Link>
+          </div>
         </div>
 
         <div style={{ marginBottom: 48, padding: '24px 26px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>

@@ -7,19 +7,19 @@ import type { CityPfasSnapshot } from './city-water-score';
 /** High-traffic city pages — custom titles & descriptions for SEO */
 export const PRIORITY_CITY_SEO: Record<string, { title: string; description: string }> = {
   'new-york': {
-    title: 'Is NYC Tap Water Safe to Drink in 2026? PFAS, Lead & Full Report',
+    title: 'NYC Tap Water Quality 2026 — Safe to Drink? PFAS & Lead',
     description:
-      'EPA monitoring detected PFOS at 106 ppt in NYC water — 26x the legal limit. Lead pipes in pre-1986 buildings add more risk. See the 2026 New York City water quality report and what filter actually fixes it.',
+      'New York City tap water quality: PFOS in EPA monitoring, lead in pre-1986 buildings. Free 2026 NYC water report with grade and NSF filter picks.',
   },
   'san-antonio': {
-    title: 'San Antonio Water Quality 2026 — PFAS, Hardness & Contamination',
+    title: 'San Antonio Water Contamination & Quality 2026',
     description:
-      'San Antonio tap water: PFAS in UCMR5, 272 mg/L hardness, arsenic, and radium. Full 2026 SAWS contamination report with safety grade and NSF filter picks.',
+      'San Antonio water contamination & quality: PFAS in UCMR5, 272 mg/L hardness, arsenic, radium. Full SAWS 2026 report with letter grade and NSF filter picks.',
   },
   gaithersburg: {
-    title: 'Gaithersburg MD Water Quality & Testing — WSSC Report 2026',
+    title: 'Gaithersburg Water Quality & Testing MD 2026',
     description:
-      'Gaithersburg & Montgomery County tap water (WSSC): PFAS UCMR5 data, water testing context, lead in older homes, and certified filters for Maryland.',
+      'Gaithersburg water quality & water testing (WSSC): PFAS UCMR5, Montgomery County tap water, lead in older homes, certified filters. Free MD report.',
   },
   'los-angeles': {
     title: 'Los Angeles Tap Water 2026 — Chromium-6, PFAS & Safety Grade',

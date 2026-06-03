@@ -151,16 +151,40 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <p style={{ fontSize: 17, color: '#cbd5e1', margin: '0 0 20px', lineHeight: 1.7 }}>{post.excerpt}</p>
         </div>
 
-        {/* Check ZIP CTA — top */}
-        <div style={{ marginBottom: 40, padding: '18px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 800, color: '#f1f5f9', marginBottom: 2 }}>Is your water affected?</div>
-            <div style={{ fontSize: 13, color: '#cbd5e1' }}>Check the EPA report for your exact ZIP code — free, instant.</div>
-          </div>
-          <Link href="/" style={{ padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
-            Check My ZIP →
-          </Link>
-        </div>
+        {/* Check ZIP CTA — top (slug-specific copy for high-impression posts) */}
+        {(() => {
+          const ctaBySlug: Record<string, { headline: string; sub: string; href: string; btn: string }> = {
+            'best-water-filter-for-lead-removal': {
+              headline: 'Is there lead in your tap water?',
+              sub: 'Free EPA report by ZIP — see lead risk and NSF 53 filter matches.',
+              href: '/',
+              btn: 'Check lead in my ZIP →',
+            },
+            'what-water-filter-removes-pfas': {
+              headline: 'Is PFAS in your tap water?',
+              sub: 'Free ZIP report — UCMR5 PFAS data and filter picks for your utility.',
+              href: '/',
+              btn: 'Check PFAS in my ZIP →',
+            },
+          };
+          const cta = ctaBySlug[params.slug] ?? {
+            headline: 'Is your water affected?',
+            sub: 'Check the EPA report for your exact ZIP code — free, instant.',
+            href: '/',
+            btn: 'Check My ZIP →',
+          };
+          return (
+            <div style={{ marginBottom: 40, padding: '18px 22px', background: 'linear-gradient(135deg,#071828,#04111e)', border: '1px solid #0891b2', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#f1f5f9', marginBottom: 2 }}>{cta.headline}</div>
+                <div style={{ fontSize: 13, color: '#cbd5e1' }}>{cta.sub}</div>
+              </div>
+              <Link href={cta.href} style={{ padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                {cta.btn}
+              </Link>
+            </div>
+          );
+        })()}
 
         {/* Post content */}
         <div style={{ fontSize: 16, lineHeight: 1.85, color: '#cbd5e1' }}>

@@ -191,17 +191,17 @@ export const POSTS: Record<string, Post> = {
   },
 
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal 2025–2026: Tested & Ranked',
+    title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
     excerpt: 'Only NSF 53-certified filters actually remove lead. We ranked the top 3 by price, setup, and test results — pitcher, countertop, and under-sink.',
     seo: {
-      title: 'Best Water Filters for Lead Removal 2025–2026: Tested & Ranked',
+      title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
       description:
-        'Only NSF 53-certified filters remove lead from tap water. We tested 3 top picks — pitcher, countertop, and under-sink — ranked by price and performance. See the results.',
+        'Water filters that remove lead must be NSF 53 certified. 3 tested picks — pitcher, countertop, under-sink — ranked by price. Free ZIP check for your tap water.',
       canonical: 'https://watercheckup.com/blog/best-water-filter-for-lead-removal',
       openGraph: {
-        title: 'Best Water Filters for Lead Removal 2025–2026: Tested & Ranked',
+        title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
         description:
-          'Only NSF 53-certified filters remove lead from tap water. We tested 3 top picks — pitcher, countertop, and under-sink — ranked by price and performance. See the results.',
+          'Water filters that remove lead must be NSF 53 certified. 3 tested picks — pitcher, countertop, under-sink — ranked by price. Free ZIP check for your tap water.',
       },
     },
     date: '2026-03-29',
@@ -213,6 +213,18 @@ export const POSTS: Record<string, Post> = {
     topPicks: TOP_3_LEAD,
     faq: [...LEAD_FILTER_FAQ],
     content: React.createElement(React.Fragment, null,
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: { color: '#67e8f9' } }, 'Start here: '),
+        'Check ',
+        React.createElement('a', { href: '/', style: linkStyle }, 'lead & PFAS in your ZIP'),
+        ' (free EPA report). High-traffic city reports: ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio'),
+        ', ',
+        React.createElement('a', { href: '/water/gaithersburg', style: linkStyle }, 'Gaithersburg'),
+        ', ',
+        React.createElement('a', { href: '/water/chicago', style: linkStyle }, 'Chicago'),
+        '.'
+      ),
       React.createElement('p', { style: pStyle },
         'The EPA says it plainly: ',
         React.createElement('strong', { style: strongStyle }, 'there is no safe level of lead in drinking water'),

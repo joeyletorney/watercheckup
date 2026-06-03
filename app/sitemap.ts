@@ -4,6 +4,7 @@ import { TOP_RESULT_ZIPS } from './results/top-result-zips'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { getTopUtilityStaticParamsByPopulation, getUniqueUtilityStatesLowercase } from '@/lib/utilities-data'
 import { getAllCountyStaticParams } from '@/lib/county-data'
+import { SITE_ORIGIN } from '@/lib/site-url'
 
 /** Full public water system + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
 /** Keep utility URLs in sitemap smaller so crawl budget favors city + ranking pages. */
@@ -24,7 +25,7 @@ const STATE_NAMES: Record<string, string> = {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = 'https://watercheckup.com'
+  const base = SITE_ORIGIN
   const now = new Date()
 
   const staticEntries = [
