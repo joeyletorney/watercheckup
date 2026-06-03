@@ -11,7 +11,7 @@ import EmailCapture from "@/app/water/[city]/EmailCapture";
 import TopPickBox from "@/app/water/[city]/TopPickBox";
 import { sdwisPublicReportUrl } from "@/lib/epa-data";
 import { stateLabel } from "@/lib/us-state-names";
-import { score88ToLetterGrade } from "@/lib/water-grade";
+import { computeUtilityWaterScore } from "@/lib/city-water-score";
 import ucmr5Raw from "@/lib/ucmr5.json";
 import { getAllUtilityStaticParams, getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
 
@@ -153,46 +153,6 @@ function getUtilityWhy(
   return `Chosen for ${u.name} because public water systems meet legal limits — not necessarily health-based thresholds for every contaminant. RO removes PFAS, lead from home plumbing, and disinfection byproducts in one system.`;
 }
 
-function computeUtilityGrade(
-  violationCount: number,
-  pfas: ReturnType<typeof getPfasData>,
-): { score: number; grade: string; gradeColor: string; label: string } {
-  let score = 85;
-  const vc = violationCount;
-  if (vc > 0) score -= Math.min(20 + vc * 2, 55);
-  if (pfas) {
-    if (pfas.violations > 0) score -= 25;
-    else if (pfas.compounds.length > 3) score -= 12;
-    else if (pfas.compounds.length > 0) score -= 6;
-    const overHealth = pfas.compounds.some(([, , , oh]) => oh > 0);
-    if (overHealth) score -= 10;
-    if (pfas.maxPpt > 50) score -= 8;
-    else if (pfas.maxPpt > 10) score -= 4;
-  }
-  score = Math.max(0, Math.min(88, score));
-
-  const grade = score88ToLetterGrade(score);
-  let gradeColor: string;
-  let label: string;
-  if (grade.startsWith("A")) {
-    gradeColor = "#22d3ee";
-    label = "Good";
-  } else if (grade.startsWith("B")) {
-    gradeColor = "#86efac";
-    label = "Fair";
-  } else if (grade.startsWith("C")) {
-    gradeColor = "#f59e0b";
-    label = "Concerning";
-  } else if (grade.startsWith("D")) {
-    gradeColor = "#f97316";
-    label = "Poor";
-  } else {
-    gradeColor = "#ef4444";
-    label = "High risk";
-  }
-  return { score, grade, gradeColor, label };
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -222,7 +182,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
 
   const pfas = getPfasData(u.pwsid);
   const issues = buildUtilityIssues(u, pfas);
-  const grade = computeUtilityGrade(u.violationCount ?? 0, pfas);
+  const grade = computeUtilityWaterScore(u.violationCount ?? 0, issues, pfas);
   const stLabel = stateLabel(u.state);
   const pickSlug = `${params.state}-${params.slug}`;
   const vc = u.violationCount ?? 0;

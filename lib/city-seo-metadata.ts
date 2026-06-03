@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { computeWaterScore, type CityPfasSnapshot } from './city-water-score';
+import { computeWaterScore, formatPrioritySeoDescription, type CityPfasSnapshot } from './city-water-score';
 
 type CityRecord = {
   name: string;
@@ -26,7 +26,9 @@ export function buildCityPageMetadata(
   const ws = computeWaterScore(city.urgency, city.issues, pfas);
 
   const title = prioritySeo?.title ?? buildDefaultCitySeoTitle(city.name);
-  const description = prioritySeo?.description ?? buildDefaultCitySeoDescription(city.name);
+  const description = prioritySeo
+    ? formatPrioritySeoDescription(prioritySeo.description, ws.grade)
+    : buildDefaultCitySeoDescription(city.name);
 
   const canonical = `https://watercheckup.com/water/${slug}`;
   const ogQuery = `city=${encodeURIComponent(city.name + ', ' + city.state)}&score=${ws.score}&grade=${encodeURIComponent(ws.grade)}&violations=${pfas?.violations ?? 0}`;

@@ -7,7 +7,8 @@ import EmailCapture from '../../[city]/EmailCapture';
 import ucmr5Raw from '../../../../lib/ucmr5.json';
 import { getCountiesForStateAbbr } from '@/lib/county-data';
 import { getAverageHardnessForState } from '@/lib/water-hardness';
-import { score88ToLetterGrade } from '@/lib/water-grade';
+import { computeWaterScore } from '@/lib/city-water-score';
+import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?]
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -38,42 +39,6 @@ function getPfasData(pwsid: string) {
   if (!entry) return null;
   const [maxPpt, violations, compounds, hardness] = entry;
   return { maxPpt, violations, compounds, hardness };
-}
-
-/** Same scoring ladder as `app/water/[city]/page.tsx` for consistent grades. */
-function computeWaterScore(
-  urgency: 'high' | 'medium' | 'low',
-  issues: string[],
-  pfasData: { maxPpt: number; violations: number; compounds: [string, number, number, number][]; hardness?: number } | null,
-): { score: number; grade: string; gradeColor: string } {
-  let score = 88;
-  if (urgency === 'high') score -= 40;
-  if (urgency === 'medium') score -= 20;
-  score -= Math.min(issues.length * 5, 20);
-  if (pfasData) {
-    if (pfasData.violations > 0) score -= 25;
-    else if (pfasData.compounds.length > 3) score -= 12;
-    else if (pfasData.compounds.length > 0) score -= 6;
-    const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
-    if (overHealth) score -= 10;
-    if (pfasData.maxPpt > 50) score -= 8;
-    else if (pfasData.maxPpt > 10) score -= 4;
-  }
-  score = Math.max(0, Math.min(88, score));
-  const grade = score88ToLetterGrade(score);
-  let gradeColor: string;
-  if (grade.startsWith('A')) {
-    gradeColor = '#22d3ee';
-  } else if (grade.startsWith('B')) {
-    gradeColor = '#86efac';
-  } else if (grade.startsWith('C')) {
-    gradeColor = '#f59e0b';
-  } else if (grade.startsWith('D')) {
-    gradeColor = '#f97316';
-  } else {
-    gradeColor = '#ef4444';
-  }
-  return { score, grade, gradeColor };
 }
 
 /** Parse labels like "2.7M", "8.3M", "120K" for sorting. */
@@ -110,7 +75,7 @@ function buildStateRows(stateAbbr: string) {
   return Object.entries(CITIES)
     .filter(([, cd]) => cd.state === stateAbbr)
     .map(([slug, cd]) => {
-      const pfas = getPfasData(cd.pwsid);
+      const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid));
       const { grade, gradeColor } = computeWaterScore(cd.urgency, cd.issues, pfas);
       const contaminantsAboveLimit = pfas
         ? pfas.compounds.filter(([, , overEpa]) => overEpa > 0).length

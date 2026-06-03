@@ -11,7 +11,8 @@ import path from "path";
 
 import { CITIES } from "../app/water/[city]/cities-data";
 import ucmr5Raw from "../lib/ucmr5.json";
-import { score88ToLetterGrade } from "../lib/water-grade";
+import { computeWaterScore, waterScoreResult } from "../lib/city-water-score";
+import { resolveCityPwsid } from "../lib/city-pwsid";
 
 const CSV_URL =
   "https://raw.githubusercontent.com/grammakov/USA-cities-and-states/master/us_cities_states_counties.csv";
@@ -146,37 +147,6 @@ function cityRiskBand(
   return "monitor";
 }
 
-/** Numeric score 0–88 — mirrors `app/water/state/[city]/page.tsx` `computeWaterScore` logic. */
-function computeWaterScoreNum(
-  urgency: "high" | "medium" | "low",
-  issues: string[],
-  pfasData: { maxPpt: number; violations: number; compounds: [string, number, number, number][]; hardness?: number } | null,
-): number {
-  let score = 88;
-  if (urgency === "high") score -= 40;
-  if (urgency === "medium") score -= 20;
-  score -= Math.min(issues.length * 5, 20);
-  if (pfasData) {
-    if (pfasData.violations > 0) score -= 25;
-    else if (pfasData.compounds.length > 3) score -= 12;
-    else if (pfasData.compounds.length > 0) score -= 6;
-    const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
-    if (overHealth) score -= 10;
-    if (pfasData.maxPpt > 50) score -= 8;
-    else if (pfasData.maxPpt > 10) score -= 4;
-  }
-  return Math.max(0, Math.min(88, score));
-}
-
-function letterGradeFromScore(score: number): { grade: string; gradeColor: string } {
-  const grade = score88ToLetterGrade(score);
-  if (grade.startsWith("A")) return { grade, gradeColor: "#22d3ee" };
-  if (grade.startsWith("B")) return { grade, gradeColor: "#86efac" };
-  if (grade.startsWith("C")) return { grade, gradeColor: "#f59e0b" };
-  if (grade.startsWith("D")) return { grade, gradeColor: "#f97316" };
-  return { grade, gradeColor: "#ef4444" };
-}
-
 function parsePopulation(pop: string): number {
   const t = String(pop).trim().toLowerCase();
   if (!t) return 0;
@@ -270,9 +240,8 @@ async function main(): Promise<void> {
       continue;
     }
 
-    const pfas = getPfasData(cd.pwsid);
-    const score = computeWaterScoreNum(cd.urgency, cd.issues, pfas);
-    const { grade, gradeColor } = letterGradeFromScore(score);
+    const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid));
+    const { score, grade, gradeColor } = computeWaterScore(cd.urgency, cd.issues, pfas);
 
     const band = cityRiskBand(cd.urgency, pfas);
     const contaminantsAboveLimit = pfas
@@ -349,7 +318,7 @@ async function main(): Promise<void> {
     } else {
       weighted = g.cities.reduce((s, c) => s + c.score, 0) / totalCities;
     }
-    const countyGradeInfo = letterGradeFromScore(weighted);
+    const countyGradeInfo = waterScoreResult(weighted);
 
     const chemCounts = new Map<string, number>();
     for (const c of g.cities) {

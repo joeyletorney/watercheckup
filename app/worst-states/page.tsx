@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
-import { CITIES } from '../water/[city]/cities-data';
+import { buildWorstStatesRankings } from '@/lib/worst-states-rankings';
 
 export const metadata: Metadata = {
   title: 'Worst States for Drinking Water Quality (2026 EPA Data) | WaterCheckup',
-  description: 'US states ranked by tap water quality — based on city-level EPA violation data, PFAS detections, and lead risk. See which states have the worst drinking water.',
+  description:
+    'US states ranked by share of tracked cities with UCMR5 PFAS over EPA limits — same methodology as WaterCheckup state rankings. See which states have the worst drinking water.',
   alternates: { canonical: 'https://watercheckup.com/worst-states' },
   openGraph: {
     title: 'Worst States for Drinking Water Quality — 2026 EPA Data',
@@ -15,20 +16,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 86400;
 
-const STATE_FULL: Record<string, string> = {
-  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',
-  CT:'Connecticut',DE:'Delaware',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',
-  IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',
-  ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',
-  MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
-  NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',
-  NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',
-  PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',
-  TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',
-  WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',DC:'Washington D.C.',
-};
-
-// Per-state narrative for the top 10 — specific, data-backed
+// Per-state narrative for the top entries — specific, data-backed
 const STATE_NARRATIVE: Record<string, string> = {
   CA: "California's size works against it here — it has more tracked high-concern cities than any other state. The LA metro has elevated chromium-6 and PFAS from aerospace and military contamination. The San Gabriel Valley has some of the highest PFHxS readings in the nation (250 ppt — 25× the EPA limit). Multiple Bay Area systems have chloramine DBPs and PFAS from industrial legacy sites.",
   AZ: "Arizona's water problems stem from its geology and water sources. The Colorado River delivers high TDS and dissolved solids into Phoenix and Tucson. Groundwater in multiple districts tests positive for arsenic above EPA limits. Several military installations (Luke AFB, Davis-Monthan) have contaminated surrounding groundwater with PFAS from AFFF firefighting foam.",
@@ -54,52 +42,9 @@ const STATE_NARRATIVE: Record<string, string> = {
   MS: "Mississippi has significant infrastructure challenges compounded by the Jackson water crisis — the city faced the longest municipal boil water advisory in US history in 2022–2023. Lead contamination, aging pipes, and treatment failures have left Jackson residents without reliable safe water for years. Rural systems across the state face chronic monitoring violations.",
 };
 
-function getStateRankings() {
-  const stateMap: Record<string, { slugs: string[] }> = {};
-
-  Object.entries(CITIES).forEach(([slug, city]) => {
-    if (!stateMap[city.state]) stateMap[city.state] = { slugs: [] };
-    stateMap[city.state].slugs.push(slug);
-  });
-
-  return Object.entries(stateMap).map(([state, { slugs }]) => {
-    const entries = slugs.map(slug => ({ slug, city: CITIES[slug] }));
-    const highEntries = entries.filter(e => e.city.urgency === 'high');
-    const medEntries  = entries.filter(e => e.city.urgency === 'medium');
-
-    const highCount  = highEntries.length;
-    const medCount   = medEntries.length;
-    const totalCities = entries.length;
-    const score      = (highCount * 3) + (medCount * 1);
-
-    // Correct worst city: largest population among high-urgency cities
-    const worstEntry = (highEntries.length ? highEntries : entries)
-      .sort((a, b) => {
-        const popA = parseFloat(a.city.population.replace(/[^0-9.]/g, '')) || 0;
-        const popB = parseFloat(b.city.population.replace(/[^0-9.]/g, '')) || 0;
-        return popB - popA;
-      })[0];
-
-    const topIssues = Array.from(
-      new Set(entries.flatMap(e => e.city.issues))
-    ).slice(0, 3);
-
-    return {
-      state,
-      highCount,
-      medCount,
-      totalCities,
-      score,
-      topIssues,
-      worstSlug: worstEntry.slug,
-      worstCityName: worstEntry.city.name,
-    };
-  }).sort((a, b) => b.score - a.score);
-}
-
 export default function WorstStatesPage() {
-  const rankings = getStateRankings();
-  const top25    = rankings.slice(0, 25);
+  const rankings = buildWorstStatesRankings();
+  const top25 = rankings.slice(0, 25);
 
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
@@ -116,13 +61,22 @@ export default function WorstStatesPage() {
             Top 25 worst states for tap water quality
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
-            Ranked using EPA violation records, PFAS monitoring data, and lead risk across {Object.keys(CITIES).length}+ cities.
-            States are scored based on the number of tracked cities rated "high concern" — the more high-risk cities, the worse the state scores.
+            Same methodology as our{' '}
+            <Link href="/rankings" style={{ color: '#22d3ee' }}>
+              state rankings table
+            </Link>
+            : each state is ordered by the <strong style={{ color: '#e2e8f0' }}>% of tracked cities</strong> with UCMR5 PFAS
+            over an EPA limit or an MCL violation flag. Letter grades use that percentage (A = 0–10% at risk, … F = 75%+).
+            &quot;Worst city&quot; links use the lowest Water Safety Score in that state.
           </p>
           <div style={{ padding: '14px 18px', background: '#071828', border: '1px solid #f59e0b30', borderRadius: 10 }}>
             <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>
-              ⚠️ <strong style={{ color: '#f59e0b' }}>Methodology note:</strong> Rankings reflect primarily larger population centers tracked by WaterCheckup.
-              Rural areas and smaller systems may have different profiles. Always check your specific ZIP for the most accurate picture.
+              <strong style={{ color: '#f59e0b' }}>Note:</strong> Rankings reflect WaterCheckup city guides, not every public water
+              system in the state. For a composite city score list see{' '}
+              <Link href="/worst-cities" style={{ color: '#22d3ee' }}>
+                worst cities by safety score
+              </Link>
+              .
             </p>
           </div>
         </div>
@@ -133,38 +87,44 @@ export default function WorstStatesPage() {
             TOP 25 WORST STATES
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {top25.map(({ state, highCount, medCount, totalCities, topIssues, worstSlug, worstCityName }, i) => {
-              const barWidth  = Math.round((highCount / totalCities) * 100);
+            {top25.map((row, i) => {
+              const barWidth = Math.min(100, Math.round(row.pctAtRisk));
               const rankColor = i < 3 ? '#ef4444' : i < 6 ? '#f97316' : '#f59e0b';
-              const narrative = STATE_NARRATIVE[state];
+              const narrative = STATE_NARRATIVE[row.stateAbbr];
 
               return (
-                <div key={state} style={{ background: '#071828', border: `1px solid ${i < 3 ? '#ef444440' : '#1a3a5c'}`, borderRadius: 12, overflow: 'hidden' }}>
+                <div key={row.stateAbbr} style={{ background: '#071828', border: `1px solid ${i < 3 ? '#ef444440' : '#1a3a5c'}`, borderRadius: 12, overflow: 'hidden' }}>
                   {/* Header row */}
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '18px 20px 14px' }}>
                     <div style={{ fontSize: 24, fontWeight: 900, color: rankColor, minWidth: 36, paddingTop: 2 }}>#{i + 1}</div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 4 }}>
-                        {STATE_FULL[state] || state}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 4 }}>
+                        <span style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9' }}>{row.stateName}</span>
+                        <span style={{ fontSize: 13, fontWeight: 800, color: row.gradeColor, padding: '2px 8px', background: `${row.gradeColor}18`, borderRadius: 5 }}>
+                          Grade {row.grade}
+                        </span>
                       </div>
                       <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 10 }}>
-                        {highCount} high-concern {highCount === 1 ? 'city' : 'cities'} · {medCount} to monitor · {totalCities} tracked total
+                        {row.citiesAtRisk} of {row.totalCities} tracked cities over EPA PFAS limits ({row.pctAtRisk}%)
+                        {row.worstContaminant !== '—' ? ` · top analyte: ${row.worstContaminant}` : ''}
                       </div>
                       {/* Risk bar */}
                       <div style={{ background: '#0d2240', borderRadius: 4, height: 6, marginBottom: 10, maxWidth: 320 }}>
                         <div style={{ height: 6, borderRadius: 4, background: rankColor, width: `${barWidth}%`, transition: 'width 0.4s' }} />
                       </div>
-                      {/* Issue chips */}
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-                        {topIssues.map(issue => (
+                        {row.topIssues.map((issue) => (
                           <span key={issue} style={{ fontSize: 13, padding: '2px 8px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 5, color: '#cbd5e1' }}>
                             {issue}
                           </span>
                         ))}
                       </div>
-                      {/* Correct worst city link */}
-                      <Link href={`/water/${worstSlug}`} style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
-                        Worst city: {worstCityName} → view full report
+                      <Link href={`/water/${row.worstSlug}`} style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
+                        Lowest safety score: {row.worstCityName} → view report
+                      </Link>
+                      <span style={{ margin: '0 8px', color: '#475569' }}>·</span>
+                      <Link href={`/water/state/${row.stateSlug}`} style={{ fontSize: 13, color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
+                        All {row.stateAbbr} cities
                       </Link>
                     </div>
                   </div>
@@ -187,24 +147,20 @@ export default function WorstStatesPage() {
             ALL STATES — FULL RANKING
           </div>
           <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 80px 80px', padding: '10px 16px', background: '#040d14', borderBottom: '1px solid #1a3a5c', gap: 8 }}>
-              {['#', 'State', 'High Risk', 'Tracked'].map(h => (
+            <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 72px 72px', padding: '10px 16px', background: '#040d14', borderBottom: '1px solid #1a3a5c', gap: 8 }}>
+              {['#', 'State', '% at risk', 'Grade'].map((h) => (
                 <div key={h} style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 1 }}>{h}</div>
               ))}
             </div>
-            {rankings.map(({ state, highCount, totalCities }, i) => (
-              <Link
-                key={state}
-                href={`/water/state/${(STATE_FULL[state] || state).toLowerCase().replace(/[\s.]+/g, '-')}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 80px 80px', padding: '12px 16px', borderBottom: '1px solid #0f2336', gap: 8, alignItems: 'center' }}>
+            {rankings.map((row, i) => (
+              <Link key={row.stateAbbr} href={`/water/state/${row.stateSlug}`} style={{ textDecoration: 'none' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 72px 72px', padding: '12px 16px', borderBottom: '1px solid #0f2336', gap: 8, alignItems: 'center' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8' }}>{i + 1}</div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#e2e8f0' }}>{STATE_FULL[state] || state}</div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: highCount > 3 ? '#ef4444' : highCount > 1 ? '#f59e0b' : '#22d3ee' }}>
-                    {highCount} cities
+                  <div style={{ fontSize: 14, fontWeight: 600, color: '#e2e8f0' }}>{row.stateName}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: row.pctAtRisk >= 50 ? '#ef4444' : row.pctAtRisk >= 25 ? '#f59e0b' : '#22d3ee' }}>
+                    {row.pctAtRisk}%
                   </div>
-                  <div style={{ fontSize: 13, color: '#a8b4c4' }}>{totalCities} total</div>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: row.gradeColor }}>{row.grade}</div>
                 </div>
               </Link>
             ))}
@@ -226,11 +182,11 @@ export default function WorstStatesPage() {
         <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(180px,1fr))', gap: 10 }}>
           {[
-            { href: '/worst-pfas',       label: 'Worst PFAS violations',   desc: 'Top 10 systems above EPA MCL' },
-            { href: '/worst-thm',        label: 'Worst THM / DBP cities',  desc: 'Disinfection byproduct risk' },
-            { href: '/worst-water',      label: 'All PFAS (top 50)',        desc: 'Broadest PFAS exposure list' },
-            { href: '/worst-lead',       label: 'Worst lead cities',        desc: 'Highest lead risk by city' },
-            { href: '/worst-violations', label: 'Most EPA violations',      desc: 'Cities with worst records' },
+            { href: '/rankings',         label: 'Full state table',         desc: 'Sortable 50-state comparison' },
+            { href: '/worst-cities',     label: 'Worst cities (safety score)', desc: 'Lowest 0–88 composite scores' },
+            { href: '/worst-pfas-cities', label: 'Worst PFAS cities',       desc: 'MCL violations + peak readings' },
+            { href: '/worst-lead',       label: 'Lead pipe risk cities',    desc: 'Lead / LSL flags by safety score' },
+            { href: '/worst-hardness',   label: 'Hardest water',            desc: 'States and cities by hardness' },
             { href: '/worst',            label: 'Rankings hub',             desc: 'Every ranking in one place' },
           ].map(({ href, label, desc }) => (
             <Link key={href} href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>

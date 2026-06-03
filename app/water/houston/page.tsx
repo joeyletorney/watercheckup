@@ -6,6 +6,9 @@ import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
+import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
+import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 const AMAZON_TAG = 'watercheck20-20';
 
@@ -177,43 +180,17 @@ export default function HoustonWaterPage() {
           Source: Houston Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
         </p>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: 20,
-            alignItems: 'center',
-            padding: '20px 24px',
-            background: '#071828',
-            border: '2px solid rgba(239,68,68,0.3)',
-            borderRadius: 16,
-            marginBottom: 24,
-            flexWrap: 'wrap',
-          }}
-        >
-          <div style={{ textAlign: 'center', flexShrink: 0 }}>
-            <div style={{ fontSize: 48, fontWeight: 900, color: '#ef4444', lineHeight: 1 }}>48</div>
-            <div style={{ fontSize: 13, color: '#a8b4c4' }}>/ 88</div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: '#ef4444' }}>D+</div>
-          </div>
-          <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#ef4444', marginBottom: 6 }}>Poor</div>
-            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
-              Houston has some of the most contaminated tap water of any major US city. Significant PFAS contamination from industrial sources, elevated arsenic, high disinfection byproducts, radium, and very high sodium. A reverse osmosis filter is strongly recommended.
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
-            {[
-              { label: 'Open Violations', value: '0', color: '#22d3ee' },
-              { label: 'PFAS Detected', value: '6', color: '#ef4444' },
-              { label: 'Arsenic', value: 'Elevated', color: '#f59e0b' },
-            ].map(({ label, value, color }) => (
-              <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
-                <div style={{ fontSize: 16, fontWeight: 900, color }}>{value}</div>
-                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <CityDedicatedScoreHero
+          urgency={CITIES.houston.urgency}
+          issues={CITIES.houston.issues}
+          pfas={getCityPfasData(resolveCityPwsid('houston', CITIES.houston.pwsid))}
+          summary="Houston has some of the most contaminated tap water of any major US city. Significant PFAS contamination from industrial sources, elevated arsenic, high disinfection byproducts, radium, and very high sodium. A reverse osmosis filter is strongly recommended."
+          stats={[
+            { label: 'Open Violations', value: '0', color: '#22d3ee' },
+            { label: 'PFAS Detected', value: '6', color: '#ef4444' },
+            { label: 'Arsenic', value: 'Elevated', color: '#f59e0b' },
+          ]}
+        />
 
         <div
           style={{

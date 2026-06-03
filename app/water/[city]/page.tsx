@@ -20,9 +20,8 @@ import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { isDedicatedWaterCitySlug } from '@/lib/dedicated-water-city-routes';
 import { buildCityPageMetadata } from '@/lib/city-seo-metadata';
-import { computeWaterScore } from '@/lib/city-water-score';
+import { computeWaterScore, concernLevelFromScore, getCityKeyFinding } from '@/lib/city-water-score';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
-import { getCityKeyFinding } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
@@ -140,12 +139,12 @@ const urgencyConfig = {
   low:    { color: '#22d3ee', bg: '#22d3ee15', border: '#22d3ee40', label: 'GENERALLY OK', icon: '✅' },
 };
 
-// Per-urgency context copy shown in the problem banner
-function getUrgencyContext(urgency: 'high' | 'medium' | 'low', issues: string[], cityName: string): string {
-  if (urgency === 'high') {
+// Concern-level context copy shown in the problem banner (aligned to water safety score)
+function getUrgencyContext(concern: 'high' | 'medium' | 'low', issues: string[], cityName: string): string {
+  if (concern === 'high') {
     return `${cityName} has significant water quality concerns including ${issues[0]?.toLowerCase()}. EPA legal limits are set based on treatment feasibility — not always on what independent health scientists consider safe. Certified filtration is strongly recommended for this water supply.`;
   }
-  if (urgency === 'medium') {
+  if (concern === 'medium') {
     return `${cityName} water meets EPA legal standards, but legal compliance is not the same as being free of health concerns. The issues flagged below are worth understanding before deciding whether to filter. EPA limits are often set below what independent scientists recommend as safe thresholds.`;
   }
   return `${cityName} water currently shows no major violations in EPA monitoring data. That said, your home's internal plumbing can add lead or other contaminants after water leaves the treatment plant — especially in homes built before 1986.`;
@@ -155,10 +154,18 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const slug = params.city;
   const cd = CITIES[slug];
   const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  const urg = cd ? urgencyConfig[cd.urgency] : urgencyConfig.medium;
+  const pwsidResolved = cd ? resolveCityPwsid(slug, cd.pwsid) : '';
+  const pfasForScore = cd ? getCityPfasData(pwsidResolved) : null;
+  const waterScorePreview = cd
+    ? computeWaterScore(cd.urgency, cd.issues, pfasForScore)
+    : null;
+  const concernLevel = waterScorePreview
+    ? concernLevelFromScore(waterScorePreview.score)
+    : (cd?.urgency ?? 'medium');
+  const urg = urgencyConfig[concernLevel];
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
-  const pwsid = cd ? resolveCityPwsid(slug, cd.pwsid) : '';
-  const pfas = cd ? getPfasData(pwsid) : null;
+  const pwsid = pwsidResolved;
+  const pfas = cd ? pfasForScore : null;
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
   const countyLink = cd ? getCountyLinkForCitySlug(slug) : undefined;
@@ -365,7 +372,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           {cd && (() => {
             const ws = computeWaterScore(cd.urgency, cd.issues, pfas);
             const circumference = 2 * Math.PI * 36;
-            const dashOffset = circumference - (ws.score / 100) * circumference;
+            const dashOffset = circumference - (ws.score / 88) * circumference;
             return (
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-start' }}>
                 {/* Score circle */}
@@ -383,14 +390,17 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     </svg>
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                       <span style={{ fontSize: 22, fontWeight: 900, color: ws.scoreColor, lineHeight: 1 }}>{ws.score}</span>
-                      <span style={{ fontSize: 9, color: '#a8b4c4', letterSpacing: 1, marginTop: 2 }}>/ 100</span>
+                      <span style={{ fontSize: 9, color: '#a8b4c4', letterSpacing: 1, marginTop: 2 }}>/ 88</span>
                     </div>
                   </div>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
                     <div style={{ fontSize: 28, fontWeight: 900, color: ws.gradeColor, lineHeight: 1 }}>Grade: {ws.grade}</div>
                     <div style={{ fontSize: 13, color: ws.scoreColor, fontWeight: 600, marginTop: 4 }}>{ws.label}</div>
-                    <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 6 }}>Based on EPA violations, PFAS data &amp; contaminant profile</div>
+                    <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 6 }}>
+                      Exposure profile from UCMR5 PFAS &amp; contaminant monitoring —{' '}
+                      <Link href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>check your ZIP</Link> for live utility compliance
+                    </div>
                   </div>
                 </div>
 
@@ -399,7 +409,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                   <span style={{ fontSize: 18 }}>{urg.icon}</span>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 800, color: urg.color, letterSpacing: 1 }}>{urg.label}</div>
-                    <div style={{ fontSize: 13, color: '#cbd5e1' }}>EPA violation status</div>
+                    <div style={{ fontSize: 13, color: '#cbd5e1' }}>Based on water safety score</div>
                   </div>
                 </div>
               </div>
@@ -418,7 +428,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
               {/* Context banner */}
               <div style={{ padding: '16px 20px', background: `${urg.color}10`, border: `1px solid ${urg.border}`, borderRadius: 12, marginBottom: 20 }}>
                 <p style={{ fontSize: 14, color: '#e2e8f0', lineHeight: 1.7, margin: 0 }}>
-                  {getUrgencyContext(cd.urgency, cd.issues, cd.name)}
+                  {getUrgencyContext(concernLevel, cd.issues, cd.name)}
                 </p>
               </div>
 

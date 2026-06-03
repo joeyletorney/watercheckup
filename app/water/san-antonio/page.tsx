@@ -7,6 +7,9 @@ import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
+import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
+import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 const AMAZON_TAG = 'watercheck20-20';
 
@@ -212,43 +215,17 @@ export default function SanAntonioWaterPage() {
           Updated May 2026 · 2024 SAWS data
         </p>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: 20,
-            alignItems: 'center',
-            padding: '20px 24px',
-            background: '#071828',
-            border: '2px solid rgba(245,158,11,0.3)',
-            borderRadius: 16,
-            marginBottom: 24,
-            flexWrap: 'wrap',
-          }}
-        >
-          <div style={{ textAlign: 'center', flexShrink: 0 }}>
-            <div style={{ fontSize: 48, fontWeight: 900, color: '#f59e0b', lineHeight: 1 }}>63</div>
-            <div style={{ fontSize: 13, color: '#a8b4c4' }}>/ 88</div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: '#f59e0b' }}>C-</div>
-          </div>
-          <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#f59e0b', marginBottom: 6 }}>Concerning</div>
-            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
-              San Antonio&apos;s water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2026.
-            </p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
-            {[
-              { label: 'Open Violations', value: '0', color: '#22d3ee' },
-              { label: 'PFAS Detected', value: '4', color: '#f59e0b' },
-              { label: 'Hardness', value: 'Very Hard', color: '#f97316' },
-            ].map(({ label, value, color }) => (
-              <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
-                <div style={{ fontSize: 16, fontWeight: 900, color }}>{value}</div>
-                <div style={{ fontSize: 13, color: '#a8b4c4' }}>{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <CityDedicatedScoreHero
+          urgency={CITIES['san-antonio'].urgency}
+          issues={CITIES['san-antonio'].issues}
+          pfas={getCityPfasData(resolveCityPwsid('san-antonio', CITIES['san-antonio'].pwsid))}
+          summary="San Antonio's water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2026."
+          stats={[
+            { label: 'Open Violations', value: '0', color: '#22d3ee' },
+            { label: 'PFAS Detected', value: '4', color: '#f59e0b' },
+            { label: 'Hardness', value: 'Very Hard', color: '#f97316' },
+          ]}
+        />
 
         <div
           style={{

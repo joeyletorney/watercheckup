@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { buildStateRankingRows, STATE_NAMES } from '@/lib/water-rankings';
+import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { RankingsTable } from './RankingsTable';
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 
 export default function RankingsPage() {
   const { rows, statesWithGuidelinesConcern, worstCities } = buildStateRankingRows();
+  const worstByScore = buildWorstCitiesBySafetyScore(20);
   const trackedStates = rows.filter((r) => r.totalCities > 0).length;
 
   return (
@@ -68,6 +70,52 @@ export default function RankingsPage() {
             style={{
               fontSize: 13,
               fontWeight: 700,
+              color: '#ef4444',
+              letterSpacing: 2,
+              marginBottom: 14,
+              paddingBottom: 10,
+              borderBottom: '1px solid #0f2336',
+            }}
+          >
+            LOWEST WATER SAFETY SCORES (TOP 20 CITIES)
+          </div>
+          <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 18px', lineHeight: 1.6 }}>
+            Composite 0–88 exposure profile (PFAS MCL, monitoring, lead/DBP flags).{' '}
+            <Link href="/worst-cities" style={{ color: '#22d3ee', fontWeight: 700 }}>
+              Full ranking →
+            </Link>
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 40 }}>
+            {worstByScore.map((c, i) => (
+              <Link key={c.slug} href={`/water/${c.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '12px 16px',
+                    background: '#0d2240',
+                    border: '1px solid #1a3a5c',
+                    borderRadius: 10,
+                  }}
+                >
+                  <div>
+                    <span style={{ color: '#94a3b8', marginRight: 10, fontSize: 13 }}>{i + 1}.</span>
+                    <span style={{ fontWeight: 800, color: '#f1f5f9' }}>{c.name}</span>
+                    <span style={{ color: '#a8b4c4', marginLeft: 8, fontSize: 13 }}>{c.state}</span>
+                  </div>
+                  <span style={{ fontWeight: 800, color: c.gradeColor, fontSize: 14 }}>
+                    {c.score}/88 · {c.grade}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 700,
               color: '#0891b2',
               letterSpacing: 2,
               marginBottom: 14,
@@ -75,7 +123,7 @@ export default function RankingsPage() {
               borderBottom: '1px solid #0f2336',
             }}
           >
-            WORST CITIES IN AMERICA (UCMR5 DETECTIONS)
+            MOST UCMR5 DETECTIONS (TOP 20 CITIES)
           </div>
           <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 18px', lineHeight: 1.6 }}>
             Top 20 tracked cities by count of distinct contaminants detected above zero in EPA UCMR5 data (not all are above
