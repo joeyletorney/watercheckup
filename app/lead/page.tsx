@@ -237,12 +237,13 @@ export default function LeadPage() {
                     <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>{f.why}</p>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                    {f.directLink ? (
+                    {f.brand === 'Waterdrop' && f.directLink ? (
                       <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Buy direct →</a>
-                    ) : null}
-                    <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
-                      style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: f.directLink ? 600 : 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
+                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>Waterdrop.com →</a>
+                    ) : (
+                      <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
+                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
+                    )}
                   </div>
                 </div>
               </div>

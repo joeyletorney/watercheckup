@@ -194,7 +194,7 @@ const ISSUES: Issue[] = [
     action: "Check your water hardness and mineral levels",
     products: [
       { name: "Springwell Salt-Based Water Softener", tag: "Whole-home · eliminates scale buildup", why: "A highly rated whole-home salt-based water softener that removes hardness minerals throughout your entire plumbing system. Protects appliances, pipes, and fixtures from scale.", search: "Springwell salt based water softener system" },
-      { name: "Pelican Water Softener + Filter Combo", tag: "Softens + filters in one system", why: "Combines salt-based softening with carbon filtration to handle both hardness and chlorine/chloramine. A good all-in-one option for households with both issues.", search: "Pelican water softener filter combo system" },
+      { name: "Aquasure Harmony Water Softener", tag: "Softens + filters in one system", why: "A popular DIY salt-based softener with metered regeneration — handles hardness throughout the home. Pair with an under-sink RO if you also need PFAS or lead removal at the tap.", search: "Aquasure Harmony water softener system" },
       { name: "iSpring RCC7 Under-Sink RO System", tag: "RO removes hardness minerals", why: "Reverse osmosis removes calcium and magnesium along with contaminants — effective for drinking water even without a whole-home softener.", search: "iSpring RCC7 reverse osmosis system" },
       { name: "Varify 17-in-1 Water Test Strips", tag: "Tests water hardness instantly", why: "Before buying a softener, confirm your hardness level. These strips give instant results for hardness, pH, chlorine, and other parameters.", search: "Varify 17 in 1 water test strips hardness" },
     ],
@@ -229,7 +229,7 @@ const ISSUES: Issue[] = [
     products: [
       { name: "Springwell Salt-Based Water Softener System", tag: "Whole-home · high-capacity softening", why: "A top-rated whole-home salt-based softener with a smart control valve and high grain capacity. Effective for moderate to very hard water. Lifetime warranty on the tank.", search: "Springwell salt based water softener" },
       { name: "Fleck 5600SXT Water Softener", tag: "Industry standard · 48,000 grain", why: "The most widely reviewed residential water softener on the market. Reliable, well-supported, and available in multiple grain capacities. A workhorse system trusted by plumbers.", search: "Fleck 5600SXT water softener 48000 grain" },
-      { name: "Pelican NaturSoft Salt-Free Conditioner", tag: "Salt-free · no sodium added", why: "If you want scale prevention without adding sodium to your water, the NaturSoft conditions minerals without removing them. Best for moderate hardness or sodium-sensitive households.", search: "Pelican NaturSoft salt free water conditioner" },
+      { name: "Springwell Salt-Free Water Conditioner", tag: "Salt-free · no sodium added", why: "If you want scale prevention without adding sodium to your water, salt-free conditioners change how minerals behave without removing them. Best for moderate hardness or sodium-sensitive households.", search: "Springwell salt free water conditioner" },
       { name: "APEC ROES-50 Reverse Osmosis System", tag: "Removes softener sodium from drinking water", why: "If you have a salt-based softener, pair it with an under-sink RO for drinking water to remove the added sodium along with any remaining contaminants.", search: "APEC ROES-50 reverse osmosis system" },
     ],
   },

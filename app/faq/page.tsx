@@ -61,7 +61,7 @@ const FAQS = [
       },
       {
         q: 'How often should I change my water filter?',
-        a: 'It depends on the filter type and your water quality: Pitcher filters (Brita, PUR, ZeroWater): every 2–3 months or per manufacturer guidelines. Under-sink RO pre/post-carbon filters: every 6–12 months. RO membranes: every 2–3 years with normal use. Whole-house carbon filters: every 6 months to 6 years depending on the system (the Pelican PC600 has a 6-year filter life). Shower filters: every 6 months or 10,000–15,000 gallons. If you notice a change in taste, odor, or your TDS reading rises significantly, change the filter sooner. Always follow the manufacturer schedule — an overdue filter can actually begin releasing contaminants back into the water.',
+        a: 'It depends on the filter type and your water quality: Pitcher filters (Brita, PUR, ZeroWater): every 2–3 months or per manufacturer guidelines. Under-sink RO pre/post-carbon filters: every 6–12 months. RO membranes: every 2–3 years with normal use. Whole-house carbon filters: every 6 months to 6 years depending on the system (many premium units advertise 5–10 year media life — check your model). Shower filters: every 6 months or 10,000–15,000 gallons. If you notice a change in taste, odor, or your TDS reading rises significantly, change the filter sooner. Always follow the manufacturer schedule — an overdue filter can actually begin releasing contaminants back into the water.',
       },
       {
         q: 'What does NSF or WQA certification mean on a filter?',

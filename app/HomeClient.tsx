@@ -22,6 +22,11 @@ import {
   VIEW_ALL_WATER_SYSTEMS_LINK,
   WHY_WATERCHECKUP_CARDS,
 } from '@/lib/site-stats';
+import {
+  isWaterdropBrand,
+  resolveAffiliateAmazonUrl,
+  WATERDROP_DIRECT_BY_ID,
+} from '@/lib/waterdrop-buy';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -150,7 +155,6 @@ const PRODUCTS: any[] = [
   { id:14, cat:'faucet', catLabel:'Faucet Mount', name:'Brita Complete Faucet Filtration', brand:'Brita', price:30, filterCostPerYear:70, rating:4.4, reviews:19000, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead','Asbestos','Benzene','Chlorine','Chloramine'], bestFor:['Lead','Chlorine','Chloramine','Asbestos'], pros:['Easy faucet attachment','3-way diverter','No tools needed'], diyDiff:'Easy', situations:['renter','family'], img:'https://images.ctfassets.net/bugnyha6so6z/7J48JJcS8QKR5EDvlOXyvF/911c777794cec4fd4e823ab8c66f048a/PCP_-_Elite_Faucet_-_Silver_-_1_filter_1x.webp', amazon:`https://www.amazon.com/dp/B00006IV0P?tag=${TAG}` },
 
   // ── WHOLE HOUSE ─────────────────────────────────────────────────────────────
-  { id:18, cat:'whole', catLabel:'Whole-House', name:'Pelican PC600 Whole-House', brand:'Pelican Water', price:899, filterCostPerYear:120, rating:4.7, reviews:1800, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >97%','Chloramine','THMs','VOCs','Sediment'], bestFor:['Chloramine','Chloroform','HAAs','VOCs'], pros:['Whole house','No salt','6yr filter life'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Strong whole-home carbon option with a long advertised filter life and WQA Gold Seal on listings. Compare install scope and ongoing costs to other systems for your home size.', img:'https://cdn.shopify.com/s/files/1/0509/5918/8143/files/Gemini_Generated_Image_mf212bmf212bmf21.png?v=1757187780', brandLink:'https://www.pentair.com/en-us/water-softening-filtration/whole-house/products/whole-house-water-filters.html' },
   { id:19, cat:'whole', catLabel:'Whole-House', name:'iSpring WGB32B Whole House 3-Stage', brand:'iSpring', price:420, filterCostPerYear:70, rating:4.7, reviews:2532, gpd:null, stages:3, cert:['NSF/ANSI 42'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','VOCs','Iron'], bestFor:['Chlorine','Chloramine','Sediment','Iron'], pros:['Most affordable whole-house','DIY-friendly','Large flow rate'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.ispringwatersystems.com/wp-content/uploads/2023/06/WGB32B_main_jpg-103980-2400x2400-2.jpg', amazon:`https://www.amazon.com/gp/product/B008GNRMYK?tag=${TAG}` },
   { id:32, cat:'whole', catLabel:'Whole-House', name:'Aquasana Rhino EQ-1000', brand:'Aquasana', price:999, filterCostPerYear:100, rating:4.7, reviews:3400, gpd:null, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 61','WQA Gold Seal'], certColor:'#d97706', removes:['Chlorine >99%','Chloramine','THMs','VOCs','PFAS','Sediment'], bestFor:['Chloramine','PFAS','THMs','VOCs'], pros:['10-year/1M gallon life','PFAS reduction','WQA certified'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, expertPick:true, expertReason:'Long advertised filter life and WQA Gold Seal on listings. Reduces PFAS and chloramine at every tap and shower in the home — confirm flow and capacity for your household.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dwe94bfae0/images/large/WH-1000.png?sw=800&sh=800', amazon:`https://www.amazon.com/dp/B00XAJJVHQ?tag=${TAG}` },
   { id:33, cat:'whole', catLabel:'Whole-House', name:'Express Water WH300SCKS', brand:'Express Water', price:548, filterCostPerYear:90, rating:4.5, reviews:2900, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 61'], certColor:'#22d3ee', removes:['Sediment','Chlorine','Chloramine','Heavy metals','Scale'], bestFor:['Chlorine','Chloramine','Scale','Sediment'], pros:['Includes pressure gauges','Easy DIY install','6-month filters'], diyDiff:'Hard', situations:['homeowner'], wholeHouse:true, img:'https://www.expresswater.com/cdn/shop/files/WH300SCKS-01_1292x.jpg?v=1771889437', amazon:`https://www.amazon.com/dp/B01LFMTYBM?tag=${TAG}` },
@@ -183,7 +187,9 @@ const TRUSTED_PRODUCTS_BY_ID = Object.fromEntries(
       price: p.price,
       cert: p.cert as string[] | undefined,
       catLabel: p.catLabel as string | undefined,
-      amazon: p.outOfStock ? undefined : (p.amazon as string | undefined),
+      amazon: p.outOfStock || isWaterdropBrand(p.brand)
+        ? undefined
+        : (p.amazon as string | undefined),
       brandLink: p.brandLink as string | undefined,
       outOfStock: p.outOfStock as boolean | undefined,
     },
@@ -567,41 +573,21 @@ function FeaturedSpotlightCard({ p, idx, accent }: { p: any; idx: number; accent
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WATERDROP — buy direct (GoAffPro) + Amazon. All other brands: Amazon only.
+// BUY LINKS — Waterdrop: direct only; other brands: Amazon when listed.
 // ─────────────────────────────────────────────────────────────────────────────
-const WATERDROP_DIRECT_BY_ID: Partial<Record<number, string>> = {
-  3: 'https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  47: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  26: 'https://www.waterdropfilter.com/products/ro-water-filter-system-d6?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  6: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-  34: 'https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro',
-};
-
-const WATERDROP_AMAZON_BY_ID: Partial<Record<number, string>> = {
-  3: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
-  47: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
-  26: `https://www.amazon.com/dp/B08746G2XX?tag=${TAG}`,
-  6: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}`,
-  34: `https://www.amazon.com/dp/B0FYCRPXLZ?tag=${TAG}`,
-};
-
 function isAmazonProductUrl(url: string | undefined): boolean {
   if (!url) return false;
   return /amazon\.(com|co\.uk|ca|de)\//i.test(url);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BUY BUTTONS — Waterdrop: buy direct + Amazon; everyone else: Amazon only
-// ─────────────────────────────────────────────────────────────────────────────
 function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
-  const isWaterdrop = p.brand === 'Waterdrop';
+  const isWaterdrop = isWaterdropBrand(p.brand);
   const directUrl = isWaterdrop ? WATERDROP_DIRECT_BY_ID[p.id] : null;
   const brandUrl = (p.brandLink as string | undefined) ?? null;
   const amazonUrl = p.outOfStock
     ? null
-    : isWaterdrop
-      ? (WATERDROP_AMAZON_BY_ID[p.id] ?? (isAmazonProductUrl(p.amazon) ? p.amazon : null))
-      : (isAmazonProductUrl(p.amazon) ? p.amazon : null);
+    : resolveAffiliateAmazonUrl(p.brand, isAmazonProductUrl(p.amazon) ? p.amazon : undefined);
 
   const pad = block ? '11px 0' : '10px 20px';
   const flex = block ? 1 : undefined;
@@ -1383,7 +1369,7 @@ function FilterCompareTab() {
     { id: 28, label: 'AquaTru Under-Sink' },
     { id: 6,  label: 'Waterdrop K19-S' },
     { id: 9,  label: 'Clearly Filtered' },
-    { id: 18, label: 'Pelican PC600' },
+    { id: 32, label: 'Aquasana Rhino' },
   ];
   const prods = cols.map(c => PRODUCTS.find(p => p.id === c.id)!).filter(Boolean);
 
@@ -1436,10 +1422,17 @@ function FilterCompareTab() {
           <tr style={{ background: '#071525' }}>
             <td style={{ padding: '12px 10px', position: 'sticky', left: 0, background: '#071525' }} />
             {prods.map(p => {
-              const buyUrl = p.brand === 'Waterdrop' && WATERDROP_DIRECT_BY_ID[p.id] ? WATERDROP_DIRECT_BY_ID[p.id]! : p.amazon;
+              const buyUrl =
+                isWaterdropBrand(p.brand) && WATERDROP_DIRECT_BY_ID[p.id]
+                  ? WATERDROP_DIRECT_BY_ID[p.id]!
+                  : resolveAffiliateAmazonUrl(p.brand, p.amazon);
               return (
               <td key={p.id} style={{ padding: '12px 10px', textAlign: 'center' }}>
-                <a href={buyUrl} target="_blank" rel="noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+                {buyUrl ? (
+                  <a href={buyUrl} target="_blank" rel="noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+                ) : (
+                  <span style={{ fontSize: 12, color: '#64748b' }}>—</span>
+                )}
               </td>
               );
             })}

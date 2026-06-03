@@ -2,25 +2,11 @@
 
 import { useState } from 'react';
 import { TRUSTED_FILTER_CATEGORIES } from '@/lib/trusted-filter-categories';
-
-const TAG = 'watercheck20-20';
-const WATERDROP_REF = 'anbyjkqb';
-
-const WATERDROP_DIRECT: Partial<Record<number, string>> = {
-  3: `https://www.waterdropfilter.com/products/tankless-reverse-osmosis-system-wd-g3p800-w-fc-1?ref=${WATERDROP_REF}`,
-  47: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=${WATERDROP_REF}`,
-  26: `https://www.waterdropfilter.com/products/ro-water-filter-system-d6?ref=${WATERDROP_REF}`,
-  6: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_REF}`,
-  34: `https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=${WATERDROP_REF}`,
-};
-
-const WATERDROP_AMAZON: Partial<Record<number, string>> = {
-  3: `https://www.amazon.com/dp/B0987FCQQW?tag=${TAG}`,
-  47: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
-  26: `https://www.amazon.com/dp/B08746G2XX?tag=${TAG}`,
-  6: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${TAG}`,
-  34: `https://www.amazon.com/dp/B0FYCRPXLZ?tag=${TAG}`,
-};
+import {
+  isWaterdropBrand,
+  resolveAffiliateAmazonUrl,
+  waterdropDirectUrl,
+} from '@/lib/waterdrop-buy';
 
 export type TrustedFilterProduct = {
   id: number;
@@ -43,7 +29,6 @@ function certLine(certs?: string[]) {
 }
 
 function brandSiteLabel(brand: string): string {
-  if (brand === 'Pelican Water') return 'Pentair.com →';
   if (brand === 'Epic Water Filters') return 'EpicWaterFilters.com →';
   if (brand === 'Clearly Filtered') return 'ClearlyFiltered.com →';
   if (brand === 'Brita') return 'Brita.com →';
@@ -75,11 +60,29 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     );
   }
 
-  const direct = p.brand === 'Waterdrop' ? WATERDROP_DIRECT[p.id] : undefined;
-  const amazon =
-    p.brand === 'Waterdrop'
-      ? WATERDROP_AMAZON[p.id] ?? p.amazon
-      : p.amazon;
+  const direct = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
+  const amazon = resolveAffiliateAmazonUrl(p.brand, p.amazon);
+
+  if (isWaterdropBrand(p.brand) && direct) {
+    return (
+      <a
+        href={direct}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        style={{
+          fontSize: 12,
+          fontWeight: 800,
+          color: '#0f172a',
+          padding: '7px 12px',
+          borderRadius: 7,
+          textDecoration: 'none',
+          background: 'linear-gradient(135deg,#22d3ee,#06b6d4)',
+        }}
+      >
+        Waterdrop.com →
+      </a>
+    );
+  }
 
   if (p.brandLink && !amazon) {
     return (
@@ -104,24 +107,6 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-      {direct ? (
-        <a
-          href={direct}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          style={{
-            fontSize: 12,
-            fontWeight: 800,
-            color: '#0f172a',
-            padding: '7px 12px',
-            borderRadius: 7,
-            textDecoration: 'none',
-            background: 'linear-gradient(135deg,#22d3ee,#06b6d4)',
-          }}
-        >
-          Waterdrop.com →
-        </a>
-      ) : null}
       {amazon ? (
         <a
           href={amazon}

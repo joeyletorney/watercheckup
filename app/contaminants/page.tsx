@@ -31,7 +31,7 @@ const CONTAMINANTS = [
     what: 'Chlorine is intentionally added to municipal water supplies as a disinfectant to kill bacteria, viruses, and other pathogens. While essential for public health, residual chlorine in tap water causes taste and odor issues and reacts with organic matter to form harmful disinfection byproducts (DBPs) like trihalomethanes (THMs).',
     sources: ['Water treatment plants (intentional disinfection)', 'Residual chlorine in distribution pipes', 'Reaction with naturally occurring organic matter in source water'],
     healthEffects: ['Strong taste and odor complaints', 'Skin and eye irritation (especially in showers)', 'Hair damage and dryness from shower exposure', 'Formation of THMs and HAAs (potential carcinogens) as byproducts', 'Respiratory irritation from chlorine vapor in hot showers'],
-    removes: ['Activated Carbon filters — removes >95%', 'Reverse Osmosis', 'Whole-house carbon filters (Pelican PC600)', 'Shower filters (AquaBliss SF100, Aquasana AQ-4100)', 'Catalytic carbon for chloramine'],
+    removes: ['Activated Carbon filters — removes >95%', 'Reverse Osmosis', 'Whole-house carbon filters (Aquasana Rhino, iSpring WGB32B)', 'Shower filters (AquaBliss SF100, Aquasana AQ-4100)', 'Catalytic carbon for chloramine'],
     color: '#f59e0b', icon: '🔵',
   },
   {
@@ -40,7 +40,7 @@ const CONTAMINANTS = [
     what: 'Chloramine is formed when public water systems add ammonia to chlorinated water as an alternative disinfectant. It\'s more stable than free chlorine and lasts longer in the distribution system, but it is significantly harder to remove with standard carbon filters and can cause respiratory issues when inhaled in shower steam.',
     sources: ['Municipal water treatment (secondary disinfection)', 'Formed when ammonia reacts with residual chlorine', 'Increasingly common as public water systems shift from chlorine to reduce THM formation'],
     healthEffects: ['Respiratory irritation when inhaled as steam', 'Skin rashes and eczema flare-ups', 'Eye and nose irritation', 'Harmful to fish and reptiles (cannot use chloramine water in aquariums)', 'Potentially harmful to dialysis patients'],
-    removes: ['Catalytic Activated Carbon (required — standard carbon is not effective)', 'Reverse Osmosis', 'Pelican PC600 whole-house filter (catalytic carbon)', 'Vitamin C shower filters (partial)'],
+    removes: ['Catalytic Activated Carbon (required — standard carbon is not effective)', 'Reverse Osmosis', 'Whole-house catalytic carbon systems (Aquasana Rhino, iSpring WGB32B)', 'Vitamin C shower filters (partial)'],
     color: '#f59e0b', icon: '⚗️',
   },
   {

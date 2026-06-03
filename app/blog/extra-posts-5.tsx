@@ -15,7 +15,7 @@ const TOP_3_COUNTERTOP = [
 
 const TOP_3_WHOLE_HOUSE = [
   { product: 'Aquasana Rhino EQ-1000', brand: 'Aquasana', price: '~$999', reason: 'WQA Gold Seal + NSF 42/61. Removes chlorine, chloramine, PFAS, THMs, VOCs at every tap and shower in the home. 10-year / 1M gallon filter life.', link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Pelican PC600', brand: 'Pelican Water', price: '~$899', reason: 'NSF 42/61, WQA Gold Seal. Removes 97%+ chlorine and chloramine at every tap. 6-year filter life, no salt, no maintenance. Best for chloramine cities.', link: 'https://www.pelicansystems.com/water-filters', amazon: `https://www.amazon.com/dp/B001JM5OQ0?tag=${AMAZON_TAG}`, badge: 'NO SALT' },
+  { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'NSF 42/61 whole-house sediment + carbon. Pressure gauges included. Strong DIY option for chloramine and chlorine at every tap.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
   { product: 'Springwell CF4 Whole-House Filter', brand: 'Springwell', price: '~$895', reason: '4-stage filtration. Removes chlorine, chloramine, PFAS, VOCs, sediment, and heavy metals at every faucet. Air injection oxidation for iron and sulfur removal.', link: 'https://www.springwellwater.com/whole-house-water-filtration-system/', amazon: `https://www.amazon.com/s?k=Springwell+CF4+whole+house+water+filter&tag=${AMAZON_TAG}`, badge: 'BEST FOR WELL WATER' },
 ];
 
@@ -188,7 +188,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         '— the system\'s components don\'t leach contaminants into water. Required for drinking water contact.',
         React.createElement('br', null),
         React.createElement('strong', { style: strongStyle }, 'WQA Gold Seal '),
-        '— independent validation by the Water Quality Association. The Aquasana Rhino and Pelican PC600 both carry this.',
+        '— independent validation by the Water Quality Association. The Aquasana Rhino EQ-1000 carries this.',
       ),
 
       React.createElement('h2', { style: h2Style }, 'Aquasana Rhino EQ-1000 — Our Top Pick'),
@@ -199,9 +199,9 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         React.createElement('a', { href: '/worst-pfas', style: linkStyle }, 'Check if your city has PFAS violations →')
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Pelican PC600 — Best for Chloramine Cities'),
+      React.createElement('h2', { style: h2Style }, 'iSpring WGB32B — Best Value Whole-House Entry'),
       React.createElement('p', { style: pStyle },
-        'About 30% of US public water systems use chloramine instead of chlorine as a disinfectant. Chloramine is harder to remove than chlorine and requires a different carbon media. The Pelican PC600 is specifically formulated for chloramine reduction with a 6-year filter life and WQA Gold Seal. If your public water system uses chloramine (check your annual CCR), this is the right system.'
+        'About 30% of US public water systems use chloramine instead of chlorine as a disinfectant. Chloramine is harder to remove than chlorine and often needs catalytic or multi-stage carbon. The iSpring WGB32B is a popular DIY whole-house sediment + carbon chain at a lower price point than premium tanks — pair it with an under-sink RO for drinking water if you need PFAS or lead removal at the tap.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Do You Need Whole-House or Just Under-Sink?'),
