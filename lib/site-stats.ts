@@ -48,7 +48,6 @@ export const SITE_FOOTER_AFFILIATE =
 export const SITE_HERO_TRUST_BANNER = [
   `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
   `${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems`,
-  'EPA SDWIS + UCMR5 PFAS',
   'Free · No signup',
 ] as const;
 
