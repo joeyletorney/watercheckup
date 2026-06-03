@@ -36,6 +36,13 @@ export const SITE_HOME_META_DESCRIPTION =
 export const SITE_FOOTER_TAGLINE =
   'WaterCheckup — The most comprehensive free water quality database in America. Built by a real water expert, not a tech company.';
 
+/** Short sitewide disclaimers — full detail lives on /methodology and near filter picks. */
+export const SITE_FOOTER_DISCLAIMER =
+  'Reports use EPA public data and may lag 1–3 years. For decisions that matter, confirm with your utility or a certified lab test.';
+
+export const SITE_FOOTER_AFFILIATE =
+  'Amazon Associates participant — some filter links are affiliate (no extra cost). Recommendations follow NSF certifications, not paid placements.';
+
 export const SITE_HERO_TRUST_BANNER = [
   `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
   `${SITE_PUBLIC_WATER_SYSTEM_COUNT} utilities`,
