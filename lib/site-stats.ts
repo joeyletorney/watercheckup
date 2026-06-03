@@ -28,7 +28,7 @@ export const SITE_HERO_POSITIONING =
   'The most comprehensive free water quality database in America — all 50 states, all for free, built by a 30-year water treatment expert.';
 
 export const SITE_HERO_TAGLINE =
-  'Free EPA tap water report in 30 seconds — PFAS, lead, hardness, and NSF filter picks matched to your ZIP.';
+  'Free Tap Water report in seconds — PFAS, Lead, Hardness, and NSF filter picks matched to your ZIP CODE.';
 
 export const SITE_HOME_META_DESCRIPTION =
   'Free water quality check by ZIP or city — the most comprehensive database in America. All 50 states, all for free, built by Joe Letorney, 30-year water treatment expert. EPA data, PFAS & filter picks.';
