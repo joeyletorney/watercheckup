@@ -2,8 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { BLOG_AUTHOR_BYLINE } from '@/lib/site-stats';
+import { BlogTopPicks } from '@/components/BlogTopPicks';
+import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 
-const AMAZON_TAG = 'watercheck20-20';
+const SLUG = 'reverse-osmosis-vs-distilled-water';
+const topPicks = resolveBlogTopPicks(SLUG);
+const topPicksSubtitle = getTopPicksSubtitle(SLUG, topPicks);
 
 export const metadata: Metadata = {
   title: {
@@ -33,39 +37,6 @@ const COMPARE_ROWS = [
   { label: 'Best for', ro: 'Family drinking & cooking at the kitchen sink', distilled: 'Ultra-low-TDS needs, CPAP, appliances, batch use' },
   { label: 'Home install', ro: 'Under-sink or countertop RO — common', distilled: 'Countertop distiller — rare whole-home' },
   { label: 'Maintenance', ro: 'Prefilters + membrane on a schedule', distilled: 'Descale/clean boiling chamber regularly' },
-] as const;
-
-const RO_PICKS = [
-  {
-    rank: '🥇',
-    name: 'Waterdrop G3P600 Tankless RO',
-    badge: 'BEST FOR MOST HOMES',
-    price: '~$439',
-    cert: 'NSF 42, 53, 58',
-    dp: 'B07P1XFYJP',
-    best: true,
-    why: 'High flow, smart TDS faucet, strong PFAS/lead reduction. The practical choice when you want distilled-level purity for daily drinking without batch waiting.',
-  },
-  {
-    rank: '🥈',
-    name: 'Aquasana SmartFlow RO',
-    badge: 'MOST CERTIFIED',
-    price: '~$449',
-    cert: 'WQA Gold Seal + NSF 42/53/58/401',
-    dp: 'B0CHZ8VQBB',
-    best: false,
-    why: 'Broad NSF coverage including emerging contaminants (401). Excellent when you want documentation-heavy claims, not just marketing language.',
-  },
-  {
-    rank: '🥉',
-    name: 'AquaTru Under-Sink RO',
-    badge: 'EASIEST MAINTENANCE',
-    price: '~$375',
-    cert: 'NSF 42, 53, 58',
-    dp: 'B0GGTSFZMY',
-    best: false,
-    why: 'Quick-change filters, compact footprint. Good for renters willing to do a simple under-sink install or place on the counter.',
-  },
 ] as const;
 
 const FAQS = [
@@ -165,6 +136,8 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
             output.
           </p>
         </div>
+
+        <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />
 
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 20px' }}>
           After 30 years in water treatment, I hear this question constantly: &quot;Isn&apos;t RO water basically
@@ -292,72 +265,6 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           </Link>{' '}
           before choosing equipment.
         </p>
-
-        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>Best RO systems for home purity (2026)</h2>
-        <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 22px' }}>
-          If RO is the right fit, buy certified equipment — not generic “5-stage” kits with no test data. These are
-          systems I recommend frequently for PFAS, lead, and general dissolved contaminant reduction:
-        </p>
-
-        {RO_PICKS.map((pick, i) => (
-          <div
-            key={pick.dp}
-            style={{
-              padding: '20px 22px',
-              background: pick.best ? 'rgba(8,145,178,0.08)' : '#0d2240',
-              border: pick.best ? '2px solid rgba(8,145,178,0.4)' : '1px solid #1a3a5c',
-              borderRadius: 12,
-              marginBottom: i < RO_PICKS.length - 1 ? 16 : 24,
-            }}
-          >
-            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: 10 }}>
-              <span style={{ fontSize: 24 }} aria-hidden>
-                {pick.rank}
-              </span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 4 }}>
-                  <span style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9' }}>{pick.name}</span>
-                  <span
-                    style={{
-                      fontSize: 9,
-                      fontWeight: 800,
-                      letterSpacing: 1,
-                      padding: '2px 7px',
-                      borderRadius: 4,
-                      background: pick.best ? '#0891b2' : '#1e3a5f',
-                      color: '#fff',
-                    }}
-                  >
-                    {pick.badge}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 13, color: '#a8b4c4' }}>{pick.price}</span>
-                  <span style={{ fontSize: 13, color: '#0891b2' }}>{pick.cert}</span>
-                </div>
-              </div>
-            </div>
-            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 12px' }}>{pick.why}</p>
-            <a
-              href={`https://www.amazon.com/dp/${pick.dp}?tag=${AMAZON_TAG}`}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-              style={{
-                display: 'inline-block',
-                padding: '9px 18px',
-                background: pick.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
-                border: pick.best ? 'none' : '1px solid #1a3a5c',
-                borderRadius: 8,
-                color: '#fff',
-                fontSize: 13,
-                fontWeight: 700,
-                textDecoration: 'none',
-              }}
-            >
-              View on Amazon →
-            </a>
-          </div>
-        ))}
 
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>Related reading</h2>
         <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 24px' }}>

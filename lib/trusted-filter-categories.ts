@@ -27,6 +27,14 @@ export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
     productIds: [47, 26, 28, 5, 27],
   },
   {
+    id: 'under-counter',
+    emoji: '💧',
+    label: 'Best under-counter',
+    accent: '#67e8f9',
+    summary: 'Under-sink carbon (non-RO) — NSF 53 lead & PFAS, no tank',
+    productIds: [23, 24, 25],
+  },
+  {
     id: 'renters',
     emoji: '🪣',
     label: 'Best for renters',

@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
+import { BlogTopPicks } from '@/components/BlogTopPicks';
+import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 
-const AMAZON_TAG = 'watercheck20-20';
+const SLUG = 'best-water-filter-hard-water';
+const topPicks = resolveBlogTopPicks(SLUG);
+const topPicksSubtitle = getTopPicksSubtitle(SLUG, topPicks);
 
 export const metadata: Metadata = {
   title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked | WaterCheckup',
@@ -31,89 +35,6 @@ const SIGNS = [
   'Water heater making popping/rumbling sounds (scale buildup)',
   'Washing machine leaving residue on clothes',
   'Frequent plumbing repairs from scale-clogged pipes',
-] as const;
-
-const PICKS = [
-  {
-    rank: '🥇',
-    name: 'SpringWell Salt-Based Water Softener',
-    badge: 'BEST OVERALL — WHOLE HOME',
-    price: '~$799–$1,299',
-    nsf: 'WQA Gold Seal certified',
-    hardness: 'Up to 25 gpg',
-    best: true,
-    dp: 'B08CXWMJGT',
-    pros: [
-      'Removes virtually 100% of hardness minerals',
-      'Whole-home protection — every faucet, shower, appliance',
-      'Protects water heater and pipes from scale',
-      'Salt-based ion exchange — proven technology',
-    ],
-    cons: ['Requires salt refills every 6–8 weeks', 'Adds small amount of sodium to water', 'Needs professional installation'],
-    verdict:
-      'For homes with very hard water (San Antonio, Phoenix, Las Vegas), a salt-based softener is the only solution that fully protects your entire plumbing system. Pair with an RO filter for drinking water.',
-  },
-  {
-    rank: '🥈',
-    name: 'Waterdrop G3P600 Reverse Osmosis',
-    badge: 'BEST FOR DRINKING WATER',
-    price: '~$439',
-    nsf: 'NSF 42, 53, 58 certified',
-    hardness: 'Up to 2,000 ppm TDS',
-    best: false,
-    dp: 'B07P1XFYJP',
-    pros: [
-      'Removes hardness minerals from drinking water',
-      'Also removes PFAS, arsenic, lead, radium',
-      'Tankless — no bulky storage tank',
-      'Smart TDS display shows water quality',
-    ],
-    cons: ['Under-sink only — not whole-home', 'Requires professional or DIY installation', 'Wastes some water (2:1 ratio)'],
-    verdict:
-      'If your main concern is drinking and cooking water, an RO system removes hardness along with PFAS, arsenic, and other contaminants. Best paired with a whole-home softener for complete protection.',
-  },
-  {
-    rank: '🥉',
-    name: 'AquaBliss High Output Shower Filter',
-    badge: 'BEST FOR SKIN & HAIR',
-    price: '~$35',
-    nsf: 'KDF/GAC media',
-    hardness: 'Moderate reduction',
-    best: false,
-    dp: 'B01MUBU0YC',
-    pros: [
-      'Reduces chlorine and some minerals in shower',
-      'Easy install — no plumber needed',
-      'Affordable entry point',
-      '42,000+ Amazon reviews',
-    ],
-    cons: [
-      'Does not fully remove hardness',
-      'Not NSF certified for hardness removal',
-      'Needs replacement every 6 months',
-    ],
-    verdict:
-      "A shower filter won't solve hard water scale problems but does reduce chlorine and some mineral content — improving skin and hair feel at a low cost. Good for renters who can't install a softener.",
-  },
-  {
-    rank: '4️⃣',
-    name: 'Clearly Filtered Pitcher',
-    badge: 'BEST NO-INSTALL PITCHER',
-    price: '~$90',
-    nsf: 'NSF 42, 53, 244, 401, P473',
-    hardness: 'Moderate reduction',
-    best: false,
-    dp: 'B076B6FXT5',
-    pros: [
-      'No installation needed',
-      'Removes 365+ contaminants including PFAS',
-      'NSF certified — most certified pitcher available',
-      'Good for renters',
-    ],
-    cons: ['Does not fully remove hardness minerals', 'Slow filtration', 'Pitcher only — not whole home'],
-    verdict:
-      "The best pitcher for overall contaminant removal, but not a true hard water solution. Use if you're primarily concerned about taste, PFAS, and lead — and hardness is a secondary concern.",
-  },
 ] as const;
 
 const FAQS = [
@@ -177,9 +98,11 @@ export default function BestFilterHardWaterPage() {
           </Link>{' '}
           for the full scored breakdown.
         </p>
-        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 32px' }}>
+        <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 24px' }}>
           Updated May 2025 · NSF certifications verified · Some links are affiliate links
         </p>
+
+        <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>What is hard water?</h2>
@@ -230,107 +153,6 @@ export default function BestFilterHardWaterPage() {
             </div>
           ))}
         </div>
-
-        <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>Best filters for hard water — 2025 picks</h2>
-
-        {PICKS.map((pick, i) => (
-          <div
-            key={pick.dp}
-            style={{
-              padding: '20px 22px',
-              background: pick.best ? 'rgba(8,145,178,0.08)' : '#0d2240',
-              border: pick.best ? '2px solid rgba(8,145,178,0.4)' : '1px solid #1a3a5c',
-              borderRadius: 12,
-              marginBottom: i < PICKS.length - 1 ? 16 : 0,
-            }}
-          >
-            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: 12 }}>
-              <span style={{ fontSize: 24 }} aria-hidden>
-                {pick.rank}
-              </span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 4 }}>
-                  <span style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9' }}>{pick.name}</span>
-                  <span
-                    style={{
-                      fontSize: 9,
-                      fontWeight: 800,
-                      letterSpacing: 1,
-                      padding: '2px 7px',
-                      borderRadius: 4,
-                      background: pick.best ? '#0891b2' : '#1e3a5f',
-                      color: '#fff',
-                    }}
-                  >
-                    {pick.badge}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 13, color: '#a8b4c4' }}>{pick.price}</span>
-                  <span style={{ fontSize: 13, color: '#0891b2' }}>{pick.nsf}</span>
-                  <span style={{ fontSize: 13, color: '#a8b4c4' }}>Handles: {pick.hardness}</span>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                gap: 12,
-                marginBottom: 12,
-              }}
-            >
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#22d3ee', marginBottom: 6 }}>PROS</div>
-                {pick.pros.map(p => (
-                  <div key={p} style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 4 }}>
-                    ✓ {p}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', marginBottom: 6 }}>CONS</div>
-                {pick.cons.map(c => (
-                  <div key={c} style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 4 }}>
-                    ✗ {c}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <p
-              style={{
-                fontSize: 13,
-                color: '#cbd5e1',
-                lineHeight: 1.6,
-                margin: '0 0 12px',
-                padding: '10px 12px',
-                background: '#071828',
-                borderRadius: 8,
-              }}
-            >
-              <strong style={{ color: '#e2e8f0' }}>Our verdict: </strong>
-              {pick.verdict}
-            </p>
-            <a
-              href={`https://www.amazon.com/dp/${pick.dp}?tag=${AMAZON_TAG}`}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-              style={{
-                display: 'inline-block',
-                padding: '9px 18px',
-                background: pick.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
-                border: pick.best ? 'none' : '1px solid #1a3a5c',
-                borderRadius: 8,
-                color: '#fff',
-                fontSize: 13,
-                fontWeight: 700,
-                textDecoration: 'none',
-              }}
-            >
-              View on Amazon →
-            </a>
-          </div>
-        ))}
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Salt-free softeners — do they work?</h2>

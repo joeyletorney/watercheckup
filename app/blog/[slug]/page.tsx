@@ -9,6 +9,7 @@ import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stat
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
+import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -60,6 +61,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default function BlogPost({ params }: { params: { slug: string } }) {
   const post = POSTS[params.slug];
   if (!post) notFound();
+
+  const topPicks = resolveBlogTopPicks(params.slug, post.topPicks, post.badge);
+  const topPicksSubtitle = getTopPicksSubtitle(params.slug, topPicks);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -183,16 +187,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           );
         })()}
 
-        <BlogTopPicks
-          picks={post.topPicks}
-          subtitle={
-            params.slug === 'best-water-filter-for-lead-removal'
-              ? 'Top 10 lead filters — #1–3 under-sink RO, #4–7 under-counter carbon, #8–10 pitchers'
-              : params.slug === 'what-water-filter-removes-pfas'
-                ? 'What water filter removes PFAS — top 3 NSF-certified picks'
-                : undefined
-          }
-        />
+        <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />
 
         <div className="wc-reading-prose" style={{ fontSize: 16 }}>
           {post.content}

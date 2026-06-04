@@ -1,14 +1,16 @@
 import type { TopPickRow } from '@/app/blog/post-types';
+import { getBlogTopPicksHeading } from '@/lib/blog-top-picks';
 
 type Props = {
   picks: TopPickRow[];
-  /** Short label under the TOP PICKS tab — defaults from post title context */
+  /** Short label under the tab — optional context line */
   subtitle?: string;
 };
 
 export function BlogTopPicks({ picks, subtitle }: Props) {
   const visible = picks.filter((p) => !p.outOfStock);
   const skipped = picks.length - visible.length;
+  const tabLabel = getBlogTopPicksHeading(visible.length);
 
   if (visible.length === 0) {
     return (
@@ -24,7 +26,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
 
   return (
     <div className="wc-blog-top-picks" role="region" aria-label="Product recommendations">
-      <div className="wc-blog-top-picks__tab">TOP PICKS</div>
+      <div className="wc-blog-top-picks__tab">{tabLabel}</div>
       {subtitle ? <p className="wc-blog-top-picks__subtitle">{subtitle}</p> : null}
       {skipped > 0 ? (
         <p className="wc-blog-top-picks__oos-note">
