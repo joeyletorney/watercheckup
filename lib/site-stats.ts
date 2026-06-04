@@ -88,14 +88,13 @@ export const SITE_COMPARISON_ROWS: {
 }[] = [
   { feature: 'Built by a real water expert', watercheckup: { type: 'yes', text: '30+ years' }, others: { type: 'no', text: 'Tech companies' } },
   { feature: 'Coverage', watercheckup: { type: 'yes', text: 'All 50 states, free' }, others: { type: 'no', text: 'Limited' } },
-  { feature: 'Search by ZIP code', watercheckup: { type: 'yes', text: '' }, others: { type: 'yes', text: 'Some' } },
+  { feature: 'Search by ZIP code', watercheckup: { type: 'yes', text: '' }, others: { type: 'warn', text: 'Some' } },
   { feature: 'Search by public water system', watercheckup: { type: 'yes', text: 'Nationwide' }, others: { type: 'warn', text: 'Limited' } },
   { feature: 'All 50 states', watercheckup: { type: 'yes', text: '' }, others: { type: 'warn', text: 'Most' } },
   { feature: 'Expert filter recommendations', watercheckup: { type: 'yes', text: 'Contaminant-matched' }, others: { type: 'no', text: 'Generic' } },
-  { feature: 'Published water expert', watercheckup: { type: 'yes', text: 'Joe Letorney' }, others: { type: 'no', text: '' } },
   { feature: 'WQA credentials', watercheckup: { type: 'yes', text: 'Level VI (former)' }, others: { type: 'no', text: '' } },
   { feature: '100% Free', watercheckup: { type: 'yes', text: '' }, others: { type: 'yes', text: 'Most' } },
-  { feature: 'EPA verified data', watercheckup: { type: 'yes', text: 'UCMR5 + SDWIS' }, others: { type: 'warn', text: 'Some' } },
+  { feature: 'EPA verified data', watercheckup: { type: 'yes', text: 'UCMR5 + SDWIS' }, others: { type: 'warn', text: 'Partial / mixed sources' } },
 ];
 
 export const CITY_EXPERT_TRUST_BADGE =

@@ -65,7 +65,6 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { href: '/contaminants', label: 'Contaminants guide' },
       { href: '/about', label: 'About us' },
       { href: '/utilities/claim', label: 'For public water systems' },
-      { href: '/sitemap.xml', label: 'Sitemap' },
     ],
   },
 ];

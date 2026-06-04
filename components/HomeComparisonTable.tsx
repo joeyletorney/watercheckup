@@ -9,7 +9,7 @@ const cellStyle = (type: 'yes' | 'no' | 'warn') => {
 export function HomeComparisonTable() {
   return (
     <section style={{ marginBottom: 96 }} aria-labelledby="wc-compare-heading">
-      <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
+      <div className="wc-home-section-eyebrow" style={{ marginBottom: 12 }}>
         VS OTHER SITES
       </div>
       <h2 id="wc-compare-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 22px' }}>

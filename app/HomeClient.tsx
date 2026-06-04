@@ -4260,7 +4260,7 @@ export default function WaterCheckup() {
 
         {/* Testimonials */}
         <div style={{ marginBottom: 96 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 20, textAlign: 'center' }}>WHAT PEOPLE ARE SAYING</div>
+          <div className="wc-home-section-eyebrow wc-home-section-eyebrow--center" style={{ marginBottom: 20 }}>WHAT PEOPLE ARE SAYING</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
             {[
               { quote: 'I had no idea my water had PFAS above the federal limit. Checked my ZIP, saw the report, ordered a filter that same night.', name: 'Sarah M.', location: 'Columbus, OH', stars: 5 },
@@ -4284,7 +4284,7 @@ export default function WaterCheckup() {
 
         {/* Why WaterCheckup */}
         <section style={{ marginBottom: 96 }} aria-labelledby="why-watercheckup-heading">
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>WHY WATERCHECKUP</div>
+          <div className="wc-home-section-eyebrow" style={{ marginBottom: 12 }}>WHY WATERCHECKUP</div>
           <h2 id="why-watercheckup-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 20px' }}>
             Why WaterCheckup
           </h2>
@@ -4319,7 +4319,7 @@ export default function WaterCheckup() {
 
         {/* Browse by city */}
         <div style={{ marginBottom: 96 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>BROWSE BY CITY</div>
+          <div className="wc-home-section-eyebrow" style={{ marginBottom: 4 }}>BROWSE BY CITY</div>
           <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>
             {[
@@ -4409,7 +4409,7 @@ export default function WaterCheckup() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
             {cityBrowseGrouped.map(({ region, cities }) => (
               <div key={region}>
-                <div style={{ fontSize: 13, fontWeight: 800, letterSpacing: 1.2, color: '#a8b4c4', marginBottom: 10 }}>{region}</div>
+                <div className="wc-home-region-label">{region}</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {cities.map(({ slug, name }) => {
                     const badge = cityBrowseBadge(slug);
@@ -4492,7 +4492,7 @@ export default function WaterCheckup() {
 
         {/* Blog teasers */}
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FROM THE BLOG</div>
+          <div className="wc-home-section-eyebrow" style={{ marginBottom: 16 }}>FROM THE BLOG</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
             {[
               { slug: 'is-pfas-in-my-tap-water', emoji: '☣️', tag: 'PFAS', title: 'Is PFAS in My Tap Water?', desc: 'PFAS found in 45% of US tap water. Here\'s how to check yours.', accent: '#ef4444' },

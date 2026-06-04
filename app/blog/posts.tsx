@@ -12,41 +12,111 @@ const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-os
 const AMAZON_TAG = 'watercheck20-20';
 // Shared top-3 pick sets used across blog posts
 const TOP_3_RO = [
-
   { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
+  { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'No installation — plug in for NSF-certified RO. Strong pick for renters who need PFAS and lead removal.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, badge: 'FOR RENTERS' },
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
 ];
-const TOP_3_LEAD = [
-  {
-    product: 'Clearly Filtered Water Pitcher',
-    brand: 'Clearly Filtered',
-    price: '~$90',
-    reason:
-      'NSF/ANSI 42 & 53 certified. Removes 99.5% of lead — the highest of any pitcher I\'ve tested. Best for renters or no-installation protection. Replaces every 100 gallons.',
-    link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
-    amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
-    badge: 'PITCHER',
-    outOfStock: true,
-  },
-  {
-    product: 'Waterdrop K19-S Countertop RO',
-    brand: 'Waterdrop',
-    price: '~$249',
-    reason:
-      'Zero installation required — just plug it in. NSF certified, removes lead, PFAS, and heavy metals. Perfect for renters or anyone who can\'t drill under the sink.',
-    link: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`,
-    badge: 'COUNTERTOP',
-  },
+/** Lead blog — #1–3 RO, #4–7 under-counter carbon, #8–10 pitchers (homepage-aligned). */
+const TOP_10_LEAD = [
   {
     product: 'Waterdrop G3P600',
     brand: 'Waterdrop',
     price: '~$439',
     reason:
-      'Top pick for homeowners. Tankless, 600 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.',
+      'Tankless under-sink RO — NSF 42/53/58/372. Removes 99%+ lead and PFAS; smart faucet TDS display. Top RO pick for homeowners.',
     link: WATERDROP,
     amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-SINK RO',
+  },
+  {
+    product: 'Aquasana SmartFlow RO',
+    brand: 'Aquasana',
+    price: '~$449',
+    reason:
+      'WQA Gold Seal plus NSF 42/53/58/401 — broadest certification stack in this price range. Removes 99%+ lead and microplastics.',
+    link: 'https://www.aquasana.com/under-sink-water-filters',
+    amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-SINK RO',
+  },
+  {
+    product: 'AquaTru Under-Sink RO',
+    brand: 'AquaTru',
+    price: '~$375',
+    reason:
+      'NSF 42/53/58 certified tankless RO. Quick-change filters swap in seconds — compact under-sink install without a storage tank.',
+    link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier',
+    amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-SINK RO',
+  },
+  {
+    product: 'Frizzlife MK99',
+    brand: 'Frizzlife',
+    price: '~$59',
+    reason:
+      'Under-sink carbon block (not RO). NSF/ANSI 53 for lead — quick-change cartridges, installs in minutes. Best-value under-counter pick.',
+    link: 'https://www.frizzlife.com/products/undersink-water-filter-system-mk99',
+    amazon: `https://www.amazon.com/dp/B07ZY9RVN2?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
+  },
+  {
+    product: 'Frizzlife SK99',
+    brand: 'Frizzlife',
+    price: '~$126',
+    reason:
+      'Dual-stage under-sink filter — NSF/ANSI 53 lead reduction (~99.9% on listings) without RO waste water. Quick-change twist-off filters.',
+    link: 'https://www.frizzlife.com/products/undersink-water-filter-system-sk99',
+    amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-COUNTER',
+  },
+  {
+    product: 'Epic Smart Shield',
+    brand: 'Epic Water Filters',
+    price: '~$129',
+    reason:
+      'Compact under-sink system — NSF/ANSI 53 for lead plus NSF/ANSI 401 for emerging contaminants. Strong non-RO option under the counter.',
+    link: 'https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system',
+    amazon: `https://www.amazon.com/gp/product/B076S1W5QY?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-COUNTER',
+  },
+  {
+    product: 'Aquasana Claryum 3-Stage',
+    brand: 'Aquasana',
+    price: '~$200',
+    reason:
+      'Three-stage under-sink carbon (no RO). NSF/ANSI 42, 53, and 401 on listings — lead, PFAS, and pharmaceuticals without RO waste water.',
+    link: 'https://www.aquasana.com/water-filters/under-sink/claryum-3-stage',
+    amazon: `https://www.amazon.com/dp/B00CX8R5Q8?tag=${AMAZON_TAG}`,
+    badge: 'UNDER-COUNTER',
+  },
+  {
+    product: 'ZeroWater 10-Cup Pitcher',
+    brand: 'ZeroWater',
+    price: '~$40',
+    reason:
+      'NSF/ANSI 42 & 53 certified for lead reduction. Includes a TDS meter. Best budget pitcher — no plumbing.',
+    link: 'https://www.zerowater.com/collections/pitchers',
+    amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`,
+    badge: 'PITCHER',
+  },
+  {
+    product: 'PUR PLUS 11-Cup Pitcher',
+    brand: 'PUR',
+    price: '~$42',
+    reason:
+      'NSF/ANSI 42 & 53 certified. Lead, arsenic, and uranium reduction on listings — widely available at big-box stores.',
+    link: 'https://www.pur.com/water-filters/pitcher-filters',
+    amazon: `https://www.amazon.com/dp/B09LKTLVNR?tag=${AMAZON_TAG}`,
+    badge: 'PITCHER',
+  },
+  {
+    product: 'Waterdrop Pitcher Filter',
+    brand: 'Waterdrop',
+    price: '~$40',
+    reason:
+      '7-stage pitcher filtration, 200-gallon filter life. NSF 53 listings for lead and heavy metals — no installation.',
+    link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
+    amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`,
+    badge: 'PITCHER',
   },
 ];
 const TOP_3_PITCHER = [
@@ -67,7 +137,7 @@ const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, text
 const LEAD_FILTER_FAQ = [
   {
     q: 'What is the best water filter for lead removal?',
-    a: 'The best water filter for lead removal depends on your situation. For under-sink installation, the Waterdrop G3P600 removes 99%+ of lead and is NSF 42/53/58 certified. For countertop use with no installation, the Waterdrop K19-S is ideal. For a pitcher, the Clearly Filtered Water Pitcher is NSF 42 and 53 certified and removes 99.5% of lead.',
+    a: 'For maximum lead removal, start with an under-sink RO (Waterdrop G3P600, Aquasana SmartFlow, or AquaTru). If you want lead reduction without RO, our under-counter picks are Frizzlife MK99 and SK99, Epic Smart Shield, and Aquasana Claryum 3-Stage — all NSF/ANSI 53 for lead on certified listings. Renters can use NSF 53 pitchers: ZeroWater, PUR PLUS, or Waterdrop pitcher filters.',
   },
   {
     q: 'Do all water filters remove lead?',
@@ -191,17 +261,17 @@ export const POSTS: Record<string, Post> = {
   },
 
   'best-water-filter-for-lead-removal': {
-    title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
-    excerpt: 'Only NSF 53-certified filters actually remove lead. We ranked the top 3 by price, setup, and test results — pitcher, countertop, and under-sink.',
+    title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
+    excerpt: 'Top 10 NSF 53 lead filters: 3 under-sink RO, 4 under-counter carbon (Frizzlife, Epic, Aquasana), and 3 pitcher picks.',
     seo: {
-      title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
+      title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
       description:
-        'Water filters that remove lead must be NSF 53 certified. 3 tested picks — pitcher, countertop, under-sink — ranked by price. Free ZIP check for your tap water.',
+        'Best water filters for lead: top 3 RO, 4 under-counter carbon (Frizzlife, Epic), 3 NSF 53 pitchers. Ranked by type. Free ZIP check.',
       canonical: 'https://watercheckup.com/blog/best-water-filter-for-lead-removal',
       openGraph: {
-        title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
+        title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
         description:
-          'Water filters that remove lead must be NSF 53 certified. 3 tested picks — pitcher, countertop, under-sink — ranked by price. Free ZIP check for your tap water.',
+          'Best water filters for lead: top 3 RO, 4 under-counter carbon (Frizzlife, Epic), 3 NSF 53 pitchers. Ranked by type. Free ZIP check.',
       },
     },
     date: '2026-03-29',
@@ -210,7 +280,7 @@ export const POSTS: Record<string, Post> = {
     readTime: '10 min read',
     badge: 'Lead',
     badgeColor: '#d97706',
-    topPicks: TOP_3_LEAD,
+    topPicks: TOP_10_LEAD,
     faq: [...LEAD_FILTER_FAQ],
     content: React.createElement(React.Fragment, null,
       React.createElement('div', { style: calloutStyle },
@@ -268,36 +338,17 @@ export const POSTS: Record<string, Post> = {
         'If a filter\'s box doesn\'t say "NSF/ANSI 53 — Lead Reduction" somewhere on it, assume it doesn\'t remove lead. Marketing language like "reduces contaminants" means nothing without the NSF stamp.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Joe\'s Top Picks: Best NSF-Certified Filters for Lead Removal'),
-      React.createElement('p', { style: { ...pStyle, fontStyle: 'italic', color: '#a8b4c4' } },
-        'Recommendations from Joe Letorney, 30-year water treatment specialist'
+      React.createElement('h2', { style: h2Style }, 'Under-Sink Carbon vs. Under-Sink RO for Lead'),
+      React.createElement('p', { style: pStyle },
+        'You do not need reverse osmosis to reduce lead at the kitchen tap. ',
+        React.createElement('strong', { style: strongStyle }, 'Under-sink carbon filters'),
+        ' certified to NSF/ANSI 53 — picks #4–7 in our Top Picks box (Frizzlife MK99, SK99, Epic Smart Shield, Aquasana Claryum) — install under the counter and target lead without RO waste water. Picks #1–3 are under-sink RO for maximum removal; #8–10 are pitcher options for renters.'
       ),
 
-      React.createElement('h3', { style: h3Style }, '🥇 Pitcher — Clearly Filtered Water Pitcher'),
       React.createElement('p', { style: pStyle },
-        'NSF/ANSI 42 & 53 certified. Removes 99.5% of lead — the highest of any pitcher I\'ve tested. Best choice for renters or anyone who wants no-installation protection. Replaces every 100 gallons.'
-      ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
-        '👉 ',
-        React.createElement('a', { href: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
-      ),
-
-      React.createElement('h3', { style: h3Style }, '🥇 Countertop — Waterdrop K19-S Countertop RO'),
-      React.createElement('p', { style: pStyle },
-        'Zero installation required — just plug it in. NSF certified, removes lead, PFAS, and heavy metals. Perfect for renters or anyone who can\'t drill under the sink.'
-      ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
-        '👉 ',
-        React.createElement('a', { href: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
-      ),
-
-      React.createElement('h3', { style: h3Style }, '🥇 Under-Counter — Waterdrop G3P600'),
-      React.createElement('p', { style: pStyle },
-        'My top pick for homeowners. Tankless, 600 GPD, NSF 42/53/58 certified. Removes 99%+ lead and PFAS with a smart faucet TDS display. Takes about an hour to install.'
-      ),
-      React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
-        '👉 ',
-        React.createElement('a', { href: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
+        'Our ranked NSF 53/58 picks (10 options — 3 RO, 4 under-counter carbon, 3 pitchers) are in the ',
+        React.createElement('strong', { style: strongStyle }, 'Top Picks'),
+        ' box at the top of this guide — from Joe Letorney, 30-year water treatment specialist.'
       ),
 
       React.createElement('p', { style: pStyle },

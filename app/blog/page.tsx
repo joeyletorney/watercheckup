@@ -221,9 +221,9 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Water Filters That Remove Lead — Best 3 Picks (2025–2026)',
+    title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
     excerpt:
-      'Lead in tap water is more common than you think. See which filters actually remove it — based on EPA data and independent testing.',
+      'Ten NSF 53/58 picks — 3 under-sink RO, 4 under-counter carbon, 3 pitchers for lead.',
     date: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',

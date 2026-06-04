@@ -8,6 +8,7 @@ import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
 import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
+import { BlogTopPicks } from '@/components/BlogTopPicks';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -182,6 +183,17 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           );
         })()}
 
+        <BlogTopPicks
+          picks={post.topPicks}
+          subtitle={
+            params.slug === 'best-water-filter-for-lead-removal'
+              ? 'Top 10 lead filters — #1–3 under-sink RO, #4–7 under-counter carbon, #8–10 pitchers'
+              : params.slug === 'what-water-filter-removes-pfas'
+                ? 'What water filter removes PFAS — top 3 NSF-certified picks'
+                : undefined
+          }
+        />
+
         <div className="wc-reading-prose" style={{ fontSize: 16 }}>
           {post.content}
         </div>
@@ -210,54 +222,6 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             ))}
           </section>
         )}
-
-        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 96, position: 'relative' }}>
-          <div style={{ position: 'absolute', top: -1, left: 20, background: '#0891b2', color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: '0 0 6px 6px' }}>
-            TOP PICKS
-          </div>
-          {(() => { const skipped = post.topPicks.filter((p: any) => p.outOfStock).length; return skipped > 0 ? (
-            <div style={{ margin: '12px 0', padding: '7px 12px', background: 'rgba(234,179,8,0.08)', border: '1px solid rgba(234,179,8,0.25)', borderRadius: 7, fontSize: 12, color: '#fde68a' }}>
-              Our top pick is currently out of stock — showing the next best NSF-certified option.
-            </div>
-          ) : null; })()}
-          <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {post.topPicks.filter((p: any) => !p.outOfStock).map((pick: any, i: number) => {
-              const showDirect = pick.brand === 'Waterdrop';
-              const amazonPrimary = !showDirect;
-              return (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', padding: '14px 16px', background: '#fff', borderRadius: 10, border: i === 0 ? '1px solid #7dd3fc' : '1px solid #e2e8f0' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 180 }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: '#64748b', minWidth: 20 }}>#{i + 1}</div>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                      <div style={{ fontSize: 15, fontWeight: 800, color: '#0f172a' }}>{pick.product}</div>
-                      {pick.badge && <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1, background: i === 0 ? '#0891b2' : '#1e3a5f', color: '#fff', padding: '2px 7px', borderRadius: 4 }}>{pick.badge}</span>}
-                    </div>
-                    <div style={{ fontSize: 13, color: '#64748b', marginTop: 2 }}>{pick.brand} &nbsp;·&nbsp; {pick.price}</div>
-                    <div style={{ fontSize: 13, color: '#475569', marginTop: 4, lineHeight: 1.5 }}>{pick.reason}</div>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-                  {showDirect ? (
-                    <a href={pick.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
-                      Buy Direct →
-                    </a>
-                  ) : (
-                  <a
-                    href={pick.amazon}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ display: 'block', padding: '8px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none', whiteSpace: 'nowrap' }}
-                  >
-                    Amazon →
-                  </a>
-                  )}
-                </div>
-              </div>
-              );
-            })}
-          </div>
-        </div>
 
         <div className="wc-reading-inset" style={{ marginTop: 96 }}>
           <div className="wc-reading-inset__label">MORE GUIDES</div>

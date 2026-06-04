@@ -137,7 +137,7 @@ export function TrustedFilterCategories({ productsById }: Props) {
 
   return (
     <div style={{ marginBottom: 96 }}>
-      <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 6 }}>
+      <div className="wc-home-section-eyebrow" style={{ marginBottom: 6 }}>
         MOST TRUSTED FILTERS
       </div>
       <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.55, margin: '0 0 18px' }}>

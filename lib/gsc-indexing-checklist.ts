@@ -1,17 +1,24 @@
 import { gscIndexingUrl } from './site-url';
 
-/** Paths for GSC URL Inspection — ordered by Performance → Pages impressions. */
+/**
+ * Request indexing once per URL in Search Console → URL Inspection.
+ * Re-request only after meaningful content or metadata changes.
+ * Ordered by current impression momentum (Gaithersburg first, Jun 2026).
+ */
 export const GSC_INDEXING_PATHS = [
+  '/water/gaithersburg',
+  '/blog/best-water-filter-gaithersburg-md',
   '/blog/best-water-filter-for-lead-removal',
   '/water/san-antonio',
   '/water/new-york',
   '/blog/what-water-filter-removes-pfas',
   '/blog/reverse-osmosis-pros-and-cons',
-  '/water/gaithersburg',
   '/water/phoenix',
   '/water/houston',
   '/rankings',
   '/worst-cities',
+  '/best-cities',
+  '/worst-pfas-cities',
 ] as const;
 
 /** Full https:// URLs for Search Console → URL Inspection → Request indexing */
