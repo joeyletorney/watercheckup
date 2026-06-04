@@ -3,7 +3,12 @@
 import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import { FOOTER_COLUMNS, FOOTER_LEGAL_LINKS } from '@/lib/footer-links';
-import { SITE_FOOTER_AFFILIATE, SITE_FOOTER_DISCLAIMER, SITE_FOOTER_TAGLINE } from '@/lib/site-stats';
+import {
+  SITE_FOOTER_AFFILIATE,
+  SITE_FOOTER_DISCLAIMER,
+  SITE_FOOTER_SCORE_DISCLAIMER,
+  SITE_FOOTER_TAGLINE,
+} from '@/lib/site-stats';
 
 const linkStyle: CSSProperties = {
   fontSize: 14,
@@ -122,12 +127,22 @@ export function SiteFooter() {
             flexDirection: 'column',
             alignItems: 'center',
             gap: 6,
-            maxWidth: 520,
+            maxWidth: 640,
             margin: '20px auto 0',
           }}
         >
           <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
             {SITE_FOOTER_DISCLAIMER}
+          </p>
+          <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
+            {SITE_FOOTER_SCORE_DISCLAIMER}{' '}
+            <Link href="/methodology" style={{ color: '#94a3b8', textDecoration: 'underline' }}>
+              Methodology
+            </Link>
+            .
+          </p>
+          <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
+            Confirm with your utility’s Consumer Confidence Report or a certified lab test before major decisions.
           </p>
           <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
             {SITE_FOOTER_AFFILIATE}

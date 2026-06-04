@@ -4,6 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CityRankingList } from '@/components/CityRankingList';
 import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildBestCitiesBySafetyScore } from '@/lib/city-rankings';
+import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 
 export const metadata: Metadata = {
   title: '10 Best Cities for Tap Water Quality (2026 Safety Score) | WaterCheckup',
@@ -29,7 +30,7 @@ export default function BestCitiesPage() {
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
             10 best cities for tap water quality
           </h1>
-          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 14px' }}>
             Among WaterCheckup&apos;s tracked city guides, these metros score highest on our exposure profile (88 =
             best possible — no municipal supply is perfect). &quot;Best&quot; here means fewer UCMR5 MCL flags and lighter
             contaminant profiles in our database — not a guarantee for every home. Older plumbing can still add lead at
@@ -39,6 +40,7 @@ export default function BestCitiesPage() {
             </Link>
             .
           </p>
+          <ScoreGradeDisclaimer />
         </div>
 
         <CityRankingList

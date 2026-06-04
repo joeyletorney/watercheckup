@@ -24,6 +24,7 @@ import { computeCityWaterScore, concernLevelFromScore, getCityKeyFinding } from 
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 import { buildCityContaminantDisplay } from '@/lib/city-contaminant-display';
+import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { CityContaminantTable } from '@/components/CityContaminantTable';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
@@ -405,10 +406,13 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>
+                      WATERCHECKUP SAFETY SCORE
+                    </div>
                     <div style={{ fontSize: 28, fontWeight: 900, color: ws.gradeColor, lineHeight: 1 }}>Grade: {ws.grade}</div>
                     <div style={{ fontSize: 13, color: ws.scoreColor, fontWeight: 600, marginTop: 4 }}>{ws.label}</div>
-                    <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 6 }}>
+                    <ScoreGradeDisclaimer style={{ marginTop: 10, maxWidth: 420 }} />
+                    <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 8 }}>
                       Same score for your ZIP —{' '}
                       <Link href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>look up your ZIP</Link> for the full contaminant report
                     </div>

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
+import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 import { quizHrefFromReport } from '@/lib/results-quiz-link';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
@@ -273,14 +274,17 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap', padding: '20px 24px', background: '#071828', border: `2px solid ${sc}30`, borderRadius: 16, marginBottom: 20 }}>
           <ScoreDial score={cappedScore} grade={letterGrade} />
           <div style={{ flex: 1, minWidth: 200 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>WATER SAFETY SCORE</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>
+              WATERCHECKUP SAFETY SCORE
+            </div>
             <div style={{ fontSize: 20, fontWeight: 800, color: sc, marginBottom: 6 }}>{scoreLabel}</div>
             <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>{data.summary}</p>
             {data.pfasSummary && (
               <p style={{ fontSize: 13, color: '#f59e0b', lineHeight: 1.6, margin: '6px 0 0' }}>{data.pfasSummary}</p>
             )}
-            <p style={{ fontSize: 13, color: '#94a3b8', margin: '8px 0 0', lineHeight: 1.5 }}>
-              Max score is 88/88 — all municipal water contains chlorine and disinfection byproducts not captured in EPA records.
+            <ScoreGradeDisclaimer style={{ marginTop: 10 }} />
+            <p style={{ fontSize: 12, color: '#64748b', margin: '8px 0 0', lineHeight: 1.5 }}>
+              Scores cap at 88/88 — even clean supplies have chlorine and disinfection byproducts federal records do not fully capture.
             </p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
               <Link

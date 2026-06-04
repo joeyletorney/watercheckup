@@ -52,9 +52,12 @@ export const SITE_HOME_META_DESCRIPTION =
 export const SITE_FOOTER_TAGLINE =
   'WaterCheckup — Free tap water reports by ZIP. Built by a real water expert, not a tech company.';
 
-/** Short sitewide disclaimers — full detail lives on /methodology and near filter picks. */
+/** Short sitewide disclaimers — full detail on /methodology; score context on report pages. */
 export const SITE_FOOTER_DISCLAIMER =
-  'Reports use EPA public data and may lag 1–3 years. For decisions that matter, confirm with your utility or a certified lab test.';
+  'For informational purposes only — not legal, medical, or utility compliance advice. Violation and monitoring figures come from EPA public databases (SDWIS, UCMR5, etc.) and may lag real events by months.';
+
+export const SITE_FOOTER_SCORE_DISCLAIMER =
+  'Letter grades and the 0–88 WaterCheckup Safety Score are our independent index (hardness, PFAS, health guidelines, and compliance signals) — not your water system’s official rating or an EPA grade for your town.';
 
 export const SITE_FOOTER_AFFILIATE =
   'Amazon Associates participant — some filter links are affiliate (no extra cost). Recommendations follow NSF certifications, not paid placements.';
@@ -75,7 +78,7 @@ export const WHY_WATERCHECKUP_CARDS = [
   {
     icon: '👨‍🔬',
     title: 'Real expert behind every recommendation',
-    body: 'WaterCheckup was built by a 30-year water treatment veteran and published industry author. Not a tech company. Not an algorithm. A real water expert.',
+    body: 'WaterCheckup was built by a 30-year water treatment veteran and published industry author.',
   },
 ] as const;
 

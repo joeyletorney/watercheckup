@@ -5,6 +5,7 @@ import { CityRankingList } from '@/components/CityRankingList';
 import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { SearchDemandCities } from '@/components/SearchDemandCities';
+import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 
 export const metadata: Metadata = {
   title: '25 Worst Cities for Tap Water 2026 — Safety Grades | WaterCheckup',
@@ -40,11 +41,12 @@ export default function WorstCitiesPage() {
             lead, DBP, and chromium flags in our profiles add smaller penalties. This is not your ZIP&apos;s live SDWIS
             compliance score.
           </p>
-          <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.65, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.65, margin: '0 0 14px' }}>
             Only tracked metros with WaterCheckup city guides ({cities.length} shown). For PFAS-only leaderboards see{' '}
             <Link href="/worst-water" style={{ color: '#22d3ee' }}>peak PFAS systems</Link> and{' '}
             <Link href="/worst-pfas-cities" style={{ color: '#22d3ee' }}>PFAS MCL cities</Link>.
           </p>
+          <ScoreGradeDisclaimer />
         </div>
 
         <SearchDemandCities title="Also ranking well in Google search" compact />

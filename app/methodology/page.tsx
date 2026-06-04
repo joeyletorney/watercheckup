@@ -146,6 +146,16 @@ export default function MethodologyPage() {
           WaterCheckup is an independent water quality information service. We are not affiliated with the EPA, the EWG, or any public water system. We earn revenue through affiliate links to water filters — our recommendations are based on certifications and third-party test data, not paid placements. The affiliate relationship does not influence which data we surface or how we calculate scores.
         </p>
 
+        <h2>Legal notice</h2>
+        <div className="wc-method-warn">
+          <p style={{ margin: '0 0 12px' }}>
+            WaterCheckup reports are provided for general information only. They are not legal advice, medical advice, engineering sign-off, or a statement of compliance by your public water system. EPA violation and monitoring data are reproduced from federal public records; the 0–88 score and A–F letter grades are calculated by WaterCheckup using our published methodology and may differ from how a utility describes its own compliance status.
+          </p>
+          <p style={{ margin: 0 }}>
+            A low grade does not mean every tap in a city is unsafe, and a high grade does not mean water is contaminant-free at your home. Plumbing, service lines, and neighborhood-level variation are not fully captured. Utilities and residents should rely on official Consumer Confidence Reports, EPA sources linked in each report, and certified laboratory testing for decisions that affect health or property.
+          </p>
+        </div>
+
         <div style={{ marginTop: 72, paddingTop: 28, borderTop: '1px solid #e2e8f0', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <Link href="/" style={{ fontWeight: 700, textDecoration: 'none', fontSize: 14 }}>← Check my water</Link>
           <Link href="/faq" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>FAQ →</Link>

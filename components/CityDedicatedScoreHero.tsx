@@ -1,4 +1,5 @@
 import { computeCityWaterScore, type CityPfasSnapshot, type ScoreWaterProfile } from '@/lib/city-water-score';
+import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 
 type Stat = { label: string; value: string; color: string };
 
@@ -35,11 +36,12 @@ export function CityDedicatedScoreHero({ urgency, issues, pfas, waterProfile, su
         <div style={{ fontSize: 16, fontWeight: 800, color: ws.gradeColor }}>{ws.grade}</div>
       </div>
       <div style={{ flex: 1, minWidth: 200 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>
+          WATERCHECKUP SAFETY SCORE
+        </div>
         <div style={{ fontSize: 18, fontWeight: 800, color: ws.scoreColor, marginBottom: 6 }}>{ws.label}</div>
         <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 6px' }}>{summary}</p>
-        <p style={{ fontSize: 12, color: '#94a3b8', lineHeight: 1.5, margin: 0 }}>
-          Grade reflects EPA compliance plus hardness, PFAS detections, and metals above health guidelines — not legal limits alone.
-        </p>
+        <ScoreGradeDisclaimer style={{ marginTop: 8 }} />
       </div>
       {stats && stats.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
