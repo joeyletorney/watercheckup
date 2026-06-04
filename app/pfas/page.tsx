@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { clearlyFilteredDirectUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 
 export const metadata: Metadata = {
   title: 'PFAS Forever Chemicals in Tap Water — 2026 Contamination Guide',
@@ -95,8 +97,8 @@ const FILTERS: FilterPick[] = [
     badgeColor: '#059669',
     why: 'The only pitcher certified to remove PFAS at 99.9%. NSF certified against 365+ contaminants. Best option for renters or anyone who can\'t install an under-sink system.',
     cert: 'NSF/ANSI 42, 53, 244, 401, P473',
+    directLink: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
     amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20',
-    outOfStock: true,
   },
 ];
 
@@ -237,8 +239,11 @@ export default function PfasPage() {
                     {f.brand === 'Waterdrop' && f.directLink ? (
                       <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
                         style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>Waterdrop.com →</a>
+                    ) : isClearlyFilteredBrand(f.brand) ? (
+                      <a href={clearlyFilteredDirectUrl(f.directLink)} target="_blank" rel="noopener noreferrer sponsored"
+                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#059669,#10b981)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>ClearlyFiltered.com →</a>
                     ) : (
-                      <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
+                      <a href={normalizeAmazonUrl(f.amazon) ?? f.amazon} target="_blank" rel="noopener noreferrer sponsored"
                         style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
                     )}
                   </div>

@@ -79,7 +79,6 @@ const PITCHER_PICKS = [
     link: "https://www.clearlyfiltered.com/products/filtered-water-pitcher",
     amazon: "https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20",
     badge: "BEST FOR PFAS & LEAD",
-    outOfStock: true,
   },
   {
     product: "Waterdrop Pitcher Filter",
@@ -88,7 +87,7 @@ const PITCHER_PICKS = [
     reason:
       "7-stage filtration, 200-gallon life. Removes chlorine, PFOA/PFOS, heavy metals. No installation.",
     link: "https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb",
-    amazon: "https://www.amazon.com/dp/B01JSJFBNE?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B07C3P2RZP?tag=watercheck20-20",
     badge: "BEST VALUE",
   },
   {

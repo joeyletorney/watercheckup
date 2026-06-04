@@ -22,7 +22,7 @@ const TOP_3_WHOLE_HOUSE = [
 const TOP_3_UNDERSINK = [
 
   { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
-  { product: 'Frizzlife SK99 Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'NSF 42/53/401 certified. Removes lead at 99.9%, PFAS, chloramine, cysts — without a full RO system. Quick-change twist-off cartridges, no tools. Best budget under-sink.', link: 'https://frizzlife.com/products/sk99', amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
+  { product: 'Frizzlife SK99 Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'NSF 42/53/401 certified. Removes lead at 99.9%, PFAS, chloramine, cysts — without a full RO system. Quick-change twist-off cartridges, no tools. Best budget under-sink.', link: 'https://frizzlife.com/products/sk99', amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
 ];
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };

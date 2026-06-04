@@ -22,6 +22,8 @@ import {
 } from '@/lib/site-stats';
 import {
   isWaterdropBrand,
+  clearlyFilteredDirectUrl,
+  isClearlyFilteredBrand,
   resolveAffiliateAmazonUrl,
   WATERDROP_DIRECT_BY_ID,
 } from '@/lib/waterdrop-buy';
@@ -123,12 +125,12 @@ const PRODUCTS: any[] = [
   { id:47, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop G3P600', brand:'Waterdrop', price:439, filterCostPerYear:150, rating:4.8, reviews:4200, gpd:600, stages:8, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['Smart LED faucet','600 GPD fast flow','Best value tankless'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, expertPick:true, expertReason:'Tankless under-sink RO with smart LED faucet and twist-off cartridges. NSF 42/53/58/372 certified — removes 99%+ PFAS and lead. Best value Waterdrop pick for most homeowners.', img:'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p600-vis.png?v=1762268602', amazon:`https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}` },
   { id:5, cat:'undersink', catLabel:'Under-Sink RO', name:'Aquasana SmartFlow RO', brand:'Aquasana', price:449, filterCostPerYear:145, rating:4.7, reviews:2100, gpd:50, stages:5, cert:['WQA Gold Seal','NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58','NSF/ANSI 401'], certColor:'#d97706', removes:['90+ contaminants','Fluoride 90%','Lead >99%','Microplastics','PFAS'], bestFor:['PFAS','Lead','Fluoride','Microplastics'], pros:['Most certified','90 contaminants'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, expertPick:true, expertReason:'Broad third-party listings (WQA Gold Seal plus NSF/ANSI 42, 53, 58, and 401). Removes microplastics and 90+ contaminants. Strong choice if you want wide certification coverage for PFAS and more.', img:'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400', amazon:`https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}` },
   { id:26, cat:'undersink', catLabel:'Under-Sink RO', name:'Waterdrop D6', brand:'Waterdrop', price:399, filterCostPerYear:140, rating:4.7, reviews:3200, gpd:600, stages:7, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Fluoride','TDS'], bestFor:['PFAS','Lead','Arsenic','Fluoride'], pros:['600 GPD fast fill','Quick-change twist-off','No tank needed'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://www.waterdropfilter.com/cdn/shop/files/wd-product-contrast-wd-d6-b-img1.png?v=1762268602', amazon:`https://www.amazon.com/dp/B08746G2XX?tag=${TAG}` },
-  { id:27, cat:'undersink', catLabel:'Under-Sink RO', name:'Frizzlife PD1000-TAM4', brand:'Frizzlife', price:799, filterCostPerYear:160, rating:4.8, reviews:890, gpd:1000, stages:5, cert:['NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Chromium-6','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['1000 GPD fastest fill','Quick-change filters','Tankless compact'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/PD1000_81efd50c-480c-4ee6-b809-c2312525621a.png?v=1757987339', amazon:`https://www.amazon.com/dp/B0BK8ZRY2K?tag=${TAG}` },
+  { id:27, cat:'undersink', catLabel:'Under-Sink RO', name:'Frizzlife PD1000-TAM4', brand:'Frizzlife', price:799, filterCostPerYear:160, rating:4.8, reviews:890, gpd:1000, stages:5, cert:['NSF/ANSI 58','NSF/ANSI 372'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Arsenic','Chromium-6','TDS'], bestFor:['PFAS','Lead','Arsenic','Chromium-6'], pros:['1000 GPD fastest fill','Quick-change filters','Tankless compact'], diyDiff:'Medium', situations:['homeowner','family'], tankless:true, quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/PD1000_81efd50c-480c-4ee6-b809-c2312525621a.png?v=1757987339', amazon:`https://www.amazon.com/dp/B083DFW1QS?tag=${TAG}`, brandLink:'https://frizzlife.com/products/pd1000-tam4' },
   { id:28, cat:'undersink', catLabel:'Under-Sink RO', name:'AquaTru Under-Sink RO', brand:'AquaTru', price:375, filterCostPerYear:120, rating:4.6, reviews:1100, gpd:50, stages:4, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 58'], certColor:'#22d3ee', removes:['PFAS >99%','Lead >99%','Nitrates','Chromium-6','Fluoride'], bestFor:['PFAS','Lead','Nitrate','Fluoride'], pros:['Quick-change filters','Under-sink compact','No tank'], diyDiff:'Medium', situations:['homeowner','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0758/4550/1142/files/AQT-PDP-2000x2000-Undersink-1-2.webp?v=1758041969', amazon:`https://www.amazon.com/dp/B0GGTSFZMY?tag=${TAG}` },
 
   // ── UNDER-SINK FILTER (non-RO) — quick-change ───────────────────────────────
-  { id:23, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife SK99', brand:'Frizzlife', price:126, filterCostPerYear:60, rating:4.7, reviews:4200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','Chlorine >99%','PFAS','Chloramine','Cysts'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Quick-change twist-off','No tank needed','Under-sink compact'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Dual quick-change filter cartridges — no tools, no mess. Removes lead at 99.9% and PFAS without the cost of a full RO system. Strong value among non-RO under-sink options.', img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/SK99_85cce087-8e10-4b22-8462-605ed3b2ae72.png?v=1757989183', amazon:`https://www.amazon.com/dp/B084HW5BMT?tag=${TAG}` },
-  { id:24, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife MK99', brand:'Frizzlife', price:59, filterCostPerYear:45, rating:4.6, reviews:6800, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead >99%','Chlorine >99%','Chloramine','Cysts','Heavy metals'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Best-value quick-change','Under 2 min install','Compact design'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/MK99-B.png?v=1757994240', amazon:`https://www.amazon.com/dp/B07ZY9RVN2?tag=${TAG}` },
+  { id:23, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife SK99', brand:'Frizzlife', price:126, filterCostPerYear:60, rating:4.7, reviews:4200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','Chlorine >99%','PFAS','Chloramine','Cysts'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Quick-change twist-off','No tank needed','Under-sink compact'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Dual quick-change filter cartridges — no tools, no mess. Removes lead at 99.9% and PFAS without the cost of a full RO system. Strong value among non-RO under-sink options.', img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/SK99_85cce087-8e10-4b22-8462-605ed3b2ae72.png?v=1757989183', amazon:`https://www.amazon.com/dp/B08NDYVZV5?tag=${TAG}`, brandLink:'https://frizzlife.com/products/sk99-new' },
+  { id:24, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Frizzlife MK99', brand:'Frizzlife', price:59, filterCostPerYear:45, rating:4.6, reviews:6800, gpd:null, stages:2, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead >99%','Chlorine >99%','Chloramine','Cysts','Heavy metals'], bestFor:['Lead','Chlorine','Chloramine','Cysts'], pros:['Best-value quick-change','Under 2 min install','Compact design'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, img:'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/MK99-B.png?v=1757994240', amazon:`https://www.amazon.com/dp/B07MFYQBTX?tag=${TAG}`, brandLink:'https://frizzlife.com/products/mk99' },
   { id:25, cat:'undersink-filter', catLabel:'Under-Sink Filter', name:'Epic Smart Shield', brand:'Epic Water Filters', price:129, filterCostPerYear:70, rating:4.6, reviews:1400, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 401'], certColor:'#22d3ee', removes:['Lead >99.9%','PFAS >99%','Chlorine','Arsenic','Microplastics'], bestFor:['PFAS','Lead','Arsenic','Microplastics'], pros:['PFAS removal without RO','Quick-change filter','USA made media'], diyDiff:'Easy', situations:['homeowner','renter','family'], quickChange:true, expertPick:true, expertReason:'Removes PFAS at 99%+ without a full RO system — uncommon for a non-RO filter. NSF/ANSI 401 certified for emerging contaminants on listings. Good option if you want PFAS coverage without full RO.', img:'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801', amazon:`https://www.amazon.com/gp/product/B076S1W5QY?tag=${TAG}` },
 
   // ── COUNTERTOP RO — no installation needed ──────────────────────────────────
@@ -140,7 +142,7 @@ const PRODUCTS: any[] = [
 
   // ── COUNTERTOP FILTER (non-RO) ───────────────────────────────────────────────
   // ── PITCHER FILTERS ─────────────────────────────────────────────────────────
-  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Strong published reduction claims for PFAS on certified listings, plus broad contaminant coverage. Popular with reviewers for lead and arsenic. A solid pick for renters and dorms if listings match your needs.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', outOfStock: true, brandLink:'https://www.clearlyfiltered.com/products/filtered-water-pitcher' },
+  { id:9, cat:'pitcher', catLabel:'Pitcher Filter', name:'Clearly Filtered 3.5L Pitcher', brand:'Clearly Filtered', price:90, filterCostPerYear:140, rating:4.7, reviews:8200, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53','NSF/ANSI 244','NSF/ANSI 401','NSF/ANSI P473'], certColor:'#22d3ee', removes:['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Chromium-6','365+ contaminants'], bestFor:['PFAS','Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes PFAS — rare for pitcher','365+ contaminants','Best-in-class pitcher'], diyDiff:'None', situations:['renter','dorm','family','travel'], expertPick:true, expertReason:'Strong published reduction claims for PFAS on certified listings, plus broad contaminant coverage. Popular with reviewers for lead and arsenic. A solid pick for renters and dorms if listings match your needs.', img:'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995', brandLink:'https://www.clearlyfiltered.com/products/filtered-water-pitcher' },
   { id:10, cat:'pitcher', catLabel:'Pitcher Filter', name:'ZeroWater 10-Cup Pitcher', brand:'ZeroWater', price:40, filterCostPerYear:100, rating:4.5, reviews:31000, gpd:null, stages:5, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Chromium 100%','TDS to 0','Mercury','Arsenic'], bestFor:['Lead','Arsenic','Chromium-6','Uranium'], pros:['Removes TDS to 0','Includes TDS meter','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://shop.culligan.com/cdn/shop/files/UMC_10C_White_Zoom_IAPMO.jpg?v=1769531157', amazon:`https://www.amazon.com/dp/B0DWTTYTQN?tag=${TAG}` },
   { id:11, cat:'pitcher', catLabel:'Pitcher Filter', name:'PUR PLUS 11-Cup Pitcher', brand:'PUR', price:42, filterCostPerYear:110, rating:4.5, reviews:22000, gpd:null, stages:3, cert:['NSF/ANSI 42','NSF/ANSI 53'], certColor:'#22d3ee', removes:['Lead 100%','Arsenic 100%','Uranium 100%','PFNA 96%'], bestFor:['Lead','Arsenic','Uranium','Chromium-6'], pros:['No install','Portable','Budget-friendly'], diyDiff:'None', situations:['renter','dorm','family','travel'], img:'https://www.pur.com/wp-content/uploads/product_ppt111w_pour_digital.png', amazon:`https://www.amazon.com/dp/B09LKTLVNR?tag=${TAG}` },
   // ── FAUCET MOUNT ────────────────────────────────────────────────────────────
@@ -180,7 +182,7 @@ const TRUSTED_PRODUCTS_BY_ID = Object.fromEntries(
       price: p.price,
       cert: p.cert as string[] | undefined,
       catLabel: p.catLabel as string | undefined,
-      amazon: p.outOfStock || isWaterdropBrand(p.brand)
+      amazon: p.outOfStock || isWaterdropBrand(p.brand) || isClearlyFilteredBrand(p.brand)
         ? undefined
         : (p.amazon as string | undefined),
       brandLink: p.brandLink as string | undefined,
@@ -576,8 +578,10 @@ function isAmazonProductUrl(url: string | undefined): boolean {
 // ─────────────────────────────────────────────────────────────────────────────
 function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   const isWaterdrop = isWaterdropBrand(p.brand);
+  const isClearlyFiltered = isClearlyFilteredBrand(p.brand);
   const directUrl = isWaterdrop ? WATERDROP_DIRECT_BY_ID[p.id] : null;
   const brandUrl = (p.brandLink as string | undefined) ?? null;
+  const clearlyUrl = isClearlyFiltered ? clearlyFilteredDirectUrl(brandUrl ?? undefined) : null;
   const amazonUrl = p.outOfStock
     ? null
     : resolveAffiliateAmazonUrl(p.brand, isAmazonProductUrl(p.amazon) ? p.amazon : undefined);
@@ -598,11 +602,20 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
     );
   }
 
-  if (brandUrl && !amazonUrl && !directUrl) {
+  if (isClearlyFiltered && clearlyUrl) {
+    return (
+      <a href={clearlyUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+        style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(5,150,105,0.45),rgba(16,185,129,0.3))', color: '#f1f5f9' }}>
+        ClearlyFiltered.com →
+      </a>
+    );
+  }
+
+  if (brandUrl && !amazonUrl && !directUrl && !isClearlyFiltered) {
     return (
       <a href={brandUrl} target="_blank" rel="noopener noreferrer" className="wc-buy"
         style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(217,119,6,0.35),rgba(245,158,11,0.2))', color: '#f1f5f9' }}>
-        Pentair.com →
+        Brand site →
       </a>
     );
   }
@@ -888,7 +901,7 @@ function PFASAwarenessBanner() {
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer" style={{ padding: '5px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Best RO for PFAS →</a>
-            <a href={`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #dc262655', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher →</a>
+            <a href="https://www.clearlyfiltered.com/products/filtered-water-pitcher" target="_blank" rel="noreferrer sponsored" style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher →</a>
           </div>
         </div>
       </div>
@@ -925,7 +938,7 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
           {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#cbd5e1', lineHeight: 1.8 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href={`https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P600 — PFAS &gt;99%</a>
-            <a href={`https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #ef444455', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
+            <a href="https://www.clearlyfiltered.com/products/filtered-water-pitcher" target="_blank" rel="noreferrer sponsored" style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
             <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: 'none', color: '#cbd5e1', fontSize: 13, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>{expanded ? 'Less ↑' : 'What are PFAS? ↓'}</button>
           </div>
         </div>

@@ -12,7 +12,6 @@ const TOP_3_PITCHER = [
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
     amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
     badge: 'BEST FOR NYC RENTERS',
-    outOfStock: true,
   },
   {
     product: 'Waterdrop Pitcher Filter',
@@ -20,7 +19,7 @@ const TOP_3_PITCHER = [
     price: '~$40',
     reason: '7-stage filtration, 200-gallon filter life. Removes chlorine taste, PFOA/PFOS, and heavy metals. No plumber needed.',
     link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`,
     badge: 'BEST VALUE',
   },
   {

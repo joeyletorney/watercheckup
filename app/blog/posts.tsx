@@ -55,7 +55,7 @@ const TOP_10_LEAD = [
     reason:
       'Under-sink carbon block (not RO). NSF/ANSI 53 for lead — quick-change cartridges, installs in minutes. Best-value under-counter pick.',
     link: 'https://www.frizzlife.com/products/undersink-water-filter-system-mk99',
-    amazon: `https://www.amazon.com/dp/B07ZY9RVN2?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B07MFYQBTX?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -65,7 +65,7 @@ const TOP_10_LEAD = [
     reason:
       'Dual-stage under-sink filter — NSF/ANSI 53 lead reduction (~99.9% on listings) without RO waste water. Quick-change twist-off filters.',
     link: 'https://www.frizzlife.com/products/undersink-water-filter-system-sk99',
-    amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -85,7 +85,7 @@ const TOP_10_LEAD = [
     reason:
       'Three-stage under-sink carbon (no RO). NSF/ANSI 42, 53, and 401 on listings — lead, PFAS, and pharmaceuticals without RO waste water.',
     link: 'https://www.aquasana.com/water-filters/under-sink/claryum-3-stage',
-    amazon: `https://www.amazon.com/dp/B00CX8R5Q8?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B0FN9Y9JSP?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -115,13 +115,13 @@ const TOP_10_LEAD = [
     reason:
       '7-stage pitcher filtration, 200-gallon filter life. NSF 53 listings for lead and heavy metals — no installation.',
     link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`,
     badge: 'PITCHER',
   },
 ];
 const TOP_3_PITCHER = [
-  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. Handles 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK', outOfStock: true },
-  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. Handles 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
 ];
 

@@ -30,6 +30,7 @@ const nextConfig = {
       { protocol: 'https', hostname: '123filter-com.b-cdn.net', pathname: '/**' },
       { protocol: 'https', hostname: 'flecksystems.com', pathname: '/**' },
       { protocol: 'https', hostname: 'cdn11.bigcommerce.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'm.media-amazon.com', pathname: '/**' },
     ],
   },
   /** Default 60s — many ZIP/city pages exceed that on 2-core Vercel builders and get SIGTERM. */

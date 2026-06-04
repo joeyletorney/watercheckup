@@ -81,7 +81,7 @@ export const TOP_LEAD: TopPickRow[] = [
     price: '~$59',
     reason: 'Under-sink carbon (not RO). NSF/ANSI 53 for lead — installs in minutes.',
     link: 'https://www.frizzlife.com/products/undersink-water-filter-system-mk99',
-    amazon: `https://www.amazon.com/dp/B07ZY9RVN2?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B07MFYQBTX?tag=${AMAZON}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -90,7 +90,7 @@ export const TOP_LEAD: TopPickRow[] = [
     price: '~$126',
     reason: 'Dual-stage under-sink — NSF/ANSI 53 lead (~99.9%) without RO waste water.',
     link: 'https://www.frizzlife.com/products/undersink-water-filter-system-sk99',
-    amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -108,7 +108,7 @@ export const TOP_LEAD: TopPickRow[] = [
     price: '~$200',
     reason: 'Three-stage under-sink carbon — NSF 42, 53, and 401 on listings; no RO waste.',
     link: 'https://www.aquasana.com/water-filters/under-sink/claryum-3-stage',
-    amazon: `https://www.amazon.com/dp/B00CX8R5Q8?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B0FN9Y9JSP?tag=${AMAZON}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -135,7 +135,7 @@ export const TOP_LEAD: TopPickRow[] = [
     price: '~$40',
     reason: '7-stage pitcher; NSF 53 listings for lead and heavy metals.',
     link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON}`,
     badge: 'PITCHER',
   },
 ];
@@ -183,7 +183,7 @@ export const TOP_PFAS: TopPickRow[] = [
     price: '~$799',
     reason: '1000 GPD tankless RO — NSF 58/372; top flow rate for large households.',
     link: 'https://www.frizzlife.com/products/reverse-osmosis-system-pd1000',
-    amazon: `https://www.amazon.com/dp/B0BK8ZRY2K?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B083DFW1QS?tag=${AMAZON}`,
     badge: 'UNDER-SINK RO',
   },
   {
@@ -221,7 +221,6 @@ export const TOP_PFAS: TopPickRow[] = [
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
     amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON}`,
     badge: 'PITCHER',
-    outOfStock: true,
   },
   {
     product: 'ZeroWater 10-Cup Pitcher',
@@ -248,7 +247,7 @@ export const TOP_UNDERSINK: TopPickRow[] = [
     price: '~$126',
     reason: 'NSF 42/53/401 — lead and PFAS without full RO; quick-change cartridges.',
     link: 'https://www.frizzlife.com/products/undersink-water-filter-system-sk99',
-    amazon: `https://www.amazon.com/dp/B084HW5BMT?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON}`,
     badge: 'UNDER-COUNTER',
   },
   {
@@ -257,7 +256,7 @@ export const TOP_UNDERSINK: TopPickRow[] = [
     price: '~$59',
     reason: 'Best-value under-sink carbon — NSF 53 lead; under 2-minute install.',
     link: 'https://www.frizzlife.com/products/undersink-water-filter-system-mk99',
-    amazon: `https://www.amazon.com/dp/B07ZY9RVN2?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B07MFYQBTX?tag=${AMAZON}`,
     badge: 'UNDER-COUNTER',
   },
   TOP_PFAS[7],
@@ -267,7 +266,7 @@ export const TOP_UNDERSINK: TopPickRow[] = [
     price: '~$200',
     reason: 'Three-stage carbon under-sink — NSF 42/53/401 without RO waste.',
     link: 'https://www.aquasana.com/water-filters/under-sink/claryum-3-stage',
-    amazon: `https://www.amazon.com/dp/B00CX8R5Q8?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B0FN9Y9JSP?tag=${AMAZON}`,
     badge: 'UNDER-COUNTER',
   },
   TOP_PFAS[5],
@@ -287,7 +286,6 @@ export const TOP_PITCHER: TopPickRow[] = [
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
     amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON}`,
     badge: 'PITCHER',
-    outOfStock: true,
   },
   {
     product: 'ZeroWater 10-Cup Pitcher',
@@ -313,7 +311,7 @@ export const TOP_PITCHER: TopPickRow[] = [
     price: '~$40',
     reason: '7-stage pitcher — chlorine, PFOA/PFOS, heavy metals; 200-gallon life.',
     link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON}`,
     badge: 'PITCHER',
   },
 ];

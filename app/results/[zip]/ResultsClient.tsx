@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 import { quizHrefFromReport } from '@/lib/results-quiz-link';
+import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { clearlyFilteredDirectUrl, isClearlyFilteredProduct } from '@/lib/waterdrop-buy';
 
 const TAG = 'watercheck20-20';
 
@@ -606,13 +608,21 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                         <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{prod.price}</div>
                         <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>{reason}</p>
                         <a
-                          href={prod.amazon}
+                          href={
+                            isClearlyFilteredProduct(prod.name)
+                              ? clearlyFilteredDirectUrl()
+                              : normalizeAmazonUrl(prod.amazon) ?? prod.amazon
+                          }
                           target="_blank"
                           rel="noopener noreferrer sponsored"
                           style={{
                             display: 'inline-block',
                             padding: '8px 14px',
-                            background: highlight ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240',
+                            background: highlight
+                              ? isClearlyFilteredProduct(prod.name)
+                                ? 'linear-gradient(135deg,#059669,#10b981)'
+                                : 'linear-gradient(135deg,#0891b2,#06b6d4)'
+                              : '#0d2240',
                             border: highlight ? 'none' : '1px solid #1a3a5c',
                             borderRadius: 8,
                             color: '#fff',
@@ -621,7 +631,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                             textDecoration: 'none',
                           }}
                         >
-                          View on Amazon →
+                          {isClearlyFilteredProduct(prod.name) ? 'ClearlyFiltered.com →' : 'View on Amazon →'}
                         </a>
                       </div>
                     </div>
@@ -841,9 +851,31 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.reason}</div>
-                <a href={f.amazon} target="_blank" rel="noopener noreferrer sponsored"
-                  style={{ display: 'inline-block', padding: '8px 16px', background: f.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', border: f.best ? 'none' : '1px solid #1a3a5c', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
-                  View on Amazon →
+                <a
+                  href={
+                    isClearlyFilteredProduct(f.name)
+                      ? clearlyFilteredDirectUrl()
+                      : normalizeAmazonUrl(f.amazon) ?? f.amazon
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  style={{
+                    display: 'inline-block',
+                    padding: '8px 16px',
+                    background: f.best
+                      ? isClearlyFilteredProduct(f.name)
+                        ? 'linear-gradient(135deg,#059669,#10b981)'
+                        : 'linear-gradient(135deg,#0891b2,#06b6d4)'
+                      : '#0d2240',
+                    border: f.best ? 'none' : '1px solid #1a3a5c',
+                    borderRadius: 8,
+                    color: '#fff',
+                    fontSize: 13,
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                  }}
+                >
+                  {isClearlyFilteredProduct(f.name) ? 'ClearlyFiltered.com →' : 'View on Amazon →'}
                 </a>
               </div>
             </div>

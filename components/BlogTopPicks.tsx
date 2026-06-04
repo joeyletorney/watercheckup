@@ -2,6 +2,8 @@ import Image from 'next/image';
 import type { TopPickRow } from '@/app/blog/post-types';
 import { getBlogTopPicksHeading } from '@/lib/blog-top-picks';
 import { lookupFilterProductImage } from '@/lib/filter-product-images';
+import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { clearlyFilteredDirectUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 
 type Props = {
   picks: TopPickRow[];
@@ -39,7 +41,13 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
       ) : null}
       <div className="wc-blog-top-picks__list">
         {visible.map((pick, i) => {
-          const showDirect = pick.brand === 'Waterdrop';
+          const showDirect = pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand);
+          const directHref =
+            pick.brand === 'Waterdrop'
+              ? pick.link
+              : clearlyFilteredDirectUrl(pick.link);
+          const directLabel =
+            pick.brand === 'Waterdrop' ? 'Buy Direct →' : 'ClearlyFiltered.com →';
           const imgSrc = lookupFilterProductImage(pick);
           return (
             <div
@@ -76,18 +84,18 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
               <div className="wc-blog-top-picks__actions">
                 {showDirect ? (
                   <a
-                    href={pick.link}
+                    href={directHref}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer sponsored"
                     className={i === 0 ? 'wc-blog-top-picks__btn wc-blog-top-picks__btn--primary' : 'wc-blog-top-picks__btn wc-blog-top-picks__btn--secondary'}
                   >
-                    Buy Direct →
+                    {directLabel}
                   </a>
                 ) : (
                   <a
-                    href={pick.amazon}
+                    href={normalizeAmazonUrl(pick.amazon) ?? pick.amazon}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener noreferrer sponsored"
                     className="wc-blog-top-picks__btn wc-blog-top-picks__btn--primary"
                   >
                     Amazon →

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { TRUSTED_FILTER_CATEGORIES } from '@/lib/trusted-filter-categories';
 import {
+  clearlyFilteredDirectUrl,
+  isClearlyFilteredBrand,
   isWaterdropBrand,
   resolveAffiliateAmazonUrl,
   waterdropDirectUrl,
@@ -59,7 +61,31 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
   }
 
   const direct = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
+  const clearlyDirect = isClearlyFilteredBrand(p.brand)
+    ? clearlyFilteredDirectUrl(p.brandLink)
+    : undefined;
   const amazon = resolveAffiliateAmazonUrl(p.brand, p.amazon);
+
+  if (isClearlyFilteredBrand(p.brand) && clearlyDirect) {
+    return (
+      <a
+        href={clearlyDirect}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        style={{
+          fontSize: 12,
+          fontWeight: 800,
+          color: '#0f172a',
+          padding: '7px 12px',
+          borderRadius: 7,
+          textDecoration: 'none',
+          background: 'linear-gradient(135deg,#10b981,#059669)',
+        }}
+      >
+        ClearlyFiltered.com →
+      </a>
+    );
+  }
 
   if (isWaterdropBrand(p.brand) && direct) {
     return (

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { SiteHeader } from '../components/SiteHeader';
+import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 
 const WATERDROP_TAG = 'anbyjkqb';
 const AMAZON_TAG = 'watercheck20-20';
@@ -14,14 +15,14 @@ const TOP_3_RO = [
   { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters, no tools needed. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE', certs: ['NSF 42', 'NSF 53', 'NSF 58'] },
 ];
 const TOP_3_PITCHER = [
-  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK', certs: ['NSF 42', 'NSF 53', 'NSF 401', 'NSF P473'], outOfStock: true },
-  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. Zero installation.', link: `https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B01JSJFBNE?tag=${AMAZON_TAG}`, badge: 'BEST VALUE', certs: ['NSF 42', 'NSF 53'] },
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK', certs: ['NSF 42', 'NSF 53', 'NSF 401', 'NSF P473'] },
+  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. Zero installation.', link: `https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE', certs: ['NSF 42', 'NSF 53'] },
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53 certified for lead and chromium. Includes TDS meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS', certs: ['NSF 42', 'NSF 53'] },
 ];
 const TOP_3_COUNTERTOP = [
   { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'NSF 42/53/58/401. No installation — just plug in. Removes PFAS, nitrates, fluoride, radium.', link: 'https://www.aquatruwater.com', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK', certs: ['NSF 42', 'NSF 53', 'NSF 58', 'NSF 401'] },
   { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'No installation needed — just plug in. NSF 58 certified, removes PFAS, lead, arsenic, and 1,000+ contaminants. Perfect for renters. 170 oz tank, 3:1 pure to drain ratio.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, badge: 'BEST VALUE', certs: ['NSF 42', 'NSF 53', 'NSF 58'] },
-  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'If countertop RO is too much, this pitcher removes 365+ contaminants including PFAS — no plumbing at all.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'NO INSTALL ALT', certs: ['NSF 42', 'NSF 53', 'NSF 401'], outOfStock: true },
+  { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'If countertop RO is too much, this pitcher removes 365+ contaminants including PFAS — no plumbing at all.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'NO INSTALL ALT', certs: ['NSF 42', 'NSF 53', 'NSF 401'] },
 ];
 const TOP_3_WELL = [
 
@@ -42,7 +43,7 @@ const TOP_5_AMAZON_DRINKING = [
   { categoryLabel: 'WHOLE HOUSE', product: 'iSpring WGB32B 3-Stage Whole House', brand: 'iSpring', price: '~$420', reason: 'Top-selling 3-stage POE on Amazon: sediment + carbon for every tap. Great with a kitchen RO for drinking.', link: 'https://www.ispringwatersystems.com/products/wgb32b', amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`, badge: 'POE BEST SELLER', certs: ['NSF 42'] },
   { categoryLabel: 'UNDER-SINK RO', product: 'Waterdrop G3P600 Tankless RO', brand: 'Waterdrop', price: '~$439', reason: 'High-volume tankless under-sink RO. PFAS, lead, and TDS at the kitchen tap.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=${WATERDROP_TAG}`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, badge: 'UNDER-SINK RO', certs: ['NSF 42', 'NSF 53', 'NSF 58'] },
   { categoryLabel: 'COUNTERTOP RO', product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'Plug-in RO — no under-sink install. NSF-class certifications; popular for renters and kitchens without plumbing changes.', link: 'https://www.aquatruwater.com', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'COUNTERTOP RO', certs: ['NSF 42', 'NSF 53', 'NSF 58', 'NSF 401'] },
-  { categoryLabel: 'PITCHER', product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Among the strongest certified pitchers on Amazon for PFAS and lead — zero installation.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'PITCHER', certs: ['NSF 42', 'NSF 53', 'NSF 401'], outOfStock: true },
+  { categoryLabel: 'PITCHER', product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Among the strongest certified pitchers on Amazon for PFAS and lead — zero installation.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'PITCHER', certs: ['NSF 42', 'NSF 53', 'NSF 401'] },
   { categoryLabel: 'UNDER-SINK (NON-RO)', product: 'Epic Smart Shield Under-Sink', brand: 'Epic Water Filters', price: '~$129', reason: 'Compact under-sink system — NSF 401 for emerging contaminants; alternative if you do not want full RO.', link: 'https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system', amazon: `https://www.amazon.com/gp/product/B076S1W5QY?tag=${AMAZON_TAG}`, badge: 'NO RO', certs: ['NSF 42', 'NSF 53', 'NSF 401'] },
 ];
 
@@ -58,7 +59,15 @@ const LINKS = {
 function trackEvent(name: string, params: Record<string, string>) {
   if (typeof window !== 'undefined' && window.gtag) window.gtag('event', name, params);
 }
-function showBuyDirectForBrand(brand: string) { return brand === 'Waterdrop'; }
+function showBuyDirectForBrand(brand: string) {
+  return brand === 'Waterdrop' || brand === 'Clearly Filtered';
+}
+
+function directBuyLabelForBrand(brand: string) {
+  if (brand === 'Waterdrop') return 'Waterdrop.com →';
+  if (brand === 'Clearly Filtered') return 'ClearlyFiltered.com →';
+  return 'Buy Direct →';
+}
 
 const QUESTIONS = [
   {
@@ -213,10 +222,10 @@ export default function QuizPage() {
               {showDirect ? (
                 <a href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'direct', product: alt.product, page: 'quiz' })}
                   style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
-                  Buy Direct →
+                  {directBuyLabelForBrand(alt.brand)}
                 </a>
               ) : (
-              <a href={alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'amazon', product: alt.product, page: 'quiz' })}
+              <a href={normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackEvent('affiliate_click', { destination: 'amazon', product: alt.product, page: 'quiz' })}
                 style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: i === 0 ? 700 : 600, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
                 Amazon →
               </a>

@@ -1,11 +1,18 @@
 'use client';
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
+import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 
 type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string; outOfStock?: boolean };
 
 function showBuyDirectBrand(brand: string) {
-  return brand === 'Waterdrop';
+  return brand === 'Waterdrop' || brand === 'Clearly Filtered';
+}
+
+function directBuyLabel(brand: string) {
+  if (brand === 'Waterdrop') return 'Buy Direct →';
+  if (brand === 'Clearly Filtered') return 'ClearlyFiltered.com →';
+  return 'Buy Direct →';
 }
 
 const UTM_SOURCE = 'watercheckup';
@@ -15,8 +22,9 @@ const AMAZON_TAG = 'watercheck20-20';
 const WATERDROP_REF = 'anbyjkqb';
 
 function buildAmazonUrl(baseUrl: string, product: string, citySlug: string) {
+  const normalized = normalizeAmazonUrl(baseUrl) ?? baseUrl;
   try {
-    const url = new URL(baseUrl);
+    const url = new URL(normalized);
     url.searchParams.set('tag', AMAZON_TAG);
     url.searchParams.set('utm_source', UTM_SOURCE);
     url.searchParams.set('utm_medium', UTM_MEDIUM);
@@ -92,7 +100,11 @@ export default function TopPickBox({
         {availablePicks.map((pick, i) => {
           const showDirect = showBuyDirectBrand(pick.brand);
           const amazonPrimary = !showDirect;
-          const directUrl = showDirect ? buildWaterdropUrl(pick.link, pick.product, slug) : pick.link;
+          const directUrl = showDirect
+            ? pick.brand === 'Waterdrop'
+              ? buildWaterdropUrl(pick.link, pick.product, slug)
+              : pick.link
+            : pick.link;
           const amazonUrl = buildAmazonUrl(pick.amazon, pick.product, slug);
 
           return (
@@ -135,7 +147,7 @@ export default function TopPickBox({
                     onClick={() => trackClick(pick.product, 'direct', cityName)}
                     style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}
                   >
-                    Buy Direct →
+                    {directBuyLabel(pick.brand)}
                   </a>
                 ) : (
                 <a
