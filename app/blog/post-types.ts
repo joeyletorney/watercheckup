@@ -8,6 +8,8 @@ export type TopPickRow = {
   link: string;
   amazon: string;
   badge?: string;
+  /** Product thumbnail — filled from catalog via `attachProductImages` when omitted */
+  img?: string;
   /** Set true when this product is out of stock — it will be skipped and the next pick promoted automatically */
   outOfStock?: boolean;
 };

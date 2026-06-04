@@ -16,11 +16,20 @@ const STATE_SLUGS = [
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
-      },
+      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.waterdropfilter.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.aquasana.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'cdn.shopify.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.epicwaterfilters.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.pur.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'shop.culligan.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.ctfassets.net', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.ispringwatersystems.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.expresswater.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'www.hquatech.com', pathname: '/**' },
+      { protocol: 'https', hostname: '123filter-com.b-cdn.net', pathname: '/**' },
+      { protocol: 'https', hostname: 'flecksystems.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'cdn11.bigcommerce.com', pathname: '/**' },
     ],
   },
   /** Default 60s — many ZIP/city pages exceed that on 2-core Vercel builders and get SIGTERM. */

@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import type { TopPickRow } from '@/app/blog/post-types';
 import { getBlogTopPicksHeading } from '@/lib/blog-top-picks';
+import { lookupFilterProductImage } from '@/lib/filter-product-images';
 
 type Props = {
   picks: TopPickRow[];
@@ -38,12 +40,25 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
       <div className="wc-blog-top-picks__list">
         {visible.map((pick, i) => {
           const showDirect = pick.brand === 'Waterdrop';
+          const imgSrc = lookupFilterProductImage(pick);
           return (
             <div
               key={`${pick.brand}-${pick.product}`}
               className={`wc-blog-top-picks__card${i === 0 ? ' wc-blog-top-picks__card--featured' : ''}`}
             >
               <div className="wc-blog-top-picks__card-main">
+                {imgSrc ? (
+                  <div className="wc-blog-top-picks__thumb-wrap">
+                    <Image
+                      src={imgSrc}
+                      alt=""
+                      width={72}
+                      height={72}
+                      className="wc-blog-top-picks__thumb"
+                      sizes="72px"
+                    />
+                  </div>
+                ) : null}
                 <div className="wc-blog-top-picks__rank">#{i + 1}</div>
                 <div>
                   <div className="wc-blog-top-picks__product-row">

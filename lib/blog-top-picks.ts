@@ -1,4 +1,5 @@
 import type { TopPickRow } from '@/app/blog/post-types';
+import { attachProductImages } from '@/lib/filter-product-images';
 
 const WATERDROP_RO =
   'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
@@ -526,7 +527,7 @@ export const BLOG_SLUG_PICK_SEGMENT: Record<string, BlogPickSegment> = {
 const MAX_PICKS = 10;
 
 export function getTopPicksForSegment(segment: BlogPickSegment): TopPickRow[] {
-  return (PICKS_BY_SEGMENT[segment] ?? TOP_RO).slice(0, MAX_PICKS);
+  return attachProductImages((PICKS_BY_SEGMENT[segment] ?? TOP_RO).slice(0, MAX_PICKS));
 }
 
 export function resolveBlogTopPicks(
@@ -537,7 +538,7 @@ export function resolveBlogTopPicks(
   const segment =
     BLOG_SLUG_PICK_SEGMENT[slug] ?? (badge ? inferSegmentFromBadge(badge) : undefined);
   if (segment) return getTopPicksForSegment(segment);
-  if (postPicks?.length) return postPicks.slice(0, MAX_PICKS);
+  if (postPicks?.length) return attachProductImages(postPicks.slice(0, MAX_PICKS));
   return getTopPicksForSegment('ro');
 }
 
