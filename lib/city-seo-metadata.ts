@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getCtrSerpOverride } from './ctr-serp-seo';
 import {
   computeCityWaterScore,
   formatPrioritySeoDescription,
@@ -31,15 +32,19 @@ export function buildCityPageMetadata(
   prioritySeo?: { title: string; description: string }
 ): Metadata {
   const ws = computeCityWaterScore(city, pfas);
-
-  const title = prioritySeo?.title
-    ? formatPrioritySeoTitle(prioritySeo.title, ws.grade, ws.score)
-    : buildDefaultCitySeoTitle(city.name);
-  const description = prioritySeo
-    ? formatPrioritySeoDescription(prioritySeo.description, ws.grade, ws.score)
-    : buildDefaultCitySeoDescription(city.name);
-
   const canonical = `https://watercheckup.com/water/${slug}`;
+  const ctr = getCtrSerpOverride(`/water/${slug}`);
+
+  const title = ctr
+    ? ctr.title
+    : prioritySeo?.title
+      ? formatPrioritySeoTitle(prioritySeo.title, ws.grade, ws.score)
+      : buildDefaultCitySeoTitle(city.name);
+  const description = ctr
+    ? ctr.description
+    : prioritySeo
+      ? formatPrioritySeoDescription(prioritySeo.description, ws.grade, ws.score)
+      : buildDefaultCitySeoDescription(city.name);
   const ogQuery = `city=${encodeURIComponent(city.name + ', ' + city.state)}&score=${ws.score}&grade=${encodeURIComponent(ws.grade)}&violations=${pfas?.violations ?? 0}`;
 
   return {

@@ -12,14 +12,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'New York City tap water quality: PFOS in EPA monitoring, lead in pre-1986 buildings. Free 2026 NYC water report with grade and NSF filter picks.',
   },
   'san-antonio': {
-    title: 'San Antonio Water Contamination & Quality 2026',
+    title: 'San Antonio Tap Water: D+ Grade — PFAS, Hard Water & Radium',
     description:
-      'San Antonio water contamination & quality: PFAS in UCMR5, 272 mg/L hardness, arsenic, radium. Full SAWS 2026 report with letter grade and NSF filter picks.',
+      'SAWS water: 272 mg/L hardness, PFAS in EPA monitoring, arsenic & radium above health guidelines. Free 2026 graded report & NSF filter picks.',
   },
   gaithersburg: {
-    title: 'Gaithersburg Water Quality & Testing MD 2026',
+    title: 'Is Gaithersburg Tap Water Safe? Free WSSC Report (2026)',
     description:
-      'Gaithersburg water quality & water testing (WSSC): PFAS UCMR5, Montgomery County tap water, lead in older homes, certified filters. Free MD report.',
+      'PFAS in UCMR5, Potomac DBPs & lead risk in pre-1986 homes. Free Gaithersburg MD report with letter grade and NSF filter picks.',
   },
   'los-angeles': {
     title: 'Los Angeles Tap Water 2026 — Chromium-6, PFAS & Safety Grade',
@@ -37,14 +37,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'D+ grade: Philly water has 16.1 ppt PFAS, lead service lines in 25% of homes, and Delaware River DBPs. See what\'s in your tap water and the one filter that removes all three.',
   },
   chicago: {
-    title: 'Chicago Tap Water 2026 — Lead Pipes, PFAS & Safety Grade',
+    title: 'Chicago Tap Water: B Grade — Lead Lines, PFAS & DBPs',
     description:
-      'D+ grade: Chicago has 150,000+ lead service lines, 14.2 ppt PFAS, and chloramine DBPs. Free 2026 Chicago water quality report from EPA data.',
+      '150,000+ lead service lines, PFAS in monitoring, chloramine byproducts. Free 2026 Chicago water report with letter grade and NSF filter picks.',
   },
   phoenix: {
-    title: 'Phoenix Tap Water 2026 — PFAS, Hardness & Safety Grade',
+    title: 'Phoenix Tap Water: C- Grade — PFAS, Chromium-6 & Hardness',
     description:
-      'C grade: Phoenix tap water has 7.4 ppt PFAS, chromium-6 above CA goals, and 288 mg/L hardness. Free 2026 Phoenix water quality report from EPA data.',
+      '7.4 ppt PFAS, chromium-6 above CA health goals, very hard water. Free 2026 Phoenix EPA report with letter grade and NSF filter picks.',
   },
   boston: {
     title: 'Boston Tap Water 2026 — Lead Pipes in Older Homes',
@@ -210,10 +210,13 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
 
 /** H1 copy for priority city pages — matches 2026 title-tag pattern */
 export const PRIORITY_CITY_H1: Record<string, string> = {
+  gaithersburg: 'Is Gaithersburg Tap Water Safe? (2026)',
+  'san-antonio': 'San Antonio Tap Water Quality 2026',
+  chicago: 'Chicago Tap Water Quality 2026',
+  phoenix: 'Phoenix Tap Water Quality 2026',
   'new-york': 'New York City Water Quality 2026',
   'los-angeles': 'Los Angeles Water Quality 2026',
   philadelphia: 'Philadelphia Water Quality 2026',
-  chicago: 'Chicago Water Quality 2026',
   'sugar-land': 'Sugar Land Water Quality 2026',
   miami: 'Miami Water Quality 2026',
   'fort-worth': 'Fort Worth Water Quality 2026',

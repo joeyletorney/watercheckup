@@ -1,0 +1,71 @@
+/**
+ * Hand-tuned title + meta description for URLs with high impressions / low CTR (GSC).
+ * When set, these replace priority-city formatting and default blog SEO for SERP snippets.
+ */
+export type CtrSerpCopy = {
+  title: string;
+  description: string;
+};
+
+export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
+  '/water/gaithersburg': {
+    title: 'Is Gaithersburg Tap Water Safe? Free WSSC Report (2026)',
+    description:
+      'PFAS in UCMR5, Potomac DBPs & lead risk in pre-1986 homes. B grade (74/88) on WaterCheckup. Free Gaithersburg MD report — no signup.',
+  },
+  '/water/san-antonio': {
+    title: 'San Antonio Tap Water: D+ Grade — PFAS, Hard Water & Radium',
+    description:
+      'SAWS water: 272 mg/L hardness, PFAS in EPA monitoring, arsenic & radium above health guidelines. Free 2026 graded report & NSF filter picks.',
+  },
+  '/water/phoenix': {
+    title: 'Phoenix Tap Water: C- Grade — PFAS, Chromium-6 & Hardness',
+    description:
+      '7.4 ppt PFAS, chromium-6 above CA health goals, very hard water. Free 2026 Phoenix EPA report with letter grade — no signup.',
+  },
+  '/water/chicago': {
+    title: 'Chicago Tap Water: B Grade — Lead Lines, PFAS & DBPs',
+    description:
+      '150,000+ lead service lines, PFAS in monitoring, chloramine byproducts. Free 2026 Chicago water report (75/88) & filter picks.',
+  },
+  '/blog/san-antonio-water-quality': {
+    title: 'Is San Antonio Water Safe to Drink? 2026 SAWS Data',
+    description:
+      'Meets EPA limits — still has PFAS, radium & some of the hardest water in the US. What SAWS & UCMR5 data show. Free guide.',
+  },
+  '/blog/pfas-in-san-antonio-water': {
+    title: 'PFAS in San Antonio Water — 2026 Levels & Filters',
+    description:
+      'Forever chemicals in SAWS supply: compounds found, EPA limits vs health guidelines, and NSF filters that actually remove PFAS.',
+  },
+  '/blog/best-water-filter-for-lead-removal': {
+    title: 'Best Water Filters for Lead 2026 — 10 NSF Picks',
+    description:
+      '3 under-sink RO + 4 carbon + 3 pitcher options certified for lead. Expert-ranked by NSF 53/58 — not paid placement. Free ZIP check.',
+  },
+  '/blog/what-water-filter-removes-pfas': {
+    title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',
+    description:
+      'Only NSF 58 reverse osmosis & P473 pitchers remove PFAS reliably — not standard Brita. Compare top picks + free ZIP report.',
+  },
+  '/blog/is-new-york-city-tap-water-safe-2026': {
+    title: 'Is NYC Tap Water Safe in 2026? Lead, PFAS & What to Know',
+    description:
+      'Great source water — older buildings can still add lead at the tap. PFAS monitoring, DEP context, and filter picks for NYC renters & owners.',
+  },
+  '/blog/best-water-filter-gaithersburg-md': {
+    title: 'Best Water Filter for Gaithersburg MD — WSSC Water (2026)',
+    description:
+      'WSSC has PFAS detections, DBPs & lead risk in older homes. Top NSF 58 RO & renter picks for Gaithersburg — from EPA UCMR5 data.',
+  },
+  '/utilities/nc/greensboro-townsend': {
+    title: 'Greensboro Townsend Water — EPA Report & PFAS (2026)',
+    description:
+      'Greensboro area public water system: violations snapshot, UCMR5 PFAS testing, population served & certified filter recommendations. Free report.',
+  },
+};
+
+export function getCtrSerpOverride(path: string): CtrSerpCopy | undefined {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return CTR_SERP_OVERRIDES[normalized];
+}

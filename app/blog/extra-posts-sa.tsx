@@ -23,17 +23,18 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     title: 'San Antonio Water Quality Report 2026 — Is SAWS Water Safe?',
     excerpt: 'San Antonio tap water meets EPA standards but contains PFAS, radium, and some of the hardest water in the US. Here\'s what the 2024 SAWS data actually shows.',
     seo: {
-      title: 'San Antonio Water Quality & Contamination — Free 2026 Report',
+      title: 'Is San Antonio Water Safe to Drink? 2026 SAWS Data',
       description:
-        'San Antonio water quality & contamination: 272 mg/L hardness, PFAS in UCMR5, radium. Links to full graded SAWS report — free, no signup.',
-      canonical: 'https://watercheckup.com/water/san-antonio',
+        'Meets EPA limits — still has PFAS, radium & some of the hardest water in the US. What SAWS & UCMR5 data show. Free guide.',
+      canonical: 'https://watercheckup.com/blog/san-antonio-water-quality',
       openGraph: {
-        title: 'San Antonio Water Quality & Contamination — Free 2026 Report',
+        title: 'Is San Antonio Water Safe to Drink? 2026 SAWS Data',
         description:
-          'San Antonio water quality & contamination: 272 mg/L hardness, PFAS in UCMR5, radium. Links to full graded SAWS report — free, no signup.',
+          'Meets EPA limits — still has PFAS, radium & very hard water. What SAWS & UCMR5 data show. Free guide.',
       },
     },
     date: '2026-05-27',
+    dateModified: '2026-06-04',
     dateDisplay: 'May 27, 2026',
     readTime: '9 min read',
     badge: 'San Antonio',
@@ -171,16 +172,17 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     title: 'PFAS in San Antonio Water — What the 2024 SAWS Data Shows',
     excerpt: 'PFAS "forever chemicals" have been detected in San Antonio tap water. Here\'s exactly what was found, what the levels mean, and which filters actually remove PFAS from SAWS water.',
     seo: {
-      title: 'PFAS in San Antonio Water — 2026 Levels & Filters (Free Report)',
+      title: 'PFAS in San Antonio Water — 2026 Levels & Filters',
       description:
-        'PFAS in San Antonio water: UCMR5 compounds, health context vs EPA limits, NSF filters. Full graded SAWS report free — no signup.',
-      canonical: 'https://watercheckup.com/water/san-antonio',
+        'Forever chemicals in SAWS supply: compounds found, EPA limits vs health guidelines, and NSF filters that actually remove PFAS.',
+      canonical: 'https://watercheckup.com/blog/pfas-in-san-antonio-water',
       openGraph: {
-        title: 'PFAS in San Antonio Water — 2026 Levels & Filters (Free Report)',
+        title: 'PFAS in San Antonio Water — 2026 Levels & Filters',
         description:
-          'PFAS in San Antonio water: UCMR5 compounds, health context vs EPA limits, NSF filters. Full graded SAWS report free — no signup.',
+          'Forever chemicals in SAWS supply: compounds found, EPA limits vs health guidelines, and NSF filters that actually remove PFAS.',
       },
     },
+    dateModified: '2026-06-04',
     date: '2026-05-27',
     dateDisplay: 'May 27, 2026',
     readTime: '8 min read',

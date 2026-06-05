@@ -267,7 +267,7 @@ export function formatPrioritySeoDescription(
   score?: number
 ): string {
   const cleaned = description.replace(/^[A-F][+-]?\s+grade:\s*/i, '').trim();
-  const scoreBit = score != null ? ` · ${score}/88` : '';
+  const scoreBit = score != null ? ` (${grade} · ${score}/88)` : ` (${grade})`;
   const freeBit = /no signup|free report|free ·/i.test(cleaned) ? '' : ' Free EPA report · no signup.';
-  return `${grade} grade${scoreBit}: ${cleaned}${freeBit}`;
+  return `${cleaned}${scoreBit}${freeBit}`;
 }

@@ -264,18 +264,18 @@ export const POSTS: Record<string, Post> = {
     title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
     excerpt: 'Top 10 NSF 53 lead filters: 3 under-sink RO, 4 under-counter carbon (Frizzlife, Epic, Aquasana), and 3 pitcher picks.',
     seo: {
-      title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
+      title: 'Best Water Filters for Lead 2026 — 10 NSF Picks',
       description:
-        'Best water filters for lead: top 3 RO, 4 under-counter carbon (Frizzlife, Epic), 3 NSF 53 pitchers. Ranked by type. Free ZIP check.',
+        '3 under-sink RO + 4 carbon + 3 pitcher options certified for lead. Expert-ranked by NSF 53/58 — not paid placement. Free ZIP check.',
       canonical: 'https://watercheckup.com/blog/best-water-filter-for-lead-removal',
       openGraph: {
-        title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
+        title: 'Best Water Filters for Lead 2026 — 10 NSF Picks',
         description:
-          'Best water filters for lead: top 3 RO, 4 under-counter carbon (Frizzlife, Epic), 3 NSF 53 pitchers. Ranked by type. Free ZIP check.',
+          '3 under-sink RO + 4 carbon + 3 pitcher options certified for lead. Expert-ranked by NSF 53/58 — not paid placement. Free ZIP check.',
       },
     },
     date: '2026-03-29',
-    dateModified: '2026-06-01',
+    dateModified: '2026-06-04',
     dateDisplay: 'March 29, 2026',
     readTime: '10 min read',
     badge: 'Lead',

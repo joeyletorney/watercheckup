@@ -655,18 +655,18 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     title: 'What Water Filters Actually Remove PFAS? (Not All of Them Do)',
     excerpt: 'PFAS are in more tap water than most people realize. See which filter types are proven to remove them — and which ones don\'t cut it.',
     seo: {
-      title: 'What Water Filter Removes PFAS? Best 3 Picks (2026)',
+      title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',
       description:
-        'What water filter removes PFAS? Only NSF 58 / P473 RO & carbon — not Brita. 3 tested picks + free ZIP check. San Antonio & Houston reports linked.',
+        'Only NSF 58 reverse osmosis & P473 pitchers remove PFAS reliably — not standard Brita. Compare top picks + free ZIP report.',
       canonical: 'https://watercheckup.com/blog/what-water-filter-removes-pfas',
       openGraph: {
-        title: 'What Water Filter Removes PFAS? Best 3 Picks (2026)',
+        title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',
         description:
-          'What water filter removes PFAS? Only NSF 58 / P473 RO & carbon — not Brita. 3 tested picks + free ZIP check. San Antonio & Houston reports linked.',
+          'Only NSF 58 reverse osmosis & P473 pitchers remove PFAS reliably — not standard Brita. Compare top picks + free ZIP report.',
       },
     },
     date: '2026-04-22',
-    dateModified: '2026-06-01',
+    dateModified: '2026-06-04',
     dateDisplay: 'April 22, 2026',
     readTime: '8 min read',
     badge: 'PFAS',

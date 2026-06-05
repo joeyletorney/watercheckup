@@ -10,6 +10,7 @@ import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
 import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
+import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 
 export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -19,17 +20,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const post = POSTS[params.slug];
   if (!post) return { title: 'Post Not Found | WaterCheckup' };
 
-  const docTitle = post.seo?.title ?? post.title;
-  const docDescription = post.seo?.description ?? post.excerpt;
-  const ogTitle = post.seo?.openGraph?.title ?? docTitle;
-  const ogDescription = post.seo?.openGraph?.description ?? docDescription;
+  const ctr = getCtrSerpOverride(`/blog/${params.slug}`);
+  const docTitle = ctr?.title ?? post.seo?.title ?? post.title;
+  const docDescription = ctr?.description ?? post.seo?.description ?? post.excerpt;
+  const ogTitle = ctr?.title ?? post.seo?.openGraph?.title ?? docTitle;
+  const ogDescription = ctr?.description ?? post.seo?.openGraph?.description ?? docDescription;
   const canonical = post.seo?.canonical ?? `https://watercheckup.com/blog/${params.slug}`;
   const ogImageTitle = post.title;
   const ogImageExcerpt = post.excerpt;
 
   return {
     /* Root layout title.template — use absolute when `seo.title` is set so it is not doubled */
-    title: post.seo?.title ? { absolute: post.seo.title } : post.title,
+    title: ctr?.title ?? post.seo?.title ? { absolute: ctr?.title ?? post.seo!.title } : post.title,
     description: docDescription,
     alternates: {
       canonical,

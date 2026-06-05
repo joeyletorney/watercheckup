@@ -95,11 +95,12 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
     excerpt:
       'NYC has some of the best municipal source water in the country — but building pipes, lead, and PFAS still matter. Here is what the 2026 data shows for residents.',
     seo: {
-      title: 'Is New York City Tap Water Safe to Drink in 2026? | WaterCheckup',
+      title: 'Is NYC Tap Water Safe in 2026? Lead, PFAS & What to Know',
       description:
-        'NYC tap water is famous for quality — but lead in older buildings and PFAS are real concerns. See EPA data, health risks, and what to do in 2026.',
+        'Great source water — older buildings can still add lead at the tap. PFAS monitoring, DEP context, and filter picks for NYC renters & owners.',
     },
     date: '2026-05-18',
+    dateModified: '2026-06-04',
     dateDisplay: 'May 18, 2026',
     readTime: '9 min read',
     badge: 'NYC',
