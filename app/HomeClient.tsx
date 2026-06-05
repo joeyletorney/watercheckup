@@ -1634,6 +1634,7 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'austin', name: 'Austin, TX' },
   { slug: 'baltimore', name: 'Baltimore, MD' },
   { slug: 'boston', name: 'Boston, MA' },
+  { slug: 'buffalo', name: 'Buffalo, NY' },
   { slug: 'charlotte', name: 'Charlotte, NC' },
   { slug: 'chicago', name: 'Chicago, IL' },
   { slug: 'cleveland', name: 'Cleveland, OH' },
@@ -1647,8 +1648,10 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'fort-worth', name: 'Fort Worth, TX' },
   { slug: 'fresno', name: 'Fresno, CA' },
   { slug: 'gaithersburg', name: 'Gaithersburg, MD' },
+  { slug: 'hartford', name: 'Hartford, CT' },
   { slug: 'houston', name: 'Houston, TX' },
   { slug: 'indianapolis', name: 'Indianapolis, IN' },
+  { slug: 'jersey-city', name: 'Jersey City, NJ' },
   { slug: 'jackson', name: 'Jackson, MS' },
   { slug: 'jacksonville', name: 'Jacksonville, FL' },
   { slug: 'kansas-city', name: 'Kansas City, MO' },
@@ -1662,6 +1665,7 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'nashville', name: 'Nashville, TN' },
   { slug: 'new-orleans', name: 'New Orleans, LA' },
   { slug: 'new-york', name: 'New York, NY' },
+  { slug: 'newark', name: 'Newark, NJ' },
   { slug: 'orlando', name: 'Orlando, FL' },
   { slug: 'parkersburg', name: 'Parkersburg, WV' },
   { slug: 'philadelphia', name: 'Philadelphia, PA' },
@@ -1670,7 +1674,9 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'portland', name: 'Portland, OR' },
   { slug: 'portland-me', name: 'Portland, ME' },
   { slug: 'portsmouth-nh', name: 'Portsmouth, NH' },
+  { slug: 'providence', name: 'Providence, RI' },
   { slug: 'raleigh', name: 'Raleigh, NC' },
+  { slug: 'rochester', name: 'Rochester, NY' },
   { slug: 'sacramento', name: 'Sacramento, CA' },
   { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
   { slug: 'san-antonio', name: 'San Antonio, TX' },
@@ -1682,7 +1688,9 @@ const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
   { slug: 'san-jose', name: 'San Jose, CA' },
   { slug: 'seattle', name: 'Seattle, WA' },
   { slug: 'st-louis', name: 'St. Louis, MO' },
+  { slug: 'stamford', name: 'Stamford, CT' },
   { slug: 'tacoma', name: 'Tacoma, WA' },
+  { slug: 'worcester', name: 'Worcester, MA' },
   { slug: 'tampa', name: 'Tampa, FL' },
   { slug: 'tucson', name: 'Tucson, AZ' },
   { slug: 'washington-dc', name: 'Washington, DC' },
@@ -4230,9 +4238,9 @@ export default function WaterCheckup() {
 
         {/* Browse by city */}
         <div style={{ marginBottom: 96 }}>
-          <div className="wc-home-section-eyebrow" style={{ marginBottom: 4 }}>BROWSE BY CITY</div>
-          <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12, marginTop: 0 }}>Search any ZIP — not just the cities below</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>
+          <div className="wc-home-section-eyebrow" style={{ marginBottom: 8 }}>BROWSE BY CITY</div>
+          <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 28, marginTop: 0, lineHeight: 1.55 }}>Search any ZIP — not just the cities below</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16, marginBottom: 32 }}>
             {[
               { href: '/water/san-antonio', name: 'San Antonio, TX', grade: 'D+', score: '58/88', detail: 'PFAS · 272 mg/L hardness' },
               { href: '/water/gaithersburg', name: 'Gaithersburg, MD', grade: 'B', score: '74/88', detail: 'WSSC · water testing & PFAS' },
@@ -4256,7 +4264,7 @@ export default function WaterCheckup() {
               </a>
             ))}
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 16 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 36 }}>
             {[
               { href: '/water/san-antonio', label: 'San Antonio water contamination' },
               { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio water (2026)' },
@@ -4284,7 +4292,7 @@ export default function WaterCheckup() {
               </Link>
             ))}
           </div>
-          <label htmlFor="wc-city-filter" style={{ display: 'block', fontSize: 13, color: '#cbd5e1', marginBottom: 6 }}>
+          <label htmlFor="wc-city-filter" style={{ display: 'block', fontSize: 13, color: '#cbd5e1', marginBottom: 10 }}>
             Type to filter cities
           </label>
           <input
@@ -4299,8 +4307,8 @@ export default function WaterCheckup() {
               width: '100%',
               maxWidth: 420,
               boxSizing: 'border-box',
-              marginBottom: 14,
-              padding: '11px 14px',
+              marginBottom: 32,
+              padding: '12px 16px',
               borderRadius: 10,
               border: '1px solid #1a3a5c',
               background: '#071828',
@@ -4317,22 +4325,23 @@ export default function WaterCheckup() {
               </a>
             </div>
           )}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+          <div className="wc-home-city-browse-regions">
             {cityBrowseGrouped.map(({ region, cities }) => (
               <div key={region}>
                 <div className="wc-home-region-label">{region}</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                <div className="wc-home-city-chips">
                   {cities.map(({ slug, name }) => {
                     const badge = cityBrowseBadge(slug);
                     return (
                       <a
                         key={slug}
                         href={`/water/${slug}`}
+                        className="wc-home-city-chip"
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: 8,
-                          padding: '10px 14px',
+                          padding: '12px 16px',
                           background: 'linear-gradient(165deg, rgba(13,34,64,0.95), rgba(7,24,40,0.92))',
                           border: '1px solid #1e3a5c',
                           borderRadius: 10,

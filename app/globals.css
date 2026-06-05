@@ -47,7 +47,20 @@ html { scroll-behavior: smooth; }
   font-weight: 800;
   letter-spacing: 0.1em;
   color: #a8b4c4;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+}
+.wc-home-city-browse-regions {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.wc-home-city-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+}
+.wc-home-city-chip {
+  line-height: 1.35;
 }
 
 .wc-page {
