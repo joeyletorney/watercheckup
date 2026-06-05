@@ -26,3 +26,34 @@ export function quizHrefFromReport(data: {
   if (data.zip) params.set('zip', data.zip);
   return `/quiz?${params.toString()}`;
 }
+
+export function quizHrefFromCityPage(opts: {
+  zip: string;
+  hasPfas?: boolean;
+  urgency?: 'high' | 'medium' | 'low';
+}): string {
+  const concern = opts.hasPfas || opts.urgency === 'high' ? 'pfas' : 'general';
+  const params = new URLSearchParams({
+    source: 'city',
+    concern,
+    situation: 'owner_simple',
+    from: 'water-city',
+    zip: opts.zip,
+  });
+  return `/quiz?${params.toString()}`;
+}
+
+/** True when mail-in lab testing is especially worth recommending */
+export function shouldEmphasizeLabTest(opts: {
+  pfasCount?: number;
+  pfasAboveMcl?: number;
+  openViolations?: number;
+  score?: number;
+  hasLeadSignal?: boolean;
+}): boolean {
+  if (Number(opts.pfasAboveMcl) > 0 || Number(opts.pfasCount) > 0) return true;
+  if (Number(opts.openViolations) > 0) return true;
+  if (opts.hasLeadSignal) return true;
+  if (opts.score != null && opts.score < 57) return true;
+  return false;
+}

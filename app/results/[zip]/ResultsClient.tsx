@@ -3,8 +3,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
-import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
-import { quizHrefFromReport } from '@/lib/results-quiz-link';
+import { quizHrefFromReport, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
+import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { clearlyFilteredDirectUrl, isClearlyFilteredProduct } from '@/lib/waterdrop-buy';
 
@@ -498,6 +498,22 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             </div>
           )}
 
+          <TestVsFilterCta
+            contextLabel={`ZIP ${zip}${data.city ? ` (${data.city.split(',')[0]})` : ''}`}
+            filterHref={quizHrefFromReport({ zip, ...data })}
+            emphasizeTest={shouldEmphasizeLabTest({
+              pfasCount: data.pfasCount,
+              pfasAboveMcl: data.pfasAboveMcl,
+              openViolations: data.openViolations,
+              score: cappedScore,
+              hasLeadSignal: data.contaminants?.some((c: any) =>
+                /lead/i.test(String(c.name || c.contaminant || '')),
+              ),
+            })}
+            onOpenFilters={() => setTab('filters')}
+            filterCtaLabel="View filter picks for this ZIP →"
+          />
+
           {/* Data sources */}
           <div style={{ padding: '14px 18px', background: '#040d14', border: '1px solid #0f2336', borderRadius: 10, marginBottom: 20 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 8 }}>DATA SOURCES</div>
@@ -663,56 +679,6 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               </div>
             );
           })()}
-
-          {/* Tap Score lab test CTA */}
-          <div
-            style={{
-              padding: '20px 22px',
-              background: 'linear-gradient(135deg, #071828, #040d14)',
-              border: '2px solid rgba(251,191,36,0.25)',
-              borderRadius: 14,
-              marginBottom: 20,
-            }}
-          >
-            <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-              <div style={{ fontSize: 36, flexShrink: 0 }} aria-hidden>
-                🧪
-              </div>
-              <div style={{ flex: 1, minWidth: 200 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#fbbf24', letterSpacing: 2, marginBottom: 6 }}>
-                  TEST YOUR ACTUAL TAP
-                </div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
-                  EPA data shows what&apos;s in your public water system&apos;s water — not your specific tap
-                </div>
-                <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 14px' }}>
-                  Lead leaches from your home&apos;s pipes and fixtures. PFAS levels vary by neighborhood. A certified lab test tells you exactly what&apos;s coming out of your faucet — not just your public water system&apos;s average.
-                </p>
-                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  <a
-                    href={SIMPLELAB_CITY_TESTS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer sponsored"
-                    style={{
-                      display: 'inline-block',
-                      padding: '10px 18px',
-                      background: 'linear-gradient(135deg,#fbbf24,#f59e0b)',
-                      borderRadius: 8,
-                      color: '#0f172a',
-                      fontSize: 13,
-                      fontWeight: 800,
-                      textDecoration: 'none',
-                    }}
-                  >
-                    Tap Score Lab Test — from $49 →
-                  </a>
-                </div>
-                <p style={{ fontSize: 13, color: '#94a3b8', margin: '10px 0 0' }}>
-                  Tap Score tests are processed by independently accredited labs. Turnaround is typically about a week; panels vary by price — results include personalized guidance.
-                </p>
-              </div>
-            </div>
-          </div>
 
           {/* City page link */}
           {(() => {
