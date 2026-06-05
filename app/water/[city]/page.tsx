@@ -28,6 +28,9 @@ import { resolveCityPwsid } from '@/lib/city-pwsid';
 import { buildCityContaminantDisplay } from '@/lib/city-contaminant-display';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { CityContaminantTable } from '@/components/CityContaminantTable';
+import { CityLegalVsSafeBanner } from '@/components/CityLegalVsSafeBanner';
+import { CityFilterTechMatrix } from '@/components/CityFilterTechMatrix';
+import { CityLocalWaterStats } from '@/components/CityLocalWaterStats';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -171,7 +174,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
   const cityBlurbText = cityBlurbs[slug as keyof typeof cityBlurbs]?.blurb;
   const pwsid = pwsidResolved;
   const pfas = cd ? pfasForScore : null;
-  const contaminantRows = cd ? buildCityContaminantDisplay(slug, cd.pwsid, cd.waterProfile, 18, cd.zip) : [];
+  const contaminantRows = cd
+    ? buildCityContaminantDisplay(slug, cd.pwsid, cd.waterProfile, 18, cd.zip, cd.state)
+    : [];
   const cityPicks = TOP_PICKS[slug] || DEFAULT_PICKS;
   const cityWhyText = getCityWhy(slug, cd, pfas);
   const webPageAuthorLd = {
@@ -457,12 +462,24 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 ))}
               </div>
 
+              <CityLocalWaterStats
+                cityName={cd.name}
+                stateCode={cd.state}
+                pwsid={pwsid}
+                rows={contaminantRows}
+                pfasCompoundCount={pfas?.compounds?.length ?? 0}
+              />
+
               {contaminantRows.length > 0 ? (
-                <CityContaminantTable
-                  cityName={cd.name}
-                  rows={contaminantRows}
-                  sourceNote="EPA UCMR5 PFAS plus utility/EWG averages from our contaminant bundle. Run a ZIP report for live SDWIS samples at your address."
-                />
+                <>
+                  <CityLegalVsSafeBanner cityName={cd.name} />
+                  <CityContaminantTable
+                    cityName={cd.name}
+                    stateCode={cd.state}
+                    rows={contaminantRows}
+                    sourceNote="EPA UCMR5 PFAS plus utility/EWG averages from our contaminant bundle. Run a ZIP report for live SDWIS samples at your address."
+                  />
+                </>
               ) : null}
 
               {/* Facts */}
@@ -572,6 +589,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <span style={{ fontSize: 13, color: '#cbd5e1', flexShrink: 0 }}>🔔 Get alerts if {cd.name}&apos;s water data changes:</span>
               <EmailCapture cityName={cd.name} slug={slug} inline />
             </div>
+
+            <CityFilterTechMatrix rows={contaminantRows} cityName={cd.name} />
 
             {/* ── STEP 3: FILTER RECOMMENDATION ── */}
             <div className="wc-filter-rec-accent-wrap" style={{ marginBottom: 8, overflow: 'hidden' }}>

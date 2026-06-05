@@ -18,6 +18,11 @@ export type ContaminantRow = {
   ewgTimesOver?: number | null;
   violationBased?: boolean;
   isPFAS?: boolean;
+  nationalAvg?: number | null;
+  stateAvg?: number | null;
+  filterCarbon?: boolean;
+  filterRo?: boolean;
+  filterIonExchange?: boolean;
 };
 
 export type EpaContaminantSpec = {
@@ -228,6 +233,7 @@ export const EXTRA_HEALTH_CONTEXT: Record<string, { effects: string; sources: st
 
 export const EXTRA_EWG_GUIDELINES: Record<string, { limit: number; unit: string; label: string }> = {
   'Total Trihalomethanes (TTHMs)': { limit: 0.15, unit: 'ppb', label: 'EWG health guideline: 0.15 ppb' },
+  'Haloacetic Acids (HAA5)': { limit: 0.06, unit: 'ppb', label: 'EWG health guideline: 0.06 ppb (HAA5)' },
   Sodium: { limit: 20, unit: 'mg/L', label: 'EWG / EPA taste advisory: 20 mg/L' },
   Manganese: { limit: 0.1, unit: 'ppm', label: 'EWG health guideline: 100 ppb' },
   Barium: { limit: 700, unit: 'ppb', label: 'EWG health guideline: 700 ppb' },
@@ -235,6 +241,12 @@ export const EXTRA_EWG_GUIDELINES: Record<string, { limit: number; unit: string;
   Dibromochloromethane: { limit: 0.1, unit: 'ppb', label: 'EWG health guideline: 0.1 ppb' },
   'Dichloroacetic Acid': { limit: 0.2, unit: 'ppb', label: 'EWG health guideline: 0.2 ppb' },
   'Trichloroacetic Acid': { limit: 0.4, unit: 'ppb', label: 'EWG health guideline: 0.4 ppb' },
+  'Bromochloroacetic acid': { limit: 0.02, unit: 'ppb', label: 'EWG health guideline: 0.02 ppb' },
+  'Dibromoacetic Acid': { limit: 0.06, unit: 'ppb', label: 'EWG health guideline: 0.06 ppb' },
+  'Chromium-6': { limit: 0.02, unit: 'ppb', label: 'EWG health guideline: 0.02 ppb (chromium-6)' },
+  Arsenic: { limit: 0.004, unit: 'ppb', label: 'EWG health guideline: 0.004 ppb' },
+  Nitrate: { limit: 0.14, unit: 'ppm', label: 'EWG health guideline: 0.14 ppm' },
+  'Radium (combined)': { limit: 0.05, unit: 'pCi/L', label: 'EWG health guideline: 0.05 pCi/L' },
 };
 
 const CATALOG_CODE_SET = new Set(

@@ -3,6 +3,7 @@ import { resolveCityPwsid } from '@/lib/city-pwsid';
 import type { CityPfasSnapshot } from '@/lib/city-water-score';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { getPwsidCcrContaminants } from '@/lib/pwsid-ccr-contaminants';
+import { enrichContaminantRows } from '@/lib/contaminant-benchmarks';
 import { sortContaminants, type ContaminantRow } from '@/lib/water-contaminants';
 
 const PFAS_MCL_PPT: Record<string, number> = {
@@ -30,6 +31,8 @@ function pfasRows(pfas: CityPfasSnapshot): ContaminantRow[] {
         note: 'EPA UCMR5 monitoring (2023–2025)',
         source: 'EPA UCMR5',
         isPFAS: true,
+        healthEffects:
+          'PFAS (“forever chemicals”) persist in the body. NSF 58 reverse osmosis or NSF P473-certified filters remove PFAS at the tap — standard pitchers do not.',
       };
     });
 }
@@ -65,6 +68,7 @@ export function buildCityContaminantDisplay(
   waterProfile?: WaterProfile,
   limit = 18,
   zip?: string,
+  stateCode?: string,
 ): ContaminantRow[] {
   const pwsid = resolveCityPwsid(slug, fallbackPwsid, zip);
   const pfas = getCityPfasData(pwsid);
@@ -73,5 +77,5 @@ export function buildCityContaminantDisplay(
     ...getPwsidCcrContaminants(pwsid),
     ...(hardnessRow(waterProfile) ? [hardnessRow(waterProfile)!] : []),
   ]);
-  return rows.slice(0, limit);
+  return enrichContaminantRows(rows.slice(0, limit), stateCode ?? '');
 }

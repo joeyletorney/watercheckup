@@ -1,4 +1,5 @@
 import type { ContaminantRow } from '@/lib/water-contaminants';
+import { filterTechSummary } from '@/lib/contaminant-filter-tech';
 
 const SEVERITY_COLOR: Record<string, string> = {
   high: '#ef4444',
@@ -12,13 +13,19 @@ const STATUS_LABEL: Record<string, string> = {
   low: 'Lower concern',
 };
 
+function formatAvg(value: number, unit: string): string {
+  const d = unit === 'ppm' ? 2 : unit === 'ppt' || unit === 'ppb' ? 2 : 1;
+  return `${value.toFixed(d)} ${unit}`;
+}
+
 type Props = {
   cityName: string;
+  stateCode?: string;
   rows: ContaminantRow[];
   sourceNote?: string;
 };
 
-export function CityContaminantTable({ cityName, rows, sourceNote }: Props) {
+export function CityContaminantTable({ cityName, stateCode, rows, sourceNote }: Props) {
   if (!rows.length) return null;
 
   return (
@@ -44,6 +51,11 @@ export function CityContaminantTable({ cityName, rows, sourceNote }: Props) {
           c.level != null
             ? `${c.level} ${c.unit}${c.limit != null ? ` (EPA limit ${c.limit} ${c.unit})` : ''}`
             : '—';
+        const tech =
+          c.filterCarbon != null
+            ? { carbon: c.filterCarbon, ro: c.filterRo!, ionExchange: c.filterIonExchange! }
+            : null;
+
         return (
           <div
             key={`${c.name}-${i}`}
@@ -63,8 +75,22 @@ export function CityContaminantTable({ cityName, rows, sourceNote }: Props) {
               }}
             >
               <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 13, color: '#cbd5e1' }}>{levelStr}</span>
+                {(c.ewgTimesOver ?? 0) >= 1 && c.ewgGuidelineLabel ? (
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      padding: '3px 8px',
+                      borderRadius: 6,
+                      background: '#7c1d1d44',
+                      color: '#fca5a5',
+                    }}
+                  >
+                    {c.ewgTimesOver}× health guideline
+                  </span>
+                ) : null}
                 <span
                   style={{
                     fontSize: 12,
@@ -79,13 +105,45 @@ export function CityContaminantTable({ cityName, rows, sourceNote }: Props) {
                 </span>
               </div>
             </div>
-            <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.note}</p>
+
+            {(c.nationalAvg != null || c.stateAvg != null) && (
+              <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 6px', lineHeight: 1.5 }}>
+                {c.nationalAvg != null ? (
+                  <span>U.S. utility avg: {formatAvg(c.nationalAvg, c.unit)}</span>
+                ) : null}
+                {c.nationalAvg != null && c.stateAvg != null ? ' · ' : null}
+                {c.stateAvg != null && stateCode ? (
+                  <span>{stateCode} utility avg: {formatAvg(c.stateAvg, c.unit)}</span>
+                ) : null}
+              </p>
+            )}
+
+            {c.ewgGuidelineLabel ? (
+              <p style={{ fontSize: 12, color: '#fbbf24', margin: '0 0 6px', lineHeight: 1.5 }}>
+                {c.ewgGuidelineLabel}
+              </p>
+            ) : null}
+
+            {c.healthEffects ? (
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 6px', lineHeight: 1.6 }}>
+                {c.healthEffects}
+              </p>
+            ) : (
+              <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 6px', lineHeight: 1.6 }}>{c.note}</p>
+            )}
+
+            {tech ? (
+              <p style={{ fontSize: 12, color: '#67e8f9', margin: 0, fontWeight: 600 }}>
+                Removes with: {filterTechSummary(tech)}
+              </p>
+            ) : null}
           </div>
         );
       })}
 
       <p style={{ fontSize: 12, color: '#64748b', margin: '14px 0 0', lineHeight: 1.5 }}>
-        For your exact tap, use a ZIP report — home plumbing can differ from utility averages.
+        U.S. and state averages from EWG Tap Water Atlas utilities in our database. For your exact tap, use a ZIP
+        report — home plumbing can differ from utility averages.
       </p>
     </div>
   );
