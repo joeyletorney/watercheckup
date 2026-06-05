@@ -1,23 +1,16 @@
-import Link from 'next/link';
+import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 
 export function FounderCityAttribution() {
   return (
-    <p
+    <div
       style={{
         margin: '32px 0 0',
         paddingTop: 24,
         borderTop: '1px solid #1a3a5c',
-        fontSize: 13,
-        color: '#a8b4c4',
-        lineHeight: 1.65,
         textAlign: 'center',
       }}
     >
-      Data reviewed by{' '}
-      <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
-        Joe Letorney
-      </Link>
-      , 30-year water treatment specialist →
-    </p>
+      <AuthorReviewBadge style={{ marginBottom: 0 }} />
+    </div>
   );
 }

@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
-import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
+import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
+import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 
@@ -104,6 +105,7 @@ export default function SugarLandWaterPage() {
         </nav>
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>Sugar Land Water Quality 2026</h1>
+        <AuthorReviewBadge style={{ marginBottom: 12 }} />
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>City of Sugar Land Water Public water system · Brazos River / groundwater · UCMR5 2023–2025</p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: EPA UCMR5 (PWSID TX0790005) · EPA SDWIS · Public water system CCR</p>
 
@@ -152,7 +154,7 @@ export default function SugarLandWaterPage() {
           </Link>
         </div>
 
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 28px' }}>{PRIORITY_CITY_INTROS['sugar-land']}</p>
+        <PriorityCityEditorial slug="sugar-land" />
         <CityFilterGuideLinks />
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>

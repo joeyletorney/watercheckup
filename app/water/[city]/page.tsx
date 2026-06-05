@@ -14,7 +14,9 @@ import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_H1, PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
-import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
+import { getPriorityCityIntroParagraphs } from '@/lib/priority-city-intros';
+import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
+import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
@@ -265,6 +267,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
                   : `${cityName} tap water: what\u2019s in it in 2026`)}
           </h1>
 
+          {cd && <AuthorReviewBadge />}
+
           {slug === 'gaithersburg' && (
             <>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: '#e2e8f0', margin: '0 0 18px', lineHeight: 1.3 }}>
@@ -279,15 +283,11 @@ export default function CityPage({ params }: { params: { city: string } }) {
             </>
           )}
 
-          {cd && PRIORITY_CITY_INTROS[slug] && (
-            <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.75 }}>
-              {PRIORITY_CITY_INTROS[slug]}
-            </p>
-          )}
+          {cd && getPriorityCityIntroParagraphs(slug) && <PriorityCityEditorial slug={slug} />}
 
           {cd && <CityFilterGuideLinks />}
 
-          {cd && !PRIORITY_CITY_INTROS[slug] && slug !== 'gaithersburg' && (
+          {cd && !getPriorityCityIntroParagraphs(slug) && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>
               Serving {cd.population} residents via {cd.system}
               {cityBlurbText ? ` · ${cityBlurbText}` : ''}
@@ -583,14 +583,6 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 Based on {cd.name}&apos;s water profile above, here&apos;s the exact system we recommend — and why it&apos;s right for this water supply specifically.
               </p>
             </div>
-
-            <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.6 }}>
-              Recommendations by{' '}
-              <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
-                Joe Letorney
-              </Link>
-              , 30-year water treatment specialist →
-            </p>
 
             <TopPickBox
               picks={cityPicks.picks}

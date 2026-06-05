@@ -348,7 +348,7 @@ export const POSTS: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Our ranked NSF 53/58 picks (10 options — 3 RO, 4 under-counter carbon, 3 pitchers) are in the ',
         React.createElement('strong', { style: strongStyle }, 'Top Picks'),
-        ' box at the top of this guide — from Joe Letorney, 30-year water treatment specialist.'
+        ' box at the top of this guide — from Joe Letorney, 30-year water treatment expert.'
       ),
 
       React.createElement('p', { style: pStyle },

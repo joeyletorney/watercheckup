@@ -4,7 +4,8 @@ import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import type { Metadata } from 'next';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
-import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
+import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
+import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
@@ -206,6 +207,7 @@ export default function SanAntonioWaterPage() {
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
           San Antonio Water Quality 2026
         </h1>
+        <AuthorReviewBadge style={{ marginBottom: 12 }} />
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
           San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2025 data
         </p>
@@ -262,9 +264,7 @@ export default function SanAntonioWaterPage() {
           </Link>
         </div>
 
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 28px' }}>
-          {PRIORITY_CITY_INTROS['san-antonio']}
-        </p>
+        <PriorityCityEditorial slug="san-antonio" />
 
         <CityFilterGuideLinks />
 

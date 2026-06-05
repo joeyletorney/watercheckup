@@ -100,10 +100,16 @@ export const SITE_COMPARISON_ROWS: {
   { feature: 'EPA verified data', watercheckup: { type: 'yes', text: 'UCMR5 + SDWIS' }, others: { type: 'warn', text: 'Partial / mixed sources' } },
 ];
 
-export const CITY_EXPERT_TRUST_BADGE =
-  'Recommendations by Joe Letorney, 30-year water treatment specialist';
+export const AUTHOR_REVIEW_BYLINE =
+  'Reviewed by Joe Letorney, 30-year water treatment expert';
+
+/** Matches /about — certification is historical, not current. */
+export const AUTHOR_FORMER_WQA_CREDENTIAL =
+  'Former WQA Certified Water Treatment Specialist (CWS), Level VI';
+
+export const CITY_EXPERT_TRUST_BADGE = AUTHOR_REVIEW_BYLINE;
 
 export const BLOG_AUTHOR_BYLINE = {
   name: 'Joe Letorney',
-  credentials: '30-Year Water Treatment Expert | WQA Certified Specialist (Former)',
+  credentials: `30-year water treatment expert · ${AUTHOR_FORMER_WQA_CREDENTIAL}`,
 } as const;

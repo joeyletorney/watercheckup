@@ -248,7 +248,7 @@ export default function AboutPage() {
             <div className="about-hero__portrait-inner">
               <Image
                 src="/joe-letorney.jpeg"
-                alt="Joe Letorney - Founder of WaterCheckup, 30-year water treatment specialist"
+                alt="Joe Letorney - Founder of WaterCheckup, 30-year water treatment expert"
                 width={200}
                 height={200}
                 sizes="(max-width: 767px) 180px, 200px"

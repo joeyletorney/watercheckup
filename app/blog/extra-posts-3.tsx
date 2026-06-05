@@ -711,7 +711,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Joe\'s Top Picks: Best NSF-Certified Filters for PFAS Removal'),
       React.createElement('p', { style: { ...pStyle, fontStyle: 'italic', color: '#a8b4c4' } },
-        'Recommendations from Joe Letorney, 30-year water treatment specialist'
+        'Recommendations from Joe Letorney, 30-year water treatment expert'
       ),
 
       React.createElement('h3', { style: h3Style }, '🥇 Pitcher — Clearly Filtered Water Pitcher'),
