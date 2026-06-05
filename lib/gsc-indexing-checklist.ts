@@ -40,3 +40,37 @@ export const GSC_INDEXING_PATHS = [
 export const GSC_INDEXING_URLS = GSC_INDEXING_PATHS.map(gscIndexingUrl);
 
 export const GSC_SITEMAP_URL = gscIndexingUrl('/sitemap.xml');
+
+/**
+ * Copy-paste list for GSC URL Inspection (one URL per line):
+ *
+ * https://watercheckup.com/water/gaithersburg
+ * https://watercheckup.com/water/san-antonio
+ * https://watercheckup.com/water/houston
+ * https://watercheckup.com/water/sugar-land
+ * https://watercheckup.com/water/chicago
+ * https://watercheckup.com/water/phoenix
+ * https://watercheckup.com/water/new-york
+ * https://watercheckup.com/water/miami
+ * https://watercheckup.com/water/dallas
+ * https://watercheckup.com/water/los-angeles
+ * https://watercheckup.com/blog/best-water-filter-gaithersburg-md
+ * https://watercheckup.com/blog/best-water-filter-for-lead-removal
+ * https://watercheckup.com/blog/san-antonio-water-quality
+ * https://watercheckup.com/blog/pfas-in-san-antonio-water
+ * https://watercheckup.com/blog/is-new-york-city-tap-water-safe-2026
+ * https://watercheckup.com/blog/what-water-filter-removes-pfas
+ * https://watercheckup.com/utilities/nc/greensboro-townsend
+ * https://watercheckup.com/blog/reverse-osmosis-pros-and-cons
+ * https://watercheckup.com/contact
+ * https://watercheckup.com/water
+ * https://watercheckup.com/rankings
+ * https://watercheckup.com/worst-cities
+ * https://watercheckup.com/worst-pfas
+ * https://watercheckup.com/best-cities
+ * https://watercheckup.com/worst-pfas-cities
+ * https://watercheckup.com/results/77001
+ * https://watercheckup.com/results/78205
+ * https://watercheckup.com/results/10001
+ * https://watercheckup.com/sitemap.xml
+ */
