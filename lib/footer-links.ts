@@ -64,6 +64,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { href: '/methodology', label: 'Data & scoring' },
       { href: '/contaminants', label: 'Contaminants guide' },
       { href: '/about', label: 'About us' },
+      { href: '/contact', label: 'Contact' },
       { href: '/utilities/claim', label: 'For public water systems' },
     ],
   },
@@ -71,6 +72,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
 
 export const FOOTER_LEGAL_LINKS: FooterLink[] = [
   { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
   { href: '/methodology', label: 'Methodology' },
   { href: '/faq', label: 'FAQ' },
   { href: '/blog', label: 'Blog' },

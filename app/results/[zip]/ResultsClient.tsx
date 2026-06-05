@@ -263,11 +263,24 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         </div>
 
         <h1 style={{ fontSize: 28, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 6px' }}>
-          {data.city}
+          {data.city?.split(',')[0]?.trim()
+            ? `${data.city.split(',')[0].trim()} Tap Water Quality — ZIP ${zip}`
+            : `ZIP ${zip} Tap Water Quality`}
         </h1>
-        <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 20px' }}>
+        <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 10px' }}>
           {data.systemName} · PWSID {data.pwsid} · {data.sourceType}
           {data.population ? ` · ${data.population} served` : ''}
+        </p>
+        <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 20px' }}>
+          Live EPA SDWIS and UCMR5 snapshot for this ZIP — letter grade, violations, PFAS, and filter picks below.
+          {citySlug ? (
+            <>
+              {' '}
+              <Link href={`/water/${citySlug}`} style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
+                Full {data.city?.split(',')[0]?.trim()} city report →
+              </Link>
+            </>
+          ) : null}
         </p>
 
         {/* Score + summary row */}

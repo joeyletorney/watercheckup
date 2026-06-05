@@ -5,6 +5,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { ABOUT_WATER_BG, ABOUT_WATER_BG_ALT } from '@/lib/unsplash-images';
 import { SITE_COMPARISON_ROWS } from '@/lib/site-stats';
 import { ComparisonCellDisplay } from '@/components/ComparisonCellDisplay';
+import { UserTestimonials } from '@/components/UserTestimonials';
 
 export const metadata: Metadata = {
   title: {
@@ -474,8 +475,14 @@ export default function AboutPage() {
             <Link href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none' }}>
               How we source EPA data →
             </Link>
+            {' · '}
+            <Link href="/contact" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+              Contact us →
+            </Link>
           </p>
         </div>
+
+        <UserTestimonials compact />
       </main>
     </div>
   );

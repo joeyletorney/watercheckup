@@ -49,7 +49,7 @@ export default function WorstCitiesPage() {
           <ScoreGradeDisclaimer />
         </div>
 
-        <SearchDemandCities title="Also ranking well in Google search" compact />
+        <SearchDemandCities title="Popular city water reports" compact />
 
         <CityRankingList
           items={cities.map((c) => ({

@@ -28,6 +28,51 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
     description:
       '150,000+ lead service lines, PFAS in monitoring, chloramine byproducts. Free 2026 Chicago water report (75/88) & filter picks.',
   },
+  '/water/houston': {
+    title: 'Houston Tap Water: D+ Grade — 22.4 ppt PFAS & High DBPs',
+    description:
+      '22.4 ppt PFAS above EPA limits, elevated arsenic, TTHMs at 73% of legal max. Free 2026 Houston graded report & NSF filter picks — no signup.',
+  },
+  '/water/new-york': {
+    title: 'NYC Tap Water: C Grade — PFOS 106 ppt & Building Lead Risk',
+    description:
+      'PFOS at 106 ppt in EPA monitoring (26× the 4 ppt limit). Pre-1986 buildings may add lead at the tap. Free 2026 NYC water report & filter picks.',
+  },
+  '/water/miami': {
+    title: 'Miami Tap Water: D Grade — PFOS 33 ppt & PFAS MCL Violations',
+    description:
+      'MDWASA water: PFOS, PFOA, PFHxS above EPA limits in UCMR5. Biscayne Aquifer source. Free 2026 Miami-Dade graded report & NSF filter picks.',
+  },
+  '/water/sugar-land': {
+    title: 'Sugar Land Tap Water: F Grade — 672 ppt 6:2 FTS Peak',
+    description:
+      'Highest peak PFAS in large Texas systems: 672 ppt 6:2 FTS, PFOA at EPA limit. Free 2026 Sugar Land UCMR5 report & NSF 58 filter picks.',
+  },
+  '/water/dallas': {
+    title: 'Dallas Tap Water: D Grade — PFAS MCL Violations & DBPs',
+    description:
+      'PFOA, PFOS & PFHxS above EPA limits in UCMR5. Elevated TTHMs from chloramine treatment. Free 2026 Dallas water report & filter quiz.',
+  },
+  '/water/los-angeles': {
+    title: 'Los Angeles Tap Water: C- Grade — Chromium-6 & 11 ppt PFAS',
+    description:
+      'Chromium-6 above CA health goals, PFAS in LADWP monitoring, 268 mg/L hardness. Free 2026 LA graded EPA report — no signup.',
+  },
+  '/water/philadelphia': {
+    title: 'Philadelphia Tap Water: D+ Grade — PFAS, Lead Lines & DBPs',
+    description:
+      '16.1 ppt PFAS, lead service lines in ~25% of homes, Delaware River DBPs. Free 2026 Philly water report & NSF filter picks.',
+  },
+  '/water/columbus': {
+    title: 'Columbus OH Tap Water: PFAS MCL Violations — 2026 Report',
+    description:
+      'Regulated PFAS above EPA limits in UCMR5 (18 ppt peak). Scioto River source. Free 2026 Columbus graded report & certified filter picks.',
+  },
+  '/water/fort-worth': {
+    title: 'Fort Worth Tap Water: 102 ppt PFAS — 2026 Safety Report',
+    description:
+      'PFHxS & PFOS above EPA MCLs in Trinity basin water. Free 2026 Fort Worth graded report, UCMR5 compound table & NSF filter picks.',
+  },
   '/blog/san-antonio-water-quality': {
     title: 'Is San Antonio Water Safe to Drink? 2026 SAWS Data',
     description:
