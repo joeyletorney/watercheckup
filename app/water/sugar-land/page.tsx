@@ -7,6 +7,10 @@ import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
+import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
+import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
+import { resolveCityPwsid } from '@/lib/city-pwsid';
 
 const AMAZON_TAG = 'watercheck20-20';
 
@@ -14,44 +18,6 @@ export function generateMetadata(): Metadata {
   const cd = CITIES['sugar-land'];
   return metadataForPriorityCity('sugar-land', cd)!;
 }
-
-const CONTAMINANTS = [
-  {
-    name: '6:2 FTS (PFAS)',
-    level: '672 ppt',
-    status: 'Highest peak in Texas',
-    color: '#ef4444',
-    desc: 'EPA UCMR5 monitoring found 672 ppt of 6:2 FTS — the highest peak PFAS reading of any large Texas water system in the federal dataset. 6:2 FTS is not yet one of the six EPA-regulated PFAS compounds, but it is a persistent forever chemical. Only reverse osmosis (NSF 58) reliably removes it at the tap.',
-  },
-  {
-    name: 'PFOA',
-    level: '4.1 ppt',
-    status: 'At EPA MCL',
-    color: '#f59e0b',
-    desc: "PFOA was detected at 4.1 ppt — at the EPA's 2024 legal limit of 4 ppt for this regulated compound. This counts as an MCL violation in federal monitoring data.",
-  },
-  {
-    name: 'PFPeA',
-    level: '358 ppt',
-    status: 'Detected (unregulated)',
-    color: '#f97316',
-    desc: 'Short-chain PFAS detected at elevated levels. Not yet covered by the April 2024 EPA rule, but part of the total forever-chemical burden in Sugar Land water.',
-  },
-  {
-    name: 'PFBA',
-    level: '74.8 ppt',
-    status: 'Detected (unregulated)',
-    color: '#f59e0b',
-    desc: 'Perfluorobutanoic acid — a short-chain PFAS common in industrial runoff. No federal MCL yet; RO is still the best residential removal option.',
-  },
-  {
-    name: 'Water Hardness',
-    level: '~200 mg/L',
-    status: 'Hard',
-    color: '#f97316',
-    desc: 'Sugar Land water is moderately hard from Brazos River and groundwater blends. A softener helps appliances; RO addresses drinking-water contaminants including PFAS.',
-  },
-];
 
 const FILTERS = [
   {
@@ -109,6 +75,19 @@ export default function SugarLandWaterPage() {
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>City of Sugar Land Water Public water system · Brazos River / groundwater · UCMR5 2023–2025</p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: EPA UCMR5 (PWSID TX0790005) · EPA SDWIS · Public water system CCR</p>
 
+        <CityDedicatedScoreHero
+          urgency={CITIES['sugar-land'].urgency}
+          issues={CITIES['sugar-land'].issues}
+          waterProfile={CITIES['sugar-land'].waterProfile}
+          pfas={getCityPfasData(resolveCityPwsid('sugar-land', CITIES['sugar-land'].pwsid, CITIES['sugar-land'].zip))}
+          summary="Sugar Land shows the highest peak PFAS reading of any large Texas system in EPA UCMR5 — 672 ppt of 6:2 FTS — with PFOA at the federal limit. NSF 58 reverse osmosis is strongly recommended for households concerned about forever chemicals."
+          stats={[
+            { label: '6:2 FTS peak', value: '672 ppt', color: '#ef4444' },
+            { label: 'PFOA', value: 'At MCL', color: '#f59e0b' },
+            { label: 'PFAS compounds', value: '4+', color: '#f97316' },
+          ]}
+        />
+
         <div
           style={{
             padding: '14px 18px',
@@ -157,21 +136,7 @@ export default function SugarLandWaterPage() {
         <PriorityCityEditorial slug="sugar-land" />
         <CityFilterGuideLinks />
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>PFAS & CONTAMINANTS — EPA UCMR5</div>
-          {CONTAMINANTS.map((c, i) => (
-            <div key={c.name} style={{ padding: '14px 0', borderBottom: i < CONTAMINANTS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
-                  <span style={{ fontSize: 13, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: `${c.color}20`, color: c.color }}>{c.status}</span>
-                </div>
-              </div>
-              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
-            </div>
-          ))}
-        </div>
+        <PriorityCityLiveDataBlock slug="sugar-land" />
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>BEST FILTERS FOR SUGAR LAND WATER</div>

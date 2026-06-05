@@ -8,6 +8,7 @@ import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
@@ -17,79 +18,6 @@ export function generateMetadata(): Metadata {
   const cd = CITIES.houston;
   return metadataForPriorityCity('houston', cd)!;
 }
-
-const CONTAMINANTS = [
-  {
-    name: 'PFAS (Total)',
-    level: '22.4 ppt',
-    status: 'Above EPA MCL',
-    color: '#ef4444',
-    desc: "Houston has among the highest PFAS levels of any major US city — 5.6× above the EPA's 2024 legal limit of 4 ppt. Industrial contamination from the Houston Ship Channel and petrochemical facilities is a primary source. Only reverse osmosis removes PFAS reliably.",
-  },
-  {
-    name: 'Arsenic',
-    level: '5.1 ppb',
-    status: 'Elevated',
-    color: '#f59e0b',
-    desc: "Naturally occurring arsenic at more than half the EPA legal limit of 10 ppb. EWG's health guideline is 0.004 ppb — making Houston's arsenic level 1,275× over the stricter health goal. Long-term exposure linked to bladder and lung cancer.",
-  },
-  {
-    name: 'Total Trihalomethanes (TTHMs)',
-    level: '58 ppb',
-    status: 'Approaching limit',
-    color: '#f59e0b',
-    desc: "At 58 ppb — 73% of the EPA's 80 ppb limit — Houston's TTHM levels are among the highest of major Texas cities. Formed when chlorine reacts with organic matter in Trinity River source water. Linked to bladder cancer with long-term exposure.",
-  },
-  {
-    name: 'Haloacetic Acids (HAA5)',
-    level: '41 ppb',
-    status: 'Elevated',
-    color: '#f59e0b',
-    desc: 'At 68% of the EPA limit, HAA5 levels are elevated in Houston water. Disinfection byproducts that form during chlorine treatment of surface water.',
-  },
-  {
-    name: 'Radium (combined)',
-    level: '1.8 pCi/L',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: 'Naturally occurring radium present in Houston water below the EPA limit of 5 pCi/L. Removed by reverse osmosis.',
-  },
-  {
-    name: 'Sodium',
-    level: '68 mg/L',
-    status: 'Elevated',
-    color: '#f97316',
-    desc: 'Houston water has naturally elevated sodium. People on low-sodium diets or with heart conditions should be aware. Reverse osmosis reduces sodium significantly.',
-  },
-  {
-    name: 'Hardness',
-    level: '184 mg/L',
-    status: 'Hard',
-    color: '#f59e0b',
-    desc: 'Houston water is hard, causing scale buildup in pipes and appliances. A water softener helps protect appliances and plumbing.',
-  },
-  {
-    name: 'Lead',
-    level: '2.1 ppb',
-    status: 'Below action level',
-    color: '#22d3ee',
-    desc: 'Well below the EPA action level of 15 ppb. Lead risk in Houston is primarily from older home plumbing, not the distribution system.',
-  },
-  {
-    name: 'Fluoride',
-    level: '0.7 ppm',
-    status: 'At recommended level',
-    color: '#22d3ee',
-    desc: 'Houston Water adds fluoride at the HHS recommended level of 0.7 ppm.',
-  },
-  {
-    name: 'Nitrate',
-    level: '1.4 ppm',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: 'Well below the EPA limit of 10 ppm. Not a concern for Houston residents.',
-  },
-] as const;
 
 const FILTER_PICKS = [
   {
@@ -232,34 +160,7 @@ export default function HoustonWaterPage() {
 
         <CityFilterGuideLinks />
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
-            CONTAMINANTS IN HOUSTON WATER — 2024 DATA
-          </div>
-          {CONTAMINANTS.map((c, i) => (
-            <div key={c.name} style={{ padding: '14px 0', borderBottom: i < CONTAMINANTS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 700,
-                      padding: '3px 8px',
-                      borderRadius: 6,
-                      background: `${c.color}20`,
-                      color: c.color,
-                    }}
-                  >
-                    {c.status}
-                  </span>
-                </div>
-              </div>
-              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
-            </div>
-          ))}
-        </div>
+        <PriorityCityLiveDataBlock slug="houston" />
 
         <div
           style={{

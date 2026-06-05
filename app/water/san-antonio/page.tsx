@@ -9,6 +9,7 @@ import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
@@ -19,93 +20,6 @@ export function generateMetadata(): Metadata {
   const cd = CITIES['san-antonio'];
   return metadataForPriorityCity('san-antonio', cd)!;
 }
-
-const CONTAMINANTS = [
-  {
-    name: 'Water Hardness',
-    level: '272 mg/L',
-    status: 'Very Hard',
-    color: '#f97316',
-    desc: 'San Antonio has some of the hardest water in the US. Edwards Aquifer water dissolves calcium and magnesium from limestone rock, creating scale buildup in pipes, appliances, water heaters, and fixtures. A water softener is strongly recommended for most SA homes.',
-  },
-  {
-    name: 'PFAS (Total)',
-    level: '4.1 ppt',
-    status: 'Above health guideline',
-    color: '#ef4444',
-    desc: 'PFAS “forever chemicals” detected in SAWS water at levels above EWG health guidelines (0.001 ppt). Below EPA’s 2024 legal limit of 4 ppt for PFOA/PFOS individually. Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.',
-  },
-  {
-    name: 'Radium (combined)',
-    level: '3.4 pCi/L',
-    status: 'Below EPA limit',
-    color: '#f59e0b',
-    desc: 'Naturally occurring radium from Edwards Aquifer limestone geology. At 3.4 pCi/L, this is below the EPA limit of 5 pCi/L but elevated relative to national averages. Long-term exposure increases bone cancer risk.',
-  },
-  {
-    name: 'Arsenic',
-    level: '3.8 ppb',
-    status: 'Below EPA limit',
-    color: '#f59e0b',
-    desc: 'Naturally occurring arsenic from aquifer geology. Below the EPA limit of 10 ppb but above EWG’s health guideline of 0.004 ppb. Long-term exposure is linked to bladder and lung cancer.',
-  },
-  {
-    name: 'Sodium',
-    level: '92 mg/L',
-    status: 'Elevated',
-    color: '#f97316',
-    desc: 'San Antonio water is naturally high in sodium due to Edwards Aquifer mineral content. People on low-sodium diets or with heart conditions should be aware. Reverse osmosis systems reduce sodium significantly.',
-  },
-  {
-    name: 'Total Trihalomethanes (TTHMs)',
-    level: '32 ppb',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: 'Disinfection byproducts formed when chlorine reacts with organic matter. At 32 ppb, well below the EPA limit of 80 ppb. Linked to bladder cancer risk with long-term exposure above health guidelines.',
-  },
-  {
-    name: 'Haloacetic Acids (HAA5)',
-    level: '18 ppb',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: 'Disinfection byproducts from chlorine treatment. At 18 ppb, well below the EPA limit of 60 ppb.',
-  },
-  {
-    name: 'Lead',
-    level: '2.2 ppb',
-    status: 'Below action level',
-    color: '#22d3ee',
-    desc: 'SAWS 90th percentile lead result is well below the EPA action level of 15 ppb. Lead risk in SA is primarily from older home plumbing, not the distribution system. SAWS offers free lead service line inspections.',
-  },
-  {
-    name: 'Copper',
-    level: '148 ppb',
-    status: 'Below action level',
-    color: '#22d3ee',
-    desc: 'Below EPA action level of 1,300 ppb. No concern at current levels.',
-  },
-  {
-    name: 'Fluoride',
-    level: '0.7 ppm',
-    status: 'At recommended level',
-    color: '#22d3ee',
-    desc: 'SAWS adds fluoride at the HHS recommended level of 0.7 ppm for dental health.',
-  },
-  {
-    name: 'Nitrate',
-    level: '1.8 ppm',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: 'Well below the EPA limit of 10 ppm. Not a concern for most San Antonio residents.',
-  },
-  {
-    name: 'Bacteria (E. coli)',
-    level: 'None detected',
-    status: 'Safe',
-    color: '#22d3ee',
-    desc: 'SAWS sampled 390 sites monthly in 2024. No E. coli positives were found. San Antonio water is microbiologically safe.',
-  },
-] as const;
 
 const FILTER_PICKS = [
   {
@@ -268,35 +182,7 @@ export default function SanAntonioWaterPage() {
 
         <CityFilterGuideLinks />
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
-            CONTAMINANTS IN SAN ANTONIO WATER — 2024 DATA
-          </div>
-
-          {CONTAMINANTS.map((c, i) => (
-            <div key={c.name} style={{ padding: '14px 0', borderBottom: i < CONTAMINANTS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 700,
-                      padding: '3px 8px',
-                      borderRadius: 6,
-                      background: `${c.color}20`,
-                      color: c.color,
-                    }}
-                  >
-                    {c.status}
-                  </span>
-                </div>
-              </div>
-              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
-            </div>
-          ))}
-        </div>
+        <PriorityCityLiveDataBlock slug="san-antonio" />
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>

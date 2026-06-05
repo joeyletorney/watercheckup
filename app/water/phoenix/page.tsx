@@ -8,6 +8,7 @@ import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
+import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
@@ -17,72 +18,6 @@ export function generateMetadata(): Metadata {
   const cd = CITIES.phoenix;
   return metadataForPriorityCity('phoenix', cd)!;
 }
-
-const CONTAMINANTS = [
-  {
-    name: 'Chromium-6 (Hexavalent Chromium)',
-    level: '0.21 ppb',
-    status: 'Above CA health goal',
-    color: '#ef4444',
-    desc: "Phoenix has chromium-6 above California's health goal of 0.02 ppb. Colorado River water carries chromium-6 from natural deposits and industrial sources. Linked to stomach cancer with long-term exposure. Removed by reverse osmosis.",
-  },
-  {
-    name: 'PFAS (Total)',
-    level: '7.4 ppt',
-    status: 'Above EPA MCL',
-    color: '#ef4444',
-    desc: "PFAS contamination primarily from Luke Air Force Base firefighting foam. At 7.4 ppt total — nearly double the EPA's 2024 limit. Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.",
-  },
-  {
-    name: 'Arsenic',
-    level: '6.8 ppb',
-    status: 'Elevated',
-    color: '#f59e0b',
-    desc: "Naturally occurring arsenic from Arizona groundwater geology. At 6.8 ppb — 68% of the EPA limit of 10 ppb. EWG's health guideline is 0.004 ppb. Long-term exposure linked to bladder and lung cancer.",
-  },
-  {
-    name: 'Hardness',
-    level: '288 mg/L',
-    status: 'Very Hard',
-    color: '#f97316',
-    desc: 'Phoenix has some of the hardest water in the US from Colorado River mineral content. Causes severe scale buildup in pipes, appliances, and water heaters. A water softener is strongly recommended.',
-  },
-  {
-    name: 'Sodium',
-    level: '98 mg/L',
-    status: 'Elevated',
-    color: '#f97316',
-    desc: 'Colorado River water is naturally high in sodium. Phoenix water has among the highest sodium levels of major US cities. People on low-sodium diets should filter their drinking water.',
-  },
-  {
-    name: 'Total Trihalomethanes (TTHMs)',
-    level: '34 ppb',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: "Disinfection byproducts from chlorine treatment. At 34 ppb, well below the EPA limit of 80 ppb.",
-  },
-  {
-    name: 'Lead',
-    level: '2.2 ppb',
-    status: 'Below action level',
-    color: '#22d3ee',
-    desc: 'Well below the EPA action level of 15 ppb. Lead risk in Phoenix is primarily from older home plumbing.',
-  },
-  {
-    name: 'Fluoride',
-    level: '0.7 ppm',
-    status: 'At recommended level',
-    color: '#22d3ee',
-    desc: 'Added at the HHS recommended level of 0.7 ppm for dental health.',
-  },
-  {
-    name: 'Nitrate',
-    level: '2.1 ppm',
-    status: 'Below EPA limit',
-    color: '#22d3ee',
-    desc: 'Well below the EPA limit of 10 ppm. Not a concern for Phoenix residents.',
-  },
-];
 
 const FILTERS = [
   {
@@ -201,21 +136,7 @@ export default function PhoenixWaterPage() {
         </div>
         <PriorityCityEditorial slug="phoenix" />
         <CityFilterGuideLinks />
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>CONTAMINANTS IN PHOENIX WATER — 2024 DATA</div>
-          {CONTAMINANTS.map((c, i) => (
-            <div key={c.name} style={{ padding: '14px 0', borderBottom: i < CONTAMINANTS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0' }}>{c.name}</span>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 13, color: '#cbd5e1' }}>{c.level}</span>
-                  <span style={{ fontSize: 13, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: `${c.color}20`, color: c.color }}>{c.status}</span>
-                </div>
-              </div>
-              <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>{c.desc}</p>
-            </div>
-          ))}
-        </div>
+        <PriorityCityLiveDataBlock slug="phoenix" />
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>BEST FILTERS FOR PHOENIX WATER</div>
           {FILTERS.map((f) => (

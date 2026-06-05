@@ -18,6 +18,57 @@ function formatAvg(value: number, unit: string): string {
   return `${value.toFixed(d)} ${unit}`;
 }
 
+function BenchmarkCompareBars({
+  level,
+  nationalAvg,
+  stateAvg,
+  accentColor,
+}: {
+  level: number;
+  nationalAvg?: number | null;
+  stateAvg?: number | null;
+  accentColor: string;
+}) {
+  const refs = [level, nationalAvg, stateAvg].filter((v): v is number => v != null && v > 0);
+  if (refs.length < 2) return null;
+  const max = Math.max(...refs) * 1.12;
+  const bar = (value: number, label: string, color: string) => (
+    <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+      <span style={{ fontSize: 10, color: '#94a3b8', width: 76, flexShrink: 0 }}>{label}</span>
+      <div style={{ flex: 1, height: 7, background: '#040d14', borderRadius: 4, overflow: 'hidden' }}>
+        <div
+          style={{
+            width: `${Math.min(100, (value / max) * 100)}%`,
+            height: '100%',
+            background: color,
+            borderRadius: 4,
+            transition: 'width 0.4s ease',
+          }}
+        />
+      </div>
+      <span style={{ fontSize: 10, color: '#cbd5e1', width: 52, textAlign: 'right', flexShrink: 0 }}>
+        {value < 10 ? value.toFixed(2) : value < 100 ? value.toFixed(1) : Math.round(value)}
+      </span>
+    </div>
+  );
+
+  return (
+    <div
+      style={{
+        margin: '10px 0 8px',
+        padding: '10px 12px',
+        background: '#040d14',
+        borderRadius: 8,
+        border: '1px solid #0f2336',
+      }}
+    >
+      {bar(level, 'This utility', accentColor)}
+      {nationalAvg != null && nationalAvg > 0 ? bar(nationalAvg, 'U.S. avg', '#64748b') : null}
+      {stateAvg != null && stateAvg > 0 ? bar(stateAvg, 'State avg', '#475569') : null}
+    </div>
+  );
+}
+
 type Props = {
   cityName: string;
   stateCode?: string;
@@ -106,7 +157,14 @@ export function CityContaminantTable({ cityName, stateCode, rows, sourceNote }: 
               </div>
             </div>
 
-            {(c.nationalAvg != null || c.stateAvg != null) && (
+            {c.level != null && (c.nationalAvg != null || c.stateAvg != null) ? (
+              <BenchmarkCompareBars
+                level={c.level}
+                nationalAvg={c.nationalAvg}
+                stateAvg={c.stateAvg}
+                accentColor={color}
+              />
+            ) : (c.nationalAvg != null || c.stateAvg != null) ? (
               <p style={{ fontSize: 12, color: '#94a3b8', margin: '0 0 6px', lineHeight: 1.5 }}>
                 {c.nationalAvg != null ? (
                   <span>U.S. utility avg: {formatAvg(c.nationalAvg, c.unit)}</span>
@@ -116,7 +174,7 @@ export function CityContaminantTable({ cityName, stateCode, rows, sourceNote }: 
                   <span>{stateCode} utility avg: {formatAvg(c.stateAvg, c.unit)}</span>
                 ) : null}
               </p>
-            )}
+            ) : null}
 
             {c.ewgGuidelineLabel ? (
               <p style={{ fontSize: 12, color: '#fbbf24', margin: '0 0 6px', lineHeight: 1.5 }}>
