@@ -40,6 +40,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { href: '/pfas', label: 'PFAS guide' },
       { href: '/lead', label: 'Lead in tap water' },
       { href: '/worst-pfas-cities', label: 'PFAS MCL cities' },
+      { href: '/pfoa-at-epa-limit', label: 'PFOA at EPA limit' },
       { href: '/worst-lead', label: 'Lead pipe risk cities' },
       { href: '/worst-hardness', label: 'Hardest water cities' },
     ],

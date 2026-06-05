@@ -29,6 +29,7 @@ export const GSC_INDEXING_PATHS = [
   '/rankings',
   '/worst-cities',
   '/worst-pfas',
+  '/pfoa-at-epa-limit',
   '/best-cities',
   '/worst-pfas-cities',
   '/results/77001',
@@ -67,6 +68,7 @@ export const GSC_SITEMAP_URL = gscIndexingUrl('/sitemap.xml');
  * https://watercheckup.com/rankings
  * https://watercheckup.com/worst-cities
  * https://watercheckup.com/worst-pfas
+ * https://watercheckup.com/pfoa-at-epa-limit
  * https://watercheckup.com/best-cities
  * https://watercheckup.com/worst-pfas-cities
  * https://watercheckup.com/results/77001

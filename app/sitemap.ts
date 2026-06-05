@@ -49,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/best-cities',      priority: 0.88, changeFreq: 'monthly' as const },
     { path: '/worst-hardness',   priority: 0.88, changeFreq: 'monthly' as const },
     { path: '/worst-pfas-cities', priority: 0.93, changeFreq: 'monthly' as const },
+    { path: '/pfoa-at-epa-limit', priority: 0.94, changeFreq: 'monthly' as const },
     { path: '/well',         priority: 0.85, changeFreq: 'monthly' as const },
     { path: '/pfas',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },

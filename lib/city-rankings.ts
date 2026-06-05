@@ -158,3 +158,41 @@ export function buildCitiesWithUnregulatedPfasPeaks(limit = 20): CityUnregulated
   }
   return rows.sort((a, b) => b.maxPpt - a.maxPpt).slice(0, limit);
 }
+
+const PFOA_MCL_PPT = 4;
+
+export type CityPfoaAtLimitRow = {
+  slug: string;
+  name: string;
+  state: string;
+  pfoaPpt: number;
+  /** True when level ≥ 4 ppt or UCMR5 over-EPA flag */
+  atOrOverMcl: boolean;
+  timesOverMcl: number;
+  pwsid: string;
+};
+
+/** Tracked metros with PFOA at or above the EPA 4 ppt MCL in UCMR5 (2023–2025). */
+export function buildCitiesWithPfoaAtEpaLimit(minPpt = 3.8, limit = 30): CityPfoaAtLimitRow[] {
+  const rows: CityPfoaAtLimitRow[] = [];
+  for (const [slug, cd] of Object.entries(CITIES)) {
+    const pwsid = resolveCityPwsid(slug, cd.pwsid, cd.zip);
+    const pfas = getCityPfasData(pwsid);
+    if (!pfas) continue;
+    const pfoa = pfas.compounds.find(([name]) => name === 'PFOA');
+    if (!pfoa || pfoa[1] < minPpt) continue;
+    const [, level, overEpa] = pfoa;
+    rows.push({
+      slug,
+      name: cd.name,
+      state: cd.state,
+      pfoaPpt: level,
+      atOrOverMcl: level >= PFOA_MCL_PPT || overEpa > 0,
+      timesOverMcl: Math.round((level / PFOA_MCL_PPT) * 10) / 10,
+      pwsid,
+    });
+  }
+  return rows
+    .sort((a, b) => b.pfoaPpt - a.pfoaPpt || a.name.localeCompare(b.name))
+    .slice(0, limit);
+}

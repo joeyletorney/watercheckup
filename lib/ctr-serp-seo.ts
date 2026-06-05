@@ -103,6 +103,11 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
     description:
       'WSSC has PFAS detections, DBPs & lead risk in older homes. Top NSF 58 RO & renter picks for Gaithersburg — from EPA UCMR5 data.',
   },
+  '/pfoa-at-epa-limit': {
+    title: 'Cities Where PFOA Hit the EPA 4 ppt Limit (2026)',
+    description:
+      'UCMR5 data: Philadelphia 235 ppt, Sugar Land 4.1 ppt at the line, NYC-area PFOS 106 ppt. Free city reports + ZIP lookup — EPA sourced.',
+  },
   '/utilities/nc/greensboro-townsend': {
     title: 'Greensboro Townsend Water — EPA Report & PFAS (2026)',
     description:

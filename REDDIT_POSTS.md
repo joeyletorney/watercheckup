@@ -21,6 +21,44 @@ Has anyone else looked into this? Curious if anyone's tested their actual tap.
 
 ---
 
+## r/sugarland — "Sugar Land water / PFAS" (Fort Bend County)
+
+**Title:** EPA data shows Sugar Land water at 672 ppt PFAS (6:2 FTS) — highest peak in large Texas systems
+
+**Body:**
+Was digging into the EPA's UCMR5 PFAS dataset after the 2024 rule and Sugar Land stood out.
+
+**6:2 FTS at 672 ppt** — that's the peak reading for any large Texas water system in the federal file. 6:2 FTS isn't one of the six compounds in the April 2024 MCL set yet, but it's still a persistent forever chemical.
+
+**PFOA at 4.1 ppt** — right at the EPA's 4 ppt legal limit for that regulated compound.
+
+Standard Brita pitchers don't touch this. NSF 58 reverse osmosis at the kitchen tap is what water treatment folks recommend for short-chain PFAS.
+
+Anyone else in Fort Bend County looked at their CCR or considered testing at the faucet?
+
+**Comment (after 30 min):** I pulled the compound table into a free report if useful: watercheckup.com/water/sugar-land — also a list of cities where PFOA hit the 4 ppt line: watercheckup.com/pfoa-at-epa-limit
+
+---
+
+## r/chicago — "Chicago tap water / lead"
+
+**Title:** Chicago PFAS in EPA monitoring — PFOA at 4.8 ppt plus the lead service line issue
+
+**Body:**
+Two separate Chicago water conversations:
+
+**PFAS:** Federal UCMR5 monitoring for the Chicago-area system shows **PFOA at 4.8 ppt** — above the EPA's 4 ppt limit. Worth pairing with the city's annual water quality report, not replacing it.
+
+**Lead:** Chicago still has a massive lead service line inventory. Lake Michigan water can be fine at the plant and elevated at your faucet depending on building plumbing.
+
+For PFAS, RO or NSF P473-certified filters — not basic pitchers. For lead, NSF 53 or RO at the tap.
+
+Has anyone here tested at the kitchen sink vs trusting the city average?
+
+**Comment:** Free Chicago breakdown with contaminant benchmarks: watercheckup.com/water/chicago
+
+---
+
 ## r/houston — "Houston water quality"
 
 **Title:** Houston tap water has 42 ppt of a PFAS compound called 6:2 FTS — here's what that means

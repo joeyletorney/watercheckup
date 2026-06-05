@@ -340,8 +340,8 @@ const PWSID_OVERRIDES: Record<string, { pwsid: string; city: string; utility: st
   '19101': { pwsid: 'PA2510001', city: 'Philadelphia, PA',   utility: 'Philadelphia Water Department' },
   '15201': { pwsid: 'PA0200013', city: 'Pittsburgh, PA',     utility: 'Pittsburgh Water & Sewer Authority' },
   // Illinois
-  '60601': { pwsid: 'IL1638800', city: 'Chicago, IL',        utility: 'Chicago Dept. of Water Management' },
-  '60614': { pwsid: 'IL1638800', city: 'Chicago, IL',        utility: 'Chicago Dept. of Water Management' },
+  '60601': { pwsid: 'IL0316000', city: 'Chicago, IL',        utility: 'Chicago Dept. of Water Management' },
+  '60614': { pwsid: 'IL0316000', city: 'Chicago, IL',        utility: 'Chicago Dept. of Water Management' },
   // Georgia
   '30301': { pwsid: 'GA1210001', city: 'Atlanta, GA', utility: 'City of Atlanta Department of Watershed Management' },
   '30302': { pwsid: 'GA1210001', city: 'Atlanta, GA', utility: 'City of Atlanta Department of Watershed Management' },

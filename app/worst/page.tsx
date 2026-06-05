@@ -53,6 +53,12 @@ const SECTIONS: HubSection[] = [
         desc: 'City guides with MCL violations and highest 6:2 FTS–style peaks.',
       },
       {
+        href: '/pfoa-at-epa-limit',
+        title: 'Cities where PFOA hit the 4 ppt EPA limit',
+        tag: 'UCMR5 · PFOA MCL',
+        desc: 'Sugar Land at the line, Philadelphia at 235 ppt — tracked metros with PFOA ≥ 4 ppt.',
+      },
+      {
         href: '/worst-water',
         title: 'Top 50 peak PFAS readings',
         tag: 'All detections',
