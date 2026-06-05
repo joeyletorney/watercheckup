@@ -8,6 +8,7 @@ import { SiteHeader } from "@/app/components/SiteHeader";
 import { buildStateHardnessTable } from "@/lib/water-hardness";
 
 import { WaterHardnessClient } from "./WaterHardnessClient";
+import { SiteTrustedFilterPicks } from "@/components/SiteTrustedFilterPicks";
 
 const HERO_IMAGE = "/faucetdripping.jpg";
 const HERO_ALT = "Dripping faucet showing hard water mineral buildup";
@@ -325,6 +326,8 @@ export default function WaterHardnessPage() {
           </Link>
           .
         </p>
+
+        <SiteTrustedFilterPicks />
       </div>
     </div>
   );

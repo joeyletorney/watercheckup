@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { SiteHeader } from '../components/SiteHeader';
+import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 
 const HERO_IMAGE = '/watersplashingintoglass.jpg';
 const HERO_ALT = 'Water splashing into a glass — drinking water contaminants guide';
@@ -366,6 +367,8 @@ export default function ContaminantsPage() {
           );
         })}
       </div>
+
+      <SiteTrustedFilterPicks />
     </div>
   );
 }

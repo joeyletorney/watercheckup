@@ -5,6 +5,7 @@ import { buildStateRankingRows, STATE_NAMES } from '@/lib/water-rankings';
 import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { SearchDemandCities } from '@/components/SearchDemandCities';
 import { RankingsTable } from './RankingsTable';
+import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 
 export const metadata: Metadata = {
   title: 'Tap Water Quality Rankings by State 2026 | WaterCheckup',
@@ -179,6 +180,8 @@ export default function RankingsPage() {
           C = 26–50%, D = 51–74%, F = 75% or more of those cities at risk). &quot;Worst contaminant&quot; is the analyte with
           the highest reported detection (ppt) among tracked cities in that state.
         </div>
+
+        <SiteTrustedFilterPicks />
       </div>
     </div>
   );

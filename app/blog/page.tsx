@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 
 const LEARN_HERO_IMAGE = '/girldrinkingwater.jpg';
 const LEARN_HERO_ALT = 'Girl drinking clean water — water quality education and guides';
@@ -703,6 +704,8 @@ export default function BlogIndex() {
             Check My Water Free →
           </Link>
         </div>
+
+        <SiteTrustedFilterPicks marginTop={96} />
       </div>
     </div>
   );

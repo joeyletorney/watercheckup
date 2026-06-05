@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 import { FAQ_SECTIONS } from '@/lib/faq-content';
 
 const HERO_IMAGE = '/washinghands.jpg';
@@ -220,6 +221,8 @@ export default function FAQPage() {
             Check My Water →
           </a>
         </div>
+
+        <SiteTrustedFilterPicks marginTop={72} />
       </div>
     </div>
   );

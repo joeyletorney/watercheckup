@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { SiteHeader } from '../components/SiteHeader';
+import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 
 const WATERDROP_TAG = 'anbyjkqb';
@@ -451,6 +452,8 @@ export default function QuizPage() {
           <p style={{ ...p, marginBottom: 0 }}>The most precise recommendation comes from knowing what is actually in your water. Enter your ZIP below to get a free EPA-backed report for your specific public water system — then come back here to pick the filter that matches your results.</p>
           <Link href="/" style={{ display: 'inline-block', marginTop: 14, padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', borderRadius: 8, fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Check My Water Report →</Link>
         </div>
+
+        <SiteTrustedFilterPicks marginTop={72} />
 
         <div style={{ textAlign: 'center', fontSize: 13, color: '#1e3a5f' }}>
           Picks are based on NSF/WQA certifications and independent data · <Link href="/" style={{ color: '#1e3a5f' }}>WaterCheckup.com</Link>

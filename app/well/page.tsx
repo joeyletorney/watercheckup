@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 
 const HERO_IMAGE = '/lookingdownwell.jpg';
 const HERO_ALT = 'Looking down into a water well — private well water quality';
@@ -464,6 +465,7 @@ export default function WellWaterPage() {
           </div>
         </div>
 
+        <SiteTrustedFilterPicks />
       </div>
     </div>
   );
