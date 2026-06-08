@@ -12,9 +12,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'New York City tap water quality: PFOS in EPA monitoring, lead in pre-1986 buildings. Free 2026 NYC water report with grade and NSF filter picks.',
   },
   'san-antonio': {
-    title: 'San Antonio Tap Water: D+ Grade — PFAS, Hard Water & Radium',
+    title: 'Is San Antonio Tap Water Safe? Free SAWS Report (2026)',
     description:
-      'SAWS water: 272 mg/L hardness, PFAS in EPA monitoring, arsenic & radium above health guidelines. Free 2026 graded report & NSF filter picks.',
+      'PFAS detected · 272 mg/L hardness · radium from Edwards Aquifer. Free graded SAWS report with filter picks — no signup.',
   },
   gaithersburg: {
     title: 'Is Gaithersburg Tap Water Safe? Free WSSC Report (2026)',
@@ -211,7 +211,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
 /** H1 copy for priority city pages — matches 2026 title-tag pattern */
 export const PRIORITY_CITY_H1: Record<string, string> = {
   gaithersburg: 'Is Gaithersburg Tap Water Safe? (2026)',
-  'san-antonio': 'San Antonio Tap Water Quality 2026',
+  'san-antonio': 'Is San Antonio Tap Water Safe? (2026)',
   chicago: 'Chicago Tap Water Quality 2026',
   phoenix: 'Phoenix Tap Water Quality 2026',
   'new-york': 'New York City Water Quality 2026',
