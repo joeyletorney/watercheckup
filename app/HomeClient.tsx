@@ -1101,7 +1101,7 @@ function NationalPercentile({ pct }: { pct: number }) {
       </div>
       <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.55, marginTop: 10 }}>
         <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This ranks your system against others in our combined national view — useful context, not a diagnosis. See{' '}
-        <Link href="/methodology" style={{ color: '#38bdf8', fontWeight: 600 }}>
+        <Link prefetch href="/methodology" style={{ color: '#38bdf8', fontWeight: 600 }}>
           how we calculate it
         </Link>
         .
@@ -2371,6 +2371,7 @@ export default function WaterCheckup() {
                 {loading ? 'Loading…' : 'Check My Water'}
               </button>
               <Link
+                prefetch
                 href="/sample-report"
                 style={{
                   display: 'inline-flex',
@@ -2396,6 +2397,7 @@ export default function WaterCheckup() {
             <span style={{ fontSize: 12, color: '#64748b', alignSelf: 'center' }}>Try:</span>
             {SITE_HERO_EXAMPLE_ZIPS.map(({ zip, label }) => (
               <Link
+                prefetch
                 key={zip}
                 href={`/results/${zip}`}
                 style={{
@@ -2794,7 +2796,7 @@ export default function WaterCheckup() {
                   <strong style={{ color: '#e2e8f0' }}>What to do:</strong> {todo}
                 </p>
                 <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, margin: '10px 0 0' }}>
-                  <Link href="/faq" style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                  <Link prefetch href="/faq" style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
                     FAQ — reading your report, filters, PFAS, lead →
                   </Link>
                 </p>
@@ -4275,6 +4277,7 @@ export default function WaterCheckup() {
               { href: '/rankings', label: 'State rankings' },
             ].map(({ href, label }) => (
               <Link
+                prefetch
                 key={`${href}-${label}`}
                 href={href}
                 style={{

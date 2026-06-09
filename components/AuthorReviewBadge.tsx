@@ -29,7 +29,7 @@ export function AuthorReviewBadge({
       }}
     >
       Reviewed by{' '}
-      <Link href="/about" style={{ color: palette.link, fontWeight: 700, textDecoration: 'none' }}>
+      <Link prefetch href="/about" style={{ color: palette.link, fontWeight: 700, textDecoration: 'none' }}>
         Joe Letorney
       </Link>
       , 30-year water treatment expert

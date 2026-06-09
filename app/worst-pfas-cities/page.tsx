@@ -37,8 +37,8 @@ export default function WorstPfasCitiesPage() {
             Two lists: cities with <strong style={{ color: '#e2e8f0' }}>regulated PFAS over EPA MCLs</strong> (PFOA, PFOS,
             PFHxS, etc.), and cities with the highest <strong style={{ color: '#e2e8f0' }}>unregulated peaks</strong> where
             MCL violation counts are still zero (e.g. high 6:2 FTS). For raw PWSID leaderboards see{' '}
-            <Link href="/worst-pfas" style={{ color: '#22d3ee' }}>top 10 systems over MCL</Link> and{' '}
-            <Link href="/worst-water" style={{ color: '#22d3ee' }}>top 50 peak readings</Link>.
+            <Link prefetch href="/worst-pfas" style={{ color: '#22d3ee' }}>top 10 systems over MCL</Link> and{' '}
+            <Link prefetch href="/worst-water" style={{ color: '#22d3ee' }}>top 50 peak readings</Link>.
           </p>
         </div>
 

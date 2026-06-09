@@ -83,7 +83,7 @@ export default function WorstViolationsPage() {
               const color = URGENCY_COLOR[urgency];
               const isTop5 = i < 5;
               return (
-                <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
+                <Link key={slug} prefetch href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: isTop5 ? '16px 18px' : '12px 16px', background: '#071828', border: `1px solid ${isTop5 ? color + '40' : '#1a3a5c'}`, borderRadius: 10 }}>
                     <div style={{ fontSize: isTop5 ? 20 : 15, fontWeight: 900, color: isTop5 ? color : '#94a3b8', minWidth: 32, textAlign: 'center' }}>#{i + 1}</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -105,7 +105,7 @@ export default function WorstViolationsPage() {
         <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 72, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific ZIP code</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 18, lineHeight: 1.6 }}>City-wide rankings show the pattern — your specific water system may be better or worse. Enter your ZIP for a full EPA report on your exact public water system.</p>
-          <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
         </div>
@@ -119,7 +119,7 @@ export default function WorstViolationsPage() {
             { href: '/worst-states', label: 'Worst states overall', desc: 'State-by-state ranking' },
             { href: '/blog/what-does-epa-water-violation-mean', label: 'What violations mean', desc: 'Plain-language explanation' },
           ].map(({ href, label, desc }) => (
-            <Link key={href} href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
+            <Link key={href} prefetch href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{label}</div>
               <div style={{ fontSize: 13, color: '#a8b4c4' }}>{desc}</div>
             </Link>

@@ -118,7 +118,7 @@ export default function WorstThmPage() {
               const color = URGENCY_COLOR[urgency] ?? '#a8b4c4';
               const highlight = firstMatchingIssue(issues) ?? issues[0];
               return (
-                <Link key={slug} href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
+                <Link key={slug} prefetch href={`/water/${slug}`} style={{ textDecoration: 'none' }}>
                   <div
                     style={{
                       display: 'flex',
@@ -170,7 +170,7 @@ export default function WorstThmPage() {
             DBP risk varies by sampling location and season. Enter your ZIP for public water system-specific contaminant language, violations, and filter ideas tied to what we parse for your system.
           </p>
           <Link
-            href="/"
+            prefetch href="/"
             style={{
               display: 'inline-block',
               padding: '11px 22px',
@@ -197,7 +197,7 @@ export default function WorstThmPage() {
             ].map(({ href, label, desc }) => (
               <Link
                 key={href}
-                href={href}
+                prefetch href={href}
                 style={{
                   display: 'block',
                   padding: '14px 16px',

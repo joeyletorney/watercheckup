@@ -35,7 +35,7 @@ export default function BestCitiesPage() {
             best possible — no municipal supply is perfect). &quot;Best&quot; here means fewer UCMR5 MCL flags and lighter
             contaminant profiles in our database — not a guarantee for every home. Older plumbing can still add lead at
             the tap. Compare with the{' '}
-            <Link href="/worst-cities" style={{ color: '#22d3ee' }}>
+            <Link prefetch href="/worst-cities" style={{ color: '#22d3ee' }}>
               worst cities list
             </Link>
             .

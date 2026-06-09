@@ -1,6 +1,6 @@
 'use client';
 
-import type { CSSProperties } from 'react';
+import { Suspense, type CSSProperties } from 'react';
 import Link from 'next/link';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
@@ -52,7 +52,7 @@ export function TestVsFilterCta({
     </button>
   ) : (
     <Link
-      href={filterHref}
+      prefetch href={filterHref}
       style={{
         display: 'inline-block',
         padding: '11px 18px',
@@ -74,11 +74,14 @@ export function TestVsFilterCta({
       <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>
         TEST YOUR TAP OR FILTER NOW?
       </div>
-      <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
+      <Suspense fallback={null}>
+      <p suppressHydrationWarning style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
         {contextLabel} utility data is a strong baseline — but lead often comes from your home&apos;s pipes, and
         PFAS can vary by neighborhood. Choose certified lab testing for certainty, or skip straight to NSF-certified
         filters matched to this profile.
       </p>
+      </Suspense>
+      
 
       <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
         <div

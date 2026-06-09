@@ -168,6 +168,7 @@ export default function FAQPage() {
                         </p>
                         {item.links?.map((link) => (
                           <Link
+                            prefetch
                             key={link.href}
                             href={link.href}
                             style={{

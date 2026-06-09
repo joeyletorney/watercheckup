@@ -22,6 +22,7 @@ export default function NotFound() {
           by ZIP code.
         </p>
         <Link
+          prefetch
           href="/"
           style={{
             display: 'inline-block',

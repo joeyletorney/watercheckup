@@ -168,7 +168,7 @@ export default function WorstHubPage() {
               {section.items.map((r) => (
                 <Link
                   key={r.href}
-                  href={r.href}
+                  prefetch href={r.href}
                   style={{
                     display: 'block',
                     padding: '16px 18px',
@@ -203,7 +203,7 @@ export default function WorstHubPage() {
             PFAS-over-MCL lists cite exact UCMR5 values. Lead and THM lists reflect structured city profiles unless noted.
             Safety Score is a composite on each city page — not the same as your ZIP&apos;s live EPA grade.
           </p>
-          <Link href="/methodology" style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>
+          <Link prefetch href="/methodology" style={{ fontSize: 14, fontWeight: 700, color: '#22d3ee' }}>
             How we source and interpret data →
           </Link>
         </div>

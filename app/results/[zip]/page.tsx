@@ -7,7 +7,7 @@ import { buildZipResultsDescription, buildZipResultsTitle } from '@/lib/zip-resu
 export const dynamicParams = true;
 export const revalidate = 86400;
 
-interface Props { params: { zip: string } }
+interface Props { params: Promise<{ zip: string }> }
 
 async function fetchWaterData(zip: string) {
   const base = process.env.NEXT_PUBLIC_BASE_URL || 'https://watercheckup.com';
@@ -16,7 +16,8 @@ async function fetchWaterData(zip: string) {
   return res.json();
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const data = await fetchWaterData(params.zip);
   if (!data) {
     return {
@@ -49,7 +50,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ResultsPage({ params }: Props) {
+export default async function ResultsPage(props: Props) {
+  const params = await props.params;
   const data = await fetchWaterData(params.zip);
 
   return (

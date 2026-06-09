@@ -8,13 +8,14 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://watercheckup.com/epa/sdwis' },
 };
 
-export default function EpaSdwisEmbedPage({
-  params,
-  searchParams,
-}: {
-  params: { pwsid: string };
-  searchParams: { return?: string };
-}) {
+export default async function EpaSdwisEmbedPage(
+  props: {
+    params: Promise<{ pwsid: string }>;
+    searchParams: Promise<{ return?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const pwsid = decodeURIComponent(params.pwsid);
   const src = `https://sdwis.epa.gov/ords/sfdw_pub/f?p=SDWIS_FED_REPORTS_PUBLIC:PWS_SEARCH::::::PWSID:${encodeURIComponent(pwsid)}`;
   const back =

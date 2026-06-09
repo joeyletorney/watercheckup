@@ -13,7 +13,7 @@ export function UtilityClaimTopBanner({ utilityName, reportYear = DEFAULT_REPORT
       <p>
         Water operator for <strong>{utilityName}</strong>? Claim this free listing and publish your {reportYear} CCR
         where your customers are already looking.{' '}
-        <Link href="/utilities/claim">Claim Free →</Link>
+        <Link prefetch href="/utilities/claim">Claim Free →</Link>
       </p>
     </div>
   );

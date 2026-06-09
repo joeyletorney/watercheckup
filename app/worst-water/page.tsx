@@ -71,7 +71,7 @@ const getRankedSystemsCached = unstable_cache(
 );
 
 export default async function WorstWaterPage() {
-  headers();
+  await headers();
   const systems = await getRankedSystemsCached();
   const totalPeopleAffected = '12+ million';
 
@@ -210,7 +210,7 @@ export default async function WorstWaterPage() {
           <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             Enter your ZIP code to see the full EPA PFAS report, violation history, and certified filter recommendations for your specific water system.
           </p>
-          <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Check My Water Free →
           </Link>
         </div>

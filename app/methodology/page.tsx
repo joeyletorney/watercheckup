@@ -157,8 +157,8 @@ export default function MethodologyPage() {
         </div>
 
         <div style={{ marginTop: 72, paddingTop: 28, borderTop: '1px solid #e2e8f0', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-          <Link href="/" style={{ fontWeight: 700, textDecoration: 'none', fontSize: 14 }}>← Check my water</Link>
-          <Link href="/faq" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>FAQ →</Link>
+          <Link prefetch href="/" style={{ fontWeight: 700, textDecoration: 'none', fontSize: 14 }}>← Check my water</Link>
+          <Link prefetch href="/faq" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>FAQ →</Link>
           <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA ECHO →</a>
           <a href="https://www.epa.gov/dwucmr" target="_blank" rel="noreferrer" style={{ fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>EPA UCMR →</a>
         </div>

@@ -195,7 +195,7 @@ export function WaterHardnessClient() {
           if (slug) {
             setZipExtra(
               <p style={{ margin: "12px 0 0", fontSize: 14 }}>
-                <Link href={`/water/${slug}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
+                <Link prefetch href={`/water/${slug}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
                   Open full water report for {CITIES[slug]?.name ?? slug} →
                 </Link>
               </p>,
@@ -212,14 +212,14 @@ export function WaterHardnessClient() {
         const cityLink =
           slug != null ? (
             <p style={{ margin: "12px 0 0", fontSize: 14 }}>
-              <Link href={`/water/${slug}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
+              <Link prefetch href={`/water/${slug}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
                 See full tap water report for {CITIES[slug]!.name} →
               </Link>
             </p>
           ) : res.ok && data.city ? (
             <p style={{ margin: "12px 0 0", fontSize: 14, color: "#a8b4c4" }}>
               Area: {data.city}.{" "}
-              <Link href={`/results/${z}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
+              <Link prefetch href={`/results/${z}`} style={{ color: "#67e8f9", fontWeight: 700 }}>
                 Open ZIP report →
               </Link>
             </p>

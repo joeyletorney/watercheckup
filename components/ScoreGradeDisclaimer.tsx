@@ -31,7 +31,7 @@ export function ScoreGradeDisclaimer({
       {showMethodologyLink ? (
         <>
           {' '}
-          <Link href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none', fontWeight: 600 }}>
+          <Link prefetch href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none', fontWeight: 600 }}>
             How we score →
           </Link>
         </>

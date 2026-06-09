@@ -450,7 +450,7 @@ export default function QuizPage() {
           <p style={p}>We earn affiliate commissions when you buy through our links, but no manufacturer has paid to be featured or ranked higher. Our rankings are based on certifications, independent test data, and verified review volume — not ad budgets.</p>
           <h3 style={h3}>Connect your water data to your filter choice</h3>
           <p style={{ ...p, marginBottom: 0 }}>The most precise recommendation comes from knowing what is actually in your water. Enter your ZIP below to get a free EPA-backed report for your specific public water system — then come back here to pick the filter that matches your results.</p>
-          <Link href="/" style={{ display: 'inline-block', marginTop: 14, padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', borderRadius: 8, fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Check My Water Report →</Link>
+          <Link prefetch href="/" style={{ display: 'inline-block', marginTop: 14, padding: '10px 20px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', borderRadius: 8, fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Check My Water Report →</Link>
         </div>
 
         <SiteTrustedFilterPicks marginTop={72} />

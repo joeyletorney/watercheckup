@@ -1,6 +1,6 @@
 'use client';
 
-import type { CSSProperties } from 'react';
+import { Suspense, type CSSProperties } from 'react';
 import Link from 'next/link';
 import { FOOTER_COLUMNS, FOOTER_LEGAL_LINKS } from '@/lib/footer-links';
 import {
@@ -64,14 +64,14 @@ export function SiteFooter() {
               >
                 {col.links.map((link) => (
                   <li key={`${col.title}-${link.href}-${link.label}`}>
-                    <Link href={link.href} style={linkStyle} className="wc-footer-link">
+                    <Link prefetch href={link.href} style={linkStyle} className="wc-footer-link">
                       {link.label}
                     </Link>
                   </li>
                 ))}
                 {col.viewAll ? (
                   <li>
-                    <Link href={col.viewAll.href} style={viewAllStyle} className="wc-footer-link">
+                    <Link prefetch href={col.viewAll.href} style={viewAllStyle} className="wc-footer-link">
                       {col.viewAll.label} →
                     </Link>
                   </li>
@@ -110,11 +110,11 @@ export function SiteFooter() {
             gap: '4px 0',
           }}
         >
-          <span>© {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA · </span>
+          <Suspense fallback={null}><span>© {new Date().getFullYear()} WaterCheckup · Not affiliated with the EPA · </span></Suspense>
           {FOOTER_LEGAL_LINKS.map((link, i) => (
             <span key={link.href}>
               {i > 0 ? ' · ' : null}
-              <Link href={link.href} style={{ color: '#e2e8f0', textDecoration: 'none', fontWeight: 600 }}>
+              <Link prefetch href={link.href} style={{ color: '#e2e8f0', textDecoration: 'none', fontWeight: 600 }}>
                 {link.label}
               </Link>
             </span>
@@ -136,7 +136,7 @@ export function SiteFooter() {
           </p>
           <p style={{ margin: 0, fontSize: 12, color: 'var(--wc-text-faint)', textAlign: 'center', lineHeight: 1.55 }}>
             {SITE_FOOTER_SCORE_DISCLAIMER}{' '}
-            <Link href="/methodology" style={{ color: '#94a3b8', textDecoration: 'underline' }}>
+            <Link prefetch href="/methodology" style={{ color: '#94a3b8', textDecoration: 'underline' }}>
               Methodology
             </Link>
             .

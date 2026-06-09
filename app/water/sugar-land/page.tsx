@@ -63,9 +63,9 @@ export default function SugarLandWaterPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
+          <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Cities</Link>
+          <Link prefetch href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Cities</Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Sugar Land, TX</span>
         </nav>
@@ -102,10 +102,10 @@ export default function SugarLandWaterPage() {
           }}
         >
           <strong style={{ color: '#fca5a5' }}>How to read the numbers:</strong> Rankings on{' '}
-          <Link href="/worst-pfas" style={{ color: '#22d3ee' }}>/worst-pfas</Link> use regulated MCL violations only. Sugar Land&apos;s 672 ppt peak is{' '}
+          <Link prefetch href="/worst-pfas" style={{ color: '#22d3ee' }}>/worst-pfas</Link> use regulated MCL violations only. Sugar Land&apos;s 672 ppt peak is{' '}
           <strong style={{ color: '#f1f5f9' }}>6:2 FTS</strong> (not yet in that regulated set). PFOA was found at{' '}
           <strong style={{ color: '#f1f5f9' }}>4.1 ppt</strong> — at the EPA limit for that compound. See also our{' '}
-          <Link href="/blog/top-10-most-pfas-contaminated-cities" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/blog/top-10-most-pfas-contaminated-cities" style={{ color: '#22d3ee' }}>
             Top 10 PFAS cities report
           </Link>
           .

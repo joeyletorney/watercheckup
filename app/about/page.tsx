@@ -457,6 +457,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/"
+            prefetch
             style={{
               display: 'inline-block',
               padding: '14px 32px',
@@ -472,11 +473,11 @@ export default function AboutPage() {
             Check Your Water Now →
           </Link>
           <p style={{ margin: '20px 0 0', fontSize: 13, color: '#a8b4c4' }}>
-            <Link href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+            <Link prefetch href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none' }}>
               How we source EPA data →
             </Link>
             {' · '}
-            <Link href="/contact" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+            <Link prefetch href="/contact" style={{ color: '#67e8f9', textDecoration: 'none' }}>
               Contact us →
             </Link>
           </p>

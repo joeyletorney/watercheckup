@@ -66,11 +66,11 @@ export default function BestFilterHardWaterPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your water →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/blog" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/blog" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Blog
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -86,14 +86,14 @@ export default function BestFilterHardWaterPage() {
         </p>
         <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.75 }}>
           Phoenix has some of the hardest water in the US at 288 mg/L — see our{' '}
-          <Link href="/water/phoenix" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+          <Link prefetch href="/water/phoenix" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
             Phoenix water quality report
           </Link>{' '}
           for the full scored breakdown and filter picks.
         </p>
         <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 8px', lineHeight: 1.75 }}>
           Los Angeles water is very hard at 268 mg/L with chromium-6 and PFAS concerns — see our{' '}
-          <Link href="/water/los-angeles" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+          <Link prefetch href="/water/los-angeles" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
             Los Angeles water quality report
           </Link>{' '}
           for the full scored breakdown.
@@ -128,7 +128,7 @@ export default function BestFilterHardWaterPage() {
           ))}
           <p style={{ fontSize: 13, color: '#a8b4c4', margin: '12px 0 0' }}>
             Don&apos;t know your hardness level?{' '}
-            <Link href="/" style={{ color: '#0891b2' }}>
+            <Link prefetch href="/" style={{ color: '#0891b2' }}>
               Check your ZIP code →
             </Link>
           </p>
@@ -166,7 +166,7 @@ export default function BestFilterHardWaterPage() {
 
         <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
           Very hard water cities: see our{' '}
-          <Link href="/water/san-antonio" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+          <Link prefetch href="/water/san-antonio" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
             San Antonio water quality &amp; contamination report
           </Link>{' '}
           (272 mg/L hardness, PFAS data).
@@ -184,6 +184,7 @@ export default function BestFilterHardWaterPage() {
 
         <div style={{ textAlign: 'center', marginTop: 32 }}>
           <Link
+            prefetch
             href="/"
             style={{
               display: 'inline-block',

@@ -114,7 +114,7 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
               <td style={{ padding: '11px 10px', color: '#cbd5e1', fontWeight: 700 }}>{r.rank}</td>
               <td style={{ padding: '11px 10px' }}>
                 {r.totalCities > 0 ? (
-                  <Link href={`/water/state/${r.stateSlug}`} style={{ color: '#f1f5f9', fontWeight: 700, textDecoration: 'none' }}>
+                  <Link prefetch href={`/water/state/${r.stateSlug}`} style={{ color: '#f1f5f9', fontWeight: 700, textDecoration: 'none' }}>
                     {r.stateName}
                   </Link>
                 ) : (

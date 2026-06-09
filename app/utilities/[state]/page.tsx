@@ -12,11 +12,12 @@ import { UtilitiesStateList } from "./UtilitiesStateList";
 export const dynamicParams = true;
 export const revalidate = 86400;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { state: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ state: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const code = params.state.toUpperCase();
   const name = stateLabel(code);
   return {
@@ -28,13 +29,14 @@ export async function generateMetadata({
   };
 }
 
-export default function UtilitiesStatePage({
-  params,
-  searchParams,
-}: {
-  params: { state: string };
-  searchParams: { page?: string; q?: string };
-}) {
+export default async function UtilitiesStatePage(
+  props: {
+    params: Promise<{ state: string }>;
+    searchParams: Promise<{ page?: string; q?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const pageNum = Math.max(1, parseInt(searchParams.page || "1", 10) || 1);
   const query = searchParams.q?.trim() || "";
 
@@ -55,11 +57,11 @@ export default function UtilitiesStatePage({
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
       <div style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px 80px" }}>
         <nav style={{ fontSize: 13, color: "#a8b4c4", marginBottom: 16 }}>
-          <Link href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
+          <Link prefetch href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
             Home
           </Link>
           <span style={{ margin: "0 6px" }}>›</span>
-          <Link href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
+          <Link prefetch href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
             Utilities
           </Link>
           <span style={{ margin: "0 6px" }}>›</span>
@@ -90,6 +92,7 @@ export default function UtilitiesStatePage({
         >
           <UtilityOperatorCcrCta variant="state-directory" />
           <Link
+            prefetch
             href="/utilities/claim"
             style={{
               fontSize: 13,

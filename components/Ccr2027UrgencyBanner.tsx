@@ -13,7 +13,7 @@ export function Ccr2027UrgencyBanner() {
           ⚠️
         </span>{' '}
         <strong>2027 CCR Deadline:</strong> {days} {dayLabel} away —{' '}
-        <Link href="/utilities/claim">Publish your compliant CCR here for free →</Link>
+        <Link prefetch href="/utilities/claim">Publish your compliant CCR here for free →</Link>
       </p>
     </div>
   );

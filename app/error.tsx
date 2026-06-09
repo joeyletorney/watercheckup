@@ -60,6 +60,7 @@ export default function Error({
             Try again
           </button>
           <Link
+            prefetch
             href="/"
             style={{
               padding: '10px 20px',

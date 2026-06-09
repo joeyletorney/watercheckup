@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://watercheckup.com/epa/ccr-finder' },
 };
 
-export default function EpaCcrFinderEmbedPage({ searchParams }: { searchParams: { return?: string } }) {
+export default async function EpaCcrFinderEmbedPage(props: { searchParams: Promise<{ return?: string }> }) {
+  const searchParams = await props.searchParams;
   const back =
     typeof searchParams.return === 'string' && searchParams.return.startsWith('/') && !searchParams.return.startsWith('//')
       ? searchParams.return

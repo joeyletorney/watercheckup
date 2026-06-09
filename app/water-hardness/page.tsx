@@ -300,7 +300,7 @@ export default function WaterHardnessPage() {
               {stateRows.map((r) => (
                 <tr key={r.abbr} style={{ borderBottom: "1px solid #0f2336" }}>
                   <td style={{ padding: "11px 14px" }}>
-                    <Link href={`/water/state/${r.stateSlug}`} style={{ color: "#f1f5f9", fontWeight: 700, textDecoration: "none" }}>
+                    <Link prefetch href={`/water/state/${r.stateSlug}`} style={{ color: "#f1f5f9", fontWeight: 700, textDecoration: "none" }}>
                       {r.stateName}
                     </Link>
                   </td>
@@ -317,11 +317,11 @@ export default function WaterHardnessPage() {
 
         <p style={{ ...pStyle, marginTop: 28, fontSize: 14 }}>
           Back to{" "}
-          <Link href="/water" style={{ color: "#67e8f9" }}>
+          <Link prefetch href="/water" style={{ color: "#67e8f9" }}>
             city water reports
           </Link>{" "}
           or{" "}
-          <Link href="/" style={{ color: "#67e8f9" }}>
+          <Link prefetch href="/" style={{ color: "#67e8f9" }}>
             check your ZIP
           </Link>
           .

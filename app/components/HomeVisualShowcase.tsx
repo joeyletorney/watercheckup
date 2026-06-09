@@ -50,7 +50,7 @@ export function HomeVisualShowcase() {
       </div>
 
       <p className="wc-showcase-trim-linkwrap">
-        <Link href="/methodology">How we analyze water →</Link>
+        <Link prefetch href="/methodology">How we analyze water →</Link>
       </p>
     </section>
   );

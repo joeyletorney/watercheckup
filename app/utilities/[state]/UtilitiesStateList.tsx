@@ -66,6 +66,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
         </button>
         {query ? (
           <Link
+            prefetch
             href={base}
             style={{
               padding: "11px 14px",
@@ -89,6 +90,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {items.map((u) => (
           <Link
+            prefetch
             key={u.pwsid}
             href={`${base}/${u.slug}`}
             style={{
@@ -145,7 +147,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
           }}
         >
           {page > 1 ? (
-            <Link href={`${base}?page=${page - 1}${qParam}`} style={paginationLinkStyle}>
+            <Link prefetch href={`${base}?page=${page - 1}${qParam}`} style={paginationLinkStyle}>
               ← Previous
             </Link>
           ) : null}
@@ -153,7 +155,7 @@ export function UtilitiesStateList({ stateParam, items, page, totalPages, total,
             Page {page} / {totalPages}
           </span>
           {page < totalPages ? (
-            <Link href={`${base}?page=${page + 1}${qParam}`} style={paginationLinkStyle}>
+            <Link prefetch href={`${base}?page=${page + 1}${qParam}`} style={paginationLinkStyle}>
               Next →
             </Link>
           ) : null}

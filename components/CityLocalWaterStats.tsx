@@ -82,7 +82,7 @@ export function CityLocalWaterStats({
           }}
         >
           <Link
-            href={`/utilities/${stateLower}`}
+            prefetch href={`/utilities/${stateLower}`}
             style={{ fontSize: 12, fontWeight: 700, color: '#67e8f9', textDecoration: 'none' }}
           >
             Browse {stateLabel} utilities →

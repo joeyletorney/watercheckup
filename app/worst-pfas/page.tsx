@@ -109,7 +109,7 @@ const COMPOUND_INFO: Record<string, { full: string; mcl: number; notes: string }
 };
 
 export default async function WorstPFASPage() {
-  headers();
+  await headers();
   const systems = await getRankedSystemsCached();
   const worstTimesOver = systems[0]?.timesOver ?? '0';
 
@@ -146,9 +146,9 @@ export default async function WorstPFASPage() {
 
           <div style={{ padding: '14px 18px', background: '#ef444412', border: '1px solid #ef444430', borderLeft: '4px solid #ef4444', borderRadius: 8, fontSize: 13, color: '#cbd5e1', lineHeight: 1.6 }}>
             <strong style={{ color: '#fca5a5' }}>What this list is:</strong> Rankings are based on the highest single regulated PFAS compound reading (one that has an EPA MCL) per water system, from the federal UCMR5 dataset. Systems with only unregulated PFAS detections — e.g.{' '}
-            <Link href="/water/sugar-land" style={{ color: '#22d3ee' }}>Sugar Land TX (672 ppt 6:2 FTS)</Link> — are on our{' '}
-            <Link href="/worst-water" style={{ color: '#22d3ee' }}>peak PFAS ranking page</Link> and{' '}
-            <Link href="/blog/top-10-most-pfas-contaminated-cities" style={{ color: '#22d3ee' }}>Top 10 PFAS cities report</Link>.
+            <Link prefetch href="/water/sugar-land" style={{ color: '#22d3ee' }}>Sugar Land TX (672 ppt 6:2 FTS)</Link> — are on our{' '}
+            <Link prefetch href="/worst-water" style={{ color: '#22d3ee' }}>peak PFAS ranking page</Link> and{' '}
+            <Link prefetch href="/blog/top-10-most-pfas-contaminated-cities" style={{ color: '#22d3ee' }}>Top 10 PFAS cities report</Link>.
           </div>
         </div>
 
@@ -303,7 +303,7 @@ export default async function WorstPFASPage() {
           <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             Enter your ZIP to see the UCMR5 PFAS readings, MCL violations, and certified filter recommendations for your specific water system.
           </p>
-          <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Check My Water Free →
           </Link>
         </div>
@@ -319,7 +319,7 @@ export default async function WorstPFASPage() {
               { href: '/worst-thm', label: 'Worst THM/DBP cities', desc: 'Disinfection byproduct risk' },
               { href: '/worst-violations', label: 'Most EPA violations', desc: 'SDWIS violation history' },
             ].map(r => (
-              <Link key={r.href} href={r.href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
+              <Link key={r.href} prefetch href={r.href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{r.label}</div>
                 <div style={{ fontSize: 13, color: '#a8b4c4' }}>{r.desc}</div>
               </Link>

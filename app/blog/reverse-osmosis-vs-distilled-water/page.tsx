@@ -91,11 +91,11 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your water →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/blog" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/blog" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Blog
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -218,7 +218,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           <strong style={{ color: '#f87171' }}>Important: </strong>
           <span style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8 }}>
             Neither RO nor distillation replaces a{' '}
-            <Link href="/blog/boil-water-advisory-what-to-do-and-how-long" style={{ color: '#22d3ee' }}>
+            <Link prefetch href="/blog/boil-water-advisory-what-to-do-and-how-long" style={{ color: '#22d3ee' }}>
               boil-water advisory
             </Link>
             . If bacteria or viruses are the concern, follow public health guidance first.
@@ -256,11 +256,11 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 20px' }}>
           Your diet supplies the minerals that matter for health. Water quality decisions should be driven by{' '}
           <strong style={{ color: '#e2e8f0' }}>contaminants in your actual supply</strong> — check your ZIP on{' '}
-          <Link href="/" style={{ color: '#0891b2' }}>
+          <Link prefetch href="/" style={{ color: '#0891b2' }}>
             WaterCheckup
           </Link>{' '}
           and your public water system&apos;s{' '}
-          <Link href="/blog/how-to-read-your-consumer-confidence-report" style={{ color: '#0891b2' }}>
+          <Link prefetch href="/blog/how-to-read-your-consumer-confidence-report" style={{ color: '#0891b2' }}>
             Consumer Confidence Report
           </Link>{' '}
           before choosing equipment.
@@ -268,19 +268,19 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
 
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 14px' }}>Related reading</h2>
         <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.85, margin: '0 0 24px' }}>
-          <Link href="/blog/reverse-osmosis-pros-and-cons" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/blog/reverse-osmosis-pros-and-cons" style={{ color: '#22d3ee' }}>
             Reverse osmosis pros and cons
           </Link>
           {' · '}
-          <Link href="/blog/why-distilled-water-and-reverse-osmosis-are-best-for-high-purity" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/blog/why-distilled-water-and-reverse-osmosis-are-best-for-high-purity" style={{ color: '#22d3ee' }}>
             Why RO and distillation top the purity stack
           </Link>
           {' · '}
-          <Link href="/blog/best-ro-system-for-pfas-removal" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/blog/best-ro-system-for-pfas-removal" style={{ color: '#22d3ee' }}>
             Best RO for PFAS removal
           </Link>
           {' · '}
-          <Link href="/blog/what-is-ppm-ppb-ppt-water-quality" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/blog/what-is-ppm-ppb-ppt-water-quality" style={{ color: '#22d3ee' }}>
             PPM, PPB, and PPT explained
           </Link>
         </p>
@@ -297,6 +297,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
 
         <div style={{ textAlign: 'center', marginTop: 32 }}>
           <Link
+            prefetch
             href="/"
             style={{
               display: 'inline-block',

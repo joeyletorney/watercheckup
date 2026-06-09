@@ -105,6 +105,7 @@ export function SiteNav({ style, ariaLabel }: { style?: CSSProperties; ariaLabel
           const active = isActive(pathname, href);
           return (
             <Link
+              prefetch
               key={href}
               href={href}
               className="wc-site-nav-link"
@@ -135,6 +136,7 @@ export function SiteNav({ style, ariaLabel }: { style?: CSSProperties; ariaLabel
           const active = isActive(pathname, href);
           return (
             <Link
+              prefetch
               key={href}
               href={href}
               className="wc-site-nav-link"
@@ -167,6 +169,7 @@ export function SiteNav({ style, ariaLabel }: { style?: CSSProperties; ariaLabel
             const active = isActive(pathname, href);
             return (
               <Link
+                prefetch
                 key={href}
                 href={href}
                 className="wc-site-nav-link wc-site-nav-link--stacked"

@@ -87,11 +87,11 @@ export default function HoustonWaterPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
-          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Cities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -141,6 +141,7 @@ export default function HoustonWaterPage() {
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>77001, 77002, 77003 and all Houston ZIP codes</div>
           </div>
           <Link
+            prefetch
             href="/"
             style={{
               padding: '10px 20px',
@@ -297,6 +298,7 @@ export default function HoustonWaterPage() {
 
         <div style={{ textAlign: 'center', marginTop: 32 }}>
           <Link
+            prefetch
             href="/"
             style={{
               display: 'inline-block',

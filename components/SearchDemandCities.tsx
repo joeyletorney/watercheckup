@@ -33,7 +33,7 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
           return (
             <Link
               key={c.slug}
-              href={c.href}
+              prefetch href={c.href}
               style={{
                 display: 'block',
                 padding: '14px 16px',
@@ -63,7 +63,7 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
           {SEARCH_DEMAND_EXTRA_LINKS.map((l) => (
             <Link
               key={l.href}
-              href={l.href}
+              prefetch href={l.href}
               style={{
                 fontSize: 13,
                 fontWeight: 600,

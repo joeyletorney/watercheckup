@@ -25,7 +25,7 @@ export default function RankingsPage() {
 
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#94a3b8', marginBottom: 20 }}>
-          <Link href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -85,13 +85,13 @@ export default function RankingsPage() {
           </div>
           <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 18px', lineHeight: 1.6 }}>
             Composite 0–88 exposure profile (PFAS MCL, monitoring, lead/DBP flags).{' '}
-            <Link href="/worst-cities" style={{ color: '#22d3ee', fontWeight: 700 }}>
+            <Link prefetch href="/worst-cities" style={{ color: '#22d3ee', fontWeight: 700 }}>
               Full ranking →
             </Link>
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 72 }}>
             {worstByScore.map((c, i) => (
-              <Link key={c.slug} href={`/water/${c.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+              <Link key={c.slug} prefetch href={`/water/${c.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div
                   style={{
                     display: 'flex',
@@ -136,6 +136,7 @@ export default function RankingsPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {worstCities.map((c, i) => (
               <Link
+                prefetch
                 key={c.slug}
                 href={`/water/${c.slug}`}
                 style={{ textDecoration: 'none', display: 'block' }}

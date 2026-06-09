@@ -153,11 +153,12 @@ function getUtilityWhy(
   return `Chosen for ${u.name} because public water systems meet legal limits — not necessarily health-based thresholds for every contaminant. RO removes PFAS, lead from home plumbing, and disinfection byproducts in one system.`;
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { state: string; slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ state: string; slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const u = getUtilityByStateSlug(params.state, params.slug);
   if (!u) {
     return { title: "Public water system report | WaterCheckup" };
@@ -183,7 +184,8 @@ export async function generateMetadata({
   };
 }
 
-export default function UtilityPage({ params }: { params: { state: string; slug: string } }) {
+export default async function UtilityPage(props: { params: Promise<{ state: string; slug: string }> }) {
+  const params = await props.params;
   const u = getUtilityByStateSlug(params.state, params.slug);
   if (!u) notFound();
 
@@ -218,15 +220,16 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
 
         <div style={{ marginBottom: 64 }}>
           <nav style={{ fontSize: 13, color: "#a8b4c4", marginBottom: 14 }}>
-            <Link href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
+            <Link prefetch href="/" style={{ color: "#a8b4c4", textDecoration: "none" }}>
               Home
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
-            <Link href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
+            <Link prefetch href="/utilities" style={{ color: "#a8b4c4", textDecoration: "none" }}>
               Public water systems
             </Link>
             <span style={{ margin: "0 6px" }}>›</span>
             <Link
+              prefetch
               href={`/utilities/${params.state.toLowerCase()}`}
               style={{ color: "#a8b4c4", textDecoration: "none" }}
             >
@@ -597,6 +600,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
         {/* State link */}
         <div style={{ marginBottom: 64, textAlign: "center" }}>
           <Link
+            prefetch
             href={`/utilities/${params.state.toLowerCase()}`}
             style={{ fontSize: 15, fontWeight: 700, color: "#0891b2", textDecoration: "none" }}
           >
@@ -633,6 +637,7 @@ export default function UtilityPage({ params }: { params: { state: string; slug:
             report.
           </p>
           <Link
+            prefetch
             href="/"
             style={{
               display: "inline-block",

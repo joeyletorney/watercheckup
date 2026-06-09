@@ -134,7 +134,7 @@ export default function PfasPage() {
               </div>
             ))}
           </div>
-          <Link href="/" style={{ display: 'inline-block', padding: '12px 24px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 24px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
             Check Your ZIP Code for PFAS →
           </Link>
         </div>
@@ -261,7 +261,7 @@ export default function PfasPage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>CHECK YOUR WATER</div>
           <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 12px' }}>Is PFAS in your tap water?</h2>
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>Enter your ZIP to see the EPA PFAS testing results for your exact water system — from the 2023-2025 federal monitoring program covering 6,151 systems nationwide.</p>
-          <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#ef4444,#dc2626)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#ef4444,#dc2626)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
         </div>
@@ -314,7 +314,7 @@ export default function PfasPage() {
               { href: '/quiz', label: 'Take the Filter Quiz — Get Matched to the Right System' },
               { href: '/', label: 'Free water quality check by ZIP — full EPA report' },
             ].map(({ href, label: lbl }) => (
-              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#cbd5e1', fontSize: 14, fontWeight: 600 }}>
+              <Link key={href} prefetch href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#cbd5e1', fontSize: 14, fontWeight: 600 }}>
                 {lbl} <span style={{ color: '#0891b2' }}>→</span>
               </Link>
             ))}

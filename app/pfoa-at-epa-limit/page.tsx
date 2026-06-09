@@ -45,15 +45,15 @@ export default function PfoaAtEpaLimitPage() {
           <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.7, margin: 0 }}>
             PFOA is only one regulated PFAS compound. Cities can also show high{' '}
             <strong style={{ color: '#e2e8f0' }}>6:2 FTS</strong> or PFOS peaks without a PFOA MCL flag — see{' '}
-            <Link href="/water/sugar-land" style={{ color: '#22d3ee' }}>
+            <Link prefetch href="/water/sugar-land" style={{ color: '#22d3ee' }}>
               Sugar Land (672 ppt 6:2 FTS)
             </Link>
             ,{' '}
-            <Link href="/worst-pfas-cities" style={{ color: '#22d3ee' }}>
+            <Link prefetch href="/worst-pfas-cities" style={{ color: '#22d3ee' }}>
               worst PFAS cities
             </Link>
             , and{' '}
-            <Link href="/worst-pfas" style={{ color: '#22d3ee' }}>
+            <Link prefetch href="/worst-pfas" style={{ color: '#22d3ee' }}>
               top systems over MCL
             </Link>
             .
@@ -78,6 +78,7 @@ export default function PfoaAtEpaLimitPage() {
             Texas system in UCMR5. Only NSF 58 reverse osmosis reliably removes short-chain PFAS at the tap.
           </p>
           <Link
+            prefetch
             href="/water/sugar-land"
             style={{ display: 'inline-block', marginTop: 12, fontSize: 13, fontWeight: 700, color: '#22d3ee', textDecoration: 'none' }}
           >
@@ -142,7 +143,7 @@ export default function PfoaAtEpaLimitPage() {
             Source: EPA UCMR5 national monitoring (2023–2025). PFOA MCL = 4 ppt as of the April 2024 PFAS rule. City rows
             use each metro&apos;s resolved UCMR5 PWSID (anchor ZIP when UCMR5 exists, otherwise the best-matching monitored
             system). For your exact tap, run a{' '}
-            <Link href="/" style={{ color: '#67e8f9' }}>
+            <Link prefetch href="/" style={{ color: '#67e8f9' }}>
               free ZIP report
             </Link>{' '}
             — home plumbing can differ from utility averages.

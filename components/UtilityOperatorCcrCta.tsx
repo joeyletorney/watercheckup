@@ -12,7 +12,7 @@ export function UtilityOperatorCcrCta({ variant, utilityName }: Props) {
     return (
       <p className="wc-public water system-operator-cta wc-public water system-operator-cta--directory">
         Is your public water system listed?{' '}
-        <Link href="/utilities/claim">Claim your free listing →</Link>
+        <Link prefetch href="/utilities/claim">Claim your free listing →</Link>
       </p>
     );
   }
@@ -21,7 +21,7 @@ export function UtilityOperatorCcrCta({ variant, utilityName }: Props) {
     return (
       <p className="wc-public water system-operator-cta wc-public water system-operator-cta--city">
         Water public water system operators:{' '}
-        <Link href="/utilities/claim">Publish your official CCR on WaterCheckup free →</Link>
+        <Link prefetch href="/utilities/claim">Publish your official CCR on WaterCheckup free →</Link>
       </p>
     );
   }
@@ -31,12 +31,12 @@ export function UtilityOperatorCcrCta({ variant, utilityName }: Props) {
       {utilityName ? (
         <>
           Water operator for {utilityName}?{' '}
-          <Link href="/utilities/claim">Claim this listing and publish your 2026 CCR →</Link>
+          <Link prefetch href="/utilities/claim">Claim this listing and publish your 2026 CCR →</Link>
         </>
       ) : (
         <>
           Water public water system operator?{' '}
-          <Link href="/utilities/claim">Claim your free listing →</Link>
+          <Link prefetch href="/utilities/claim">Claim your free listing →</Link>
         </>
       )}
     </p>

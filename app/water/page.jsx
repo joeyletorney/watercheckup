@@ -195,18 +195,21 @@ export default function WaterDirectoryPage() {
         </div>
         <div className="flex flex-wrap justify-center gap-3 text-sm mb-8">
           <Link
+            prefetch
             href="/water/sugar-land"
             className="font-semibold text-red-700 hover:text-red-900 underline-offset-2 hover:underline"
           >
             Sugar Land PFAS (672 ppt) →
           </Link>
           <Link
+            prefetch
             href="/blog/top-10-most-pfas-contaminated-cities"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
           >
             Top 10 PFAS cities →
           </Link>
           <Link
+            prefetch
             href="/water/san-antonio"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
           >
@@ -219,18 +222,21 @@ export default function WaterDirectoryPage() {
             San Antonio water contamination →
           </Link>
           <Link
+            prefetch
             href="/water/gaithersburg"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
           >
             Gaithersburg water quality →
           </Link>
           <Link
+            prefetch
             href="/blog/san-antonio-water-quality"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
           >
             San Antonio water contamination report →
           </Link>
           <Link
+            prefetch
             href="/blog/pfas-in-san-antonio-water"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
           >
@@ -243,6 +249,7 @@ export default function WaterDirectoryPage() {
             Don't see your city? Check any ZIP code:
           </p>
           <Link
+            prefetch
             href="/"
             className="inline-block bg-white text-blue-600 font-bold px-6 py-3 rounded-lg hover:bg-blue-50 transition"
           >
@@ -260,7 +267,8 @@ export default function WaterDirectoryPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {regionCities.map((city) => (
               <Link
-                key={`${region}-${city.slug}`}
+              prefetch
+              key={`${region}-${city.slug}`}
                 href={`/water/${city.slug}`}
                 className={`block border rounded-lg px-4 py-3 text-sm font-medium text-gray-700 hover:border-blue-400 hover:text-blue-600 hover:shadow-sm transition ${regionColors[region]}`}
               >
@@ -281,6 +289,7 @@ export default function WaterDirectoryPage() {
           on your water report.
         </p>
         <Link
+          prefetch
           href="/quiz"
           className="inline-block bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition"
         >

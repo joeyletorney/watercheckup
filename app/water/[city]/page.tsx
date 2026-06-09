@@ -32,6 +32,7 @@ import { CityFilterTechMatrix } from '@/components/CityFilterTechMatrix';
 import { CityLocalWaterStats } from '@/components/CityLocalWaterStats';
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { quizHrefFromCityPage, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
+import { Fragment } from 'react/jsx-runtime';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -132,7 +133,8 @@ export async function generateStaticParams() {
     .map((city) => ({ city }));
 }
 
-export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ city: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
 
@@ -159,7 +161,8 @@ function getUrgencyContext(concern: 'high' | 'medium' | 'low', issues: string[],
   return `${cityName} water currently shows no major violations in EPA monitoring data. That said, your home's internal plumbing can add lead or other contaminants after water leaves the treatment plant — especially in homes built before 1986.`;
 }
 
-export default function CityPage({ params }: { params: { city: string } }) {
+export default async function CityPage(props: { params: Promise<{ city: string }> }) {
+  const params = await props.params;
   const slug = params.city;
   const cd = CITIES[slug];
   const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -234,21 +237,18 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
-
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageAuthorLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
-
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
 
         {/* ── HERO ── */}
         <div style={{ marginBottom: 64 }}>
           <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 14 }}>
-            <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
+            <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
             <span style={{ margin: '0 6px' }}>›</span>
-            <Link href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Cities</Link>
+            <Link prefetch href="/water" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Cities</Link>
             {cd?.state && (
               <>
                 <span style={{ margin: '0 6px' }}>›</span>
@@ -313,6 +313,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                   { href: '/best-cities', label: 'Best tap water cities' },
                 ].map(({ href, label }) => (
                   <Link
+                    prefetch
                     key={href}
                     href={href}
                     style={{
@@ -335,6 +336,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           {cd && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 14, margin: '0 0 18px' }}>
               <Link
+                prefetch
                 href={`/water-hardness?zip=${encodeURIComponent(cd.zip)}`}
                 style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}
               >
@@ -420,7 +422,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                     <ScoreGradeDisclaimer style={{ marginTop: 10, maxWidth: 420 }} />
                     <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 8 }}>
                       Same score for your ZIP —{' '}
-                      <Link href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>look up your ZIP</Link> for the full contaminant report
+                      <Link prefetch href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>look up your ZIP</Link> for the full contaminant report
                     </div>
                   </div>
                 </div>
@@ -548,8 +550,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
                           </div>
                         ))}
                         {compounds.sort((a, b) => b[1] - a[1]).map(([name, level, overEPA, overHealth], idx) => (
-                          <>
-                            <div key={`${name}-name`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 600, color: '#e2e8f0', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
+                          <Fragment key={`${name}-${idx}`}>
+                            <div style={{ padding: '10px 14px', fontSize: 13, fontWeight: 600, color: '#e2e8f0', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
                               {name}
                               {EPA_MCL[name] !== undefined && <span style={{ fontSize: 13, color: '#a8b4c4', marginLeft: 6 }}>regulated</span>}
                             </div>
@@ -562,7 +564,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                             <div key={`${name}-health`} style={{ padding: '10px 14px', fontSize: 13, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: overHealth ? '#ef4444' : '#22d3ee' }}>
                               {overHealth ? '❌ Exceeds' : '✓ Within'}
                             </div>
-                          </>
+                          </Fragment>
                         ))}
                       </div>
                     </div>
@@ -753,7 +755,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
             City-wide data is just the start. Enter your ZIP to see your exact water system&apos;s EPA report, PFAS levels, and violation history — then get the right filter for your home.
           </p>
-          <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Fix My Water — Free →
           </Link>
         </div>
@@ -770,12 +772,12 @@ export default function CityPage({ params }: { params: { city: string } }) {
               { slug: 'reverse-osmosis-pros-and-cons', title: 'Reverse Osmosis: Pros & Cons', badge: 'Filters' },
               { slug: 'tap-water-safety-during-pregnancy', title: 'Tap Water Safety During Pregnancy', badge: 'Health' },
             ].map(({ slug, title, badge }) => (
-              <Link key={slug} href={`/blog/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
+              <Link key={slug} prefetch href={`/blog/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 1, marginBottom: 4 }}>{badge}</div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>{title}</div>
               </Link>
             ))}
-            <Link href="/worst" style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
+            <Link prefetch href="/worst" style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 1, marginBottom: 4 }}>RANKINGS</div>
               <div style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0', lineHeight: 1.4 }}>Worst Water Systems in the US</div>
             </Link>
@@ -799,14 +801,14 @@ export default function CityPage({ params }: { params: { city: string } }) {
               .map(([slug, c]) => {
                 const uc = { high: { color: '#ef4444', label: 'High concern' }, medium: { color: '#f59e0b', label: 'Monitor' }, low: { color: '#22d3ee', label: 'OK' } }[c.urgency];
                 return (
-                  <Link key={slug} href={`/water/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
+                  <Link key={slug} prefetch href={`/water/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{c.name}, {c.state}</div>
                     <div style={{ fontSize: 13, color: uc.color }}>{uc.label} · {c.issues[0]}</div>
                   </Link>
                 );
               })}
           </div>
-          <Link href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
+          <Link prefetch href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
         </div>
 
         <UtilityOperatorCcrCta variant="city-footer" />

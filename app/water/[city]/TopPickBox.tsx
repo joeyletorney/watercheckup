@@ -168,7 +168,7 @@ export default function TopPickBox({
 
       <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid #0f2336', fontSize: 13, color: '#cbd5e1' }}>
         Not sure which filter is right for you?{' '}
-        <Link href="/quiz" style={{ color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
+        <Link prefetch href="/quiz" style={{ color: '#0891b2', textDecoration: 'none', fontWeight: 700 }}>
           Take the 3-question quiz →
         </Link>
       </div>

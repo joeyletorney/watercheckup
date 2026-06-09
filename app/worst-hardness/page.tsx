@@ -44,7 +44,7 @@ export default function WorstHardnessPage() {
             {states.map((s, i) => (
               <Link
                 key={s.abbr}
-                href={`/water/state/${s.stateSlug}`}
+                prefetch href={`/water/state/${s.stateSlug}`}
                 style={{ textDecoration: 'none' }}
               >
                 <div

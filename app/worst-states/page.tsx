@@ -62,7 +62,7 @@ export default function WorstStatesPage() {
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             Same methodology as our{' '}
-            <Link href="/rankings" style={{ color: '#22d3ee' }}>
+            <Link prefetch href="/rankings" style={{ color: '#22d3ee' }}>
               state rankings table
             </Link>
             : each state is ordered by the <strong style={{ color: '#e2e8f0' }}>% of tracked cities</strong> with UCMR5 PFAS
@@ -73,7 +73,7 @@ export default function WorstStatesPage() {
             <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>
               <strong style={{ color: '#f59e0b' }}>Note:</strong> Rankings reflect WaterCheckup city guides, not every public water
               system in the state. For a composite city score list see{' '}
-              <Link href="/worst-cities" style={{ color: '#22d3ee' }}>
+              <Link prefetch href="/worst-cities" style={{ color: '#22d3ee' }}>
                 worst cities by safety score
               </Link>
               .
@@ -119,11 +119,11 @@ export default function WorstStatesPage() {
                           </span>
                         ))}
                       </div>
-                      <Link href={`/water/${row.worstSlug}`} style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
+                      <Link prefetch href={`/water/${row.worstSlug}`} style={{ fontSize: 13, color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
                         Lowest safety score: {row.worstCityName} → view report
                       </Link>
                       <span style={{ margin: '0 8px', color: '#475569' }}>·</span>
-                      <Link href={`/water/state/${row.stateSlug}`} style={{ fontSize: 13, color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
+                      <Link prefetch href={`/water/state/${row.stateSlug}`} style={{ fontSize: 13, color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
                         All {row.stateAbbr} cities
                       </Link>
                     </div>
@@ -153,7 +153,7 @@ export default function WorstStatesPage() {
               ))}
             </div>
             {rankings.map((row, i) => (
-              <Link key={row.stateAbbr} href={`/water/state/${row.stateSlug}`} style={{ textDecoration: 'none' }}>
+              <Link key={row.stateAbbr} prefetch href={`/water/state/${row.stateSlug}`} style={{ textDecoration: 'none' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 72px 72px', padding: '12px 16px', borderBottom: '1px solid #0f2336', gap: 8, alignItems: 'center' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8' }}>{i + 1}</div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: '#e2e8f0' }}>{row.stateName}</div>
@@ -173,7 +173,7 @@ export default function WorstStatesPage() {
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 18, lineHeight: 1.6 }}>
             State rankings show the big picture. Your specific water system may be better or worse than your state average. Enter your ZIP for the full report.
           </p>
-          <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
         </div>
@@ -189,7 +189,7 @@ export default function WorstStatesPage() {
             { href: '/worst-hardness',   label: 'Hardest water',            desc: 'States and cities by hardness' },
             { href: '/worst',            label: 'Rankings hub',             desc: 'Every ranking in one place' },
           ].map(({ href, label, desc }) => (
-            <Link key={href} href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
+            <Link key={href} prefetch href={href} style={{ display: 'block', padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, textDecoration: 'none' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{label}</div>
               <div style={{ fontSize: 13, color: '#a8b4c4' }}>{desc}</div>
             </Link>

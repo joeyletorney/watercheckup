@@ -420,7 +420,7 @@ export default function WellWaterPage() {
             Enter your ZIP code to see the well water risk profile for your state — based on USGS and EPA groundwater data —
             plus personalized filter recommendations matched to what&apos;s most likely in your well.
           </p>
-          <Link href="/?well=1" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
+          <Link prefetch href="/?well=1" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Check My Well Water Free →
           </Link>
         </div>
@@ -458,7 +458,7 @@ export default function WellWaterPage() {
               { href: '/quiz', label: 'Take the Filter Quiz — Get Matched to the Right System' },
               { href: '/', label: 'Check Your ZIP Code — Full EPA Water Report' },
             ].map(({ href, label }) => (
-              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #2d4a6c', borderRadius: 8, textDecoration: 'none', color: '#e2e8f0', fontSize: 14, fontWeight: 600 }}>
+              <Link key={href} prefetch href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #2d4a6c', borderRadius: 8, textDecoration: 'none', color: '#e2e8f0', fontSize: 14, fontWeight: 600 }}>
                 {label} <span style={{ color: '#38bdf8' }}>→</span>
               </Link>
             ))}

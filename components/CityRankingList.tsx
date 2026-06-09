@@ -25,7 +25,7 @@ export function CityRankingList({ items, startRank = 1, highlightTop = 5 }: Prop
         const color = item.badgeColor ?? '#94a3b8';
         const isTop = i < highlightTop;
         return (
-          <Link key={item.slug} href={`/water/${item.slug}`} style={{ textDecoration: 'none' }}>
+          <Link key={item.slug} prefetch href={`/water/${item.slug}`} style={{ textDecoration: 'none' }}>
             <div
               style={{
                 display: 'flex',

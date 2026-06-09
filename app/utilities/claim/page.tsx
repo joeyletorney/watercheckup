@@ -62,7 +62,7 @@ export default function UtilityClaimPage() {
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/utilities" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/utilities" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Utilities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -131,11 +131,11 @@ export default function UtilityClaimPage() {
 
         <p style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.65, margin: 0 }}>
           Claims are reviewed manually. We match your PWSID to our EPA directory before publishing your CCR.{' '}
-          <Link href="/faq" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/faq" style={{ color: '#22d3ee' }}>
             FAQ
           </Link>{' '}
           ·{' '}
-          <Link href="/utilities" style={{ color: '#22d3ee' }}>
+          <Link prefetch href="/utilities" style={{ color: '#22d3ee' }}>
             Public water system directory
           </Link>
         </p>

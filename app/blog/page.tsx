@@ -650,7 +650,7 @@ export default function BlogIndex() {
           <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FEATURED</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
             {featuredPosts.map(post => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+              <Link prefetch key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
                 <div style={{ height: '100%', padding: '22px 22px 20px', background: 'linear-gradient(165deg,rgba(8,145,178,0.12),rgba(7,24,40,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderTop: `3px solid ${post.badgeColor}`, borderRadius: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.5, padding: '2px 8px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>{post.badge}</span>
@@ -678,7 +678,7 @@ export default function BlogIndex() {
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {catPosts.map(post => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+                  <Link prefetch key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 16px', background: 'rgba(7,24,40,0.7)', border: '1px solid #0f2336', borderRadius: 10, flexWrap: 'wrap' }}>
                       <div style={{ flex: 1, minWidth: 200 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3, flexWrap: 'wrap' }}>
@@ -700,7 +700,7 @@ export default function BlogIndex() {
         <div style={{ marginTop: 96, padding: '28px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your specific water</div>
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 20, lineHeight: 1.6 }}>Enter your ZIP code to get the full EPA report for your exact water system.</p>
-          <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
         </div>

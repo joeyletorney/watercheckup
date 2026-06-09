@@ -43,8 +43,8 @@ export default function WorstCitiesPage() {
           </p>
           <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.65, margin: '0 0 14px' }}>
             Only tracked metros with WaterCheckup city guides ({cities.length} shown). For PFAS-only leaderboards see{' '}
-            <Link href="/worst-water" style={{ color: '#22d3ee' }}>peak PFAS systems</Link> and{' '}
-            <Link href="/worst-pfas-cities" style={{ color: '#22d3ee' }}>PFAS MCL cities</Link>.
+            <Link prefetch href="/worst-water" style={{ color: '#22d3ee' }}>peak PFAS systems</Link> and{' '}
+            <Link prefetch href="/worst-pfas-cities" style={{ color: '#22d3ee' }}>PFAS MCL cities</Link>.
           </p>
           <ScoreGradeDisclaimer />
         </div>

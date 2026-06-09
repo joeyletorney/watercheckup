@@ -16,7 +16,8 @@ export async function generateStaticParams() {
   return Object.keys(POSTS).map(slug => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const post = POSTS[params.slug];
   if (!post) return { title: 'Post Not Found | WaterCheckup' };
 
@@ -60,7 +61,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const post = POSTS[params.slug];
   if (!post) notFound();
 
@@ -127,9 +129,9 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
       <article className="wc-reading-panel">
         <nav className="wc-reading-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+          <Link prefetch href="/">Home</Link>
           {' · '}
-          <Link href="/blog">Blog</Link>
+          <Link prefetch href="/blog">Blog</Link>
           {' · '}
           <span>{post.badge}</span>
         </nav>
@@ -147,7 +149,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           </div>
           <h1 className="wc-reading-title">{post.title}</h1>
           <p className="wc-reading-meta" style={{ margin: '0 0 12px' }}>
-            By <Link href="/about">{BLOG_AUTHOR_BYLINE.name}</Link>
+            By <Link prefetch href="/about">{BLOG_AUTHOR_BYLINE.name}</Link>
             {' | '}
             {BLOG_AUTHOR_BYLINE.credentials}
           </p>
@@ -182,7 +184,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 <div className="wc-reading-cta__title">{cta.headline}</div>
                 <div className="wc-reading-cta__sub">{cta.sub}</div>
               </div>
-              <Link href={cta.href} className="wc-reading-cta__btn">
+              <Link prefetch href={cta.href} className="wc-reading-cta__btn">
                 {cta.btn}
               </Link>
             </div>
@@ -224,7 +226,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <div className="wc-reading-inset__label">MORE GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {Object.entries(POSTS).filter(([slug]) => slug !== params.slug).map(([slug, p]) => (
-              <Link key={slug} href={`/blog/${slug}`} className="wc-reading-link-card">
+              <Link prefetch key={slug} href={`/blog/${slug}`} className="wc-reading-link-card">
                 <span className="wc-reading-link-card__title">{p.title}</span>
                 <span className="wc-reading-link-card__arrow">→</span>
               </Link>
@@ -240,7 +242,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               Match a certified filter to your water source, concern, and home situation.
             </p>
           </div>
-          <Link href="/quiz" className="wc-reading-cta__btn">
+          <Link prefetch href="/quiz" className="wc-reading-cta__btn">
             Find My Filter →
           </Link>
         </div>
@@ -264,6 +266,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               { slug: 'new-york', name: 'New York, NY' },
             ].map(({ slug, name }) => (
               <Link
+                prefetch
                 key={slug}
                 href={`/water/${slug}`}
                 style={{
@@ -282,7 +285,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               </Link>
             ))}
           </div>
-          <Link href="/utilities" style={{ fontSize: 13, color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>
+          <Link prefetch href="/utilities" style={{ fontSize: 13, color: '#0369a1', textDecoration: 'none', fontWeight: 600 }}>
             {VIEW_ALL_WATER_SYSTEMS_LINK}
           </Link>
         </div>
@@ -292,7 +295,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <p className="wc-reading-inset__text" style={{ marginBottom: 20 }}>
             Live EPA data, PFAS results, and violation history for your ZIP — free.
           </p>
-          <Link href="/" className="wc-reading-cta__btn" style={{ display: 'inline-block' }}>
+          <Link prefetch href="/" className="wc-reading-cta__btn" style={{ display: 'inline-block' }}>
             Check My Water Free →
           </Link>
         </div>

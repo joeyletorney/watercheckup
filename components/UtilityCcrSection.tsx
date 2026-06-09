@@ -70,7 +70,7 @@ export function UtilityCcrSection({
             This listing is operator-verified. The full {reportYear} CCR summary and PDF will appear here once your team
             publishes them through WaterCheckup.
           </p>
-          <Link href="/utilities/claim" className="wc-utility-ccr-section__claim-link">
+          <Link prefetch href="/utilities/claim" className="wc-utility-ccr-section__claim-link">
             Update your CCR →
           </Link>
         </div>
@@ -85,7 +85,7 @@ export function UtilityCcrSection({
               Are you the water operator for <strong>{utilityName}</strong>? Publish your official CCR here for free —
               your customers are already finding this page.
             </p>
-            <Link href="/utilities/claim" className="wc-utility-ccr-section__claim-cta">
+            <Link prefetch href="/utilities/claim" className="wc-utility-ccr-section__claim-cta">
               Claim This Listing Free →
             </Link>
           </div>

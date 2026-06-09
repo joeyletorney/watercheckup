@@ -220,7 +220,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div style={{ fontSize: 48, marginBottom: 16 }}>🚱</div>
         <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>No data found for ZIP {zip}</h1>
         <p style={{ color: '#cbd5e1', marginBottom: 24 }}>This ZIP code may not be in our database yet, or it may be a rural area served by a private well.</p>
-        <Link href="/" style={{ display: 'inline-block', padding: '12px 28px', background: '#0891b2', borderRadius: 10, color: '#fff', fontWeight: 700, textDecoration: 'none' }}>
+        <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: '#0891b2', borderRadius: 10, color: '#fff', fontWeight: 700, textDecoration: 'none' }}>
           Try another ZIP →
         </Link>
       </div>
@@ -251,7 +251,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
       {/* ── HEADER ── */}
       <div style={{ marginBottom: 56 }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 12 }}>
-          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
+          <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>Home</Link>
           <span style={{ margin: '0 6px' }}>›</span>
           <span>Results</span>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -276,7 +276,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           {citySlug ? (
             <>
               {' '}
-              <Link href={`/water/${citySlug}`} style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
+              <Link prefetch href={`/water/${citySlug}`} style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
                 Full {data.city?.split(',')[0]?.trim()} city report →
               </Link>
             </>
@@ -301,6 +301,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             </p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
               <Link
+                prefetch
                 href={quizHref}
                 style={{
                   display: 'inline-block',
@@ -356,13 +357,14 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           >
             ↗ Share score
           </a>
-          <Link href="/"
+          <Link prefetch href="/"
             style={{ fontSize: 13, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#cbd5e1', textDecoration: 'none', fontWeight: 600 }}
           >
             🔍 Check another ZIP
           </Link>
           {citySlug ? (
             <Link
+              prefetch
               href={`/water/${citySlug}`}
               style={{ fontSize: 13, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#67e8f9', textDecoration: 'none', fontWeight: 600 }}
             >

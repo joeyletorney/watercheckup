@@ -47,7 +47,7 @@ export default function ContactPage() {
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <main style={{ maxWidth: 680, margin: '0 auto', padding: '48px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 20 }}>
-          <Link href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#a8b4c4', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -145,26 +145,26 @@ export default function ContactPage() {
         <h2 style={h2}>Not what you need?</h2>
         <p style={p}>
           For instant answers, try the{' '}
-          <Link href="/faq" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+          <Link prefetch href="/faq" style={{ color: '#67e8f9', textDecoration: 'none' }}>
             FAQ
           </Link>
           , read how we{' '}
-          <Link href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+          <Link prefetch href="/methodology" style={{ color: '#67e8f9', textDecoration: 'none' }}>
             source EPA data
           </Link>
           , or{' '}
-          <Link href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>
             check your ZIP for free
           </Link>
           . Utility operators can use the{' '}
-          <Link href="/utilities/claim" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+          <Link prefetch href="/utilities/claim" style={{ color: '#67e8f9', textDecoration: 'none' }}>
             claim listing form
           </Link>
           .
         </p>
         <p style={p}>
           Learn more about{' '}
-          <Link href="/about" style={{ color: '#67e8f9', textDecoration: 'none' }}>
+          <Link prefetch href="/about" style={{ color: '#67e8f9', textDecoration: 'none' }}>
             Joe Letorney and WaterCheckup
           </Link>
           .

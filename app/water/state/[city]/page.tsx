@@ -176,11 +176,11 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
 
       <div style={{ maxWidth: 880, margin: '0 auto', padding: '40px 24px 80px' }}>
         <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 24 }}>
-          <Link href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Home
           </Link>
           {' / '}
-          <Link href="/water" style={{ color: '#0891b2', textDecoration: 'none' }}>
+          <Link prefetch href="/water" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Cities
           </Link>
           {' / '}
@@ -206,7 +206,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             if (h.avgPpm == null || h.citiesTested === 0) return null;
             return (
               <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 20px' }}>
-                <Link href="/water-hardness" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+                <Link prefetch href="/water-hardness" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
                   Average water hardness in {stateName}: {h.avgPpm} ppm →
                 </Link>
                 <span style={{ fontSize: 13, color: '#a8b4c4' }}>
@@ -263,7 +263,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
               }}
             >
               <span style={{ color: '#fca5a5', fontWeight: 700 }}>Highest PFAS reading in {stateName}:</span>{' '}
-              <Link href={`/water/${worstForPfas.slug}`} style={{ color: '#f87171', fontWeight: 700, textDecoration: 'none' }}>
+              <Link prefetch href={`/water/${worstForPfas.slug}`} style={{ color: '#f87171', fontWeight: 700, textDecoration: 'none' }}>
                 {worstForPfas.name}
               </Link>
               {' — '}
@@ -358,7 +358,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                 {sortedByPop.map((city) => (
                   <tr key={city.slug} style={{ borderBottom: '1px solid #0f2336' }}>
                     <td style={{ padding: '12px 14px' }}>
-                      <Link href={`/water/${city.slug}`} style={{ color: '#f1f5f9', fontWeight: 700, textDecoration: 'none' }}>
+                      <Link prefetch href={`/water/${city.slug}`} style={{ color: '#f1f5f9', fontWeight: 700, textDecoration: 'none' }}>
                         {city.name}
                       </Link>
                       <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 2 }}>{city.system}</div>
@@ -440,7 +440,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             recommendations.
           </p>
           <Link
-            href="/"
+            prefetch href="/"
             style={{
               display: 'inline-block',
               padding: '13px 30px',

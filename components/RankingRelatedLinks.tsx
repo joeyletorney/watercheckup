@@ -21,7 +21,7 @@ export function RankingRelatedLinks({ links = DEFAULT_LINKS, title = 'More ranki
         {links.map((l) => (
           <Link
             key={l.href}
-            href={l.href}
+            prefetch href={l.href}
             style={{
               display: 'block',
               padding: '14px 16px',

@@ -140,10 +140,10 @@ export default function LeadPage() {
             ))}
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
-            <Link href="/" style={{ display: 'inline-block', padding: '12px 24px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+            <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 24px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 9, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
               Check Your ZIP for Lead (EPA LCR Data) →
             </Link>
-            <Link href="/blog/best-water-filter-for-lead-removal" style={{ fontSize: 14, fontWeight: 700, color: '#67e8f9', textDecoration: 'none' }}>
+            <Link prefetch href="/blog/best-water-filter-for-lead-removal" style={{ fontSize: 14, fontWeight: 700, color: '#67e8f9', textDecoration: 'none' }}>
               Water filters that remove lead (2025–2026 picks) →
             </Link>
           </div>
@@ -262,7 +262,7 @@ export default function LeadPage() {
           <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             Enter your ZIP for a full report — including Lead and Copper Rule sample results when published for your system, open violations, and filter picks matched to your water.
           </p>
-          <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#f59e0b,#d97706)', borderRadius: 10, color: '#0f172a', fontSize: 16, fontWeight: 800, textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#f59e0b,#d97706)', borderRadius: 10, color: '#0f172a', fontSize: 16, fontWeight: 800, textDecoration: 'none' }}>
             Check My Water Free →
           </Link>
         </div>
@@ -296,7 +296,7 @@ export default function LeadPage() {
               { href: '/contaminants', label: 'Water Contaminant Guide' },
               { href: '/', label: 'Check Your ZIP — Full EPA Water Report' },
             ].map(({ href, label: lbl }) => (
-              <Link key={href} href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#cbd5e1', fontSize: 14, fontWeight: 600 }}>
+              <Link key={href} prefetch href={href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none', color: '#cbd5e1', fontSize: 14, fontWeight: 600 }}>
                 {lbl} <span style={{ color: '#0891b2' }}>→</span>
               </Link>
             ))}

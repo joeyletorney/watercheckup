@@ -174,7 +174,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="wc-main" tabIndex={-1}>
           {children}
         </main>
-        <SiteFooter />
+        <Suspense fallback={null}><SiteFooter /></Suspense>
       </body>
     </html>
   )

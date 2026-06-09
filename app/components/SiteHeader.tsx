@@ -89,6 +89,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
       >
         <div className="wc-site-header-inner-row" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 16, flex: '1 1 auto', minWidth: 0 }}>
           <Link
+            prefetch
             href="/"
             style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
           >
@@ -101,7 +102,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
             <span style={{ fontSize: 13, color: '#a8b4c4', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ color: '#22d3ee', fontWeight: 800 }}>10,000+</span> reports checked
             </span>
-            <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
+            <Link prefetch href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
               {ctaLabel ?? 'Check My Water →'}
             </Link>
           </div>
@@ -122,7 +123,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
         flexWrap: 'wrap',
       }}
     >
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
+      <Link prefetch href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
         <LogoWordmark />
       </Link>
       <SiteNav ariaLabel="Main" style={navStyle} />
@@ -138,7 +139,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
           }}
         >
           {showCta ? (
-            <Link href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
+            <Link prefetch href={ctaHref ?? '/'} className="wc-site-header-cta" style={CTA_STYLE}>
               {ctaLabel ?? 'Check My Water'}
             </Link>
           ) : null}

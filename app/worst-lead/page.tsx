@@ -110,7 +110,7 @@ export default function WorstLeadPage() {
             </div>
             <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, overflow: 'hidden' }}>
               {rest.map((c, i) => (
-                <Link key={c.slug} href={`/water/${c.slug}`} style={{ textDecoration: 'none' }}>
+                <Link key={c.slug} prefetch href={`/water/${c.slug}`} style={{ textDecoration: 'none' }}>
                   <div
                     style={{
                       display: 'flex',
@@ -183,7 +183,7 @@ export default function WorstLeadPage() {
           </div>
           <div style={{ marginTop: 20, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <Link
-              href="/"
+              prefetch href="/"
               style={{
                 display: 'inline-block',
                 padding: '11px 22px',
@@ -199,6 +199,7 @@ export default function WorstLeadPage() {
             </Link>
             <Link
               href="/blog/best-water-filter-for-lead-removal"
+              prefetch
               style={{
                 display: 'inline-block',
                 padding: '11px 22px',

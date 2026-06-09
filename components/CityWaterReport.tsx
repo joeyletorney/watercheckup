@@ -26,15 +26,15 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 20 }}>
-          <Link href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
+          <Link prefetch href="/" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Home
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href="/water" style={{ color: '#0891b2', textDecoration: 'none' }}>
+          <Link prefetch href="/water" style={{ color: '#0891b2', textDecoration: 'none' }}>
             Cities
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
-          <Link href={stateHub} style={{ color: '#0891b2', textDecoration: 'none' }}>
+          <Link prefetch href={stateHub} style={{ color: '#0891b2', textDecoration: 'none' }}>
             {city.state}
           </Link>
           <span style={{ margin: '0 6px' }}>›</span>
@@ -96,7 +96,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <Link
-            href={`/water/${citySlug}`}
+            prefetch href={`/water/${citySlug}`}
             style={{
               display: 'inline-block',
               textAlign: 'center',
@@ -130,7 +130,7 @@ export function CityWaterReport({ stateSlug, citySlug, city, sdwisUrl }: CityWat
           >
             EPA SDWIS federal record (new tab) →
           </a>
-          <Link href={internalSdwisPath(city.pwsid)} style={{ fontSize: 13, color: '#a8b4c4', textAlign: 'center' }}>
+          <Link prefetch href={internalSdwisPath(city.pwsid)} style={{ fontSize: 13, color: '#a8b4c4', textAlign: 'center' }}>
             Open framed SDWIS link on WaterCheckup
           </Link>
         </div>

@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: { utility?: string; state?: string; email?: string };
+  searchParams: Promise<{ utility?: string; state?: string; email?: string }>;
 };
 
-export default function UtilityClaimThankYouPage({ searchParams }: Props) {
+export default async function UtilityClaimThankYouPage(props: Props) {
+  const searchParams = await props.searchParams;
   const utilityName = searchParams.utility?.trim() || 'your public water system';
   const stateCode = searchParams.state?.trim().toUpperCase() || '';
   const email = searchParams.email?.trim() || 'the email you provided';
@@ -71,7 +72,7 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
           </p>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
             <li>
-              <Link href={stateListingHref} style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+              <Link prefetch href={stateListingHref} style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
                 View your current public water system listing →
               </Link>
               {stateCode ? (
@@ -81,12 +82,12 @@ export default function UtilityClaimThankYouPage({ searchParams }: Props) {
               ) : null}
             </li>
             <li>
-              <Link href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+              <Link prefetch href="/about" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
                 Learn about WaterCheckup →
               </Link>
             </li>
             <li>
-              <Link href="/rankings" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+              <Link prefetch href="/rankings" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
                 Check your state&apos;s water quality rankings →
               </Link>
             </li>
