@@ -172,9 +172,12 @@ function loadPrerenderTopParams(): { state: string; slug: string }[] {
 }
 
 /** Precomputed top utilities for sitemap (no sort of full catalog at runtime). */
-export function getTopUtilityStaticParamsByPopulation(limit: number): { state: string; slug: string }[] {
+export function getTopUtilityStaticParamsByPopulation(limit?: number): { state: string; slug: string }[] {
   if (hasIndexShards()) {
-    return loadSitemapTopParams().slice(0, limit);
+    if (limit) {
+      return loadSitemapTopParams().slice(0, limit);
+    }
+    return loadSitemapTopParams();
   }
   const { utilities } = loadUtilitiesPayload();
   const sorted = [...utilities].sort((a, b) => (b.populationServed ?? 0) - (a.populationServed ?? 0));

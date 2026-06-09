@@ -3,7 +3,7 @@ import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
 
 const BREVO = 'https://api.brevo.com/v3';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const ip = getClientIp(req);

@@ -8,8 +8,8 @@ import { sdwisPublicReportUrl } from '@/lib/epa-data';
  * Nested state + city URLs live under `/water/area/...` because Next.js does not allow
  * `app/water/[city]` and `app/water/[state]` as sibling dynamic segments (param name must match at that level).
  */
-export const dynamicParams = true;
-export const revalidate = 86400;
+// export const dynamicParams = true;
+// export const revalidate = 86400;
 
 export async function generateMetadata({
   params,

@@ -5,6 +5,7 @@ import { CityRankingList } from '@/components/CityRankingList';
 import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildBestCitiesBySafetyScore } from '@/lib/city-rankings';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
+import { cacheLife } from 'next/cache'
 
 export const metadata: Metadata = {
   title: '10 Best Cities for Tap Water Quality (2026 Safety Score) | WaterCheckup',
@@ -13,9 +14,9 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://watercheckup.com/best-cities' },
 };
 
-export const revalidate = 86400;
+// // export const revalidate = 86400;
 
-export default function BestCitiesPage() {
+export default async function BestCitiesPage() {
   const cities = buildBestCitiesBySafetyScore(10);
 
   return (

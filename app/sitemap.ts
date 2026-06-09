@@ -7,7 +7,7 @@ import { SITE_ORIGIN } from '@/lib/site-url'
 
 /** Full public water system + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
 /** Keep utility URLs in sitemap smaller so crawl budget favors city + ranking pages. */
-const SITEMAP_TOP_UTILITIES_BY_POP = 400
+// const SITEMAP_TOP_UTILITIES_BY_POP = 400
 
 const STATE_NAMES: Record<string, string> = {
   AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
@@ -113,7 +113,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let utilityEntries: MetadataRoute.Sitemap = []
   try {
-    const utilParams = getTopUtilityStaticParamsByPopulation(SITEMAP_TOP_UTILITIES_BY_POP)
+    const utilParams = getTopUtilityStaticParamsByPopulation()
     utilityEntries = utilParams.map(({ state, slug }) => ({
       url: `${base}/utilities/${state}/${slug}`,
       lastModified: now,

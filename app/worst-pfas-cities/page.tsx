@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://watercheckup.com/worst-pfas-cities' },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 export default function WorstPfasCitiesPage() {
   const mclCities = buildCitiesWithPfasMclViolations(20);

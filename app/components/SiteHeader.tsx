@@ -1,6 +1,6 @@
 'use client';
 
-import type { CSSProperties, ReactNode } from 'react';
+import { Suspense, type CSSProperties, type ReactNode } from 'react';
 import Link from 'next/link';
 import { SiteNav } from './SiteNav';
 
@@ -74,6 +74,7 @@ export type SiteHeaderProps = {
 export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, ctaHref, innerBarStyle }: SiteHeaderProps) {
   if (variant === 'inner') {
     return (
+      <Suspense>
       <div
         className="wc-site-header wc-site-header--inner"
         style={{
@@ -108,6 +109,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
           </div>
         ) : null}
       </div>
+      </Suspense>
     );
   }
 

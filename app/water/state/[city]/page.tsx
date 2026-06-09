@@ -118,15 +118,17 @@ function topContaminantsInState(rows: ReturnType<typeof buildStateRows>, limit: 
     .map(([name, cityCount]) => ({ name, cityCount }));
 }
 
-export async function generateStaticParams() {
-  const stateMap: Record<string, boolean> = {};
-  Object.values(CITIES).forEach((cd) => {
-    stateMap[cd.state] = true;
-  });
-  return Object.keys(stateMap).map((state) => ({
-    city: STATE_NAMES[state]?.toLowerCase().replace(/\s+/g, '-') ?? state.toLowerCase(),
-  }));
-}
+// export async function generateStaticParams() {
+//   const stateMap: Record<string, boolean> = {};
+//   Object.values(CITIES).forEach((cd) => {
+//     stateMap[cd.state] = true;
+//   });
+//   return Object.keys(stateMap).map((state) => ({
+//     city: STATE_NAMES[state]?.toLowerCase().replace(/\s+/g, '-') ?? state.toLowerCase(),
+//   }));
+// }
+
+// export const revalidate = 86400 * 30; // every 30 days
 
 export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
   const { city: stateSlug } = await params;

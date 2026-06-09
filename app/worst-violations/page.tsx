@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 const TOP25_VIOLATIONS = Object.entries(CITIES)
   .map(([slug, c]) => ({ slug, ...c }))

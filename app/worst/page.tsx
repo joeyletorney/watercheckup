@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 type HubSection = { title: string; items: { href: string; title: string; tag: string; desc: string }[] };
 

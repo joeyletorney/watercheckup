@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   reactCompiler: true,
   crossOrigin: "anonymous",
+  // cacheComponents: true,
   poweredByHeader: false,
   enablePrerenderSourceMaps: true,
   turbopack: {},

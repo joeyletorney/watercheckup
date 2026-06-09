@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://watercheckup.com/worst-hardness' },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 export default function WorstHardnessPage() {
   const cities = buildHardestCities(20);

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 

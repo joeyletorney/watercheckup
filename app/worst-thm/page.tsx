@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 /** Matches issues strings that reference THMs, HAAs, or disinfection byproducts. */
 const THM_DBP_ISSUE_RE =

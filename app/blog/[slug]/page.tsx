@@ -12,9 +12,11 @@ import { BlogTopPicks } from '@/components/BlogTopPicks';
 import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 
-export async function generateStaticParams() {
-  return Object.keys(POSTS).map(slug => ({ slug }));
-}
+// export async function generateStaticParams() {
+//   return Object.keys(POSTS).map(slug => ({ slug }));
+// }
+
+// export const revalidate = 86400 * 30; // every 30 days
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const params = await props.params;

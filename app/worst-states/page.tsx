@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 86400;
+// export const revalidate = 86400;
 
 // Per-state narrative for the top entries — specific, data-backed
 const STATE_NARRATIVE: Record<string, string> = {

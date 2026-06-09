@@ -4,6 +4,7 @@ import { SiteHeader } from '../../components/SiteHeader';
 import { FilterRecommendationsAccent } from '@/components/FilterRecommendationsHero';
 import TopPickBox from './TopPickBox';
 import EmailCapture from './EmailCapture';
+import { cacheLife } from 'next/cache'
 
 import { CITIES } from './cities-data';
 import ucmr5Raw from '../../../lib/ucmr5.json';
@@ -33,6 +34,7 @@ import { CityLocalWaterStats } from '@/components/CityLocalWaterStats';
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { quizHrefFromCityPage, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { Fragment } from 'react/jsx-runtime';
+import { Suspense } from 'react';
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -127,13 +129,17 @@ const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress
   'baltimore': { url: 'https://www.bwsh2o.com/lead', label: 'Baltimore Water Lead Info', hasAddress: false },
 };
 
-export async function generateStaticParams() {
-  return Object.keys(CITIES)
-    .filter((city) => !isDedicatedWaterCitySlug(city))
-    .map((city) => ({ city }));
-}
+// export async function generateStaticParams() {
+//   return Object.keys(CITIES)
+//     .filter((city) => !isDedicatedWaterCitySlug(city))
+//     .map((city) => ({ city }));
+// }
+
+// export const revalidate = 86400 * 30; // every 30 days
 
 export async function generateMetadata(props: { params: Promise<{ city: string }> }): Promise<Metadata> {
+  "use cache";
+  cacheLife('weeks');
   const params = await props.params;
   const cd = CITIES[params.city];
   if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
@@ -162,6 +168,10 @@ function getUrgencyContext(concern: 'high' | 'medium' | 'low', issues: string[],
 }
 
 export default async function CityPage(props: { params: Promise<{ city: string }> }) {
+
+  "use cache";
+  cacheLife('weeks'); 
+
   const params = await props.params;
   const slug = params.city;
   const cd = CITIES[slug];
@@ -240,7 +250,9 @@ export default async function CityPage(props: { params: Promise<{ city: string }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageAuthorLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
+      
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 24px 80px' }}>
 
         {/* ── HERO ── */}

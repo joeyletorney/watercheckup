@@ -37,7 +37,7 @@ const ORGANIZATION_LD = {
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <>
       <script

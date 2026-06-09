@@ -15,14 +15,15 @@ import { computeUtilityWaterScore } from "@/lib/city-water-score";
 import ucmr5Raw from "@/lib/ucmr5.json";
 import { getAllUtilityStaticParams, getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
 import { getCtrSerpOverride } from "@/lib/ctr-serp-seo";
+import { cacheLife } from "next/cache";
 
 /** Prerender top utilities at build; all other `/utilities/[state]/[slug]` paths ISR on first request. */
-export const dynamicParams = true;
-export const revalidate = 86400;
+// export const dynamicParams = true;
+// export const revalidate = 86400 * 30; // every 30 days — not statically analyzable; use cacheLife() instead
 
-export function generateStaticParams() {
-  return getAllUtilityStaticParams();
-}
+// export function generateStaticParams() {
+//   return getAllUtilityStaticParams();
+// }
 
 const UCMR5 = ucmr5Raw as unknown as Record<
   string,
@@ -158,6 +159,8 @@ export async function generateMetadata(
     params: Promise<{ state: string; slug: string }>;
   }
 ): Promise<Metadata> {
+  "use cache";
+  cacheLife({ revalidate: 2592000 }); // 30 days
   const params = await props.params;
   const u = getUtilityByStateSlug(params.state, params.slug);
   if (!u) {
@@ -185,6 +188,8 @@ export async function generateMetadata(
 }
 
 export default async function UtilityPage(props: { params: Promise<{ state: string; slug: string }> }) {
+  "use cache";
+  cacheLife({ revalidate: 2592000 }); // 30 days
   const params = await props.params;
   const u = getUtilityByStateSlug(params.state, params.slug);
   if (!u) notFound();

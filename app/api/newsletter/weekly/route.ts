@@ -354,7 +354,7 @@ function buildWeeklyHtml(issue: Issue, email: string): string {
   </body></html>`;
 }
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 /**
  * Vercel Cron: Mondays 14:00 UTC (vercel.json). Requires BREVO_API_KEY + BREVO_LIST_IDS.

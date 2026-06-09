@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 const BADGE_COLORS: Record<string, string> = {
   PFAS: '#ef4444',

@@ -9,8 +9,8 @@ import { getStateUtilityCount, getUtilitiesInStatePage } from "@/lib/utilities-d
 
 import { UtilitiesStateList } from "./UtilitiesStateList";
 
-export const dynamicParams = true;
-export const revalidate = 86400;
+// export const dynamicParams = true;
+// // export const revalidate = 86400;
 
 export async function generateMetadata(
   props: {

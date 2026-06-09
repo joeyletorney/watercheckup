@@ -2,14 +2,17 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '../../components/SiteHeader';
 import ResultsClient from './ResultsClient';
 import { buildZipResultsDescription, buildZipResultsTitle } from '@/lib/zip-results-seo';
+import { cacheLife } from 'next/cache';
 
 /** ZIP result pages are generated on first request (ISR), not at build — avoids 40k+ prerenders and remote fetch timeouts. */
-export const dynamicParams = true;
-export const revalidate = 86400;
+// export const dynamicParams = true;
+// // export const revalidate = 86400;
 
 interface Props { params: Promise<{ zip: string }> }
 
 async function fetchWaterData(zip: string) {
+  "use cache";
+  cacheLife('weeks');
   const base = process.env.NEXT_PUBLIC_BASE_URL || 'https://watercheckup.com';
   const res = await fetch(`${base}/api/water?zip=${zip}`, { next: { revalidate: 86400 } });
   if (!res.ok) return null;
@@ -17,6 +20,8 @@ async function fetchWaterData(zip: string) {
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
+  "use cache";
+  cacheLife('weeks');
   const params = await props.params;
   const data = await fetchWaterData(params.zip);
   if (!data) {
@@ -51,6 +56,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function ResultsPage(props: Props) {
+  "use cache";
+  cacheLife('weeks');
   const params = await props.params;
   const data = await fetchWaterData(params.zip);
 
