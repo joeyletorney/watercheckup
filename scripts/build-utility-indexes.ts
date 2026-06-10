@@ -77,10 +77,19 @@ function main() {
   const topByPop = [...allMerged].sort(
     (a, b) => (b.populationServed ?? 0) - (a.populationServed ?? 0),
   );
-  const sitemapTop = topByPop.slice(0, SITEMAP_TOP_N).map((u) => ({
-    state: u.state.toLowerCase(),
-    slug: u.slug,
-  }));
+  const isProductionSlug = (slug: string) => {
+    const s = slug.toLowerCase();
+    if (s.startsWith("test") || s.includes("-test-") || s.includes("test-")) return false;
+    if (s.includes("hypothetical")) return false;
+    return true;
+  };
+  const sitemapTop = topByPop
+    .filter((u) => isProductionSlug(u.slug))
+    .slice(0, SITEMAP_TOP_N)
+    .map((u) => ({
+      state: u.state.toLowerCase(),
+      slug: u.slug,
+    }));
   const prerenderTop = topByPop.slice(0, PRERENDER_TOP_N).map((u) => ({
     state: u.state.toLowerCase(),
     slug: u.slug,

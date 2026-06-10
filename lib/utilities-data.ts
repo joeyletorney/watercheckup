@@ -173,18 +173,28 @@ function loadPrerenderTopParams(): { state: string; slug: string }[] {
 
 /** Precomputed top utilities for sitemap (no sort of full catalog at runtime). */
 export function getTopUtilityStaticParamsByPopulation(limit?: number): { state: string; slug: string }[] {
-  if (hasIndexShards()) {
-    if (limit) {
-      return loadSitemapTopParams().slice(0, limit);
-    }
-    return loadSitemapTopParams();
+  return getSitemapUtilityParams(limit);
+}
+
+/** Sitemap-safe utility list — reads sitemap-top.json only; never loads full utilities.json. */
+export function getSitemapUtilityParams(limit?: number): { state: string; slug: string }[] {
+  const p = path.join(INDEX_DIR, "sitemap-top.json");
+  if (!fs.existsSync(p)) return [];
+  try {
+    const raw = loadSitemapTopParams();
+    const filtered = raw.filter(isProductionSitemapUtility);
+    return limit ? filtered.slice(0, limit) : filtered;
+  } catch {
+    return [];
   }
-  const { utilities } = loadUtilitiesPayload();
-  const sorted = [...utilities].sort((a, b) => (b.populationServed ?? 0) - (a.populationServed ?? 0));
-  return sorted.slice(0, limit).map((u) => ({
-    state: u.state.toLowerCase(),
-    slug: u.slug,
-  }));
+}
+
+function isProductionSitemapUtility({ slug }: { slug: string }): boolean {
+  const s = slug.toLowerCase();
+  if (!s || s.length < 2) return false;
+  if (s.startsWith("test") || s.includes("-test-") || s.includes("test-")) return false;
+  if (s.includes("hypothetical")) return false;
+  return true;
 }
 
 export function getUniqueUtilityStatesLowercase(): string[] {

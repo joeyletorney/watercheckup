@@ -89,7 +89,7 @@ const jsonLd = {
       description: 'Free EPA water quality reports for any US ZIP code.',
       potentialAction: {
         '@type': 'SearchAction',
-        target: { '@type': 'EntryPoint', urlTemplate: 'https://watercheckup.com/?zip={search_term_string}' },
+        target: { '@type': 'EntryPoint', urlTemplate: 'https://watercheckup.com/results/{search_term_string}' },
         'query-input': 'required name=search_term_string',
       },
     },

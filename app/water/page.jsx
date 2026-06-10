@@ -7,6 +7,7 @@ export const metadata = {
   title: 'Water Quality Reports by City',
   description:
     'Free EPA-based water quality reports for all 50 states, all for free. Check PFAS levels, lead violations, contaminant data, and filter recommendations for your area.',
+  alternates: { canonical: 'https://watercheckup.com/water' },
 };
 
 const cities = {

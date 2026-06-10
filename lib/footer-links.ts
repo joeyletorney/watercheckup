@@ -72,9 +72,10 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
 ];
 
 export const FOOTER_LEGAL_LINKS: FooterLink[] = [
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/terms', label: 'Terms' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
   { href: '/methodology', label: 'Methodology' },
   { href: '/faq', label: 'FAQ' },
-  { href: '/blog', label: 'Blog' },
 ];
