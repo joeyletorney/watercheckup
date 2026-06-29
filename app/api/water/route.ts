@@ -1020,7 +1020,7 @@ async function getEchoEnforcement(pwsid: string): Promise<any> {
   try {
     // ECHO SDWA enforcement actions for this facility
     const url = `https://echodata.epa.gov/echo/sdw_rest_services.get_facility_info?output=JSON&p_pwsid=${encodeURIComponent(pwsid)}`;
-    const res = await fetch(url, { next: { revalidate: 86400 } });
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) return null;
     const data = await res.json();
 
@@ -1055,7 +1055,7 @@ async function getEchoEnforcement(pwsid: string): Promise<any> {
 async function getUsgsHardnessTDS(stateCode: string): Promise<any[]> {
   try {
     const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=${stateCode.toLowerCase()}&parameterCd=00900,70300&siteType=ST&period=P7D&siteStatus=active`;
-    const res = await fetch(url, { next: { revalidate: 86400 } });
+    const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) return [];
     const data = await res.json();
     const series = data?.value?.timeSeries || [];
@@ -1536,9 +1536,16 @@ export async function GET(req: NextRequest) {
       pfasSummary,
     }, { headers: okHeaders });
 
-  } catch (err: any) {
-    logWaterLookup({ zip, outcome: 'error', ms: Date.now() - t0, message: String(err?.message || err) });
-    return NextResponse.json({ error: err.message || 'EPA API error' }, { status: 500, headers: H });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err || 'Unknown error');
+    logWaterLookup({ zip, outcome: 'error', ms: Date.now() - t0, message });
+    return NextResponse.json(
+      {
+        error: 'Water data is temporarily unavailable. Please try again shortly.',
+        dataFreshness: getDataFreshness(),
+      },
+      { status: 503, headers: H }
+    );
   }
 }
 

@@ -67,7 +67,7 @@ export default function ClaimUtilitiesForm() {
       form.set('authorized', 'on');
       if (ccrPdf) form.set('ccrPdf', ccrPdf);
 
-      const res = await fetch('/api/claim-public water system', {
+      const res = await fetch('/api/claim-utility', {
         method: 'POST',
         body: form,
       });

@@ -9,19 +9,24 @@ export type CtrSerpCopy = {
 
 export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/water/gaithersburg': {
-    title: 'Is Gaithersburg Tap Water Safe? Free WSSC Report (2026)',
+    title: 'Gaithersburg Tap Water: B Grade, PFAS & WSSC Filters',
     description:
-      'PFAS in UCMR5, Potomac DBPs & lead risk in pre-1986 homes. B grade (74/88) on WaterCheckup. Free Gaithersburg MD report — no signup.',
+      'WSSC water has PFAS detections, Potomac DBPs and older-home lead risk. See Gaithersburg’s B grade, contaminant levels and NSF filter picks.',
   },
   '/water/san-antonio': {
-    title: 'San Antonio Tap Water: D+ Grade — PFAS, Hard Water & Radium',
+    title: 'San Antonio Tap Water: D+ Grade, PFAS & Hardness',
     description:
-      'SAWS water: 272 mg/L hardness, PFAS in EPA monitoring, arsenic & radium above health guidelines. Free 2026 graded report & NSF filter picks.',
+      'SAWS water shows 272 mg/L hardness, PFAS monitoring hits, arsenic and radium flags. See the D+ grade, levels and certified filter picks.',
   },
   '/water/phoenix': {
-    title: 'Phoenix Tap Water: C- Grade — PFAS, Chromium-6 & Hardness',
+    title: 'Phoenix Tap Water: C- Grade, Chromium-6 & PFAS',
     description:
-      '7.4 ppt PFAS, chromium-6 above CA health goals, very hard water. Free 2026 Phoenix EPA report with letter grade — no signup.',
+      'Phoenix water has very hard minerals, 7.4 ppt PFAS and chromium-6 above CA health goals. See the C- grade, contaminant table and filter picks.',
+  },
+  '/water/baltimore': {
+    title: 'Baltimore Tap Water: Lead Risk, PFAS & Safety Grade',
+    description:
+      'Baltimore water report: older-home lead risk, UCMR5 PFAS monitoring and EPA violation history. See your 2026 grade and NSF filter recommendations.',
   },
   '/water/chicago': {
     title: 'Chicago Tap Water: B Grade — Lead Lines, PFAS & DBPs',
@@ -74,14 +79,14 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'PFHxS & PFOS above EPA MCLs in Trinity basin water. Free 2026 Fort Worth graded report, UCMR5 compound table & NSF filter picks.',
   },
   '/blog/san-antonio-water-quality': {
-    title: 'Is San Antonio Water Safe to Drink? 2026 SAWS Data',
+    title: 'San Antonio Water Quality: PFAS, Hardness & SAWS Data',
     description:
-      'Meets EPA limits — still has PFAS, radium & some of the hardest water in the US. What SAWS & UCMR5 data show. Free guide.',
+      'SAWS meets legal limits, but San Antonio still has PFAS signals, radium context and very hard water. See what the 2026 data means.',
   },
   '/blog/pfas-in-san-antonio-water': {
-    title: 'PFAS in San Antonio Water — 2026 Levels & Filters',
+    title: 'PFAS in San Antonio Water: 2026 Levels & Filters',
     description:
-      'Forever chemicals in SAWS supply: compounds found, EPA limits vs health guidelines, and NSF filters that actually remove PFAS.',
+      'Which PFAS compounds showed up in SAWS monitoring, how levels compare with EPA limits, and which NSF filters are built to remove them.',
   },
   '/blog/best-water-filter-for-lead-removal': {
     title: 'Best Water Filters for Lead 2026 — 10 NSF Picks',
@@ -99,9 +104,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Great source water — older buildings can still add lead at the tap. PFAS monitoring, DEP context, and filter picks for NYC renters & owners.',
   },
   '/blog/best-water-filter-gaithersburg-md': {
-    title: 'Best Water Filter for Gaithersburg MD — WSSC Water (2026)',
+    title: 'Best Water Filter for Gaithersburg MD: WSSC PFAS Picks',
     description:
-      'WSSC has PFAS detections, DBPs & lead risk in older homes. Top NSF 58 RO & renter picks for Gaithersburg — from EPA UCMR5 data.',
+      'Gaithersburg WSSC water has PFAS detections, DBPs and older-home lead risk. Compare NSF 58 RO, renter and under-sink picks for 2026.',
   },
   '/pfoa-at-epa-limit': {
     title: 'Cities Where PFOA Hit the EPA 4 ppt Limit (2026)',

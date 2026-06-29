@@ -362,12 +362,17 @@ function buildWeeklyHtml(issue: Issue, email: string): string {
  */
 export async function GET(req: NextRequest) {
   try {
-    const cronSecret = process.env.CRON_SECRET;
-    if (cronSecret) {
-      const auth = req.headers.get('authorization') || '';
-      if (auth !== `Bearer ${cronSecret}`) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
-      }
+    const cronSecret = process.env.CRON_SECRET?.trim();
+    if (!cronSecret) {
+      return NextResponse.json(
+        { success: false, error: 'CRON_SECRET is not configured.' },
+        { status: 503, headers: CORS }
+      );
+    }
+
+    const auth = req.headers.get('authorization') || '';
+    if (auth !== `Bearer ${cronSecret}`) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
     }
 
     const apiKey = process.env.BREVO_API_KEY?.trim();

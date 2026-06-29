@@ -20,11 +20,20 @@ const BADGE_COLORS: Record<string, string> = {
   Microplastics: '#06b6d4',
 };
 
+const imageHeaders = {
+  'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+};
+
+function getTextParam(searchParams: URLSearchParams, key: string, fallback: string, maxLength: number) {
+  const value = searchParams.get(key)?.trim() || fallback;
+  return value.slice(0, maxLength);
+}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const title   = searchParams.get('title')   || 'WaterCheckup Guide';
-  const badge   = searchParams.get('badge')   || '';
-  const excerpt = searchParams.get('excerpt') || '';
+  const title   = getTextParam(searchParams, 'title', 'WaterCheckup Guide', 120);
+  const badge   = getTextParam(searchParams, 'badge', '', 32);
+  const excerpt = getTextParam(searchParams, 'excerpt', '', 180);
 
   const badgeColor = BADGE_COLORS[badge] || '#0891b2';
 
@@ -104,6 +113,6 @@ export async function GET(req: Request) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 }
+    { width: 1200, height: 630, headers: imageHeaders }
   );
 }

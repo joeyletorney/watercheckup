@@ -2,17 +2,26 @@ import { ImageResponse } from 'next/og';
 
 // export const runtime = 'edge';
 
+const imageHeaders = {
+  'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+};
+
+function getTextParam(searchParams: URLSearchParams, key: string, fallback: string, maxLength: number) {
+  const value = searchParams.get(key)?.trim() || fallback;
+  return value.slice(0, maxLength);
+}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const city       = searchParams.get('city')       || 'Your City';
-  const score      = searchParams.get('score')      || '--';
-  const grade      = searchParams.get('grade')      || '--';
-  const violations = searchParams.get('violations') || '0';
-  const pwsid      = searchParams.get('pwsid')      || '';
+  const city       = getTextParam(searchParams, 'city', 'Your City', 80);
+  const score      = getTextParam(searchParams, 'score', '--', 4);
+  const grade      = getTextParam(searchParams, 'grade', '--', 3);
+  const violations = getTextParam(searchParams, 'violations', '0', 4);
+  const pwsid      = getTextParam(searchParams, 'pwsid', '', 16);
 
   const scoreNum   = parseInt(score) || 0;
   const scoreColor = scoreNum >= 80 ? '#22d3ee' : scoreNum >= 65 ? '#f59e0b' : '#ef4444';
-  const violNum    = parseInt(violations);
+  const violNum    = parseInt(violations) || 0;
 
   return new ImageResponse(
     <div
@@ -136,12 +145,11 @@ export async function GET(req: Request) {
         marginTop: 36, paddingTop: 20,
         borderTop: '1px solid rgba(30,58,92,0.8)',
         position: 'relative',
-        zIndex: 1,
       }}>
         <div style={{ fontSize: 18, color: '#94a3b8', display: 'flex' }}>Free water quality reports at</div>
         <div style={{ fontSize: 22, color: '#22d3ee', fontWeight: 700, display: 'flex' }}>watercheckup.com</div>
       </div>
     </div>,
-    { width: 1200, height: 630 }
+    { width: 1200, height: 630, headers: imageHeaders }
   );
 }
