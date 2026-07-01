@@ -185,6 +185,73 @@ export default function SanAntonioWaterPage() {
 
         <PriorityCityLiveDataBlock slug="san-antonio" />
 
+        <section style={{ padding: '22px 24px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 14, marginBottom: 20 }}>
+          <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+            SAN ANTONIO WATER CONTAMINATION
+          </div>
+          <h2 style={{ fontSize: 24, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.25, margin: '0 0 12px' }}>
+            San Antonio water quality: PFAS, hard water, radium and SAWS data
+          </h2>
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 18px' }}>
+            Searches for &quot;PFAS in San Antonio water,&quot; &quot;San Antonio water contamination,&quot; and
+            &quot;San Antonio water quality&quot; usually point to the same concern: SAWS water can meet federal
+            legal limits while still showing hardness, PFAS monitoring signals, radium context, and treatment
+            byproducts worth filtering at the tap.
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 18 }}>
+            {[
+              {
+                heading: 'PFAS in San Antonio water',
+                body: 'EPA UCMR5 monitoring is the federal dataset to watch for PFAS in SAWS water. If PFAS is detected, the most defensible home treatment is NSF 58 reverse osmosis or a filter specifically certified for PFAS reduction. Standard taste-and-odor carbon filters are not enough for this concern.',
+              },
+              {
+                heading: 'San Antonio hard water treatment',
+                body: 'San Antonio is one of the harder large-city water supplies because the Edwards Aquifer is mineral-rich limestone. A softener can protect appliances and reduce scale, but it does not remove PFAS, radium, arsenic, nitrate, or lead. For drinking water, pair whole-home softening with RO at the kitchen tap when health contaminants matter.',
+              },
+              {
+                heading: 'Is San Antonio water safe to drink?',
+                body: 'Legal compliance is only one layer. This page combines EPA, UCMR5, SAWS and local water profile data so you can see the difference between "meets standards" and "what should I filter for my household."',
+              },
+            ].map((section) => (
+              <div key={section.heading} style={{ padding: '16px 18px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 800, color: '#e2e8f0', margin: '0 0 8px', lineHeight: 1.35 }}>
+                  {section.heading}
+                </h3>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
+                  {section.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {[
+              { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio guide' },
+              { href: '/blog/san-antonio-water-quality', label: 'Full SAWS water quality guide' },
+              { href: '/water-hardness?zip=78205', label: 'San Antonio hardness lookup' },
+              { href: '/quiz', label: 'Filter quiz for SAWS water' },
+            ].map((link) => (
+              <Link
+                prefetch
+                key={link.href}
+                href={link.href}
+                style={{
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: '#67e8f9',
+                  textDecoration: 'none',
+                  padding: '7px 10px',
+                  background: 'rgba(8,145,178,0.12)',
+                  borderRadius: 8,
+                }}
+              >
+                {link.label} →
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>
             WHERE DOES SAN ANTONIO WATER COME FROM?

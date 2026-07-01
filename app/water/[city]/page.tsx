@@ -129,6 +129,102 @@ const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress
   'baltimore': { url: 'https://www.bwsh2o.com/lead', label: 'Baltimore Water Lead Info', hasAddress: false },
 };
 
+const LOCAL_SEARCH_INTENT: Record<string, {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  sections: { heading: string; body: string }[];
+  links: { href: string; label: string }[];
+}> = {
+  gaithersburg: {
+    eyebrow: 'GAITHERSBURG WATER TESTING & TREATMENT',
+    title: 'Water testing in Gaithersburg, MD: WSSC tap water vs private wells',
+    intro:
+      'Searches like "Gaithersburg well water testing," "water testing Gaithersburg MD," and "Gaithersburg reverse osmosis" usually mean one of two things: you are either on WSSC municipal water and want to know what is at your tap, or you are on a nearby Montgomery County private well and need a lab test.',
+    sections: [
+      {
+        heading: 'Gaithersburg water quality testing for WSSC customers',
+        body:
+          'For most Gaithersburg addresses, WSSC Water is the public water system. Start with the WSSC/EPA data on this page, then test your kitchen tap if you live in an older home, have infants, are pregnant, or want address-level lead/PFAS confirmation. City-wide water data cannot see what your building plumbing adds after treatment.',
+      },
+      {
+        heading: 'Well water testing near Gaithersburg',
+        body:
+          'Private wells are different from WSSC water: EPA municipal monitoring does not cover them. If your home uses a well near Gaithersburg or rural Montgomery County, test for bacteria, nitrate, arsenic, radon, hardness, iron, manganese, and PFAS. Annual bacteria/nitrate testing plus a broader panel every few years is a practical baseline.',
+      },
+      {
+        heading: 'Gaithersburg water treatment and reverse osmosis',
+        body:
+          'For WSSC tap water, reverse osmosis is the broadest kitchen treatment because it targets PFAS, lead at the tap, disinfection byproducts, and many dissolved contaminants together. A softener is only for hardness/scale; it does not remove PFAS or lead. Whole-house treatment makes more sense for wells with iron, sulfur, bacteria, or very hard water.',
+      },
+    ],
+    links: [
+      { href: '/well', label: 'Private well testing guide' },
+      { href: '/blog/best-water-filter-gaithersburg-md', label: 'Best filters for Gaithersburg' },
+      { href: '/water-hardness?zip=20877', label: 'Check Gaithersburg hardness' },
+      { href: '/quiz', label: 'Find a certified filter' },
+    ],
+  },
+  'san-antonio': {
+    eyebrow: 'SAN ANTONIO WATER CONTAMINATION',
+    title: 'San Antonio water quality: PFAS, hard water, radium and SAWS data',
+    intro:
+      'Searches for "PFAS in San Antonio water," "San Antonio water contamination," and "San Antonio water quality" usually point to the same concern: SAWS water can meet federal legal limits while still showing hardness, PFAS monitoring signals, radium context, and treatment byproducts worth filtering at the tap.',
+    sections: [
+      {
+        heading: 'PFAS in San Antonio water',
+        body:
+          'EPA UCMR5 monitoring is the federal dataset to watch for PFAS in SAWS water. If PFAS is detected, the most defensible home treatment is NSF 58 reverse osmosis or a filter specifically certified for PFAS reduction. Standard taste-and-odor carbon filters are not enough for this concern.',
+      },
+      {
+        heading: 'San Antonio hard water treatment',
+        body:
+          'San Antonio is one of the harder large-city water supplies because the Edwards Aquifer is mineral-rich limestone. A softener can protect appliances and reduce scale, but it does not remove PFAS, radium, arsenic, nitrate, or lead. For drinking water, pair whole-home softening with RO at the kitchen tap when health contaminants matter.',
+      },
+      {
+        heading: 'Is San Antonio water safe to drink?',
+        body:
+          'Legal compliance is only one layer. This page combines EPA, UCMR5, and local water profile data so you can see the difference between "meets standards" and "what should I filter for my household."',
+      },
+    ],
+    links: [
+      { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio guide' },
+      { href: '/blog/san-antonio-water-quality', label: 'Full SAWS water quality guide' },
+      { href: '/water-hardness?zip=78205', label: 'San Antonio hardness lookup' },
+      { href: '/quiz', label: 'Filter quiz for SAWS water' },
+    ],
+  },
+  baltimore: {
+    eyebrow: 'BALTIMORE CITY WATER TESTING',
+    title: 'City water testing in Baltimore, MD: lead, PFAS and older plumbing',
+    intro:
+      'Searches for "city water testing Baltimore MD" usually come from residents who want to know whether the risk is the public water supply or their building plumbing. In Baltimore, both matter: the city treats public water, but older service lines, rowhouse plumbing, and main disturbances can change what reaches your tap.',
+    sections: [
+      {
+        heading: 'Baltimore tap water testing for lead',
+        body:
+          'Lead is the first contaminant to test at the faucet in older Baltimore homes and rentals. Use a first-draw sample after water sits overnight, and use an NSF 53 lead-certified filter or RO system while you wait for results if children, pregnancy, or old plumbing are involved.',
+      },
+      {
+        heading: 'Baltimore PFAS and city water quality',
+        body:
+          'UCMR5 and EPA monitoring help identify PFAS and regulated violation history for the public water system. Those datasets are useful, but they do not replace address-level tap testing when the concern is lead, copper, sediment, or building plumbing.',
+      },
+      {
+        heading: 'Water treatment options in Baltimore',
+        body:
+          'For lead at the tap, choose NSF 53 or NSF 58. For PFAS plus lead together, under-sink reverse osmosis gives broader coverage. Whole-home filters are usually secondary unless you have sediment, taste/odor, or repeated main-break concerns.',
+      },
+    ],
+    links: [
+      { href: '/lead', label: 'Lead in water guide' },
+      { href: '/blog/best-water-filter-for-lead-removal', label: 'Best lead filters' },
+      { href: '/quiz', label: 'Find a Baltimore filter' },
+      { href: '/water-hardness?zip=21201', label: 'Baltimore hardness lookup' },
+    ],
+  },
+};
+
 // export async function generateStaticParams() {
 //   return Object.keys(CITIES)
 //     .filter((city) => !isDedicatedWaterCitySlug(city))
@@ -622,6 +718,54 @@ export default async function CityPage(props: { params: Promise<{ city: string }
               })}
               filterCtaLabel="Take the 3-question filter quiz →"
             />
+
+            {LOCAL_SEARCH_INTENT[slug] && (
+              <section style={{ margin: '0 0 72px', padding: '22px 24px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 14 }}>
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>
+                  {LOCAL_SEARCH_INTENT[slug].eyebrow}
+                </div>
+                <h2 style={{ fontSize: 24, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.25, margin: '0 0 12px' }}>
+                  {LOCAL_SEARCH_INTENT[slug].title}
+                </h2>
+                <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 18px' }}>
+                  {LOCAL_SEARCH_INTENT[slug].intro}
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 18 }}>
+                  {LOCAL_SEARCH_INTENT[slug].sections.map((section) => (
+                    <div key={section.heading} style={{ padding: '16px 18px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10 }}>
+                      <h3 style={{ fontSize: 16, fontWeight: 800, color: '#e2e8f0', margin: '0 0 8px', lineHeight: 1.35 }}>
+                        {section.heading}
+                      </h3>
+                      <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
+                        {section.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {LOCAL_SEARCH_INTENT[slug].links.map((link) => (
+                    <Link
+                      prefetch
+                      key={link.href}
+                      href={link.href}
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 700,
+                        color: '#67e8f9',
+                        textDecoration: 'none',
+                        padding: '7px 10px',
+                        background: 'rgba(8,145,178,0.12)',
+                        borderRadius: 8,
+                      }}
+                    >
+                      {link.label} →
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* ── STEP 3: FILTER RECOMMENDATION ── */}
             <div className="wc-filter-rec-accent-wrap" style={{ marginBottom: 8, overflow: 'hidden' }}>
