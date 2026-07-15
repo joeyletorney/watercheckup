@@ -123,10 +123,10 @@ export default function SanAntonioWaterPage() {
         </h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
-          San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2025 data
+          San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2026 data
         </p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 8px' }}>
-          Source: SAWS 2025 Water Quality Report (2024 data) · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
+          Source: SAWS 2026 Water Quality Report (2024 data) · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
         </p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>
           Updated May 2026 · 2024 SAWS data
@@ -467,7 +467,7 @@ export default function SanAntonioWaterPage() {
           }}
         >
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 2 }}>📋 Official SAWS 2025 Water Quality Report</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 2 }}>📋 Official SAWS 2026 Water Quality Report</div>
             <div style={{ fontSize: 13, color: '#a8b4c4' }}>Complete 2024 test results direct from San Antonio Water System</div>
           </div>
           <a
@@ -568,7 +568,7 @@ export default function SanAntonioWaterPage() {
         <FounderCityAttribution />
 
         <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
-          Data sourced from SAWS 2025 Water Quality Report (2024 data), EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. WaterCheckup is not affiliated with SAWS or the EPA. Some filter links are affiliate links — we may earn a commission at no cost to you.
+          Data sourced from SAWS 2026 Water Quality Report (2024 data), EPA SDWIS, EPA UCMR5, and EWG Tap Water Database. WaterCheckup is not affiliated with SAWS or the EPA. Some filter links are affiliate links — we may earn a commission at no cost to you.
         </p>
       </div>
     </div>

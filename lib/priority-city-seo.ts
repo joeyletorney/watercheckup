@@ -12,14 +12,19 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'New York City tap water quality: PFOS in EPA monitoring, lead in pre-1986 buildings. Free 2026 NYC water report with grade and NSF filter picks.',
   },
   'san-antonio': {
-    title: 'Is San Antonio Tap Water Safe? Free SAWS Report (2026)',
+    title: 'Is San Antonio Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
     description:
-      'PFAS detected · 272 mg/L hardness · radium from Edwards Aquifer. Free graded SAWS report with filter picks — no signup.',
+      "San Antonio water has PFAS detections, DBP violations, and hard water concerns. Free EPA report — see exactly what's in your water and which filter fixes it.",
   },
   gaithersburg: {
-    title: 'Is Gaithersburg Tap Water Safe? Free WSSC Report (2026)',
+    title: 'Is Gaithersburg Tap Water Safe? 2026 EPA Report | WaterCheckup',
     description:
-      'PFAS in UCMR5, Potomac DBPs & lead risk in pre-1986 homes. Free Gaithersburg MD report with letter grade and NSF filter picks.',
+      'Free EPA report for Gaithersburg (WSSC Water) — PFAS levels, disinfection byproducts, violation history, and NSF-certified filter picks. No login required.',
+  },
+  raleigh: {
+    title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report | WaterCheckup',
+    description:
+      'Free Raleigh water quality report — EPA violation history, PFAS data, lead risk, and NSF-certified filter recommendations from a 30-year water expert.',
   },
   'los-angeles': {
     title: 'Los Angeles Tap Water 2026 — Chromium-6, PFAS & Safety Grade',
@@ -27,9 +32,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'C- grade: LA tap water has chromium-6 above CA health goals, 11.4 ppt PFAS, and 268 mg/L hardness. Free 2026 Los Angeles water quality report from EPA data.',
   },
   houston: {
-    title: 'Houston Tap Water 2026 — PFAS, TTHMs & Safety Grade',
+    title: 'Is Houston Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
     description:
-      'D+ grade: Houston tap water has 22.4 ppt PFAS (above EPA MCL), elevated arsenic, and TTHMs at 73% of the limit. Free 2026 Houston water quality report from EPA data.',
+      'Houston water has disinfection byproduct concerns and PFAS detections. Free EPA report — contaminant levels, violation history, and the right filter for your home.',
   },
   philadelphia: {
     title: 'Philadelphia Tap Water 2026 — Is It Safe? Lead, PFAS & Full Report',
@@ -167,9 +172,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Las Vegas Valley Water: Colorado River source, very hard water, UCMR5 PFAS snapshot. Free 2026 Las Vegas tap water report.',
   },
   baltimore: {
-    title: 'Baltimore Tap Water 2026 — Lead & PFAS Report',
+    title: 'Is Baltimore Tap Water Safe? 2026 Lead & PFAS Report | WaterCheckup',
     description:
-      'Baltimore City tap water: aging infrastructure, lead risk in older homes, UCMR5 PFAS. Free 2026 EPA-backed report.',
+      'Baltimore has lead service line risk and PFAS concerns. Free EPA water quality report — violation history, lead risk by home age, and NSF-certified filter picks.',
   },
   tampa: {
     title: 'Tampa Tap Water 2026 — PFAS & Chloramine',
@@ -212,6 +217,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
 export const PRIORITY_CITY_H1: Record<string, string> = {
   gaithersburg: 'Is Gaithersburg Tap Water Safe? (2026)',
   'san-antonio': 'Is San Antonio Tap Water Safe? (2026)',
+  raleigh: 'Is Raleigh Tap Water Safe? (2026)',
+  houston: 'Is Houston Tap Water Safe? (2026)',
+  baltimore: 'Is Baltimore Tap Water Safe? (2026)',
   chicago: 'Chicago Tap Water Quality 2026',
   phoenix: 'Phoenix Tap Water Quality 2026',
   'new-york': 'New York City Water Quality 2026',

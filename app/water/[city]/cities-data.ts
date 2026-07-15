@@ -119,7 +119,7 @@ export const CITIES: Record<string, {
       nitrate: 1.8,
       arsenicPpb: 3.8,
       radiumPciL: 3.4,
-      source: 'SAWS 2025 Water Quality Report',
+      source: 'SAWS 2026 Water Quality Report',
     },
   },
   'seattle': {

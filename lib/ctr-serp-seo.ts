@@ -9,14 +9,19 @@ export type CtrSerpCopy = {
 
 export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/water/gaithersburg': {
-    title: 'Gaithersburg Tap Water: B Grade, PFAS & WSSC Filters',
+    title: 'Is Gaithersburg Tap Water Safe? 2026 EPA Report | WaterCheckup',
     description:
-      'WSSC water has PFAS detections, Potomac DBPs and older-home lead risk. See Gaithersburg’s B grade, contaminant levels and NSF filter picks.',
+      'Free EPA report for Gaithersburg (WSSC Water) — PFAS levels, disinfection byproducts, violation history, and NSF-certified filter picks. No login required.',
   },
   '/water/san-antonio': {
-    title: 'San Antonio Tap Water: D+ Grade, PFAS & Hardness',
+    title: 'Is San Antonio Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
     description:
-      'SAWS water shows 272 mg/L hardness, PFAS monitoring hits, arsenic and radium flags. See the D+ grade, levels and certified filter picks.',
+      "San Antonio water has PFAS detections, DBP violations, and hard water concerns. Free EPA report — see exactly what's in your water and which filter fixes it.",
+  },
+  '/water/raleigh': {
+    title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report | WaterCheckup',
+    description:
+      'Free Raleigh water quality report — EPA violation history, PFAS data, lead risk, and NSF-certified filter recommendations from a 30-year water expert.',
   },
   '/water/phoenix': {
     title: 'Phoenix Tap Water: C- Grade, Chromium-6 & PFAS',
@@ -24,9 +29,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Phoenix water has very hard minerals, 7.4 ppt PFAS and chromium-6 above CA health goals. See the C- grade, contaminant table and filter picks.',
   },
   '/water/baltimore': {
-    title: 'Baltimore Tap Water: Lead Risk, PFAS & Safety Grade',
+    title: 'Is Baltimore Tap Water Safe? 2026 Lead & PFAS Report | WaterCheckup',
     description:
-      'Baltimore water report: older-home lead risk, UCMR5 PFAS monitoring and EPA violation history. See your 2026 grade and NSF filter recommendations.',
+      'Baltimore has lead service line risk and PFAS concerns. Free EPA water quality report — violation history, lead risk by home age, and NSF-certified filter picks.',
   },
   '/water/chicago': {
     title: 'Chicago Tap Water: B Grade — Lead Lines, PFAS & DBPs',
@@ -34,9 +39,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       '150,000+ lead service lines, PFAS in monitoring, chloramine byproducts. Free 2026 Chicago water report (75/88) & filter picks.',
   },
   '/water/houston': {
-    title: 'Houston Tap Water: D+ Grade — 22.4 ppt PFAS & High DBPs',
+    title: 'Is Houston Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
     description:
-      '22.4 ppt PFAS above EPA limits, elevated arsenic, TTHMs at 73% of legal max. Free 2026 Houston graded report & NSF filter picks — no signup.',
+      'Houston water has disinfection byproduct concerns and PFAS detections. Free EPA report — contaminant levels, violation history, and the right filter for your home.',
   },
   '/water/new-york': {
     title: 'NYC Tap Water: C Grade — PFOS 106 ppt & Building Lead Risk',
