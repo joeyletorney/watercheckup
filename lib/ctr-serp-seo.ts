@@ -89,7 +89,7 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'SAWS meets legal limits, but San Antonio still has PFAS signals, radium context and very hard water. See what the 2026 data means.',
   },
   '/blog/pfas-in-san-antonio-water': {
-    title: 'PFAS in San Antonio Water: 2026 Levels & Filters',
+    title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
     description:
       'Which PFAS compounds showed up in SAWS monitoring, how levels compare with EPA limits, and which NSF filters are built to remove them.',
   },

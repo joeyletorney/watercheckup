@@ -37,14 +37,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
   // ─── POST 1: BEST COUNTERTOP WATER FILTER ────────────────────────────────
   'best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2025–2026: Tested & Ranked',
+    title: 'Best Countertop Water Filters 2026: Tested & Ranked',
     excerpt: 'No plumber, no drilling, no landlord permission needed. Here are the best countertop water filters ranked by what they actually remove — PFAS, lead, and beyond.',
     seo: {
-      title: 'Best Countertop Water Filters 2025–2026: Tested & Ranked',
+      title: 'Best Countertop Water Filters 2026: Tested & Ranked',
       description: 'No installation needed. We ranked the best countertop water filters by NSF certifications and what they actually remove — PFAS, lead, arsenic, and more. Includes RO and pitcher options.',
       canonical: 'https://watercheckup.com/blog/best-countertop-water-filter',
       openGraph: {
-        title: 'Best Countertop Water Filters 2025–2026: Tested & Ranked',
+        title: 'Best Countertop Water Filters 2026: Tested & Ranked',
         description: 'No installation needed. We ranked the best countertop water filters by NSF certifications and what they actually remove — PFAS, lead, arsenic, and more.',
       },
     },
@@ -226,14 +226,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
   // ─── POST 3: BEST UNDER-SINK WATER FILTER ────────────────────────────────
   'best-under-sink-water-filter': {
-    title: 'Best Under-Sink Water Filters 2025–2026: What Actually Works',
+    title: 'Best Under-Sink Water Filters 2026: What Actually Works',
     excerpt: 'Under-sink filters range from $126 carbon filters to $439 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
     seo: {
-      title: 'Best Under-Sink Water Filters 2025–2026: Tested & Ranked',
+      title: 'Best Under-Sink Water Filters 2026: Tested & Ranked',
       description: 'Not all under-sink filters are equal. We ranked the best by NSF certifications and actual contaminant removal — from budget carbon filters to full reverse osmosis systems for PFAS, lead, and arsenic.',
       canonical: 'https://watercheckup.com/blog/best-under-sink-water-filter',
       openGraph: {
-        title: 'Best Under-Sink Water Filters 2025–2026: Tested & Ranked',
+        title: 'Best Under-Sink Water Filters 2026: Tested & Ranked',
         description: 'Not all under-sink filters are equal. Ranked by NSF certifications and actual contaminant removal — PFAS, lead, arsenic, and more.',
       },
     },

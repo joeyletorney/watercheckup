@@ -261,7 +261,7 @@ export const POSTS: Record<string, Post> = {
   },
 
   'best-water-filter-for-lead-removal': {
-    title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
+    title: 'Water Filters That Remove Lead — Best 10 Picks (2026)',
     excerpt: 'Top 10 NSF 53 lead filters: 3 under-sink RO, 4 under-counter carbon (Frizzlife, Epic, Aquasana), and 3 pitcher picks.',
     seo: {
       title: 'Best Water Filters for Lead 2026 — 10 NSF Picks',

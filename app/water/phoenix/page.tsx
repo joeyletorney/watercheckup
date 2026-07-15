@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
@@ -69,9 +70,26 @@ const FAQS = [
   },
 ];
 
+const phoenixFaqSchema = buildFaqPageSchema(
+  FAQS.map(({ q, a }) => ({ name: q, text: a })),
+  'https://watercheckup.com/water/phoenix'
+);
+
+const phoenixBreadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
+    { '@type': 'ListItem', position: 2, name: 'Water Quality by City', item: 'https://watercheckup.com/water' },
+    { '@type': 'ListItem', position: 3, name: 'Phoenix Water Quality', item: 'https://watercheckup.com/water/phoenix' },
+  ],
+};
+
 export default function PhoenixWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixFaqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixBreadcrumbLd) }} />
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
         <nav style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 16 }}>
@@ -88,7 +106,7 @@ export default function PhoenixWaterPage() {
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>Phoenix Water Quality 2026</h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
-        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>Phoenix Water Services · Colorado River / Salt River Project · 2024–2025 data</p>
+        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>Phoenix Water Services · Colorado River / Salt River Project · 2024–2026 data</p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: Phoenix Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database</p>
         <CityDedicatedScoreHero
           urgency={CITIES.phoenix.urgency}

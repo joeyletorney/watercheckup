@@ -64,7 +64,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, 'What\'s in San Antonio Tap Water'),
       React.createElement('p', { style: pStyle },
-        'Based on the SAWS 2025 Consumer Confidence Report (covering 2024 test data) and EPA UCMR5 monitoring:'
+        'Based on the SAWS 2026 Consumer Confidence Report (covering 2024 test data) and EPA UCMR5 monitoring:'
       ),
       React.createElement('ul', { style: { ...pStyle, paddingLeft: 20 } },
         React.createElement('li', null,
@@ -169,20 +169,20 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
   },
 
   'pfas-in-san-antonio-water': {
-    title: 'PFAS in San Antonio Water — What the 2024 SAWS Data Shows',
+    title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
     excerpt: 'PFAS "forever chemicals" have been detected in San Antonio tap water. Here\'s exactly what was found, what the levels mean, and which filters actually remove PFAS from SAWS water.',
     seo: {
-      title: 'Is There PFAS in San Antonio Tap Water? (2026 SAWS Data)',
+      title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
       description:
         'PFBA detected at 15 ppt in UCMR5 monitoring. How it compares to EPA limits and which NSF filters remove PFAS from SAWS water. Free guide.',
       canonical: 'https://watercheckup.com/blog/pfas-in-san-antonio-water',
       openGraph: {
-        title: 'Is There PFAS in San Antonio Tap Water? (2026 SAWS Data)',
+        title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
         description:
           'PFBA detected at 15 ppt in UCMR5 monitoring. How it compares to EPA limits and which NSF filters remove PFAS from SAWS water. Free guide.',
       },
     },
-    dateModified: '2026-06-04',
+    dateModified: '2026-07-15',
     date: '2026-05-27',
     dateDisplay: 'May 27, 2026',
     readTime: '8 min read',
@@ -243,7 +243,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Does SAWS Treat for PFAS?'),
       React.createElement('p', { style: pStyle },
-        'SAWS has not implemented full-scale PFAS treatment as of 2025. The detected level (PFBA at 15 ppt) is below the compounds covered by the EPA\'s April 2024 rule, so SAWS is not currently required to treat for it. This may change as EPA expands PFAS regulation to include short-chain compounds.'
+        'SAWS has not implemented full-scale PFAS treatment as of 2026. The detected level (PFBA at 15 ppt) is below the compounds covered by the EPA\'s April 2024 rule, so SAWS is not currently required to treat for it. This may change as EPA expands PFAS regulation to include short-chain compounds.'
       ),
       React.createElement('p', { style: pStyle },
         'In the meantime, point-of-use filtration at your tap is the most reliable way to reduce PFAS in your drinking water regardless of what the public water system does upstream.'

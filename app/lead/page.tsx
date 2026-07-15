@@ -144,7 +144,7 @@ export default function LeadPage() {
               Check Your ZIP for Lead (EPA LCR Data) →
             </Link>
             <Link prefetch href="/blog/best-water-filter-for-lead-removal" style={{ fontSize: 14, fontWeight: 700, color: '#67e8f9', textDecoration: 'none' }}>
-              Water filters that remove lead (2025–2026 picks) →
+              Water filters that remove lead (2026 picks) →
             </Link>
           </div>
         </div>
@@ -292,7 +292,7 @@ export default function LeadPage() {
               { href: '/worst-lead', label: 'US water systems with the highest lead — ranked' },
               { href: '/pfas', label: 'PFAS in Drinking Water — EPA Limits & Best Filters' },
               { href: '/well', label: 'Well Water Filter Guide — Private Well Risks by State' },
-              { href: '/blog/best-water-filter-for-lead-removal', label: 'Best Water Filters for Lead Removal 2025–2026' },
+              { href: '/blog/best-water-filter-for-lead-removal', label: 'Best Water Filters for Lead Removal 2026' },
               { href: '/contaminants', label: 'Water Contaminant Guide' },
               { href: '/', label: 'Check Your ZIP — Full EPA Water Report' },
             ].map(({ href, label: lbl }) => (

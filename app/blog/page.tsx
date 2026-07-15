@@ -44,7 +44,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'pfas-in-san-antonio-water': {
-    title: 'PFAS in San Antonio Water — What the 2024 SAWS Data Shows',
+    title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
     excerpt: 'PFAS "forever chemicals" have been detected in San Antonio tap water. Here\'s exactly what was found, what the levels mean, and which filters actually remove PFAS from SAWS water.',
     date: 'May 27, 2026',
     readTime: '8 min read',
@@ -222,7 +222,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Water Filters That Remove Lead — Best 10 Picks (2025–2026)',
+    title: 'Water Filters That Remove Lead — Best 10 Picks (2026)',
     excerpt:
       'Ten NSF 53/58 picks — 3 under-sink RO, 4 under-counter carbon, 3 pitchers for lead.',
     date: 'March 29, 2026',
@@ -280,7 +280,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#059669',
   },
   'best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2025–2026: Tested & Ranked',
+    title: 'Best Countertop Water Filters 2026: Tested & Ranked',
     excerpt: 'No installation, no drilling, no landlord permission. The best countertop water filters ranked by NSF certifications and what they actually remove — PFAS, lead, and more.',
     date: 'June 1, 2026',
     readTime: '9 min read',
@@ -296,7 +296,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-under-sink-water-filter': {
-    title: 'Best Under-Sink Water Filters 2025–2026: What Actually Works',
+    title: 'Best Under-Sink Water Filters 2026: What Actually Works',
     excerpt: 'From $126 carbon filters to $439 RO systems — here\'s which under-sink filter you actually need based on what\'s in your water and which certifications matter.',
     date: 'June 1, 2026',
     readTime: '10 min read',

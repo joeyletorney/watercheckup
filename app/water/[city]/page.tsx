@@ -161,6 +161,9 @@ const LOCAL_SEARCH_INTENT: Record<string, {
     links: [
       { href: '/well', label: 'Private well testing guide' },
       { href: '/blog/best-water-filter-gaithersburg-md', label: 'Best filters for Gaithersburg' },
+      { href: '/water/rockville', label: 'Rockville (WSSC) water report' },
+      { href: '/water/silver-spring', label: 'Silver Spring (WSSC) water report' },
+      { href: '/water/bethesda', label: 'Bethesda (WSSC) water report' },
       { href: '/water-hardness?zip=20877', label: 'Check Gaithersburg hardness' },
       { href: '/quiz', label: 'Find a certified filter' },
     ],
@@ -944,17 +947,27 @@ export default async function CityPage(props: { params: Promise<{ city: string }
         <div>
           <h2 style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, margin: '0 0 14px' }}>COMPARE WATER QUALITY IN OTHER CITIES</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10, marginBottom: 20 }}>
-            {Object.entries(CITIES)
-              .filter(([k]) => k !== params.city)
-              .sort(([ka, ca], [kb, cb]) => {
-                const sameA = ca.state === cd?.state ? 0 : 1;
-                const sameB = cb.state === cd?.state ? 0 : 1;
-                if (sameA !== sameB) return sameA - sameB;
-                const urgOrder = { high: 0, medium: 1, low: 2 };
-                return urgOrder[ca.urgency] - urgOrder[cb.urgency];
-              })
-              .slice(0, 12)
-              .map(([slug, c]) => {
+            {(() => {
+              const preferredNearby: Record<string, string[]> = {
+                gaithersburg: ['rockville', 'silver-spring', 'bethesda', 'baltimore'],
+                rockville: ['gaithersburg', 'bethesda', 'silver-spring', 'baltimore'],
+                'silver-spring': ['gaithersburg', 'bethesda', 'rockville', 'baltimore'],
+                bethesda: ['gaithersburg', 'rockville', 'silver-spring', 'baltimore'],
+              };
+              const pin = preferredNearby[params.city] ?? [];
+              const urgOrder = { high: 0, medium: 1, low: 2 } as const;
+              const rest = Object.entries(CITIES)
+                .filter(([k]) => k !== params.city && !pin.includes(k))
+                .sort(([, ca], [, cb]) => {
+                  const sameA = ca.state === cd?.state ? 0 : 1;
+                  const sameB = cb.state === cd?.state ? 0 : 1;
+                  if (sameA !== sameB) return sameA - sameB;
+                  return urgOrder[ca.urgency] - urgOrder[cb.urgency];
+                });
+              const pinned = pin
+                .filter((slug) => slug !== params.city && CITIES[slug])
+                .map((slug) => [slug, CITIES[slug]] as const);
+              return [...pinned, ...rest].slice(0, 12).map(([slug, c]) => {
                 const uc = { high: { color: '#ef4444', label: 'High concern' }, medium: { color: '#f59e0b', label: 'Monitor' }, low: { color: '#22d3ee', label: 'OK' } }[c.urgency];
                 return (
                   <Link key={slug} prefetch href={`/water/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
@@ -962,7 +975,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                     <div style={{ fontSize: 13, color: uc.color }}>{uc.label} · {c.issues[0]}</div>
                   </Link>
                 );
-              })}
+              });
+            })()}
           </div>
           <Link prefetch href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
         </div>

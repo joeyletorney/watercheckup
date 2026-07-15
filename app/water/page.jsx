@@ -13,7 +13,10 @@ export const metadata = {
 const cities = {
   Northeast: [
     { name: 'Baltimore, MD', slug: 'baltimore' },
+    { name: 'Bethesda, MD', slug: 'bethesda' },
     { name: 'Gaithersburg, MD', slug: 'gaithersburg' },
+    { name: 'Rockville, MD', slug: 'rockville' },
+    { name: 'Silver Spring, MD', slug: 'silver-spring' },
     { name: 'Boston, MA', slug: 'boston' },
     { name: 'Buffalo, NY', slug: 'buffalo' },
     { name: 'Hartford, CT', slug: 'hartford' },

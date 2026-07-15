@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
+import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
@@ -70,6 +71,11 @@ const FAQS = [
   },
 ] as const;
 
+const houstonFaqSchema = buildFaqPageSchema(
+  FAQS.map(({ q, a }) => ({ name: q, text: a })),
+  'https://watercheckup.com/water/houston'
+);
+
 const houstonBreadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -83,6 +89,7 @@ const houstonBreadcrumbLd = {
 export default function HoustonWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(houstonFaqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(houstonBreadcrumbLd) }} />
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -104,7 +111,7 @@ export default function HoustonWaterPage() {
         </h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
-          Houston Water · Trinity River / Lake Houston source · 2024–2025 data
+          Houston Water · Trinity River / Lake Houston source · 2024–2026 data
         </p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>
           Source: Houston Water CCR 2024 · EPA SDWIS · EPA UCMR5 · EWG Tap Water Database
