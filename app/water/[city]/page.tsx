@@ -16,6 +16,8 @@ import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_H1, PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
 import { getPriorityCityIntroParagraphs } from '@/lib/priority-city-intros';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
+import { AuthorByline } from '@/components/AuthorByline';
+import { ArticleSchema } from '@/components/ArticleSchema';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
@@ -32,9 +34,18 @@ import { CityLegalVsSafeBanner } from '@/components/CityLegalVsSafeBanner';
 import { CityFilterTechMatrix } from '@/components/CityFilterTechMatrix';
 import { CityLocalWaterStats } from '@/components/CityLocalWaterStats';
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
+import { NearbyCities } from '@/components/NearbyCities';
+import { CityFAQ } from '@/components/CityFAQ';
+import { gaithersburgFAQs } from '@/lib/faq-gaithersburg';
 import { quizHrefFromCityPage, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { Fragment } from 'react/jsx-runtime';
 import { Suspense } from 'react';
+
+const ALL_CITIES_FOR_NEARBY = Object.entries(CITIES).map(([slug, c]) => ({
+  name: c.name,
+  slug,
+  state: c.state,
+}));
 
 // UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -348,7 +359,9 @@ export default async function CityPage(props: { params: Promise<{ city: string }
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageAuthorLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {slug !== 'gaithersburg' && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
       
       <SiteHeader variant="inner" showCta ctaLabel="Find the right filter →" ctaHref="/quiz" />
       
@@ -384,7 +397,19 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                   : `${cityName} tap water: what\u2019s in it in 2026`)}
           </h1>
 
-          {cd && <AuthorReviewBadge />}
+          {slug === 'gaithersburg' ? (
+            <>
+              <AuthorByline />
+              <ArticleSchema
+                headline={PRIORITY_CITY_H1.gaithersburg ?? 'Is Gaithersburg Tap Water Safe? (2026)'}
+                slug="gaithersburg"
+                datePublished="2026-01-01"
+                dateModified="2026-07-17"
+              />
+            </>
+          ) : (
+            cd && <AuthorReviewBadge />
+          )}
 
           {slug === 'gaithersburg' && (
             <>
@@ -815,6 +840,9 @@ export default async function CityPage(props: { params: Promise<{ city: string }
         )}
 
         {/* ── FAQ ── */}
+        {slug === 'gaithersburg' ? (
+          <CityFAQ slug="gaithersburg" faqs={gaithersburgFAQs} />
+        ) : (
         <div style={{ marginBottom: 72 }}>
           <h2 style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             COMMON QUESTIONS
@@ -847,6 +875,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
             </div>
           ))}
         </div>
+        )}
 
         {/* ── LEAD SERVICE LINE ── */}
         <div style={{ marginBottom: 64, padding: '20px 22px', background: 'linear-gradient(135deg,#0a1e35,#071525)', border: '1px solid #1a3a5c', borderRadius: 14 }}>
@@ -944,42 +973,19 @@ export default async function CityPage(props: { params: Promise<{ city: string }
         </div>
 
         {/* ── NEARBY CITIES ── */}
-        <div>
-          <h2 style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, margin: '0 0 14px' }}>COMPARE WATER QUALITY IN OTHER CITIES</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10, marginBottom: 20 }}>
-            {(() => {
-              const preferredNearby: Record<string, string[]> = {
-                gaithersburg: ['rockville', 'silver-spring', 'bethesda', 'baltimore'],
-                rockville: ['gaithersburg', 'bethesda', 'silver-spring', 'baltimore'],
-                'silver-spring': ['gaithersburg', 'bethesda', 'rockville', 'baltimore'],
-                bethesda: ['gaithersburg', 'rockville', 'silver-spring', 'baltimore'],
-              };
-              const pin = preferredNearby[params.city] ?? [];
-              const urgOrder = { high: 0, medium: 1, low: 2 } as const;
-              const rest = Object.entries(CITIES)
-                .filter(([k]) => k !== params.city && !pin.includes(k))
-                .sort(([, ca], [, cb]) => {
-                  const sameA = ca.state === cd?.state ? 0 : 1;
-                  const sameB = cb.state === cd?.state ? 0 : 1;
-                  if (sameA !== sameB) return sameA - sameB;
-                  return urgOrder[ca.urgency] - urgOrder[cb.urgency];
-                });
-              const pinned = pin
-                .filter((slug) => slug !== params.city && CITIES[slug])
-                .map((slug) => [slug, CITIES[slug]] as const);
-              return [...pinned, ...rest].slice(0, 12).map(([slug, c]) => {
-                const uc = { high: { color: '#ef4444', label: 'High concern' }, medium: { color: '#f59e0b', label: 'Monitor' }, low: { color: '#22d3ee', label: 'OK' } }[c.urgency];
-                return (
-                  <Link key={slug} prefetch href={`/water/${slug}`} style={{ display: 'block', padding: '12px 14px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, textDecoration: 'none' }}>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0', marginBottom: 3 }}>{c.name}, {c.state}</div>
-                    <div style={{ fontSize: 13, color: uc.color }}>{uc.label} · {c.issues[0]}</div>
-                  </Link>
-                );
-              });
-            })()}
+        {cd && (
+          <div style={{ marginBottom: 20 }}>
+            <NearbyCities
+              currentSlug={params.city}
+              currentState={cd.state}
+              allCities={ALL_CITIES_FOR_NEARBY}
+              maxResults={8}
+            />
+            <Link prefetch href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>
+              {VIEW_ALL_WATER_SYSTEMS_LINK}
+            </Link>
           </div>
-          <Link prefetch href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>{VIEW_ALL_WATER_SYSTEMS_LINK}</Link>
-        </div>
+        )}
 
         <UtilityOperatorCcrCta variant="city-footer" />
 
