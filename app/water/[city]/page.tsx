@@ -37,9 +37,27 @@ import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { NearbyCities } from '@/components/NearbyCities';
 import { CityFAQ } from '@/components/CityFAQ';
 import { gaithersburgFAQs } from '@/lib/faq-gaithersburg';
+import { raleighFAQs } from '@/lib/faq-raleigh';
+import { baltimoreFAQs } from '@/lib/faq-baltimore';
+import { chicagoFAQs } from '@/lib/faq-chicago';
+import { losAngelesFAQs } from '@/lib/faq-los-angeles';
+import { rockvilleFAQs } from '@/lib/faq-rockville';
+import { silverSpringFAQs } from '@/lib/faq-silver-spring';
+import { bethesdaFAQs } from '@/lib/faq-bethesda';
 import { quizHrefFromCityPage, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { Fragment } from 'react/jsx-runtime';
 import { Suspense } from 'react';
+
+const CITY_FAQS: Record<string, { question: string; answer: string }[]> = {
+  gaithersburg: gaithersburgFAQs,
+  raleigh: raleighFAQs,
+  baltimore: baltimoreFAQs,
+  chicago: chicagoFAQs,
+  'los-angeles': losAngelesFAQs,
+  rockville: rockvilleFAQs,
+  'silver-spring': silverSpringFAQs,
+  bethesda: bethesdaFAQs,
+};
 
 const ALL_CITIES_FOR_NEARBY = Object.entries(CITIES).map(([slug, c]) => ({
   name: c.name,
@@ -359,7 +377,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageAuthorLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
-      {slug !== 'gaithersburg' && (
+      {!CITY_FAQS[slug] && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
       
@@ -840,8 +858,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
         )}
 
         {/* ── FAQ ── */}
-        {slug === 'gaithersburg' ? (
-          <CityFAQ slug="gaithersburg" faqs={gaithersburgFAQs} />
+        {CITY_FAQS[slug] ? (
+          <CityFAQ slug={slug} faqs={CITY_FAQS[slug]} />
         ) : (
         <div style={{ marginBottom: 72 }}>
           <h2 style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>

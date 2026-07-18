@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
-import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
+import { CityFAQ } from '@/components/CityFAQ';
+import { phoenixFAQs } from '@/lib/faq-phoenix';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
 import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
@@ -47,34 +48,6 @@ const FILTERS = [
   },
 ];
 
-const FAQS = [
-  {
-    q: 'Is Phoenix tap water safe to drink?',
-    a: "Phoenix water meets all federal EPA legal standards with no open violations. However PFAS exceeds the 2024 EPA limit at 7.4 ppt, chromium-6 exceeds California's health goal, and arsenic is elevated. A reverse osmosis filter is strongly recommended.",
-  },
-  {
-    q: 'Why is Phoenix water so hard?',
-    a: 'Phoenix draws primarily from the Colorado River, which picks up calcium, magnesium, and other minerals as it flows through limestone and desert rock. At 288 mg/L, Phoenix has some of the hardest water of any major US city.',
-  },
-  {
-    q: 'Does Phoenix water have PFAS?',
-    a: "Yes — PFAS has been detected at 7.4 ppt, primarily from Luke Air Force Base firefighting foam contamination. This exceeds the EPA's 2024 limit. Only reverse osmosis removes PFAS reliably.",
-  },
-  {
-    q: 'Does Phoenix water have chromium-6?',
-    a: "Yes — Phoenix water contains chromium-6 at 0.21 ppb, above California's health goal of 0.02 ppb. There is no federal MCL for chromium-6 specifically. Reverse osmosis removes chromium-6.",
-  },
-  {
-    q: 'What is the best water filter for Phoenix?',
-    a: "Given Phoenix's chromium-6, PFAS, arsenic, and extreme hardness, a reverse osmosis system is essential. The Waterdrop G3P600 handles Phoenix's full contaminant profile. Pair with a water softener for whole-home hard water protection.",
-  },
-];
-
-const phoenixFaqSchema = buildFaqPageSchema(
-  FAQS.map(({ q, a }) => ({ name: q, text: a })),
-  'https://watercheckup.com/water/phoenix'
-);
-
 const phoenixBreadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -88,7 +61,6 @@ const phoenixBreadcrumbLd = {
 export default function PhoenixWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixFaqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixBreadcrumbLd) }} />
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -216,15 +188,7 @@ export default function PhoenixWaterPage() {
             </div>
           ))}
         </div>
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FREQUENTLY ASKED QUESTIONS</div>
-          {FAQS.map((faq, i) => (
-            <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>
-              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
-            </div>
-          ))}
-        </div>
+        <CityFAQ slug="phoenix" faqs={phoenixFAQs} />
         <div style={{ textAlign: 'center', marginTop: 32 }}>
           <Link
             prefetch

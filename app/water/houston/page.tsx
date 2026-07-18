@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
-import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
+import { CityFAQ } from '@/components/CityFAQ';
+import { houstonFAQs } from '@/lib/faq-houston';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
 import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
@@ -48,34 +49,6 @@ const FILTER_PICKS = [
   },
 ] as const;
 
-const FAQS = [
-  {
-    q: 'Is Houston tap water safe to drink?',
-    a: "Houston water meets all federal EPA legal standards — there are no open violations. However, PFAS has been detected at 22.4 ppt, which exceeds the EPA's 2024 limit of 4 ppt for PFOA/PFOS individually. A reverse osmosis filter is strongly recommended for Houston households.",
-  },
-  {
-    q: 'Does Houston water have PFAS?',
-    a: 'Yes — Houston has among the highest PFAS levels of any major US city at 22.4 ppt total. Industrial contamination from the Houston Ship Channel area is the primary source. Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.',
-  },
-  {
-    q: 'Does Houston water have arsenic?',
-    a: "Yes — Houston water contains arsenic at 5.1 ppb, naturally occurring from the Trinity River watershed. This is below the EPA limit of 10 ppb but well above the EWG health guideline of 0.004 ppb. Reverse osmosis removes arsenic.",
-  },
-  {
-    q: 'Why does Houston water taste bad?',
-    a: "Houston's surface water source (Trinity River / Lake Houston) has high organic content, which leads to elevated disinfection byproducts (TTHMs and HAAs) when treated with chlorine. These byproducts affect taste and odor. An activated carbon or RO filter significantly improves taste.",
-  },
-  {
-    q: 'What is the best water filter for Houston?',
-    a: "Given Houston's high PFAS, arsenic, TTHMs, and elevated sodium, a reverse osmosis system is the best choice. The Waterdrop G3P600 or Aquasana SmartFlow RO handle Houston's full contaminant profile. For renters, the Clearly Filtered pitcher removes PFAS without installation.",
-  },
-] as const;
-
-const houstonFaqSchema = buildFaqPageSchema(
-  FAQS.map(({ q, a }) => ({ name: q, text: a })),
-  'https://watercheckup.com/water/houston'
-);
-
 const houstonBreadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -89,7 +62,6 @@ const houstonBreadcrumbLd = {
 export default function HoustonWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(houstonFaqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(houstonBreadcrumbLd) }} />
       <SiteHeader variant="inner" showCta ctaLabel="Check your ZIP →" ctaHref="/" />
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -254,17 +226,7 @@ export default function HoustonWaterPage() {
           ))}
         </div>
 
-        <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>
-            FREQUENTLY ASKED QUESTIONS
-          </div>
-          {FAQS.map((faq, i) => (
-            <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', marginBottom: 6 }}>{faq.q}</div>
-              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
-            </div>
-          ))}
-        </div>
+        <CityFAQ slug="houston" faqs={houstonFAQs} />
 
         <div
           style={{

@@ -2,11 +2,12 @@ import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
 import type { Metadata } from 'next';
-import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { metadataForPriorityCity } from '@/lib/priority-city-seo';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { PriorityCityEditorial } from '@/components/PriorityCityEditorial';
 import { CityFilterGuideLinks } from '@/components/CityFilterGuideLinks';
+import { CityFAQ } from '@/components/CityFAQ';
+import { sanAntonioFAQs } from '@/lib/faq-san-antonio';
 import { CITIES } from '../[city]/cities-data';
 import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
 import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
@@ -49,38 +50,6 @@ const FILTER_PICKS = [
   },
 ] as const;
 
-const FAQS = [
-  {
-    q: 'Is San Antonio tap water safe to drink?',
-    a: 'Yes — SAWS water meets all federal EPA drinking water standards. There are no open violations as of 2026. However, PFAS has been detected above stricter EWG health guidelines, and the water is very hard. Many residents choose to filter for taste, hardness, and PFAS.',
-  },
-  {
-    q: 'Why is San Antonio water so hard?',
-    a: 'SA water comes from the Edwards Aquifer, which runs through porous limestone rock. As water moves through the limestone, it dissolves calcium and magnesium — the minerals that cause hardness. At 272 mg/L, SA water is classified as very hard.',
-  },
-  {
-    q: 'Does San Antonio water have PFAS?',
-    a: "Yes. PFAS has been detected in SAWS water at levels above EWG health guidelines but below the EPA's 2024 legal limits (4 ppt for PFOA/PFOS). Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.",
-  },
-  {
-    q: 'Does San Antonio water have radium?',
-    a: 'Yes — radium occurs naturally in Edwards Aquifer water at 3.4 pCi/L. This is below the EPA limit of 5 pCi/L. Radium is removed by reverse osmosis systems.',
-  },
-  {
-    q: 'What is the best water filter for San Antonio?',
-    a: "Given SA's hard water, PFAS, radium, and elevated sodium, a reverse osmosis system is the most comprehensive solution. The Waterdrop G3P600 RO handles all of SA's main water concerns. For whole-home hard water, pair it with a salt-based water softener.",
-  },
-  {
-    q: 'Does SAWS add fluoride to the water?',
-    a: 'Yes — SAWS adds fluoride at 0.7 ppm, the level recommended by the Department of Health and Human Services for dental health.',
-  },
-] as const;
-
-const sanAntonioFaqSchema = buildFaqPageSchema(
-  FAQS.map(({ q, a }) => ({ name: q, text: a })),
-  'https://watercheckup.com/water/san-antonio'
-);
-
 const saBreadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -94,10 +63,6 @@ const saBreadcrumbLd = {
 export default function SanAntonioWaterPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(sanAntonioFaqSchema) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(saBreadcrumbLd) }}
@@ -433,24 +398,9 @@ export default function SanAntonioWaterPage() {
           </div>
         </div>
 
-        <section
-          id="faq"
-          aria-labelledby="sa-faq-heading"
-          style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}
-        >
-          <h2
-            id="sa-faq-heading"
-            style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, margin: '0 0 22px', textTransform: 'uppercase' }}
-          >
-            Frequently asked questions
-          </h2>
-          {FAQS.map((faq, i) => (
-            <div key={faq.q} style={{ padding: '14px 0', borderBottom: i < FAQS.length - 1 ? '1px solid #0f2336' : 'none' }}>
-              <h3 style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', margin: '0 0 6px', lineHeight: 1.4 }}>{faq.q}</h3>
-              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0, lineHeight: 1.6 }}>{faq.a}</p>
-            </div>
-          ))}
-        </section>
+        <div id="faq">
+          <CityFAQ slug="san-antonio" faqs={sanAntonioFAQs} />
+        </div>
 
         <div
           style={{
