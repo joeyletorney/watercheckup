@@ -973,11 +973,11 @@ export default async function CityPage(props: { params: Promise<{ city: string }
         </div>
 
         {/* ── NEARBY CITIES ── */}
-        {cd && (
+        {slug === 'gaithersburg' ? (
           <div style={{ marginBottom: 20 }}>
             <NearbyCities
-              currentSlug={params.city}
-              currentState={cd.state}
+              currentSlug="gaithersburg"
+              currentState="MD"
               allCities={ALL_CITIES_FOR_NEARBY}
               maxResults={8}
             />
@@ -985,6 +985,20 @@ export default async function CityPage(props: { params: Promise<{ city: string }
               {VIEW_ALL_WATER_SYSTEMS_LINK}
             </Link>
           </div>
+        ) : (
+          cd && (
+            <div style={{ marginBottom: 20 }}>
+              <NearbyCities
+                currentSlug={params.city}
+                currentState={cd.state}
+                allCities={ALL_CITIES_FOR_NEARBY}
+                maxResults={8}
+              />
+              <Link prefetch href="/utilities" style={{ fontSize: 13, color: '#0891b2', textDecoration: 'none', fontWeight: 600 }}>
+                {VIEW_ALL_WATER_SYSTEMS_LINK}
+              </Link>
+            </div>
+          )
         )}
 
         <UtilityOperatorCcrCta variant="city-footer" />
