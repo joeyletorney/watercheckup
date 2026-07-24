@@ -28,15 +28,79 @@ const ZIP_LOOKUP = zipLookupRaw as Record<string, { p: string; n: string; c: str
 const LCR_DATA = lcrDataRaw as Record<string, { lead?: number; copper?: number }>;
 
 const EPA = 'https://data.epa.gov/efservice';
+const EPA_TIMEOUT_MS = 4_000;
+const EPA_CIRCUIT_FAIL_THRESHOLD = 3;
+const EPA_CIRCUIT_COOLDOWN_MS = 60_000;
+
+type EpaCircuit = { fails: number; openUntil: number };
+const gEpa = globalThis as unknown as { __wcEpaCircuit?: EpaCircuit };
+function epaCircuit(): EpaCircuit {
+  if (!gEpa.__wcEpaCircuit) gEpa.__wcEpaCircuit = { fails: 0, openUntil: 0 };
+  return gEpa.__wcEpaCircuit;
+}
+function isEpaCircuitOpen(): boolean {
+  return Date.now() < epaCircuit().openUntil;
+}
+function noteEpaSuccess() {
+  const c = epaCircuit();
+  c.fails = 0;
+  c.openUntil = 0;
+}
+function noteEpaFailure() {
+  const c = epaCircuit();
+  c.fails += 1;
+  if (c.fails >= EPA_CIRCUIT_FAIL_THRESHOLD) {
+    c.openUntil = Date.now() + EPA_CIRCUIT_COOLDOWN_MS;
+    c.fails = 0;
+  }
+}
 
 async function epaGet(path: string) {
-  const res = await fetch(`${EPA}/${path}`, {
-    headers: { 'Accept': 'application/json' },
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) throw new Error(`EPA ${res.status}`);
-  const text = await res.text();
-  try { return JSON.parse(text); } catch { return []; }
+  if (isEpaCircuitOpen()) throw new Error('EPA circuit open');
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), EPA_TIMEOUT_MS);
+  try {
+    const res = await fetch(`${EPA}/${path}`, {
+      headers: { Accept: 'application/json' },
+      next: { revalidate: 3600 },
+      signal: ctrl.signal,
+    });
+    if (!res.ok) {
+      noteEpaFailure();
+      throw new Error(`EPA ${res.status}`);
+    }
+    noteEpaSuccess();
+    const text = await res.text();
+    try { return JSON.parse(text); } catch { return []; }
+  } catch (err) {
+    if (!(err instanceof Error && /^EPA \d/.test(err.message))) noteEpaFailure();
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** null = EPA error/outage (stop cascading); array = response (possibly empty) */
+async function epaGetList(path: string): Promise<any[] | null> {
+  try {
+    const data = await epaGet(path);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return null;
+  }
+}
+
+function systemsFromZipLookup(zip: string): any[] {
+  const local = ZIP_LOOKUP[zip];
+  if (!local?.p) return [];
+  const st = local.p.slice(0, 2);
+  return [{
+    pwsid: local.p,
+    pws_name: local.n,
+    state_code: st,
+    population_served_count: local.pop,
+    primary_source_code: local.src === 'SW' ? 'SW' : 'GW',
+  }];
 }
 
 function f(o: any, k: string): any {
@@ -996,7 +1060,14 @@ async function getUsgsSourceWater(state: string, lat?: number, lng?: number): Pr
   try {
     // USGS NWIS current conditions — surface water quality sites
     const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=${state.toLowerCase()}&parameterCd=00010,00095,00300&siteType=ST&period=P1D&siteStatus=active`;
-    const res = await fetch(url, { next: { revalidate: 86400 } });
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), EPA_TIMEOUT_MS);
+    let res: Response;
+    try {
+      res = await fetch(url, { next: { revalidate: 86400 }, signal: ctrl.signal });
+    } finally {
+      clearTimeout(timer);
+    }
     if (!res.ok) return null;
     const data = await res.json();
     const sites = data?.value?.timeSeries?.slice(0, 3) || [];
@@ -1018,10 +1089,21 @@ async function getUsgsSourceWater(state: string, lat?: number, lng?: number): Pr
 // ─── EPA ECHO Enforcement & Compliance ───────────────────────────────────────
 async function getEchoEnforcement(pwsid: string): Promise<any> {
   try {
+    if (isEpaCircuitOpen()) return null;
     // ECHO SDWA enforcement actions for this facility
     const url = `https://echodata.epa.gov/echo/sdw_rest_services.get_facility_info?output=JSON&p_pwsid=${encodeURIComponent(pwsid)}`;
-    const res = await fetch(url, { cache: 'no-store' });
-    if (!res.ok) return null;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), EPA_TIMEOUT_MS);
+    let res: Response;
+    try {
+      res = await fetch(url, { next: { revalidate: 3600 }, signal: ctrl.signal });
+    } finally {
+      clearTimeout(timer);
+    }
+    if (!res.ok) {
+      noteEpaFailure();
+      return null;
+    }
     const data = await res.json();
 
     const fac = data?.Results?.Facilities?.[0];
@@ -1055,7 +1137,14 @@ async function getEchoEnforcement(pwsid: string): Promise<any> {
 async function getUsgsHardnessTDS(stateCode: string): Promise<any[]> {
   try {
     const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=${stateCode.toLowerCase()}&parameterCd=00900,70300&siteType=ST&period=P7D&siteStatus=active`;
-    const res = await fetch(url, { cache: 'no-store' });
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), EPA_TIMEOUT_MS);
+    let res: Response;
+    try {
+      res = await fetch(url, { next: { revalidate: 86400 }, signal: ctrl.signal });
+    } finally {
+      clearTimeout(timer);
+    }
     if (!res.ok) return [];
     const data = await res.json();
     const series = data?.value?.timeSeries || [];
@@ -1167,50 +1256,82 @@ export async function GET(req: NextRequest) {
         }
       } catch { /* keep hardcoded */ }
     } else {
-      let systems: any[] = await epaGet(
-        `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/rows/1:10/JSON`
-      ).catch(() => []);
-      if (!Array.isArray(systems) || !systems.length) {
-        systems = await epaGet(
+      // Prefer local map immediately when EPA is tripping — avoids cascade storms
+      let systems: any[] = isEpaCircuitOpen() ? systemsFromZipLookup(zip) : [];
+      let epaDown = isEpaCircuitOpen();
+
+      if (!systems.length && !epaDown) {
+        const first = await epaGetList(
+          `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/rows/1:10/JSON`
+        );
+        if (first === null) {
+          epaDown = true;
+          systems = systemsFromZipLookup(zip);
+        } else {
+          systems = first;
+        }
+      }
+      if (!systems.length && !epaDown) {
+        const next = await epaGetList(
           `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/rows/1:10/JSON`
-        ).catch(() => []);
+        );
+        if (next === null) {
+          epaDown = true;
+          systems = systemsFromZipLookup(zip);
+        } else {
+          systems = next;
+        }
       }
-      if (!Array.isArray(systems) || !systems.length) {
-        systems = await epaGet(
+      if (!systems.length && !epaDown) {
+        const next = await epaGetList(
           `WATER_SYSTEM/ZIP_CODE/${zip}/PWS_ACTIVITY_CODE/A/rows/1:10/JSON`
-        ).catch(() => []);
+        );
+        if (next === null) {
+          epaDown = true;
+          systems = systemsFromZipLookup(zip);
+        } else {
+          systems = next;
+        }
       }
-      if (!Array.isArray(systems) || !systems.length) {
+      if (!systems.length) {
         const local = ZIP_LOOKUP[zip];
         if (local?.p) {
-          const rows: any[] = await epaGet(
-            `WATER_SYSTEM/PWSID/${local.p}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
-          ).catch(() => []);
-          if (Array.isArray(rows) && rows.length) {
-            systems = rows;
+          if (epaDown || isEpaCircuitOpen()) {
+            systems = systemsFromZipLookup(zip);
           } else {
-            const st = local.p.slice(0, 2);
-            systems = [{
-              pwsid: local.p,
-              pws_name: local.n,
-              state_code: st,
-              population_served_count: local.pop,
-              primary_source_code: local.src === 'SW' ? 'SW' : 'GW',
-            }];
+            const rows = await epaGetList(
+              `WATER_SYSTEM/PWSID/${local.p}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
+            );
+            if (rows === null) {
+              epaDown = true;
+              systems = systemsFromZipLookup(zip);
+            } else if (rows.length) {
+              systems = rows;
+            } else {
+              systems = systemsFromZipLookup(zip);
+            }
           }
         }
       }
-      if (!Array.isArray(systems) || !systems.length) {
-        const geoRows: any[] = await epaGet(
+      // Geographic cascade only when EPA is healthy — each miss used to fan out more live calls
+      if (!systems.length && !epaDown && !isEpaCircuitOpen()) {
+        const geoRows = await epaGetList(
           `GEOGRAPHIC_AREA/ZIP_CODE_SERVED/${zip}/rows/1:10/JSON`
-        ).catch(() => []);
-        if (Array.isArray(geoRows) && geoRows.length) {
-          const pwsids = Array.from(new Set(geoRows.map((r: any) => f(r, 'pwsid')).filter(Boolean)));
+        );
+        if (geoRows === null) {
+          epaDown = true;
+        } else if (geoRows.length) {
+          const pwsids = Array.from(new Set(geoRows.map((r: any) => f(r, 'pwsid')).filter(Boolean))).slice(0, 3);
           for (const p of pwsids) {
-            const rows: any[] = await epaGet(
+            if (isEpaCircuitOpen()) break;
+            const rows = await epaGetList(
               `WATER_SYSTEM/PWSID/${p}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
-            ).catch(() => []);
-            if (Array.isArray(rows) && rows.length) {
+            );
+            if (rows === null) {
+              epaDown = true;
+              break;
+            }
+            if (rows.length) {
               systems = rows;
               break;
             }
@@ -1242,12 +1363,13 @@ export async function GET(req: NextRequest) {
     }
 
     // ─── Parallel data fetch ────────────────────────────────────────────────
+    const skipLiveEpa = isEpaCircuitOpen();
     const [violations, lcr, sdwaSamples, usgsData, echoData, usgsHardness] = await Promise.all([
-      epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => []),
-      epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
-      epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
+      skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => []),
+      skipLiveEpa ? Promise.resolve([]) : epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
+      skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
       stateCode ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
-      getEchoEnforcement(pwsid),
+      skipLiveEpa ? Promise.resolve(null) : getEchoEnforcement(pwsid),
       stateCode ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
     ]);
     const viols: any[] = Array.isArray(violations) ? violations : [];
@@ -1544,7 +1666,14 @@ export async function GET(req: NextRequest) {
         error: 'Water data is temporarily unavailable. Please try again shortly.',
         dataFreshness: getDataFreshness(),
       },
-      { status: 503, headers: H }
+      {
+        status: 503,
+        headers: {
+          ...H,
+          // Brief CDN cache so EPA outages don't stampede serverless invocations
+          'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+        },
+      }
     );
   }
 }
