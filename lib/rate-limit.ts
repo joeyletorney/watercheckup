@@ -38,6 +38,36 @@ export function checkRateLimit(
   return { ok: true };
 }
 
+/**
+ * Shared rate limit via Vercel Runtime Cache when available; falls back to in-memory.
+ * Soft-limit (non-atomic under concurrency) but works across instances in a region.
+ */
+export async function checkRateLimitShared(
+  key: string,
+  max: number,
+  windowMs: number
+): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  try {
+    const { getCache } = await import('@vercel/functions');
+    const cache = getCache({ namespace: 'wc-rate' });
+    const windowId = Math.floor(Date.now() / windowMs);
+    const bucketKey = `${key}:${windowId}`;
+    const current = await cache.get(bucketKey);
+    const count = typeof current === 'number' ? current : 0;
+    if (count >= max) {
+      const retryAfterSec = Math.max(1, Math.ceil(((windowId + 1) * windowMs - Date.now()) / 1000));
+      return { ok: false, retryAfterSec };
+    }
+    await cache.set(bucketKey, count + 1, {
+      ttl: Math.ceil(windowMs / 1000) + 2,
+      name: 'rate-limit',
+    });
+    return { ok: true };
+  } catch {
+    return checkRateLimit(key, max, windowMs);
+  }
+}
+
 export function getClientIp(req: NextRequest): string {
   const xff = req.headers.get('x-forwarded-for');
   if (xff) {
@@ -57,6 +87,7 @@ export const RATE = {
   unsubscribeGetPerIp: { max: 40, windowMs: 15 * 60 * 1000 },
   utilityClaimPerIp: { max: 10, windowMs: 15 * 60 * 1000 },
   utilityClaimPerEmail: { max: 5, windowMs: 60 * 60 * 1000 },
-  waterLookupPerIp: { max: 40, windowMs: 60 * 1000 },
-  waterLookupPerZip: { max: 15, windowMs: 60 * 1000 },
+  // Tighter now that shared Runtime Cache enforces across instances
+  waterLookupPerIp: { max: 30, windowMs: 60 * 1000 },
+  waterLookupPerZip: { max: 12, windowMs: 60 * 1000 },
 } as const;

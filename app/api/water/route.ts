@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
+import { checkRateLimitShared, getClientIp, RATE } from '@/lib/rate-limit';
+import { getCachedWaterResponse, setCachedWaterResponse } from '@/lib/water-lookup-cache';
 import ucmr5Raw from '@/lib/ucmr5.json';
 import zipLookupRaw from '@/lib/zip-lookup.json';
 import lcrDataRaw from '@/lib/lcr-data.json';
@@ -1214,14 +1215,14 @@ export async function GET(req: NextRequest) {
   }
 
   const ip = getClientIp(req);
-  const ipLim = checkRateLimit(`water:ip:${ip}`, RATE.waterLookupPerIp.max, RATE.waterLookupPerIp.windowMs);
+  const ipLim = await checkRateLimitShared(`water:ip:${ip}`, RATE.waterLookupPerIp.max, RATE.waterLookupPerIp.windowMs);
   if (!ipLim.ok) {
     return NextResponse.json(
       { error: 'Too many requests. Please try again shortly.' },
       { status: 429, headers: { ...H, 'Retry-After': String(ipLim.retryAfterSec) } },
     );
   }
-  const zipLim = checkRateLimit(`water:zip:${zip}`, RATE.waterLookupPerZip.max, RATE.waterLookupPerZip.windowMs);
+  const zipLim = await checkRateLimitShared(`water:zip:${zip}`, RATE.waterLookupPerZip.max, RATE.waterLookupPerZip.windowMs);
   if (!zipLim.ok) {
     return NextResponse.json(
       { error: 'Too many lookups for this ZIP. Please try again shortly.' },
@@ -1231,6 +1232,12 @@ export async function GET(req: NextRequest) {
 
   const t0 = Date.now();
   const okHeaders = { ...H, 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' };
+
+  const cached = await getCachedWaterResponse(zip);
+  if (cached) {
+    logWaterLookup({ zip, outcome: 'cache_hit', ms: Date.now() - t0 });
+    return NextResponse.json(cached.body, { status: cached.status, headers: okHeaders });
+  }
 
   try {
     let pwsid: string;
@@ -1242,23 +1249,38 @@ export async function GET(req: NextRequest) {
 
     const override = PWSID_OVERRIDES[zip];
     if (override) {
+      // Local-first: hardcoded major-city map, optional single EPA enrich
       pwsid     = override.pwsid;
       pwsName   = override.utility;
       cityName  = override.city.split(',')[0].trim();
       stateCode = override.city.includes(',') ? override.city.split(',')[1].trim().split(' ')[0] : '';
-      try {
-        const rows: any[] = await epaGet(`WATER_SYSTEM/PWSID/${override.pwsid}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`);
-        if (rows?.length) {
-          pwsName  = f(rows[0], 'pws_name') || pwsName;
-          srcCode  = f(rows[0], 'primary_source_code') || '';
-          popCount = f(rows[0], 'population_served_count');
-          stateCode = f(rows[0], 'state_code') || stateCode;
-        }
-      } catch { /* keep hardcoded */ }
+      if (!isEpaCircuitOpen()) {
+        try {
+          const rows: any[] = await epaGet(`WATER_SYSTEM/PWSID/${override.pwsid}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`);
+          if (rows?.length) {
+            pwsName  = f(rows[0], 'pws_name') || pwsName;
+            srcCode  = f(rows[0], 'primary_source_code') || '';
+            popCount = f(rows[0], 'population_served_count');
+            stateCode = f(rows[0], 'state_code') || stateCode;
+          }
+        } catch { /* keep hardcoded */ }
+      }
     } else {
-      // Prefer local map immediately when EPA is tripping — avoids cascade storms
-      let systems: any[] = isEpaCircuitOpen() ? systemsFromZipLookup(zip) : [];
+      // Local-first: ~21k ZIP map before any live EPA ZIP search cascade
+      let systems: any[] = systemsFromZipLookup(zip);
       let epaDown = isEpaCircuitOpen();
+
+      if (systems.length && !epaDown) {
+        // One enrich call for name/pop/source — not a multi-endpoint cascade
+        const rows = await epaGetList(
+          `WATER_SYSTEM/PWSID/${systems[0].pwsid}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
+        );
+        if (rows === null) {
+          epaDown = true;
+        } else if (rows.length) {
+          systems = rows;
+        }
+      }
 
       if (!systems.length && !epaDown) {
         const first = await epaGetList(
@@ -1266,7 +1288,6 @@ export async function GET(req: NextRequest) {
         );
         if (first === null) {
           epaDown = true;
-          systems = systemsFromZipLookup(zip);
         } else {
           systems = first;
         }
@@ -1277,7 +1298,6 @@ export async function GET(req: NextRequest) {
         );
         if (next === null) {
           epaDown = true;
-          systems = systemsFromZipLookup(zip);
         } else {
           systems = next;
         }
@@ -1288,32 +1308,11 @@ export async function GET(req: NextRequest) {
         );
         if (next === null) {
           epaDown = true;
-          systems = systemsFromZipLookup(zip);
         } else {
           systems = next;
         }
       }
-      if (!systems.length) {
-        const local = ZIP_LOOKUP[zip];
-        if (local?.p) {
-          if (epaDown || isEpaCircuitOpen()) {
-            systems = systemsFromZipLookup(zip);
-          } else {
-            const rows = await epaGetList(
-              `WATER_SYSTEM/PWSID/${local.p}/PWS_ACTIVITY_CODE/A/rows/1:1/JSON`
-            );
-            if (rows === null) {
-              epaDown = true;
-              systems = systemsFromZipLookup(zip);
-            } else if (rows.length) {
-              systems = rows;
-            } else {
-              systems = systemsFromZipLookup(zip);
-            }
-          }
-        }
-      }
-      // Geographic cascade only when EPA is healthy — each miss used to fan out more live calls
+      // Geographic cascade only when EPA is healthy and local map missed
       if (!systems.length && !epaDown && !isEpaCircuitOpen()) {
         const geoRows = await epaGetList(
           `GEOGRAPHIC_AREA/ZIP_CODE_SERVED/${zip}/rows/1:10/JSON`
@@ -1368,9 +1367,9 @@ export async function GET(req: NextRequest) {
       skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => []),
       skipLiveEpa ? Promise.resolve([]) : epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
       skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
-      stateCode ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
+      stateCode && !skipLiveEpa ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
       skipLiveEpa ? Promise.resolve(null) : getEchoEnforcement(pwsid),
-      stateCode ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
+      stateCode && !skipLiveEpa ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
     ]);
     const viols: any[] = Array.isArray(violations) ? violations : [];
     const allSamples = [...(Array.isArray(lcr) ? lcr : []), ...(Array.isArray(sdwaSamples) ? sdwaSamples : [])];
@@ -1623,7 +1622,7 @@ export async function GET(req: NextRequest) {
       openViolations: openCount,
     });
 
-    return NextResponse.json({
+    const payload = {
       zip,
       city:             [cityName, stateCode].filter(Boolean).join(', ') || `ZIP ${zip}`,
       systemName:       pwsName,
@@ -1656,7 +1655,9 @@ export async function GET(req: NextRequest) {
       echo:             echoData,
       summary,
       pfasSummary,
-    }, { headers: okHeaders });
+    };
+    await setCachedWaterResponse(zip, { status: 200, body: payload });
+    return NextResponse.json(payload, { headers: okHeaders });
 
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err || 'Unknown error');

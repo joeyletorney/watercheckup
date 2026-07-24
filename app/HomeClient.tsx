@@ -40,7 +40,10 @@ const TAG = 'watercheck20-20';
 // API
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchWaterData(zip: string) {
-  const res = await fetch(`/api/water?zip=${zip}`);
+  const res = await fetch(`/api/water?zip=${encodeURIComponent(zip)}`, {
+    // Let CDN Cache-Control (s-maxage) dedupe repeat ZIP lookups across visitors
+    cache: 'default',
+  });
   const data = await res.json();
   if (!res.ok) {
     const err = new Error(data.error || `API error ${res.status}`) as Error & { waterExtra?: Record<string, unknown> };

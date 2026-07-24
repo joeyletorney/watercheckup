@@ -16,6 +16,7 @@
     "build-pwsid-ccr-contaminants": "tsx scripts/build-pwsid-ccr-contaminants.ts --limit 500"
   },
   "dependencies": {
+    "@vercel/functions": "^3.7.5",
     "babel-plugin-react-compiler": "^1.0.0",
     "critters": "^0.0.23",
     "next": "16.2.7",
