@@ -1,4 +1,6 @@
 import { ImageResponse } from 'next/og';
+import type { NextRequest } from 'next/server';
+import { checkRateLimitShared, getClientIp, RATE } from '@/lib/rate-limit';
 
 // export const runtime = 'edge';
 
@@ -29,7 +31,19 @@ function getTextParam(searchParams: URLSearchParams, key: string, fallback: stri
   return value.slice(0, maxLength);
 }
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
+  const ip = getClientIp(req);
+  const lim = await checkRateLimitShared(`og:blog:ip:${ip}`, RATE.ogPerIp.max, RATE.ogPerIp.windowMs);
+  if (!lim.ok) {
+    return new Response('Too many OG requests', {
+      status: 429,
+      headers: {
+        'Retry-After': String(lim.retryAfterSec),
+        'Cache-Control': 'no-store',
+      },
+    });
+  }
+
   const { searchParams } = new URL(req.url);
   const title   = getTextParam(searchParams, 'title', 'WaterCheckup Guide', 120);
   const badge   = getTextParam(searchParams, 'badge', '', 32);

@@ -90,4 +90,6 @@ export const RATE = {
   // Tighter now that shared Runtime Cache enforces across instances
   waterLookupPerIp: { max: 30, windowMs: 60 * 1000 },
   waterLookupPerZip: { max: 12, windowMs: 60 * 1000 },
+  // Social previews + crawlers; stops retry storms on OG generation
+  ogPerIp: { max: 40, windowMs: 60 * 1000 },
 } as const;

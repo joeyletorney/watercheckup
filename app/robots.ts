@@ -5,6 +5,18 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
+        userAgent: 'SERankingBacklinksBot',
+        disallow: '/',
+      },
+      { userAgent: 'AhrefsBot', disallow: '/' },
+      { userAgent: 'SemrushBot', disallow: '/' },
+      { userAgent: 'DotBot', disallow: '/' },
+      { userAgent: 'MJ12bot', disallow: '/' },
+      { userAgent: 'BLEXBot', disallow: '/' },
+      { userAgent: 'DataForSeoBot', disallow: '/' },
+      { userAgent: 'PetalBot', disallow: '/' },
+      { userAgent: 'Bytespider', disallow: '/' },
+      {
         userAgent: '*',
         allow: '/',
         disallow: ['/api/', '/_next/', '/static/'],
