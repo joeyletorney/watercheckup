@@ -255,6 +255,95 @@ const LOCAL_SEARCH_INTENT: Record<string, {
       { href: '/water-hardness?zip=21201', label: 'Baltimore hardness lookup' },
     ],
   },
+  raleigh: {
+    eyebrow: 'RALEIGH WATER QUALITY & PFAS',
+    title: 'Raleigh water quality: PFAS, GenX, THMs and Wake County data',
+    intro:
+      'Raleigh sits in North Carolina\'s Cape Fear River basin — a region with documented PFAS and GenX industrial history. City of Raleigh water meets federal standards most months, but UCMR5 monitoring, THM violations, and agricultural runoff still drive why residents search for a clearer picture of what is at the tap.',
+    sections: [
+      {
+        heading: 'PFAS and GenX in Raleigh water',
+        body:
+          'EPA UCMR5 data is the best public starting point for PFAS in Raleigh and Wake County systems. GenX and related compounds are why North Carolina water quality searches spiked nationally — reverse osmosis (NSF 58) or PFAS-certified pitchers are the residential technologies with credible removal data, not standard carbon filters alone.',
+      },
+      {
+        heading: 'Trihalomethanes and disinfection byproducts',
+        body:
+          'Raleigh has logged THM violations linked to chlorination of surface water with organic load. Long-term DBP exposure is an epidemiology concern for some households. RO at the kitchen tap removes THMs and HAAs more completely than basic taste-and-odor filters.',
+      },
+      {
+        heading: 'Should you test Raleigh tap water?',
+        body:
+          'Use this EPA-sourced report first, then test your kitchen tap if you are on an older plumbing system, have infants, or want address-level confirmation beyond city-wide averages. Two neighbors can be on different pressure zones with different monitoring histories.',
+      },
+    ],
+    links: [
+      { href: '/pfas', label: 'PFAS guide' },
+      { href: '/blog/what-water-filter-removes-pfas', label: 'Filters that remove PFAS' },
+      { href: '/water/charlotte', label: 'Charlotte water report' },
+      { href: '/water/fairfax-county', label: 'Fairfax County water report' },
+      { href: '/quiz', label: 'Find a Raleigh filter' },
+    ],
+  },
+  philadelphia: {
+    eyebrow: 'PHILADELPHIA WATER QUALITY',
+    title: 'Philadelphia water quality: PFAS, lead service lines and Delaware River DBPs',
+    intro:
+      'Philadelphia Water Department draws from the Delaware and Schuylkill rivers. The combined profile — PFAS from upstream industrial discharge, lead service lines in roughly a quarter of homes, and chloramine disinfection byproducts — is why Philly residents search for water quality answers beyond the annual CCR.',
+    sections: [
+      {
+        heading: 'PFAS in Philadelphia tap water',
+        body:
+          'Regional UCMR5 monitoring has detected PFAS compounds in the Delaware River supply chain. Federal limits now apply to several PFAS compounds; under-sink reverse osmosis (NSF 58) or NSF P473-certified pitchers are the practical home options when monitoring shows detections.',
+      },
+      {
+        heading: 'Lead service lines in Philadelphia',
+        body:
+          'PWD corrosion control helps, but pre-1950 housing with lead service lines or lead solder can still elevate lead at the tap. Use PWD\'s service line map, test a first-draw kitchen sample, and run an NSF 53 or NSF 58 filter while waiting for results if children or pregnancy are involved.',
+      },
+      {
+        heading: 'Delaware River disinfection byproducts',
+        body:
+          'Urban runoff and combined sewer overflow events increase organic precursors that form trihalomethanes and haloacetic acids during chlorination. RO removes DBPs at the drinking tap; whole-home carbon can help shower exposure if that is a priority.',
+      },
+    ],
+    links: [
+      { href: '/lead', label: 'Lead in water guide' },
+      { href: '/blog/best-water-filter-for-lead-removal', label: 'Best lead filters' },
+      { href: '/pfoa-at-epa-limit', label: 'Cities at EPA PFAS limits' },
+      { href: '/quiz', label: 'Find a Philly filter' },
+    ],
+  },
+  'san-diego': {
+    eyebrow: 'SAN DIEGO WATER QUALITY',
+    title: 'San Diego water quality: imported water, PFAS, hardness and chromium-6',
+    intro:
+      'San Diego imports more than 85% of its drinking water from the Colorado River and Northern California. That blend — treated with chloramine across most of the county — means hardness, seasonal taste shifts, PFAS monitoring signals, and chromium-6 context all matter for residents comparing tap water to filtration options.',
+    sections: [
+      {
+        heading: 'PFAS in San Diego County water',
+        body:
+          'Defense corridor and airport AFFF history contribute to PFAS awareness in coastal Southern California. UCMR5 monitoring is the federal dataset to check for your public water system — NSF 58 reverse osmosis remains the broadest residential option when PFAS is detected.',
+      },
+      {
+        heading: 'Hard water and imported supply',
+        body:
+          'Desert and imported water is mineral-rich — scale on fixtures and appliances is common. A softener addresses hardness; it does not remove PFAS, chromium-6, or lead. Pair softening with kitchen RO when health contaminants are flagged in your report.',
+      },
+      {
+        heading: 'Chromium-6 and California health goals',
+        body:
+          'Chromium-6 has been detected in San Diego water above California\'s strict health goals even when federal compliance letters read "pass." RO removes chromium-6 at the tap; standard fridge filters typically do not.',
+      },
+    ],
+    links: [
+      { href: '/water/los-angeles', label: 'Los Angeles water report' },
+      { href: '/water/phoenix', label: 'Phoenix water report' },
+      { href: '/blog/what-water-filter-removes-pfas', label: 'PFAS filter guide' },
+      { href: '/water-hardness?zip=92101', label: 'San Diego hardness lookup' },
+      { href: '/quiz', label: 'Find a San Diego filter' },
+    ],
+  },
 };
 
 // export async function generateStaticParams() {

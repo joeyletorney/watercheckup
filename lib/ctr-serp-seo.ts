@@ -9,19 +9,19 @@ export type CtrSerpCopy = {
 
 export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/water/gaithersburg': {
-    title: 'Is Gaithersburg Tap Water Safe? 2026 EPA Report | WaterCheckup',
+    title: 'Water Testing Gaithersburg MD — WSSC Tap & Well Tests (2026)',
     description:
-      'Free EPA report for Gaithersburg (WSSC Water) — PFAS levels, disinfection byproducts, violation history, and NSF-certified filter picks. No login required.',
+      'Need water testing in Gaithersburg? Free WSSC/EPA report for tap water, well water testing guidance, PFAS levels, and NSF-certified filter picks. No login.',
   },
   '/water/san-antonio': {
-    title: 'Is San Antonio Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
+    title: 'PFAS in San Antonio Water — Contamination & SAWS Report (2026)',
     description:
-      "San Antonio water has PFAS detections, DBP violations, and hard water concerns. Free EPA report — see exactly what's in your water and which filter fixes it.",
+      'San Antonio water contamination concerns: PFAS in UCMR5, hard Edwards Aquifer water, radium context, and DBPs. Free EPA report — see levels and filter fixes.',
   },
   '/water/raleigh': {
-    title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report | WaterCheckup',
+    title: 'Raleigh Water Quality 2026 — PFAS, GenX & THM Report',
     description:
-      'Free Raleigh water quality report — EPA violation history, PFAS data, lead risk, and NSF-certified filter recommendations from a 30-year water expert.',
+      'Wake County PFAS and GenX concerns, THM violations, and agricultural runoff in Raleigh tap water. Free EPA graded report and NSF filter picks.',
   },
   '/water/phoenix': {
     title: 'Phoenix Tap Water: C- Grade, Chromium-6 & PFAS',
@@ -69,9 +69,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Chromium-6 above CA health goals, PFAS in LADWP monitoring, 268 mg/L hardness. Free 2026 LA graded EPA report — no signup.',
   },
   '/water/philadelphia': {
-    title: 'Philadelphia Tap Water: D+ Grade — PFAS, Lead Lines & DBPs',
+    title: 'Philadelphia Water Quality — PFAS, Lead Lines & DBPs (2026)',
     description:
-      '16.1 ppt PFAS, lead service lines in ~25% of homes, Delaware River DBPs. Free 2026 Philly water report & NSF filter picks.',
+      'Philly tap water: PFAS from the Delaware River, lead service lines in ~25% of homes, and chloramine DBPs. Free EPA report and NSF filter picks.',
   },
   '/water/columbus': {
     title: 'Columbus OH Tap Water: PFAS MCL Violations — 2026 Report',
@@ -93,10 +93,20 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
     description:
       'Which PFAS compounds showed up in SAWS monitoring, how levels compare with EPA limits, and which NSF filters are built to remove them.',
   },
-  '/blog/best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead 2026 — 10 NSF Picks',
+  '/water/san-diego': {
+    title: 'San Diego Water Quality — PFAS, Hard Water & Chromium-6 (2026)',
     description:
-      '3 under-sink RO + 4 carbon + 3 pitcher options certified for lead. Expert-ranked by NSF 53/58 — not paid placement. Free ZIP check.',
+      'San Diego imports 85%+ of its water. See PFAS monitoring, hardness, chromium-6 context, and chloramine DBPs — free EPA report and filter picks.',
+  },
+  '/blog/best-water-filter-for-lead-removal': {
+    title: 'Best Water Filters for Lead Removal 2026 — 10 NSF-Certified Picks',
+    description:
+      'NSF 53/58 filters that remove lead at the tap — under-sink RO, carbon blocks, and pitchers ranked by certification, not paid placement.',
+  },
+  '/blog/best-water-filter-hard-water': {
+    title: 'Best Water Filters for Hard Water 2026 — Softener vs RO Guide',
+    description:
+      'Hard water fixes ranked: whole-house softeners for scale, RO for drinking water, and what actually removes minerals vs PFAS and lead.',
   },
   '/blog/what-water-filter-removes-pfas': {
     title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',

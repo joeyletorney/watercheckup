@@ -29,6 +29,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title: `ZIP ${params.zip} Water Quality — Check Tap Water | WaterCheckup`,
       description: `Free EPA tap water report for ZIP ${params.zip}. PFAS, lead, violations, and NSF filter picks — no signup.`,
       alternates: { canonical: `https://watercheckup.com/results/${params.zip}` },
+      robots: { index: false, follow: true },
     };
   }
   const displayScore = Math.min(typeof data.score === 'number' ? data.score : 0, 88);
@@ -47,6 +48,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `https://watercheckup.com/results/${params.zip}` },
+    robots: { index: false, follow: true },
     openGraph: {
       title,
       description,
