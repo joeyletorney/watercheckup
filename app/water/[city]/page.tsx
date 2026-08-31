@@ -344,6 +344,64 @@ const LOCAL_SEARCH_INTENT: Record<string, {
       { href: '/quiz', label: 'Find a San Diego filter' },
     ],
   },
+  'fairfax-county': {
+    eyebrow: 'FAIRFAX COUNTY WATER QUALITY',
+    title: 'Fairfax County water quality: PFAS, WSSC vs Fairfax Water',
+    intro:
+      'Fairfax County spans multiple public water systems — Fairfax Water, Falls Church, and WSSC zones in the eastern county. UCMR5 monitoring has flagged PFAS above federal limits in parts of Northern Virginia, which drives most "Fairfax County water quality" searches.',
+    sections: [
+      {
+        heading: 'PFAS in Fairfax County tap water',
+        body:
+          'Defense corridor and airport AFFF history contribute to PFAS signals across Northern Virginia. Check which PWSID serves your address — Fairfax Water and WSSC publish separate CCRs. NSF 58 reverse osmosis is the broadest kitchen treatment when PFAS is detected.',
+      },
+      {
+        heading: 'Fairfax vs WSSC water in Northern Virginia',
+        body:
+          'Eastern Fairfax addresses may be on WSSC (Potomac/Patuxent sources) while central and western Fairfax are often Fairfax Water. Contaminant profiles differ — search by ZIP on WaterCheckup rather than assuming one county-wide grade.',
+      },
+      {
+        heading: 'Filter picks for Fairfax County households',
+        body:
+          'Townhouse HOAs sometimes restrict exterior softeners. Under-sink RO or NSF P473 pitchers address PFAS and lead at fixtures without exterior equipment. Pair with a lab test if you are in pre-1986 construction.',
+      },
+    ],
+    links: [
+      { href: '/water/gaithersburg', label: 'Gaithersburg (WSSC) report' },
+      { href: '/water/washington-dc', label: 'Washington DC water report' },
+      { href: '/pfas', label: 'PFAS guide' },
+      { href: '/quiz', label: 'Find a Fairfax filter' },
+    ],
+  },
+  nashville: {
+    eyebrow: 'NASHVILLE WATER QUALITY',
+    title: 'Nashville water quality: PFAS, DBPs and Cumberland River data',
+    intro:
+      'Metro Nashville draws from the Cumberland River — a growing Sun Belt supply with PFAS monitoring signals, chloramine disinfection byproducts, and moderate hardness. Construction booms also mean main breaks and lead-at-the-tap risk in older neighborhoods.',
+    sections: [
+      {
+        heading: 'PFAS in Nashville tap water',
+        body:
+          'UCMR5 is the federal dataset for PFAS in Metro Nashville water. Post-2024 EPA limits mean even low detections matter for filter decisions. Reverse osmosis (NSF 58) or PFAS-certified pitchers outperform standard carbon for these compounds.',
+      },
+      {
+        heading: 'Chloramine and disinfection byproducts',
+        body:
+          'Nashville uses chloramine residual disinfection. DBPs form when chlorine/chloramine reacts with organic matter in river water. RO at the drinking tap removes THMs and HAAs more completely than fridge filters.',
+      },
+      {
+        heading: 'Lead risk after construction or main work',
+        body:
+          'Hydrant flushing and main replacement can disturb sediment and particulate lead in older plumbing. Flush taps after outages, test first-draw samples in pre-1986 homes, and use NSF 53/58 filtration if children are present.',
+      },
+    ],
+    links: [
+      { href: '/water/charlotte', label: 'Charlotte water report' },
+      { href: '/blog/best-water-filter-for-lead-removal', label: 'Best lead filters' },
+      { href: '/water-hardness?zip=37201', label: 'Nashville hardness lookup' },
+      { href: '/quiz', label: 'Find a Nashville filter' },
+    ],
+  },
 };
 
 // export async function generateStaticParams() {

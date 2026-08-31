@@ -5,8 +5,7 @@ import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsH
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { quizHrefFromReport, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
-import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
-import { clearlyFilteredDirectUrl, isClearlyFilteredProduct } from '@/lib/waterdrop-buy';
+import { resolveProductBuyLink } from '@/lib/product-buy-url';
 
 const TAG = 'watercheck20-20';
 
@@ -550,8 +549,10 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               {
                 key: 'waterdrop',
                 name: 'Waterdrop G3P600 RO',
+                brand: 'Waterdrop',
                 price: '~$439',
                 amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
+                directLink: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`,
                 reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
               },
               {
@@ -609,7 +610,14 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '2px solid rgba(8,145,178,0.35)', borderRadius: 12 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RECOMMENDED FOR YOUR WATER</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {picks.map(({ prod, badge, reason, highlight }) => (
+                  {picks.map(({ prod, badge, reason, highlight }) => {
+                    const buy = resolveProductBuyLink({
+                      name: prod.name,
+                      brand: 'brand' in prod ? prod.brand : undefined,
+                      amazon: prod.amazon,
+                      directLink: 'directLink' in prod ? prod.directLink : undefined,
+                    });
+                    return (
                     <div
                       key={prod.key}
                       style={{
@@ -643,19 +651,17 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                         <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{prod.price}</div>
                         <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>{reason}</p>
                         <a
-                          href={
-                            isClearlyFilteredProduct(prod.name)
-                              ? clearlyFilteredDirectUrl()
-                              : normalizeAmazonUrl(prod.amazon) ?? prod.amazon
-                          }
+                          href={buy.href}
                           target="_blank"
                           rel="noopener noreferrer sponsored"
                           style={{
                             display: 'inline-block',
                             padding: '8px 14px',
                             background: highlight
-                              ? isClearlyFilteredProduct(prod.name)
-                                ? 'linear-gradient(135deg,#059669,#10b981)'
+                              ? buy.destination === 'direct'
+                                ? /clearly/i.test(prod.name)
+                                  ? 'linear-gradient(135deg,#059669,#10b981)'
+                                  : 'linear-gradient(135deg,#0891b2,#06b6d4)'
                                 : 'linear-gradient(135deg,#0891b2,#06b6d4)'
                               : '#0d2240',
                             border: highlight ? 'none' : '1px solid #1a3a5c',
@@ -666,11 +672,12 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                             textDecoration: 'none',
                           }}
                         >
-                          {isClearlyFilteredProduct(prod.name) ? 'ClearlyFiltered.com →' : 'View on Amazon →'}
+                          {buy.label}
                         </a>
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 <button
                   type="button"
@@ -799,10 +806,12 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           {[
             {
               name: 'Waterdrop G3P600 RO',
+              brand: 'Waterdrop',
               badge: 'EDITORS PICK',
               price: '~$439',
               reason: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
               amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
+              directLink: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`,
               best: true,
             },
             {
@@ -815,13 +824,16 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             },
             {
               name: 'Clearly Filtered Pitcher',
+              brand: 'Clearly Filtered',
               badge: 'BEST NO-INSTALL',
               price: '~$90',
               reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. No plumbing needed.',
               amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`,
               best: false,
             },
-          ].map((f, i) => (
+          ].map((f, i) => {
+            const buy = resolveProductBuyLink(f);
+            return (
             <div key={i} style={{
               display: 'flex', gap: 14, alignItems: 'flex-start', padding: '16px 18px',
               background: f.best ? 'rgba(8,145,178,0.08)' : '#071828',
@@ -837,19 +849,17 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.reason}</div>
                 <a
-                  href={
-                    isClearlyFilteredProduct(f.name)
-                      ? clearlyFilteredDirectUrl()
-                      : normalizeAmazonUrl(f.amazon) ?? f.amazon
-                  }
+                  href={buy.href}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
                   style={{
                     display: 'inline-block',
                     padding: '8px 16px',
                     background: f.best
-                      ? isClearlyFilteredProduct(f.name)
-                        ? 'linear-gradient(135deg,#059669,#10b981)'
+                      ? buy.destination === 'direct'
+                        ? /clearly/i.test(f.name)
+                          ? 'linear-gradient(135deg,#059669,#10b981)'
+                          : 'linear-gradient(135deg,#0891b2,#06b6d4)'
                         : 'linear-gradient(135deg,#0891b2,#06b6d4)'
                       : '#0d2240',
                     border: f.best ? 'none' : '1px solid #1a3a5c',
@@ -860,11 +870,12 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                     textDecoration: 'none',
                   }}
                 >
-                  {isClearlyFilteredProduct(f.name) ? 'ClearlyFiltered.com →' : 'View on Amazon →'}
+                  {buy.label}
                 </a>
               </div>
             </div>
-          ))}
+            );
+          })}
           <div style={{ marginTop: 16, padding: '14px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10 }}>
             <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
               Not sure which is right for you?{' '}

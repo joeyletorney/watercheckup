@@ -84,7 +84,7 @@ export default function SanAntonioWaterPage() {
 
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
-          Is San Antonio Tap Water Safe? (2026)
+          PFAS in San Antonio Water — Quality Report (2026)
         </h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>

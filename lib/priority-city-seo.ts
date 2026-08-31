@@ -215,16 +215,17 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
 
 /** H1 copy for priority city pages — matches 2026 title-tag pattern */
 export const PRIORITY_CITY_H1: Record<string, string> = {
-  gaithersburg: 'Is Gaithersburg Tap Water Safe? (2026)',
-  'san-antonio': 'Is San Antonio Tap Water Safe? (2026)',
-  raleigh: 'Is Raleigh Tap Water Safe? (2026)',
+  gaithersburg: 'Water Testing in Gaithersburg, MD (2026)',
+  'san-antonio': 'PFAS in San Antonio Water — Quality Report (2026)',
+  raleigh: 'Raleigh Water Quality — PFAS, GenX & THMs (2026)',
   houston: 'Is Houston Tap Water Safe? (2026)',
-  baltimore: 'Is Baltimore Tap Water Safe? (2026)',
+  baltimore: 'Baltimore Water Quality & Lead Testing (2026)',
   chicago: 'Chicago Tap Water Quality 2026',
   phoenix: 'Phoenix Tap Water Quality 2026',
   'new-york': 'New York City Water Quality 2026',
   'los-angeles': 'Los Angeles Water Quality 2026',
-  philadelphia: 'Philadelphia Water Quality 2026',
+  philadelphia: 'Philadelphia Water Quality — PFAS & Lead (2026)',
+  'san-diego': 'San Diego Water Quality — PFAS & Hardness (2026)',
   'sugar-land': 'Sugar Land Water Quality 2026',
   miami: 'Miami Water Quality 2026',
   'fort-worth': 'Fort Worth Water Quality 2026',

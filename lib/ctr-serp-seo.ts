@@ -29,9 +29,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Phoenix water has very hard minerals, 7.4 ppt PFAS and chromium-6 above CA health goals. See the C- grade, contaminant table and filter picks.',
   },
   '/water/baltimore': {
-    title: 'Is Baltimore Tap Water Safe? 2026 Lead & PFAS Report | WaterCheckup',
+    title: 'Baltimore Water Quality — Lead, PFAS & City Testing (2026)',
     description:
-      'Baltimore has lead service line risk and PFAS concerns. Free EPA water quality report — violation history, lead risk by home age, and NSF-certified filter picks.',
+      'Baltimore city water testing context: lead at the tap in older rowhouses, PFAS monitoring, and NSF-certified filter picks.',
   },
   '/water/chicago': {
     title: 'Chicago Tap Water: B Grade — Lead Lines, PFAS & DBPs',
@@ -107,6 +107,26 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
     title: 'Best Water Filters for Hard Water 2026 — Softener vs RO Guide',
     description:
       'Hard water fixes ranked: whole-house softeners for scale, RO for drinking water, and what actually removes minerals vs PFAS and lead.',
+  },
+  '/blog/best-countertop-water-filter': {
+    title: 'Best Countertop Water Filters 2026 — RO & PFAS Picks (No Install)',
+    description:
+      'Top countertop RO and pitcher filters for renters: NSF 58/P473 picks that remove PFAS and lead without plumbing. Ranked by certification.',
+  },
+  '/rankings': {
+    title: 'Tap Water Quality Rankings by State 2026 — PFAS & Grades',
+    description:
+      'Compare all 50 states by PFAS violations and water quality grades. See which cities rank worst and open free EPA city reports.',
+  },
+  '/water/fairfax-county': {
+    title: 'Fairfax County Water Quality — PFAS & Northern VA Report (2026)',
+    description:
+      'Fairfax and Northern Virginia water: PFAS above EPA limits in UCMR5, WSSC vs Fairfax Water systems, and NSF filter picks.',
+  },
+  '/water/nashville': {
+    title: 'Nashville Water Quality 2026 — Cumberland River PFAS & DBPs',
+    description:
+      'Metro Nashville tap water: PFAS monitoring, chloramine DBPs, and construction-related lead risk. Free EPA graded report.',
   },
   '/blog/what-water-filter-removes-pfas': {
     title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',

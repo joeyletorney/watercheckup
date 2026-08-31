@@ -3,19 +3,23 @@ import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
 import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
+import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 
 const SLUG = 'best-water-filter-hard-water';
 const topPicks = resolveBlogTopPicks(SLUG);
 const topPicksSubtitle = getTopPicksSubtitle(SLUG, topPicks);
+const ctr = getCtrSerpOverride(`/blog/${SLUG}`);
 
 export const metadata: Metadata = {
-  title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked | WaterCheckup',
+  title: ctr?.title ?? 'Best Water Filter for Hard Water 2026 — Tested & Ranked | WaterCheckup',
   description:
+    ctr?.description ??
     'The best water filters for hard water in 2026. Softeners, RO systems, and pitchers that actually remove calcium, magnesium, and scale. NSF-certified picks for every budget.',
   alternates: { canonical: 'https://watercheckup.com/blog/best-water-filter-hard-water' },
   openGraph: {
-    title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked',
+    title: ctr?.title ?? 'Best Water Filter for Hard Water 2026 — Tested & Ranked',
     description:
+      ctr?.description ??
       'Hard water causing scale, dry skin, and spotted dishes? These NSF-certified filters and softeners actually fix it.',
   },
 };
