@@ -29,6 +29,7 @@ import {
   resolveAffiliateAmazonUrl,
   WATERDROP_DIRECT_BY_ID,
 } from '@/lib/waterdrop-buy';
+import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 
 const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleChart'), {
   ssr: false,
@@ -514,6 +515,9 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
     ? null
     : resolveAffiliateAmazonUrl(p.brand, isAmazonProductUrl(p.amazon) ? p.amazon : undefined);
 
+  const track = (destination: 'amazon' | 'direct' | 'brand') =>
+    trackAffiliateClick({ product: p.name, destination, page: 'home', brand: p.brand });
+
   const pad = block ? '11px 0' : '10px 20px';
   const flex = block ? 1 : undefined;
 
@@ -533,6 +537,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   if (isClearlyFiltered && clearlyUrl) {
     return (
       <a href={clearlyUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+        onClick={() => track('direct')}
         style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(5,150,105,0.45),rgba(16,185,129,0.3))', color: '#f1f5f9' }}>
         ClearlyFiltered.com →
       </a>
@@ -542,6 +547,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   if (brandUrl && !amazonUrl && !directUrl && !isClearlyFiltered) {
     return (
       <a href={brandUrl} target="_blank" rel="noopener noreferrer" className="wc-buy"
+        onClick={() => track('brand')}
         style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(217,119,6,0.35),rgba(245,158,11,0.2))', color: '#f1f5f9' }}>
         Brand site →
       </a>
@@ -559,6 +565,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   if (isWaterdrop && directUrl) {
     return (
       <a href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+        onClick={() => track('direct')}
         style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
         Waterdrop.com →
       </a>
@@ -567,6 +574,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
 
   return (
     <a href={amazonUrl || directUrl!} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
+      onClick={() => track('amazon')}
       style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 600, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#cbd5e1', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}>
       Amazon →
     </a>
@@ -828,8 +836,12 @@ function PFASAwarenessBanner() {
             <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> Limits and estimates describe population-level patterns. Your ZIP report shows what is on file for your public water system — use that as the practical next step.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer" style={{ padding: '5px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Best RO for PFAS →</a>
-            <a href="https://www.clearlyfiltered.com/products/filtered-water-pitcher" target="_blank" rel="noreferrer sponsored" style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher →</a>
+            <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer sponsored"
+              onClick={() => trackAffiliateClick({ product: 'Waterdrop RO', destination: 'direct', page: 'home', brand: 'Waterdrop' })}
+              style={{ padding: '5px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Best RO for PFAS →</a>
+            <a href={clearlyFilteredDirectUrl()} target="_blank" rel="noreferrer sponsored"
+              onClick={() => trackAffiliateClick({ product: 'Clearly Filtered Pitcher', destination: 'direct', page: 'home', brand: 'Clearly Filtered' })}
+              style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher →</a>
           </div>
         </div>
       </div>
@@ -865,8 +877,12 @@ function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number
           </p>
           {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#cbd5e1', lineHeight: 1.8 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
           <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href={`https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`} target="_blank" rel="noreferrer" style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P600 — PFAS &gt;99%</a>
-            <a href="https://www.clearlyfiltered.com/products/filtered-water-pitcher" target="_blank" rel="noreferrer sponsored" style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
+            <a href={`https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`} target="_blank" rel="noreferrer sponsored"
+              onClick={() => trackAffiliateClick({ product: 'Waterdrop G3P600', destination: 'direct', page: 'home', brand: 'Waterdrop' })}
+              style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P600 — PFAS &gt;99%</a>
+            <a href={clearlyFilteredDirectUrl()} target="_blank" rel="noreferrer sponsored"
+              onClick={() => trackAffiliateClick({ product: 'Clearly Filtered Pitcher', destination: 'direct', page: 'home', brand: 'Clearly Filtered' })}
+              style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
             <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: 'none', color: '#cbd5e1', fontSize: 13, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>{expanded ? 'Less ↑' : 'What are PFAS? ↓'}</button>
           </div>
         </div>
@@ -1287,7 +1303,9 @@ function ResourcesTab({ data }: { data: any }) {
         <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
           This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test from SimpleLab (Tap Score). Your municipal supply may be clean but your home&apos;s pipes could add lead or other contaminants.
         </p>
-        <a href={SIMPLELAB_HOME_URL} target="_blank" rel="noopener noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
+        <a href={SIMPLELAB_HOME_URL} target="_blank" rel="noopener noreferrer sponsored"
+          onClick={() => trackAffiliateClick({ product: 'SimpleLab Tap Score', destination: 'simplelab', page: 'home' })}
+          style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
       </div>
     </div>
   );
@@ -1357,13 +1375,18 @@ function FilterCompareTab() {
             <td style={{ padding: '12px 10px', position: 'sticky', left: 0, background: '#071525' }} />
             {prods.map(p => {
               const buyUrl =
-                isWaterdropBrand(p.brand) && WATERDROP_DIRECT_BY_ID[p.id]
+                isClearlyFilteredBrand(p.brand)
+                  ? clearlyFilteredDirectUrl(p.brandLink)
+                  : isWaterdropBrand(p.brand) && WATERDROP_DIRECT_BY_ID[p.id]
                   ? WATERDROP_DIRECT_BY_ID[p.id]!
                   : resolveAffiliateAmazonUrl(p.brand, p.amazon);
+              const buyDest = isClearlyFilteredBrand(p.brand) || isWaterdropBrand(p.brand) ? 'direct' : 'amazon';
               return (
               <td key={p.id} style={{ padding: '12px 10px', textAlign: 'center' }}>
                 {buyUrl ? (
-                  <a href={buyUrl} target="_blank" rel="noreferrer sponsored" style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
+                  <a href={buyUrl} target="_blank" rel="noreferrer sponsored"
+                    onClick={() => trackAffiliateClick({ product: p.name, destination: buyDest, page: 'home', brand: p.brand })}
+                    style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
                 ) : (
                   <span style={{ fontSize: 12, color: '#64748b' }}>—</span>
                 )}
@@ -1488,7 +1511,9 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
           {' '}to locate a state-certified lab near you.
         </p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
-          <a href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored" style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
+          <a href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored"
+            onClick={() => trackAffiliateClick({ product: 'SimpleLab Well Test', destination: 'simplelab', page: 'home' })}
+            style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
         </div>
         <div style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>

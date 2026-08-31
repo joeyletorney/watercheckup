@@ -9,6 +9,7 @@ import {
   resolveAffiliateAmazonUrl,
   waterdropDirectUrl,
 } from '@/lib/waterdrop-buy';
+import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 
 export type TrustedFilterProduct = {
   id: number;
@@ -66,12 +67,16 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     : undefined;
   const amazon = resolveAffiliateAmazonUrl(p.brand, p.amazon);
 
+  const track = (destination: 'amazon' | 'direct' | 'brand') =>
+    trackAffiliateClick({ product: p.name, destination, page: 'trusted-picks', brand: p.brand });
+
   if (isClearlyFilteredBrand(p.brand) && clearlyDirect) {
     return (
       <a
         href={clearlyDirect}
         target="_blank"
         rel="noopener noreferrer sponsored"
+        onClick={() => track('direct')}
         style={{
           fontSize: 12,
           fontWeight: 800,
@@ -93,6 +98,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
         href={direct}
         target="_blank"
         rel="noopener noreferrer sponsored"
+        onClick={() => track('direct')}
         style={{
           fontSize: 12,
           fontWeight: 800,
@@ -136,6 +142,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
           href={amazon}
           target="_blank"
           rel="noopener noreferrer sponsored"
+          onClick={() => track('amazon')}
           style={{
             fontSize: 12,
             fontWeight: 700,

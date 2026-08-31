@@ -4,6 +4,7 @@ import { getBlogTopPicksHeading } from '@/lib/blog-top-picks';
 import { lookupFilterProductImage } from '@/lib/filter-product-images';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { clearlyFilteredDirectUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
+import { AffiliateLink } from '@/components/AffiliateLink';
 
 type Props = {
   picks: TopPickRow[];
@@ -83,23 +84,31 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
               </div>
               <div className="wc-blog-top-picks__actions">
                 {showDirect ? (
-                  <a
+                  <AffiliateLink
                     href={directHref}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
+                    product={pick.product}
+                    destination="direct"
+                    page="blog"
+                    brand={pick.brand}
                     className={i === 0 ? 'wc-blog-top-picks__btn wc-blog-top-picks__btn--primary' : 'wc-blog-top-picks__btn wc-blog-top-picks__btn--secondary'}
                   >
                     {directLabel}
-                  </a>
+                  </AffiliateLink>
                 ) : (
-                  <a
+                  <AffiliateLink
                     href={normalizeAmazonUrl(pick.amazon) ?? pick.amazon}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
+                    product={pick.product}
+                    destination="amazon"
+                    page="blog"
+                    brand={pick.brand}
                     className="wc-blog-top-picks__btn wc-blog-top-picks__btn--primary"
                   >
                     Amazon →
-                  </a>
+                  </AffiliateLink>
                 )}
               </div>
             </div>

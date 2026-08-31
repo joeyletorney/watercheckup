@@ -6,6 +6,7 @@ import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { quizHrefFromReport, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { resolveProductBuyLink } from '@/lib/product-buy-url';
+import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 
 const TAG = 'watercheck20-20';
 
@@ -565,6 +566,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               {
                 key: 'pitcher',
                 name: 'Clearly Filtered Pitcher',
+                brand: 'Clearly Filtered',
                 price: '~$90',
                 amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`,
                 reasonDefault: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. No plumbing needed.',
@@ -654,6 +656,15 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                           href={buy.href}
                           target="_blank"
                           rel="noopener noreferrer sponsored"
+                          onClick={() =>
+                            trackAffiliateClick({
+                              product: prod.name,
+                              destination: buy.destination,
+                              page: 'results',
+                              brand: 'brand' in prod ? prod.brand : undefined,
+                              zip,
+                            })
+                          }
                           style={{
                             display: 'inline-block',
                             padding: '8px 14px',
@@ -852,6 +863,15 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                   href={buy.href}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
+                  onClick={() =>
+                    trackAffiliateClick({
+                      product: f.name,
+                      destination: buy.destination,
+                      page: 'results',
+                      brand: f.brand,
+                      zip,
+                    })
+                  }
                   style={{
                     display: 'inline-block',
                     padding: '8px 16px',

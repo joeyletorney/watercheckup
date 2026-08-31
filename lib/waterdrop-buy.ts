@@ -27,10 +27,26 @@ export function isClearlyFilteredProduct(label: string): boolean {
   return /clearly\s*filtered/i.test(label);
 }
 
+/** Append affiliate ref when NEXT_PUBLIC_CLEARLY_FILTERED_REF is set (after you join their program). */
+function appendClearlyFilteredAffiliate(url: string): string {
+  const code = process.env.NEXT_PUBLIC_CLEARLY_FILTERED_REF?.trim();
+  if (!code) return url;
+  const param = process.env.NEXT_PUBLIC_CLEARLY_FILTERED_REF_PARAM?.trim() || 'ref';
+  try {
+    const u = new URL(url);
+    if (!u.searchParams.has(param)) u.searchParams.set(param, code);
+    if (!u.searchParams.has('utm_source')) u.searchParams.set('utm_source', 'watercheckup');
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 /** Primary buy URL for Clearly Filtered picks (falls back to standard pitcher PDP). */
 export function clearlyFilteredDirectUrl(link?: string): string {
-  if (link && /clearlyfiltered\.com/i.test(link)) return link;
-  return CLEARLY_FILTERED_PITCHER_URL;
+  const base =
+    link && /clearlyfiltered\.com/i.test(link) ? link : CLEARLY_FILTERED_PITCHER_URL;
+  return appendClearlyFilteredAffiliate(base);
 }
 
 /** Returns undefined for direct-buy brands so UI uses brand site instead of Amazon. */
