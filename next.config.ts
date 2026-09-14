@@ -31,12 +31,26 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "*",
-        pathname: "/**",
-      }
-    ],
+      'images.unsplash.com',
+      'm.media-amazon.com',
+      'cdn.shopify.com',
+      'images.ctfassets.net',
+      'www.waterdropfilter.com',
+      'www.aquasana.com',
+      'www.epicwaterfilters.com',
+      'www.pur.com',
+      'shop.culligan.com',
+      'www.ispringwatersystems.com',
+      'www.expresswater.com',
+      'www.hquatech.com',
+      '123filter-com.b-cdn.net',
+      'flecksystems.com',
+      'cdn11.bigcommerce.com',
+    ].map((hostname) => ({
+      protocol: 'https' as const,
+      hostname,
+      pathname: '/**',
+    })),
   },
   /** Default 60s — many ZIP/city pages exceed that on 2-core Vercel builders and get SIGTERM. */
   // staticPageGenerationTimeout: 180,
