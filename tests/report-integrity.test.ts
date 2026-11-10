@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { decodePfasMonitoring } from '../lib/pfas-monitoring';
+import { decodePfasMonitoring, getPfasCoverageNotice } from '../lib/pfas-monitoring';
 import { getCityPfasData } from '../lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '../lib/city-pwsid';
 import { computeWaterScore } from '../lib/city-water-score';
@@ -12,6 +12,8 @@ import { buildCitiesWithPfasMclViolations } from '../lib/city-rankings';
 import robots from '../app/robots';
 import config from '../next.config';
 import sitemap from '../app/sitemap';
+import { computeZipWaterScore, findCityByResolvedPwsid } from '../lib/zip-water-score';
+import { buildWorstStatesRankings } from '../lib/worst-states-rankings';
 
 test('a regulated detection below its own benchmark is not an exceedance', () => {
   const value = decodePfasMonitoring([5.1, 0, [['PFHxS', 5.1, 1, 0]]])!;
@@ -132,4 +134,30 @@ test('state aliases do not shadow NYC, and excluded ZIP pages are absent from th
   assert.ok(Array.isArray(rewrites));
   assert.equal(rewrites.some(rule => rule.source === '/water/new-york'), false);
   assert.equal(sitemap().some(row => row.url.includes('/results/')), false);
+});
+
+test('metals affect an uncurated supplier index even without a hardness measurement', () => {
+  assert.equal(findCityByResolvedPwsid('MA1223000'), null);
+  const base = { pwsid: 'MA1223000', zip: '00000', openViolations: 0 };
+  const withoutMetals = computeZipWaterScore({ ...base, contaminants: [] });
+  const withMetals = computeZipWaterScore({ ...base, contaminants: [
+    { name: 'Arsenic', level: 5, limit: 10, unit: 'ppb', severity: 'moderate', note: 'Regression fixture', source: 'Test' },
+    { name: 'Radium (combined)', level: 4, limit: 5, unit: 'pCi/L', severity: 'moderate', note: 'Regression fixture', source: 'Test' },
+  ] });
+  assert.equal(withoutMetals.score - withMetals.score, 10);
+});
+
+test('worst-state summaries never choose an ungraded city', () => {
+  for (const row of buildWorstStatesRankings()) {
+    const city = CITIES[row.worstSlug];
+    assert.ok(city, row.stateAbbr);
+    const snapshot = getCityPfasData(resolveCityPwsid(row.worstSlug, city.pwsid, city.zip));
+    assert.notEqual(computeWaterScore(city.urgency, city.issues, snapshot).grade, '—', row.worstCityName);
+  }
+});
+
+test('the ZIP PFAS notice distinguishes missing coverage from no reportable detections', () => {
+  assert.match(getPfasCoverageNotice('unavailable').title, /unavailable/i);
+  assert.match(getPfasCoverageNotice(undefined).detail, /does not establish detection or nondetection/i);
+  assert.match(getPfasCoverageNotice('available').title, /no reportable.*listed/i);
 });

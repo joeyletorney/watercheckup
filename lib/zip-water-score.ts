@@ -70,14 +70,11 @@ export function computeZipWaterScore(params: {
   const issues = issuesFromZipSignals(contaminants, { hardnessMgL, openViolations, pfas });
   const arsenic = contaminants.find((c) => c.name === 'Arsenic')?.level;
   const radium = contaminants.find((c) => /radium/i.test(c.name))?.level;
-  const profile =
-    hardnessMgL != null
-      ? {
-          hardness: hardnessMgL,
-          ...(typeof arsenic === 'number' ? { arsenicPpb: arsenic } : {}),
-          ...(typeof radium === 'number' ? { radiumPciL: radium } : {}),
-        }
-      : undefined;
+  const profile = {
+    ...(typeof hardnessMgL === 'number' ? { hardness: hardnessMgL } : {}),
+    ...(typeof arsenic === 'number' ? { arsenicPpb: arsenic } : {}),
+    ...(typeof radium === 'number' ? { radiumPciL: radium } : {}),
+  };
 
   return computeWaterScore('medium', issues, pfas, {
     sdwaViolationCount: openViolations,

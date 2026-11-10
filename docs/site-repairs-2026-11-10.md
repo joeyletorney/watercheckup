@@ -42,7 +42,7 @@ This update implements the first repair pass from the website audit. It does not
 
 ## Validation
 
-- Twelve regression tests cover compound thresholds, exact-boundary behavior, lithium/hardness separation, source immutability, missing monitoring, supplier identity, score invariance under prose/hardness changes, unsupported percentile removal, crawler access, EPA outages, mixed measurement units, and routing/sitemap policy.
+- Fifteen regression tests cover compound thresholds, exact-boundary behavior, lithium/hardness separation, source immutability, missing monitoring, supplier identity, score invariance under prose/hardness changes, unsupported percentile removal, crawler access, EPA outages, mixed measurement units, and routing/sitemap policy.
 - TypeScript and the full optimized production build pass.
 - Local production HTTP checks cover robots.txt, sitemap.xml, distinct NYC/state routes, Philadelphia, Parkersburg, Sugar Land, the revised NYC article, invalid cities, and invalid ZIPs.
 - No real newsletter emails or claim submissions were sent during validation.
@@ -55,3 +55,5 @@ This update implements the first repair pass from the website audit. It does not
 - Mobile visual appearance and field Core Web Vitals have not been measured; HTTP checks and source changes are not a browser usability test.
 - Vercel security-checkpoint policy and the unusual Search Console impression pattern are not resolved by these code changes.
 - The pre-existing city-page additions were preserved and integrated where needed. The separate outreach log and priority-planning document are left outside this repair commit.
+
+Before production deployment, the preview review identified and we corrected three additional edge cases: metals deductions without a hardness measurement, ungraded-city selection in worst-state summaries, and the ZIP PFAS tab’s missing-coverage message. Regression tests cover each case.

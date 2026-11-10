@@ -7,6 +7,7 @@ import { quizHrefFromReport, shouldEmphasizeLabTest } from '@/lib/results-quiz-l
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { resolveProductBuyLink } from '@/lib/product-buy-url';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
+import { getPfasCoverageNotice } from '@/lib/pfas-monitoring';
 
 const TAG = 'watercheck20-20';
 
@@ -236,6 +237,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
   const cappedScore = CAP_SCORE(data.score);
   const sc = data.scoreColor || SCORE_COLOR(cappedScore);
   const letterGrade = data.grade || '—';
+  const pfasNotice = getPfasCoverageNotice(data.pfasCoverage);
   const scoreLabel = data.scoreLabel || SCORE_LABEL(cappedScore);
   const quizHref = quizHrefFromReport({
     zip,
@@ -741,12 +743,11 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div>
           <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>PFAS MONITORING — EPA UCMR5 (2023–2025)</div>
-            {data.pfasCount === 0 ? (
+            {data.pfasCoverage !== 'available' || data.pfasCount === 0 ? (
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                <span style={{ fontSize: 24 }}>✅</span>
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#22d3ee' }}>No PFAS detected</div>
-                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4 }}>All 29 PFAS compounds tested below detection limits for this water system.</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#cbd5e1' }}>{pfasNotice.title}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4 }}>{pfasNotice.detail}</div>
                 </div>
               </div>
             ) : (

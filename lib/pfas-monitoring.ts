@@ -16,6 +16,13 @@ export type MonitoringSnapshot = {
   hardness?: never;
 };
 
+/** Missing monitoring and a record with no reportable detections are different states. */
+export function getPfasCoverageNotice(coverage: unknown) {
+  return coverage === 'available'
+    ? { title: 'No reportable PFAS detections listed', detail: 'This packaged record lists no reportable detections. It does not establish that every compound is absent or that your household tap was tested.' }
+    : { title: 'PFAS monitoring coverage unavailable', detail: 'This packaged snapshot has no matching monitoring record. Missing coverage does not establish detection or nondetection. Check your supplier’s current report.' };
+}
+
 export function decodePfasMonitoring(entry: unknown): MonitoringSnapshot | null {
   if (!Array.isArray(entry) || !Array.isArray(entry[2])) return null;
   const compounds: PfasCompound[] = entry[2]
