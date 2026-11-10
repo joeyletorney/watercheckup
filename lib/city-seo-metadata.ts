@@ -1,9 +1,7 @@
-import type { Metadata } from 'next';
 import { getCtrSerpOverride } from './ctr-serp-seo';
+import type { Metadata } from 'next';
 import {
   computeCityWaterScore,
-  formatPrioritySeoDescription,
-  formatPrioritySeoTitle,
   type CityPfasSnapshot,
   type ScoreWaterProfile,
 } from './city-water-score';
@@ -33,22 +31,19 @@ export function buildCityPageMetadata(
 ): Metadata {
   const ws = computeCityWaterScore(city, pfas);
   const canonical = `https://watercheckup.com/water/${slug}`;
-  const ctr = getCtrSerpOverride(`/water/${slug}`);
 
-  const title = ctr
-    ? ctr.title
-    : prioritySeo?.title
-      ? formatPrioritySeoTitle(prioritySeo.title, ws.grade, ws.score)
-      : buildDefaultCitySeoTitle(city.name);
-  const description = ctr
-    ? ctr.description
-    : prioritySeo
-      ? formatPrioritySeoDescription(prioritySeo.description, ws.grade, ws.score)
-      : buildDefaultCitySeoDescription(city.name);
+  const existingTitle = getCtrSerpOverride(`/water/${slug}`)?.title ?? prioritySeo?.title;
+  // Preserve useful local search wording, but do not keep hand-written grades or concentrations.
+  const title = existingTitle && !/\d[\d.,]*\s*ppt|\bgrade\b|\/88|\b[A-F][+-]?\s*[·—]/i.test(existingTitle)
+    ? existingTitle
+    : `${city.name} Tap Water — PFAS, Lead & EPA Report`;
+  const description = !pfas
+    ? `${city.name} supplier information and household plumbing context. Historical PFAS coverage is incomplete; check official sources before choosing a test or filter.`
+    : `${city.name}: ${pfas.compounds.length} PFAS compounds listed in our historical snapshot; ${pfas.violations} peaks above April 2024 benchmarks. Sources, limitations, and next steps.`;
   const ogQuery = `city=${encodeURIComponent(city.name + ', ' + city.state)}&score=${ws.score}&grade=${encodeURIComponent(ws.grade)}&violations=${pfas?.violations ?? 0}`;
 
   return {
-    title,
+    title: { absolute: `${title.replace(/\s*\|\s*WaterCheckup/g, '')} | WaterCheckup` },
     description,
     alternates: { canonical },
     openGraph: {

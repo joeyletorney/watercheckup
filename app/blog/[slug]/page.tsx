@@ -193,18 +193,18 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           );
         })()}
 
-        <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />
-
         <div className="wc-reading-prose" style={{ fontSize: 16 }}>
           {post.content}
         </div>
+
+        <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />
 
         {(params.slug === 'best-water-filter-for-lead-removal' ||
           params.slug === 'what-water-filter-removes-pfas') && (
           <NewsletterSignup
             source={`blog-${params.slug}`}
-            title="Get alerts when EPA data changes for your ZIP"
-            description="Weekly digest: new PFAS readings, violations, and boil-water notices — matched to your area."
+            title="Get practical water treatment guidance"
+            description="General weekly guidance on water quality, testing, and filter maintenance."
             compact
             variant="light"
           />

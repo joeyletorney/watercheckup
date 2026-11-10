@@ -18,12 +18,7 @@ function maxRegulatedPpt(compounds: [string, number, number, number][]): number 
 }
 
 /** UCMR5-shaped PFAS snapshot used for city score + SEO */
-export type CityPfasSnapshot = {
-  maxPpt: number;
-  violations: number;
-  compounds: [string, number, number, number][];
-  hardness?: number;
-} | null;
+export type CityPfasSnapshot = import('./pfas-monitoring').MonitoringSnapshot | null;
 
 /** Optional CCR fields — when set, apply health-guideline penalties even under EPA MCLs */
 export type ScoreWaterProfile = {
@@ -39,15 +34,6 @@ export type WaterScoreResult = {
   label: string;
   scoreColor: string;
 };
-
-/** Hardness (mg/L as CaCO3) — quality-of-life + plumbing; not an EPA health violation by itself */
-function hardnessPenalty(mgL: number): number {
-  if (mgL < 60) return 0;
-  if (mgL < 120) return 2;
-  if (mgL < 180) return 5;
-  if (mgL < 250) return 9;
-  return 12;
-}
 
 /** EWG-style health guideline layer for metals in CCR data (independent of EPA MCL compliance) */
 function ccrHealthPenalty(profile?: ScoreWaterProfile): number {
@@ -65,28 +51,6 @@ function ccrHealthPenalty(profile?: ScoreWaterProfile): number {
     else penalty += 3;
   }
   return Math.min(penalty, 10);
-}
-
-function resolveHardnessMgL(profile?: ScoreWaterProfile, pfasData?: CityPfasSnapshot | null): number | undefined {
-  if (profile?.hardness != null && Number.isFinite(profile.hardness)) return profile.hardness;
-  const ucmr = pfasData?.hardness;
-  if (ucmr != null && ucmr >= 40) return ucmr;
-  return undefined;
-}
-
-/** Editorial issue tags — capped; complements structured CCR/PFAS penalties */
-function profilePenalty(issues: string[]): number {
-  if (!issues.length) return 0;
-  const blob = issues.join(' ').toLowerCase();
-  let penalty = 0;
-  if (/lead|service line|lsl/i.test(blob)) penalty += 6;
-  if (/chromium|cr-?6/i.test(blob)) penalty += 5;
-  if (/pfas|pfoa|pfos/i.test(blob)) penalty += 3;
-  if (/thm|tthm|halo|byproduct|dbp|disinfection/i.test(blob)) penalty += 3;
-  if (/arsenic|radium|nitrate|dioxane|uranium|radon/i.test(blob)) penalty += 3;
-  if (/hard\s*water|hardness|high mineral/i.test(blob)) penalty += 2;
-  if (/sodium|chloramine|fluoride/i.test(blob)) penalty += 1;
-  return Math.min(penalty, 8);
 }
 
 function presentationFromGrade(grade: string): Pick<WaterScoreResult, 'gradeColor' | 'label' | 'scoreColor'> {
@@ -122,7 +86,7 @@ export function concernLevelFromScore(score: number): 'high' | 'medium' | 'low' 
 }
 
 export type ComputeWaterScoreOptions = {
-  /** Open SDWIS violation count — penalizes only violations not already counted in UCMR PFAS violations */
+  /** Official open SDWIS records; historical PFAS peaks are a separate signal. */
   sdwaViolationCount?: number;
   waterProfile?: ScoreWaterProfile;
 };
@@ -149,35 +113,30 @@ export function computeCityWaterScore(
  * Water Safety Score: 0 (worst) → 88 (best — no municipal supply is perfect).
  *
  * Philosophy (closer to EWG + real-world use than EPA-compliance-only):
- * - A range (~80–88): few detections, soft/moderate water, no MCL violations
- * - B range: notable hardness or PFAS detections, still compliant
- * - C range: multiple concern signals (hard water + PFAS + metals above health guidelines)
- * - D/F: MCL violations, heavy PFAS, or many stacked risks
+ * - A range (~80–88): few detections and no supplied official violation records
+ * - B range: PFAS detections or measured health-related concerns
+ * - C range: multiple measured concerns
+ * - D/F: higher historical PFAS results or supplied official violation records
  *
  * EWG does not publish letter grades — it lists contaminants above its health guidelines.
  */
 export function computeWaterScore(
   _urgency: 'high' | 'medium' | 'low',
-  issues: string[],
+  _issues: string[],
   pfasData: CityPfasSnapshot,
   opts?: ComputeWaterScoreOptions
 ): WaterScoreResult {
+  if (!pfasData) return { score: 0, grade: '—', gradeColor: '#94a3b8', label: 'Monitoring coverage incomplete', scoreColor: '#94a3b8' };
   let score = 88;
   const profile = opts?.waterProfile;
 
-  if (pfasData) {
+  {
     const violations = pfasData.violations ?? 0;
     if (violations > 0) {
       score -= Math.min(8 * violations, 24);
     }
 
-    const mclFlags = pfasData.compounds.filter(([, , overEpa]) => overEpa > 0).length;
-    if (mclFlags > 0 && violations === 0) {
-      score -= Math.min(10 + mclFlags * 3, 20);
-    }
-
     const regMax = maxRegulatedPpt(pfasData.compounds);
-    const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
 
     if (violations === 0 && pfasData.compounds.length > 0) {
       if (regMax > 50) score -= 10;
@@ -191,9 +150,9 @@ export function computeWaterScore(
       else score -= 3;
 
       if (pfasData.compounds.length > 3) score -= 4;
-      if (overHealth) score -= 8;
+
     } else if (violations > 0) {
-      if (overHealth) score -= 8;
+
       if (pfasData.maxPpt > 200) score -= 12;
       else if (pfasData.maxPpt > 100) score -= 8;
       else if (pfasData.maxPpt > 40) score -= 5;
@@ -201,17 +160,8 @@ export function computeWaterScore(
   }
 
   const sdwa = opts?.sdwaViolationCount ?? 0;
-  const pfasViol = pfasData?.violations ?? 0;
-  const extraSdwa = Math.max(0, sdwa - pfasViol);
-  if (extraSdwa > 0) {
-    score -= Math.min(6 * extraSdwa, 18);
-  }
-
-  const hardnessMgL = resolveHardnessMgL(profile, pfasData);
-  if (hardnessMgL != null) score -= hardnessPenalty(hardnessMgL);
-
+  if (sdwa > 0) score -= Math.min(6 * sdwa, 18);
   score -= ccrHealthPenalty(profile);
-  score -= profilePenalty(issues);
 
   return waterScoreResult(score);
 }
@@ -232,10 +182,9 @@ export function getCityKeyFinding(
   issues: string[],
   pfasData: CityPfasSnapshot
 ): string {
-  if (pfasData?.violations && pfasData.violations > 0) return 'PFAS Above EPA Limit';
+  if (pfasData?.violations && pfasData.violations > 0) return 'Historical PFAS Peak Above Benchmark';
   if (pfasData?.compounds?.length) {
-    const overHealth = pfasData.compounds.some(([, , , oh]) => oh > 0);
-    if (overHealth) return 'PFAS Above Health Guidelines';
+
     return 'PFAS Detected';
   }
 
@@ -253,6 +202,7 @@ export function getCityKeyFinding(
 
 /** Appends (grade · score) to priority titles when room allows — visible in SERPs on page 2–3. */
 export function formatPrioritySeoTitle(title: string, grade: string, score?: number): string {
+  if (grade === '—') return title;
   if (/grade\s*[A-F]/i.test(title) || /\d+\/88/.test(title)) return title;
   const suffix = score != null ? ` (${grade} · ${score}/88)` : ` (${grade})`;
   if (title.length + suffix.length <= 62) return title + suffix;
@@ -266,6 +216,7 @@ export function formatPrioritySeoDescription(
   grade: string,
   score?: number
 ): string {
+  if (grade === '—') return 'Historical monitoring coverage is incomplete. Confirm the supplier and current utility report; missing records do not establish nondetection.';
   const cleaned = description.replace(/^[A-F][+-]?\s+grade:\s*/i, '').trim();
   const scoreBit = score != null ? ` (${grade} · ${score}/88)` : ` (${grade})`;
   const freeBit = /no signup|free report|free ·/i.test(cleaned) ? '' : ' Free EPA report · no signup.';

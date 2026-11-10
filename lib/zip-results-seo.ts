@@ -14,11 +14,11 @@ export function buildZipResultsTitle(input: ZipReportSeoInput): string {
   const city = input.city?.split(',')[0]?.trim() || `ZIP ${input.zip}`;
   const score = Math.min(Math.max(0, Math.round(Number(input.score) || 0)), 88);
   const grade = input.grade?.trim();
-  if (grade && score > 0) {
+  if (grade && grade !== '—' && score > 0) {
     const base = `${city} Tap Water 2026 — Grade ${grade} (${score}/88)`;
     return base.length <= 62 ? base : `${city} Water Report — ${grade} · ${score}/88`;
   }
-  return `${city} Water Quality Report — Score ${score}/88 | WaterCheckup`;
+  return `${city} Water Report — Monitoring Coverage & Sources`;
 }
 
 export function buildZipResultsDescription(input: ZipReportSeoInput): string {

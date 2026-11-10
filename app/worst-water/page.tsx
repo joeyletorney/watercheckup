@@ -7,7 +7,7 @@ import ucmr5Raw from '../../lib/ucmr5.json';
 
 export const metadata: Metadata = {
   title: 'Most PFAS-Contaminated Water Systems in America (EPA Data 2026) | WaterCheckup',
-  description: 'Ranked list of the 50 US water systems with the highest PFAS contamination detected by the EPA UCMR5 monitoring program. Real ppt readings, MCL violations, and affected populations.',
+  description: 'Ranked list of the 50 US water systems with the highest PFAS contamination detected by the EPA UCMR5 monitoring program. Real ppt readings, historical peaks above benchmarks, and affected populations.',
   alternates: { canonical: 'https://watercheckup.com/worst-water' },
   openGraph: {
     title: '50 Most PFAS-Contaminated Water Systems in America — EPA Data',
@@ -44,7 +44,7 @@ function getRankedSystems() {
     .map(([id, d]) => {
       const state = id.substring(0, 2);
       const worstCompound = [...d[2]].sort((a, b) => b[1] - a[1])[0];
-      const regulatedViolations = d[2].filter(([name,, overEPA]) => overEPA === 1 && EPA_MCL[name] !== undefined);
+      const regulatedViolations = d[2].filter(([name,,, overEPA]) => overEPA === 1 && EPA_MCL[name] !== undefined);
       const timesOverLimit = worstCompound && EPA_MCL[worstCompound[0]]
         ? (worstCompound[1] / EPA_MCL[worstCompound[0]]).toFixed(0)
         : null;
@@ -96,7 +96,7 @@ export default async function WorstWaterPage() {
           {/* Key stats */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 64 }}>
             {[
-              { label: 'Systems with MCL violations', value: '800+' },
+              { label: 'Systems with historical peaks above benchmarks', value: '800+' },
               { label: 'People served by top 50 worst systems', value: totalPeopleAffected },
               { label: 'EPA MCL for PFOA / PFOS', value: '4 ppt' },
             ].map(({ label, value }) => (
@@ -150,7 +150,7 @@ export default async function WorstWaterPage() {
                         {sys.stateName}
                       </span>
                       <span style={{ fontSize: 13, padding: '2px 8px', background: `${rankColor}15`, border: `1px solid ${rankColor}40`, borderRadius: 4, color: rankColor, fontWeight: 700 }}>
-                        {sys.violations} MCL violation{sys.violations !== 1 ? 's' : ''}
+                        {sys.violations} historical peak above benchmark{sys.violations !== 1 ? 's' : ''}
                       </span>
                     </div>
                     <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.5 }}>
@@ -186,7 +186,7 @@ export default async function WorstWaterPage() {
             },
             {
               q: 'Does this mean the water is unsafe to drink?',
-              a: 'If your water system is on this list with active MCL violations, the EPA requires the public water system to notify customers and take remediation steps. In the meantime, a certified reverse osmosis filter is the only technology independently proven to remove PFAS to safe levels at the tap. Standard Brita-style pitchers do not remove PFAS effectively.'
+              a: 'If your water system is on this list with active historical peaks above benchmarks, the EPA requires the public water system to notify customers and take remediation steps. In the meantime, a certified reverse osmosis filter is the only technology independently proven to remove PFAS to safe levels at the tap. Standard Brita-style pitchers do not remove PFAS effectively.'
             },
             {
               q: 'Why are some PFAS compounds not shown as violations even at high levels?',

@@ -367,7 +367,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'Just 4 drops dissolved into 13 million gallons of water — and that\'s already at the legal limit. PFAS are dangerous at these near-undetectable concentrations because they accumulate in your body over a lifetime and never break down.'
       ),
       React.createElement('p', { style: pStyle },
-        'To put contamination numbers in perspective: Parkersburg, West Virginia tested at 179 ppt PFOA — 44 times the EPA limit. That\'s like 44 drops per Olympic pool instead of the allowed fraction of a drop. The Cape Fear system in North Carolina hit 490 ppt PFOS — 122 times the limit. These are real communities with real people drinking this water every day.'
+        'Always identify the supplier and statistic before comparing concentrations. Parkersburg Utility Board and nearby Lubeck PSD are separate systems. A historical individual peak is not a household exposure measurement or an official finding of noncompliance; consult the supplier’s current report and EPA source data.'
       ),
 
       React.createElement('h3', { style: h3Style }, '🥤 Nitrates: 10 ppm — the EPA limit'),

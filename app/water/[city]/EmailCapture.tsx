@@ -72,12 +72,12 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
     if (status === 'success') return <span style={{ fontSize: 13, color: '#4ade80', fontWeight: 700 }}>✓ You&apos;re on the list</span>;
     return (
       <>
-        <input type="email" placeholder="your@email.com" value={email}
+        <input type="email" aria-label="Email address for the weekly newsletter" placeholder="your@email.com" value={email}
           onChange={e => setEmail(e.target.value)} onKeyDown={e => e.key === 'Enter' && submit()}
           style={{ flex: '1 1 180px', minWidth: 0, padding: '7px 12px', background: 'rgba(4,22,48,0.9)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#f1f5f9', fontSize: 13, outline: 'none' }} />
         <button onClick={submit} disabled={status === 'loading'}
           style={{ padding: '7px 16px', borderRadius: 8, border: 'none', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 13, fontWeight: 800, cursor: status === 'loading' ? 'not-allowed' : 'pointer', flexShrink: 0 }}>
-          {status === 'loading' ? '…' : 'Notify me'}
+          {status === 'loading' ? '…' : 'Subscribe'}
         </button>
         {status === 'error' && msg && <span style={{ fontSize: 13, color: '#f87171' }}>{msg}</span>}
       </>
@@ -90,7 +90,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
         <div style={{ fontSize: 20, marginBottom: 6 }}>✅</div>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#4ade80', marginBottom: 4 }}>You&apos;re in.</div>
         <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
-          We&apos;ll email you when new PFAS or contamination data drops for {displayName}. Check your inbox for a welcome note.
+          You are subscribed to our general weekly water treatment newsletter. This is not a live local contamination-alert service.
         </p>
       </div>
     );
@@ -102,22 +102,14 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
         STAY INFORMED
       </div>
       <div style={{ fontSize: 16, fontWeight: 700, color: '#f1f5f9', marginBottom: 6 }}>
-        {isState
-          ? `Get water quality alerts for ${displayName}`
-          : isUtility
-            ? `Get water quality alerts for ${displayName}`
-            : `Get ${displayName} water alerts`}
+        Weekly water treatment newsletter
       </div>
       <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 22px', lineHeight: 1.6 }}>
-        {isState
-          ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect public water systems in ${displayName}. One email, no spam, unsubscribe any time.`
-          : isUtility
-            ? `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts affect ${displayName}${utilityScope!.pwsid ? ` (PWS ${utilityScope!.pwsid})` : ''}. One email, no spam, unsubscribe any time.`
-            : `We&apos;ll notify you when new PFAS data, EPA violations, or contamination alerts drop for ${displayName}. One email, no spam, unsubscribe any time.`}
+        Practical guidance on water testing, filtration, and maintenance. One general email per week; this does not monitor local emergencies.
       </p>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <input
-          type="email"
+          type="email" aria-label="Email address for the weekly newsletter"
           placeholder="your@email.com"
           value={email}
           onChange={e => setEmail(e.target.value)}
@@ -139,7 +131,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
             whiteSpace: 'nowrap',
           }}
         >
-          {status === 'loading' ? 'Sending...' : 'Notify me →'}
+          {status === 'loading' ? 'Sending...' : 'Subscribe →'}
         </button>
       </div>
       {status === 'error' && msg && (

@@ -1,3 +1,4 @@
+import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -9,7 +10,7 @@ import { getAverageHardnessForState } from '@/lib/water-hardness';
 import { computeCityWaterScore } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
-// UCMR5: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?]
+// UCMR5: [maxPFASppt, regulatedViolations, [[name, level, hasBenchmark, aboveBenchmark], ...], lithiumUgL?]
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
 const STATE_NAMES: Record<string, string> = {
@@ -34,10 +35,7 @@ SLUG_TO_STATE['washington-dc'] = 'DC';
 SLUG_TO_STATE['dc'] = 'DC';
 
 function getPfasData(pwsid: string) {
-  const entry = UCMR5[pwsid];
-  if (!entry) return null;
-  const [maxPpt, violations, compounds, hardness] = entry;
-  return { maxPpt, violations, compounds, hardness };
+  return getCityPfasData(pwsid);
 }
 
 /** Parse labels like "2.7M", "8.3M", "120K" for sorting. */
@@ -59,12 +57,13 @@ function parsePopulation(pop: string): number {
 function isAtRiskFromUcmr(pfas: ReturnType<typeof getPfasData>): boolean {
   if (!pfas) return false;
   if (pfas.violations > 0) return true;
-  return pfas.compounds.some(([, , overEpa]) => overEpa > 0);
+  return pfas.compounds.some(([, , , overEpa]) => overEpa > 0);
 }
 
 type Band = 'at_risk' | 'safe' | 'monitor';
 
 function cityRiskBand(cd: (typeof CITIES)[string], pfas: ReturnType<typeof getPfasData>): Band {
+  if (!pfas) return 'monitor';
   if (isAtRiskFromUcmr(pfas)) return 'at_risk';
   if (cd.urgency === 'low') return 'safe';
   return 'monitor';
@@ -77,7 +76,7 @@ function buildStateRows(stateAbbr: string) {
       const pfas = getPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
       const { grade, gradeColor } = computeCityWaterScore(cd, pfas);
       const contaminantsAboveLimit = pfas
-        ? pfas.compounds.filter(([, , overEpa]) => overEpa > 0).length
+        ? pfas.compounds.filter(([, , , overEpa]) => overEpa > 0).length
         : 0;
       const band = cityRiskBand(cd, pfas);
       const popN = parsePopulation(cd.population);

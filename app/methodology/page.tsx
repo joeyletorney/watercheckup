@@ -37,7 +37,7 @@ export default function MethodologyPage() {
           <span style={tag}>SOURCE 1</span>
           <span style={{ fontSize: 14, fontWeight: 800, color: '#0f172a' }}>EPA SDWIS — Safe Drinking Water Information System</span>
           <p style={{ margin: '10px 0 0' }}>
-            SDWIS is the EPA's master registry of roughly 150,000+ community water systems in the United States (plus smaller non-community systems). It tracks every reported violation — health-based, monitoring, and reporting — along with enforcement actions, penalties, and compliance status. We query SDWIS live for every ZIP search so you always see the most current violation record on file. A "violation" means a public water system exceeded an EPA limit or failed to properly test and report. Most violations are monitoring failures (late or missing tests), but health-based violations for things like PFAS, nitrates, or disinfection byproducts are the ones that matter most.
+            SDWIS is the EPA's master registry of public drinking-water systems in the United States, including community and non-community systems. It tracks every reported violation — health-based, monitoring, and reporting — along with enforcement actions, penalties, and compliance status. We request SDWIS records and cache successful lookups for up to an hour. Failed violation requests return an availability error instead of a clean history. A "violation" means a public water system exceeded an EPA limit or failed to properly test and report. Most violations are monitoring failures (late or missing tests), but health-based violations for things like PFAS, nitrates, or disinfection byproducts are the ones that matter most.
           </p>
           <p style={{ fontSize: 13, color: '#64748b', margin: '8px 0 0' }}>
             Source: <a href="https://echo.epa.gov/" target="_blank" rel="noreferrer">EPA ECHO / SDWIS public API</a>
@@ -96,19 +96,19 @@ export default function MethodologyPage() {
         {/* ── SCORE ── */}
         <h2 >How the Water Quality Score is calculated</h2>
         <p >
-          Every city and ZIP report includes a Water Safety Score from 0–88 and a letter grade (A–F). The score blends EPA compliance with real-world concerns — hardness, PFAS detections, and contaminants above independent health guidelines (similar in spirit to the <a href="https://www.ewg.org/tapwater/" target="_blank" rel="noreferrer">EWG Tap Water Database</a>, which does <em>not</em> publish letter grades). It is not a lab test result and it is not a medical assessment.
+          The 0–88 WaterCheckup index summarizes available historical monitoring; it is not an EPA grade, a medical assessment, or a household tap test. We separate taste and scale information from health-related measurements. A missing PFAS record is a coverage gap, not evidence that PFAS is absent. Historical UCMR5 peaks above comparison benchmarks do not determine legal compliance.
         </p>
         <h3 >Starting point</h3>
-        <p >No public municipal water supply scores above 88. Even clean supplies have chlorine, disinfection byproducts, and trace detections federal testing does not fully capture.</p>
+        <p >The index starts at 88 by convention. The maximum is not a scientific threshold and does not certify water as safe.</p>
         <h3 >Deductions</h3>
-        <p >Points are deducted for: open SDWIS violations; PFAS above EPA MCLs; any PFAS detection; very hard water (plumbing, taste, appliances); arsenic or radium above EWG-style health guidelines even when under EPA legal limits; and profile issues such as lead risk or disinfection byproducts. Meeting EPA limits alone does not earn an A — systems with hardness, PFAS, or metals flagged in the CCR are scored down accordingly.</p>
+        <p >The index deducts up to 24 points for the count of historical compound peaks above April 2024 benchmarks (8 per compound), plus a magnitude adjustment of 5–12 points for higher historical peaks. With detections but no peak above those benchmarks, the deduction is 3–10 points plus 4 for more than three compounds. Separately supplied open SDWIS records deduct up to 18 points (6 per record). Sourced arsenic and radium profiles may deduct up to 10 points against clearly labeled independent guidelines. The result is rounded and bounded to 0–88. Hardness and editorial wording never change it. We no longer publish a national percentile without an empirical comparison population. No score is a determination of compliance; missing monitoring is labeled explicitly.</p>
         <h3 >Grade bands (0–88 scale)</h3>
         <div style={{ marginBottom: 20 }}>
-          {[['A', '80–88', 'Compliant, soft/moderate hardness, few or no PFAS detections.', '#22d3ee'],
-            ['B', '70–79', 'Compliant but hard water and/or PFAS detected — filter often recommended.', '#86efac'],
-            ['C', '60–69', 'Multiple concern signals (e.g. very hard + PFAS + metals above health guidelines).', '#f59e0b'],
-            ['D', '50–59', 'PFAS MCL issues, repeated violations, or stacked risks.', '#f87171'],
-            ['F', '0–49', 'Serious ongoing violations or heavy PFAS above EPA limits.', '#ef4444'],
+          {[['A', '80–88', 'Few concern signals in available records; verify coverage.', '#22d3ee'],
+            ['B', '70–79', 'Historical detections or other measured concern signals.', '#86efac'],
+            ['C', '60–69', 'Multiple historical or measured concern signals.', '#f59e0b'],
+            ['D', '50–59', 'Higher historical results or supplied violation records.', '#f87171'],
+            ['F', '0–49', 'Larger deductions in the available monitoring; verify sources.', '#ef4444'],
           ].map(([grade, range, desc, color]) => (
             <div key={grade as string} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', marginBottom: 8 }}>
               <div style={{ width: 32, height: 32, borderRadius: 8, background: `${color as string}18`, border: `1px solid ${color as string}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 16, color: color as string, flexShrink: 0 }}>{grade}</div>
@@ -135,7 +135,7 @@ export default function MethodologyPage() {
 
         <h2 >Data freshness</h2>
         <p >
-          SDWIS violation data is queried live from the EPA ECHO API each time you search — it reflects whatever EPA has on file at that moment. UCMR5 PFAS data is a snapshot packaged into the app (the federal dataset was finalized in 2025 and updates infrequently). Lead pipe inventory data is pulled from federal reporting as of late 2024. Each report includes data freshness notes where we can surface them.
+          SDWIS requests use EPA Envirofacts, with successful responses cached for up to an hour. Federal records may lag real events. UCMR5 data is a historical packaged snapshot; the bundled label is shown on reports and does not claim that we imported the complete final federal dataset. EPA released its final UCMR5 dataset in August 2026. Lead pipe inventory data is pulled from federal reporting as of late 2024. Each report includes data freshness notes where we can surface them.
         </p>
         <p >
           For the most current data, always cross-reference the official EPA links included in your report, and call your public water system directly if you have concerns about recent events.

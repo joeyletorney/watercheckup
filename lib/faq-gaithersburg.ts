@@ -27,4 +27,19 @@ export const gaithersburgFAQs = [
     answer:
       "Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), one of the largest water utilities in the country, serving Montgomery and Prince George's counties in Maryland.",
   },
+  {
+    question: "How do I get water testing in Gaithersburg, MD?",
+    answer:
+      "Use this page for the free WSSC/EPA snapshot first. Then order a certified mail-in tap test (or a county/state lab) if you want address-level results. Test the kitchen faucet after water sits overnight if you are checking lead. WSSC monitoring does not see what your pipes add after the water leaves the plant.",
+  },
+  {
+    question: "Do I need well water testing in Gaithersburg?",
+    answer:
+      "Only if your home is on a private well — common on the rural edges of Montgomery County, not on most in-town WSSC addresses. Wells are not covered by EPA municipal monitoring. Test annually for bacteria and nitrate, and run a broader panel (arsenic, radon, PFAS, metals, hardness) every few years or after flooding, a new well, or a change in taste or color.",
+  },
+  {
+    question: "What water treatment or filtration does Gaithersburg need?",
+    answer:
+      "Match the filter to the result, not a neighbor’s setup. NSF 53 carbon handles lead at the tap. PFAS and disinfection byproducts need NSF 58 reverse osmosis or a PFAS-certified pitcher. A softener only treats hardness. Whole-house gear is for wells with iron, sulfur, or bacteria — not a substitute for kitchen RO on WSSC water.",
+  },
 ];

@@ -31,7 +31,7 @@ export function CityDedicatedScoreHero({ urgency, issues, pfas, waterProfile, su
       }}
     >
       <div style={{ textAlign: 'center', flexShrink: 0 }}>
-        <div style={{ fontSize: 48, fontWeight: 900, color: ws.scoreColor, lineHeight: 1 }}>{ws.score}</div>
+        <div style={{ fontSize: 48, fontWeight: 900, color: ws.scoreColor, lineHeight: 1 }}>{ws.grade === '—' ? '—' : ws.score}</div>
         <div style={{ fontSize: 13, color: '#a8b4c4' }}>/ 88</div>
         <div style={{ fontSize: 16, fontWeight: 800, color: ws.gradeColor }}>{ws.grade}</div>
       </div>

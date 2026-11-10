@@ -10,14 +10,14 @@ export function GaPageView({ measurementId }: { measurementId: string }) {
 
   useEffect(() => {
     if (!measurementId || typeof window.gtag !== 'function') return;
-    const q = searchParams?.toString();
-    const path = q ? `${pathname}?${q}` : pathname;
+    // Track paths only: claim and other query strings may contain personal data.
+    const path = pathname;
     if (prev.current === path) return;
     prev.current = path;
     window.gtag('event', 'page_view', {
       page_path: path,
       page_title: typeof document !== 'undefined' ? document.title : '',
-      page_location: typeof window !== 'undefined' ? window.location.href : '',
+      page_location: typeof window !== 'undefined' ? `${window.location.origin}${pathname}` : '',
     });
   }, [pathname, searchParams, measurementId]);
 

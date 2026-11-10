@@ -44,9 +44,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Houston water has disinfection byproduct concerns and PFAS detections. Free EPA report — contaminant levels, violation history, and the right filter for your home.',
   },
   '/water/new-york': {
-    title: 'NYC Tap Water: C Grade — PFOS 106 ppt & Building Lead Risk',
+    title: 'NYC Tap Water — Supplier Report & Building Lead Context',
     description:
-      'PFOS at 106 ppt in EPA monitoring (26× the 4 ppt limit). Pre-1986 buildings may add lead at the tap. Free 2026 NYC water report & filter picks.',
+      'NYCDEP supplier information, building-plumbing lead context, and clearly labeled gaps in our historical PFAS snapshot. Free report and official source links.',
   },
   '/water/miami': {
     title: 'Miami Tap Water: D Grade — PFOS 33 ppt & PFAS MCL Violations',
@@ -146,7 +146,7 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/pfoa-at-epa-limit': {
     title: 'Cities Where PFOA Hit the EPA 4 ppt Limit (2026)',
     description:
-      'UCMR5 data: Philadelphia 235 ppt, Sugar Land 4.1 ppt at the line, NYC-area PFOS 106 ppt. Free city reports + ZIP lookup — EPA sourced.',
+      'Historical UCMR5 peaks compared with compound-specific benchmarks. Supplier identity and sampling context matter; peaks are not official compliance findings.',
   },
   '/utilities/nc/greensboro-townsend': {
     title: 'Greensboro Townsend Water — EPA Report & PFAS (2026)',

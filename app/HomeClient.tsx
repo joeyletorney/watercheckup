@@ -370,7 +370,7 @@ function HomeEmailCapture() {
     try {
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'violation-alert' }),
+        body: JSON.stringify({ email, source: 'weekly-newsletter' }),
       });
       const data = await res.json();
       if (data.success) setSent(true);
@@ -447,7 +447,7 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
       <path d={mkArc(210, 510)} fill="none" stroke="#1e3a4a" strokeWidth="10" strokeLinecap="round" />
       <path d={mkArc(210, 210 + 300 * (arc / SCORE_MAX))} fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
         style={{ transition: 'all 1.4s cubic-bezier(0.34,1.56,0.64,1)' }} filter={`drop-shadow(0 0 10px ${color}99)`} />
-      <text x={cx} y={cy + 4}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{display}</text>
+      <text x={cx} y={cy + 4}  textAnchor="middle" fontSize="34" fontWeight="900" fill={color} fontFamily="inherit">{gradeStr === '—' ? '—' : display}</text>
       <text x={cx} y={cy + 22} textAnchor="middle" fontSize="11" fill="#94a3b8" fontFamily="inherit">/ {SCORE_MAX}</text>
       <text x={cx} y={cy + 38} textAnchor="middle" fontSize="12" fill="#cbd5e1" fontFamily="inherit">Grade: {gradeStr}</text>
     </svg>
@@ -853,44 +853,13 @@ function PFASAwarenessBanner() {
 // PFAS IN-RESULTS ALERT
 // ─────────────────────────────────────────────────────────────────────────────
 function PFASResultAlert({ city, pfasLevel }: { city: string; pfasLevel?: number | string | null }) {
-  const [expanded, setExpanded] = useState(false);
-  const ppt = typeof pfasLevel === 'number' ? pfasLevel : Number(pfasLevel);
+  const ppt = Number(pfasLevel);
   if (!Number.isFinite(ppt) || ppt <= 0) return null;
-  const overLimit = ppt > 4;
-  return (
-    <div style={{ background: overLimit ? 'linear-gradient(135deg,#200a0a,#0d0f1a)' : 'linear-gradient(135deg,#0d1208,#0d0f1a)', border: `1px solid ${overLimit ? '#ef4444' : '#f59e0b'}`, borderLeft: `4px solid ${overLimit ? '#ef4444' : '#f59e0b'}`, borderRadius: 10, padding: '14px 18px', marginBottom: 18 }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-        <span style={{ fontSize: 18 }}>{overLimit ? '🚨' : '⚠️'}</span>
-        <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 5, flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontSize: 13, fontWeight: 800, color: overLimit ? '#ef4444' : '#f59e0b', letterSpacing: 1 }}>PFAS DETECTED — {(city || 'Your area').toUpperCase()}</span>
-            {overLimit && <span style={{ fontSize: 13, padding: '1px 6px', background: '#ef444422', border: '1px solid #ef444444', borderRadius: 3, color: '#ef4444', fontWeight: 700 }}>EXCEEDS EPA MCL</span>}
-          </div>
-          <p style={{ margin: '0 0 8px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.6 }}>
-            {overLimit
-              ? <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — exceeds EPA 2024 MCL of 4 ppt for applicable compounds in this dataset. Many pitchers do not remove PFAS; certified RO/P473-class systems are the usual fix for drinking water.</>
-              : <>PFAS at <strong style={{ color: '#fbbf24' }}>{ppt.toFixed(2)} ppt</strong> — below the 4 ppt MCL in this snapshot but still a “detection.” If you want extra margin for drinking/cooking, RO or a certified PFAS-rated filter is the typical approach.</>
-            }
-          </p>
-          <p style={{ margin: '0 0 18px', fontSize: 13, color: '#cbd5e1', lineHeight: 1.55 }}>
-            <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> This is a public water system-level monitoring snapshot, not a test of your kitchen tap today. If you need certainty for pregnancy, infants, or immunocompromised households, consider a certified lab test of your tap.
-          </p>
-          {expanded && <div style={{ marginBottom: 8, padding: '10px 14px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 7, fontSize: 13, color: '#cbd5e1', lineHeight: 1.8 }}>PFAS are synthetic chemicals found in firefighting foam, non-stick cookware, food packaging, and industrial sites. They don't break down in the environment or human body. Linked to kidney cancer, thyroid disease, immune suppression, and developmental harm in children.</div>}
-          <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href={`https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`} target="_blank" rel="noreferrer sponsored"
-              onClick={() => trackAffiliateClick({ product: 'Waterdrop G3P600', destination: 'direct', page: 'home', brand: 'Waterdrop' })}
-              style={{ padding: '6px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Waterdrop G3P600 — PFAS &gt;99%</a>
-            <a href={clearlyFilteredDirectUrl()} target="_blank" rel="noreferrer sponsored"
-              onClick={() => trackAffiliateClick({ product: 'Clearly Filtered Pitcher', destination: 'direct', page: 'home', brand: 'Clearly Filtered' })}
-              style={{ padding: '6px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher</a>
-            <button onClick={() => setExpanded(x => !x)} style={{ background: 'none', border: 'none', color: '#cbd5e1', fontSize: 13, cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>{expanded ? 'Less ↑' : 'What are PFAS? ↓'}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <div style={{ padding: '16px 20px', marginBottom: 18, background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10 }}>
+    <strong style={{ color: '#fbbf24' }}>Historical PFAS monitoring — {city}</strong>
+    <p style={{ color: '#cbd5e1', lineHeight: 1.65 }}>The highest individual compound peak in this snapshot is {ppt} ppt. Each compound has its own benchmark; some have no individual federal limit. See the compound table for the correct comparison. Historical peaks do not determine compliance or describe today’s household tap.</p>
+  </div>;
 }
-
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DIY INSTALLATION GUIDES
@@ -2200,7 +2169,7 @@ export default function WaterCheckup() {
           email: resultsAlertEmail.trim(),
           zip: String(z).slice(0, 5),
           weekly: true,
-          source: 'violation-alert',
+          source: 'weekly-newsletter',
         }),
       });
       const payload = await res.json();
@@ -2859,7 +2828,7 @@ export default function WaterCheckup() {
               </div>
             </div>
             <div style={{ display: 'flex', gap: 6, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
-              
+
               <button type="button" onClick={() => setShowShare(true)} className="wc-focus-ring" style={{ padding: '6px 10px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#cbd5e1', fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}>↗ Share</button>
             </div>
           </div>
@@ -2975,7 +2944,7 @@ export default function WaterCheckup() {
                 </div>
               </details>
 
-              {data.nationalPercentile != null && <NationalPercentile pct={data.nationalPercentile} />}
+
               <PFASResultAlert city={data.city} pfasLevel={pfasLevel} />
 
               {data.violations?.length > 0 ? (
@@ -3000,7 +2969,7 @@ export default function WaterCheckup() {
 
               {data.contaminants?.length > 0 && (
                 <>
-                  
+
                   {/* LEAD TAP SAMPLE BANNER */}
                   {(() => {
                     const leadC = data.contaminants.find((c: any) => c.name === 'Lead');
@@ -3203,7 +3172,7 @@ export default function WaterCheckup() {
                 <div style={{ padding: '24px', textAlign: 'center' }}>
                   <div style={{ fontSize: 22, marginBottom: 7 }}>✅</div>
                   <div style={{ fontSize: 15, color: '#22d3ee', fontWeight: 700, marginBottom: 5 }}>No PFAS detected via UCMR5</div>
-                  <div style={{ fontSize: 13, color: '#cbd5e1' }}>No measurable PFAS in EPA's 2023-2025 monitoring. UCMR5 covers systems serving 3,300+ people.</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1' }}>This snapshot lists no PFAS detections or has no matching record. Check the supplier’s current report; missing coverage is not a clean test.</div>
                 </div>
               ) : (
                 <>

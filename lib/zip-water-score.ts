@@ -31,7 +31,7 @@ export function issuesFromZipSignals(
 
   const hardness =
     opts.hardnessMgL ??
-    contaminants.find((c) => /hardness|tds/i.test(c.name))?.level ??
+    contaminants.find((c) => /hardness/i.test(c.name))?.level ??
     undefined;
   if (typeof hardness === 'number' && hardness > 120) {
     issues.push('Hard water / high mineral content');
@@ -85,13 +85,5 @@ export function computeZipWaterScore(params: {
   });
 }
 
-/** Rough national percentile for 0–88 safety score */
-export function nationalPercentileFromSafetyScore(score: number): number {
-  if (score >= 80) return 95;
-  if (score >= 70) return 78;
-  if (score >= 62) return 58;
-  if (score >= 55) return 45;
-  if (score >= 45) return 28;
-  if (score >= 35) return 15;
-  return 8;
-}
+/** No empirical comparison population is available; do not invent a percentile. */
+export function nationalPercentileFromSafetyScore(_score: number): null { return null; }

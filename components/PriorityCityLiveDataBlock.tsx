@@ -1,3 +1,4 @@
+import { ReportEvidenceSummary } from './ReportEvidenceSummary';
 import { CITIES } from '@/app/water/[city]/cities-data';
 import EmailCapture from '@/app/water/[city]/EmailCapture';
 import { CityContaminantTable } from '@/components/CityContaminantTable';
@@ -38,8 +39,10 @@ export function PriorityCityLiveDataBlock({ slug }: Props) {
           borderBottom: '1px solid #0f2336',
         }}
       >
-        LIVE EPA & UCMR5 DATA — {cd.name.toUpperCase()}
+        EPA RECORDS & HISTORICAL UCMR5 SNAPSHOT — {cd.name.toUpperCase()}
       </div>
+
+      <ReportEvidenceSummary supplier={cd.system} pwsid={pwsid} hardness={cd.waterProfile?.hardness} />
 
       <CityLocalWaterStats
         cityName={cd.name}
@@ -75,7 +78,7 @@ export function PriorityCityLiveDataBlock({ slug }: Props) {
         }}
       >
         <span style={{ fontSize: 13, color: '#cbd5e1', flexShrink: 0 }}>
-          🔔 Get alerts if {cd.name}&apos;s water data changes:
+          🔔 Get the weekly water treatment newsletter:
         </span>
         <EmailCapture cityName={cd.name} slug={slug} inline />
       </div>

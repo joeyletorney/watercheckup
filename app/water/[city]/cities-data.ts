@@ -60,17 +60,15 @@ export const CITIES: Record<string, {
   },
   'new-york': {
     name: 'New York City', state: 'NY', zip: '10001', population: '8.3M',
-    system: 'NYC Department of Environmental Protection', pwsid: 'NY5903150',
-    issues: ['PFAS detected above EPA limits (PFOS 106 ppt, limit: 4 ppt)', 'Lead risk in pre-1986 building plumbing', 'Chlorination byproducts (TTHMs)', 'Building pipe contamination in older boroughs'],
+    system: 'NYC Department of Environmental Protection', pwsid: 'NY7003493',
+    issues: ['Lead risk depends on building plumbing', 'Confirm your supplier and current report', 'Packaged PFAS coverage unavailable for NYCDEP'],
     facts: [
-      'EPA UCMR5 monitoring detected PFOS at 106 ppt in NYC water — over 26x the EPA limit of 4 ppt.',
-      'PFOA was detected at 27.8 ppt (EPA limit: 4 ppt) and PFHxS at 51.6 ppt (limit: 10 ppt).',
-      'NYC source water from the Catskills is high-quality at the reservoir — but PFAS contamination and aging infrastructure are real concerns.',
-      'Buildings built before 1986 likely have lead solder or lead service lines inside the building — NYCDEP water meets lead standards at the plant, but your tap is a different question.',
-      'A pitcher filter won\'t cut it for PFAS. Only reverse osmosis (RO) or an NSF 58-certified filter removes PFAS reliably.',
-      'A home lead test is strongly recommended for NYC residents in pre-1986 buildings.',
+      'NYCDEP identifies New York City System as PWSID NY7003493 in its official water-quality report.',
+      'This packaged PFAS snapshot has no entry for that system. Missing data does not establish either detection or nondetection.',
+      'Lead exposure can vary by service line and household plumbing; a citywide report cannot establish your tap result.',
+      'Check NYCDEP’s current report and service-line resources before deciding whether a certified test or filter is appropriate.',
     ],
-    urgency: 'high',
+    urgency: 'medium',
     waterProfile: { hardness: 75, tds: 65, pH: 7.4, treatment: 'chloramine', fluoride: 0.7, nitrate: 0.4, source: 'NYCDEP 2024 Water Quality Report' },
   },
   'phoenix': {
@@ -88,7 +86,7 @@ export const CITIES: Record<string, {
   },
   'philadelphia': {
     name: 'Philadelphia', state: 'PA', zip: '19101', population: '1.6M',
-    system: 'Philadelphia Water Department', pwsid: 'PA1460022',
+    system: 'Philadelphia Water Department', pwsid: 'PA1510001',
     issues: ['Lead service lines', 'PFAS from upstream industrial sources', 'Chlorination byproducts'],
     facts: [
       'Philadelphia has thousands of lead service lines still in use throughout the city.',
@@ -1631,13 +1629,13 @@ export const CITIES: Record<string, {
 
   'parkersburg': {
     name: 'Parkersburg', state: 'WV', zip: '26101', population: '29K',
-    system: 'Parkersburg Public water system Board', pwsid: 'WV3305404',
+    system: 'Parkersburg Utility Board', pwsid: 'WV3305407',
     issues: ['PFOA contamination from DuPont Washington Works', 'Ohio River industrial discharge', 'Forever chemical legacy'],
     facts: [
       "Parkersburg is the epicenter of the US PFOA crisis — DuPont's Washington Works plant discharged PFOA into the Ohio River for 50+ years.",
-      'EPA UCMR5 data shows PFOA at 179.5 ppt in Parkersburg water — 45× over the EPA limit of 4 ppt.',
+      'The packaged historical record for Parkersburg Utility Board shows a PFOA peak of 46.5 ppt. Lubeck PSD is a separate supplier; its results should not be assigned to every Parkersburg address.',
       'The DuPont PFOA contamination here inspired the film Dark Waters and the largest PFAS settlement in US history.',
-      'Reverse osmosis is the only certified technology that removes PFOA to safe levels at the tap.',
+      'Compare filters by the exact model’s certified PFOA reduction claim, capacity, and replacement schedule; a certification does not guarantee every household result.',
     ],
     urgency: 'high',
     waterProfile: { hardness: 205, tds: 330, pH: 7.7, treatment: 'chlorine', fluoride: 0.7, nitrate: 2.1, source: 'Parkersburg Public water system Board CCR 2024' },

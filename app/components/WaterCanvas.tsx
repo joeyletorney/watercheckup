@@ -17,7 +17,7 @@ export function WaterCanvas() {
     const gfx = ctx;
 
     const reducedMotion =
-      typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      typeof window !== 'undefined' && (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(max-width: 640px)').matches);
 
     let t = 0;
     let animId: number;
@@ -62,6 +62,7 @@ export function WaterCanvas() {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     function draw() {
+      if (document.hidden) return;
       const W = cvs.width;
       const H = cvs.height;
       if (!reducedMotion) t += 0.006;
@@ -314,8 +315,14 @@ export function WaterCanvas() {
     resize();
     window.addEventListener('resize', resize);
 
+    const onVisibility = () => {
+      cancelAnimationFrame(animId);
+      if (!document.hidden) draw();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
     draw();
     return () => {
+      document.removeEventListener('visibilitychange', onVisibility);
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
       window.removeEventListener('scroll', onScroll);

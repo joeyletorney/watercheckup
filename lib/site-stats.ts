@@ -7,14 +7,14 @@ export const SITE_ZIP_LOOKUP_COUNT = '21,000+';
 export const SITE_CITY_GUIDE_COUNT = '140+';
 
 /** EPA community water systems (CWS) — ~150K nationally; aligns with SDWIS public reporting. */
-export const SITE_PUBLIC_WATER_SYSTEM_COUNT = '150K+';
+export const SITE_PUBLIC_WATER_SYSTEM_COUNT = '50K+';
 
 export const SITE_PUBLIC_WATER_SYSTEM_LABEL = 'Community Water Systems';
 
 /** UCMR5 PFAS monitoring systems in lib/ucmr5.json (federal 2023–2025 round). */
 export const SITE_UCMR5_PFAS_SYSTEM_COUNT = '6,151';
 
-export const SITE_DATA_FRESHNESS_LABEL = 'June 2026';
+export const SITE_DATA_FRESHNESS_LABEL = 'historical snapshots; dates vary by source';
 
 export const SITE_CONTAMINANT_COVERAGE_LABEL = '170+';
 
@@ -39,7 +39,7 @@ export const SITE_HERO_POSITIONING = [
   `${SITE_ZIP_LOOKUP_COUNT} ZIP codes`,
   `${SITE_PUBLIC_WATER_SYSTEM_COUNT} community water systems (EPA SDWIS)`,
   `${SITE_UCMR5_PFAS_SYSTEM_COUNT} PFAS systems (UCMR5)`,
-  `Updated ${SITE_DATA_FRESHNESS_LABEL}`,
+  `Source coverage: ${SITE_DATA_FRESHNESS_LABEL}`,
   'Built by a 30-year water treatment expert',
 ].join(' · ');
 
@@ -57,7 +57,7 @@ export const SITE_FOOTER_DISCLAIMER =
   'For informational purposes only — not legal, medical, or utility compliance advice. Violation and monitoring figures come from EPA public databases (SDWIS, UCMR5, etc.) and may lag real events by months.';
 
 export const SITE_FOOTER_SCORE_DISCLAIMER =
-  'Letter grades and the 0–88 WaterCheckup Safety Score are our independent index (hardness, PFAS, health guidelines, and compliance signals) — not your water system’s official rating or an EPA grade for your town.';
+  'Letter grades and the 0–88 WaterCheckup Safety Score are our independent index (historical PFAS, measured health-guideline comparisons, and available compliance records) — not your water system’s official rating or an EPA grade for your town.';
 
 export const SITE_FOOTER_AFFILIATE =
   'Amazon Associates participant — some filter links are affiliate (no extra cost). Recommendations follow NSF certifications, not paid placements.';
@@ -97,7 +97,7 @@ export const SITE_COMPARISON_ROWS: {
   { feature: 'Expert filter recommendations', watercheckup: { type: 'yes', text: 'Contaminant-matched' }, others: { type: 'no', text: 'Generic' } },
   { feature: 'WQA credentials', watercheckup: { type: 'yes', text: 'Level VI (former)' }, others: { type: 'no', text: '' } },
   { feature: '100% Free', watercheckup: { type: 'yes', text: '' }, others: { type: 'yes', text: 'Most' } },
-  { feature: 'EPA verified data', watercheckup: { type: 'yes', text: 'UCMR5 + SDWIS' }, others: { type: 'warn', text: 'Partial / mixed sources' } },
+  { feature: 'EPA-sourced public records', watercheckup: { type: 'yes', text: 'UCMR5 + SDWIS' }, others: { type: 'warn', text: 'Partial / mixed sources' } },
 ];
 
 export const AUTHOR_REVIEW_BYLINE =
