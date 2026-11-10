@@ -18,7 +18,7 @@ export default async function UtilityClaimThankYouPage(props: Props) {
   const searchParams = await props.searchParams;
   const utilityName = searchParams.utility?.trim() || 'your public water system';
   const stateCode = searchParams.state?.trim().toUpperCase() || '';
-  const email = searchParams.email?.trim() || 'the email you provided';
+  const email = 'the email you provided';
   const stateListingHref = stateCode ? `/utilities/${stateCode.toLowerCase()}` : '/utilities';
 
   return (

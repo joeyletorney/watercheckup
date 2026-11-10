@@ -1,5 +1,5 @@
+import { resolveCityPwsid } from './city-pwsid';
 import { CITIES, WATER_CITY_SLUGS } from "@/app/water/[city]/cities-data";
-import ucmr5Raw from "@/lib/ucmr5.json";
 import { USPS_STATE_NAMES } from "@/lib/us-state-names";
 import { analyzeHardnessMgL } from "@/lib/water-hardness-shared";
 import { findCitySlugByZip } from "@/lib/find-city-by-zip";
@@ -7,7 +7,6 @@ import { findCitySlugByZip } from "@/lib/find-city-by-zip";
 export type { HardnessAnalysis, HardnessTier } from "@/lib/water-hardness-shared";
 export { analyzeHardnessMgL, mgLToGpg, gpgToMgL, toPpm } from "@/lib/water-hardness-shared";
 
-const ucmr5 = ucmr5Raw as Record<string, unknown[]>;
 
 /** US states (50) for published averages table — DC handled separately in slug helper. */
 export const US_STATE_ABBRS = [
@@ -16,12 +15,12 @@ export const US_STATE_ABBRS = [
   "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
 ] as const;
 
+/** Legacy function name; uses separately sourced utility profiles, never UCMR lithium. */
 export function getUcmrHardnessMgL(pwsid: string): number | null {
-  const row = ucmr5[pwsid.trim()];
-  if (!Array.isArray(row) || row.length < 4) return null;
-  const h = row[3];
-  if (typeof h !== "number" || !Number.isFinite(h) || h < 0) return null;
-  return h;
+  const match = Object.entries(CITIES).find(([slug, city]) =>
+    resolveCityPwsid(slug, city.pwsid, city.zip) === pwsid.trim());
+  const hardness = match?.[1].waterProfile?.hardness;
+  return typeof hardness === 'number' && Number.isFinite(hardness) && hardness >= 0 ? hardness : null;
 }
 
 export function stateSlugFromAbbr(abbr: string): string {
@@ -48,7 +47,7 @@ export function buildStateHardnessTable(): StateHardnessRow[] {
   for (const slug of WATER_CITY_SLUGS) {
     const cd = CITIES[slug];
     if (!cd) continue;
-    const h = getUcmrHardnessMgL(cd.pwsid);
+    const h = getUcmrHardnessMgL(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     if (h == null) continue;
     const st = cd.state.toUpperCase();
     if (!byState[st]) byState[st] = [];
@@ -97,7 +96,7 @@ export function getAverageHardnessForState(stateAbbr: string): { avgPpm: number 
   for (const slug of WATER_CITY_SLUGS) {
     const cd = CITIES[slug];
     if (!cd || cd.state.toUpperCase() !== u) continue;
-    const h = getUcmrHardnessMgL(cd.pwsid);
+    const h = getUcmrHardnessMgL(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     if (h != null) ppms.push(h);
   }
   if (ppms.length === 0) return { avgPpm: null, citiesTested: 0 };

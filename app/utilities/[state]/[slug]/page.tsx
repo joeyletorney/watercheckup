@@ -1,3 +1,4 @@
+import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -105,10 +106,7 @@ const PITCHER_PICKS = [
 ];
 
 function getPfasData(pwsid: string) {
-  const entry = UCMR5[pwsid];
-  if (!entry) return null;
-  const [maxPpt, violations, compounds, hardness] = entry;
-  return { maxPpt, violations, compounds, hardness };
+  return getCityPfasData(pwsid);
 }
 
 function buildUtilityIssues(
@@ -394,16 +392,13 @@ export default async function UtilityPage(props: { params: Promise<{ state: stri
                       {h}
                     </div>
                   ))}
-                  {pfas!.compounds
+                  {[...pfas!.compounds]
                     .sort((a, b) => b[1] - a[1])
-                    .map(([name, level, overEPA, overHealth], idx, arr) => {
+                    .map(([name, level, , overEPA], idx, arr) => {
                       let status = "Within limits";
                       let statusColor = "#22d3ee";
-                      if (overHealth) {
-                        status = "Above health advisory";
-                        statusColor = "#ef4444";
-                      } else if (overEPA) {
-                        status = "MCL exceedance";
+                      if (overEPA) {
+                        status = "Historical peak above benchmark";
                         statusColor = "#ef4444";
                       } else if (EPA_MCL[name] === undefined && level > 0) {
                         status = "Unregulated (monitored)";
@@ -430,7 +425,7 @@ export default async function UtilityPage(props: { params: Promise<{ state: stri
                               padding: "10px 14px",
                               fontSize: 13,
                               fontWeight: 700,
-                              color: overHealth ? "#ef4444" : overEPA ? "#f59e0b" : "#cbd5e1",
+                              color: overEPA ? "#f59e0b" : "#cbd5e1",
                               textAlign: "center",
                               borderBottom: idx < arr.length - 1 ? "1px solid #0f2336" : "none",
                             }}
@@ -457,10 +452,10 @@ export default async function UtilityPage(props: { params: Promise<{ state: stri
                               fontSize: 13,
                               textAlign: "center",
                               borderBottom: idx < arr.length - 1 ? "1px solid #0f2336" : "none",
-                              color: overHealth ? "#ef4444" : "#a8b4c4",
+                              color: "#a8b4c4",
                             }}
                           >
-                            {overHealth ? "Exceeds" : "Within / n/a"}
+                            Not a compliance finding
                           </div>
                           <div
                             style={{

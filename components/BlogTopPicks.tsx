@@ -13,8 +13,14 @@ type Props = {
 };
 
 export function BlogTopPicks({ picks, subtitle }: Props) {
-  const visible = picks.filter((p) => !p.outOfStock);
-  const skipped = picks.length - visible.length;
+  const available = picks.filter(p => !p.outOfStock);
+  const budget = [...available].sort((a, b) =>
+    (Number(a.price.replace(/[^0-9.]/g, '')) || Infinity) -
+    (Number(b.price.replace(/[^0-9.]/g, '')) || Infinity))[0];
+  const renter = available.find(p => /countertop|pitcher|no.install/i.test(`${p.product} ${p.badge}`));
+  const homeowner = available.find(p => /under.sink|under.counter/i.test(`${p.product} ${p.badge}`));
+  const visible = Array.from(new Set([budget, renter, homeowner, ...available].filter((p): p is TopPickRow => !!p))).slice(0, 3);
+  const skipped = picks.filter(p => p.outOfStock).length;
   const tabLabel = getBlogTopPicksHeading(visible.length);
 
   if (visible.length === 0) {
@@ -40,6 +46,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
             : `${skipped} picks are temporarily unavailable — showing in-stock NSF-certified options.`}
         </p>
       ) : null}
+      <p className="wc-blog-top-picks__subtitle">A filter may not be necessary. First confirm your supplier and a documented concern. These are options to compare, not a guarantee of every household result.</p>
       <div className="wc-blog-top-picks__list">
         {visible.map((pick, i) => {
           const showDirect = pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand);
@@ -79,7 +86,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                   <div className="wc-blog-top-picks__meta">
                     {pick.brand} · {pick.price}
                   </div>
-                  <div className="wc-blog-top-picks__reason">{pick.reason}</div>
+                  <div className="wc-blog-top-picks__reason">{pick === budget ? 'Lowest listed upfront cost among these options. ' : pick === renter ? 'No permanent plumbing changes; compare its tank or cartridge capacity. ' : pick === homeowner ? 'Under-sink option for a homeowner who can install a dedicated system. ' : ''}Compare the exact model and cartridge’s current contaminant-reduction listing, rated capacity, and annual replacement cost before buying.</div>
                 </div>
               </div>
               <div className="wc-blog-top-picks__actions">

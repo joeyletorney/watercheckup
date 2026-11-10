@@ -32,7 +32,7 @@ function buildAllCityScoreRows(): CityScoreRow[] {
       label: ws.label,
       keyFinding: getCityKeyFinding(cd.urgency, cd.issues, pfas),
     };
-  });
+  }).filter(row => row.grade !== '—');
 }
 
 /** Lowest Water Safety Score first (worst exposure profile). */
@@ -89,7 +89,7 @@ export function buildHardestCities(limit = 20): CityHardnessRow[] {
       state: cd.state,
       hardnessMgL: Math.round(h * 10) / 10,
       tierLabel: label,
-      source: cd.waterProfile?.source ?? 'EPA UCMR5 monitoring',
+      source: cd.waterProfile?.source ?? 'Separately sourced utility profile',
     });
   }
   return rows.sort((a, b) => b.hardnessMgL - a.hardnessMgL).slice(0, limit);
@@ -112,9 +112,9 @@ export function buildCitiesWithPfasMclViolations(limit = 20): CityPfasMclRow[] {
   for (const [slug, cd] of Object.entries(CITIES)) {
     const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     if (!pfas) continue;
-    const overMcl = pfas.compounds.filter(([, , overEpa]) => overEpa > 0);
+    const overMcl = pfas.compounds.filter(([, , , overEpa]) => overEpa > 0);
     if (pfas.violations === 0 && overMcl.length === 0) continue;
-    const worst = [...pfas.compounds].sort((a, b) => b[1] - a[1])[0];
+    const worst = [...overMcl].sort((a, b) => b[1] - a[1])[0];
     rows.push({
       slug,
       name: cd.name,
@@ -144,7 +144,7 @@ export function buildCitiesWithUnregulatedPfasPeaks(limit = 20): CityUnregulated
   for (const [slug, cd] of Object.entries(CITIES)) {
     const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
     if (!pfas || pfas.violations > 0 || pfas.maxPpt < 20) continue;
-    const overMcl = pfas.compounds.some(([, , overEpa]) => overEpa > 0);
+    const overMcl = pfas.compounds.some(([, , , overEpa]) => overEpa > 0);
     if (overMcl) continue;
     const peak = [...pfas.compounds].sort((a, b) => b[1] - a[1])[0];
     if (!peak) continue;
@@ -181,7 +181,7 @@ export function buildCitiesWithPfoaAtEpaLimit(minPpt = 3.8, limit = 30): CityPfo
     if (!pfas) continue;
     const pfoa = pfas.compounds.find(([name]) => name === 'PFOA');
     if (!pfoa || pfoa[1] < minPpt) continue;
-    const [, level, overEpa] = pfoa;
+    const [, level, , overEpa] = pfoa;
     rows.push({
       slug,
       name: cd.name,

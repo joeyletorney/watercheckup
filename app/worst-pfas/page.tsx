@@ -42,8 +42,8 @@ const SYSTEM_NAMES: Record<string, { name: string; city: string; source: string 
   'NC0464020': { name: 'Cape Fear Public Public water system Authority', city: 'Wilmington, NC', source: 'Cape Fear River — downstream of Chemours Fayetteville Works GenX plant' },
   'CA3700963': { name: 'San Gabriel Valley Water District', city: 'San Gabriel, CA', source: 'Groundwater — contaminated by historic aerospace and industrial activity' },
   'CA3610062': { name: 'San Bernardino Valley Municipal Water District', city: 'San Bernardino, CA', source: 'Groundwater — former military base and industrial contamination' },
-  'PA1460022': { name: 'Warminster Township Water Authority', city: 'Warminster, PA', source: 'Groundwater — contaminated by AFFF firefighting foam at Naval Air Station Warminster' },
-  'WV3305404': { name: 'Parkersburg Public water system Board', city: 'Parkersburg, WV', source: 'Ohio River — downstream of DuPont Washington Works PFOA plant' },
+  'PA1460022': { name: 'Collegeville Trappe Joint PWD', city: 'Collegeville / Trappe, PA', source: 'Groundwater — contaminated by AFFF firefighting foam at Naval Air Station Warminster' },
+  'WV3305404': { name: 'Lubeck PSD', city: 'Lubeck service area, WV', source: 'Ohio River — downstream of DuPont Washington Works PFOA plant' },
   'WA5303160': { name: 'City of Tacoma Water Division', city: 'Tacoma, WA', source: 'Surface water — contaminated by AFFF use at McChord Air Force Base' },
   'PA3390032': { name: 'Horsham Water & Sewer Authority', city: 'Horsham, PA', source: 'Groundwater — contaminated by AFFF at Naval Air Station Joint Reserve Base Willow Grove' },
   'NC0392373': { name: 'Fayetteville Public Works Commission', city: 'Fayetteville, NC', source: 'Cape Fear River — downstream of Chemours Fayetteville Works' },
@@ -71,7 +71,7 @@ function getRankedSystems(): RankedSystem[] {
     .map(([id, d]): RankedSystem | null => {
       const state = id.substring(0, 2);
       const regulated = (d[2] ?? []).filter(
-        ([name, , overEPA]) => overEPA === 1 && EPA_MCL[name] !== undefined,
+        ([name, , , overEPA]) => overEPA === 1 && EPA_MCL[name] !== undefined,
       ) as UcmrCompoundRow[];
       const worstReg = [...regulated].sort((a, b) => b[1] - a[1])[0];
       if (!worstReg) return null;
@@ -301,7 +301,7 @@ export default async function WorstPFASPage() {
         <div style={{ background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 72 }}>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>Check your ZIP for PFAS</div>
           <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
-            Enter your ZIP to see the UCMR5 PFAS readings, MCL violations, and certified filter recommendations for your specific water system.
+            Enter your ZIP to see the UCMR5 PFAS readings, historical peaks above benchmarks, and certified filter recommendations for your specific water system.
           </p>
           <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
             Check My Water Free →

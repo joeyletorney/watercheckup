@@ -293,11 +293,11 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
   'pfas-in-new-york-city-water': {
     title: 'PFAS in New York City Water — What Residents Need to Know',
     excerpt:
-      'PFAS forever chemicals have been detected in NYC tap water. Here is what the 2026 EPA limits mean, how NYCDEP water compares, and which filters actually remove PFAS.',
+      'How to verify NYCDEP water results, understand gaps in historical PFAS data, and decide whether household testing or filtration is appropriate.',
     seo: {
       title: 'PFAS in New York City Water — What Residents Need to Know (2026) | WaterCheckup',
       description:
-        'PFAS detected in NYC tap water above health guidelines. Learn PFOA/PFOS limits, UCMR5 data, health risks, and NSF-certified filters that remove forever chemicals.',
+        'Verify NYCDEP supplier information, historical data coverage, and household testing options before choosing filtration.',
     },
     date: '2026-05-18',
     dateDisplay: 'May 18, 2026',
@@ -305,202 +305,14 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
     badge: 'PFAS',
     badgeColor: '#0891b2',
     topPicks: TOP_3_RO,
-    content: React.createElement(
-      React.Fragment,
-      null,
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'If you live in New York City and have heard about “forever chemicals” in tap water, you are not imagining it. ',
-        React.createElement('strong', { style: strongStyle }, 'PFAS compounds have been detected'),
-        ' in NYC’s water supply — typically at levels below new federal limits, but often above the far stricter health guidelines published by EWG and state agencies.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'For PFAS levels alongside lead risk and the full safety grade, see our ',
-        React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'New York City water quality report'),
-        '.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'This guide explains what PFAS are, how they get into NYC water, what changed in 2024–2026 regulation, and what you can actually do to reduce exposure at home.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'What is PFAS?'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'PFAS (per- and polyfluoroalkyl substances) are a family of thousands of synthetic chemicals used since the 1940s in non-stick cookware, waterproof fabrics, food packaging, and — critically — ',
-        React.createElement('strong', { style: strongStyle }, 'aqueous film-forming foam (AFFF)'),
-        ' used at airports and military bases for firefighting.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'They are called forever chemicals because the carbon-fluorine bond does not break down easily in the environment or in the human body. They accumulate over time.',
-      ),
-      React.createElement(
-        'div',
-        { style: warnStyle },
-        React.createElement('strong', { style: { color: '#ef4444' } }, 'Health concerns: '),
-        'Kidney and testicular cancer, thyroid disease, immune suppression, elevated cholesterol, pregnancy complications, and developmental effects in children — linked to long-term PFAS exposure in epidemiological studies.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'How PFAS reaches NYC tap water'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'NYC’s water comes from upstate reservoirs — not from industrial zones in the five boroughs. But PFAS can still enter the system through:',
-      ),
-      React.createElement(
-        'ul',
-        { style: { ...pStyle, paddingLeft: 22 } },
-        React.createElement('li', { style: { marginBottom: 8 } }, 'Industrial discharge upstream in the watershed'),
-        React.createElement('li', { style: { marginBottom: 8 } }, 'Military and airport sites in the broader region'),
-        React.createElement('li', { style: { marginBottom: 8 } }, 'Wastewater treatment plant effluent that returns to source waters'),
-        React.createElement('li', { style: { marginBottom: 8 } }, 'Consumer product breakdown in the environment over decades'),
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'Once in water, PFAS is difficult for conventional treatment plants to remove completely. Granular activated carbon and reverse osmosis are the technologies that work — not standard pitcher carbon alone unless certified.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'EPA limits in 2026: what changed'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'In April 2024, the EPA finalized enforceable limits for six PFAS compounds, including:',
-      ),
-      React.createElement(
-        'ul',
-        { style: { ...pStyle, paddingLeft: 22 } },
-        React.createElement('li', { style: { marginBottom: 8 } }, React.createElement('strong', { style: strongStyle }, 'PFOA: 4 ppt')),
-        React.createElement('li', { style: { marginBottom: 8 } }, React.createElement('strong', { style: strongStyle }, 'PFOS: 4 ppt')),
-        React.createElement('li', { style: { marginBottom: 8 } }, React.createElement('strong', { style: strongStyle }, 'PFNA, PFHxS, GenX, PFBS: 10 ppt')),
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'Public water systems nationwide — including NYCDEP — must comply. That is a major step forward. But EWG’s health guidelines for PFOA and PFOS are ',
-        React.createElement('strong', { style: strongStyle }, '0.001 ppt'),
-        ' — thousands of times lower than the legal limit. “Legal” and “optimal for health” are not the same.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'What monitoring shows for NYC'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'EPA’s Unregulated Contaminant Monitoring Rule (UCMR5) and state reporting have detected PFAS compounds in many large U.S. systems, including New York. Levels vary by season, source water blend, and which compounds are measured.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'To see PFAS and other contaminants tied to your public water system and ZIP code, use our free report: ',
-        React.createElement('a', { href: '/water/new-york', style: linkStyle }, 'New York City water quality data'),
-        '. Enter any NYC ZIP (10001, 11201, 10451, etc.) for public water system-specific results.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'For context on PFAS nationally, see: ',
-        React.createElement('a', { href: '/blog/is-pfas-in-my-tap-water', style: linkStyle }, 'Is PFAS in My Tap Water?'),
-        ' and ',
-        React.createElement('a', { href: '/blog/what-water-filter-removes-pfas', style: linkStyle }, 'What Water Filter Removes PFAS?'),
-        '.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'Who faces the highest risk in NYC'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Pregnant women and infants'),
-        ' — PFAS crosses the placenta and appears in breast milk. Developing bodies are more vulnerable.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Families in older buildings'),
-        ' — PFAS is one concern; lead from plumbing is another. A filter that handles both (NSF 53 + 401 or RO) is worth the investment.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Anyone drinking unfiltered tap water daily'),
-        ' — cumulative low-dose exposure is what epidemiology is still quantifying. Prudent reduction is reasonable even when levels are below MCL.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'What actually removes PFAS at home'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'Not all filters remove PFAS. Look for:',
-      ),
-      React.createElement(
-        'ul',
-        { style: { ...pStyle, paddingLeft: 22 } },
-        React.createElement(
-          'li',
-          { style: { marginBottom: 8 } },
-          React.createElement('strong', { style: strongStyle }, 'NSF/ANSI 58'),
-          ' — reverse osmosis systems (99%+ reduction for many PFAS)',
-        ),
-        React.createElement(
-          'li',
-          { style: { marginBottom: 8 } },
-          React.createElement('strong', { style: strongStyle }, 'NSF/ANSI 401'),
-          ' — emerging contaminants including some PFAS on carbon systems',
-        ),
-        React.createElement(
-          'li',
-          { style: { marginBottom: 8 } },
-          React.createElement('strong', { style: strongStyle }, 'NSF P473'),
-          ' — specific PFAS reduction claims on select pitchers',
-        ),
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'Standard Brita filters improve taste but are ',
-        React.createElement('strong', { style: strongStyle }, 'not certified for PFAS'),
-        '. Do not assume any carbon filter works — verify the certification on the product listing.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'For NYC renters, the ',
-        React.createElement('strong', { style: strongStyle }, 'Clearly Filtered pitcher'),
-        ' (NSF P473) is a practical no-install option. Homeowners often choose under-sink RO for the strongest reduction across PFAS, lead, and disinfection byproducts.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'Bottled water and PFAS'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'Some bottled waters have tested positive for PFAS. Bottled is not PFAS-free by default. Filtered NYC tap water with a certified system is often the better long-term approach — lower cost, less plastic, and you control the maintenance schedule.',
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'Bottom line for NYC residents'),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'PFAS in NYC water is a ',
-        React.createElement('strong', { style: strongStyle }, 'real but manageable'),
-        ' concern in 2026. Federal limits now exist, monitoring is expanding, and NYCDEP is obligated to comply. Your best move: check your ZIP data, use a certified filter if you want extra protection, and stay informed as UCMR5 and state reporting update.',
-      ),
-      React.createElement(
-        'p',
-        { style: pStyle },
-        'Questions about overall NYC safety beyond PFAS? Read: ',
-        React.createElement(
-          'a',
-          { href: '/blog/is-new-york-city-tap-water-safe-2026', style: linkStyle },
-          'Is New York City Tap Water Safe to Drink in 2026?',
-        ),
-        '.',
-      ),
+    content: React.createElement('div', null,
+      React.createElement('h2', null, 'What do we know about NYCDEP water?'),
+      React.createElement('p', null, 'New York City System is PWSID NY7003493. Our packaged UCMR5 snapshot has no matching record for that supplier. We cannot infer either a detection or a nondetection from that gap, and we do not substitute another New York supplier’s measurements.'),
+      React.createElement('p', null, React.createElement('a', { href: 'https://www.nyc.gov/site/dep/water/drinking-water-quality-report.page' }, 'Read NYCDEP’s current drinking-water quality report'), ' for supplier monitoring and sampling dates. A historical individual peak is not an official compliance finding; regulatory determinations use the applicable monitoring and averaging rules.'),
+      React.createElement('h2', null, 'What should you do at home?'),
+      React.createElement('p', null, 'Confirm the supplier on your water bill. For lead questions, check your building’s service-line and plumbing information. A certified laboratory test is the appropriate next step when you need an address-level answer.'),
+      React.createElement('h2', null, 'Do you need a filter?'),
+      React.createElement('p', null, 'Choose treatment for a documented concern, not a missing data point. Verify the exact model and cartridge’s current certification for the contaminant you want to reduce, its capacity, and replacement interval. A general NSF standard number alone does not establish every reduction claim.'),
     ),
   },
 };

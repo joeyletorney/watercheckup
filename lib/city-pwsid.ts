@@ -1,14 +1,14 @@
 import zipLookupRaw from './zip-lookup.json';
-import ucmr5Raw from './ucmr5.json';
 
 const ZIP_LOOKUP = zipLookupRaw as Record<string, { p: string }>;
-const UCMR5_PWSIDS = new Set(Object.keys(ucmr5Raw as Record<string, unknown>));
 
 /**
  * Correct EPA PWSIDs for city slugs where cities-data.ts had duplicate/wrong IDs
  * (e.g. multiple AZ cities on AZ0404008) or anchor ZIP is missing from zip-lookup.
  */
 export const CITY_PWSID_OVERRIDES: Record<string, string> = {
+  philadelphia: 'PA1510001',
+  parkersburg: 'WV3305407',
   gilbert: 'AZ0407092',
   bakersfield: 'CA1510031',
   modesto: 'CA5010010',
@@ -66,13 +66,11 @@ export const CITY_PWSID_OVERRIDES: Record<string, string> = {
 
 /**
  * Resolve EPA PWSID for city PFAS/CCR display.
- * Prefer anchor-ZIP utility when UCMR5 exists; otherwise fall back to cities-data PWSID
- * when the ZIP maps to a system with no UCMR5 filing (e.g. Chicago IL0316000 → IL0310660).
+ * Prefer the identified anchor-ZIP supplier, even when monitoring data is missing.
+ * Never borrow another supplier’s data to fill a coverage gap.
  */
 export function resolveCityPwsid(slug: string, fallbackPwsid: string, zip?: string): string {
   if (CITY_PWSID_OVERRIDES[slug]) return CITY_PWSID_OVERRIDES[slug];
   const fromZip = zip ? ZIP_LOOKUP[zip]?.p : undefined;
-  if (fromZip && UCMR5_PWSIDS.has(fromZip)) return fromZip;
-  if (fromZip && UCMR5_PWSIDS.has(fallbackPwsid)) return fallbackPwsid;
   return fromZip ?? fallbackPwsid;
 }

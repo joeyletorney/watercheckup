@@ -93,7 +93,7 @@ export const SEARCH_DEMAND_CITIES = [
     name: 'New York City',
     state: 'NY',
     href: '/water/new-york',
-    stat: 'PFOS 106 ppt · building lead risk',
+    stat: 'NYCDEP report · building plumbing and data coverage',
     queryHooks: ['NYC tap water safe', 'NYC water PFAS', 'NYC lead pipes'],
   },
 ] as const;

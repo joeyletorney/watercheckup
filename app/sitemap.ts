@@ -33,7 +33,7 @@ const HIGH_PRIORITY_CITIES = new Set([
 
 function buildSitemap(): MetadataRoute.Sitemap {
   const base = SITE_ORIGIN
-  const lastModified = new Date()
+  // Omit lastmod until individual content/data revisions are tracked.
 
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
@@ -67,21 +67,18 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { path: '/water-hardness', priority: 0.7, changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${base}${p.path}`,
-    lastModified,
     changeFrequency: p.changeFreq,
     priority: p.priority,
   }))
 
   const blogPostEntries = BLOG_POST_SLUGS.map((slug) => ({
     url: `${base}/blog/${slug}`,
-    lastModified,
     changeFrequency: 'monthly' as const,
     priority: HIGH_PRIORITY_BLOG_SLUGS.has(slug) ? 0.9 : 0.75,
   }))
 
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
     url: `${base}/water/${slug}`,
-    lastModified,
     changeFrequency: 'monthly' as const,
     priority: HIGH_PRIORITY_CITIES.has(slug) ? 0.85 : 0.7,
   }))
@@ -93,23 +90,14 @@ function buildSitemap(): MetadataRoute.Sitemap {
     const slug = name.toLowerCase().replace(/\s+/g, '-')
     return {
       url: `${base}/water/state/${slug}`,
-      lastModified,
-      changeFrequency: 'monthly' as const,
+        changeFrequency: 'monthly' as const,
       priority: 0.72,
     }
   })
 
-  const zipResultEntries: MetadataRoute.Sitemap = TOP_RESULT_ZIPS.map((zip) => ({
-    url: `${base}/results/${zip}`,
-    lastModified,
-    changeFrequency: 'weekly' as const,
-    priority: 0.55,
-  }))
-
   const utilParams = getSitemapUtilityParams()
   const utilityEntries: MetadataRoute.Sitemap = utilParams.map(({ state, slug }) => ({
     url: `${base}/utilities/${state}/${slug}`,
-    lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.45,
   }))
@@ -117,14 +105,12 @@ function buildSitemap(): MetadataRoute.Sitemap {
   for (const st of Array.from(utilStateSet)) {
     utilityEntries.push({
       url: `${base}/utilities/${st}`,
-      lastModified,
-      changeFrequency: 'monthly' as const,
+        changeFrequency: 'monthly' as const,
       priority: 0.45,
     })
   }
   utilityEntries.push({
     url: `${base}/utilities`,
-    lastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   })
@@ -134,26 +120,24 @@ function buildSitemap(): MetadataRoute.Sitemap {
     ...blogPostEntries,
     ...stateEntries,
     ...cityEntries,
-    ...zipResultEntries,
     ...utilityEntries,
   ]
 
   const pinned: MetadataRoute.Sitemap = [
-    { url: `${base}/water/san-antonio`, lastModified, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${base}/water/gaithersburg`, lastModified, changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${base}/water/houston`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/water/phoenix`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/water/sugar-land`, lastModified, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${base}/water/pensacola`, lastModified, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${base}/water/fairfax-county`, lastModified, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${base}/water/miami`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/results/78205`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, lastModified, changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${base}/blog/san-antonio-water-quality`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/blog/pfas-in-san-antonio-water`, lastModified, changeFrequency: 'weekly', priority: 0.89 },
-    { url: `${base}/blog/best-water-filter-hard-water`, lastModified, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, lastModified, changeFrequency: 'monthly', priority: 0.86 },
-    { url: `${base}/blog/top-10-cities-hardest-tap-water`, lastModified, changeFrequency: 'monthly', priority: 0.86 },
+    { url: `${base}/water/san-antonio`, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/water/gaithersburg`, changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${base}/water/houston`, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/phoenix`, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/sugar-land`, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/water/pensacola`, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${base}/water/fairfax-county`, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${base}/water/miami`, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${base}/blog/san-antonio-water-quality`, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog/pfas-in-san-antonio-water`, changeFrequency: 'weekly', priority: 0.89 },
+    { url: `${base}/blog/best-water-filter-hard-water`, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, changeFrequency: 'monthly', priority: 0.86 },
+    { url: `${base}/blog/top-10-cities-hardest-tap-water`, changeFrequency: 'monthly', priority: 0.86 },
   ]
 
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()
@@ -165,7 +149,8 @@ function buildSitemap(): MetadataRoute.Sitemap {
 export default function sitemap(): MetadataRoute.Sitemap {
   try {
     return buildSitemap()
-  } catch {
+  } catch (error) {
+    console.error("Sitemap generation failed", error);
     return [
       { url: SITE_ORIGIN, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
       { url: `${SITE_ORIGIN}/water`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },

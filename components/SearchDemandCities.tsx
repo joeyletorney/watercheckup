@@ -48,7 +48,7 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
               </div>
               {ws && (
                 <div style={{ fontSize: 13, fontWeight: 700, color: ws.gradeColor, marginBottom: 6 }}>
-                  Grade {ws.grade} · {ws.score}/88
+                  {ws.grade === '—' ? 'Monitoring coverage incomplete' : `Grade ${ws.grade} · ${ws.score}/88`}
                 </div>
               )}
               <div style={{ fontSize: 13, color: '#a8b4c4', lineHeight: 1.5, marginBottom: 8 }}>{c.stat}</div>

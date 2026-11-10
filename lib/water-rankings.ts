@@ -1,7 +1,9 @@
+import { resolveCityPwsid } from './city-pwsid';
+import { getCityPfasData } from './ucmr5-city-pfas';
 import { CITIES } from '@/app/water/[city]/cities-data';
 import ucmr5Raw from '@/lib/ucmr5.json';
 
-/** UCMR5: [maxPFASppt, violations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] */
+/** UCMR5: [maxPFASppt, violations, [[name, level, hasBenchmark, aboveBenchmark], ...], lithiumUgL?] */
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
 export const STATE_NAMES: Record<string, string> = {
@@ -64,23 +66,22 @@ export function stateAbbrToUrlSlug(abbr: string): string {
   return name.toLowerCase().replace(/\s+/g, '-');
 }
 
-function getPfas(pwsid: string) {
-  const e = UCMR5[pwsid];
-  if (!e) return null;
-  const [, violations, compounds] = e;
-  return { violations, compounds };
+function getPfas(pwsid: string) { return getCityPfasData(pwsid); }
+function resolvedId(cd: (typeof CITIES)[string]) {
+  const slug = Object.keys(CITIES).find(key => CITIES[key] === cd) ?? '';
+  return resolveCityPwsid(slug, cd.pwsid, cd.zip);
 }
 
 /** MCL violation or any UCMR analyte flagged over EPA limit (state table / at-risk %). */
 export function isCityAtRisk(cd: (typeof CITIES)[string]): boolean {
-  const p = getPfas(cd.pwsid);
+  const p = getPfas(resolvedId(cd));
   if (!p) return false;
   if (p.violations > 0) return true;
-  return p.compounds.some(([, , overEpa]) => overEpa > 0);
+  return p.compounds.some(([, , , overEpa]) => overEpa > 0);
 }
 
 export function isCitySafeBand(cd: (typeof CITIES)[string]): boolean {
-  if (isCityAtRisk(cd)) return false;
+  if (!getPfas(resolvedId(cd)) || isCityAtRisk(cd)) return false;
   return cd.urgency === 'low';
 }
 
@@ -88,10 +89,10 @@ export function isCitySafeBand(cd: (typeof CITIES)[string]): boolean {
 export function stateHasCityAboveGuidelines(stateAbbr: string): boolean {
   const cities = Object.values(CITIES).filter((cd) => cd.state === stateAbbr);
   for (const cd of cities) {
-    const p = getPfas(cd.pwsid);
+    const p = getPfas(resolvedId(cd));
     if (!p) continue;
     if (p.violations > 0) return true;
-    if (p.compounds.some(([, , overEpa, overHealth]) => overEpa > 0 || overHealth > 0)) return true;
+    if (p.compounds.some(([, , , aboveBenchmark]) => aboveBenchmark > 0)) return true;
   }
   return false;
 }
@@ -110,7 +111,7 @@ function worstContaminantForState(stateAbbr: string): string {
   let bestName = '—';
   let bestMax = -1;
   for (const cd of cities) {
-    const p = getPfas(cd.pwsid);
+    const p = getPfas(resolvedId(cd));
     if (!p) continue;
     for (const [name, level] of p.compounds) {
       if (level > bestMax) {
@@ -147,7 +148,7 @@ export function buildStateRankingRows(): {
 
   const partial = abbreviations.map((abbr) => {
     const citiesInState = Object.entries(CITIES).filter(([, cd]) => cd.state === abbr);
-    const totalCities = citiesInState.length;
+    const totalCities = citiesInState.filter(([, cd]) => !!getPfas(resolvedId(cd))).length;
     let citiesAtRisk = 0;
     let citiesSafe = 0;
     for (const [, cd] of citiesInState) {
@@ -199,7 +200,7 @@ export function buildStateRankingRows(): {
 
   const worstCities = Object.entries(CITIES)
     .map(([slug, cd]) => {
-      const p = getPfas(cd.pwsid);
+      const p = getPfas(resolvedId(cd));
       let contaminantCount = 0;
       if (p) {
         const seen = new Set<string>();

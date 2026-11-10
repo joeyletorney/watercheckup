@@ -15,8 +15,8 @@ type Props = {
 export function NewsletterSignup({
   source,
   zip,
-  title = 'Weekly water quality alerts',
-  description = 'PFAS updates, violations, and score changes for your area — one email per week, no spam.',
+  title = 'Weekly water treatment newsletter',
+  description = 'Practical water treatment guidance and filter maintenance tips — one general email per week.',
   compact = false,
   variant = 'dark',
 }: Props) {
@@ -42,7 +42,10 @@ export function NewsletterSignup({
         }),
       });
       const data = await res.json();
-      if (data.success) setSent(true);
+      if (res.ok && data.success) {
+        setSent(true);
+        window.gtag?.('event', 'newsletter_signup', { source, method: 'newsletter_form' });
+      }
       else setErr(data.error || 'Could not subscribe. Try again.');
     } catch {
       setErr('Network error. Try again.');
@@ -102,7 +105,7 @@ export function NewsletterSignup({
       ) : (
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <input
-            type="email"
+            type="email" aria-label="Email address for the weekly newsletter"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && submit()}

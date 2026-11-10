@@ -28,7 +28,8 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
   return [...withData]
     .sort((a, b) => b.pctAtRisk - a.pctAtRisk || a.stateName.localeCompare(b.stateName))
     .map((row) => {
-      const cityEntries = Object.entries(CITIES).filter(([, cd]) => cd.state === row.stateAbbr);
+      const cityEntries = Object.entries(CITIES).filter(([slug, cd]) =>
+        cd.state === row.stateAbbr && !!getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip)));
 
       let worstSlug = cityEntries[0]?.[0] ?? '';
       let worstCityName = cityEntries[0]?.[1]?.name ?? '—';
@@ -37,6 +38,7 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
       for (const [slug, cd] of cityEntries) {
         const pfas = getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip));
         const ws = computeCityWaterScore(cd, pfas);
+        if (ws.grade === '—') continue;
         if (ws.score < worstScore) {
           worstScore = ws.score;
           worstSlug = slug;

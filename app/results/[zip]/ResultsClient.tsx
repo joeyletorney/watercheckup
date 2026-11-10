@@ -7,6 +7,7 @@ import { quizHrefFromReport, shouldEmphasizeLabTest } from '@/lib/results-quiz-l
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { resolveProductBuyLink } from '@/lib/product-buy-url';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
+import { getPfasCoverageNotice } from '@/lib/pfas-monitoring';
 
 const TAG = 'watercheck20-20';
 
@@ -176,7 +177,7 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
   const r = 52;
   const circ = 2 * Math.PI * r;
   const offset = circ - (capped / 88) * circ;
-  const sc = SCORE_COLOR(capped);
+  const sc = gradeStr === '—' ? '#94a3b8' : SCORE_COLOR(capped);
   return (
     <div style={{ position: 'relative', width: 120, height: 120, flexShrink: 0 }}>
       <svg width="120" height="120" style={{ transform: 'rotate(-90deg)' }}>
@@ -185,7 +186,7 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
           strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" />
       </svg>
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ fontSize: 28, fontWeight: 900, color: sc, lineHeight: 1 }}>{capped}</span>
+        <span style={{ fontSize: 28, fontWeight: 900, color: sc, lineHeight: 1 }}>{gradeStr === '—' ? '—' : capped}</span>
         <span style={{ fontSize: 13, color: '#a8b4c4', letterSpacing: 1 }}>/ 88</span>
         <span style={{ fontSize: 14, fontWeight: 800, color: sc, marginTop: 2 }}>{gradeStr}</span>
       </div>
@@ -199,27 +200,33 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
   const [alertEmail, setAlertEmail] = useState('');
   const [alertSent, setAlertSent] = useState(false);
   const [alertSending, setAlertSending] = useState(false);
+  const [alertError, setAlertError] = useState('');
 
   const sendAlert = async () => {
     if (!alertEmail.includes('@') || alertSending) return;
     setAlertSending(true);
+    setAlertError('');
     try {
-      await fetch('/api/newsletter/subscribe', {
+      const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: alertEmail, zip, source: 'violation-alert' }),
+        body: JSON.stringify({ email: alertEmail, zip, source: 'weekly-newsletter' }),
       });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error || 'Subscription failed. Please try again.');
       setAlertSent(true);
-    } catch { setAlertSent(true); }
+      window.gtag?.('event', 'newsletter_signup', { source: 'zip-report', method: 'newsletter_form' });
+    } catch (error) { setAlertError(error instanceof Error ? error.message : 'Could not subscribe. Please try again.'); }
     finally { setAlertSending(false); }
   };
 
-  if (!data) {
+  if (!data || data.lookupError) {
     return (
       <div style={{ maxWidth: 680, margin: '80px auto', padding: '0 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🚱</div>
-        <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>No data found for ZIP {zip}</h1>
-        <p style={{ color: '#cbd5e1', marginBottom: 24 }}>This ZIP code may not be in our database yet, or it may be a rural area served by a private well.</p>
+        <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>Report unavailable for ZIP {zip}</h1>
+        <p style={{ color: '#cbd5e1', marginBottom: 24 }}>{data?.lookupError || 'We could not load this report. Try again shortly or check your supplier’s current report.'}</p>
+        <button type="button" onClick={() => window.location.reload()} style={{ padding: '12px 24px', marginRight: 12, borderRadius: 10, border: '1px solid #67e8f9', background: '#071828', color: '#f1f5f9', cursor: 'pointer' }}>Try again</button>
         <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: '#0891b2', borderRadius: 10, color: '#fff', fontWeight: 700, textDecoration: 'none' }}>
           Try another ZIP →
         </Link>
@@ -230,6 +237,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
   const cappedScore = CAP_SCORE(data.score);
   const sc = data.scoreColor || SCORE_COLOR(cappedScore);
   const letterGrade = data.grade || '—';
+  const pfasNotice = getPfasCoverageNotice(data.pfasCoverage);
   const scoreLabel = data.scoreLabel || SCORE_LABEL(cappedScore);
   const quizHref = quizHrefFromReport({
     zip,
@@ -735,12 +743,11 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div>
           <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>PFAS MONITORING — EPA UCMR5 (2023–2025)</div>
-            {data.pfasCount === 0 ? (
+            {data.pfasCoverage !== 'available' || data.pfasCount === 0 ? (
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                <span style={{ fontSize: 24 }}>✅</span>
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#22d3ee' }}>No PFAS detected</div>
-                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4 }}>All 29 PFAS compounds tested below detection limits for this water system.</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#cbd5e1' }}>{pfasNotice.title}</div>
+                  <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 4 }}>{pfasNotice.detail}</div>
                 </div>
               </div>
             ) : (
@@ -907,15 +914,17 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
       {/* ── EMAIL ALERTS ── */}
       <div style={{ marginTop: 72, padding: '24px 24px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: 14 }}>
-        <div style={{ fontSize: 17, fontWeight: 900, color: '#f8fafc', marginBottom: 8 }}>Get Alerts If Your Water Changes</div>
+        <div style={{ fontSize: 17, fontWeight: 900, color: '#f8fafc', marginBottom: 8 }}>Weekly water treatment newsletter</div>
         <p style={{ fontSize: 13, color: '#cbd5e1', margin: '0 0 14px', lineHeight: 1.55 }}>
-          We'll notify you if new contaminants are detected or violations are filed for ZIP {zip}.
+          Practical water testing, filtration, and maintenance guidance. One general email per week; this does not monitor local emergencies.
         </p>
+        {alertError && <p role="alert" style={{ color: '#fca5a5' }}>{alertError}</p>}
         {alertSent ? (
           <div style={{ fontSize: 14, color: '#4ade80', fontWeight: 700 }}>✅ You're on the list. Watch your inbox.</div>
         ) : (
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <input
+              aria-label="Email address for the weekly newsletter"
               value={alertEmail}
               onChange={e => setAlertEmail(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && sendAlert()}
@@ -939,7 +948,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 opacity: alertSending || !alertEmail.includes('@') ? 0.55 : 1,
               }}
             >
-              {alertSending ? '…' : 'Notify me'}
+              {alertSending ? '…' : 'Subscribe'}
             </button>
           </div>
         )}

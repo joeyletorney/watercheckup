@@ -87,7 +87,6 @@ export default function ClaimUtilitiesForm() {
       const params = new URLSearchParams({
         utility: data.utilityName || utilityName.trim(),
         state: data.state || state,
-        email: data.email || email.trim(),
       });
       router.push(`/utilities/claim/thank-you?${params.toString()}`);
     } catch {

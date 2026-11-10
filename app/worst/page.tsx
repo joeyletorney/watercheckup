@@ -56,7 +56,7 @@ const SECTIONS: HubSection[] = [
         href: '/pfoa-at-epa-limit',
         title: 'Cities where PFOA hit the 4 ppt EPA limit',
         tag: 'UCMR5 · PFOA MCL',
-        desc: 'Sugar Land at the line, Philadelphia at 235 ppt — tracked metros with PFOA ≥ 4 ppt.',
+        desc: 'Sugar Land at the line, supplier-specific comparisons — tracked metros with PFOA ≥ 4 ppt.',
       },
       {
         href: '/worst-water',

@@ -1,4 +1,6 @@
+import { ReportEvidenceSummary } from '@/components/ReportEvidenceSummary';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FilterRecommendationsAccent } from '@/components/FilterRecommendationsHero';
@@ -44,6 +46,10 @@ import { losAngelesFAQs } from '@/lib/faq-los-angeles';
 import { rockvilleFAQs } from '@/lib/faq-rockville';
 import { silverSpringFAQs } from '@/lib/faq-silver-spring';
 import { bethesdaFAQs } from '@/lib/faq-bethesda';
+import { stamfordFAQs } from '@/lib/faq-stamford';
+import { kansasCityFAQs } from '@/lib/faq-kansas-city';
+import { richmondFAQs } from '@/lib/faq-richmond';
+import { parkersburgFAQs } from '@/lib/faq-parkersburg';
 import { quizHrefFromCityPage, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { Fragment } from 'react/jsx-runtime';
 import { Suspense } from 'react';
@@ -57,6 +63,10 @@ const CITY_FAQS: Record<string, { question: string; answer: string }[]> = {
   rockville: rockvilleFAQs,
   'silver-spring': silverSpringFAQs,
   bethesda: bethesdaFAQs,
+  stamford: stamfordFAQs,
+  'kansas-city': kansasCityFAQs,
+  richmond: richmondFAQs,
+  parkersburg: parkersburgFAQs,
 };
 
 const ALL_CITIES_FOR_NEARBY = Object.entries(CITIES).map(([slug, c]) => ({
@@ -65,7 +75,7 @@ const ALL_CITIES_FOR_NEARBY = Object.entries(CITIES).map(([slug, c]) => ({
   state: c.state,
 }));
 
-// UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, overEPALimit, overHealthLimit], ...], hardness?] }
+// UCMR5 data: { [pwsid]: [maxPFASppt, regulatedViolations, [[name, level, hasBenchmark, aboveBenchmark], ...], lithiumUgL?] }
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
 
 // EPA MCLs (ppt) for regulated PFAS as of April 2024
@@ -75,10 +85,7 @@ const EPA_MCL: Record<string, number> = {
 const EPA_HAZARD_INDEX = ['PFNA', 'PFHxS', 'HFPO-DA'];
 
 function getPfasData(pwsid: string) {
-  const entry = UCMR5[pwsid];
-  if (!entry) return null;
-  const [maxPpt, violations, compounds, hardness] = entry;
-  return { maxPpt, violations, compounds, hardness };
+  return getCityPfasData(pwsid);
 }
 
 const RO_PICKS = [
@@ -109,36 +116,9 @@ const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS; why?: s
 const DEFAULT_PICKS = { label: 'Contaminants detected in local water', picks: RO_PICKS, why: '' };
 
 /** Build a city-specific recommendation reason from its data profile. */
-function getCityWhy(slug: string, cd: typeof CITIES[string] | undefined, pfas?: { compounds: [string, number, number, number][]; maxPpt: number } | null): string {
-  if (!cd) return 'Chosen because it addresses the widest range of contaminants found in municipal water supplies.';
-  const topPick = TOP_PICKS[slug];
-  if (topPick?.why) return topPick.why;
-  const issues = cd.issues ?? [];
-  const hasLead = issues.some(i => /lead/i.test(i));
-  // Check PFAS both from issues label AND from real UCMR5 data
-  const hasPfasIssue = issues.some(i => /pfas|forever/i.test(i));
-  const hasPfasData  = pfas && pfas.maxPpt > 0;
-  const hasPfas = hasPfasIssue || hasPfasData;
-  const hasThm  = issues.some(i => /thm|disinfection|byproduct/i.test(i));
-  const hasHard = issues.some(i => /hard|tds|dissolved/i.test(i));
-  const isHigh  = cd.urgency === 'high';
-  // If we have real PFAS ppt data, use the specific number
-  if (hasLead && hasPfas && hasPfasData && pfas!.maxPpt > 4) {
-    return `Chosen for ${cd.name} because PFAS was detected at ${pfas!.maxPpt} ppt in EPA UCMR5 monitoring — above the 4 ppt federal limit — and lead service lines add additional risk. RO removes 99%+ of both at the tap.`;
-  }
-  if (hasPfas && hasPfasData && pfas!.maxPpt > 4) {
-    return `Chosen for ${cd.name} because PFAS was detected at ${pfas!.maxPpt} ppt in EPA UCMR5 monitoring — above the 4 ppt federal limit. Reverse osmosis removes 99%+ of PFAS compounds and is the only reliably certified technology for this.`;
-  }
-  if (hasPfas && hasPfasData) {
-    return `Chosen for ${cd.name} because PFAS compounds were detected in EPA UCMR5 monitoring data for this water system. Reverse osmosis is the most effective residential technology, removing 99%+ of PFAS.`;
-  }
-  if (hasLead && hasPfas) return `Chosen for ${cd.name} because RO removes both lead (99%+) and PFAS (99%+) at the tap — the two primary concerns flagged in this system's EPA data.`;
-  if (hasLead) return `Chosen for ${cd.name} because lead is the primary concern — NSF 58 certified RO removes 99%+ of lead at the kitchen tap, regardless of what the service line is made of.`;
-  if (hasPfas) return `Chosen for ${cd.name} because PFAS contamination is detected in this system's UCMR5 data — reverse osmosis is the most effective residential technology, removing 99%+ of PFAS compounds.`;
-  if (hasThm) return `Chosen for ${cd.name} because elevated disinfection byproducts (THMs/HAAs) are the primary documented concern — RO removes them more completely than carbon filtration alone.`;
-  if (hasHard) return `Chosen for ${cd.name} because high TDS and hard water are the primary issues — RO dramatically reduces dissolved solids, hardness minerals, and any co-occurring contaminants.`;
-  if (isHigh) return `Chosen for ${cd.name} because EPA data shows elevated concern — RO provides the broadest contaminant coverage and removes 99%+ of the most common municipal water pollutants.`;
-  return `Chosen for ${cd.name} because it removes the widest range of contaminants found in municipal supplies — PFAS, lead, chlorine, nitrates, and more — in a single system.`;
+function getCityWhy(_slug: string, cd: typeof CITIES[string] | undefined, pfas?: { compounds: [string, number, number, number][]; maxPpt: number } | null): string {
+  if (!pfas) return 'Monitoring coverage is incomplete in this snapshot. Check your supplier’s current report or test your tap before choosing equipment.';
+  return `For ${cd?.name ?? 'this supplier'}, compare the historical findings below with the current utility report. If you choose treatment, verify the exact model and cartridge’s certified reduction claim, capacity, and replacement schedule. A system-level report does not test your household tap.`;
 }
 
 const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress: boolean }> = {
@@ -185,6 +165,11 @@ const LOCAL_SEARCH_INTENT: Record<string, {
         heading: 'Gaithersburg water treatment and reverse osmosis',
         body:
           'For WSSC tap water, reverse osmosis is the broadest kitchen treatment because it targets PFAS, lead at the tap, disinfection byproducts, and many dissolved contaminants together. A softener is only for hardness/scale; it does not remove PFAS or lead. Whole-house treatment makes more sense for wells with iron, sulfur, bacteria, or very hard water.',
+      },
+      {
+        heading: 'How to get a water test in Gaithersburg, MD',
+        body:
+          'Start with this free WSSC/EPA report so you know what the public system already measured. Then test your own kitchen tap if the home was built before 1986, you have infants or a pregnancy in the house, or you are on a private well. Montgomery County does not cover wells in EPA city data. Use a first-draw sample after water sits overnight for lead. Mail-in city-water panels (Tap Score / certified labs) cover lead, PFAS, and metals; well panels should add bacteria, nitrate, arsenic, radon, iron, and manganese. WSSC’s treated water can still pick up lead from building plumbing — the lab result is the only address-level answer.',
       },
     ],
     links: [
@@ -402,6 +387,121 @@ const LOCAL_SEARCH_INTENT: Record<string, {
       { href: '/quiz', label: 'Find a Nashville filter' },
     ],
   },
+  stamford: {
+    eyebrow: 'STAMFORD TAP WATER',
+    title: 'Stamford, CT water quality: Aquarion, PFAS and older-building lead',
+    intro:
+      'Stamford sits on Long Island Sound with Aquarion Water Company of Connecticut as the main public supplier. Industrial shoreline history, Connecticut PFAS monitoring, and pre-1986 housing stock are why residents look up tap water beyond the annual CCR.',
+    sections: [
+      {
+        heading: 'PFAS in Stamford and Fairfield County water',
+        body:
+          'Connecticut has documented PFAS from military and industrial sources. UCMR5 is the federal file to check for Aquarion and nearby systems. If PFAS is detected, NSF 58 reverse osmosis or a PFAS-certified pitcher is the residential technology with credible removal data — not a fridge filter.',
+      },
+      {
+        heading: 'Lead in older Stamford neighborhoods',
+        body:
+          'Downtown, South End, and other pre-1986 buildings can still have lead solder or brass fixtures. Aquarion’s treated water can meet federal limits while your kitchen tap does not. Test a first-draw sample and use NSF 53 or NSF 58 filtration if children or pregnancy are involved.',
+      },
+      {
+        heading: 'Should you test Stamford tap water?',
+        body:
+          'Use this EPA-sourced report first, then test the tap if the building is older, you rent and do not know the pipe material, or you want PFAS confirmation beyond city-wide averages. Two condos on the same street can differ after the meter.',
+      },
+    ],
+    links: [
+      { href: '/lead', label: 'Lead in water guide' },
+      { href: '/pfas', label: 'PFAS guide' },
+      { href: '/water/new-york', label: 'New York City water report' },
+      { href: '/quiz', label: 'Find a Stamford filter' },
+    ],
+  },
+  'kansas-city': {
+    eyebrow: 'KANSAS CITY TAP WATER',
+    title: 'Kansas City, MO water quality: Missouri River, DBPs and agricultural runoff',
+    intro:
+      'Kansas City Water Services draws from the Missouri River — one of the most heavily modified rivers in the US, with upstream agriculture and industrial discharge. Disinfection byproducts and independent health-guideline exceedances are why KC residents search for a clearer tap-water picture than the annual report.',
+    sections: [
+      {
+        heading: 'Missouri River source water',
+        body:
+          'River water picks up agricultural nitrate, pesticide residues, and organic matter that becomes disinfection byproducts after chlorination. Legal compliance and “what I would filter for my family” are not the same question. This page combines EPA monitoring with that river context.',
+      },
+      {
+        heading: 'Disinfection byproducts in Kansas City water',
+        body:
+          'Warm river water plus chlorine or chloramine forms trihalomethanes and haloacetic acids. Carbon blocks help taste; NSF 58 reverse osmosis removes DBPs more completely at the drinking tap. A softener does not address this class of contaminants.',
+      },
+      {
+        heading: 'Should Kansas City residents test the tap?',
+        body:
+          'Start here for the public-system snapshot, then test the kitchen faucet in older KCMO housing or if you want metals and DBPs at the address. Missouri and Kansas addresses on the same metro name can be different utilities — search by ZIP, not “Kansas City” alone.',
+      },
+    ],
+    links: [
+      { href: '/water/st-louis', label: 'St. Louis water report' },
+      { href: '/water/omaha', label: 'Omaha water report' },
+      { href: '/quiz', label: 'Find a Kansas City filter' },
+    ],
+  },
+  richmond: {
+    eyebrow: 'RICHMOND TAP WATER',
+    title: 'Richmond, VA water quality: James River, DBPs and industrial legacy',
+    intro:
+      'Richmond Department of Public Utilities draws from the James River, which carries upstream industrial history and urban runoff. Disinfection byproducts and older Fan/Church Hill plumbing are the usual reasons residents look up whether Richmond tap water needs a filter.',
+    sections: [
+      {
+        heading: 'James River source and industrial legacy',
+        body:
+          'The James recovered from decades of industrial pollution, but it is still a surface-water supply with organic load and upstream discharge. That chemistry is why DBPs show up in monitoring even when the city meets most federal limits.',
+      },
+      {
+        heading: 'Disinfection byproducts and older Richmond homes',
+        body:
+          'Chlorination of river water forms THMs and HAAs. Pre-1986 housing can add lead at the tap after overnight stagnation. NSF 53 covers lead; NSF 58 reverse osmosis covers lead plus DBPs and many dissolved contaminants together.',
+      },
+      {
+        heading: 'Should you test Richmond tap water?',
+        body:
+          'Use this EPA-sourced report first. Test a first-draw kitchen sample if the home is older, you have children, or you want address-level metals beyond city averages. Henrico and Chesterfield neighbors may be on different systems than the City of Richmond.',
+      },
+    ],
+    links: [
+      { href: '/water/fairfax-county', label: 'Fairfax County water report' },
+      { href: '/water/washington-dc', label: 'Washington DC water report' },
+      { href: '/lead', label: 'Lead in water guide' },
+      { href: '/quiz', label: 'Find a Richmond filter' },
+    ],
+  },
+  parkersburg: {
+    eyebrow: 'PARKERSBURG PFAS / PFOA',
+    title: 'Parkersburg, WV water: DuPont PFOA, Ohio River discharge and tap filters',
+    intro:
+      'Parkersburg is the US PFOA story: DuPont’s Washington Works plant discharged C8 into the Ohio River for decades. EPA UCMR5 still shows PFOA far above the 4 ppt legal limit. Residents searching this page usually want today’s levels and what actually removes forever chemicals at the tap.',
+    sections: [
+      {
+        heading: 'PFOA in Parkersburg drinking water',
+        body:
+          'The packaged Parkersburg Utility Board record shows a PFOA peak of 46.5 ppt. Nearby Lubeck PSD is a separate supplier. A historical peak is not a current tap measurement or an official compliance finding; check the current report before choosing treatment.',
+      },
+      {
+        heading: 'Why pitcher filters are not enough here',
+        body:
+          'Standard carbon pitchers are not rated for Parkersburg’s PFAS profile. Short-chain compounds can break through exhausted carbon. If you lived here during the C8 years, medical monitoring and tap filtration are separate conversations — this page is about what is in the water now.',
+      },
+      {
+        heading: 'Should Parkersburg residents retest?',
+        body:
+          'Yes if you use well water near the Ohio River, you have not tested in years, or you want confirmation after a filter change. Municipal customers should still read this EPA snapshot, then consider a PFAS-capable mail-in panel if they want address-level numbers beyond the public system average.',
+      },
+    ],
+    links: [
+      { href: '/pfoa-at-epa-limit', label: 'Cities at the EPA PFOA limit' },
+      { href: '/pfas', label: 'PFAS guide' },
+      { href: '/blog/what-water-filter-removes-pfas', label: 'Filters that remove PFAS' },
+      { href: '/quiz', label: 'Find a Parkersburg filter' },
+    ],
+  },
 };
 
 // export async function generateStaticParams() {
@@ -432,14 +532,8 @@ const urgencyConfig = {
 };
 
 // Concern-level context copy shown in the problem banner (aligned to water safety score)
-function getUrgencyContext(concern: 'high' | 'medium' | 'low', issues: string[], cityName: string): string {
-  if (concern === 'high') {
-    return `${cityName} has significant water quality concerns including ${issues[0]?.toLowerCase()}. EPA legal limits are set based on treatment feasibility — not always on what independent health scientists consider safe. Certified filtration is strongly recommended for this water supply.`;
-  }
-  if (concern === 'medium') {
-    return `${cityName} water meets EPA legal standards, but legal compliance is not the same as being free of health concerns. The issues flagged below are worth understanding before deciding whether to filter. EPA limits are often set below what independent scientists recommend as safe thresholds.`;
-  }
-  return `${cityName} water currently shows no major violations in EPA monitoring data. That said, your home's internal plumbing can add lead or other contaminants after water leaves the treatment plant — especially in homes built before 1986.`;
+function getUrgencyContext(_concern: 'high' | 'medium' | 'low', _issues: string[], cityName: string): string {
+  return `This ${cityName} report summarizes available historical monitoring. A low concentration or missing record does not certify every tap as safe, and a peak above a benchmark is not an official compliance finding. Confirm your supplier, review its current report, and test your own tap if you need an address-level answer.`;
 }
 
 export default async function CityPage(props: { params: Promise<{ city: string }> }) {
@@ -450,13 +544,14 @@ export default async function CityPage(props: { params: Promise<{ city: string }
   const params = await props.params;
   const slug = params.city;
   const cd = CITIES[slug];
+  if (!cd) notFound();
   const cityName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   const pwsidResolved = cd ? resolveCityPwsid(slug, cd.pwsid, cd.zip) : '';
   const pfasForScore = cd ? getCityPfasData(pwsidResolved) : null;
   const waterScorePreview = cd
     ? computeCityWaterScore(cd, pfasForScore)
     : null;
-  const concernLevel = waterScorePreview
+  const concernLevel = waterScorePreview?.grade === '—' ? 'medium' : waterScorePreview
     ? concernLevelFromScore(waterScorePreview.score)
     : (cd?.urgency ?? 'medium');
   const urg = urgencyConfig[concernLevel];
@@ -496,29 +591,11 @@ export default async function CityPage(props: { params: Promise<{ city: string }
   const waterScore = cd ? computeCityWaterScore(cd, pfas) : null;
   const keyFinding = cd ? getCityKeyFinding(cd.urgency, cd.issues, pfas) : '';
 
-  const faqSchema = buildFaqPageSchema(
-    [
-      {
-        name: `Is ${cd?.name ?? cityName} tap water safe to drink in 2026?`,
-        text: cd && waterScore
-          ? `${cd.name} earns Water Safety Grade ${waterScore.grade} (${waterScore.score}/88) on WaterCheckup — ${keyFinding}. ${cd.urgency === 'high' ? `Known issues include ${cd.issues[0]?.toLowerCase()}. Certified filtration is strongly recommended.` : 'EPA compliance does not mean contaminant-free; sensitive households should still consider NSF-certified filtration.'}`
-          : `See EPA monitoring data, PFAS UCMR5 results, and WaterCheckup's A–F grade for ${cd?.name ?? cityName} on this page.`,
-      },
-      {
-        name: `Does ${cd?.name ?? cityName} water have PFAS?`,
-        text: `EPA UCMR5 monitoring for ${cd?.name ?? cityName} (PWSID ${cd?.pwsid ?? ''}) is on this page. ${pfas?.compounds.length ? 'PFAS has been detected in federal monitoring for this system.' : 'Check the table below for the latest UCMR5 snapshot.'} Only reverse osmosis (NSF 58) or NSF P473-certified filters reliably remove PFAS; standard pitchers do not.`,
-      },
-      {
-        name: `Does ${cd?.name ?? cityName} water have lead?`,
-        text: `Lead usually comes from service lines and building plumbing in ${cd?.name ?? cityName}, not the treatment plant. Pre-1986 homes are highest risk. NSF 53-certified pitchers or reverse osmosis remove lead at the tap.`,
-      },
-      {
-        name: `What water filter is best for ${cd?.name ?? cityName}?`,
-        text: `For ${cd?.name ?? cityName}'s profile (${keyFinding}), reverse osmosis covers PFAS, lead, and disinfection byproducts. Renters can use a countertop RO; homeowners often choose under-sink NSF 58 systems ranked on this page.`,
-      },
-    ],
-    `https://watercheckup.com/water/${slug}`
-  );
+  const faqSchema = buildFaqPageSchema([
+    { name: `What does this ${cd.name} water report show?`, text: 'This report summarizes available historical supplier monitoring. It is not a household tap test or a determination of legal compliance. Confirm the supplier and review its current annual report.' },
+    { name: `Does ${cd.name} water have PFAS?`, text: !pfas ? `There is no matching record for PWSID ${pwsidResolved} in this packaged snapshot; that gap does not establish detection or nondetection.` : `${pfas.compounds.length} compounds are listed in this historical snapshot for PWSID ${pwsidResolved}. Individual peaks do not determine compliance or describe current water at every tap.` },
+    { name: 'How should I decide whether to test or filter?', text: 'Identify a documented concern. A certified laboratory can test your household tap or private well. For treatment, verify the exact model and cartridge’s certified reduction claims, capacity, and replacement interval.' },
+  ], `https://watercheckup.com/water/${slug}`);
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
@@ -593,6 +670,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
           {cd && getPriorityCityIntroParagraphs(slug) && <PriorityCityEditorial slug={slug} />}
 
           {cd && <CityFilterGuideLinks />}
+
+          <ReportEvidenceSummary supplier={cd.system} pwsid={pwsidResolved} hardness={cd.waterProfile?.hardness} />
 
           {cd && !getPriorityCityIntroParagraphs(slug) && slug !== 'gaithersburg' && (
             <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.6 }}>
@@ -710,7 +789,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                       />
                     </svg>
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontSize: 22, fontWeight: 900, color: ws.scoreColor, lineHeight: 1 }}>{ws.score}</span>
+                      <span style={{ fontSize: 22, fontWeight: 900, color: ws.scoreColor, lineHeight: 1 }}>{ws.grade === '—' ? '—' : ws.score}</span>
                       <span style={{ fontSize: 9, color: '#a8b4c4', letterSpacing: 1, marginTop: 2 }}>/ 88</span>
                     </div>
                   </div>
@@ -803,31 +882,31 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                 return (
                   <div style={{ marginBottom: 72, padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>PFAS TESTING — EPA UCMR5 DATA</div>
-                    <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Last updated Q1 2026</div>
+                    <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 12 }}>EPA UCMR5 monitoring · Testing period 2023–2025 · Packaged historical snapshot; see methodology</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                       <span style={{ fontSize: 20 }}>📋</span>
                       <div style={{ fontSize: 15, fontWeight: 700, color: '#e2e8f0' }}>No UCMR5 data on file for this system</div>
                     </div>
                     <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
-                      The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) required systems serving 3,300+ people to test for 29 PFAS compounds between 2023–2025. This system either was not required to test, reported no detections, or has not yet submitted results to the federal database.
+                      The EPA&apos;s 5th Unregulated Contaminant Monitoring Rule (UCMR5) required systems serving 3,300+ people to test for 29 PFAS compounds between 2023–2025. This packaged snapshot has no matching record. That does not tell us whether the system tested or whether PFAS was detected. Consult the current official report.
                     </p>
                     <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0 }}>
-                      Source: EPA UCMR5 national dataset · Data current as of 2026
+                      Source: EPA UCMR5 national dataset · Check the linked utility report for current data
                     </p>
                   </div>
                 );
               }
-              const { maxPpt, violations, compounds, hardness } = pfas;
+              const { maxPpt, violations, compounds } = pfas;
               const hasDetections = compounds.length > 0;
               const statusColor = violations > 0 ? '#ef4444' : hasDetections ? '#f59e0b' : '#22d3ee';
-              const statusLabel = violations > 0 ? 'VIOLATIONS DETECTED' : hasDetections ? 'PFAS DETECTED (BELOW MCL)' : 'NO PFAS DETECTED';
+              const statusLabel = violations > 0 ? 'HISTORICAL PEAKS ABOVE BENCHMARK' : hasDetections ? 'HISTORICAL PFAS DETECTIONS' : 'NO PFAS DETECTED';
               const statusIcon = violations > 0 ? '🚨' : hasDetections ? '⚠️' : '✅';
 
               return (
                 <div style={{ marginBottom: 72 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2 }}>PFAS TESTING DATA — EPA UCMR5</div>
-                    <div style={{ fontSize: 13, color: '#94a3b8' }}>Testing period 2023–2025 · Last updated Q1 2026</div>
+                    <div style={{ fontSize: 13, color: '#94a3b8' }}>Testing period 2023–2025 · Packaged historical snapshot; see methodology</div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px', background: `${statusColor}12`, border: `1px solid ${statusColor}35`, borderRadius: 10, marginBottom: 16 }}>
@@ -836,7 +915,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                       <div style={{ fontSize: 13, fontWeight: 800, color: statusColor, letterSpacing: 1 }}>{statusLabel}</div>
                       <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 3 }}>
                         {hasDetections
-                          ? `Max detected: ${maxPpt} ppt · ${compounds.length} compound${compounds.length !== 1 ? 's' : ''} found · ${violations} EPA MCL violation${violations !== 1 ? 's' : ''}`
+                          ? `Max detected: ${maxPpt} ppt · ${compounds.length} compound${compounds.length !== 1 ? 's' : ''} found · ${violations} compound above benchmark${violations !== 1 ? 's' : ''}`
                           : 'All 29 PFAS compounds tested below detection limits'}
                       </div>
                     </div>
@@ -845,25 +924,25 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                   {hasDetections && (
                     <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 120px 120px', gap: 0 }}>
-                        {['Compound', 'Level (ppt)', 'EPA MCL', 'Health Limit'].map((h, i) => (
+                        {['Compound', 'Level (ppt)', 'EPA MCL', 'Interpretation'].map((h, i) => (
                           <div key={h} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 800, color: '#a8b4c4', letterSpacing: 1, background: '#040d14', borderBottom: '1px solid #1a3a5c', textAlign: i > 0 ? 'center' : 'left' }}>
                             {h}
                           </div>
                         ))}
-                        {compounds.sort((a, b) => b[1] - a[1]).map(([name, level, overEPA, overHealth], idx) => (
+                        {[...compounds].sort((a, b) => b[1] - a[1]).map(([name, level, , overEPA], idx) => (
                           <Fragment key={`${name}-${idx}`}>
                             <div style={{ padding: '10px 14px', fontSize: 13, fontWeight: 600, color: '#e2e8f0', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
                               {name}
                               {EPA_MCL[name] !== undefined && <span style={{ fontSize: 13, color: '#a8b4c4', marginLeft: 6 }}>regulated</span>}
                             </div>
-                            <div key={`${name}-level`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 700, color: overHealth ? '#ef4444' : overEPA ? '#f59e0b' : '#cbd5e1', textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
+                            <div key={`${name}-level`} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 700, color: overEPA ? '#f59e0b' : '#cbd5e1', textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none' }}>
                               {level.toFixed(1)}
                             </div>
                             <div key={`${name}-epa`} style={{ padding: '10px 14px', fontSize: 13, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: EPA_MCL[name] !== undefined ? (overEPA ? '#ef4444' : '#22d3ee') : '#a8b4c4' }}>
-                              {EPA_MCL[name] !== undefined ? (overEPA ? `❌ >${EPA_MCL[name]} ppt` : `✓ <${EPA_MCL[name]} ppt`) : '—'}
+                              {EPA_MCL[name] !== undefined ? (overEPA ? `❌ >${EPA_MCL[name]} ppt` : `✓ ≤${EPA_MCL[name]} ppt`) : '—'}
                             </div>
-                            <div key={`${name}-health`} style={{ padding: '10px 14px', fontSize: 13, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: overHealth ? '#ef4444' : '#22d3ee' }}>
-                              {overHealth ? '❌ Exceeds' : '✓ Within'}
+                            <div key={`${name}-health`} style={{ padding: '10px 14px', fontSize: 13, textAlign: 'center', borderBottom: idx < compounds.length - 1 ? '1px solid #0f2336' : 'none', color: '#a8b4c4' }}>
+                              Historical peak; not a compliance finding
                             </div>
                           </Fragment>
                         ))}
@@ -871,18 +950,9 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                     </div>
                   )}
 
-                  {hardness !== undefined && (
-                    <div style={{ padding: '12px 16px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, marginBottom: 12 }}>
-                      <span style={{ fontSize: 13, color: '#a8b4c4' }}>Water Hardness (from UCMR5): </span>
-                      <span style={{ fontSize: 13, fontWeight: 700, color: hardness > 250 ? '#f59e0b' : '#22d3ee' }}>
-                        {hardness} mg/L as CaCO₃
-                        {hardness > 250 ? ' — Hard (scale risk, reduced soap lather)' : hardness > 121 ? ' — Moderately hard' : ' — Relatively soft'}
-                      </span>
-                    </div>
-                  )}
 
                   <p style={{ fontSize: 13, color: '#a8b4c4', margin: 0, lineHeight: 1.6 }}>
-                    Source: EPA UCMR5 national monitoring dataset · Testing period 2023–2025 · MCL = Maximum Contaminant Level (legally enforceable limit) · Health limit = EPA health advisory threshold
+                    Source: EPA UCMR5 national monitoring dataset · Testing period 2023–2025 · MCL = Maximum Contaminant Level (legally enforceable limit) · Historical peaks are not official compliance findings
                   </p>
                 </div>
               );

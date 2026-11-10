@@ -25,7 +25,7 @@ const FILTERS = [
     name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR SUGAR LAND',
     price: '~$439',
-    why: 'Removes 6:2 FTS, PFOA, and other PFAS at 99%+ when certified to NSF 58. Essential for Sugar Land’s peak UCMR5 readings and regulated PFOA at the limit.',
+    why: 'Under-sink RO option to compare. Verify the exact model’s certified reduction claims for the compound of concern and its replacement-filter costs. Historical peaks do not establish household exposure.',
     link: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     best: true,
   },
@@ -33,7 +33,7 @@ const FILTERS = [
     name: 'Clearly Filtered 3.5L Pitcher',
     badge: 'BEST NO-INSTALL',
     price: '~$90',
-    why: 'NSF P473 certified for PFOA/PFOS. Practical for renters; pair with RO if you need broader PFAS coverage including short-chain compounds.',
+    why: 'No-install pitcher option. Check the exact cartridge’s current independent certification, claimed compounds, and replacement capacity before purchasing.',
     link: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
     best: false,
   },
@@ -93,12 +93,13 @@ export default function SugarLandWaterPage() {
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>City of Sugar Land Water Public water system · Brazos River / groundwater · UCMR5 2023–2025</p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: EPA UCMR5 (PWSID TX0790005) · EPA SDWIS · Public water system CCR</p>
 
+        <p style={{ color: '#cbd5e1', lineHeight: 1.7 }}>The city reports a PFOA annual average of 1.03 ppt at the location with the 4.1 ppt peak. <a href="https://www.sugarlandtx.gov/2461/PFAS" style={{ color: '#67e8f9' }}>Read Sugar Land’s official explanation and results.</a> A 4 ppt PFOA benchmark does not apply to 6:2 FTS.</p>
         <CityDedicatedScoreHero
           urgency={CITIES['sugar-land'].urgency}
           issues={CITIES['sugar-land'].issues}
           waterProfile={CITIES['sugar-land'].waterProfile}
           pfas={getCityPfasData(resolveCityPwsid('sugar-land', CITIES['sugar-land'].pwsid, CITIES['sugar-land'].zip))}
-          summary="Sugar Land shows the highest peak PFAS reading of any large Texas system in EPA UCMR5 — 672 ppt of 6:2 FTS — with PFOA at the federal limit. NSF 58 reverse osmosis is strongly recommended for households concerned about forever chemicals."
+          summary="The city’s official monitoring shows a historical 672 ppt 6:2 FTS peak and a PFOA peak of 4.1 ppt. These are different compounds and an individual peak is not a compliance finding. Review the current supplier report before choosing treatment."
           stats={[
             { label: '6:2 FTS peak', value: '672 ppt', color: '#ef4444' },
             { label: 'PFOA', value: 'At MCL', color: '#f59e0b' },

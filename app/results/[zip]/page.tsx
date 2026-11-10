@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '../../components/SiteHeader';
 import ResultsClient from './ResultsClient';
 import { buildZipResultsDescription, buildZipResultsTitle } from '@/lib/zip-results-seo';
-import { cacheLife } from 'next/cache';
+import { cache } from 'react';
+import { lookupWaterReport } from '@/lib/server-water-report';
+import { notFound } from 'next/navigation';
 
 /** ZIP result pages are generated on first request (ISR), not at build — avoids 40k+ prerenders and remote fetch timeouts. */
 // export const dynamicParams = true;
@@ -10,21 +12,17 @@ import { cacheLife } from 'next/cache';
 
 interface Props { params: Promise<{ zip: string }> }
 
-async function fetchWaterData(zip: string) {
-  "use cache";
-  cacheLife('weeks');
-  const base = process.env.NEXT_PUBLIC_BASE_URL || 'https://watercheckup.com';
-  const res = await fetch(`${base}/api/water?zip=${zip}`, { next: { revalidate: 86400 } });
-  if (!res.ok) return null;
-  return res.json();
-}
+const fetchWaterData = cache(async (zip: string) => {
+  if (!/^\d{5}$/.test(zip)) return null;
+  const response = await lookupWaterReport(zip);
+  const body = await response.json();
+  return response.ok ? body : { lookupError: body.error, lookupStatus: response.status, pwsid: body.pwsid };
+});
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  "use cache";
-  cacheLife('weeks');
   const params = await props.params;
   const data = await fetchWaterData(params.zip);
-  if (!data) {
+  if (!data || data.lookupError) {
     return {
       title: `ZIP ${params.zip} Water Quality — Check Tap Water | WaterCheckup`,
       description: `Free EPA tap water report for ZIP ${params.zip}. PFAS, lead, violations, and NSF filter picks — no signup.`,
@@ -58,9 +56,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function ResultsPage(props: Props) {
-  "use cache";
-  cacheLife('weeks');
   const params = await props.params;
+  if (!/^\d{5}$/.test(params.zip)) notFound();
   const data = await fetchWaterData(params.zip);
 
   return (

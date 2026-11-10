@@ -13,17 +13,18 @@
     "build": "npm run build-utility-indexes && next build",
     "start": "next start",
     "fetch-utilities": "tsx scripts/fetch-utilities.ts",
-    "build-pwsid-ccr-contaminants": "tsx scripts/build-pwsid-ccr-contaminants.ts --limit 500"
+    "build-pwsid-ccr-contaminants": "tsx scripts/build-pwsid-ccr-contaminants.ts --limit 500",
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
-    "@vercel/functions": "^3.7.5",
+    "@vercel/functions": "3.11.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "critters": "^0.0.23",
-    "next": "16.3.5",
+    "next": "16.4.6",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "recharts": "^2.12.7",
-    "resend": "^3.2.0"
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -31,7 +32,7 @@
     "autoprefixer": "^10.5.0",
     "csv-parse": "^6.2.1",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
+    "eslint-config-next": "16.4.6",
     "postcss": "^8.5.10",
     "tailwindcss": "^3.4.19",
     "tsx": "^4.19.2",

@@ -11,13 +11,10 @@ export function CityLegalVsSafeBanner({ cityName }: { cityName: string }) {
       }}
     >
       <div style={{ fontSize: 13, fontWeight: 800, color: '#fbbf24', letterSpacing: 1, marginBottom: 8 }}>
-        LEGAL DOES NOT ALWAYS MEAN SAFE
+        UNDERSTAND THE COMPARISON
       </div>
       <p style={{ fontSize: 14, color: '#e2e8f0', lineHeight: 1.75, margin: 0 }}>
-        {cityName} water may meet federal EPA limits while still showing contaminants above independent health
-        guidelines (EWG, state advisories). EPA MCLs are often set on treatment feasibility — not a &quot;zero
-        risk&quot; threshold. Compare levels below to health guidelines and state/U.S. utility averages, then see
-        which filter technologies address your profile.
+        This {cityName} report distinguishes historical measurements, official violation records, and independent health guidelines. These measures answer different questions. A historical peak above a benchmark does not establish a legal violation, and a missing record does not establish that a contaminant is absent. Review the source and sample context before choosing a test or filter.
       </p>
     </div>
   );

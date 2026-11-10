@@ -18,10 +18,10 @@ function pfasRows(pfas: CityPfasSnapshot): ContaminantRow[] {
   if (!pfas?.compounds?.length) return [];
   return pfas.compounds
     .filter(([, level]) => level > 0)
-    .map(([analyte, level, overEpa, overHealth]) => {
+    .map(([analyte, level, , overEpa]) => {
       const mcl = PFAS_MCL_PPT[analyte] ?? null;
       const severity =
-        overEpa > 0 ? 'high' as const : overHealth > 0 ? 'moderate' as const : 'low' as const;
+        overEpa > 0 ? 'high' as const : 'low' as const;
       return {
         name: analyte,
         level,
@@ -32,7 +32,7 @@ function pfasRows(pfas: CityPfasSnapshot): ContaminantRow[] {
         source: 'EPA UCMR5',
         isPFAS: true,
         healthEffects:
-          'PFAS (“forever chemicals”) persist in the body. NSF 58 reverse osmosis or NSF P473-certified filters remove PFAS at the tap — standard pitchers do not.',
+          'For a documented PFAS concern, verify the exact filter model and cartridge’s certified PFAS reduction claims, capacity, and replacement interval. A standard number alone is not proof of every reduction claim.',
       };
     });
 }

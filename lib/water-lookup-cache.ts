@@ -5,7 +5,7 @@ export type CachedWaterResponse = {
   body: Record<string, unknown>;
 };
 
-const NS = 'wc-water';
+const NS = 'wc-water-v2-verified-monitoring';
 const TTL_SEC = 3600;
 
 /** Shared across serverless instances on Vercel (regional Runtime Cache). */

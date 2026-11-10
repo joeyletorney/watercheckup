@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://watercheckup.com'),
   title: {
     default: "WaterCheckup — See What's in Your Tap Water",
-    template: '%s | WaterCheckup',
+    template: '%s',
   },
   description: SITE_HOME_META_DESCRIPTION,
   keywords: [
@@ -150,7 +150,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               strategy="afterInteractive"
             />
-            <Script id="ga-init" strategy="afterInteractive">
+            <Script id="ga-init" strategy="beforeInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}

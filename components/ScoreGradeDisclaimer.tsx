@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { CSSProperties } from 'react';
 
 export const SCORE_GRADE_DISCLAIMER_TEXT =
-  'WaterCheckup Safety Score — an independent index from EPA public data and our formula. Not your utility’s official water quality rating, an EPA compliance grade, or a test of water at your tap.';
+  'WaterCheckup Safety Score — an independent index from EPA public data and our formula. Historical peaks do not determine compliance. Hardness and editorial wording do not affect this index. Missing coverage is not a clean test result.';
 
 type Props = {
   className?: string;

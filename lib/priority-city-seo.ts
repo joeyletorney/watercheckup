@@ -72,9 +72,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Detroit has a serious lead pipe problem and PFAS contamination. See current levels, health risks, and the exact filter that removes both lead and PFAS.',
   },
   parkersburg: {
-    title: 'Parkersburg WV Water 2026 — PFOA 179 ppt, 45× Over EPA Limit',
+    title: 'Parkersburg WV Water 2026 — Historical PFAS Results EPA Limit',
     description:
-      "DuPont's Washington Works plant contaminated Parkersburg water with PFOA at 179.5 ppt — 45× the EPA limit of 4 ppt. See the full contamination report and the only filter that removes it.",
+      "Parkersburg Utility Board historical PFAS monitoring, supplier identification, and official source links. Nearby Lubeck PSD is a separate system.",
   },
   scottsdale: {
     title: 'Scottsdale Tap Water 2026 — Is It Safe to Drink?',
@@ -236,6 +236,10 @@ export const PRIORITY_CITY_H1: Record<string, string> = {
   fresno: 'Fresno Water Quality 2026',
   austin: 'Austin Water Quality 2026',
   'fairfax-county': 'Fairfax County Water Quality 2026',
+  stamford: 'Stamford Tap Water 2026 — PFAS & Lead',
+  'kansas-city': 'Kansas City Tap Water 2026 — Missouri River & DBPs',
+  richmond: 'Richmond VA Tap Water 2026 — James River Quality',
+  parkersburg: 'Parkersburg Water — Supplier-Specific PFAS Monitoring',
 };
 
 type PriorityCityRecord = {
