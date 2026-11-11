@@ -111,8 +111,8 @@ export async function POST(req: NextRequest) {
   </div>`).join('')}
   ${alertOptIn ? `
   <div style="background:#07111a;border:1px solid #0891b244;border-radius:8px;padding:14px 16px;margin:16px 0;font-size:11px;color:#64748b;line-height:1.7;">
-    🔔 <strong style="color:#22d3ee;">Violation alerts ON</strong> for ${systemName}.<br>
-    You'll be notified if new violations are reported for PWSID: ${pwsid}.
+    🔔 <strong style="color:#22d3ee;">Local alerts unavailable</strong>.<br>
+    This report email does not enable local violation monitoring. You can separately subscribe to the general weekly newsletter at watercheckup.com.
   </div>` : ''}
   <div style="text-align:center;margin:28px 0 20px;">
     <a href="https://watercheckup.com" style="display:inline-block;padding:13px 30px;background:#0891b2;border-radius:8px;color:#fff;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:1px;">View Full Report at watercheckup.com →</a>
@@ -141,14 +141,14 @@ export async function POST(req: NextRequest) {
     if (!r.ok) return NextResponse.json({ error: data.message || 'Send failed' }, { status: 500, headers: CORS });
 
     // Add to audience list (non-blocking — fire and forget)
-    addContact(apiKey, email, city, pwsid || '', !!alertOptIn);
+    addContact(apiKey, email, city, pwsid || '', false);
 
     syncContactToBrevoAsync({
       email,
       attributes: {
         CITY: city,
         PWSID: pwsid || undefined,
-        ALERT_OPT_IN: !!alertOptIn,
+        ALERT_OPT_IN: false,
         WATER_SCORE: typeof score === 'number' ? score : undefined,
         WATER_GRADE: grade != null ? String(grade) : undefined,
         SYSTEM_NAME: systemName,

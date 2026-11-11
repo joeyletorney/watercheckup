@@ -380,9 +380,9 @@ function HomeEmailCapture() {
   return (
     <div style={{ marginTop: 56, padding: '32px 28px', background: 'linear-gradient(135deg,rgba(8,145,178,0.1),rgba(4,14,32,0.95))', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 16, textAlign: 'center' }}>
       <div style={{ fontSize: 13, fontWeight: 800, color: '#0891b2', letterSpacing: 2, marginBottom: 10 }}>STAY INFORMED</div>
-      <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f5f9', marginBottom: 8 }}>Get weekly water quality alerts</div>
+      <div style={{ fontSize: 22, fontWeight: 900, color: '#f1f5f9', marginBottom: 8 }}>Weekly water treatment newsletter</div>
       <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 auto 24px', maxWidth: 480 }}>
-        We monitor EPA databases weekly for new PFAS detections, boil water advisories, and violations. One email, no spam, unsubscribe anytime.
+        Practical guidance on water testing, filtration, and maintenance. One general email per week; this does not monitor local emergencies. Unsubscribe anytime.
       </p>
       {sent ? (
         <div style={{ display: 'inline-block', padding: '12px 24px', background: 'rgba(34,197,94,0.12)', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 10, color: '#4ade80', fontWeight: 700, fontSize: 14 }}>
@@ -2580,7 +2580,7 @@ export default function WaterCheckup() {
                 {/* Inline email alert — shown right after verdict while attention is highest */}
                 {!resultsAlertSent && (
                   <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-                    <span style={{ fontSize: 13, color: '#a8b4c4', flexShrink: 0 }}>🔔 Get alerts if your water changes:</span>
+                    <span style={{ fontSize: 13, color: '#a8b4c4', flexShrink: 0 }}>🔔 Get the general weekly water newsletter:</span>
                     <input
                       value={resultsAlertEmail}
                       onChange={e => setResultsAlertEmail(e.target.value)}
@@ -2595,13 +2595,13 @@ export default function WaterCheckup() {
                       disabled={resultsAlertSending || !resultsAlertEmail.includes('@')}
                       style={{ padding: '7px 16px', borderRadius: 8, border: 'none', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', fontSize: 13, fontWeight: 800, cursor: resultsAlertSending || !resultsAlertEmail.includes('@') ? 'not-allowed' : 'pointer', opacity: resultsAlertSending || !resultsAlertEmail.includes('@') ? 0.5 : 1, whiteSpace: 'nowrap', flexShrink: 0 }}
                     >
-                      {resultsAlertSending ? '…' : 'Notify me'}
+                      {resultsAlertSending ? '…' : 'Subscribe'}
                     </button>
                   </div>
                 )}
                 {resultsAlertSent && (
                   <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: 10, fontSize: 13, color: '#4ade80', fontWeight: 700 }}>
-                    ✓ You're on the list — we'll email you if your water data changes.
+                    ✓ You're subscribed to the general weekly water treatment newsletter.
                   </div>
                 )}
               </div>
@@ -3878,10 +3878,10 @@ export default function WaterCheckup() {
               }}
             >
               <div style={{ fontSize: 17, fontWeight: 900, color: '#f8fafc', marginBottom: 8, letterSpacing: -0.2 }}>
-                Get Alerts If Your Water Changes
+                Weekly Water Treatment Newsletter
               </div>
               <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.55, margin: '0 0 14px' }}>
-                We&apos;ll notify you if new contaminants are detected in your area.
+                Practical water testing, filtration, and maintenance guidance. One general email per week; this does not monitor local emergencies.
               </p>
               {resultsAlertSent ? (
                 <div style={{ fontSize: 13, color: '#4ade80', fontWeight: 700 }}>You&apos;re on the list. Watch your inbox.</div>
@@ -3895,7 +3895,7 @@ export default function WaterCheckup() {
                       placeholder="Your email"
                       type="email"
                       autoComplete="email"
-                      aria-label="Email for water change alerts"
+                      aria-label="Email for weekly water newsletter"
                       style={{
                         flex: '1 1 220px',
                         minHeight: 46,
@@ -3927,7 +3927,7 @@ export default function WaterCheckup() {
                         boxShadow: '0 6px 20px rgba(245,158,11,0.35)',
                       }}
                     >
-                      {resultsAlertSending ? '…' : 'Notify me'}
+                      {resultsAlertSending ? '…' : 'Subscribe'}
                     </button>
                   </div>
                   {resultsAlertErr && (
@@ -4185,7 +4185,7 @@ export default function WaterCheckup() {
               </div>
             ) : (
               <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 13, color: '#a8b4c4', flexShrink: 0 }}>Or get weekly water alerts:</span>
+                <span style={{ fontSize: 13, color: '#a8b4c4', flexShrink: 0 }}>Or get the weekly newsletter:</span>
                 <input value={sampleEmail} onChange={e => setSampleEmail(e.target.value)} onKeyDown={e => e.key === 'Enter' && subscribeSample()} placeholder="you@email.com" type="email"
                   style={{ flex: '1 1 160px', minWidth: 0, padding: '8px 11px', background: '#0b1e36', border: '1px solid #1e3a4a', borderRadius: 8, color: '#e2e8f0', fontSize: 13, outline: 'none' }} />
                 <button onClick={subscribeSample} disabled={sampleSending || !sampleEmail.includes('@')}

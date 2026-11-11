@@ -244,7 +244,7 @@ const LOCAL_SEARCH_INTENT: Record<string, {
     eyebrow: 'RALEIGH WATER QUALITY & PFAS',
     title: 'Raleigh water quality: PFAS, GenX, THMs and Wake County data',
     intro:
-      'Raleigh sits in North Carolina\'s Cape Fear River basin — a region with documented PFAS and GenX industrial history. City of Raleigh water meets federal standards most months, but UCMR5 monitoring, THM violations, and agricultural runoff still drive why residents search for a clearer picture of what is at the tap.',
+      'Raleigh sits in North Carolina\'s Cape Fear River basin — a region with documented PFAS and GenX industrial history. This page summarizes historical monitoring; review Raleigh’s current annual report and notices to check current compliance.',
     sections: [
       {
         heading: 'PFAS and GenX in Raleigh water',
@@ -960,7 +960,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
 
             {/* ── INLINE EMAIL CAPTURE — right after PFAS data while alarm is highest ── */}
             <div style={{ marginBottom: 24, padding: '14px 18px', background: 'rgba(8,145,178,0.07)', border: '1px solid rgba(8,145,178,0.25)', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <span style={{ fontSize: 13, color: '#cbd5e1', flexShrink: 0 }}>🔔 Get alerts if {cd.name}&apos;s water data changes:</span>
+              <span style={{ fontSize: 13, color: '#cbd5e1', flexShrink: 0 }}>🔔 Get the general weekly water treatment newsletter:</span>
               <EmailCapture cityName={cd.name} slug={slug} inline />
             </div>
 
@@ -1082,28 +1082,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
           <h2 style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16, paddingBottom: 10, borderBottom: '1px solid #0f2336' }}>
             COMMON QUESTIONS
           </h2>
-          {[
-            {
-              q: `Is ${cd?.name ?? cityName} tap water safe to drink in 2026?`,
-              a: `${cd?.name ?? cityName} water meets EPA legal standards, but meeting legal standards is not the same as being free of health concerns. EPA limits are set based on treatment feasibility, not always on what independent scientists consider safe. ${cd?.urgency === 'high' ? `${cd.name} has ${cd.issues[0]?.toLowerCase()} which is a significant concern — certified filtration is strongly recommended.` : `The main concerns for ${cd?.name ?? cityName} residents are ${cd?.issues.slice(0, 2).join(' and ').toLowerCase()}. Enter your ZIP above to see the full violation history for your specific water system.`}`,
-            },
-            {
-              q: `Does ${cd?.name ?? cityName} water have PFAS?`,
-              a: `EPA UCMR5 monitoring data for ${cd?.name ?? cityName} (water system ${cd?.pwsid ?? 'your local system'}) is shown above. PFAS — sometimes called "forever chemicals" — are synthetic compounds that don't break down in the body. Only reverse osmosis systems or NSF 58-certified carbon block filters reliably remove PFAS from tap water. Standard pitcher filters do not remove PFAS.`,
-            },
-            {
-              q: `Does ${cd?.name ?? cityName} water have lead?`,
-              a: `Lead in tap water almost always comes from the pipes inside your home or building, not the treatment plant. Homes built before 1986 in ${cd?.name ?? cityName} are most at risk because they may have lead solder, brass fittings, or lead service lines. The EPA has no safe level for lead in children. An NSF/ANSI 53-certified filter or reverse osmosis system removes lead at the tap.`,
-            },
-            {
-              q: `What water filter is best for ${cd?.name ?? cityName}?`,
-              a: `For ${cd?.name ?? cityName}'s water profile — ${cd?.issues.slice(0, 2).join(', ').toLowerCase() ?? 'typical municipal contaminants'} — a reverse osmosis system addresses the widest range of contaminants. Under-sink RO (Waterdrop G3P600, Aquasana SmartFlow) is the gold standard for homeowners. Renters can use a countertop RO like the Waterdrop K19-S Countertop RO — zero installation required. Clearly Filtered pitchers are the best non-RO option for PFAS and lead.`,
-            },
-            {
-              q: `How do I get my ${cd?.name ?? cityName} water tested?`,
-              a: `For the most accurate results for your specific tap, use a certified mail-in lab test rather than relying on city-wide data. SimpleLab Tap Score tests for 100+ contaminants including PFAS, lead, arsenic, and nitrates. Results come with a detailed health assessment and filter recommendations. City-wide EPA data like what you see above is a strong baseline, but your home's plumbing can add contaminants after the water leaves the treatment plant.`,
-            },
-          ].map(({ q, a }) => (
+          {faqSchema.mainEntity.map(item => ({ q: item.name, a: item.acceptedAnswer.text })).map(({ q, a }) => (
             <div key={q} style={{ marginBottom: 16, padding: '18px 20px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12 }}>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', margin: '0 0 8px' }}>{q}</h3>
               <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{a}</p>
@@ -1161,8 +1140,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
           <NewsletterSignup
             source="water-gaithersburg"
             zip={cd.zip}
-            title="Gaithersburg & Montgomery County water alerts"
-            description="Water testing context, PFAS UCMR5, and WSSC updates for your ZIP — weekly, no spam."
+            title="Weekly water treatment newsletter"
+            description="General water testing, filtration, and maintenance guidance — one email per week. This does not monitor WSSC changes or local emergencies."
             compact
           />
         )}

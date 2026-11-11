@@ -559,7 +559,7 @@ export default async function UtilityPage(props: { params: Promise<{ state: stri
           }}
         >
           <span style={{ fontSize: 13, color: "#cbd5e1", flexShrink: 0 }}>
-            Get alerts if this system&apos;s EPA data changes:
+            Get the general weekly water treatment newsletter:
           </span>
           <EmailCapture
             cityName={u.name}

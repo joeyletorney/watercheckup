@@ -1,3 +1,4 @@
+import { cityEvidenceStats } from '@/lib/city-report-evidence';
 import { computeCityWaterScore, type CityPfasSnapshot, type ScoreWaterProfile } from '@/lib/city-water-score';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 
@@ -14,6 +15,7 @@ type Props = {
 
 /** Score + grade block for dedicated `/water/{city}` routes */
 export function CityDedicatedScoreHero({ urgency, issues, pfas, waterProfile, summary, stats }: Props) {
+  const evidenceStats = cityEvidenceStats(pfas, stats);
   const ws = computeCityWaterScore({ urgency, issues, waterProfile }, pfas);
 
   return (
@@ -41,11 +43,12 @@ export function CityDedicatedScoreHero({ urgency, issues, pfas, waterProfile, su
         </div>
         <div style={{ fontSize: 18, fontWeight: 800, color: ws.scoreColor, marginBottom: 6 }}>{ws.label}</div>
         <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 6px' }}>{summary}</p>
+        <p style={{ color: '#cbd5e1', fontSize: 13 }}>Based on historical measurements; current compliance is not verified on this page.</p>
         <ScoreGradeDisclaimer style={{ marginTop: 8 }} />
       </div>
-      {stats && stats.length > 0 && (
+      {evidenceStats.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
-          {stats.map(({ label, value, color }) => (
+          {evidenceStats.map(({ label, value, color }) => (
             <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
               <div style={{ fontSize: 16, fontWeight: 900, color }}>{value}</div>
               <div style={{ fontSize: 13, color: '#a8b4c4' }}>{label}</div>

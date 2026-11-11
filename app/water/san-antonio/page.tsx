@@ -102,10 +102,8 @@ export default function SanAntonioWaterPage() {
           issues={CITIES['san-antonio'].issues}
           waterProfile={CITIES['san-antonio'].waterProfile}
           pfas={getCityPfasData(resolveCityPwsid('san-antonio', CITIES['san-antonio'].pwsid, CITIES['san-antonio'].zip))}
-          summary="San Antonio's water comes from the Edwards Aquifer — naturally hard and high in minerals. PFAS has been detected above EWG health guidelines, radium is present from limestone geology, and sodium levels are elevated. No open EPA violations as of 2026."
+          summary="San Antonio’s Edwards Aquifer supply is mineral-rich. This report shows historical monitoring and separately sourced hardness information. Check SAWS’s current report and notices for current compliance and household-specific guidance."
           stats={[
-            { label: 'Open Violations', value: '0', color: '#22d3ee' },
-            { label: 'PFAS Detected', value: '4', color: '#f59e0b' },
             { label: 'Hardness', value: 'Very Hard', color: '#f97316' },
           ]}
         />
@@ -449,8 +447,8 @@ export default function SanAntonioWaterPage() {
         <NewsletterSignup
           source="water-san-antonio"
           zip="78205"
-          title="San Antonio water alerts"
-          description="Weekly updates when SAWS EPA data, PFAS UCMR5, or violations change for your ZIP."
+          title="Weekly water treatment newsletter"
+          description="General water testing, filtration, and maintenance guidance — one email per week. This does not monitor SAWS changes or local emergencies."
           compact
         />
 
