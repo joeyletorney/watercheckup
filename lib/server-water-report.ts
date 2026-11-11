@@ -72,10 +72,10 @@ async function epaGet(path: string) {
       noteEpaFailure();
       throw new Error(`EPA ${res.status}`);
     }
-    noteEpaSuccess();
     const text = await res.text();
     const data = JSON.parse(text);
     if (!Array.isArray(data)) throw new Error('Unexpected EPA response');
+    noteEpaSuccess();
     return data;
   } catch (err) {
     if (!(err instanceof Error && /^EPA \d/.test(err.message))) noteEpaFailure();
@@ -699,14 +699,8 @@ export async function lookupWaterReport(zip: string) {
       skipLiveEpa ? Promise.resolve(null) : getEchoEnforcement(pwsid),
       stateCode && !skipLiveEpa ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
     ]);
-    if (!Array.isArray(violations)) {
-      return NextResponse.json({
-        error: 'EPA violation records are temporarily unavailable. We cannot verify the compliance history right now. Please try again shortly or check your supplier’s current report.',
-        code: 'EPA_UNAVAILABLE', zip, pwsid, systemName: pwsName,
-        dataFreshness: getDataFreshness(),
-      }, { status: 503, headers: { ...H, 'Cache-Control': 'no-store', 'Retry-After': '60' } });
-    }
-    const viols: any[] = violations;
+    const violationCoverage = Array.isArray(violations) ? 'available' : 'unavailable';
+    const viols: any[] = Array.isArray(violations) ? violations : [];
     const allSamples = [...(Array.isArray(lcr) ? lcr : []), ...(Array.isArray(sdwaSamples) ? sdwaSamples : [])];
 
     /** Winning sample by max raw measure; ppb display converts mg/L → ppb when UOM says mg/L */
@@ -853,11 +847,11 @@ export async function lookupWaterReport(zip: string) {
       contaminants: sortedContaminants,
       openViolations: openV.length,
     });
-    const score = safety.score;
-    const grade = safety.grade;
-    const scoreLabel = safety.label;
+    const score = violationCoverage === 'available' ? safety.score : null;
+    const grade = violationCoverage === 'available' ? safety.grade : '—';
+    const scoreLabel = violationCoverage === 'available' ? safety.label : 'Current compliance unavailable';
     const scoreColor = safety.scoreColor;
-    const nationalPercentile = nationalPercentileFromSafetyScore(score);
+    const nationalPercentile = nationalPercentileFromSafetyScore(score ?? 0);
 
     // ─── Format violations ───────────────────────────────────────────────────
     const fmtViols = [...viols]
@@ -890,7 +884,7 @@ export async function lookupWaterReport(zip: string) {
     } : null;
 
     // ─── Data sources used ───────────────────────────────────────────────────
-    const dataSources = ['EPA SDWIS'];
+    const dataSources = violationCoverage === 'available' ? ['EPA SDWIS'] : [];
     if (LCR_DATA[pwsid]) dataSources.push('EPA LCR National Dataset');
     if (pfasCount > 0) dataSources.push('EPA UCMR5 PFAS');
     if (countMeasuredContaminants(contaminants) > measuredBeforeCcr) {
@@ -900,7 +894,9 @@ export async function lookupWaterReport(zip: string) {
     if (lithiumVal)    dataSources.push('UCMR5 Lithium');
     if (echoData)      dataSources.push('EPA ECHO Enforcement');
 
-    const summary = openCount > 0
+    const summary = violationCoverage === 'unavailable'
+      ? 'Current EPA violation records could not be loaded. Available measurements below are historical and do not establish current compliance.'
+      : openCount > 0
       ? `${pwsName} has ${openCount} open violation(s) on record with EPA.`
       : viols.length > 0
       ? `${pwsName} has ${viols.length} resolved violation(s) — no currently open issues.`
@@ -941,13 +937,13 @@ export async function lookupWaterReport(zip: string) {
       dataSource:       dataSources.join(' + '),
       dataSources,
       dataFreshness:    getDataFreshness(),
-      openViolations:   openCount,
-      totalViolations:  viols.length,
+      openViolations:   violationCoverage === 'available' ? openCount : null,
+      totalViolations:  violationCoverage === 'available' ? viols.length : null,
       hasLCR:           allSamples.length > 0 || !!(LCR_DATA[pwsid]?.lead || LCR_DATA[pwsid]?.copper),
       hasEWG:           false,
       hasPFAS:          pfasCount > 0,
       pfasCoverage:     ucmr5Row ? 'available' : 'unavailable',
-      violationCoverage: 'available',
+      violationCoverage,
       pfasCount,
       pfasAboveMcl:     pfasAbove,
       ucmr5:            ucmr5Summary,
@@ -958,6 +954,9 @@ export async function lookupWaterReport(zip: string) {
       summary,
       pfasSummary,
     };
+    if (violationCoverage === 'unavailable') {
+      return NextResponse.json(payload, { headers: { ...H, 'Cache-Control': 'no-store' } });
+    }
     await setCachedWaterResponse(zip, { status: 200, body: payload });
     return NextResponse.json(payload, { headers: okHeaders });
 

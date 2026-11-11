@@ -78,7 +78,7 @@ test('Google can crawl framework resources', () => {
   assert.equal(JSON.stringify(general.disallow).includes('/_next/'), false);
 });
 
-test('a failed EPA violation request returns an uncached unavailable response for the correct NYC supplier', async () => {
+test('a failed EPA violation request preserves historical records without claiming current compliance', async () => {
   const original = globalThis.fetch;
   const requests: string[] = [];
   globalThis.fetch = async (input) => {
@@ -90,13 +90,23 @@ test('a failed EPA violation request returns an uncached unavailable response fo
   try {
     const response = await lookupWaterReport('10001');
     const data = await response.json();
-    assert.equal(response.status, 503);
+    assert.equal(response.status, 200);
     assert.equal(response.headers.get('cache-control'), 'no-store');
-    assert.equal(data.code, 'EPA_UNAVAILABLE');
+    assert.equal(data.violationCoverage, 'unavailable');
+    assert.equal(data.openViolations, null);
+    assert.equal(data.totalViolations, null);
+    assert.ok(Array.isArray(data.contaminants));
     assert.equal(data.pwsid, 'NY7003493');
-    assert.equal(data.score, undefined);
-    assert.equal(data.summary, undefined);
+    assert.equal(data.score, null);
+    assert.match(data.summary, /historical/);
     assert.ok(requests.some(url => url.includes('SDWA_VIOLATIONS/PWSID/NY7003493')));
+    globalThis.fetch = async () => new Response('[]', { headers: { 'Content-Type': 'application/json' } });
+    (globalThis as any).__wcEpaCircuit = { fails: 0, openUntil: 0 };
+    const recovered = await lookupWaterReport('10001');
+    const recoveredData = await recovered.json();
+    assert.equal(recoveredData.violationCoverage, 'available', 'an outage response must not hide recovery in the success cache');
+    assert.equal(recoveredData.openViolations, 0);
+
   } finally { globalThis.fetch = original; }
 });
 
