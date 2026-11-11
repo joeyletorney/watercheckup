@@ -1,3 +1,4 @@
+import { AffiliateLink } from '@/components/AffiliateLink';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
@@ -179,9 +180,9 @@ export default function SugarLandWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <a href={f.link} target="_blank" rel="noopener noreferrer sponsored" style={{ display: 'inline-block', padding: '8px 16px', background: f.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', border: f.best ? 'none' : '1px solid #1a3a5c', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
+                <AffiliateLink product={f.name} destination={f.link.includes('amazon.com') ? 'amazon' : 'direct'} page="water/sugar-land" city="sugar-land" href={f.link} target="_blank" rel="noopener noreferrer sponsored" style={{ display: 'inline-block', padding: '8px 16px', background: f.best ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', border: f.best ? 'none' : '1px solid #1a3a5c', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                   View on Amazon →
-                </a>
+                </AffiliateLink>
               </div>
             </div>
           ))}

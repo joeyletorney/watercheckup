@@ -58,6 +58,7 @@ function hashSlug(slug: string): number {
 }
 
 export function getBlogFeaturedImageUrl(slug: string, badge?: string): string {
+  if (['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water'].includes(slug)) return 'https://watercheckup.com/watersplashingintoglass.jpg';
   const path = (badge && BLOG_BY_BADGE[badge]) || BLOG_IMAGE_POOL[hashSlug(slug) % BLOG_IMAGE_POOL.length];
   return unsplash(path, 800, 400);
 }

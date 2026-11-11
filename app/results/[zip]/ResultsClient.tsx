@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
@@ -202,6 +202,11 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
   const [alertSending, setAlertSending] = useState(false);
   const [alertError, setAlertError] = useState('');
 
+  useEffect(() => {
+    if (!data || data.lookupError) return;
+    window.gtag?.('event', 'water_report_view', { report_status: data.violationCoverage === 'unavailable' ? 'historical_only' : 'current_records_available', page: 'zip-report' });
+  }, [data]);
+
   const sendAlert = async () => {
     if (!alertEmail.includes('@') || alertSending) return;
     setAlertSending(true);
@@ -244,6 +249,14 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           <p style={{ margin: '12px 0' }}>{data.summary}</p>
           <p>No safety grade or violation count is shown while current EPA records are unavailable. This report describes the listed supplier, not a test of your tap.</p>
           <button onClick={() => window.location.reload()} style={{ marginTop: 20, padding: '12px 20px', background: '#155e75', color: '#fff', borderRadius: 8 }}>Retry current records</button>
+        </section>
+        <section aria-label="What to do next" style={{ padding: 24, border: '1px solid #155e75', borderRadius: 12, marginBottom: 24 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700 }}>What to do next</h2>
+          <p style={{ margin: '12px 0', lineHeight: 1.7 }}>First, check your supplier’s current report. Historical detections alone do not establish that treatment is necessary. For a question about your own plumbing or tap, choose a laboratory panel that includes the specific substance you want measured.</p>
+          <p style={{ marginBottom: 16 }}><a href={data.dataFreshness.links.ccr} onClick={() => window.gtag?.('event', 'report_next_step', { step: 'supplier_report', report_status: 'historical_only' })} style={{ color: '#67e8f9' }}>Find your supplier’s current water quality report →</a></p>
+          <p style={{ marginBottom: 16 }}><Link href="/blog/how-to-test-your-tap-water-mail-in-labs-explained" onClick={() => window.gtag?.('event', 'report_next_step', { step: 'testing_guide', report_status: 'historical_only' })} style={{ color: '#67e8f9' }}>How to choose a lab panel for your tap →</Link></p>
+          <Link href={`/quiz?from=historical-report&zip=${encodeURIComponent(zip)}`} onClick={() => window.gtag?.('event', 'report_next_step', { step: 'compare_filters', report_status: 'historical_only' })} style={{ display: 'inline-block', padding: '12px 18px', background: '#0891b2', color: '#fff', borderRadius: 8 }}>Compare filters for my needs →</Link>
+          <p style={{ marginTop: 12, fontSize: 13 }}>The quiz asks about your concern and home; it does not assume this historical report proves contamination at your tap.</p>
         </section>
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>Available measurements</h2>
         <p style={{ margin: '12px 0' }}>PFAS snapshot: {data.dataFreshness.ucmr5SnapshotLabel}. Collection dates vary by sample. Other historical measurements show dates in their notes when available; an absent date means the sample date is unavailable. These are not current readings.</p>
