@@ -83,7 +83,7 @@ const FILTERS: FilterPick[] = [
     why: 'Reverse osmosis is the most reliable residential technology for lead — membranes block dissolved lead along with many other metals. NSF/ANSI 58 certified systems are the standard to look for.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
     directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
-    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20',
   },
   {
     rank: 2,
@@ -95,7 +95,7 @@ const FILTERS: FilterPick[] = [
     why: 'Independently certified for lead reduction well beyond basic carbon pitchers — a practical option if you cannot install under-sink RO.',
     cert: 'NSF/ANSI 42, 53, 244, 401, P473',
     directLink: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
-    amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheckup-20',
   },
   {
     rank: 3,
@@ -106,7 +106,7 @@ const FILTERS: FilterPick[] = [
     badgeColor: '#d97706',
     why: 'WQA Gold Seal plus multiple NSF standards — strong choice if you want maximum documented contaminant coverage including lead.',
     cert: 'NSF/ANSI 42, 53, 58, 401 + WQA Gold Seal',
-    amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheckup-20',
   },
 ];
 

@@ -150,7 +150,7 @@ const WELL_PRODUCTS = [
     bestFor: 'Iron & sediment in well water',
     pros: ['3-stage whole-house','Made for well water','DIY-friendly'],
     asin: 'B008GNRMYK',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
   },
   {
     name: 'Aquasana Rhino Well Water EQ-WELL-UV-PRO',
@@ -163,7 +163,7 @@ const WELL_PRODUCTS = [
     bestFor: 'Comprehensive whole-house well water — UV + carbon + sediment',
     pros: ['UV kills bacteria/viruses','10-year filter','Best-in-class well system'],
     asin: 'B01NCDKLWC',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
     expertPick: true,
     expertReason: 'The only whole-house well system that combines UV sterilization (kills bacteria and viruses without chemicals) with a 10-year carbon block and sediment pre-filter. Covers every major well water concern in one unit.',
   },
@@ -178,7 +178,7 @@ const WELL_PRODUCTS = [
     bestFor: 'Arsenic, nitrates, PFAS — point-of-use drinking water',
     pros: ['Made in USA','Removes arsenic & nitrates','Alkaline remineralization'],
     asin: 'B00JO7R694',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
   },
   {
     name: 'iSpring WCFM500K Iron, Manganese & Sulfur',
@@ -191,7 +191,7 @@ const WELL_PRODUCTS = [
     bestFor: 'High iron, manganese, and sulfur smell — common rural well issues',
     pros: ['Whole-house POE media','Long media life','Designed for well chemistry'],
     asin: 'B08TMZYYQY',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
   },
   {
     name: 'Clearly Filtered Pitcher — Well Water Edition',
@@ -204,7 +204,7 @@ const WELL_PRODUCTS = [
     bestFor: 'Budget well water solution — removes arsenic, PFAS, nitrates at point of use',
     pros: ['No installation','Removes arsenic & PFAS','Best well-water pitcher on market'],
     asin: 'B076B6FXT5',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
   },
 ];
 
@@ -216,7 +216,7 @@ const LAB_TESTS = [
     tests: '200+ contaminants including bacteria, nitrates, arsenic, lead, PFAS, metals',
     turnaround: '5–7 business days',
     asin: 'B07FJLNLSD',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
     recommended: true,
   },
   {
@@ -225,7 +225,7 @@ const LAB_TESTS = [
     tests: '200 parameters including bacteria, heavy metals, PFAS, VOCs, pesticides',
     turnaround: '7–10 business days',
     asin: 'B07Q9C9BMX',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
   },
   {
     name: 'Simple Lab — PFAS Well Water Test',
@@ -233,7 +233,7 @@ const LAB_TESTS = [
     tests: 'PFAS panel: 30 compounds including PFOA, PFOS, GenX',
     turnaround: '3–5 business days',
     asin: 'B09TY8MDF9',
-    tag: 'watercheck20-20',
+    tag: 'watercheckup-20',
   },
 ];
 

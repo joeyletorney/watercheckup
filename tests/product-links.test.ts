@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeAmazonUrl } from '../lib/amazon-affiliate';
+import { normalizeAmazonUrl, AMAZON_ASSOCIATE_TAG } from '../lib/amazon-affiliate';
 import { PRODUCTS } from '../lib/home-products-catalog';
 import { WATERDROP_DIRECT_BY_ID, resolveAffiliateAmazonUrl, clearlyFilteredDirectUrl } from '../lib/waterdrop-buy';
 
 test('legacy PD1000 cards select the verified PD1000 listing and preserve affiliate tags', () => {
-  const original = 'https://www.amazon.com/dp/B083DFW1QS?tag=watercheck20-20';
-  assert.equal(normalizeAmazonUrl(original), 'https://www.amazon.com/dp/B0BK8ZRY2K?tag=watercheck20-20');
+  const original = 'https://www.amazon.com/dp/B083DFW1QS?tag=watercheckup-20';
+  assert.equal(normalizeAmazonUrl(original), 'https://www.amazon.com/dp/B0BK8ZRY2K?tag=watercheckup-20');
   assert.equal(normalizeAmazonUrl('https://www.amazon.com/dp/B0BK8ZRY2K?tag=custom-20'), 'https://www.amazon.com/dp/B0BK8ZRY2K?tag=custom-20');
   assert.equal(PRODUCTS.find(p => p.id === 27)?.amazon.includes('B0BK8ZRY2K'), true);
 });
@@ -20,6 +20,10 @@ test('every catalog card has a real destination after brand routing', () => {
         : resolveAffiliateAmazonUrl(p.brand, p.amazon) || ('brandLink' in p ? p.brandLink : undefined);
     assert.ok(href, `${p.name} needs a purchase destination`);
     assert.equal(new URL(href!).protocol, 'https:');
+    if (new URL(href!).hostname === 'www.amazon.com') {
+      assert.equal(AMAZON_ASSOCIATE_TAG, 'watercheckup-20');
+      assert.equal(new URL(href!).searchParams.get('tag'), AMAZON_ASSOCIATE_TAG);
+    }
     if (p.brand === 'Waterdrop') assert.equal(new URL(href!).searchParams.get('ref'), 'anbyjkqb');
   }
 });

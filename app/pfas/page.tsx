@@ -73,7 +73,7 @@ const FILTERS: FilterPick[] = [
     why: 'Reverse osmosis is the gold standard for PFAS removal — the only residential technology proven to remove PFAS at >99%. The G3P600 is NSF 58 certified, tankless, 600 GPD, and removes PFOA, PFOS, GenX, and all 6 EPA-regulated PFAS compounds.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
     directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
-    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20',
   },
   {
     rank: 2,
@@ -85,7 +85,7 @@ const FILTERS: FilterPick[] = [
     badgeColor: '#d97706',
     why: 'WQA Gold Seal plus NSF 42, 53, 58, and 401 — the most certifications of any under-sink RO on the market. Removes PFAS, microplastics, and 90+ contaminants.',
     cert: 'NSF/ANSI 42, 53, 58, 401 + WQA Gold Seal',
-    amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheckup-20',
   },
   {
     rank: 3,
@@ -98,7 +98,7 @@ const FILTERS: FilterPick[] = [
     why: 'The only pitcher certified to remove PFAS at 99.9%. NSF certified against 365+ contaminants. Best option for renters or anyone who can\'t install an under-sink system.',
     cert: 'NSF/ANSI 42, 53, 244, 401, P473',
     directLink: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
-    amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B076B6FXT5?tag=watercheckup-20',
   },
 ];
 

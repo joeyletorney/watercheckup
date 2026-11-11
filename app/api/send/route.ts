@@ -4,7 +4,7 @@ import { getOrCreateWatercheckupAudienceId, resendRequest } from '../newsletter/
 import { checkRateLimit, getClientIp, RATE } from '@/lib/rate-limit';
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
-const TAG = process.env.AMAZON_AFFILIATE_TAG || 'watercheck20-20';
+const TAG = process.env.AMAZON_AFFILIATE_TAG || 'watercheckup-20';
 
 async function addContact(apiKey: string, email: string, city: string, pwsid: string, alertOptIn: boolean) {
   try {

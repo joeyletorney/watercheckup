@@ -9,7 +9,7 @@ import { resolveProductBuyLink } from '@/lib/product-buy-url';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 import { getPfasCoverageNotice } from '@/lib/pfas-monitoring';
 
-const TAG = 'watercheck20-20';
+const TAG = 'watercheckup-20';
 
 const SCORE_COLOR = (s: number) =>
   s >= 80 ? '#22d3ee' : s >= 62 ? '#86efac' : s >= 50 ? '#f59e0b' : s >= 35 ? '#f97316' : '#ef4444';

@@ -115,7 +115,7 @@ const PRODUCTS = [
     why: 'Reverse osmosis is the only affordable residential technology that handles arsenic, nitrates, and PFAS simultaneously. The G3P600 is the highest-rated under-sink RO on the market — 600 GPD, tankless, 10-stage filtration.',
     cert: 'NSF/ANSI 42, 53, 58, 372',
     directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
-    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20',
   },
   {
     rank: 2,
@@ -127,7 +127,7 @@ const PRODUCTS = [
     removes: ['Bacteria 99.99%', 'E. coli', 'Giardia', 'Cryptosporidium', 'Viruses'],
     why: 'UV sterilization is the gold standard for private well bacteria — no chemicals, no taste change. Kills everything biological that filters miss. Whole-house 12 GPM flow rate.',
     cert: 'NSF/ANSI 55 Class B',
-    amazon: 'https://www.amazon.com/dp/B01N2YMU3O?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B01N2YMU3O?tag=watercheckup-20',
   },
   {
     rank: 3,
@@ -139,7 +139,7 @@ const PRODUCTS = [
     removes: ['Iron up to 12 ppm', 'Manganese', 'Hydrogen sulfide', 'Rotten-egg odor'],
     why: 'If your well water stains fixtures orange or smells like rotten eggs, this is the system. Whole-house oxidizing media filter handles iron and manganese levels that would destroy standard RO membranes.',
     cert: 'WQA tested',
-    amazon: 'https://www.amazon.com/dp/B08TMZYYQY?tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/dp/B08TMZYYQY?tag=watercheckup-20',
   },
   {
     rank: 4,
@@ -151,7 +151,7 @@ const PRODUCTS = [
     removes: ['Low pH', 'Corrosive water', 'Copper leaching', 'Lead leaching from pipes'],
     why: 'If your water is acidic (pH below 7) it is actively corroding your copper pipes and leaching lead and copper into your drinking water. Calcite media raises pH naturally — no chemicals, no electricity.',
     cert: 'NSF/ANSI 61',
-    amazon: 'https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/s?k=AFWFilters+calcite+acid+neutralizer+whole+house&tag=watercheckup-20',
   },
   {
     rank: 5,
@@ -163,7 +163,7 @@ const PRODUCTS = [
     removes: ['Hardness >99%', 'Scale', 'Calcium', 'Magnesium'],
     why: 'Salt-based ion exchange is the standard when you need full hardness removal for every tap, shower, and appliance. The Fleck 5600SXT is a widely trusted metered valve platform — size grain capacity to your household and lab hardness.',
     cert: 'NSF/ANSI 44 (typical for softener systems)',
-    amazon: 'https://www.amazon.com/s?k=Fleck+5600SXT+48000+grain+water+softener&tag=watercheck20-20',
+    amazon: 'https://www.amazon.com/s?k=Fleck+5600SXT+48000+grain+water+softener&tag=watercheckup-20',
   },
 ] as const;
 

@@ -47,7 +47,7 @@ const RO_PICKS = [
     reason:
       "Tankless 600 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.",
     link: "https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb",
-    amazon: "https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20",
     badge: "EDITORS PICK",
   },
   {
@@ -57,7 +57,7 @@ const RO_PICKS = [
     reason:
       "WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants.",
     link: "https://www.aquasana.com/under-sink-water-filters",
-    amazon: "https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheckup-20",
     badge: "MOST CERTIFIED",
   },
   {
@@ -67,7 +67,7 @@ const RO_PICKS = [
     reason:
       "NSF 42/53/58 certified. Quick-change filters, no tools. Compact tankless design, 4-stage filtration.",
     link: "https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier",
-    amazon: "https://www.amazon.com/dp/B0GGTSFZMY?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B0GGTSFZMY?tag=watercheckup-20",
     badge: "EASIEST FILTER CHANGE",
   },
 ];
@@ -80,7 +80,7 @@ const PITCHER_PICKS = [
     reason:
       "Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473 — 365+ contaminants.",
     link: "https://www.clearlyfiltered.com/products/filtered-water-pitcher",
-    amazon: "https://www.amazon.com/dp/B076B6FXT5?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B076B6FXT5?tag=watercheckup-20",
     badge: "BEST FOR PFAS & LEAD",
   },
   {
@@ -90,7 +90,7 @@ const PITCHER_PICKS = [
     reason:
       "7-stage filtration, 200-gallon life. Removes chlorine, PFOA/PFOS, heavy metals. No installation.",
     link: "https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb",
-    amazon: "https://www.amazon.com/dp/B07C3P2RZP?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B07C3P2RZP?tag=watercheckup-20",
     badge: "BEST VALUE",
   },
   {
@@ -100,7 +100,7 @@ const PITCHER_PICKS = [
     reason:
       "Reduces TDS to zero. NSF 42/53 certified for lead, chromium, and arsenic. Includes TDS meter.",
     link: "https://zerowater.com/collections/water-filter-pitchers-dispensers",
-    amazon: "https://www.amazon.com/dp/B0DWTTYTQN?tag=watercheck20-20",
+    amazon: "https://www.amazon.com/dp/B0DWTTYTQN?tag=watercheckup-20",
     badge: "REMOVES TDS",
   },
 ];
