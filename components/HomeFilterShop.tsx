@@ -25,9 +25,10 @@ export function HomeFilterShop() {
         if (!product) return null;
         return <article className="wc-shop-card" key={pick.id}>
           <ProductPhoto key={product.id} product={product} />
-          <div className="wc-shop-product-info"><p className="wc-shop-fit">{pick.fit}</p><h3>{product.name}</h3>
+          <div className="wc-shop-product-info"><p className="wc-shop-fit"><strong>Good for:</strong> {pick.fit}</p><h3>{product.name}</h3></div>
+          <div className="wc-shop-decision"><p><strong>Why consider it:</strong> {pick.advantage}</p><p><strong>Trade-off:</strong> {pick.tradeoff}</p></div>
           <AffiliateLink href={product.amazon} target="_blank" rel="sponsored noopener noreferrer" product={product.name} brand={product.brand} destination="amazon" page="home-shop" className="wc-shop-buy" aria-label={`Check price on Amazon for ${product.name}`}>Check price on Amazon →</AffiliateLink>
-          <details><summary>Fit and ongoing costs</summary><p>{pick.limits}</p><p>{pick.upkeep}</p><Link href={category.guide}>Compare evidence and maintenance →</Link></details></div>
+          <details><summary>Evidence and ongoing costs</summary><p>{pick.limits}</p><p>{pick.upkeep}</p><a href={pick.evidenceUrl} target="_blank" rel="noopener noreferrer">Manufacturer specifications →</a><p><Link href={category.guide}>Compare evidence and maintenance →</Link></p></details>
         </article>;
       })}
     </div>
