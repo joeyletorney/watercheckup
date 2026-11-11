@@ -192,8 +192,8 @@ export default function WorstHubPage() {
 
         <NewsletterSignup
           source="rankings-hub"
-          title="Weekly rankings & violation alerts"
-          description="PFAS MCL changes, new violations, and safety-score updates — one email per week."
+          title="Weekly water treatment newsletter"
+          description="General water testing, filtration, and maintenance guidance — one email per week. This does not monitor local emergencies or violation changes."
           compact
         />
 

@@ -42,7 +42,7 @@ const FILTERS = [
 const FAQS = [
   {
     q: 'Is Sugar Land tap water safe to drink?',
-    a: 'Sugar Land meets many federal standards, but EPA UCMR5 data shows a 672 ppt peak of 6:2 FTS and PFOA at the 4 ppt legal limit. For households concerned about forever chemicals, NSF 58 reverse osmosis at the kitchen tap is the most reliable fix.',
+    a: 'This historical monitoring report does not establish current compliance. EPA UCMR5 data shows a 672 ppt peak of 6:2 FTS and a PFOA peak of 4.1 ppt; a peak is not an official compliance finding. For households concerned about forever chemicals, NSF 58 reverse osmosis at the kitchen tap is the most reliable fix.',
   },
   {
     q: 'What does 672 ppt PFAS mean for Sugar Land?',
@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: 'What is the best water filter for Sugar Land?',
-    a: 'Given 6:2 FTS at 672 ppt and PFOA at the EPA limit, an under-sink RO certified to NSF 58 is the gold standard. Standard Brita pitchers do not remove PFAS reliably.',
+    a: 'Given the historical 6:2 FTS peak of 672 ppt and PFOA peak of 4.1 ppt, an under-sink RO certified to NSF 58 is the gold standard. Standard Brita pitchers do not remove PFAS reliably.',
   },
 ];
 
@@ -102,8 +102,7 @@ export default function SugarLandWaterPage() {
           summary="The city’s official monitoring shows a historical 672 ppt 6:2 FTS peak and a PFOA peak of 4.1 ppt. These are different compounds and an individual peak is not a compliance finding. Review the current supplier report before choosing treatment."
           stats={[
             { label: '6:2 FTS peak', value: '672 ppt', color: '#ef4444' },
-            { label: 'PFOA', value: 'At MCL', color: '#f59e0b' },
-            { label: 'PFAS compounds', value: '4+', color: '#f97316' },
+            { label: 'Historical PFOA peak', value: '4.1 ppt', color: '#f59e0b' },
           ]}
         />
 
@@ -121,9 +120,9 @@ export default function SugarLandWaterPage() {
           }}
         >
           <strong style={{ color: '#fca5a5' }}>How to read the numbers:</strong> Rankings on{' '}
-          <Link prefetch href="/worst-pfas" style={{ color: '#22d3ee' }}>/worst-pfas</Link> use regulated MCL violations only. Sugar Land&apos;s 672 ppt peak is{' '}
+          <Link prefetch href="/worst-pfas" style={{ color: '#22d3ee' }}>/worst-pfas</Link> compare historical regulated-compound peaks with April 2024 benchmarks; these are not official violations. Sugar Land&apos;s 672 ppt peak is{' '}
           <strong style={{ color: '#f1f5f9' }}>6:2 FTS</strong> (not yet in that regulated set). PFOA was found at{' '}
-          <strong style={{ color: '#f1f5f9' }}>4.1 ppt</strong> — at the EPA limit for that compound. See also our{' '}
+          <strong style={{ color: '#f1f5f9' }}>4.1 ppt</strong> — a historical peak above the April 2024 4 ppt comparison benchmark, not an official compliance finding. See also our{' '}
           <Link prefetch href="/blog/top-10-most-pfas-contaminated-cities" style={{ color: '#22d3ee' }}>
             Top 10 PFAS cities report
           </Link>
