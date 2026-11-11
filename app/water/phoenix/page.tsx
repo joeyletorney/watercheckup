@@ -35,7 +35,7 @@ const FILTERS = [
     badge: 'BEST FOR HARD WATER',
     price: '~$799',
     why: "Essential for Phoenix's extreme hardness (288 mg/L). Protects pipes, appliances, and water heater from scale. Pair with RO for drinking water.",
-    link: `https://www.amazon.com/dp/B08CXWMJGT?tag=${AMAZON_TAG}`,
+    link: 'https://www.springwellwater.com/product/water-softeners/salt-water-softeners/',
     best: false,
   },
   {
@@ -182,7 +182,7 @@ export default function PhoenixWaterPage() {
                     textDecoration: 'none',
                   }}
                 >
-                  View on Amazon →
+                  {f.link.includes('springwellwater.com') ? 'SpringWell.com →' : 'View on Amazon →'}
                 </a>
               </div>
             </div>

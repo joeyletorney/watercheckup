@@ -66,7 +66,7 @@ const RO_PICKS = [
     price: "~$375",
     reason:
       "NSF 42/53/58 certified. Quick-change filters, no tools. Compact tankless design, 4-stage filtration.",
-    link: "https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier",
+    link: "https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier",
     amazon: "https://www.amazon.com/dp/B0GGTSFZMY?tag=watercheck20-20",
     badge: "EASIEST FILTER CHANGE",
   },
@@ -99,7 +99,7 @@ const PITCHER_PICKS = [
     price: "~$40",
     reason:
       "Reduces TDS to zero. NSF 42/53 certified for lead, chromium, and arsenic. Includes TDS meter.",
-    link: "https://www.zerowater.com/collections/pitchers",
+    link: "https://zerowater.com/collections/water-filter-pitchers-dispensers",
     amazon: "https://www.amazon.com/dp/B0DWTTYTQN?tag=watercheck20-20",
     badge: "REMOVES TDS",
   },

@@ -13,8 +13,8 @@ const AMAZON_TAG = 'watercheck20-20';
 // Shared top-3 pick sets used across blog posts
 const TOP_3_RO = [
   { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`, badge: 'BEST VALUE' },
-  { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'No installation — plug in for NSF-certified RO. Strong pick for renters who need PFAS and lead removal.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B0BHQRNGZ8?tag=${AMAZON_TAG}`, badge: 'FOR RENTERS' },
-  { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
+  { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'No installation — plug in for NSF-certified RO. Strong pick for renters who need PFAS and lead removal.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb`, amazon: '', badge: 'FOR RENTERS' },
+  { product: 'AquaTru Under-Sink RO', brand: 'AquaTru', price: '~$375', reason: 'NSF 42/53/58 certified. Quick-change filters swap in seconds with no tools. Compact tankless design.', link: 'https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`, badge: 'EASIEST FILTER CHANGE' },
 ];
 /** Lead blog — #1–3 RO, #4–7 under-counter carbon, #8–10 pitchers (homepage-aligned). */
 const TOP_10_LEAD = [
@@ -44,7 +44,7 @@ const TOP_10_LEAD = [
     price: '~$375',
     reason:
       'NSF 42/53/58 certified tankless RO. Quick-change filters swap in seconds — compact under-sink install without a storage tank.',
-    link: 'https://www.aquatruwater.com/under-sink-reverse-osmosis-water-purifier',
+    link: 'https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier',
     amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON_TAG}`,
     badge: 'UNDER-SINK RO',
   },
@@ -54,7 +54,7 @@ const TOP_10_LEAD = [
     price: '~$59',
     reason:
       'Under-sink carbon block (not RO). NSF/ANSI 53 for lead — quick-change cartridges, installs in minutes. Best-value under-counter pick.',
-    link: 'https://www.frizzlife.com/products/undersink-water-filter-system-mk99',
+    link: 'https://www.frizzlife.com/products/mk99',
     amazon: `https://www.amazon.com/dp/B07MFYQBTX?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
@@ -64,7 +64,7 @@ const TOP_10_LEAD = [
     price: '~$126',
     reason:
       'Dual-stage under-sink filter — NSF/ANSI 53 lead reduction (~99.9% on listings) without RO waste water. Quick-change twist-off filters.',
-    link: 'https://www.frizzlife.com/products/undersink-water-filter-system-sk99',
+    link: 'https://www.frizzlife.com/products/sk99-new',
     amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
@@ -84,7 +84,7 @@ const TOP_10_LEAD = [
     price: '~$200',
     reason:
       'Three-stage under-sink carbon (no RO). NSF/ANSI 42, 53, and 401 on listings — lead, PFAS, and pharmaceuticals without RO waste water.',
-    link: 'https://www.aquasana.com/water-filters/under-sink/claryum-3-stage',
+    link: 'https://www.aquasana.com/under-sink-water-filters/claryum-3-stage/brushed-nickel-100391689.html',
     amazon: `https://www.amazon.com/dp/B0FN9Y9JSP?tag=${AMAZON_TAG}`,
     badge: 'UNDER-COUNTER',
   },
@@ -94,7 +94,7 @@ const TOP_10_LEAD = [
     price: '~$40',
     reason:
       'NSF/ANSI 42 & 53 certified for lead reduction. Includes a TDS meter. Best budget pitcher — no plumbing.',
-    link: 'https://www.zerowater.com/collections/pitchers',
+    link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers',
     amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`,
     badge: 'PITCHER',
   },
@@ -104,7 +104,7 @@ const TOP_10_LEAD = [
     price: '~$42',
     reason:
       'NSF/ANSI 42 & 53 certified. Lead, arsenic, and uranium reduction on listings — widely available at big-box stores.',
-    link: 'https://www.pur.com/water-filters/pitcher-filters',
+    link: 'https://www.pur.com/shop/pitchers/11-cup-pitcher-ppt111/',
     amazon: `https://www.amazon.com/dp/B09LKTLVNR?tag=${AMAZON_TAG}`,
     badge: 'PITCHER',
   },
@@ -122,7 +122,7 @@ const TOP_10_LEAD = [
 const TOP_3_PITCHER = [
   { product: 'Clearly Filtered 3.5L Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. Handles 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon filter life. Removes chlorine, PFOA/PFOS, heavy metals. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
-  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://www.zerowater.com/collections/pitchers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
 ];
 
 

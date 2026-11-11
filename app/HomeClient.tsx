@@ -1484,10 +1484,10 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
             onClick={() => trackAffiliateClick({ product: 'SimpleLab Well Test', destination: 'simplelab', page: 'home' })}
             style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
         </div>
-        <div style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>BUDGET OPTION — AMAZON QUICK-CHECK KITS</div>
+        <div style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>OPTIONAL AT-HOME SCREENING KITS</div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-          <a href={`https://www.amazon.com/dp/B01LZMXS5P?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #94a3b855', borderRadius: 7, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>🧪 Safe Home 200-Parameter Test — $30 →</a>
-          <a href={`https://www.amazon.com/dp/B00BPTYJMO?tag=${TAG}`} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #94a3b855', borderRadius: 7, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>🧪 First Alert Bacteria Test — $15 →</a>
+          <a href={'https://safehometestkits.com/product/diy-ultimate-drinking-water-test-kit/'} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #94a3b855', borderRadius: 7, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>🧪 Safe Home DIY Water Screening Kit →</a>
+          <a href={'https://safehometestkits.com/product/diy-bacteria-in-water-test/'} target="_blank" rel="noreferrer" style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #94a3b855', borderRadius: 7, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>🧪 Safe Home Bacteria Screening Kit →</a>
         </div>
       </div>
 

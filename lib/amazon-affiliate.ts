@@ -8,7 +8,7 @@ export const AMAZON_ASSOCIATE_TAG = 'watercheck20-20';
 export const AMAZON_ASIN_REMAP: Record<string, string> = {
   B084HW5BMT: 'B08NDYVZV5', // Frizzlife SK99 → SK99-NEW
   B07ZY9RVN2: 'B07MFYQBTX', // Frizzlife MK99
-  B0BK8ZRY2K: 'B083DFW1QS', // Frizzlife PD1000 → parent listing (PD1000-TAM4 color option)
+  B083DFW1QS: 'B0BK8ZRY2K', // PD600 listing → verified PD1000-TAM4 listing for legacy PD1000 cards
   B01JSJFBNE: 'B07C3P2RZP', // Waterdrop 10-cup pitcher (was PT-04C / wrong product)
   B00CX8R5Q8: 'B0FN9Y9JSP', // Aquasana Claryum 3-stage → AQ-6300M Max Flow
 };

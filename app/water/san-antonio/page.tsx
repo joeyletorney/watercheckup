@@ -37,7 +37,7 @@ const FILTER_PICKS = [
     badge: 'BEST FOR HARD WATER',
     price: '~$799',
     why: "Whole-home solution for SA's extreme hardness. Removes calcium and magnesium throughout the house — protects pipes, appliances, and water heater. Pair with an RO for drinking.",
-    dp: 'B08CXWMJGT',
+    directLink: 'https://www.springwellwater.com/product/water-softeners/salt-water-softeners/',
     best: false,
   },
   {
@@ -265,7 +265,7 @@ export default function SanAntonioWaterPage() {
           </p>
           {FILTER_PICKS.map((f, i) => (
             <div
-              key={f.dp}
+              key={f.name}
               style={{
                 display: 'flex',
                 gap: 14,
@@ -300,7 +300,7 @@ export default function SanAntonioWaterPage() {
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
                 <a
-                  href={(f as any).directLink || `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
+                  href={'directLink' in f ? f.directLink : `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
                   style={{
