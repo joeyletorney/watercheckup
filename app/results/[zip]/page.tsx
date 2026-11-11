@@ -22,10 +22,10 @@ const fetchWaterData = cache(async (zip: string) => {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const data = await fetchWaterData(params.zip);
-  if (!data || data.lookupError) {
+  if (!data || data.lookupError || data.violationCoverage === 'unavailable') {
     return {
       title: `ZIP ${params.zip} Water Quality — Check Tap Water | WaterCheckup`,
-      description: `Free EPA tap water report for ZIP ${params.zip}. PFAS, lead, violations, and NSF filter picks — no signup.`,
+      description: `Water records for ZIP ${params.zip}. Historical measurements may be available; current compliance must be verified with your supplier.`,
       alternates: { canonical: `https://watercheckup.com/results/${params.zip}` },
       robots: { index: false, follow: true },
     };

@@ -234,6 +234,34 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
     );
   }
 
+  if (data.violationCoverage === 'unavailable') {
+    return (
+      <main style={{ maxWidth: 900, margin: '48px auto', padding: '0 24px', color: '#e2e8f0' }}>
+        <h1 style={{ fontSize: 30, fontWeight: 800 }}>Water report for ZIP {zip}</h1>
+        <p style={{ margin: '12px 0' }}>{data.systemName} · {data.pwsid}</p>
+        <section aria-label="Data availability" style={{ padding: 24, border: '1px solid #f59e0b', borderRadius: 12, margin: '24px 0' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700 }}>Historical records available; current compliance unverified</h2>
+          <p style={{ margin: '12px 0' }}>{data.summary}</p>
+          <p>No safety grade or violation count is shown while current EPA records are unavailable. This report describes the listed supplier, not a test of your tap.</p>
+          <button onClick={() => window.location.reload()} style={{ marginTop: 20, padding: '12px 20px', background: '#155e75', color: '#fff', borderRadius: 8 }}>Retry current records</button>
+        </section>
+        <h2 style={{ fontSize: 22, fontWeight: 700 }}>Available measurements</h2>
+        <p style={{ margin: '12px 0' }}>PFAS snapshot: {data.dataFreshness.ucmr5SnapshotLabel}. Collection dates vary by sample. Other historical measurements show dates in their notes when available; an absent date means the sample date is unavailable. These are not current readings.</p>
+        {data.contaminants?.length ? data.contaminants.map((c: any, i: number) => (
+          <section key={`${c.name}-${i}`} style={{ padding: '16px 0', borderBottom: '1px solid #334155' }}>
+            <h3 style={{ fontWeight: 700 }}>{c.name}: {formatLevelVal(c.level)} {c.unit}</h3>
+            <p>{c.source || 'Historical supplier record'}</p>
+            <p style={{ color: '#cbd5e1' }}>{c.note || 'Sample date unavailable.'}</p>
+          </section>
+        )) : <p>No historical measurements are available for this supplier in our stored datasets.</p>}
+        <p style={{ margin: '24px 0' }}>For the latest information, check your supplier’s Consumer Confidence Report and official EPA records.</p>
+        <p><a href={data.dataFreshness.links.ccr} style={{ color: '#67e8f9' }}>Find your supplier’s water quality report</a></p>
+        <p style={{ margin: '16px 0' }}><a href={data.dataFreshness.links.sdwis} style={{ color: '#67e8f9' }}>Official EPA drinking water records</a></p>
+        <Link href="/" style={{ color: '#67e8f9' }}>Check another ZIP</Link>
+      </main>
+    );
+  }
+
   const cappedScore = CAP_SCORE(data.score);
   const sc = data.scoreColor || SCORE_COLOR(cappedScore);
   const letterGrade = data.grade || '—';
