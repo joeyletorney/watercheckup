@@ -1,4 +1,5 @@
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import {
   clearlyFilteredDirectUrl,
   isClearlyFilteredBrand,
@@ -20,8 +21,11 @@ export function resolveProductBuyLink(input: {
 }): ProductBuyLink {
   const { name, brand, amazon, directLink } = input;
 
+  const preferredAmazon = preferredAmazonPurchaseUrl(amazon);
+  if (preferredAmazon) return { href: preferredAmazon, label: 'Check price on Amazon →', destination: 'amazon' };
+
   if (directLink) {
-    return { href: directLink, label: 'Waterdrop.com →', destination: 'direct' };
+    return { href: directLink, label: 'Check manufacturer price →', destination: 'direct' };
   }
 
   if (isClearlyFilteredBrand(brand ?? '') || /clearly\s*filtered/i.test(name)) {
@@ -38,5 +42,5 @@ export function resolveProductBuyLink(input: {
   }
 
   const href = normalizeAmazonUrl(amazon) ?? amazon ?? '#';
-  return { href, label: 'View on Amazon →', destination: 'amazon' };
+  return { href, label: 'Check price on Amazon →', destination: 'amazon' };
 }

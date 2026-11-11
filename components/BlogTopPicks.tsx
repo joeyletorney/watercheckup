@@ -3,6 +3,7 @@ import type { TopPickRow } from '@/app/blog/post-types';
 import { getBlogTopPicksHeading } from '@/lib/blog-top-picks';
 import { lookupFilterProductImage } from '@/lib/filter-product-images';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import { clearlyFilteredDirectUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 import { AffiliateLink } from '@/components/AffiliateLink';
 
@@ -49,7 +50,8 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
       <p className="wc-blog-top-picks__subtitle">A filter may not be necessary. First confirm your supplier and a documented concern. These are options to compare, not a guarantee of every household result.</p>
       <div className="wc-blog-top-picks__list">
         {visible.map((pick, i) => {
-          const showDirect = pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand);
+          const preferredAmazon = preferredAmazonPurchaseUrl(pick.amazon);
+          const showDirect = !preferredAmazon && (pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand));
           const directHref =
             pick.brand === 'Waterdrop'
               ? pick.link
@@ -105,7 +107,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                   </AffiliateLink>
                 ) : (
                   <AffiliateLink
-                    href={normalizeAmazonUrl(pick.amazon) ?? pick.amazon}
+                    href={preferredAmazon ?? normalizeAmazonUrl(pick.amazon) ?? pick.amazon}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
                     product={pick.product}
@@ -114,7 +116,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                     brand={pick.brand}
                     className="wc-blog-top-picks__btn wc-blog-top-picks__btn--primary"
                   >
-                    Amazon →
+                    Check price on Amazon →
                   </AffiliateLink>
                 )}
               </div>

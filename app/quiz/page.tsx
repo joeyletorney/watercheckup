@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { SiteHeader } from '../components/SiteHeader';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 
 import { getQuizRecommendation as getRec, type QuizPick as AltPick } from '@/lib/quiz-recommendations';
@@ -114,7 +115,8 @@ export default function QuizPage() {
 
   const renderAltRows = (alts: AltPick[], keyPrefix: string) =>
     alts.map((alt, i) => {
-      const showDirect = showBuyDirectForBrand(alt.brand);
+      const preferredAmazon = preferredAmazonPurchaseUrl(alt.amazon);
+      const showDirect = !preferredAmazon && showBuyDirectForBrand(alt.brand);
       return (
         <div key={`${keyPrefix}-${i}`} style={{ padding: '14px 16px', background: i === 0 ? 'rgba(8,145,178,0.08)' : 'rgba(255,255,255,0.02)', borderRadius: 10, border: i === 0 ? '1px solid rgba(8,145,178,0.3)' : '1px solid #0f2336' }}>
           {alt.categoryLabel && <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.5, color: '#22d3ee', marginBottom: 6 }}>{alt.categoryLabel}</div>}
@@ -137,14 +139,14 @@ export default function QuizPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flexShrink: 0 }}>
               {showDirect ? (
-                <a href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'direct', product: alt.product, page: 'quiz', brand: alt.brand })}
+                <a className="wc-product-purchase" href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'direct', product: alt.product, page: 'quiz', brand: alt.brand })}
                   style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
                   {directBuyLabelForBrand(alt.brand)}
                 </a>
               ) : (
-              <a href={normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'amazon', product: alt.product, page: 'quiz', brand: alt.brand })}
+              <a className="wc-product-purchase" href={preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'amazon', product: alt.product, page: 'quiz', brand: alt.brand })}
                 style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: i === 0 ? 700 : 600, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
-                Amazon →
+                Check price on Amazon →
               </a>
               )}
             </div>

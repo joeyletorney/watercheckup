@@ -4,24 +4,11 @@ import { useState, useEffect, useRef, useMemo, type CSSProperties } from 'react'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HOME_HERO_ALT, HOME_HERO_IMAGE } from '@/lib/unsplash-images';
 import { FilterRecommendationsBanner } from '@/components/FilterRecommendationsHero';
 import { SiteHeader } from './components/SiteHeader';
-import { HomeVisualShowcase } from './components/HomeVisualShowcase';
-import { HomeComparisonTable } from '@/components/HomeComparisonTable';
-import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
-import { SearchDemandCities } from '@/components/SearchDemandCities';
+import { HomeFilterShop } from '@/components/HomeFilterShop';
 import { PRODUCTS } from '@/lib/home-products-catalog';
 import { SIMPLELAB_HOME_URL, SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
-import { CITIES } from '@/app/water/[city]/cities-data';
-import {
-  SITE_HERO_TAGLINE,
-  SITE_HERO_TRUST_BANNER,
-  SITE_HERO_EXAMPLE_ZIPS,
-  SITE_HERO_POSITIONING,
-  VIEW_ALL_WATER_SYSTEMS_LINK,
-  WHY_WATERCHECKUP_CARDS,
-} from '@/lib/site-stats';
 import {
   isWaterdropBrand,
   clearlyFilteredDirectUrl,
@@ -1626,101 +1613,6 @@ const CITY_ZIP_MAP: Record<string, { zip: string; city: string; state: string }>
   'portland me': { zip: '04101', city: 'Portland', state: 'ME' },
 };
 
-const HOMEPAGE_CITY_LINKS: { slug: string; name: string }[] = [
-  { slug: 'albuquerque', name: 'Albuquerque, NM' },
-  { slug: 'atlanta', name: 'Atlanta, GA' },
-  { slug: 'austin', name: 'Austin, TX' },
-  { slug: 'baltimore', name: 'Baltimore, MD' },
-  { slug: 'boston', name: 'Boston, MA' },
-  { slug: 'buffalo', name: 'Buffalo, NY' },
-  { slug: 'charlotte', name: 'Charlotte, NC' },
-  { slug: 'chicago', name: 'Chicago, IL' },
-  { slug: 'cleveland', name: 'Cleveland, OH' },
-  { slug: 'columbus', name: 'Columbus, OH' },
-  { slug: 'dallas', name: 'Dallas, TX' },
-  { slug: 'dayton', name: 'Dayton, OH' },
-  { slug: 'denver', name: 'Denver, CO' },
-  { slug: 'des-moines', name: 'Des Moines, IA' },
-  { slug: 'detroit', name: 'Detroit, MI' },
-  { slug: 'fayetteville', name: 'Fayetteville, NC' },
-  { slug: 'fort-worth', name: 'Fort Worth, TX' },
-  { slug: 'fresno', name: 'Fresno, CA' },
-  { slug: 'gaithersburg', name: 'Gaithersburg, MD' },
-  { slug: 'hartford', name: 'Hartford, CT' },
-  { slug: 'houston', name: 'Houston, TX' },
-  { slug: 'indianapolis', name: 'Indianapolis, IN' },
-  { slug: 'jersey-city', name: 'Jersey City, NJ' },
-  { slug: 'jackson', name: 'Jackson, MS' },
-  { slug: 'jacksonville', name: 'Jacksonville, FL' },
-  { slug: 'kansas-city', name: 'Kansas City, MO' },
-  { slug: 'las-vegas', name: 'Las Vegas, NV' },
-  { slug: 'los-angeles', name: 'Los Angeles, CA' },
-  { slug: 'louisville', name: 'Louisville, KY' },
-  { slug: 'memphis', name: 'Memphis, TN' },
-  { slug: 'miami', name: 'Miami, FL' },
-  { slug: 'milwaukee', name: 'Milwaukee, WI' },
-  { slug: 'minneapolis', name: 'Minneapolis, MN' },
-  { slug: 'nashville', name: 'Nashville, TN' },
-  { slug: 'new-orleans', name: 'New Orleans, LA' },
-  { slug: 'new-york', name: 'New York, NY' },
-  { slug: 'newark', name: 'Newark, NJ' },
-  { slug: 'orlando', name: 'Orlando, FL' },
-  { slug: 'parkersburg', name: 'Parkersburg, WV' },
-  { slug: 'philadelphia', name: 'Philadelphia, PA' },
-  { slug: 'phoenix', name: 'Phoenix, AZ' },
-  { slug: 'pittsburgh', name: 'Pittsburgh, PA' },
-  { slug: 'portland', name: 'Portland, OR' },
-  { slug: 'portland-me', name: 'Portland, ME' },
-  { slug: 'portsmouth-nh', name: 'Portsmouth, NH' },
-  { slug: 'providence', name: 'Providence, RI' },
-  { slug: 'raleigh', name: 'Raleigh, NC' },
-  { slug: 'rochester', name: 'Rochester, NY' },
-  { slug: 'sacramento', name: 'Sacramento, CA' },
-  { slug: 'salt-lake-city', name: 'Salt Lake City, UT' },
-  { slug: 'san-antonio', name: 'San Antonio, TX' },
-  { slug: 'sugar-land', name: 'Sugar Land, TX' },
-  { slug: 'pensacola', name: 'Pensacola, FL' },
-  { slug: 'fairfax-county', name: 'Fairfax, VA' },
-  { slug: 'san-diego', name: 'San Diego, CA' },
-  { slug: 'san-francisco', name: 'San Francisco, CA' },
-  { slug: 'san-jose', name: 'San Jose, CA' },
-  { slug: 'seattle', name: 'Seattle, WA' },
-  { slug: 'st-louis', name: 'St. Louis, MO' },
-  { slug: 'stamford', name: 'Stamford, CT' },
-  { slug: 'tacoma', name: 'Tacoma, WA' },
-  { slug: 'worcester', name: 'Worcester, MA' },
-  { slug: 'tampa', name: 'Tampa, FL' },
-  { slug: 'tucson', name: 'Tucson, AZ' },
-  { slug: 'washington-dc', name: 'Washington, DC' },
-];
-
-function usRegionFromStateCode(st: string): string {
-  const N = ['CT', 'ME', 'MA', 'NH', 'RI', 'VT', 'NJ', 'NY', 'PA'];
-  const MW = ['IL', 'IN', 'MI', 'OH', 'WI', 'IA', 'KS', 'MN', 'MO', 'NE', 'ND', 'SD'];
-  const S = ['DE', 'FL', 'GA', 'MD', 'NC', 'SC', 'VA', 'DC', 'WV', 'AL', 'KY', 'MS', 'TN', 'AR', 'LA', 'OK', 'TX'];
-  const W = ['MT', 'ID', 'WY', 'CO', 'NM', 'AZ', 'UT', 'NV', 'WA', 'OR', 'CA', 'AK', 'HI'];
-  if (N.includes(st)) return 'Northeast';
-  if (MW.includes(st)) return 'Midwest';
-  if (S.includes(st)) return 'South';
-  if (W.includes(st)) return 'West';
-  return 'Other';
-}
-
-function parseStateFromCityLabel(name: string): string | null {
-  const m = name.match(/,\s*([A-Z]{2})\s*$/i);
-  return m ? m[1].toUpperCase() : null;
-}
-
-function cityBrowseBadge(slug: string): string | null {
-  const cd = CITIES[slug];
-  if (!cd) return null;
-  const i0 = cd.issues[0] || '';
-  if (/PFAS|pfas/i.test(i0)) return 'PFAS noted';
-  if (/[Ll]ead/i.test(i0)) return 'Lead risk';
-  if (cd.urgency === 'high') return 'Review data';
-  return null;
-}
-
 /** Top-of-report risk line: counts detections vs rows where measured level exceeds the limit in our dataset (EPA MCL / action level). */
 function riskVerdictFromData(data: any): {
   tier: 'high' | 'moderate' | 'low';
@@ -1990,7 +1882,6 @@ export default function WaterCheckup() {
   const [wellMode, setWellMode]         = useState(false);
   const [wellFallbackState, setWellFallbackState] = useState<string | null>(null);
   const [heroSolutionKey, setHeroSolutionKey] = useState<HeroSolutionKey | null>(null);
-  const [cityBrowseFilter, setCityBrowseFilter] = useState('');
   const [showAllContaminants, setShowAllContaminants] = useState(false);
   const [stickyVisible, setStickyVisible] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -2008,29 +1899,6 @@ export default function WaterCheckup() {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-
-  const filteredHomepageCities = useMemo(() => {
-    const q = cityBrowseFilter.trim().toLowerCase();
-    if (!q) return HOMEPAGE_CITY_LINKS;
-    return HOMEPAGE_CITY_LINKS.filter(
-      (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.slug.replace(/-/g, ' ').includes(q) ||
-        c.slug.includes(q.replace(/\s+/g, '-')),
-    );
-  }, [cityBrowseFilter]);
-
-  const cityBrowseGrouped = useMemo(() => {
-    const map: Record<string, typeof HOMEPAGE_CITY_LINKS> = {};
-    for (const c of filteredHomepageCities) {
-      const st = parseStateFromCityLabel(c.name);
-      const region = st ? usRegionFromStateCode(st) : 'Other';
-      if (!map[region]) map[region] = [];
-      map[region].push(c);
-    }
-    const order = ['Northeast', 'Midwest', 'South', 'West', 'Other'];
-    return order.filter((r) => map[r]?.length).map((r) => ({ region: r, cities: map[r] }));
-  }, [filteredHomepageCities]);
 
   useEffect(() => {
     setShowAllContaminants(false);
@@ -2228,35 +2096,9 @@ export default function WaterCheckup() {
   const contaminantNames = data?.contaminants?.map((c: any) => c.name) ?? [];
 
   return (
-    <div style={{ minHeight: '100vh', position: 'relative', fontFamily: 'inherit', color: '#e2e8f0' }}>
+    <div className="wc-home-simple" style={{ minHeight: '100vh', position: 'relative', fontFamily: 'inherit', color: '#e2e8f0' }}>
 
-      <SiteHeader
-        variant="bar"
-        showCta
-        ctaHref="/#wc-hero-anchor"
-        ctaLabel="Check My Water"
-        navStyle={{ marginLeft: 20 }}
-        trailing={
-          <>
-            <button
-              type="button"
-              className="wc-nav-badge-wqa"
-              onClick={() => setShowWqaModal(true)}
-              aria-label="What is WQA Gold Seal? Opens explanation dialog."
-            >
-              WQA Gold Seal
-            </button>
-            <button
-              type="button"
-              className="wc-nav-badge-nsf"
-              onClick={() => setShowNsfModal(true)}
-              aria-label="What does NSF certified mean? Opens explanation dialog."
-            >
-              NSF Certified
-            </button>
-          </>
-        }
-      />
+      <SiteHeader variant="bar" navStyle={{ marginLeft: 'auto' }} />
 
       {/* STICKY CTA BAR — floats in when hero scrolls out */}
       {stickyVisible && !data && (
@@ -2270,64 +2112,16 @@ export default function WaterCheckup() {
           boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
           animation: 'wcFadeUp 0.3s ease-out both',
         }}>
-          <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600, whiteSpace: 'nowrap' }}>Protect every glass your family drinks</span>
-          <button
-            type="button"
-            onClick={() => document.getElementById('wc-hero-anchor')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            style={{
-              padding: '8px 20px', borderRadius: 8, border: 'none',
-              background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
-              color: '#fff', fontSize: 13, fontWeight: 800, cursor: 'pointer',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Check My Water
-          </button>
+          <span style={{ fontSize: 13, color: '#cbd5e1', fontWeight: 600, whiteSpace: 'nowrap' }}>Ready to compare filters?</span>
+          <Link href="#find-a-filter" style={{ padding: '10px 18px', borderRadius: 8, background: '#0891b2', color: '#fff', fontWeight: 800, textDecoration: 'none', minHeight: 44 }}>Find a Filter →</Link>
         </div>
       )}
 
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
       <div ref={heroRef} id="wc-hero-anchor" style={{ margin: '20px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
-        <div className="wc-hero-split">
-          <div className="wc-hero-split-copy">
-            <h1 className="wc-hero-h1">
-              What&apos;s In Your Tap Water?
-            </h1>
-
-            <p className="wc-hero-sub" style={{ color: '#e2e8f0', fontSize: 17, margin: '0 auto 14px', maxWidth: 520, lineHeight: 1.55, fontWeight: 600 }}>
-              {SITE_HERO_TAGLINE}
-            </p>
-
-            <p
-              className="wc-hero-positioning"
-              style={{ color: '#94a3b8', fontSize: 14, margin: '0 auto 18px', maxWidth: 520, lineHeight: 1.5, fontWeight: 500 }}
-            >
-              {SITE_HERO_POSITIONING}
-            </p>
-
-          </div>
-
-          <div className="wc-hero-split-visual">
-            <div className="wc-hero-photo">
-              <Image
-                src={HOME_HERO_IMAGE}
-                alt={HOME_HERO_ALT}
-                width={380}
-                height={285}
-                sizes="(max-width: 899px) min(100vw - 48px, 380px), 380px"
-                priority
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="wc-hero-credibility-banner" role="list" aria-label="WaterCheckup coverage highlights">
-          {SITE_HERO_TRUST_BANNER.map((label) => (
-            <span key={label} className="wc-hero-credibility-banner__item" role="listitem">
-              <span aria-hidden>✅</span> {label}
-            </span>
-          ))}
+        <div className="wc-home-simple-intro">
+          <h1>Understand your water.<br />Find a filter that fits.</h1>
+          <p>Look up your supplier’s water records, or compare filters for your home. Free, with no signup.</p>
         </div>
 
         {/* Search bar — high-visibility panel */}
@@ -2342,7 +2136,7 @@ export default function WaterCheckup() {
               value={zip}
               onChange={e => setZip(e.target.value.slice(0, 30))}
               onKeyDown={e => e.key === 'Enter' && search()}
-              placeholder="Street ZIP or city name"
+              placeholder="ZIP code or city name"
               maxLength={30}
               autoComplete="postal-code"
               aria-labelledby="wc-search-hero-heading"
@@ -2370,7 +2164,7 @@ export default function WaterCheckup() {
               </button>
               <Link
                 prefetch
-                href="/sample-report"
+                href="#find-a-filter"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -2387,37 +2181,16 @@ export default function WaterCheckup() {
                   flex: '1 1 200px',
                 }}
               >
-                View sample report (no email)
+                Find a Filter →
               </Link>
             </div>
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 14 }}>
-            <span style={{ fontSize: 12, color: '#64748b', alignSelf: 'center' }}>Try:</span>
-            {SITE_HERO_EXAMPLE_ZIPS.map(({ zip, label }) => (
-              <Link
-                prefetch
-                key={zip}
-                href={`/results/${zip}`}
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: '#67e8f9',
-                  textDecoration: 'none',
-                  padding: '6px 12px',
-                  background: 'rgba(8,145,178,0.12)',
-                  border: '1px solid rgba(34,211,238,0.3)',
-                  borderRadius: 8,
-                }}
-              >
-                {label} ({zip})
-              </Link>
-            ))}
-          </div>
+          <p style={{ textAlign: 'center', fontSize: 13, color: '#a8b4c4', lineHeight: 1.6, margin: '12px 0 0' }}>Supplier records are not a test of your tap. <Link href="/sample-report" style={{ color: '#67e8f9' }}>See a sample report →</Link></p>
         </div>
 
       </div>
 
-      <HomeVisualShowcase />
+      {!data && !loading && <HomeFilterShop />}
 
         {/* LOADER — directly under search so it stays on-screen (was below fold after long hero) */}
         {loading && (
@@ -4200,227 +3973,20 @@ export default function WaterCheckup() {
         </div>
       )}
 
-      {/* CITY GRID + TRUST SECTION */}
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '64px 24px 80px' }}>
-
-        {/* Why WaterCheckup */}
-        <section style={{ marginBottom: 96 }} aria-labelledby="why-watercheckup-heading">
-          <div className="wc-home-section-eyebrow" style={{ marginBottom: 12 }}>WHY WATERCHECKUP</div>
-          <h2 id="why-watercheckup-heading" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '0 0 20px' }}>
-            Why WaterCheckup
-          </h2>
-          <div className="wc-why-cards">
-            {WHY_WATERCHECKUP_CARDS.map((card) => (
-              <article key={card.title} className="wc-why-card">
-                <div className="wc-why-card__icon" aria-hidden>{card.icon}</div>
-                <h3 className="wc-why-card__title">{card.title}</h3>
-                <p className="wc-why-card__body">{card.body}</p>
-              </article>
-            ))}
-          </div>
+      <div className="wc-home-shortcuts">
+        <section className="wc-home-expert" aria-labelledby="wc-home-expert-heading">
+          <Image src="/joe-letorney.jpeg" alt="Joe Letorney, founder of WaterCheckup" width={96} height={96} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+          <div><h2 id="wc-home-expert-heading">Guidance from Joe Letorney</h2><p>30 years in water treatment · Former WQA Certified Water Treatment Specialist, Level VI. Compare published model evidence and practical installation needs.</p><Link href="/about">Meet Joe →</Link> · <Link href="/methodology">How we use water records →</Link></div>
         </section>
-
-        <HomeComparisonTable />
-
-        {/* Social comparison hook */}
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 96 }}>
-          {[
-            { emoji: '🔬', stat: '45%', desc: 'of US tap water has detectable PFAS — most people have no idea' },
-            { emoji: '📋', stat: '70%+', desc: 'of Americans have never read their public water system\'s water quality report' },
-          ].map(({ emoji, stat, desc }) => (
-            <div key={stat} style={{ flex: '1 1 200px', padding: '18px 20px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #1a3a5c', borderRadius: 12, textAlign: 'center' }}>
-              <div style={{ fontSize: 24, marginBottom: 6 }}>{emoji}</div>
-              <div style={{ fontSize: 26, fontWeight: 900, color: '#f59e0b', marginBottom: 4 }}>{stat}</div>
-              <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5 }}>{desc}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Browse by city — GSC high-impression reports */}
-        <SearchDemandCities title="Popular water quality reports" />
-
-        <div style={{ marginBottom: 96 }}>
-          <div className="wc-home-section-eyebrow" style={{ marginBottom: 8 }}>QUICK LINKS BY SEARCH TOPIC</div>
-          <p style={{ fontSize: 13, color: '#94a3b8', marginBottom: 28, marginTop: 0, lineHeight: 1.55 }}>Search any ZIP above — these match what people look for most</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 36 }}>
-            {[
-              { href: '/water/san-antonio', label: 'San Antonio water contamination' },
-              { href: '/blog/pfas-in-san-antonio-water', label: 'PFAS in San Antonio water (2026)' },
-              { href: '/water/gaithersburg', label: 'Gaithersburg water quality' },
-              { href: '/water/raleigh', label: 'Raleigh water quality & PFAS' },
-              { href: '/water/philadelphia', label: 'Philadelphia water quality' },
-              { href: '/water-hardness?zip=20878', label: 'Gaithersburg water testing / hardness' },
-              { href: '/worst-hardness', label: 'Hardest tap water in America' },
-              { href: '/worst-cities', label: 'Worst cities by safety score' },
-              { href: '/rankings', label: 'State rankings' },
-            ].map(({ href, label }) => (
-              <Link
-                prefetch
-                key={`${href}-${label}`}
-                href={href}
-                style={{
-                  padding: '8px 14px',
-                  background: 'linear-gradient(165deg, rgba(13,34,64,0.95), rgba(7,24,40,0.92))',
-                  border: '1px solid rgba(34,211,238,0.35)',
-                  borderRadius: 10,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: '#67e8f9',
-                  textDecoration: 'none',
-                }}
-              >
-                {label} →
-              </Link>
-            ))}
-          </div>
-          <label htmlFor="wc-city-filter" style={{ display: 'block', fontSize: 13, color: '#cbd5e1', marginBottom: 10 }}>
-            Type to filter cities
-          </label>
-          <input
-            id="wc-city-filter"
-            type="search"
-            enterKeyHint="search"
-            autoComplete="off"
-            placeholder="e.g. Chicago, Tampa, Denver…"
-            value={cityBrowseFilter}
-            onChange={(e) => setCityBrowseFilter(e.target.value)}
-            style={{
-              width: '100%',
-              maxWidth: 420,
-              boxSizing: 'border-box',
-              marginBottom: 32,
-              padding: '12px 16px',
-              borderRadius: 10,
-              border: '1px solid #1a3a5c',
-              background: '#071828',
-              color: '#e2e8f0',
-              fontSize: 14,
-              outline: 'none',
-            }}
-          />
-          {filteredHomepageCities.length === 0 && (
-            <div style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 12 }}>
-              No matches.{' '}
-              <a href="/water" style={{ color: '#22d3ee', fontWeight: 600 }}>
-                Open the full city directory →
-              </a>
-            </div>
-          )}
-          <div className="wc-home-city-browse-regions">
-            {cityBrowseGrouped.map(({ region, cities }) => (
-              <div key={region}>
-                <div className="wc-home-region-label">{region}</div>
-                <div className="wc-home-city-chips">
-                  {cities.map(({ slug, name }) => {
-                    const badge = cityBrowseBadge(slug);
-                    return (
-                      <a
-                        key={slug}
-                        href={`/water/${slug}`}
-                        className="wc-home-city-chip"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 8,
-                          padding: '12px 16px',
-                          background: 'linear-gradient(165deg, rgba(13,34,64,0.95), rgba(7,24,40,0.92))',
-                          border: '1px solid #1e3a5c',
-                          borderRadius: 10,
-                          fontSize: 13,
-                          color: '#e2e8f0',
-                          textDecoration: 'none',
-                          maxWidth: '100%',
-                          boxSizing: 'border-box',
-                        }}
-                      >
-                        <span style={{ fontWeight: 700 }}>{name.split(',')[0]}</span>
-                        <span style={{ fontSize: 13, color: '#a8b4c4', fontWeight: 600 }}>{name.includes(',') ? name.slice(name.indexOf(',')) : ''}</span>
-                        {badge && (
-                          <span
-                            style={{
-                              fontSize: 9,
-                              fontWeight: 800,
-                              letterSpacing: 0.4,
-                              padding: '2px 7px',
-                              borderRadius: 4,
-                              background: badge === 'Lead risk'
-                                ? 'rgba(239,68,68,0.12)'
-                                : badge === 'PFAS noted'
-                                ? 'rgba(245,158,11,0.12)'
-                                : 'rgba(148,163,184,0.12)',
-                              border: badge === 'Lead risk'
-                                ? '1px solid rgba(239,68,68,0.35)'
-                                : badge === 'PFAS noted'
-                                ? '1px solid rgba(245,158,11,0.35)'
-                                : '1px solid rgba(148,163,184,0.25)',
-                              color: badge === 'Lead risk'
-                                ? '#fca5a5'
-                                : badge === 'PFAS noted'
-                                ? '#fcd34d'
-                                : '#cbd5e1',
-                              flexShrink: 0,
-                            }}
-                          >
-                            {badge}
-                          </span>
-                        )}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-            <div>
-              <a
-                href="/water"
-                style={{
-                  display: 'inline-flex',
-                  padding: '8px 14px',
-                  background: '#0891b220',
-                  border: '1px solid #0891b250',
-                  borderRadius: 8,
-                  fontSize: 13,
-                  color: '#0891b2',
-                  textDecoration: 'none',
-                  fontWeight: 700,
-                }}
-              >
-                {VIEW_ALL_WATER_SYSTEMS_LINK}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Blog teasers */}
-        <div>
-          <div className="wc-home-section-eyebrow" style={{ marginBottom: 16 }}>FROM THE BLOG</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
-            {[
-              { slug: 'is-pfas-in-my-tap-water', emoji: '☣️', tag: 'PFAS', title: 'Is PFAS in My Tap Water?', desc: 'PFAS found in 45% of US tap water. Here\'s how to check yours.', accent: '#ef4444' },
-              { slug: 'best-ro-system-for-pfas-removal', emoji: '🔬', tag: 'Filter Guide', title: 'Best RO Systems for PFAS 2026', desc: 'The certified filters that actually work, at every budget.', accent: '#0891b2' },
-              { slug: 'tap-water-safety-during-pregnancy', emoji: '🤰', tag: 'Health', title: 'Tap Water Safety During Pregnancy', desc: 'Lead, nitrates, PFAS — what to filter and why.', accent: '#f59e0b' },
-              { slug: 'moving-to-new-city-water-quality-check', emoji: '📦', tag: 'Moving', title: 'Moving? Check the Water First', desc: 'Water quality varies dramatically by city. Here\'s what to look for.', accent: '#22d3ee' },
-              { slug: 'bottled-water-vs-tap-water-cost-safety-and-pfas', emoji: '🍶', tag: 'Comparison', title: 'Bottled Water vs. Tap Water', desc: 'Bottled water is not automatically purer. Here\'s the cost, safety, and PFAS reality.', accent: '#cbd5e1' },
-              { slug: 'lead-in-tap-water-signs-and-symptoms', emoji: '⚠️', tag: 'Lead', title: 'Lead in Tap Water: Signs & Risk', desc: 'Lead has no taste or smell. Here\'s how to know if your home is at risk.', accent: '#f87171' },
-            ].map(({ slug, emoji, tag, title, desc, accent }) => (
-              <a key={slug} href={`/blog/${slug}`} style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '18px 18px 16px', background: 'linear-gradient(165deg,rgba(13,34,64,0.95),rgba(7,24,40,0.92))', border: '1px solid #1a3a5c', borderTop: `2px solid ${accent}`, borderRadius: 10, textDecoration: 'none', transition: 'border-color 0.2s' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ fontSize: 22 }}>{emoji}</span>
-                  <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.2, color: accent, padding: '2px 7px', borderRadius: 4, background: `${accent}18`, border: `1px solid ${accent}33` }}>{tag}</span>
-                </div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', lineHeight: 1.4 }}>{title}</div>
-                <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, flex: 1 }}>{desc}</div>
-                <div style={{ fontSize: 13, color: accent, fontWeight: 700, marginTop: 2 }}>Read more →</div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <SiteTrustedFilterPicks marginTop={72} />
-
-        {/* ── EMAIL CAPTURE — homepage standalone ── */}
+        <section aria-labelledby="wc-home-guides-heading"><h2 id="wc-home-guides-heading">Need help deciding?</h2><div className="wc-home-guide-links">
+          <Link href="/blog/best-water-filter-for-lead-removal">Filters for lead concerns →</Link>
+          <Link href="/blog/best-countertop-water-filter">Countertop and pitcher comparison →</Link>
+          <Link href="/blog/best-water-filter-hard-water">Hard water: softener or filter? →</Link>
+        </div></section>
+        <details className="wc-home-resources"><summary>Explore water reports and learning resources</summary><div className="wc-home-guide-links">
+          <Link href="/water">Browse city reports →</Link><Link href="/utilities">Find a water utility →</Link><Link href="/water-hardness">Hardness by ZIP →</Link><Link href="/contaminants">Understand contaminants →</Link><Link href="/rankings">Water rankings →</Link><Link href="/faq">Frequently asked questions →</Link><Link href="/blog">All guides →</Link>
+        </div></details>
         <HomeEmailCapture />
-
       </div>
 
       {data && !loading && !wellMode && (

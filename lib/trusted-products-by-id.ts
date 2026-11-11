@@ -1,6 +1,7 @@
 import type { TrustedFilterProduct } from '@/components/TrustedFilterCategories';
 import { PRODUCTS } from '@/lib/home-products-catalog';
 import { isClearlyFilteredBrand, isWaterdropBrand } from '@/lib/waterdrop-buy';
+import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 
 export const TRUSTED_PRODUCTS_BY_ID: Record<number, TrustedFilterProduct | undefined> =
   Object.fromEntries(
@@ -14,7 +15,7 @@ export const TRUSTED_PRODUCTS_BY_ID: Record<number, TrustedFilterProduct | undef
         cert: p.cert as string[] | undefined,
         catLabel: p.catLabel as string | undefined,
         amazon:
-          p.outOfStock || isWaterdropBrand(p.brand) || isClearlyFilteredBrand(p.brand)
+          p.outOfStock || (!preferredAmazonPurchaseUrl(p.amazon) && (isWaterdropBrand(p.brand) || isClearlyFilteredBrand(p.brand)))
             ? undefined
             : (p.amazon as string | undefined),
         brandLink: p.brandLink as string | undefined,
