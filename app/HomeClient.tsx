@@ -36,7 +36,7 @@ const FilterVsBottleChart = dynamic(() => import('./components/FilterVsBottleCha
   loading: () => <div style={{ height: 220, background: 'rgba(11,30,54,0.45)', borderRadius: 8 }} />,
 });
 
-const TAG = 'watercheck20-20';
+const TAG = 'watercheckup-20';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // API

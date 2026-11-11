@@ -39,7 +39,7 @@ const sectionTitle: CSSProperties = {
 
 const pStyle: CSSProperties = { fontSize: 15, color: "#cbd5e1", lineHeight: 1.75, margin: "0 0 14px" };
 
-const AMAZON = (q: string) => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=watercheck20-20`;
+const AMAZON = (q: string) => `https://www.amazon.com/s?k=${encodeURIComponent(q)}&tag=watercheckup-20`;
 
 export default function WaterHardnessPage() {
   const stateRows = buildStateHardnessTable();
@@ -235,7 +235,7 @@ export default function WaterHardnessPage() {
         </h2>
         <p style={pStyle}>
           Match treatment to severity. The calculator above highlights one affiliate starting point based on your reading; the
-          three categories below cover the same ground with static Amazon search links (tag <code>watercheck20-20</code>).
+          three categories below cover the same ground with static Amazon search links (tag <code>watercheckup-20</code>).
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 56 }}>
           <div style={{ padding: "16px 18px", background: "#0d2240", border: "1px solid #ef444440", borderRadius: 12 }}>

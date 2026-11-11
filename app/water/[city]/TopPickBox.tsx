@@ -19,7 +19,7 @@ function directBuyLabel(brand: string) {
 const UTM_SOURCE = 'watercheckup';
 const UTM_MEDIUM = 'affiliate';
 const UTM_CAMPAIGN = 'filter-recommendations';
-const AMAZON_TAG = 'watercheck20-20';
+const AMAZON_TAG = 'watercheckup-20';
 const WATERDROP_REF = 'anbyjkqb';
 
 function buildAmazonUrl(baseUrl: string, product: string, citySlug: string) {

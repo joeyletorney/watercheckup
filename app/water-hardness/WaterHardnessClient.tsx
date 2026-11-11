@@ -15,7 +15,7 @@ import {
 import { findCitySlugByZip } from "@/lib/find-city-by-zip";
 
 const AMAZON = (query: string) =>
-  `https://www.amazon.com/s?k=${encodeURIComponent(query)}&tag=watercheck20-20`;
+  `https://www.amazon.com/s?k=${encodeURIComponent(query)}&tag=watercheckup-20`;
 
 const cardStyle: CSSProperties = {
   padding: "14px 16px",

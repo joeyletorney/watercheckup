@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Post } from './post-types';
 
-const AMAZON_TAG = 'watercheck20-20';
+const AMAZON_TAG = 'watercheckup-20';
 
 const TOP_3_PITCHER = [
   {
@@ -49,7 +49,7 @@ const TOP_3_RO = [
     price: '~$439',
     reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS, lead, and DBPs. Best value for NYC homeowners.',
     link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`,
-    amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheck20-20`,
+    amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20`,
     badge: 'BEST VALUE',
   },
   {

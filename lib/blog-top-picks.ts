@@ -3,7 +3,7 @@ import { attachProductImages } from '@/lib/filter-product-images';
 
 const WATERDROP_RO =
   'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
-const AMAZON = 'watercheck20-20';
+const AMAZON = 'watercheckup-20';
 
 export type BlogPickSegment =
   | 'lead'
@@ -331,7 +331,7 @@ export const TOP_WHOLE_HOUSE: TopPickRow[] = [
     brand: 'iSpring',
     price: '~$420',
     reason: 'Popular DIY whole-house sediment + dual carbon — NSF 42; strong value entry point.',
-    link: 'https://www.amazon.com/dp/B008GNRMYK?tag=watercheck20-20',
+    link: 'https://www.amazon.com/dp/B008GNRMYK?tag=watercheckup-20',
     amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON}`,
     badge: 'WHOLE HOUSE',
   },

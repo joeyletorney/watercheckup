@@ -1,5 +1,5 @@
 /** Amazon Associates tag used sitewide for product links. */
-export const AMAZON_ASSOCIATE_TAG = 'watercheck20-20';
+export const AMAZON_ASSOCIATE_TAG = 'watercheckup-20';
 
 /**
  * Stale or wrong ASINs → verified US listings (checked 2026).

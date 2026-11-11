@@ -14,7 +14,7 @@ import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBloc
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 
-const AMAZON_TAG = 'watercheck20-20';
+const AMAZON_TAG = 'watercheckup-20';
 
 export function generateMetadata(): Metadata {
   const cd = CITIES.houston;

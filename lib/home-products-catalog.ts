@@ -1,6 +1,6 @@
 /** Full filter product catalog — shared by HomeClient and trusted filter picks. */
 
-export const AMAZON_AFFILIATE_TAG = 'watercheck20-20';
+export const AMAZON_AFFILIATE_TAG = 'watercheckup-20';
 
 export const PRODUCTS: any[] = [
   // ── UNDER-SINK RO — quick-change only ─────────────────────────────────────

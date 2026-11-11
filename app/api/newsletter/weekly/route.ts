@@ -23,7 +23,7 @@ async function fetchBrevoListContacts(apiKey: string, listId: number): Promise<B
 }
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
-const AMAZON_TAG = 'watercheck20-20';
+const AMAZON_TAG = 'watercheckup-20';
 
 type Product = { name: string; tag: string; why: string; search: string };
 type Issue = { subject: string; headline: string; intro: string; sections: { color: string; title: string; body: string }[]; action: string; products: Product[] };
