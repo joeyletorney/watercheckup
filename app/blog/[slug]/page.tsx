@@ -1,3 +1,5 @@
+import { BlogCommercialComparison } from '@/components/BlogCommercialComparison';
+import { COMMERCIAL_GUIDES } from '../commercial-guide-data';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -138,9 +140,9 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           <span>{post.badge}</span>
         </nav>
 
-        <BlogFeaturedImage slug={params.slug} title={post.title} badge={post.badge} />
+        {!COMMERCIAL_GUIDES[params.slug] && <BlogFeaturedImage slug={params.slug} title={post.title} badge={post.badge} />}
 
-        <header style={{ marginBottom: 64 }}>
+        <header style={{ marginBottom: COMMERCIAL_GUIDES[params.slug] ? 24 : 64 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
               {post.badge}
@@ -159,13 +161,15 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         </header>
 
         {/* Check ZIP CTA — top (slug-specific copy for high-impression posts) */}
+        <BlogCommercialComparison slug={params.slug} />
+
         {(() => {
           const ctaBySlug: Record<string, { headline: string; sub: string; href: string; btn: string }> = {
             'best-water-filter-for-lead-removal': {
-              headline: 'Is there lead in your tap water?',
-              sub: 'Free EPA report by ZIP — see lead risk and NSF 53 filter matches.',
+              headline: 'Check your supplier’s water records',
+              sub: 'Supplier records provide context. A household tap test is needed to measure lead from your own plumbing.',
               href: '/',
-              btn: 'Check lead in my ZIP →',
+              btn: 'Find my supplier report →',
             },
             'what-water-filter-removes-pfas': {
               headline: 'Is PFAS in your tap water?',
@@ -176,7 +180,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           };
           const cta = ctaBySlug[params.slug] ?? {
             headline: 'Is your water affected?',
-            sub: 'Check the EPA report for your exact ZIP code — free, instant.',
+            sub: 'Find available supplier records by ZIP. Dataset dates and coverage are shown in the report.',
             href: '/',
             btn: 'Check My ZIP →',
           };
@@ -197,7 +201,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           {post.content}
         </div>
 
-        <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />
+        {!COMMERCIAL_GUIDES[params.slug] && <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />}
 
         {(params.slug === 'best-water-filter-for-lead-removal' ||
           params.slug === 'what-water-filter-removes-pfas') && (
@@ -227,7 +231,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         <div className="wc-reading-inset" style={{ marginTop: 96 }}>
           <div className="wc-reading-inset__label">MORE GUIDES</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {Object.entries(POSTS).filter(([slug]) => slug !== params.slug).map(([slug, p]) => (
+            {Object.entries(POSTS).filter(([slug]) => slug !== params.slug && (!COMMERCIAL_GUIDES[params.slug] || ['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'hard-water-explained-scale-softeners-and-your-taps', 'what-water-filter-removes-pfas'].includes(slug))).slice(0, COMMERCIAL_GUIDES[params.slug] ? 3 : undefined).map(([slug, p]) => (
               <Link prefetch key={slug} href={`/blog/${slug}`} className="wc-reading-link-card">
                 <span className="wc-reading-link-card__title">{p.title}</span>
                 <span className="wc-reading-link-card__arrow">→</span>
@@ -293,9 +297,9 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         </div>
 
         <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 72, textAlign: 'center' }}>
-          <div className="wc-reading-inset__title" style={{ marginBottom: 8 }}>Check your exact water report</div>
+          <div className="wc-reading-inset__title" style={{ marginBottom: 8 }}>Find your supplier’s water report</div>
           <p className="wc-reading-inset__text" style={{ marginBottom: 20 }}>
-            Live EPA data, PFAS results, and violation history for your ZIP — free.
+            Available EPA supplier records and historical measurements by ZIP — free. Current coverage may vary.
           </p>
           <Link prefetch href="/" className="wc-reading-cta__btn" style={{ display: 'inline-block' }}>
             Check My Water Free →

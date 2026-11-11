@@ -1,3 +1,4 @@
+import { commercialPost } from './commercial-guide-data';
 import React from 'react';
 import type { Post } from './post-types';
 
@@ -6,12 +7,6 @@ const AMAZON_TAG = 'watercheckup-20';
 const TAP_SCORE_CITY_URL = 'https://www.awin1.com/cread.php?awinmid=92253&awinaffid=2847509&ued=https%3A%2F%2Fmytapscore.com%2Fcollections%2Fcity-water-tests';
 const TAP_SCORE_WELL_URL = 'https://mytapscore.com/collections/well-water-tests?utm_source=watercheckup';
 const WATERDROP_TAG = 'anbyjkqb';
-
-const TOP_3_COUNTERTOP = [
-  { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'Plug in and pour — zero installation. NSF 42/53/58 certified. Removes 99%+ PFAS, lead, arsenic, and 1,000+ contaminants. 170 oz tank. Best for renters.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: '', badge: 'EDITORS PICK' },
-  { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'NSF 42/53/58/401 certified — removes PFAS, nitrates, fluoride, radium, and 80+ contaminants. No installation. Quick-change filters swap in seconds.', link: 'https://aquatru.com/products/countertop-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
-  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53 certified. Best budget option — no installation, removes lead, chromium, arsenic. Includes TDS meter.', link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
-];
 
 const TOP_3_WHOLE_HOUSE = [
   { product: 'Aquasana Rhino EQ-1000', brand: 'Aquasana', price: '~$999', reason: 'WQA Gold Seal + NSF 42/61. Removes chlorine, chloramine, PFAS, THMs, VOCs at every tap and shower in the home. 10-year / 1M gallon filter life.', link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
@@ -36,105 +31,7 @@ const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, text
 export const EXTRA_POSTS_5: Record<string, Post> = {
 
   // ─── POST 1: BEST COUNTERTOP WATER FILTER ────────────────────────────────
-  'best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2026: Tested & Ranked',
-    excerpt: 'No plumber, no drilling, no landlord permission needed. Here are the best countertop water filters ranked by what they actually remove — PFAS, lead, and beyond.',
-    seo: {
-      title: 'Best Countertop Water Filters 2026: Tested & Ranked',
-      description: 'No installation needed. We ranked the best countertop water filters by NSF certifications and what they actually remove — PFAS, lead, arsenic, and more. Includes RO and pitcher options.',
-      canonical: 'https://watercheckup.com/blog/best-countertop-water-filter',
-      openGraph: {
-        title: 'Best Countertop Water Filters 2026: Tested & Ranked',
-        description: 'No installation needed. We ranked the best countertop water filters by NSF certifications and what they actually remove — PFAS, lead, arsenic, and more.',
-      },
-    },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
-    readTime: '9 min read',
-    badge: 'Filters',
-    badgeColor: '#06b6d4',
-    topPicks: TOP_3_COUNTERTOP,
-    faq: [
-      { q: 'What is the best countertop water filter?', a: 'The Waterdrop K19-S Countertop RO is our top pick. It requires no installation — just plug it in — and is NSF 42/53/58 certified to remove PFAS, lead, arsenic, and 1,000+ contaminants. The AquaTru Classic is the best premium option with NSF 401 certification for emerging contaminants.' },
-      { q: 'Do countertop water filters really work?', a: 'Countertop reverse osmosis systems remove 99%+ of most contaminants including PFAS, lead, and arsenic. Basic pitcher filters only remove chlorine taste and odor. For health protection, you need a filter certified to NSF/ANSI 53 (lead) or NSF/ANSI 58 (RO performance) — not just NSF 42.' },
-      { q: 'Can renters use countertop water filters?', a: 'Yes — countertop RO systems require zero installation and no drilling. They sit on the counter and plug into a standard outlet. The Waterdrop K19-S and AquaTru Classic are both specifically designed for renters and apartment dwellers.' },
-      { q: 'Do countertop water filters remove PFAS?', a: 'Only reverse osmosis systems certified to NSF/ANSI 58 reliably remove PFAS. Standard pitcher filters — including Brita and PUR — are not certified to remove PFAS. The Waterdrop K19-S and AquaTru Classic are both RO-based and remove PFAS at 99%+.' },
-      { q: 'How much do countertop water filters cost?', a: 'Countertop RO systems range from $200 to $500. Budget pitchers run $40–90. Replacement filters cost $50–130/year for RO systems. The upfront cost is higher than a pitcher but the contaminant removal is dramatically better.' },
-    ],
-    content: React.createElement(React.Fragment, null,
-      React.createElement('p', { style: pStyle },
-        'A countertop water filter is the simplest upgrade you can make to your drinking water — no plumber, no drilling, no landlord permission. But not all countertop filters are equal. A $40 pitcher removes chlorine taste. A $249 countertop RO system removes PFAS, lead, arsenic, nitrates, and 1,000+ other contaminants. This guide explains the difference and tells you exactly which one to buy.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'The Certification That Actually Matters'),
-      React.createElement('p', { style: pStyle },
-        'When shopping for a countertop filter, ignore marketing claims and look at NSF certifications:'
-      ),
-      React.createElement('div', { style: calloutStyle },
-        React.createElement('strong', { style: strongStyle }, 'NSF/ANSI 42 '),
-        '— Reduces chlorine taste and odor only. This is what most pitcher filters have. It does not protect against lead, PFAS, arsenic, or any health contaminants.',
-        React.createElement('br', null), React.createElement('br', null),
-        React.createElement('strong', { style: strongStyle }, 'NSF/ANSI 53 '),
-        '— Reduces health-related contaminants including lead. This is the minimum for meaningful protection.',
-        React.createElement('br', null), React.createElement('br', null),
-        React.createElement('strong', { style: strongStyle }, 'NSF/ANSI 58 '),
-        '— Reverse osmosis system performance. Covers PFAS, nitrates, arsenic, TDS, and a broad range of contaminants. This is what you want.',
-      ),
-      React.createElement('p', { style: pStyle },
-        'The Waterdrop K19-S and AquaTru Classic both carry NSF 58 certification, making them genuinely protective. ZeroWater pitchers carry NSF 42/53 — effective for lead and chlorine but not PFAS.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'Countertop RO vs. Pitcher: Which One?'),
-      React.createElement('p', { style: pStyle },
-        'If your water has PFAS detected above EPA limits — which applies to tens of millions of Americans based on UCMR5 monitoring — only reverse osmosis removes PFAS reliably. ',
-        React.createElement('a', { href: '/pfas', style: linkStyle }, 'Check if your city has PFAS'),
-        ' before choosing a pitcher as your only protection.'
-      ),
-      React.createElement('p', { style: pStyle },
-        'For everything else (lead, chlorine, taste), a pitcher with NSF 53 certification works well at lower cost. If your main concern is taste and you have clean city water, a $40 ZeroWater pitcher is enough. If you have PFAS, lead service lines, or any other serious contaminant, invest in countertop RO.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'What Makes the Waterdrop K19-S the Best Countertop RO'),
-      React.createElement('p', { style: pStyle },
-        'The K19-S wins on simplicity. It plugs into a standard outlet, has a 170 oz tank, and requires literally zero installation. NSF 42/53/58 certified. Removes PFAS at 99%+, lead at 99%+, arsenic, TDS, chlorine, and 1,000+ contaminants based on its RO membrane. The 3:1 pure-to-drain ratio is efficient for an RO system.',
-      ),
-      React.createElement('p', { style: pStyle },
-        'Filter replacement runs about $110/year. The unit itself is compact enough for most countertops. For renters, this is the single best upgrade you can make to your drinking water without touching the plumbing.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'AquaTru Classic — Best for Maximum Certification Coverage'),
-      React.createElement('p', { style: pStyle },
-        'The AquaTru Classic adds NSF 401 to the mix — this covers emerging contaminants beyond the standard RO scope including certain pharmaceuticals and microplastics. If you want the widest certified coverage available in a no-installation countertop unit, AquaTru is the answer. Quick-change filters swap in seconds with no tools.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'Check What\'s Actually in Your Water First'),
-      React.createElement('p', { style: pStyle },
-        'Before buying any filter, check what\'s actually in your tap water. Enter your ZIP on ',
-        React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
-        ' to see your public water system\'s PFAS levels, violations, and contaminant-matched filter recommendations — free, no login. If your city has PFAS above EPA limits, you need NSF 58. If lead is the concern, NSF 53 is sufficient. The right filter depends on your specific water.'
-      ),
-
-      React.createElement('div', { style: { margin: '32px 0', padding: '18px 22px', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: 10 } },
-        React.createElement('div', { style: { fontSize: 11, fontWeight: 800, letterSpacing: 2, color: '#a78bfa', marginBottom: 8 } }, '🧪 NOT SURE WHAT\'S IN YOUR WATER?'),
-        React.createElement('p', { style: { margin: '0 0 12px', color: '#cbd5e1', fontSize: 14, lineHeight: 1.6 } },
-          'Before investing in a filter, a certified mail-in test tells you exactly what you\'re dealing with. Tap Score panels test for PFAS, lead, nitrates, bacteria, and 100+ contaminants — results in about a week with personalized guidance.'
-        ),
-        React.createElement('a', { href: TAP_SCORE_CITY_URL, target: '_blank', rel: 'noopener noreferrer sponsored', style: { display: 'inline-block', padding: '9px 18px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' } },
-          'Tap Score City Water Test — from $89 →'
-        )
-      ),
-      React.createElement('p', { style: pStyle },
-        'Also see: ',
-        React.createElement('a', { href: '/blog/best-water-filter-for-lead-removal', style: linkStyle }, 'best filters for lead removal'),
-        ' · ',
-        React.createElement('a', { href: '/blog/what-water-filter-removes-pfas', style: linkStyle }, 'what filters remove PFAS'),
-        ' · ',
-        React.createElement('a', { href: '/quiz', style: linkStyle }, 'take the 3-question filter quiz'),
-        '.'
-      ),
-    ),
-  },
+  'best-countertop-water-filter': commercialPost('best-countertop-water-filter', '2026-06-01', 'Filters', '#06b6d4'),
 
   // ─── POST 2: BEST WHOLE-HOUSE WATER FILTER ───────────────────────────────
   'best-whole-house-water-filter': {

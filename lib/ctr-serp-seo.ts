@@ -99,19 +99,16 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'San Diego imports 85%+ of its water. See PFAS monitoring, hardness, chromium-6 context, and chloramine DBPs — free EPA report and filter picks.',
   },
   '/blog/best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal 2026 — 10 NSF-Certified Picks',
-    description:
-      'NSF 53/58 filters that remove lead at the tap — under-sink RO, carbon blocks, and pitchers ranked by certification, not paid placement.',
+    title: 'Best Water Filters for Lead Removal 2026 — Evidence & Costs',
+    description: 'Compare lead-reduction pitchers, countertop RO and installed filters with official model evidence, installation limits and replacement-cost assumptions.',
   },
   '/blog/best-water-filter-hard-water': {
-    title: 'Best Water Filters for Hard Water 2026 — Softener vs RO Guide',
-    description:
-      'Hard water fixes ranked: whole-house softeners for scale, RO for drinking water, and what actually removes minerals vs PFAS and lead.',
+    title: 'Best Water Filter for Hard Water 2026 — Softener vs RO',
+    description: 'Compare whole-house softeners, drinking-water RO and scale conditioners: official guidance, installation constraints and ownership-cost assumptions.',
   },
   '/blog/best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2026 — RO & PFAS Picks (No Install)',
-    description:
-      'Top countertop RO and pitcher filters for renters: NSF 58/P473 picks that remove PFAS and lead without plumbing. Ranked by certification.',
+    title: 'Best Countertop Water Filters 2026 — RO & Pitcher Comparison',
+    description: 'Compare countertop RO and a lead-reduction pitcher with official evidence, setup limits, replacement schedules and sourced cost assumptions.',
   },
   '/rankings': {
     title: 'Tap Water Quality Rankings by State 2026 — PFAS & Grades',

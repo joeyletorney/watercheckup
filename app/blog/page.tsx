@@ -1,3 +1,4 @@
+import { COMMERCIAL_GUIDES } from './commercial-guide-data';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -222,11 +223,10 @@ const POST_BY_SLUG: Record<
     badgeColor: '#7c3aed',
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Water Filters That Remove Lead — Best 10 Picks (2026)',
-    excerpt:
-      'Ten NSF 53/58 picks — 3 under-sink RO, 4 under-counter carbon, 3 pitchers for lead.',
-    date: 'March 29, 2026',
-    readTime: '10 min read',
+    title: COMMERCIAL_GUIDES['best-water-filter-for-lead-removal'].title,
+    excerpt: COMMERCIAL_GUIDES['best-water-filter-for-lead-removal'].excerpt,
+    date: 'November 11, 2026',
+    readTime: '6 min read',
     badge: 'Lead',
     badgeColor: '#d97706',
   },
@@ -280,10 +280,10 @@ const POST_BY_SLUG: Record<
     badgeColor: '#059669',
   },
   'best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2026: Tested & Ranked',
-    excerpt: 'No installation, no drilling, no landlord permission. The best countertop water filters ranked by NSF certifications and what they actually remove — PFAS, lead, and more.',
-    date: 'June 1, 2026',
-    readTime: '9 min read',
+    title: COMMERCIAL_GUIDES['best-countertop-water-filter'].title,
+    excerpt: COMMERCIAL_GUIDES['best-countertop-water-filter'].excerpt,
+    date: 'November 11, 2026',
+    readTime: '6 min read',
     badge: 'Filters',
     badgeColor: '#06b6d4',
   },
@@ -312,11 +312,10 @@ const POST_BY_SLUG: Record<
     badgeColor: '#06b6d4',
   },
   'best-water-filter-hard-water': {
-    title: 'Best Water Filter for Hard Water 2026 — Tested & Ranked',
-    excerpt:
-      'Softeners, RO systems, and pitchers that actually address calcium, magnesium, and scale — with NSF-aligned picks for every budget.',
-    date: 'May 9, 2026',
-    readTime: '12 min read',
+    title: COMMERCIAL_GUIDES['best-water-filter-hard-water'].title,
+    excerpt: COMMERCIAL_GUIDES['best-water-filter-hard-water'].excerpt,
+    date: 'November 11, 2026',
+    readTime: '6 min read',
     badge: 'Home',
     badgeColor: '#cbd5e1',
   },

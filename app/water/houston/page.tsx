@@ -1,3 +1,4 @@
+import { AffiliateLink } from '@/components/AffiliateLink';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
@@ -201,7 +202,7 @@ export default function HoustonWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <a
+                <AffiliateLink product={f.name} destination={(f as any).directLink ? 'direct' : 'amazon'} page="water/houston" city="houston"
                   href={(f as any).directLink || `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
@@ -218,7 +219,7 @@ export default function HoustonWaterPage() {
                   }}
                 >
                   {(f as any).directLink ? 'Buy Direct →' : 'View on Amazon →'}
-                </a>
+                </AffiliateLink>
               </div>
             </div>
           ))}

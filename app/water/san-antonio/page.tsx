@@ -1,3 +1,4 @@
+import { AffiliateLink } from '@/components/AffiliateLink';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
@@ -297,7 +298,7 @@ export default function SanAntonioWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <a
+                <AffiliateLink product={f.name} destination={'directLink' in f ? 'direct' : 'amazon'} page="water/san-antonio" city="san-antonio"
                   href={'directLink' in f ? f.directLink : `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
@@ -314,7 +315,7 @@ export default function SanAntonioWaterPage() {
                   }}
                 >
                   {(f as any).directLink ? 'Buy Direct →' : 'View on Amazon →'}
-                </a>
+                </AffiliateLink>
               </div>
             </div>
           ))}

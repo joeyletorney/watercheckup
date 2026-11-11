@@ -1,3 +1,4 @@
+import { AffiliateLink } from '@/components/AffiliateLink';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
@@ -164,7 +165,7 @@ export default function PhoenixWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <a
+                <AffiliateLink product={f.name} destination={f.link.includes('amazon.com') ? 'amazon' : 'direct'} page="water/phoenix" city="phoenix"
                   href={f.link}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
@@ -181,7 +182,7 @@ export default function PhoenixWaterPage() {
                   }}
                 >
                   {f.link.includes('springwellwater.com') ? 'SpringWell.com →' : 'View on Amazon →'}
-                </a>
+                </AffiliateLink>
               </div>
             </div>
           ))}

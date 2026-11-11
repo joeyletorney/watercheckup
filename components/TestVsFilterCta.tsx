@@ -2,6 +2,7 @@
 
 import { Suspense, type CSSProperties } from 'react';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { SIMPLELAB_CITY_TESTS_URL } from '@/lib/simplelab-links';
 
 type Props = {
@@ -72,13 +73,12 @@ export function TestVsFilterCta({
   return (
     <div style={{ marginBottom: 24 }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>
-        TEST YOUR TAP OR FILTER NOW?
+        CHOOSE YOUR NEXT STEP
       </div>
       <Suspense fallback={null}>
       <p suppressHydrationWarning style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
-        {contextLabel} utility data is a strong baseline — but lead often comes from your home&apos;s pipes, and
-        PFAS can vary by neighborhood. Choose certified lab testing for certainty, or skip straight to NSF-certified
-        filters matched to this profile.
+        {contextLabel} supplier records do not measure your kitchen tap. A lab panel can answer specific questions; compare its analyte list and sampling instructions before ordering. Compare model-specific
+        filters for your stated concern and installation needs.
       </p>
       </Suspense>
       
@@ -95,13 +95,12 @@ export function TestVsFilterCta({
             STEP 1 · VERIFY AT YOUR FAUCET
           </div>
           <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.3 }}>
-            Test before you buy a $300+ filter
+            Need measurements from your tap?
           </div>
           <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: 0, flex: 1 }}>
-            SimpleLab Tap Score mail-in panels test PFAS, lead, nitrates, bacteria, and 100+ contaminants at your
-            kitchen tap. Results in about a week — then pick filtration with real numbers, not guesses.
+            Tap Score offers different mail-in laboratory panels. PFAS and other specialty testing may require a separate panel; confirm included analytes, price and turnaround with the laboratory.
           </p>
-          <a
+          <AffiliateLink product="Tap Score city water test panels" destination="simplelab" page="test-vs-filter"
             href={SIMPLELAB_CITY_TESTS_URL}
             target="_blank"
             rel="noopener noreferrer sponsored"
@@ -117,10 +116,10 @@ export function TestVsFilterCta({
               textAlign: 'center',
             }}
           >
-            Tap Score City Test — from $89 →
-          </a>
+            Compare Tap Score city test panels →
+          </AffiliateLink>
           <p style={{ fontSize: 11, color: '#94a3b8', margin: 0, lineHeight: 1.45 }}>
-            Accredited labs · Best if you have old plumbing, pregnancy, or want proof before installing RO
+            Some links are affiliate links; WaterCheckup may earn a commission. A test describes the sampled water and included analytes.
           </p>
         </div>
 
@@ -132,18 +131,17 @@ export function TestVsFilterCta({
           }}
         >
           <div style={{ fontSize: 11, fontWeight: 800, color: '#67e8f9', letterSpacing: 1.5 }}>
-            STEP 2 · FIX IT NOW
+            COMPARE OPTIONS
           </div>
           <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', lineHeight: 1.3 }}>
             Ready to filter based on this report?
           </div>
           <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: 0, flex: 1 }}>
-            Get NSF 58 / NSF 53 picks matched to {contextLabel}&apos;s PFAS, lead, and disinfection byproduct
-            profile — reviewed by a 30-year water treatment expert.
+            Compare options by your stated concern and installation needs. Verify the exact model and cartridge’s listed reduction claims; no filter covers every possible issue.
           </p>
           {filterButton}
           <p style={{ fontSize: 11, color: '#94a3b8', margin: 0, lineHeight: 1.45 }}>
-            Best when contaminants are already flagged above and you want the right RO or pitcher today
+            A detection alone does not establish that you need treatment. Start with your supplier’s current report and any relevant tap test.
           </p>
         </div>
       </div>
