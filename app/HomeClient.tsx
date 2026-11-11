@@ -2122,9 +2122,9 @@ export default function WaterCheckup() {
         <div className="wc-home-simple-intro">
           <h1>Understand your water.<br />Find a filter that fits.</h1>
           <p>Look up your supplier’s water records, or compare filters for your home. Free, with no signup.</p>
-          <Link href="/about" className="wc-founder-intro" aria-label="Meet Joe Letorney, with 30 years in water treatment">
+          <Link href="/about" className="wc-founder-intro" aria-label="Meet Joe Letorney - Water Expert, with 30 years in water treatment">
             <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
-            <span><strong>Guidance from Joe Letorney</strong><span>30 years in water treatment · Meet Joe →</span></span>
+            <span><strong>Guidance from Joe Letorney - Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
           </Link>
         </div>
 
@@ -3980,7 +3980,7 @@ export default function WaterCheckup() {
       <div className="wc-home-shortcuts">
         <section className="wc-home-expert" aria-labelledby="wc-home-expert-heading">
           <Image src="/joe-letorney.jpeg" alt="Joe Letorney, founder of WaterCheckup" width={96} height={96} style={{ borderRadius: '50%', objectFit: 'cover' }} />
-          <div><h2 id="wc-home-expert-heading">Guidance from Joe Letorney</h2><p>30 years in water treatment · Former WQA Certified Water Treatment Specialist, Level VI. Compare published model evidence and practical installation needs.</p><Link href="/about">Meet Joe →</Link> · <Link href="/methodology">How we use water records →</Link></div>
+          <div><h2 id="wc-home-expert-heading">Guidance from Joe Letorney - Water Expert</h2><p>30 years in water treatment · Former WQA Certified Water Treatment Specialist, Level VI. Compare published model evidence and practical installation needs.</p><Link href="/about">Meet Joe →</Link> · <Link href="/methodology">How we use water records →</Link></div>
         </section>
         <section aria-labelledby="wc-home-guides-heading"><h2 id="wc-home-guides-heading">Need help deciding?</h2><div className="wc-home-guide-links">
           <Link href="/blog/best-water-filter-for-lead-removal">Filters for lead concerns →</Link>
