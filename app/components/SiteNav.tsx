@@ -1,188 +1,22 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const ITEMS: [string, string][] = [
-  ['/#wc-hero-anchor', 'Check Your Water'],
-  ['/contaminants', 'Contaminants'],
-  ['/water-hardness', 'Hardness'],
-  ['/blog', 'Learn'],
-  ['/quiz', 'Filter Picks'],
-  ['/well', 'Well Water'],
-  ['/rankings', 'Rankings'],
-  ['/faq', 'FAQs'],
-  ['/methodology', 'Methodology'],
-  ['/about', 'About'],
-];
-
-/** Inline on small screens; rest live under “More”. */
-const MOBILE_PRIMARY: [string, string][] = [
-  ['/#wc-hero-anchor', 'Check Your Water'],
-  ['/contaminants', 'Contaminants'],
-  ['/water-hardness', 'Hardness'],
-  ['/quiz', 'Filter Picks'],
-];
-
-const MQ = '(max-width: 767px)';
-
-/** false until mount so SSR + first paint match (avoids hydration mismatch). */
-function useNarrowNav() {
-  const [narrow, setNarrow] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia(MQ);
-    const sync = () => setNarrow(mq.matches);
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
-  return narrow;
-}
-
-function isActive(pathname: string, href: string) {
-  if (href === '/#wc-hero-anchor') return pathname === '/';
-  if (href.startsWith('/#')) return false;
-  return (
-    pathname === href ||
-    (href === '/blog' && pathname.startsWith('/blog')) ||
-    (href === '/contaminants' && pathname.startsWith('/contaminants')) ||
-    (href === '/well' && pathname.startsWith('/well')) ||
-    (href === '/pfas' && pathname.startsWith('/pfas')) ||
-    (href === '/lead' && pathname.startsWith('/lead')) ||
-    (href === '/quiz' && pathname.startsWith('/quiz')) ||
-    (href === '/about' && pathname.startsWith('/about')) ||
-    (href === '/methodology' && pathname.startsWith('/methodology')) ||
-    (href === '/rankings' && pathname.startsWith('/rankings')) ||
-    (href === '/worst' && pathname.startsWith('/worst')) ||
-    (href === '/faq' && pathname.startsWith('/faq')) ||
-    (href === '/water-hardness' && pathname.startsWith('/water-hardness'))
-  );
-}
-
-function navLinkStyle(active: boolean): CSSProperties {
-  return {
-    padding: '8px 14px',
-    borderRadius: 6,
-    fontSize: 14,
-    fontWeight: active ? 800 : 600,
-    color: active ? '#ecfeff' : '#bae6fd',
-    textDecoration: 'none',
-    textShadow: active ? '0 0 18px rgba(103, 232, 249, 0.55), 0 0 32px rgba(34, 211, 238, 0.25)' : undefined,
-    minHeight: 44,
-    display: 'inline-flex',
-    alignItems: 'center',
-    boxSizing: 'border-box',
-  };
-}
+export const MAIN_NAV_ITEMS = [
+  { href: '/#wc-hero-anchor', label: 'Check My Water' },
+  { href: '/#find-a-filter', label: 'Find a Filter' },
+  { href: '/blog', label: 'Guides' },
+  { href: '/about', label: 'About Joe' },
+] as const;
 
 export function SiteNav({ style, ariaLabel }: { style?: CSSProperties; ariaLabel?: string }) {
   const pathname = usePathname();
-  const narrow = useNarrowNav();
-  const [moreOpen, setMoreOpen] = useState(false);
-
-  useEffect(() => {
-    setMoreOpen(false);
-  }, [pathname]);
-
-  const moreItems = ITEMS.filter(([href]) => !MOBILE_PRIMARY.some(([h]) => h === href));
-
-  if (!narrow) {
-    return (
-      <nav
-        aria-label={ariaLabel}
-        className="wc-site-nav wc-site-nav--wide"
-        style={{
-          display: 'flex',
-          gap: 4,
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          ...style,
-        }}
-      >
-        {ITEMS.map(([href, label]) => {
-          const active = isActive(pathname, href);
-          return (
-            <Link
-              prefetch
-              key={href}
-              href={href}
-              className="wc-site-nav-link"
-              aria-current={active ? 'page' : undefined}
-              style={navLinkStyle(active)}
-            >
-              {label}
-            </Link>
-          );
-        })}
-      </nav>
-    );
-  }
-
-  return (
-    <div className="wc-site-nav wc-site-nav--narrow" style={{ width: '100%', minWidth: 0, ...style }}>
-      <nav
-        aria-label={ariaLabel}
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          gap: 6,
-          rowGap: 8,
-        }}
-      >
-        {MOBILE_PRIMARY.map(([href, label]) => {
-          const active = isActive(pathname, href);
-          return (
-            <Link
-              prefetch
-              key={href}
-              href={href}
-              className="wc-site-nav-link"
-              aria-current={active ? 'page' : undefined}
-              style={navLinkStyle(active)}
-            >
-              {label}
-            </Link>
-          );
-        })}
-        <button
-          type="button"
-          className="wc-site-nav-more"
-          aria-expanded={moreOpen}
-          aria-controls="wc-site-nav-more-panel"
-          id="wc-site-nav-more-btn"
-          onClick={() => setMoreOpen((o) => !o)}
-        >
-          {moreOpen ? 'Close' : 'More'}
-        </button>
-      </nav>
-      {moreOpen ? (
-        <div
-          id="wc-site-nav-more-panel"
-          role="region"
-          aria-labelledby="wc-site-nav-more-btn"
-          className="wc-site-nav-more-panel"
-        >
-          {moreItems.map(([href, label]) => {
-            const active = isActive(pathname, href);
-            return (
-              <Link
-                prefetch
-                key={href}
-                href={href}
-                className="wc-site-nav-link wc-site-nav-link--stacked"
-                aria-current={active ? 'page' : undefined}
-                style={navLinkStyle(active)}
-                onClick={() => setMoreOpen(false)}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </div>
-      ) : null}
-    </div>
-  );
+  return <nav aria-label={ariaLabel} className="wc-site-nav wc-simple-nav" style={style}>
+    {MAIN_NAV_ITEMS.map(({ href, label }) => {
+      const active = href === '/blog' ? pathname.startsWith('/blog') : href === '/about' ? pathname.startsWith('/about') : href === '/#find-a-filter' ? pathname === '/quiz' : pathname === '/';
+      return <Link prefetch key={href} href={href} className="wc-site-nav-link" aria-current={active ? 'page' : undefined} style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '8px 12px', borderRadius: 8, color: active ? '#ecfeff' : '#bae6fd', fontWeight: active ? 800 : 600, fontSize: 14, textDecoration: 'none' }}>{label}</Link>;
+    })}
+  </nav>;
 }

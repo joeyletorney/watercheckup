@@ -29,7 +29,6 @@ const FILTER_PICKS = [
     price: '~$439',
     why: "Removes 99%+ PFAS, arsenic, radium, TTHMs, sodium, and hardness. NSF 42/53/58 certified. The right choice for Houston's high PFAS and arsenic levels.",
     dp: 'B07P1XFYJP',
-    directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
     best: true,
   },
   {
@@ -202,7 +201,7 @@ export default function HoustonWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <AffiliateLink product={f.name} destination={(f as any).directLink ? 'direct' : 'amazon'} page="water/houston" city="houston"
+                <AffiliateLink className="wc-product-purchase" product={f.name} destination={(f as any).directLink ? 'direct' : 'amazon'} page="water/houston" city="houston"
                   href={(f as any).directLink || `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
@@ -218,7 +217,7 @@ export default function HoustonWaterPage() {
                     textDecoration: 'none',
                   }}
                 >
-                  {(f as any).directLink ? 'Buy Direct →' : 'View on Amazon →'}
+                  {(f as any).directLink ? 'Buy Direct →' : 'Check price on Amazon →'}
                 </AffiliateLink>
               </div>
             </div>

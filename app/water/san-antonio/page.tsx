@@ -30,7 +30,6 @@ const FILTER_PICKS = [
     price: '~$439',
     why: 'Removes 99%+ PFAS, radium, arsenic, sodium, and hardness minerals. NSF 58 certified. Tankless design fits under most SA kitchen sinks. Handles the full SA contaminant profile.',
     dp: 'B07P1XFYJP',
-    directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
     best: true,
   },
   {
@@ -298,7 +297,7 @@ export default function SanAntonioWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <AffiliateLink product={f.name} destination={'directLink' in f ? 'direct' : 'amazon'} page="water/san-antonio" city="san-antonio"
+                <AffiliateLink className="wc-product-purchase" product={f.name} destination={'directLink' in f ? 'direct' : 'amazon'} page="water/san-antonio" city="san-antonio"
                   href={'directLink' in f ? f.directLink : `https://www.amazon.com/dp/${f.dp}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
@@ -314,7 +313,7 @@ export default function SanAntonioWaterPage() {
                     textDecoration: 'none',
                   }}
                 >
-                  {(f as any).directLink ? 'Buy Direct →' : 'View on Amazon →'}
+                  {(f as any).directLink ? 'Buy Direct →' : 'Check price on Amazon →'}
                 </AffiliateLink>
               </div>
             </div>

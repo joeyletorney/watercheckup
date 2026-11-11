@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
+import { AffiliateLink } from './AffiliateLink';
 import { TRUSTED_FILTER_CATEGORIES } from '@/lib/trusted-filter-categories';
 import {
   clearlyFilteredDirectUrl,
@@ -60,6 +62,9 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
       <span style={{ fontSize: 12, fontWeight: 700, color: '#f59e0b' }}>Often out of stock — check brand site</span>
     );
   }
+
+  const preferredAmazon = preferredAmazonPurchaseUrl(p.amazon);
+  if (preferredAmazon) return <AffiliateLink href={preferredAmazon} product={p.name} brand={p.brand} destination="amazon" page="trusted-picks" target="_blank" rel="sponsored noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 44, padding: '10px 16px', borderRadius: 8, fontSize: 14, fontWeight: 800, background: '#fbbf24', color: '#162332', textDecoration: 'none' }}>Check price on Amazon →</AffiliateLink>;
 
   const direct = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
   const clearlyDirect = isClearlyFilteredBrand(p.brand)
@@ -154,7 +159,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
             border: '1px solid rgba(255,255,255,0.12)',
           }}
         >
-          Amazon →
+          Check price on Amazon →
         </a>
       ) : null}
     </div>

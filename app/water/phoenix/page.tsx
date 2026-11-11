@@ -165,7 +165,7 @@ export default function PhoenixWaterPage() {
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.why}</div>
-                <AffiliateLink product={f.name} destination={f.link.includes('amazon.com') ? 'amazon' : 'direct'} page="water/phoenix" city="phoenix"
+                <AffiliateLink className="wc-product-purchase" product={f.name} destination={f.link.includes('amazon.com') ? 'amazon' : 'direct'} page="water/phoenix" city="phoenix"
                   href={f.link}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
@@ -181,7 +181,7 @@ export default function PhoenixWaterPage() {
                     textDecoration: 'none',
                   }}
                 >
-                  {f.link.includes('springwellwater.com') ? 'SpringWell.com →' : 'View on Amazon →'}
+                  {f.link.includes('springwellwater.com') ? 'SpringWell.com →' : 'Check price on Amazon →'}
                 </AffiliateLink>
               </div>
             </div>
