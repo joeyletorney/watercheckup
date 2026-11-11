@@ -2122,6 +2122,10 @@ export default function WaterCheckup() {
         <div className="wc-home-simple-intro">
           <h1>Understand your water.<br />Find a filter that fits.</h1>
           <p>Look up your supplier’s water records, or compare filters for your home. Free, with no signup.</p>
+          <Link href="/about" className="wc-founder-intro" aria-label="Meet Joe Letorney, with 30 years in water treatment">
+            <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
+            <span><strong>Guidance from Joe Letorney</strong><span>30 years in water treatment · Meet Joe →</span></span>
+          </Link>
         </div>
 
         {/* Search bar — high-visibility panel */}
