@@ -1925,16 +1925,23 @@ export default function WaterCheckup() {
     return () => window.removeEventListener('keydown', onKey);
   }, [showWqaModal, showNsfModal, showSample]);
 
+  const recordWaterSearch = (targetZip: string, inputType: 'zip' | 'city') => {
+    try { sessionStorage.setItem('wc_water_search', JSON.stringify({ zip: targetZip, startedAt: Date.now() })); } catch { /* storage unavailable */ }
+    window.gtag?.('event', 'water_search_submitted', { input_type: inputType });
+  };
+
   const search = async () => {
     const trimmed = zip.trim();
     if (!/^\d{5}$/.test(trimmed)) {
       const match = CITY_ZIP_MAP[trimmed.toLowerCase()];
       if (match) {
+        recordWaterSearch(match.zip, 'city');
         window.location.href = `/results/${match.zip}`;
         return;
       }
       return;
     }
+    recordWaterSearch(trimmed, 'zip');
     window.location.href = `/results/${trimmed}`;
   };
 
@@ -2120,8 +2127,8 @@ export default function WaterCheckup() {
       {/* SEARCH / HERO — site-wide WaterCanvas (layout) stays visible behind content */}
       <div ref={heroRef} id="wc-hero-anchor" style={{ margin: '20px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
         <div className="wc-home-simple-intro">
-          <h1>Understand your water.<br />Find a filter that fits.</h1>
-          <p>Look up your supplier’s water records, or compare filters for your home. Free, with no signup.</p>
+          <h1>What’s in your local water?</h1>
+          <p>Free water report by ZIP or city. No signup.</p>
           <Link href="/about" className="wc-founder-intro" aria-label="Meet Joe Letorney - Water Expert, with 30 years in water treatment">
             <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
             <span><strong>Guidance from Joe Letorney - Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
@@ -2164,28 +2171,28 @@ export default function WaterCheckup() {
                   flex: '1 1 200px',
                 }}
               >
-                {loading ? 'Loading…' : 'Check My Water'}
+                {loading ? 'Loading…' : 'See my water report'}
               </button>
               <Link
                 prefetch
-                href="#find-a-filter"
+                href="/quiz"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '18px 28px',
-                  minHeight: 58,
+                  padding: '8px 12px',
+                  minHeight: 44,
                   borderRadius: 14,
                   fontSize: 15,
                   fontWeight: 700,
                   border: '1px solid rgba(103, 232, 249, 0.45)',
-                  background: 'rgba(8, 42, 72, 0.55)',
-                  color: '#e0f2fe',
+                  background: 'transparent',
+                  color: '#67e8f9',
                   textDecoration: 'none',
-                  flex: '1 1 200px',
+                  flex: '0 1 auto',
                 }}
               >
-                Find a Filter →
+                Help me choose a filter →
               </Link>
             </div>
           </div>

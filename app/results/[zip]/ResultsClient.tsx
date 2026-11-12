@@ -203,6 +203,18 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
   const [alertError, setAlertError] = useState('');
 
   useEffect(() => {
+    let pending: { zip?: string; startedAt?: number } | null = null;
+    try {
+      const stored = sessionStorage.getItem('wc_water_search');
+      if (stored) pending = JSON.parse(stored);
+      sessionStorage.removeItem('wc_water_search');
+    } catch { /* storage unavailable */ }
+    if (pending?.zip === zip && typeof pending.startedAt === 'number' && Date.now() - pending.startedAt < 300000) {
+      window.gtag?.('event', 'water_search_result', {
+        result_status: !data || data.lookupError ? 'no_match' : 'report_displayed',
+        elapsed_ms: Math.max(0, Date.now() - pending.startedAt),
+      });
+    }
     if (!data || data.lookupError) return;
     window.gtag?.('event', 'water_report_view', { report_status: data.violationCoverage === 'unavailable' ? 'historical_only' : 'current_records_available', page: 'zip-report' });
   }, [data]);
