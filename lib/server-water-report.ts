@@ -550,17 +550,17 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  return lookupWaterReport(zip);
+  return lookupWaterReport(zip, req.nextUrl.searchParams.get('refresh') === '1');
 }
 
 /** Shared by the public API and server-rendered ZIP pages; avoids self-HTTP and caches only successful reports. */
-export async function lookupWaterReport(zip: string) {
+export async function lookupWaterReport(zip: string, refresh = false) {
   const H = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
   if (!/^\d{5}$/.test(zip)) return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400, headers: H });
   const t0 = Date.now();
   const okHeaders = { ...H, 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' };
 
-  const cached = await getCachedWaterResponse(zip);
+  const cached = refresh ? null : await getCachedWaterResponse(zip);
   if (cached) {
     logWaterLookup({ zip, outcome: 'cache_hit', ms: Date.now() - t0 });
     return NextResponse.json(cached.body, { status: cached.status, headers: okHeaders });

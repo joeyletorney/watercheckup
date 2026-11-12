@@ -195,7 +195,9 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
 }
 
 export default function ResultsClient({ zip, initialData }: { zip: string; initialData: any }) {
-  const [data] = useState(initialData);
+  const [data, setData] = useState(initialData);
+  const [retrying, setRetrying] = useState(false);
+  const [retryMessage, setRetryMessage] = useState('');
   const [tab, setTab] = useState<'report' | 'pfas' | 'violations' | 'filters'>('report');
   const [alertEmail, setAlertEmail] = useState('');
   const [alertSent, setAlertSent] = useState(false);
@@ -218,6 +220,24 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
     if (!data || data.lookupError) return;
     window.gtag?.('event', 'water_report_view', { report_status: data.violationCoverage === 'unavailable' ? 'historical_only' : 'current_records_available', page: 'zip-report' });
   }, [data]);
+
+  const retryCurrentRecords = async () => {
+    if (retrying) return;
+    setRetrying(true);
+    setRetryMessage('');
+    try {
+      const response = await fetch(`/api/water?zip=${encodeURIComponent(zip)}&refresh=1`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(response.status === 429 ? 'Too many requests. Please wait a minute and retry.' : 'The report service is temporarily unavailable.');
+      const updated = await response.json();
+      if (updated.lookupError || updated.error) throw new Error(updated.lookupError || updated.error);
+      setData(updated);
+      if (updated.violationCoverage === 'unavailable') setRetryMessage('The EPA is still not providing current violation records. Historical information remains available. Please try later.');
+    } catch (error) {
+      setRetryMessage(error instanceof Error ? error.message : 'Unable to refresh current records.');
+    } finally {
+      setRetrying(false);
+    }
+  };
 
   const sendAlert = async () => {
     if (!alertEmail.includes('@') || alertSending) return;
@@ -260,7 +280,8 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           <h2 style={{ fontSize: 22, fontWeight: 700 }}>Historical records available; current compliance unverified</h2>
           <p style={{ margin: '12px 0' }}>{data.summary}</p>
           <p>No safety grade or violation count is shown while current EPA records are unavailable. This report describes the listed supplier, not a test of your tap.</p>
-          <button onClick={() => window.location.reload()} style={{ marginTop: 20, padding: '12px 20px', background: '#155e75', color: '#fff', borderRadius: 8 }}>Retry current records</button>
+          <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ marginTop: 20, cursor: retrying ? 'wait' : 'pointer', opacity: retrying ? 0.7 : 1, padding: '12px 20px', background: '#155e75', color: '#fff', borderRadius: 8 }}>{retrying ? 'Checking EPA records…' : 'Retry current records'}</button>
+          {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
         </section>
         <section aria-label="What to do next" style={{ padding: 24, border: '1px solid #155e75', borderRadius: 12, marginBottom: 24 }}>
           <h2 style={{ fontSize: 22, fontWeight: 700 }}>What to do next</h2>
