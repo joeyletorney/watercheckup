@@ -6,6 +6,7 @@ import Script from 'next/script'
 import { WaterCanvas } from './components/WaterCanvas'
 import { AffiliateClickFallback } from './components/AffiliateClickFallback'
 import { GaPageView } from './components/GaPageView'
+import { WebVitals } from './components/WebVitals'
 import { SiteFooter } from './components/SiteFooter'
 import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
 const inter = Inter({
@@ -168,6 +169,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <WaterCanvas />
         <AffiliateClickFallback />
+        {GA_ID ? <WebVitals /> : null}
         {GA_ID ? (
           <Suspense fallback={null}>
             <GaPageView measurementId={GA_ID} />

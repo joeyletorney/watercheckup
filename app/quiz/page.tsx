@@ -7,6 +7,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
+import { quizEntryContext } from '@/lib/quiz-entry';
 
 import { getQuizRecommendation as getRec, type QuizPick as AltPick } from '@/lib/quiz-recommendations';
 
@@ -103,8 +104,7 @@ export default function QuizPage() {
     } else {
       setDone(true);
       const recommendation = getRec(newAnswers);
-      const entry = searchParams.get('from');
-      trackEvent('quiz_complete', { source: newAnswers.source, concern: newAnswers.concern, situation: newAnswers.situation, page: 'quiz', entry_point: entry === 'results' || entry === 'historical-report' ? entry : 'direct', recommended_product: recommendation.title });
+      trackEvent('quiz_complete', { source: newAnswers.source, concern: newAnswers.concern, situation: newAnswers.situation, page: 'quiz', ...quizEntryContext(searchParams), recommended_product: recommendation.title });
     }
   };
 
@@ -212,7 +212,6 @@ export default function QuizPage() {
                 </button>
               ))}
             </div>
-            {step > 0 && <button onClick={() => setStep(step - 1)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#cbd5e1', marginTop: 20, padding: 0 }}>← Back</button>}
           </div>
         ) : rec ? (
           <div style={{ marginBottom: 64 }}>
