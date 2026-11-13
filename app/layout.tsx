@@ -4,6 +4,7 @@ import { Inter, Outfit } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 import { WaterCanvas } from './components/WaterCanvas'
+import { AffiliateClickFallback } from './components/AffiliateClickFallback'
 import { GaPageView } from './components/GaPageView'
 import { SiteFooter } from './components/SiteFooter'
 import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
@@ -166,6 +167,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to main content
         </a>
         <WaterCanvas />
+        <AffiliateClickFallback />
         {GA_ID ? (
           <Suspense fallback={null}>
             <GaPageView measurementId={GA_ID} />

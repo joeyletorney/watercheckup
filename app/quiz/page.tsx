@@ -102,7 +102,9 @@ export default function QuizPage() {
       setStep(step + 1);
     } else {
       setDone(true);
-      trackEvent('quiz_complete', { source: newAnswers.source, concern: newAnswers.concern, situation: newAnswers.situation });
+      const recommendation = getRec(newAnswers);
+      const entry = searchParams.get('from');
+      trackEvent('quiz_complete', { source: newAnswers.source, concern: newAnswers.concern, situation: newAnswers.situation, page: 'quiz', entry_point: entry === 'results' || entry === 'historical-report' ? entry : 'direct', recommended_product: recommendation.title });
     }
   };
 
@@ -139,12 +141,12 @@ export default function QuizPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flexShrink: 0 }}>
               {showDirect ? (
-                <a className="wc-product-purchase" href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'direct', product: alt.product, page: 'quiz', brand: alt.brand })}
+                <a data-wc-affiliate-tracked="true" className="wc-product-purchase" href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'direct', product: alt.product, page: 'quiz', brand: alt.brand })}
                   style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
                   {directBuyLabelForBrand(alt.brand)}
                 </a>
               ) : (
-              <a className="wc-product-purchase" href={preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'amazon', product: alt.product, page: 'quiz', brand: alt.brand })}
+              <a data-wc-affiliate-tracked="true" className="wc-product-purchase" href={preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'amazon', product: alt.product, page: 'quiz', brand: alt.brand })}
                 style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: i === 0 ? 700 : 600, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
                 Check price on Amazon →
               </a>
@@ -193,7 +195,8 @@ export default function QuizPage() {
                 <div style={{ height: '100%', width: `${((step + 1) / QUESTIONS.length) * 100}%`, background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 2, transition: 'width 0.4s ease' }} />
               </div>
             </div>
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>{currentQ.question}</h2>
+            {step > 0 && <button type="button" onClick={() => setStep(step - 1)} style={{ minHeight: 44, background: 'none', border: 'none', color: '#67e8f9', cursor: 'pointer', marginBottom: 8 }}>← Previous question</button>}
+            <h2 aria-live="polite" style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>{currentQ.question}</h2>
             <p style={{ fontSize: 13, color: '#cbd5e1', marginBottom: 24 }}>{currentQ.subtitle}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {currentQ.options.map(opt => (
@@ -240,8 +243,8 @@ export default function QuizPage() {
             {/* Affiliate disclosure — right at the top of results */}
             <div style={{ marginBottom: 16, padding: '10px 14px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 8, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
               <span style={{ fontSize: 14, flexShrink: 0 }}>ℹ️</span>
-              <p style={{ fontSize: 13, color: '#78716c', lineHeight: 1.6, margin: 0 }}>
-                <strong style={{ color: '#a16207' }}>Affiliate disclosure:</strong> Some links below are affiliate links — if you purchase through them, WaterCheckup may earn a small commission at no extra cost to you. Compare the exact model’s published evidence and installation requirements before buying. As an Amazon Associate I earn from qualifying purchases.
+              <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: 0 }}>
+                <strong style={{ color: '#fbbf24' }}>Affiliate disclosure:</strong> Some links below are affiliate links — if you purchase through them, WaterCheckup may earn a small commission at no extra cost to you. Compare the exact model’s published evidence and installation requirements before buying. As an Amazon Associate I earn from qualifying purchases.
               </p>
             </div>
 

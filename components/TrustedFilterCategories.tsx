@@ -77,7 +77,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
 
   if (isClearlyFilteredBrand(p.brand) && clearlyDirect) {
     return (
-      <a
+      <a data-wc-affiliate-tracked="true"
         href={clearlyDirect}
         target="_blank"
         rel="noopener noreferrer sponsored"
@@ -99,7 +99,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
 
   if (isWaterdropBrand(p.brand) && direct) {
     return (
-      <a
+      <a data-wc-affiliate-tracked="true"
         href={direct}
         target="_blank"
         rel="noopener noreferrer sponsored"
@@ -143,7 +143,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
       {amazon ? (
-        <a
+        <a data-wc-affiliate-tracked="true"
           href={amazon}
           target="_blank"
           rel="noopener noreferrer sponsored"

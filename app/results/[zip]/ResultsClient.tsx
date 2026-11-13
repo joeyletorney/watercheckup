@@ -225,16 +225,23 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
     if (retrying) return;
     setRetrying(true);
     setRetryMessage('');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20_000);
+    window.gtag?.('event', 'water_report_retry', { retry_status: 'started', page: 'zip-report' });
     try {
-      const response = await fetch(`/api/water?zip=${encodeURIComponent(zip)}&refresh=1`, { cache: 'no-store' });
+      const response = await fetch(`/api/water?zip=${encodeURIComponent(zip)}&refresh=1`, { cache: 'no-store', signal: controller.signal });
       if (!response.ok) throw new Error(response.status === 429 ? 'Too many requests. Please wait a minute and retry.' : 'The report service is temporarily unavailable.');
       const updated = await response.json();
       if (updated.lookupError || updated.error) throw new Error(updated.lookupError || updated.error);
       setData(updated);
+      window.gtag?.('event', 'water_report_retry', { retry_status: updated.violationCoverage === 'unavailable' ? 'historical_only' : 'recovered', page: 'zip-report' });
       if (updated.violationCoverage === 'unavailable') setRetryMessage('The EPA is still not providing current violation records. Historical information remains available. Please try later.');
     } catch (error) {
-      setRetryMessage(error instanceof Error ? error.message : 'Unable to refresh current records.');
+      const timedOut = controller.signal.aborted;
+      setRetryMessage(timedOut ? 'This check took too long. Your existing report is still available. Please try again shortly.' : error instanceof Error ? error.message : 'Unable to refresh current records.');
+      window.gtag?.('event', 'water_report_retry', { retry_status: timedOut ? 'timeout' : 'failed', page: 'zip-report' });
     } finally {
+      clearTimeout(timeout);
       setRetrying(false);
     }
   };
@@ -263,7 +270,8 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <div style={{ fontSize: 48, marginBottom: 16 }}>🚱</div>
         <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>Report unavailable for ZIP {zip}</h1>
         <p style={{ color: '#cbd5e1', marginBottom: 24 }}>{data?.lookupError || 'We could not load this report. Try again shortly or check your supplier’s current report.'}</p>
-        <button type="button" onClick={() => window.location.reload()} style={{ padding: '12px 24px', marginRight: 12, borderRadius: 10, border: '1px solid #67e8f9', background: '#071828', color: '#f1f5f9', cursor: 'pointer' }}>Try again</button>
+        <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ padding: '12px 24px', marginRight: 12, borderRadius: 10, border: '1px solid #67e8f9', background: '#071828', color: '#f1f5f9', cursor: 'pointer' }}>{retrying ? 'Checking records…' : 'Try again'}</button>
+        {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
         <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: '#0891b2', borderRadius: 10, color: '#fff', fontWeight: 700, textDecoration: 'none' }}>
           Try another ZIP →
         </Link>
@@ -734,7 +742,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                         </div>
                         <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{prod.price}</div>
                         <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>{reason}</p>
-                        <a
+                        <a data-wc-affiliate-tracked="true"
                           href={buy.href}
                           target="_blank"
                           rel="noopener noreferrer sponsored"
@@ -940,7 +948,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 </div>
                 <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{f.price}</div>
                 <div style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.5, marginBottom: 10 }}>{f.reason}</div>
-                <a
+                <a data-wc-affiliate-tracked="true"
                   href={buy.href}
                   target="_blank"
                   rel="noopener noreferrer sponsored"

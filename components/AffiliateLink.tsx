@@ -27,6 +27,7 @@ export function AffiliateLink({
   return (
     <a
       {...rest}
+      data-wc-affiliate-tracked="true"
       onClick={(e) => {
         trackAffiliateClick({ product, destination, page, brand, city, zip });
         onClick?.(e);
