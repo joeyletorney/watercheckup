@@ -118,7 +118,7 @@ export function commercialPost(slug: string, date: string, badge: string, badgeC
   return {
     title: guide.title, excerpt: guide.excerpt,
     seo: { title: guide.title, description: guide.excerpt, canonical: `https://watercheckup.com/blog/${slug}` },
-    date, dateModified: '2026-11-11', dateDisplay: 'November 11, 2026', readTime: '6 min read', badge, badgeColor,
+    date, dateModified: '2026-11-12', dateDisplay: 'November 12, 2026', readTime: '6 min read', badge, badgeColor,
     topPicks: [],
     faq: [
       { q: 'Did WaterCheckup test these systems?', a: 'No hands-on or laboratory testing is claimed here. This comparison uses the linked official documents and explicitly stated cost assumptions.' },

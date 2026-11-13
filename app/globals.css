@@ -2573,3 +2573,23 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-home-newsletter > .wc-home-newsletter-note { color:#94a3b8; font-size:13px; margin:12px 0 0; }
 .wc-home-newsletter :is(input,button):focus-visible, .wc-home-faq summary:focus-visible, .wc-home-sticky-cta a:focus-visible { outline:3px solid #f8fafc; outline-offset:4px; }
 @media(max-width:360px) { .wc-home-sticky-cta { gap:8px; padding:8px; font-size:12px; } .wc-home-sticky-cta a { padding:8px 12px; } }
+
+/* Useful next steps before long measurement lists. */
+.wc-report-next-steps { padding:20px; border:1px solid #155e75; border-radius:12px; margin:24px 0; }
+.wc-report-next-steps h2 { color:#f1f5f9; font-size:22px; font-weight:800; margin-bottom:10px; }
+.wc-report-next-steps > p { color:#cbd5e1; line-height:1.65; font-size:14px; margin-bottom:16px; }
+.wc-report-next-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:12px; }
+.wc-report-next-grid article { display:flex; flex-direction:column; gap:10px; padding:16px; background:#071828; border:1px solid #1a3a5c; border-radius:10px; min-width:0; }
+.wc-report-next-grid h3 { color:#f1f5f9; font-size:16px; font-weight:800; }
+.wc-report-next-grid p { color:#cbd5e1; line-height:1.6; font-size:13px; flex:1; }
+.wc-report-next-grid a { display:flex; align-items:center; min-height:44px; color:#67e8f9; font-weight:700; font-size:14px; line-height:1.5; }
+.wc-report-well-link { display:inline-flex; align-items:center; min-height:44px; margin-top:12px; color:#67e8f9; font-size:13px; line-height:1.5; }
+.wc-guide-start, .wc-guide-next { padding:18px; margin:20px 0; background:#f0f9ff; border:1px solid #7dd3fc; border-radius:10px; color:#0f172a; }
+.wc-guide-start h3, .wc-guide-next h3 { font-size:18px; margin:0 0 12px; }
+.wc-guide-start > div, .wc-guide-next > div { display:grid; gap:10px; }
+.wc-guide-start a, .wc-guide-next a { display:flex; flex-direction:column; justify-content:center; min-height:44px; padding:12px; border:1px solid #7dd3fc; border-radius:8px; background:#fff; color:#075985; font-size:14px; line-height:1.5; text-decoration:none; }
+.wc-guide-start a span { color:#334155; font-size:13px; margin-top:4px; }
+.wc-guide-next p { font-size:14px; line-height:1.65; margin-bottom:12px; }
+.wc-guide-choice { scroll-margin-top:24px; }
+.wc-guide-choice:target { outline:3px solid #0284c7; outline-offset:3px; }
+:is(.wc-report-next-steps,.wc-guide-start,.wc-guide-next) a:focus-visible, .wc-guide-choice:focus-visible { outline:3px solid #38bdf8; outline-offset:4px; }

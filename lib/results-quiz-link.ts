@@ -1,4 +1,4 @@
-/** Deep-link from a ZIP report into the filter quiz with sensible defaults */
+/** Preserve report context while leaving source, concern and installation choices to the visitor. */
 
 export function concernFromReport(data: {
   pfasAboveMcl?: number;
@@ -17,12 +17,8 @@ export function quizHrefFromReport(data: {
   openViolations?: number;
   situation?: 'renter' | 'owner_simple' | 'owner_full';
 }): string {
-  const params = new URLSearchParams({
-    source: 'city',
-    concern: concernFromReport(data),
-    situation: data.situation ?? 'owner_simple',
-    from: 'results',
-  });
+  // The visitor chooses source, concern and installation needs; records do not diagnose their tap.
+  const params = new URLSearchParams({ from: 'results' });
   if (data.zip) params.set('zip', data.zip);
   return `/quiz?${params.toString()}`;
 }
@@ -32,14 +28,7 @@ export function quizHrefFromCityPage(opts: {
   hasPfas?: boolean;
   urgency?: 'high' | 'medium' | 'low';
 }): string {
-  const concern = opts.hasPfas || opts.urgency === 'high' ? 'pfas' : 'general';
-  const params = new URLSearchParams({
-    source: 'city',
-    concern,
-    situation: 'owner_simple',
-    from: 'water-city',
-    zip: opts.zip,
-  });
+  const params = new URLSearchParams({ from: 'water-city', zip: opts.zip });
   return `/quiz?${params.toString()}`;
 }
 

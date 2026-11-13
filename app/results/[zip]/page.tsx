@@ -5,6 +5,7 @@ import { buildZipResultsDescription, buildZipResultsTitle } from '@/lib/zip-resu
 import { cache } from 'react';
 import { lookupWaterReport } from '@/lib/server-water-report';
 import { notFound } from 'next/navigation';
+import { resolveReportCityLink } from '@/lib/report-city-link.server';
 
 /** ZIP result pages are generated on first request (ISR), not at build — avoids 40k+ prerenders and remote fetch timeouts. */
 // export const dynamicParams = true;
@@ -63,7 +64,7 @@ export default async function ResultsPage(props: Props) {
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
       <SiteHeader variant="inner" showCta ctaLabel="Check another ZIP →" ctaHref="/" />
-      <ResultsClient zip={params.zip} initialData={data} />
+      <ResultsClient zip={params.zip} initialData={data} cityReport={resolveReportCityLink({ zip: params.zip, pwsid: data?.pwsid, city: data?.city })} />
     </div>
   );
 }

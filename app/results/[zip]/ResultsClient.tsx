@@ -8,6 +8,8 @@ import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { resolveProductBuyLink } from '@/lib/product-buy-url';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 import { getPfasCoverageNotice } from '@/lib/pfas-monitoring';
+import { ReportNextSteps } from '@/components/ReportNextSteps';
+import type { ReportCityLink } from '@/lib/report-city-link.server';
 
 const TAG = 'watercheckup-20';
 
@@ -194,8 +196,9 @@ function ScoreDial({ score, grade }: { score: number; grade: string }) {
   );
 }
 
-export default function ResultsClient({ zip, initialData }: { zip: string; initialData: any }) {
+export default function ResultsClient({ zip, initialData, cityReport }: { zip: string; initialData: any; cityReport?: ReportCityLink }) {
   const [data, setData] = useState(initialData);
+  const cityReportLink = cityReport?.supplierId === data?.pwsid ? cityReport : undefined;
   const [retrying, setRetrying] = useState(false);
   const [retryMessage, setRetryMessage] = useState('');
   const [tab, setTab] = useState<'report' | 'pfas' | 'violations' | 'filters'>('report');
@@ -281,24 +284,17 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
 
   if (data.violationCoverage === 'unavailable') {
     return (
-      <main style={{ maxWidth: 900, margin: '48px auto', padding: '0 24px', color: '#e2e8f0' }}>
+      <div style={{ maxWidth: 900, margin: '48px auto', padding: '0 24px', color: '#e2e8f0' }}>
         <h1 style={{ fontSize: 30, fontWeight: 800 }}>Water report for ZIP {zip}</h1>
         <p style={{ margin: '12px 0' }}>{data.systemName} · {data.pwsid}</p>
         <section aria-label="Data availability" style={{ padding: 24, border: '1px solid #f59e0b', borderRadius: 12, margin: '24px 0' }}>
           <h2 style={{ fontSize: 22, fontWeight: 700 }}>Historical records available; current compliance unverified</h2>
-          <p style={{ margin: '12px 0' }}>{data.summary}</p>
+          <details style={{ margin: '12px 0' }}><summary>Source notes and report summary</summary><p style={{ marginTop: 8 }}>{data.summary}</p></details>
           <p>No safety grade or violation count is shown while current EPA records are unavailable. This report describes the listed supplier, not a test of your tap.</p>
           <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ marginTop: 20, cursor: retrying ? 'wait' : 'pointer', opacity: retrying ? 0.7 : 1, padding: '12px 20px', background: '#155e75', color: '#fff', borderRadius: 8 }}>{retrying ? 'Checking EPA records…' : 'Retry current records'}</button>
           {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
         </section>
-        <section aria-label="What to do next" style={{ padding: 24, border: '1px solid #155e75', borderRadius: 12, marginBottom: 24 }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700 }}>What to do next</h2>
-          <p style={{ margin: '12px 0', lineHeight: 1.7 }}>First, check your supplier’s current report. Historical detections alone do not establish that treatment is necessary. For a question about your own plumbing or tap, choose a laboratory panel that includes the specific substance you want measured.</p>
-          <p style={{ marginBottom: 16 }}><a href={data.dataFreshness.links.ccr} onClick={() => window.gtag?.('event', 'report_next_step', { step: 'supplier_report', report_status: 'historical_only' })} style={{ color: '#67e8f9' }}>Find your supplier’s current water quality report →</a></p>
-          <p style={{ marginBottom: 16 }}><Link href="/blog/how-to-test-your-tap-water-mail-in-labs-explained" onClick={() => window.gtag?.('event', 'report_next_step', { step: 'testing_guide', report_status: 'historical_only' })} style={{ color: '#67e8f9' }}>How to choose a lab panel for your tap →</Link></p>
-          <Link href={`/quiz?from=historical-report&zip=${encodeURIComponent(zip)}`} onClick={() => window.gtag?.('event', 'report_next_step', { step: 'compare_filters', report_status: 'historical_only' })} style={{ display: 'inline-block', padding: '12px 18px', background: '#0891b2', color: '#fff', borderRadius: 8 }}>Compare filters for my needs →</Link>
-          <p style={{ marginTop: 12, fontSize: 13 }}>The quiz asks about your concern and home; it does not assume this historical report proves contamination at your tap.</p>
-        </section>
+        <ReportNextSteps zip={zip} historicalOnly supplierReportHref={data.dataFreshness?.links?.ccr} />
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>Available measurements</h2>
         <p style={{ margin: '12px 0' }}>PFAS snapshot: {data.dataFreshness.ucmr5SnapshotLabel}. Collection dates vary by sample. Other historical measurements show dates in their notes when available; an absent date means the sample date is unavailable. These are not current readings.</p>
         {data.contaminants?.length ? data.contaminants.map((c: any, i: number) => (
@@ -312,7 +308,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
         <p><a href={data.dataFreshness.links.ccr} style={{ color: '#67e8f9' }}>Find your supplier’s water quality report</a></p>
         <p style={{ margin: '16px 0' }}><a href={data.dataFreshness.links.sdwis} style={{ color: '#67e8f9' }}>Official EPA drinking water records</a></p>
         <Link href="/" style={{ color: '#67e8f9' }}>Check another ZIP</Link>
-      </main>
+      </div>
     );
   }
 
@@ -327,7 +323,6 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
     pfasCount: data.pfasCount,
     openViolations: data.openViolations,
   });
-  const citySlug = data.city?.toLowerCase().split(',')[0].trim().replace(/\s+/g, '-');
   const tabs = [
     { id: 'report', label: '📊 Report' },
     { id: 'pfas', label: '☣️ PFAS' },
@@ -362,12 +357,12 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           {data.population ? ` · ${data.population} served` : ''}
         </p>
         <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 20px' }}>
-          Live EPA SDWIS and UCMR5 snapshot for this ZIP — letter grade, violations, PFAS, and filter picks below.
-          {citySlug ? (
+          Available EPA records and historical measurements for the listed supplier. Check source dates; these are not readings from your tap.
+          {cityReportLink ? (
             <>
               {' '}
-              <Link prefetch href={`/water/${citySlug}`} style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
-                Full {data.city?.split(',')[0]?.trim()} city report →
+              <Link prefetch href={cityReportLink.href} style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}>
+                Full {cityReportLink?.label} city report →
               </Link>
             </>
           ) : null}
@@ -389,46 +384,12 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             <p style={{ fontSize: 12, color: '#64748b', margin: '8px 0 0', lineHeight: 1.5 }}>
               Scores cap at 88/88 — even clean supplies have chlorine and disinfection byproducts federal records do not fully capture.
             </p>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
-              <Link
-                prefetch
-                href={quizHref}
-                style={{
-                  display: 'inline-block',
-                  padding: '10px 16px',
-                  background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
-                  borderRadius: 8,
-                  color: '#fff',
-                  fontSize: 13,
-                  fontWeight: 800,
-                  textDecoration: 'none',
-                }}
-              >
-                Filters matched to this report →
-              </Link>
-              <button
-                type="button"
-                onClick={() => setTab('filters')}
-                style={{
-                  padding: '10px 14px',
-                  background: '#0d2240',
-                  border: '1px solid #1a3a5c',
-                  borderRadius: 8,
-                  color: '#cbd5e1',
-                  fontSize: 13,
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                }}
-              >
-                Shop filters
-              </button>
-            </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
             {[
               { label: 'Open Violations', value: data.openViolations, color: data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
               { label: 'Total Violations', value: data.totalViolations, color: '#cbd5e1' },
-              { label: 'PFAS Detected', value: data.pfasCount, color: data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
+              { label: 'PFAS Detected', value: data.pfasCoverage === 'available' ? data.pfasCount : '—', color: data.pfasCoverage !== 'available' ? '#94a3b8' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
             ].map(({ label, value, color }) => (
               <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
                 <div style={{ fontSize: 20, fontWeight: 900, color }}>{value}</div>
@@ -437,6 +398,8 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             ))}
           </div>
         </div>
+
+        <ReportNextSteps zip={zip} historicalOnly={false} supplierReportHref={data.dataFreshness?.links?.ccr} />
 
         {/* Quick share */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
@@ -452,13 +415,13 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
           >
             🔍 Check another ZIP
           </Link>
-          {citySlug ? (
+          {cityReportLink ? (
             <Link
               prefetch
-              href={`/water/${citySlug}`}
+              href={cityReportLink.href}
               style={{ fontSize: 13, padding: '6px 12px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 8, color: '#67e8f9', textDecoration: 'none', fontWeight: 600 }}
             >
-              Full {data.city?.split(',')[0]} city report →
+              Full {cityReportLink?.label} city report →
             </Link>
           ) : null}
         </div>
@@ -557,7 +520,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <span style={{ color: '#ef4444', fontSize: 16, flexShrink: 0 }}>🚨</span>
                   <p style={{ fontSize: 14, color: '#e2e8f0', margin: 0, lineHeight: 1.6 }}>
-                    <strong>{data.openViolations} open EPA violation{data.openViolations !== 1 ? 's' : ''}</strong> — your public water system is currently out of compliance with federal drinking water standards.
+                    <strong>{data.openViolations} open EPA violation{data.openViolations !== 1 ? 's' : ''}</strong> — listed in the available EPA records. Check the violation type, dates and supplier’s current instructions; this is not a measurement at your tap.
                   </p>
                 </div>
               )}
@@ -565,7 +528,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <span style={{ color: '#ef4444', fontSize: 16, flexShrink: 0 }}>⚠️</span>
                   <p style={{ fontSize: 14, color: '#e2e8f0', margin: 0, lineHeight: 1.6 }}>
-                    <strong>{data.pfasAboveMcl} PFAS compound{data.pfasAboveMcl !== 1 ? 's' : ''} above EPA MCL</strong> — detected above the federal maximum contaminant level. Only reverse osmosis removes PFAS.
+                    <strong>{data.pfasAboveMcl} historical PFAS compound{data.pfasAboveMcl !== 1 ? 's' : ''} above comparison benchmarks</strong> — these measurements do not establish current compliance or the concentration at your tap. Check the exact filter model’s listed reduction claims before choosing treatment.
                   </p>
                 </div>
               )}
@@ -573,7 +536,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <span style={{ color: '#f59e0b', fontSize: 16, flexShrink: 0 }}>⚠️</span>
                   <p style={{ fontSize: 14, color: '#e2e8f0', margin: 0, lineHeight: 1.6 }}>
-                    <strong>{data.pfasCount} PFAS compound{data.pfasCount !== 1 ? 's' : ''} detected</strong> — below EPA limits but PFAS accumulate in the body over time. A reverse osmosis filter removes them.
+                    <strong>{data.pfasCount} PFAS compound{data.pfasCount !== 1 ? 's' : ''} detected</strong> — listed in the historical snapshot without an above-benchmark flag. This is not a current reading or a guarantee that every PFAS compound was measured.
                   </p>
                 </div>
               )}
@@ -581,7 +544,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <span style={{ color: '#22d3ee', fontSize: 16, flexShrink: 0 }}>✅</span>
                   <p style={{ fontSize: 14, color: '#e2e8f0', margin: 0, lineHeight: 1.6 }}>
-                    No open violations or PFAS detections on record. That said, lead can still enter from your home's internal plumbing — especially in homes built before 1986.
+                    No open violation records are listed in the retrieved data. {data.pfasCoverage === 'available' ? 'The packaged PFAS record lists no reportable detections.' : 'PFAS monitoring coverage is unavailable; missing data is not a zero reading.'} Supplier records do not measure substances from your own plumbing.
                   </p>
                 </div>
               )}
@@ -659,7 +622,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 brand: 'Clearly Filtered',
                 price: '~$90',
                 amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`,
-                reasonDefault: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. No plumbing needed.',
+                reasonDefault: 'Pitcher option without plumbing changes. Verify the exact cartridge’s published reduction claims and replacement schedule.',
               },
             ] as const;
 
@@ -803,20 +766,15 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
             );
           })()}
 
-          {/* City page link */}
-          {(() => {
-            const citySlug = data.city?.toLowerCase().split(',')[0].trim().replace(/\s+/g, '-');
-            return (
-              <div style={{ padding: '16px 20px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, marginBottom: 20 }}>
-                <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
-                  Want the full city-level breakdown?{' '}
-                  <Link href={`/water/${citySlug}`} style={{ color: '#0891b2', fontWeight: 700, textDecoration: 'none' }}>
-                    View the {data.city?.split(',')[0]} city water report →
-                  </Link>
-                </p>
-              </div>
-            );
-          })()}
+          {/* Offer a city guide only when the server has verified a matching supplier. */}
+          {cityReportLink ? (
+            <div style={{ padding: '16px 20px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, marginBottom: 20 }}>
+              <p style={{ fontSize: 13, color: '#cbd5e1', margin: 0 }}>
+                Want the full city-level breakdown?{' '}
+                <Link href={cityReportLink.href} style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>View the {cityReportLink.label} city water report →</Link>
+              </p>
+            </div>
+          ) : null}
         </div>
       )}
 
@@ -841,7 +799,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                   </div>
                   <div style={{ padding: '10px 16px', background: '#071828', borderRadius: 8, textAlign: 'center' }}>
                     <div style={{ fontSize: 22, fontWeight: 900, color: data.pfasAboveMcl > 0 ? '#ef4444' : '#22d3ee' }}>{data.pfasAboveMcl}</div>
-                    <div style={{ fontSize: 13, color: '#a8b4c4' }}>Above EPA MCL</div>
+                    <div style={{ fontSize: 13, color: '#a8b4c4' }}>Above comparison benchmark</div>
                   </div>
                   {data.ucmr5?.maxPfasPpt != null && (
                     <div style={{ padding: '10px 16px', background: '#071828', borderRadius: 8, textAlign: 'center' }}>
@@ -852,7 +810,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
                 </div>
                 <div style={{ padding: '14px 16px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 8 }}>
                   <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
-                    PFAS "forever chemicals" don't break down in the body and accumulate over time. The EPA set the first federal PFAS limits in April 2024 (4 ppt for PFOA/PFOS). <strong style={{ color: '#e2e8f0' }}>Only reverse osmosis or NSF 58-certified filters reliably remove PFAS.</strong> Standard pitcher filters do not.
+                    These historical measurements are compared with the benchmarks described in our methodology. They do not establish current compliance. <a href="https://www.epa.gov/water-research/identifying-drinking-water-filters-certified-reduce-pfas" style={{ color: '#67e8f9' }}>EPA describes carbon, ion-exchange and reverse-osmosis options for PFAS reduction.</a> Check the exact model, contaminant claim and replacement schedule.
                   </p>
                 </div>
               </>
@@ -927,7 +885,7 @@ export default function ResultsClient({ zip, initialData }: { zip: string; initi
               brand: 'Clearly Filtered',
               badge: 'BEST NO-INSTALL',
               price: '~$90',
-              reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473. No plumbing needed.',
+              reason: 'Pitcher option without plumbing changes. Verify the exact cartridge’s published reduction claims and replacement schedule.',
               amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`,
               best: false,
             },
