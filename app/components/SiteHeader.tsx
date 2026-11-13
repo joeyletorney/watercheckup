@@ -1,5 +1,3 @@
-'use client';
-
 import { Suspense, type CSSProperties, type ReactNode } from 'react';
 import Link from 'next/link';
 import { SiteNav } from './SiteNav';
@@ -92,6 +90,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
           <Link
             prefetch
             href="/"
+            aria-label="WaterCheckup home"
             style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
           >
             <LogoWordmark height={44} />
@@ -122,7 +121,7 @@ export function SiteHeader({ variant, trailing, navStyle, showCta, ctaLabel, cta
         flexWrap: 'wrap',
       }}
     >
-      <Link prefetch href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
+      <Link prefetch href="/" aria-label="WaterCheckup home" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
         <LogoWordmark />
       </Link>
       <SiteNav ariaLabel="Main" style={navStyle} />

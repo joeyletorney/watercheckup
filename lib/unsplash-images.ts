@@ -58,7 +58,9 @@ function hashSlug(slug: string): number {
 }
 
 export function getBlogFeaturedImageUrl(slug: string, badge?: string): string {
-  if (['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water'].includes(slug)) return 'https://watercheckup.com/watersplashingintoglass.jpg';
+  if (['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water'].includes(slug)) return '/watersplashingintoglass.jpg';
   const path = (badge && BLOG_BY_BADGE[badge]) || BLOG_IMAGE_POOL[hashSlug(slug) % BLOG_IMAGE_POOL.length];
+  // Retired image returned 404 for filter/RO guides; use the existing local water photograph.
+  if (path === 'photo-1614027683568-74cbf27a2abf') return '/watersplashingintoglass.jpg';
   return unsplash(path, 800, 400);
 }

@@ -37,3 +37,19 @@ export function homeShoppingProduct(id: number) {
   if (!p || p.outOfStock || !preferredAmazonPurchaseUrl(p.amazon)) return undefined;
   return { id: p.id as number, name: p.name as string, brand: p.brand as string, img: p.img as string, amazon: preferredAmazonPurchaseUrl(p.amazon)! };
 }
+
+
+export type HomeShoppingProduct = NonNullable<ReturnType<typeof homeShoppingProduct>>;
+export type HomeShoppingCategory = {
+  id: string; label: string; description: string; guide: string;
+  picks: Array<{ id: number; fit: string; advantage: string; tradeoff: string; evidenceUrl: string; limits: string; upkeep: string; product: HomeShoppingProduct }>;
+};
+export function buildHomeShoppingCategories(): HomeShoppingCategory[] {
+  return HOME_SHOPPING_CATEGORIES.map(category => ({
+    ...category,
+    picks: category.picks.flatMap(pick => {
+      const product = homeShoppingProduct(pick.id);
+      return product ? [{ ...pick, product }] : [];
+    }),
+  }));
+}
