@@ -9,6 +9,9 @@ export function WaterCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // The CSS ocean gradient supplies the background on small screens and for reduced motion.
+    // Avoid allocating and drawing a full-screen bitmap during mobile hydration.
+    if (window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const cvs = canvas;
@@ -329,5 +332,5 @@ export function WaterCanvas() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none' }} />;
+  return <canvas aria-hidden="true" ref={canvasRef} style={{ position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none' }} />;
 }

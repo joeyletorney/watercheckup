@@ -7,12 +7,15 @@ export type AffiliateClickParams = {
   brand?: string;
   city?: string;
   zip?: string;
+  linkDomain?: string;
 };
 
 /** Fire GA4 `affiliate_click` — use on every sponsored outbound product link. */
 export function trackAffiliateClick(params: AffiliateClickParams): void {
   if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
   window.gtag('event', 'affiliate_click', {
+    transport_type: 'beacon',
+    link_domain: params.linkDomain,
     product: params.product,
     destination: params.destination,
     page: params.page,

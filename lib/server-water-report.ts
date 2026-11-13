@@ -58,14 +58,14 @@ function noteEpaFailure() {
   }
 }
 
-async function epaGet(path: string) {
+async function epaGet(path: string, refresh = false) {
   if (isEpaCircuitOpen()) throw new Error('EPA circuit open');
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), EPA_TIMEOUT_MS);
   try {
     const res = await fetch(`${EPA}/${path}`, {
       headers: { Accept: 'application/json' },
-      next: { revalidate: 3600 },
+      ...(refresh ? { cache: 'no-store' as const } : { next: { revalidate: 3600 } }),
       signal: ctrl.signal,
     });
     if (!res.ok) {
@@ -558,7 +558,7 @@ export async function lookupWaterReport(zip: string, refresh = false) {
   const H = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
   if (!/^\d{5}$/.test(zip)) return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400, headers: H });
   const t0 = Date.now();
-  const okHeaders = { ...H, 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' };
+  const okHeaders = { ...H, 'Cache-Control': refresh ? 'no-store' : 'public, s-maxage=3600, stale-while-revalidate=7200' };
 
   const cached = refresh ? null : await getCachedWaterResponse(zip);
   if (cached) {
@@ -692,9 +692,9 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     // ─── Parallel data fetch ────────────────────────────────────────────────
     const skipLiveEpa = isEpaCircuitOpen();
     const [violations, lcr, sdwaSamples, usgsData, echoData, usgsHardness] = await Promise.all([
-      skipLiveEpa ? Promise.resolve(null) : epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`).catch(() => null),
-      skipLiveEpa ? Promise.resolve([]) : epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
-      skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`).catch(() => []),
+      skipLiveEpa ? Promise.resolve(null) : epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`, refresh).catch(() => null),
+      skipLiveEpa ? Promise.resolve([]) : epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`, refresh).catch(() => []),
+      skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`, refresh).catch(() => []),
       stateCode && !skipLiveEpa ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
       skipLiveEpa ? Promise.resolve(null) : getEchoEnforcement(pwsid),
       stateCode && !skipLiveEpa ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),

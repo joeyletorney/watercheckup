@@ -523,7 +523,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
 
   if (isClearlyFiltered && clearlyUrl) {
     return (
-      <a href={clearlyUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+      <a data-wc-affiliate-tracked="true" href={clearlyUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
         onClick={() => track('direct')}
         style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(5,150,105,0.45),rgba(16,185,129,0.3))', color: '#f1f5f9' }}>
         ClearlyFiltered.com →
@@ -551,7 +551,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
 
   if (isWaterdrop && directUrl) {
     return (
-      <a href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
+      <a data-wc-affiliate-tracked="true" href={directUrl} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy"
         onClick={() => track('direct')}
         style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: 'none', letterSpacing: 0.3, flex, background: 'linear-gradient(135deg,rgba(8,145,178,0.35),rgba(6,182,212,0.25))' }}>
         Waterdrop.com →
@@ -560,7 +560,7 @@ function BuyButtons({ p, block = false }: { p: any; block?: boolean }) {
   }
 
   return (
-    <a href={amazonUrl || directUrl!} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
+    <a data-wc-affiliate-tracked="true" href={amazonUrl || directUrl!} target="_blank" rel="noopener noreferrer sponsored" className="wc-buy wc-buy-amazon-secondary"
       onClick={() => track('amazon')}
       style={{ display: 'block', textAlign: 'center', padding: pad, borderRadius: 10, fontSize: 13, fontWeight: 600, textDecoration: 'none', letterSpacing: 0.2, flex, color: '#cbd5e1', border: '1px solid rgba(100,116,139,0.35)', background: 'rgba(15,23,42,0.5)' }}>
       Amazon →
@@ -823,10 +823,10 @@ function PFASAwarenessBanner() {
             <strong style={{ color: '#cbd5e1' }}>What this means for you:</strong> Limits and estimates describe population-level patterns. Your ZIP report shows what is on file for your public water system — use that as the practical next step.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <a href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer sponsored"
+            <a data-wc-affiliate-tracked="true" href={`https://www.waterdropfilter.com/?ref=anbyjkqb&utm_medium=affiliate&utm_source=goaffpro`} target="_blank" rel="noreferrer sponsored"
               onClick={() => trackAffiliateClick({ product: 'Waterdrop RO', destination: 'direct', page: 'home', brand: 'Waterdrop' })}
               style={{ padding: '5px 12px', background: '#ef4444', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>🛒 Best RO for PFAS →</a>
-            <a href={clearlyFilteredDirectUrl()} target="_blank" rel="noreferrer sponsored"
+            <a data-wc-affiliate-tracked="true" href={clearlyFilteredDirectUrl()} target="_blank" rel="noreferrer sponsored"
               onClick={() => trackAffiliateClick({ product: 'Clearly Filtered Pitcher', destination: 'direct', page: 'home', brand: 'Clearly Filtered' })}
               style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #05966955', borderRadius: 5, color: '#cbd5e1', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>Clearly Filtered Pitcher →</a>
           </div>
@@ -1259,7 +1259,7 @@ function ResourcesTab({ data }: { data: any }) {
         <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 12px' }}>
           This site uses EPA and EWG aggregate data. For the most accurate results specific to <strong style={{ color: '#e2e8f0' }}>your home</strong>, order a mail-in test from SimpleLab (Tap Score). Your municipal supply may be clean but your home&apos;s pipes could add lead or other contaminants.
         </p>
-        <a href={SIMPLELAB_HOME_URL} target="_blank" rel="noopener noreferrer sponsored"
+        <a data-wc-affiliate-tracked="true" href={SIMPLELAB_HOME_URL} target="_blank" rel="noopener noreferrer sponsored"
           onClick={() => trackAffiliateClick({ product: 'SimpleLab Tap Score', destination: 'simplelab', page: 'home' })}
           style={{ display: 'inline-block', padding: '7px 14px', background: '#7c3aed', borderRadius: 5, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Tap Score — from $89 →</a>
       </div>
@@ -1340,7 +1340,7 @@ function FilterCompareTab() {
               return (
               <td key={p.id} style={{ padding: '12px 10px', textAlign: 'center' }}>
                 {buyUrl ? (
-                  <a href={buyUrl} target="_blank" rel="noreferrer sponsored"
+                  <a data-wc-affiliate-tracked="true" href={buyUrl} target="_blank" rel="noreferrer sponsored"
                     onClick={() => trackAffiliateClick({ product: p.name, destination: buyDest, page: 'home', brand: p.brand })}
                     style={{ display: 'inline-block', padding: '7px 12px', background: 'linear-gradient(135deg,#d97706,#f59e0b)', borderRadius: 6, color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>Buy →</a>
                 ) : (
@@ -1467,7 +1467,7 @@ function WellWaterPanel({ stateCode }: { stateCode: string }) {
           {' '}to locate a state-certified lab near you.
         </p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
-          <a href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored"
+          <a data-wc-affiliate-tracked="true" href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored"
             onClick={() => trackAffiliateClick({ product: 'SimpleLab Well Test', destination: 'simplelab', page: 'home' })}
             style={{ padding: '8px 16px', background: '#7c3aed', borderRadius: 7, color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>SimpleLab Well Test — from $99 →</a>
         </div>
@@ -1833,6 +1833,8 @@ function formatResultsLead(data: any): { found: string; todo: string } {
 }
 
 export default function WaterCheckup() {
+  const [searchError, setSearchError] = useState('');
+  const [searching, setSearching] = useState(false);
   const [zip, setZip]                   = useState('');
   const [loading, setLoading]           = useState(false);
   const [step, setStep]                 = useState(0);
@@ -1931,16 +1933,22 @@ export default function WaterCheckup() {
   };
 
   const search = async () => {
+    if (searching) return;
+    setSearchError('');
     const trimmed = zip.trim();
     if (!/^\d{5}$/.test(trimmed)) {
       const match = CITY_ZIP_MAP[trimmed.toLowerCase()];
       if (match) {
+        setSearching(true);
         recordWaterSearch(match.zip, 'city');
         window.location.href = `/results/${match.zip}`;
         return;
       }
+      setSearchError('City not found. Enter your 5-digit ZIP code to find your supplier’s records.');
+      window.gtag?.('event', 'water_search_invalid', { input_type: 'city_or_incomplete_zip' });
       return;
     }
+    setSearching(true);
     recordWaterSearch(trimmed, 'zip');
     window.location.href = `/results/${trimmed}`;
   };
@@ -2135,6 +2143,7 @@ export default function WaterCheckup() {
           </Link>
         </div>
 
+        {searchError && <p id="wc-search-error" role="alert" style={{ color: '#fde68a', margin: '16px auto', maxWidth: 560 }}>{searchError}</p>}
         {/* Search bar — high-visibility panel */}
         <div className="wc-search-hero-panel" style={{ marginTop: 28 }}>
           <p className="wc-search-hero-label" id="wc-search-hero-heading">
@@ -2145,7 +2154,10 @@ export default function WaterCheckup() {
               id="wc-hero-zip"
               className="wc-search-input"
               value={zip}
-              onChange={e => setZip(e.target.value.slice(0, 30))}
+              onChange={e => { setZip(e.target.value.slice(0, 30)); setSearchError(''); }}
+              aria-invalid={!!searchError}
+              aria-describedby={searchError ? 'wc-search-error' : undefined}
+              enterKeyHint="search"
               onKeyDown={e => e.key === 'Enter' && search()}
               placeholder="ZIP code or city name"
               maxLength={30}
@@ -2157,7 +2169,7 @@ export default function WaterCheckup() {
               <button
                 type="button"
                 onClick={search}
-                disabled={zip.trim().length < 2 || loading}
+                disabled={zip.trim().length < 2 || loading || searching}
                 className="wc-search-submit wc-hero-report-btn"
                 style={{
                   padding: '18px 32px',
@@ -2171,7 +2183,7 @@ export default function WaterCheckup() {
                   flex: '1 1 200px',
                 }}
               >
-                {loading ? 'Loading…' : 'See my water report'}
+                {searching ? 'Looking up your water…' : loading ? 'Loading…' : 'See my water report'}
               </button>
               <Link
                 prefetch

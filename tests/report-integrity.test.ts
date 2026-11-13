@@ -171,3 +171,25 @@ test('the ZIP PFAS notice distinguishes missing coverage from no reportable dete
   assert.match(getPfasCoverageNotice(undefined).detail, /does not establish detection or nondetection/i);
   assert.match(getPfasCoverageNotice('available').title, /no reportable.*listed/i);
 });
+
+
+test('manual refresh bypasses both report and EPA dataset caches without caching the refresh response', async () => {
+  const original = globalThis.fetch;
+  const calls: { url: string; options?: RequestInit }[] = [];
+  (globalThis as any).__wcEpaCircuit = { fails: 0, openUntil: 0 };
+  globalThis.fetch = async (input, options) => {
+    calls.push({ url: String(input), options });
+    return new Response('[]', { headers: { 'Content-Type': 'application/json' } });
+  };
+  try {
+    const response = await lookupWaterReport('10001', true);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('Cache-Control'), 'no-store');
+    const datasets = calls.filter(call => /SDWA_VIOLATIONS|LCR_SAMPLE_RESULT|SDWA_SAMPLES/.test(call.url));
+    assert.equal(datasets.length, 3);
+    for (const call of datasets) {
+      assert.equal(call.options?.cache, 'no-store');
+      assert.equal('next' in (call.options || {}), false);
+    }
+  } finally { globalThis.fetch = original; }
+});

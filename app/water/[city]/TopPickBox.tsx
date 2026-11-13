@@ -133,7 +133,7 @@ export default function TopPickBox({
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                 {showDirect ? (
-                  <a
+                  <a data-wc-affiliate-tracked="true"
                     href={directUrl}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
@@ -143,7 +143,7 @@ export default function TopPickBox({
                     {directBuyLabel(pick.brand)}
                   </a>
                 ) : (
-                <a
+                <a data-wc-affiliate-tracked="true"
                   href={amazonUrl}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
