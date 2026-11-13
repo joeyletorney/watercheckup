@@ -1,40 +1,25 @@
-/** Site-wide FAQ entities — use on homepage only (not in root layout @graph). */
-export const SITE_FAQ_MAIN_ENTITY = [
-    {
-      '@type': 'Question',
-      name: 'How is WaterCheckup different from other water quality checkers?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Most water quality checkers tap one EPA database. WaterCheckup combines five federal datasets plus EWG health guidelines: SDWIS violations, UCMR5 PFAS monitoring (2023–2025), enforcement history, lead tap sampling, lead service line inventory, and EWG benchmarks — merged into one free ZIP report with an A–F Water Safety Grade and expert filter guidance.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is the WaterCheckup Water Safety Grade?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Each city and ZIP report includes one Water Safety Score (0–88) and letter grade (A– through F) based on EPA violation history, PFAS UCMR5 detections, hardness, and contaminants above health guidelines — not just whether your public water system meets legal limits. Grades are explained in plain language with filter recommendations from a 30-year water treatment expert.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is my tap water safe to drink?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It depends on your water system, home plumbing, and which contaminants matter for your household. Enter your ZIP at watercheckup.com for a free report that merges EPA SDWIS, PFAS testing, lead data, and EWG health guidelines — then see certified filter options if PFAS, lead, or other issues are flagged.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What water filter removes PFAS?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Only reverse osmosis (NSF/ANSI 58) and select carbon systems (NSF 401 or P473) are certified to remove PFAS forever chemicals. Standard Brita pitchers improve taste but are not certified for PFAS. WaterCheckup shows PFAS levels for your public water system and recommends NSF-certified systems matched to your water profile.',
-      },
-    },
+/** Visible homepage answers and structured data share one source. */
+export const HOME_FAQS = [
+  {
+    question: 'What does my water report show?',
+    answer: 'Your ZIP is matched to a public water supplier and available records, including historical measurements and compliance information when available. Source coverage and dates vary. The report describes the listed supplier, not a test of water from your own tap.',
+  },
+  {
+    question: 'Why are some records or grades unavailable?',
+    answer: 'Federal sources can be temporarily unavailable, and some suppliers have gaps in the stored datasets. Historical information may still be shown. A missing record is not a zero reading or an all-clear. Check the report’s source notes and your supplier’s current water quality report.',
+  },
+  {
+    question: 'Where should I start if I use a private well?',
+    answer: 'The ZIP report is designed for public water suppliers. For a private well, start with the well-water testing guide and identify what needs to be measured before choosing treatment. The filter quiz also provides a testing-first route for well owners.',
+  },
 ] as const;
 
-/** Full FAQPage JSON-LD for the homepage */
+export const SITE_FAQ_MAIN_ENTITY = HOME_FAQS.map(faq => ({
+  '@type': 'Question',
+  name: faq.question,
+  acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+}));
+
 export const SITE_FAQ_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',

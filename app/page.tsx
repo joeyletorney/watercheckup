@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import HomeClient from './HomeClient';
+import HomeLanding from './HomeLanding';
 import { SITE_FAQ_SCHEMA } from '@/lib/site-faq-schema';
 import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats';
 
@@ -22,7 +22,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_FAQ_SCHEMA) }}
       />
-      <HomeClient />
+      <HomeLanding />
     </>
   );
 }

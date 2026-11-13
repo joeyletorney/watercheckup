@@ -101,7 +101,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
       url: 'https://watercheckup.com',
       logo: { '@type': 'ImageObject', url: 'https://watercheckup.com/icon.png' },
     },
-    image: [getBlogFeaturedImageUrl(params.slug, post.badge)],
+    image: [new URL(getBlogFeaturedImageUrl(params.slug, post.badge), 'https://watercheckup.com').toString()],
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://watercheckup.com/blog/${params.slug}`,
