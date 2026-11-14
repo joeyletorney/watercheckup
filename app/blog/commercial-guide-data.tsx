@@ -56,7 +56,7 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
   'best-countertop-water-filter': {
     title: 'Best Countertop Water Filters 2026: RO & Pitcher Comparison',
     excerpt: 'Compare countertop RO and a lead-reduction pitcher with official model evidence, setup limits and replacement-cost assumptions.',
-    verdict: 'Choose a pitcher for a supported lead claim and simple setup. Compare countertop RO when its specific reduction claims match your water and you can accommodate power, tanks and maintenance.',
+    verdict: 'For simple setup, compare a compatible pitcher with the Elite cartridge. Consider AquaTru Classic when its additional documented reduction claims match your concern and you accept power, tanks and upkeep.',
     choices: [pitcher, aqua, {
       option: 'Waterdrop K19-S: existing-owner reference',
       fit: 'For checking support before keeping an existing unit; not a current new-unit recommendation.',
@@ -118,7 +118,7 @@ export function commercialPost(slug: string, date: string, badge: string, badgeC
   return {
     title: guide.title, excerpt: guide.excerpt,
     seo: { title: guide.title, description: guide.excerpt, canonical: `https://watercheckup.com/blog/${slug}` },
-    date, dateModified: '2026-11-12', dateDisplay: 'November 12, 2026', readTime: '6 min read', badge, badgeColor,
+    date, dateModified: slug === 'best-countertop-water-filter' ? '2026-11-13' : '2026-11-12', dateDisplay: slug === 'best-countertop-water-filter' ? 'November 13, 2026' : 'November 12, 2026', readTime: '6 min read', badge, badgeColor,
     topPicks: [],
     faq: [
       { q: 'Did WaterCheckup test these systems?', a: 'No hands-on or laboratory testing is claimed here. This comparison uses the linked official documents and explicitly stated cost assumptions.' },

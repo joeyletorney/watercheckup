@@ -1,3 +1,4 @@
+import { FilterComparisonTool } from './FilterComparisonTool';
 import { COMMERCIAL_GUIDES } from '@/app/blog/commercial-guide-data';
 import { AffiliateLink } from '@/components/AffiliateLink';
 import { JourneyLink } from '@/components/JourneyLink';
@@ -11,6 +12,10 @@ export function BlogCommercialComparison({ slug }: { slug: string }) {
     <h2 id="commercial-comparison-heading" style={{ fontSize: 23, marginBottom: 12 }}>Quick comparison: choose by need</h2>
     <p style={{ lineHeight: 1.7 }}>{guide.verdict}</p>
     <p style={{ fontSize: 13, lineHeight: 1.6 }}>Official sources checked November 11, 2026. Document review, not hands-on testing. Prices and availability can change. Amazon links may earn us a commission.</p>
+    {slug === 'best-countertop-water-filter' && <FilterComparisonTool products={guide.choices.slice(0, 2).map((choice, i) => ({
+      id: i === 0 ? 'brita' : 'aquatru', name: choice.option, fit: choice.fit, constraint: choice.constraint,
+      source: choice.source, costSource: choice.costSource ?? choice.source, merchant: choice.merchant!,
+    }))} />}
     <nav className="wc-guide-start" aria-label="Choose a comparison starting point">
       <h3>Find your starting point</h3>
       <div>{(GUIDE_STARTING_POINTS[slug] || []).map((point, index) => <JourneyLink key={point.label} href={`#comparison-option-${index + 1}`} eventName="guide_option_selected" step={`option_${index + 1}`} page={`/blog/${slug}`}><strong>{point.label}{'\u00a0→'}</strong><span>{point.detail}</span></JourneyLink>)}</div>

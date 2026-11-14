@@ -147,7 +147,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
 
         <header style={{ marginBottom: COMMERCIAL_GUIDES[params.slug] ? 24 : 64 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: post.badgeColor, border: `1px solid ${post.badgeColor}44` }}>
+            <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: '#075985', border: `1px solid ${post.badgeColor}44` }}>
               {post.badge}
             </span>
             <span className="wc-reading-meta">{post.dateDisplay}</span>
