@@ -30,7 +30,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
         <div className="wc-blog-top-picks__tab">TOP PICKS</div>
         <p className="wc-blog-top-picks__empty-msg">
           Product links are being updated. Use the{' '}
-          <a href="/quiz">filter quiz</a> or <a href="/">ZIP report</a> for current NSF-certified picks.
+          <a href="/quiz">filter quiz</a> or <a href="/">ZIP report</a> to compare options and evidence.
         </p>
       </div>
     );
@@ -43,8 +43,8 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
       {skipped > 0 ? (
         <p className="wc-blog-top-picks__oos-note">
           {skipped === 1
-            ? 'One pick is temporarily unavailable — showing the next best NSF-certified options.'
-            : `${skipped} picks are temporarily unavailable — showing in-stock NSF-certified options.`}
+            ? 'One listed option is unavailable — showing other options to compare.'
+            : `${skipped} listed options are unavailable — showing other options to compare.`}
         </p>
       ) : null}
       <p className="wc-blog-top-picks__subtitle">A filter may not be necessary. First confirm your supplier and a documented concern. These are options to compare, not a guarantee of every household result.</p>
@@ -57,7 +57,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
               ? pick.link
               : clearlyFilteredDirectUrl(pick.link);
           const directLabel =
-            pick.brand === 'Waterdrop' ? 'Buy Direct →' : 'ClearlyFiltered.com →';
+            pick.brand === 'Waterdrop' ? 'Check price at Waterdrop →' : 'Check price at Clearly Filtered →';
           const imgSrc = lookupFilterProductImage(pick);
           return (
             <div
@@ -115,6 +115,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                     page="blog"
                     brand={pick.brand}
                     className="wc-blog-top-picks__btn wc-blog-top-picks__btn--primary"
+                    aria-label={`Check price on Amazon for ${pick.product}`}
                   >
                     Check price on Amazon →
                   </AffiliateLink>
