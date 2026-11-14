@@ -48,7 +48,7 @@ const CREDENTIALS_REST = [
   'Published Author — Water Technology Magazine',
   'Published Author — Water Conditioning & Purification Magazine',
   'Industry Speaker — Lectured at Water Quality Association conventions throughout career',
-  'Spoke to thousands of water industry professionals and consumers nationwide',
+  'Advised thousands of water industry professionals and consumers nationwide',
 ];
 
 function CredentialCard({ line }: { line: string }) {
@@ -313,7 +313,7 @@ export default function AboutPage() {
           &amp; Purification Magazine — two of the most respected publications in the water treatment field.
         </p>
         <p style={p}>
-          I&apos;ve also lectured at Water Quality Association conventions and spoken to thousands of water professionals
+          I&apos;ve also lectured at Water Quality Association conventions and advised thousands of water professionals
           and consumers throughout my career — always with the same goal: helping people understand their water and
           what to do about it.
         </p>
