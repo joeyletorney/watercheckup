@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { commercialPost } from './commercial-guide-data';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -501,87 +502,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     ),
   },
 
-  'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitchers of 2026: Ranked by What They Actually Remove',
-    excerpt: 'Most pitcher filters only reduce chlorine taste. A few actually remove lead, PFAS, and other serious contaminants. Here is how they rank.',
-    date: '2026-04-20',
-    dateDisplay: 'April 20, 2026',
-    readTime: '10 min read',
-    badge: 'Filters',
-    badgeColor: '#06b6d4',
-    topPicks: TOP_3_LEAD,
-    content: React.createElement(React.Fragment, null,
-      React.createElement('p', { style: pStyle },
-        'The water filter pitcher market is dominated by bold claims and certification numbers that require a decoder ring to interpret. This guide cuts through that: here is what each major pitcher actually removes, what the certifications mean, and how to choose based on your specific water concerns.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, 'The Key Thing Most People Get Wrong'),
-      React.createElement('p', { style: pStyle },
-        'Not all pitcher filters are created equal — and the difference is dramatic. A standard Brita pitcher with a standard cartridge reduces chlorine taste. A Clearly Filtered pitcher removes lead, PFAS, fluoride, and hundreds of other contaminants. Both are "water filter pitchers." The certification details are everything.'
-      ),
-      React.createElement('div', { style: warnStyle },
-        React.createElement('strong', { style: { color: '#ef4444' } }, '⚠ What most pitchers do NOT remove: '),
-        'Lead, PFAS, nitrates, arsenic, fluoride, and bacteria. If these are your concerns, you need to specifically verify NSF 53 or NSF 244 certification for those contaminants — not just assume any pitcher works.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, '#1 Clearly Filtered Water Pitcher'),
-      React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Best for: Comprehensive protection without installation'),
-      ),
-      React.createElement('p', { style: pStyle },
-        'The Clearly Filtered pitcher is independently tested to remove over 270 contaminants, including lead (99.5%+), PFAS compounds (99%+), fluoride (99.5%+), chromium-6, chloramine, and disinfection byproducts. It holds the most contaminant-reduction certifications of any pitcher on the market.'
-      ),
-      React.createElement('p', { style: pStyle },
-        'Cost: ~$90 for the pitcher, ~$45 per replacement filter (every 100 gallons). Flow rate is slower than standard pitchers. Worth it if you have legitimate contamination concerns.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, '#2 Brita Longlast+ Pitcher'),
-      React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Best for: Affordable lead reduction'),
-      ),
-      React.createElement('p', { style: pStyle },
-        'The Longlast+ cartridge (not the standard Brita Elite or Classic) is NSF 53 certified for lead reduction. It also reduces chlorine, benzene, and asbestos. One cartridge lasts 120 gallons (about 6 months) — 3x longer than standard cartridges, making the cost competitive.'
-      ),
-      React.createElement('p', { style: pStyle },
-        'Cost: ~$35-45 for the pitcher, ~$20 per Longlast+ cartridge. Note: the standard Brita filter (sold separately) does NOT remove lead. Always verify you are buying the Longlast+ specifically.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, '#3 ZeroWater 5-Stage Pitcher'),
-      React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Best for: Reducing TDS and chromium'),
-      ),
-      React.createElement('p', { style: pStyle },
-        'ZeroWater\'s 5-stage ion exchange filtration brings TDS (total dissolved solids) to essentially zero. It is NSF 53 certified for lead and chromium reduction and comes with a free TDS meter. The tradeoff: filter life is much shorter if your tap water has high TDS — sometimes only 20-30 gallons per cartridge.'
-      ),
-      React.createElement('p', { style: pStyle },
-        'Cost: ~$35-50 for the pitcher, ~$15-20 per cartridge. Cost-per-gallon can be high with hard water.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, '#4 LifeStraw Home Pitcher'),
-      React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Best for: Microplastics and bacteria'),
-      ),
-      React.createElement('p', { style: pStyle },
-        'LifeStraw uses hollow fiber membrane technology — the same approach used in their field filters — to physically block bacteria, parasites, and microplastics. Also includes activated carbon for taste. NSF 53, 42, 401, and P231 certified.'
-      ),
-      React.createElement('p', { style: pStyle },
-        'Cost: ~$70-90 for the pitcher. Good for those specifically concerned about microbiological contamination or microplastics.'
-      ),
-
-      React.createElement('h2', { style: h2Style }, '#5 Standard Brita or PUR (Chlorine Taste Only)'),
-      React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Best for: Chlorine taste improvement only'),
-      ),
-      React.createElement('p', { style: pStyle },
-        'Standard Brita and PUR pitchers with their base cartridges are NSF 42 certified — meaning they reduce chlorine taste and odor. That is it. They are perfectly fine for taste improvement but should not be relied upon for lead, PFAS, nitrates, or any other health-related contaminant.'
-      ),
-
-      React.createElement('div', { style: calloutStyle },
-        React.createElement('strong', { style: { color: '#e2e8f0' } }, 'How to choose: '),
-        'First, check your water report at WaterCheckup. If you have lead or PFAS concerns, get the Clearly Filtered or Brita Longlast+. If you have high TDS or chromium, consider ZeroWater. If your water is generally clean and you just want better taste, a standard Brita works fine.'
-      ),
-    ),
-  },
+  'best-water-filter-pitcher-2025': commercialPost('best-water-filter-pitcher-2025', '2026-04-20', 'Filters', '#06b6d4'),
 
   'radon-in-drinking-water': {
     title: 'Radon in Drinking Water: Risk, Testing, and Treatment for Well Water Users',

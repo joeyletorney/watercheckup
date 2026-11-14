@@ -74,7 +74,16 @@ test('commercial comparisons expose active merchant links, scoped evidence and n
     for (const choice of guide.choices) {
       assert.equal(new URL(choice.source).protocol, 'https:');
       if (choice.option.includes('K19-S')) assert.equal(choice.merchant, undefined);
-      if (choice.merchant?.sponsored) assert.equal(new URL(choice.merchant.href).searchParams.get('tag'), 'watercheckup-20');
+      if (choice.merchant?.sponsored) {
+        const destination = new URL(choice.merchant.href);
+        if (destination.hostname === 'www.amazon.com') {
+          assert.equal(destination.searchParams.get('tag'), 'watercheckup-20');
+        } else {
+          const { clearlyFilteredDirectUrl } = await import('../lib/waterdrop-buy');
+          assert.equal(choice.merchant.brand, 'Clearly Filtered');
+          assert.equal(choice.merchant.href, clearlyFilteredDirectUrl('https://www.clearlyfiltered.com/products/filtered-water-pitcher'));
+        }
+      }
     }
   }
 });

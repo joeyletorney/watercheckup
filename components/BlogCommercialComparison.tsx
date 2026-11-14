@@ -11,7 +11,7 @@ export function BlogCommercialComparison({ slug }: { slug: string }) {
   return <section aria-labelledby="commercial-comparison-heading" style={{ margin: '28px 0 40px', color: 'inherit' }}>
     <h2 id="commercial-comparison-heading" style={{ fontSize: 23, marginBottom: 12 }}>Quick comparison: choose by need</h2>
     <p style={{ lineHeight: 1.7 }}>{guide.verdict}</p>
-    <p style={{ fontSize: 13, lineHeight: 1.6 }}>Official sources checked November 11, 2026. Document review, not hands-on testing. Prices and availability can change. Amazon links may earn us a commission.</p>
+    <p style={{ fontSize: 13, lineHeight: 1.6 }}>Official sources checked {guide.checkedDate ?? 'November 11, 2026'}. Document review, not hands-on testing. Prices and availability can change. Some purchase links may earn us a commission.</p>
     {slug === 'best-countertop-water-filter' && <FilterComparisonTool products={guide.choices.slice(0, 2).map((choice, i) => ({
       id: i === 0 ? 'brita' : 'aquatru', name: choice.option, fit: choice.fit, constraint: choice.constraint,
       source: choice.source, costSource: choice.costSource ?? choice.source, merchant: choice.merchant!,
@@ -26,7 +26,7 @@ export function BlogCommercialComparison({ slug }: { slug: string }) {
         <p style={{ margin: '0 0 10px' }}>{choice.fit}</p>
         {choice.merchant && <p style={{ margin: '0 0 12px' }}>
           {choice.merchant.sponsored
-            ? <AffiliateLink href={choice.merchant.href} product={choice.option} brand={choice.merchant.brand} page={`/blog/${slug}`} destination="amazon" rel="sponsored noopener noreferrer" target="_blank" style={buttonStyle}>{choice.merchant.label}</AffiliateLink>
+            ? <AffiliateLink href={choice.merchant.href} product={choice.option} brand={choice.merchant.brand} page={`/blog/${slug}`} destination={new URL(choice.merchant.href).hostname === 'www.amazon.com' ? 'amazon' : 'direct'} rel="sponsored noopener noreferrer" target="_blank" style={buttonStyle}>{choice.merchant.label}</AffiliateLink>
             : <JourneyLink href={choice.merchant.href} eventName="guide_next_step" step="manufacturer_reference" page={`/blog/${slug}`} rel="noopener noreferrer" target="_blank" style={buttonStyle}>{choice.merchant.label}</JourneyLink>}
           {!choice.merchant.sponsored && <small style={{ display: 'block' }}>Manufacturer link; cartridge only. A compatible pitcher is separate.</small>}
         </p>}

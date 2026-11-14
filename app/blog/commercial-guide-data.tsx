@@ -1,20 +1,12 @@
 import type { Post } from './post-types';
-
-export const GUIDE_SOURCES = {
-  epaLead: 'https://www.epa.gov/water-research/consumer-tool-identifying-point-use-and-pitcher-filters-certified-reduce-lead',
-  cdc: 'https://www.cdc.gov/drinking-water/prevention/about-choosing-home-water-filters.html',
-  brita: 'https://www.brita.com/products/brita-elite-replacement-filters/',
-  aquaPds: 'https://shop.aquatruwater.com/wp-content/uploads/2025/01/Classic-Connect-Updated-PDS.pdf',
-  aquaPrices: 'https://aquatru.com/collections/classic-filters',
-  aquaLife: 'https://support.aquatruwater.com/hc/en-us/articles/360041787193-How-often-do-I-need-to-change-my-filters',
-  softener: 'https://www.epa.gov/watersense/cation-exchange-water-softeners',
-  selection: 'https://www.epa.gov/system/files/documents/2025-01/ws-products-home-water-treatment-guide_v2_508.pdf',
-  k19: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s',
-};
+import { GUIDE_SOURCES } from './commercial-guide-sources';
+import { PitcherGuideArticle } from './pitcher-guide-content';
+import { clearlyFilteredDirectUrl } from '@/lib/waterdrop-buy';
+export { GUIDE_SOURCES } from './commercial-guide-sources';
 
 type Choice = { costSummary?: string; merchant?: { href: string; label: string; brand: string; sponsored: boolean }; costSource?: string; option: string; fit: string; constraint: string; evidence: string; source: string; cost: string };
 export type CommercialGuide = {
-  title: string; excerpt: string; verdict: string; choices: Choice[];
+  title: string; excerpt: string; verdict: string; choices: Choice[]; checkedDate?: string;
 };
 
 const pitcher: Choice = {
@@ -40,6 +32,45 @@ const aqua: Choice = {
 };
 
 export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
+  'best-water-filter-pitcher-2025': {
+    title: 'Best Water Filter Pitchers 2026: Lead, PFAS & Filter Costs',
+    excerpt: 'Compare Brita Elite, Clearly Filtered, ZeroWater and PUR PLUS by documented reduction claims, cartridge life and replacement costs.',
+    checkedDate: 'November 13, 2026',
+    verdict: 'For a lead concern, start with an exact pitcher-and-cartridge combination with a certified lead-reduction claim. For PFAS, check the named compounds separately. The options below serve different needs; their order is not a test ranking.',
+    choices: [{
+      ...pitcher,
+      constraint: 'Manual filling; cold water only. Use the Elite cartridge in a listed compatible pitcher. Brita’s sheet specifies a maximum of two gallons per day.',
+      source: GUIDE_SOURCES.britaPds,
+      costSource: GUIDE_SOURCES.brita,
+      evidence: 'Brita’s OB06 performance sheet lists lead reduction and Class I particulate reduction in specified compatible systems. It also states that actual performance varies. The sheet reviewed here does not establish a PFAS-reduction claim.',
+      cost: pitcher.cost.replace('Nov. 11, 2026', 'Nov. 13, 2026'),
+    }, {
+      option: 'Clearly Filtered pitcher: compare the evidence types',
+      fit: 'For readers comparing a broad manufacturer-published laboratory-results table.',
+      constraint: 'Match the cartridge version to the documents. The lab-results page and linked NSF sheet use different model identifiers; confirm which applies to the current retailer bundle.',
+      evidence: 'The linked NSF sheet identifies P-V3 / P-RF, chlorine reduction under NSF/ANSI 42, and materials lead content under 372. The broader laboratory table includes lead and PFAS tests; it is separate from those certification claims.',
+      source: GUIDE_SOURCES.clearlyFilteredPds,
+      costSource: GUIDE_SOURCES.clearlyFiltered,
+      cost: 'The linked sheet rates filter life at 100 gallons. Check the current cartridge price, model compatibility and any time limit. At an illustrative 365 gallons/year, four 100-gallon cartridge lives cover the volume before any earlier replacement. No unverified annual dollar total is quoted.',
+      merchant: { href: clearlyFilteredDirectUrl('https://www.clearlyfiltered.com/products/filtered-water-pitcher'), label: 'Check price at Clearly Filtered →', brand: 'Clearly Filtered', sponsored: true },
+    }, {
+      option: 'ZeroWater 5-stage 10-cup pitcher',
+      fit: 'For readers who want to reduce dissolved solids and compare the published contaminant tests.',
+      constraint: 'A low TDS reading is not proof of contaminant-free water. Confirm the current cartridge, performance sheet and replacement instructions for the retailer listing.',
+      evidence: 'ZeroWater publishes 5-stage laboratory results for lead, chromium and PFOA/PFOS, including test conditions. These results do not establish that every contaminant is removed or that all product generations have identical claims.',
+      source: GUIDE_SOURCES.zeroWater,
+      cost: 'Get the current replacement-pack price and the exact model’s rated capacity and replacement endpoint. Cartridge life can vary with feed water; a fixed annual dollar estimate is not established here.',
+      merchant: { href: 'https://www.amazon.com/dp/B0DWTTYTQN?tag=watercheckup-20', label: 'Check ZeroWater listing on Amazon →', brand: 'ZeroWater', sponsored: true },
+    }, {
+      option: 'PUR PLUS 11-cup with lead-reducing filter',
+      fit: 'Another lead-reduction option when the bundle includes the specified PUR PLUS cartridge.',
+      constraint: 'Confirm the included filter. A claim for this PUR PLUS cartridge should not be applied to every PUR product.',
+      evidence: 'PUR’s 11-cup product page identifies the lead-reducing filter, reports IAPMO R&T certification for lead and microplastics, and gives a 40-gallon or two-month replacement interval.',
+      source: GUIDE_SOURCES.pur,
+      cost: 'Confirm the replacement cartridge and current pack price. At an illustrative 365 gallons/year, ten 40-gallon cartridge lives cover the volume, including any starter cartridge. Use an earlier time or condition limit when required. Pitcher, tax and shipping are additional.',
+      merchant: { href: 'https://www.amazon.com/dp/B09LKTLVNR?tag=watercheckup-20', label: 'Check PUR PLUS listing on Amazon →', brand: 'PUR', sponsored: true },
+    }],
+  },
   'best-water-filter-for-lead-removal': {
     title: 'Best Water Filters for Lead Removal 2026: Options & Evidence',
     excerpt: 'Compare a lead-reduction pitcher, countertop RO and installed filtration by exact evidence, installation needs and ownership costs.',
@@ -89,6 +120,7 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
 };
 
 export function CommercialGuideArticle({ slug }: { slug: string }) {
+  if (slug === 'best-water-filter-pitcher-2025') return <PitcherGuideArticle />;
   const lead = slug === 'best-water-filter-for-lead-removal';
   const hard = slug === 'best-water-filter-hard-water';
   return <>
@@ -115,12 +147,17 @@ export function CommercialGuideArticle({ slug }: { slug: string }) {
 
 export function commercialPost(slug: string, date: string, badge: string, badgeColor: string): Post {
   const guide = COMMERCIAL_GUIDES[slug];
+  const updatedToday = slug === 'best-countertop-water-filter' || slug === 'best-water-filter-pitcher-2025';
   return {
     title: guide.title, excerpt: guide.excerpt,
     seo: { title: guide.title, description: guide.excerpt, canonical: `https://watercheckup.com/blog/${slug}` },
-    date, dateModified: slug === 'best-countertop-water-filter' ? '2026-11-13' : '2026-11-12', dateDisplay: slug === 'best-countertop-water-filter' ? 'November 13, 2026' : 'November 12, 2026', readTime: '6 min read', badge, badgeColor,
+    date, dateModified: updatedToday ? '2026-11-13' : '2026-11-12', dateDisplay: updatedToday ? 'November 13, 2026' : 'November 12, 2026', readTime: '6 min read', badge, badgeColor,
     topPicks: [],
-    faq: [
+    faq: slug === 'best-water-filter-pitcher-2025' ? [
+      { q: 'Can Brita Elite reduce lead?', a: 'Yes. The OB06 performance sheet lists lead reduction in specified compatible pitcher and dispenser systems. The Original cartridge is different; check the exact combination.' },
+      { q: 'Does a lead-reduction claim also prove PFAS reduction?', a: 'No. Check the named PFAS compounds and the exact cartridge’s current performance evidence separately.' },
+      { q: 'Did WaterCheckup test these pitchers?', a: 'No hands-on or laboratory testing is claimed. This comparison reviews linked official documents, distinguishes certification from additional testing, and states its cost assumptions.' },
+    ] : [
       { q: 'Did WaterCheckup test these systems?', a: 'No hands-on or laboratory testing is claimed here. This comparison uses the linked official documents and explicitly stated cost assumptions.' },
       { q: 'Does an NSF standard number prove every reduction claim?', a: 'No. Match the exact model and cartridge to the listed contaminant claim, operating limits and replacement schedule.' },
     ],
