@@ -1,3 +1,5 @@
+import { BlogNextSteps } from '@/components/BlogNextSteps';
+import { articleNextSteps } from '@/lib/blog-next-steps';
 import { BlogCommercialComparison } from '@/components/BlogCommercialComparison';
 import { COMMERCIAL_GUIDES } from '../commercial-guide-data';
 import type { Metadata } from 'next';
@@ -70,6 +72,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
   const post = POSTS[params.slug];
   if (!post) notFound();
 
+  const nextSteps = articleNextSteps(params.slug);
   const topPicks = resolveBlogTopPicks(params.slug, post.topPicks, post.badge);
   const topPicksSubtitle = getTopPicksSubtitle(params.slug, topPicks);
 
@@ -172,14 +175,14 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
               btn: 'Find my supplier report →',
             },
             'what-water-filter-removes-pfas': {
-              headline: 'Is PFAS in your tap water?',
-              sub: 'Free ZIP report — UCMR5 PFAS data and filter picks for your utility.',
+              headline: 'Check available supplier PFAS records',
+              sub: 'Historical monitoring provides context. Check source dates and coverage; supplier records do not measure your tap.',
               href: '/',
               btn: 'Check PFAS in my ZIP →',
             },
           };
           const cta = ctaBySlug[params.slug] ?? {
-            headline: 'Is your water affected?',
+            headline: 'Check your supplier’s water records',
             sub: 'Find available supplier records by ZIP. Dataset dates and coverage are shown in the report.',
             href: '/',
             btn: 'Check My ZIP →',
@@ -201,7 +204,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           {post.content}
         </div>
 
-        {!COMMERCIAL_GUIDES[params.slug] && <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} />}
+        {nextSteps ? <BlogNextSteps slug={params.slug} guidance={nextSteps} /> : !COMMERCIAL_GUIDES[params.slug] ? <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} /> : null}
 
         {(params.slug === 'best-water-filter-for-lead-removal' ||
           params.slug === 'what-water-filter-removes-pfas') && (
@@ -240,18 +243,18 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           </div>
         </div>
 
-        <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 32, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+        {!nextSteps && <div className="wc-reading-inset wc-reading-inset--accent" style={{ marginTop: 32, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
           <div>
             <div className="wc-reading-inset__label" style={{ color: '#0369a1' }}>NOT SURE WHICH FILTER?</div>
             <div className="wc-reading-inset__title">Take the 3-question filter quiz</div>
             <p className="wc-reading-inset__text" style={{ marginTop: 8, marginBottom: 0 }}>
-              Match a certified filter to your water source, concern, and home situation.
+              Compare options for your water source, concern, and installation needs.
             </p>
           </div>
           <Link prefetch href="/quiz" className="wc-reading-cta__btn">
-            Find My Filter →
+            Help me choose a filter →
           </Link>
-        </div>
+        </div>}
 
         <div className="wc-reading-inset" style={{ marginTop: 72 }}>
           <div className="wc-reading-inset__label">CHECK YOUR CITY&apos;S WATER</div>

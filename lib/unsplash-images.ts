@@ -60,7 +60,8 @@ function hashSlug(slug: string): number {
 export function getBlogFeaturedImageUrl(slug: string, badge?: string): string {
   if (['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water'].includes(slug)) return '/watersplashingintoglass.jpg';
   const path = (badge && BLOG_BY_BADGE[badge]) || BLOG_IMAGE_POOL[hashSlug(slug) % BLOG_IMAGE_POOL.length];
-  // Retired image returned 404 for filter/RO guides; use the existing local water photograph.
-  if (path === 'photo-1614027683568-74cbf27a2abf') return '/watersplashingintoglass.jpg';
+  // Retired remote images returned 404; keep article visuals available from local photographs.
+  if (path === 'photo-1507666664345-c49223375aca') return '/lookingdownwell.jpg';
+  if (['photo-1614027683568-74cbf27a2abf', 'photo-1473771396169-704ce5480010'].includes(path)) return '/watersplashingintoglass.jpg';
   return unsplash(path, 800, 400);
 }

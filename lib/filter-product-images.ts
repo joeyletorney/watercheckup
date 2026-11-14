@@ -3,7 +3,7 @@ import { AMAZON_ASIN_REMAP, normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 
 /** Amazon ASIN → product image (same URLs as homepage catalog). */
 const IMG_BY_ASIN: Record<string, string> = {
-  B07P1XFYJP: 'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p600-vis.png?v=1762268602',
+  B07P1XFYJP: 'https://www.waterdropfilter.com/cdn/shop/files/ui-wd-g3p600-product_1.png?v=1762269464',
   B0CHZ8VQBB:
     'https://www.aquasana.com/dw/image/v2/BDTV_PRD/on/demandware.static/-/Sites-aquasana-master-catalog/default/dw8d7d3aab/images/large/AQ-SFRO2-CHR.png?sw=400&sh=400',
   B0GGTSFZMY:
