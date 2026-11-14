@@ -17,7 +17,7 @@ export default function HomeLanding() {
       <div className="wc-home-simple-intro">
         <h1 id="wc-home-heading">What’s in your local water?</h1>
         <p>Free water report by ZIP or city. No signup.</p>
-        <Link href="/about" className="wc-founder-intro" aria-label="Meet Joe Letorney - Water Expert, with 30 years in water treatment">
+        <Link href="/about" className="wc-founder-intro">
           <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
           <span><strong>Guidance from Joe Letorney - Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
         </Link>
