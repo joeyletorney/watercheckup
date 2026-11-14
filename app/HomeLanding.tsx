@@ -19,7 +19,7 @@ export default function HomeLanding() {
         <p>Free water report by ZIP or city. No signup.</p>
         <Link href="/about" className="wc-founder-intro">
           <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
-          <span><strong>Guidance from Joe Letorney - Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
+          <span><strong>Recommendations from Joe Letorney — Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
         </Link>
       </div>
       <WaterSearch />
@@ -28,7 +28,7 @@ export default function HomeLanding() {
       <div className="wc-home-shortcuts">
         <section className="wc-home-expert" aria-labelledby="wc-home-expert-heading">
           <Image src="/joe-letorney.jpeg" alt="Joe Letorney, founder of WaterCheckup" width={96} height={96} style={{ borderRadius: '50%', objectFit: 'cover' }} />
-          <div><h2 id="wc-home-expert-heading">Guidance from Joe Letorney - Water Expert</h2><p>30 years in water treatment · Former WQA Certified Water Treatment Specialist, Level VI. Compare published model evidence and practical installation needs.</p><Link href="/about">Meet Joe →</Link> · <Link href="/methodology">How we use water records →</Link></div>
+          <div><h2 id="wc-home-expert-heading">Recommendations from Joe Letorney — Water Expert</h2><p>30 years in water treatment · Former WQA Certified Water Treatment Specialist, Level VI. Compare published model evidence and practical installation needs.</p><Link href="/about">Meet Joe →</Link> · <Link href="/methodology">How we use water records →</Link></div>
         </section>
         <section aria-labelledby="wc-home-guides-heading"><h2 id="wc-home-guides-heading">Need help deciding?</h2><div className="wc-home-guide-links">
           <Link href="/blog/best-water-filter-for-lead-removal">Filters for lead concerns →</Link>
