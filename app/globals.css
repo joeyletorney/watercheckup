@@ -2662,3 +2662,5 @@ button.wc-nav-badge-nsf:focus-visible {
 
 .wc-reading-inset__label { color:#475569; }
 .wc-reading-breadcrumb a { text-decoration:underline; text-underline-offset:3px; }
+
+.wc-cost-tool :is(input,select,button):disabled { opacity:.65; cursor:wait; }
