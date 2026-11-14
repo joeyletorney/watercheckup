@@ -1,4 +1,9 @@
 export const GUIDE_STARTING_POINTS: Record<string, { label: string; detail: string }[]> = {
+  'best-water-filter-pitcher-2025': [
+    { label: 'I want a lead-reduction starting point', detail: 'Check Brita Elite OB06 and a compatible pitcher.' },
+    { label: 'I am comparing broad lab-test claims', detail: 'Separate Clearly Filtered’s certification sheet from its additional tests.' },
+    { label: 'I want to reduce dissolved solids', detail: 'Compare ZeroWater and understand what the TDS meter measures.' },
+  ],
   'best-water-filter-for-lead-removal': [
     { label: 'I want a pitcher', detail: 'Compare a compatible cartridge with a specific lead-reduction claim.' },
     { label: 'I am considering countertop RO', detail: 'Review its model evidence, feed-water limits and ongoing costs.' },

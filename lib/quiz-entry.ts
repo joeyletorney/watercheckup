@@ -1,4 +1,4 @@
-const GUIDE_SLUGS = new Set(['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water']);
+const GUIDE_SLUGS = new Set(['best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water', 'best-water-filter-pitcher-2025']);
 const ENTRY_POINTS = new Set(['results', 'historical-report', 'water-city', 'buying-guide']);
 
 /** Only controlled context values enter analytics; never forward arbitrary query-string content. */
