@@ -126,12 +126,12 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     title: 'Best Under-Sink Water Filters 2026: What Actually Works',
     excerpt: 'Under-sink filters range from $126 carbon filters to $439 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
     seo: {
-      title: 'Best Under-Sink Water Filters 2026: Tested & Ranked',
-      description: 'Not all under-sink filters are equal. We ranked the best by NSF certifications and actual contaminant removal — from budget carbon filters to full reverse osmosis systems for PFAS, lead, and arsenic.',
+      title: 'Under-Sink Water Filters 2026 | Carbon vs. Reverse Osmosis',
+      description: 'Compare under-sink carbon filters and reverse osmosis systems by model claims, installation needs and upkeep.',
       canonical: 'https://watercheckup.com/blog/best-under-sink-water-filter',
       openGraph: {
-        title: 'Best Under-Sink Water Filters 2026: Tested & Ranked',
-        description: 'Not all under-sink filters are equal. Ranked by NSF certifications and actual contaminant removal — PFAS, lead, arsenic, and more.',
+        title: 'Under-Sink Water Filters 2026 | Carbon vs. Reverse Osmosis',
+        description: 'Compare under-sink carbon filters and reverse osmosis systems by model claims, installation needs and upkeep.',
       },
     },
     date: '2026-06-01',

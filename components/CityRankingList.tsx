@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 export type CityRankingListItem = {
+  rank?: number;
   slug: string;
   name: string;
   state: string;
@@ -21,7 +22,7 @@ export function CityRankingList({ items, startRank = 1, highlightTop = 5 }: Prop
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 64, marginBottom: 64 }}>
       {items.map((item, i) => {
-        const rank = startRank + i;
+        const rank = item.rank ?? startRank + i;
         const color = item.badgeColor ?? '#94a3b8';
         const isTop = i < highlightTop;
         return (

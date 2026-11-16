@@ -28,7 +28,7 @@ export function HomeFilterShop({ categories }: { categories: HomeShoppingCategor
           <div className="wc-shop-product-info"><p className="wc-shop-fit"><strong>Good for:</strong> {pick.fit}</p><h3>{product.name}</h3></div>
           <dl className="wc-shop-decision"><div><dt>Why consider it</dt><dd>{pick.advantage}</dd></div><div><dt>Main trade-off</dt><dd>{pick.tradeoff}</dd></div><div><dt>Replacement upkeep</dt><dd>{pick.upkeep}</dd></div></dl>
           <AffiliateLink href={product.amazon} target="_blank" rel="sponsored noopener noreferrer" product={product.name} brand={product.brand} destination="amazon" page="home-shop" className="wc-shop-buy" aria-label={`Check current price on Amazon for ${product.name}`}>Check current price on Amazon →</AffiliateLink>
-          <details><summary>Evidence and ongoing costs</summary><p>{pick.limits}</p><a href={pick.evidenceUrl} target="_blank" rel="noopener noreferrer">Manufacturer specifications →</a><p><Link href={category.guide}>Compare evidence and maintenance →</Link></p></details>
+          <details><summary>Evidence and ongoing costs</summary><p>{pick.limits}</p><a href={pick.evidenceUrl} target="_blank" rel="noopener noreferrer">Manufacturer specifications →</a><p><Link href={pick.guide ?? category.guide}>Compare evidence and maintenance →</Link></p></details>
         </article>;
       })}
     </div>

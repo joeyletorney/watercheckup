@@ -41,11 +41,13 @@ export default async function BestCitiesPage() {
             </Link>
             .
           </p>
+          <p>Equal scores share a rank. Cities with the same score appear alphabetically. The concern label summarizes a topic in the city guide and may reflect information outside the score.</p>
           <ScoreGradeDisclaimer />
         </div>
 
         <CityRankingList
           items={cities.map((c) => ({
+            rank: cities.findIndex(city => city.score === c.score) + 1,
             slug: c.slug,
             name: c.name,
             state: c.state,
@@ -55,7 +57,7 @@ export default async function BestCitiesPage() {
             rightLabel: `${c.score}/88`,
             rightColor: c.gradeColor,
           }))}
-          highlightTop={3}
+          highlightTop={0}
         />
 
         <RankingRelatedLinks

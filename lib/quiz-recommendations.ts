@@ -32,13 +32,24 @@ export function getQuizRecommendation(answers: Record<string, string>): QuizReco
     why: `Use a certified laboratory to identify the actual issue, including bacteria and nitrate testing. ${renter ? 'Ask the property owner for recent results and keep any eventual equipment free of plumbing changes.' : 'Size any sediment, iron, hardness or disinfection treatment from the results and household flow.'} Do not use these drinking-water devices on microbiologically unsafe or unknown-quality water without appropriate disinfection.`,
     alts: [],
   };
-  const primary = renter ? (answers.concern === 'taste' ? pitcher : countertop) : undersink;
-  const alternative = renter ? (primary === pitcher ? countertop : pitcher) : countertop;
+  if (wholeHome) return {
+    title: 'Plan treatment where water enters your home', badge: 'WHOLE HOME + KITCHEN', badgeColor: '#166534',
+    tagline: 'Choose the whole-home treatment first, then decide whether your kitchen needs its own filter.',
+    why: ({
+      taste: 'If the taste is noticeable only in a drinking glass, start with a kitchen pitcher. For chlorine odor at several taps, compare entry carbon systems sized for household peak flow.',
+      lead: 'Lead can enter water from downstream plumbing. Check your service line and kitchen tap before choosing a filter with a documented lead-reduction claim for drinking and cooking.',
+      pfas: 'Identify the compounds reported by your supplier. For whole-home treatment, ask for evidence covering those compounds at your household flow and a replacement schedule.',
+      general: 'Identify the issue at several taps before requesting an installation quote. Measure hardness for scale and compare systems at your household peak flow.',
+    } as Record<string, string>)[answers.concern] ?? 'Identify your treatment goal and household peak flow before comparing systems.',
+    alts: [],
+  };
+  const primary = answers.concern === 'taste' ? pitcher : renter ? countertop : undersink;
+  const alternative = primary === countertop ? pitcher : countertop;
   const concern = answers.concern === 'lead' ? 'lead reduction' : answers.concern === 'pfas' ? 'PFAS reduction' : answers.concern === 'taste' ? 'taste and odor' : 'your specific concern';
   return {
     title: primary.product, badge: renter ? 'NO PLUMBING' : 'KITCHEN OPTION', badgeColor: '#0891b2',
-    tagline: renter ? 'One primary option and one alternative that need no plumbing changes.' : 'A kitchen option, with a no-plumbing alternative.',
-    why: `For ${concern}, verify the exact model and replacement cartridge’s listed claim; a standard number alone does not establish every contaminant reduction. ${wholeHome ? 'A kitchen unit treats drinking and cooking water only. Whole-home treatment is a separate decision: confirm hardness, flow and the issue at entry before buying. Entry carbon will not fix lead introduced by downstream plumbing or soften hard water.' : 'This is a fit comparison based on your answers, not evidence that your tap is contaminated.'}`,
+    tagline: primary === pitcher ? 'Start with a pitcher for taste and odor. Compare countertop RO if you also need its documented reduction claims.' : renter ? 'One primary option and one alternative that need no plumbing changes.' : 'A kitchen option, with a no-plumbing alternative.',
+    why: `For ${concern}, verify the exact model and replacement cartridge’s listed claim; a standard number alone does not establish every contaminant reduction. Verify your concern before buying.`,
     alts: [primary, alternative],
   };
 }

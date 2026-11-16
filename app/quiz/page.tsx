@@ -256,6 +256,12 @@ export default function QuizPage() {
                 <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>{rec.why}</p>
               </div>
 
+              {answers.source === 'city' && answers.situation === 'owner_full' && (
+                <p style={{ lineHeight: 1.7, marginBottom: 20 }}>
+                  <Link href="/blog/best-whole-house-water-filter" style={{ color: '#67e8f9' }}>Compare whole-home treatment options →</Link>
+                  {' · '}<Link href="/blog/best-countertop-water-filter" style={{ color: '#67e8f9' }}>Compare separate kitchen options →</Link>
+                </p>
+              )}
               {answers.source === 'well' && <p style={{ lineHeight: 1.7, marginBottom: 20 }}><Link href="/well" style={{ color: '#67e8f9' }}>Read the well-water testing and treatment guide →</Link></p>}
               <p style={{ fontSize: 13, lineHeight: 1.7, marginBottom: 18 }}><a href="https://www.nsf.org/consumer-resources/articles/standards-water-treatment-systems" target="_blank" rel="noopener noreferrer" style={{ color: '#67e8f9' }}>How to check the exact certified claim</a> · <a href="https://support.aquatru.com/hc/en-us/articles/360045853654-Where-can-I-see-AquaTru-s-certified-test-results" target="_blank" rel="noopener noreferrer" style={{ color: '#67e8f9' }}>AquaTru model performance sheets</a></p>
               {/* Product results */}

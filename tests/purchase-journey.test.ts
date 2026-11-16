@@ -12,6 +12,13 @@ test('all 24 quiz paths respect installation limits and give one coherent primar
       if (situation === 'renter') assert.match(rec.why, /free of plumbing changes/);
       continue;
     }
+    if (situation === 'owner_full') {
+      assert.equal(rec.badge, 'WHOLE HOME + KITCHEN');
+      assert.equal(rec.alts.length, 0);
+      if (concern === 'lead') assert.match(rec.why, /downstream plumbing/);
+      continue;
+    }
+    if (concern === 'taste') assert.match(rec.title, /Pitcher/);
     assert.equal(rec.title, rec.alts[0].product);
     assert.equal(rec.alts.length, 2);
     assert.equal(new Set(rec.alts.map(p => p.product)).size, 2);
@@ -21,7 +28,6 @@ test('all 24 quiz paths respect installation limits and give one coherent primar
       assert.equal(new URL(pick.amazon).searchParams.get('tag'), 'watercheckup-20');
       if (situation === 'renter') assert.doesNotMatch(pick.product, /Under-Sink|G3P600/);
     }
-    if (situation === 'owner_full') assert.match(rec.why, /downstream plumbing/);
   }
 });
 
