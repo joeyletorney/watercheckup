@@ -16,6 +16,22 @@ export function HomeFilterShop({ categories }: { categories: HomeShoppingCategor
   const category = categories.find(c => c.id === categoryId)!;
   return <section id="find-a-filter" className="wc-shop" aria-labelledby="wc-shop-heading">
     <div className="wc-shop-heading-row"><div><p className="wc-home-section-eyebrow">FIND A FILTER</p><h2 id="wc-shop-heading">Choose what fits your home</h2><p>Start with installation, then check the exact model’s reduction claims for your concern.</p></div><Link href="/quiz" className="wc-shop-quiz">Help me choose: 3-question quiz →</Link></div>
+    <figure style={{ margin: '1rem 0', maxWidth: 480 }}>
+      <figcaption style={{ marginBottom: 8, fontWeight: 700 }}>Don’t buy a water filter yet · 25 seconds</figcaption>
+      <video
+        aria-label="Joe Letorney on choosing a water filter"
+        controls
+        playsInline
+        preload="none"
+        poster="/media/filter-guide.jpg"
+        width={960}
+        height={540}
+        style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 12 }}
+      >
+        <source src="/media/filter-guide.mp4" type="video/mp4" />
+        <a href="/media/filter-guide.mp4">Watch the filter guide</a>
+      </video>
+    </figure>
     <div className="wc-shop-choices" role="group" aria-label="Filter installation options">{categories.map(c => <button key={c.id} type="button" aria-pressed={c.id === categoryId} aria-controls="wc-shop-products" onClick={() => setCategoryId(c.id)}>{c.label}</button>)}</div>
     <p className="wc-shop-category-note">{category.description} <Link href={category.guide}>Read the buying guide →</Link></p>
     <p className="wc-shop-disclosure">As an Amazon Associate I earn from qualifying purchases. Check current prices, model and availability on Amazon.</p>
