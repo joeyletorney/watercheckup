@@ -15,6 +15,7 @@ import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
 import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
+import { PitcherCartridgeVideo } from '@/components/PitcherCartridgeVideo';
 
 // export async function generateStaticParams() {
 //   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -162,6 +163,8 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           </p>
           <p className="wc-reading-excerpt">{post.excerpt}</p>
         </header>
+
+        {params.slug === 'best-water-filter-pitcher-2025' && <PitcherCartridgeVideo />}
 
         {/* Check ZIP CTA — top (slug-specific copy for high-impression posts) */}
         <BlogCommercialComparison slug={params.slug} />
