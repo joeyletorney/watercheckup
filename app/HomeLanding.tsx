@@ -19,7 +19,7 @@ export default function HomeLanding() {
         <p>Free water report by ZIP or city. No signup.</p>
         <Link href="/about" className="wc-founder-intro">
           <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
-          <span><strong>Recommendations from Joe Letorney — Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
+          <span><strong>Recommendations from a real Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
         </Link>
       </div>
       <WaterSearch />
