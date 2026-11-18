@@ -18,12 +18,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { state, city } = await params;
   const row = getCityByStateAndCitySlug(state, city);
-  if (!row) return { title: 'Water quality | WaterCheckup' };
+  if (!row) return { title: 'Water quality' };
   const { data: cd } = row;
   const top = cd.issues[0] ?? 'Tap water quality';
   const primaryUrl = `https://watercheckup.com/water/${row.slug}`;
   return {
-    title: `${cd.name}, ${cd.state} Water Summary | WaterCheckup`,
+    title: `${cd.name}, ${cd.state} Water Summary`,
     description: `${cd.name} (${cd.state}): ${top}. Public water system ${cd.system}. EPA PWSID ${cd.pwsid}. Open the full report for PFAS data and filter picks.`,
     alternates: {
       canonical: primaryUrl,

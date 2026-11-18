@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: 'Data Sources & Methodology | WaterCheckup',
+  title: 'Data Sources & Methodology',
   description:
     'How WaterCheckup combines EPA SDWIS, UCMR5 PFAS monitoring, Lead & Copper Rule sampling, EPA enforcement data, and EWG health guidelines into a plain-language ZIP-level water quality report.',
   alternates: { canonical: 'https://watercheckup.com/methodology' },
   openGraph: {
-    title: 'Data Sources & Methodology | WaterCheckup',
+    title: 'Data Sources & Methodology',
     description: 'A full breakdown of the 5 EPA datasets WaterCheckup uses to generate water quality reports — including how the score is calculated and what it does and does not mean.',
   },
 };

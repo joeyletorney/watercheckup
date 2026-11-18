@@ -7,7 +7,7 @@ import { Ccr2027CountdownBanner } from '@/components/Ccr2027CountdownBanner';
 import ClaimUtilitiesForm from './ClaimUtilitiesForm';
 
 export const metadata: Metadata = {
-  title: 'Publish Your 2027-Compliant CCR Free | WaterCheckup',
+  title: 'Publish Your 2027-Compliant CCR Free',
   description:
     'Meet the EPA direct URL CCR delivery requirement before January 1, 2027. Free CCR publishing for community water systems — permanent URL, no credit card.',
   alternates: { canonical: 'https://watercheckup.com/utilities/claim' },

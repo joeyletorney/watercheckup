@@ -3,7 +3,7 @@ import { SiteHeader } from '../../../components/SiteHeader';
 import { EpaIframeShell } from '../../components/EpaIframeShell';
 
 export const metadata: Metadata = {
-  title: 'EPA federal water system record | WaterCheckup',
+  title: 'EPA federal water system record',
   robots: { index: false, follow: false },
   alternates: { canonical: 'https://watercheckup.com/epa/sdwis' },
 };

@@ -1,11 +1,9 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POST_SLUGS, HIGH_PRIORITY_BLOG_SLUGS } from '@/lib/blog-post-slugs'
-import { TOP_RESULT_ZIPS } from './results/top-result-zips'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
-import { getSitemapUtilityParams } from '@/lib/utilities-data'
 import { SITE_ORIGIN } from '@/lib/site-url'
 
-/** Full public water system + ZIP lists exceed Vercel ISR body limits (~19 MB); sitemap stays a curated subset. */
+/** Core + city + state + blog only. ZIP result pages and /utilities stay out of the index on purpose. */
 
 export const dynamic = 'force-static'
 export const revalidate = 86400
@@ -63,7 +61,6 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { path: '/pfas',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/rankings',     priority: 0.9,  changeFreq: 'weekly'  as const },
-    { path: '/utilities/claim', priority: 0.6, changeFreq: 'monthly' as const },
     { path: '/water-hardness', priority: 0.7, changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${base}${p.path}`,
@@ -95,32 +92,11 @@ function buildSitemap(): MetadataRoute.Sitemap {
     }
   })
 
-  const utilParams = getSitemapUtilityParams()
-  const utilityEntries: MetadataRoute.Sitemap = utilParams.map(({ state, slug }) => ({
-    url: `${base}/utilities/${state}/${slug}`,
-    changeFrequency: 'monthly' as const,
-    priority: 0.45,
-  }))
-  const utilStateSet = new Set(utilParams.map((u) => u.state))
-  for (const st of Array.from(utilStateSet)) {
-    utilityEntries.push({
-      url: `${base}/utilities/${st}`,
-        changeFrequency: 'monthly' as const,
-      priority: 0.45,
-    })
-  }
-  utilityEntries.push({
-    url: `${base}/utilities`,
-    changeFrequency: 'monthly' as const,
-    priority: 0.5,
-  })
-
   const merged: MetadataRoute.Sitemap = [
     ...staticEntries,
     ...blogPostEntries,
     ...stateEntries,
     ...cityEntries,
-    ...utilityEntries,
   ]
 
   const pinned: MetadataRoute.Sitemap = [

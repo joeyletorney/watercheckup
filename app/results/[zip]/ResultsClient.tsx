@@ -9,6 +9,7 @@ import { resolveProductBuyLink } from '@/lib/product-buy-url';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 import { getPfasCoverageNotice } from '@/lib/pfas-monitoring';
 import { ReportNextSteps } from '@/components/ReportNextSteps';
+import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import type { ReportCityLink } from '@/lib/report-city-link.server';
 
 const TAG = 'watercheckup-20';
@@ -282,36 +283,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
     );
   }
 
-  if (data.violationCoverage === 'unavailable') {
-    return (
-      <div style={{ maxWidth: 900, margin: '48px auto', padding: '0 24px', color: '#e2e8f0' }}>
-        <h1 style={{ fontSize: 30, fontWeight: 800 }}>Water report for ZIP {zip}</h1>
-        <p style={{ margin: '12px 0' }}>{data.systemName} · {data.pwsid}</p>
-        <section aria-label="Data availability" style={{ padding: 24, border: '1px solid #f59e0b', borderRadius: 12, margin: '24px 0' }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700 }}>Historical records available; current compliance unverified</h2>
-          <details style={{ margin: '12px 0' }}><summary>Source notes and report summary</summary><p style={{ marginTop: 8 }}>{data.summary}</p></details>
-          <p>No safety grade or violation count is shown while current EPA records are unavailable. This report describes the listed supplier, not a test of your tap.</p>
-          <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ marginTop: 20, cursor: retrying ? 'wait' : 'pointer', opacity: retrying ? 0.7 : 1, padding: '12px 20px', background: '#155e75', color: '#fff', borderRadius: 8 }}>{retrying ? 'Checking EPA records…' : 'Retry current records'}</button>
-          {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
-        </section>
-        <ReportNextSteps zip={zip} historicalOnly supplierReportHref={data.dataFreshness?.links?.ccr} />
-        <h2 style={{ fontSize: 22, fontWeight: 700 }}>Available measurements</h2>
-        <p style={{ margin: '12px 0' }}>PFAS snapshot: {data.dataFreshness.ucmr5SnapshotLabel}. Collection dates vary by sample. Other historical measurements show dates in their notes when available; an absent date means the sample date is unavailable. These are not current readings.</p>
-        {data.contaminants?.length ? data.contaminants.map((c: any, i: number) => (
-          <section key={`${c.name}-${i}`} style={{ padding: '16px 0', borderBottom: '1px solid #334155' }}>
-            <h3 style={{ fontWeight: 700 }}>{c.name}: {formatLevelVal(c.level)} {c.unit}</h3>
-            <p>{c.source || 'Historical supplier record'}</p>
-            <p style={{ color: '#cbd5e1' }}>{c.note || 'Sample date unavailable.'}</p>
-          </section>
-        )) : <p>No historical measurements are available for this supplier in our stored datasets.</p>}
-        <p style={{ margin: '24px 0' }}>For the latest information, check your supplier’s Consumer Confidence Report and official EPA records.</p>
-        <p><a href={data.dataFreshness.links.ccr} style={{ color: '#67e8f9' }}>Find your supplier’s water quality report</a></p>
-        <p style={{ margin: '16px 0' }}><a href={data.dataFreshness.links.sdwis} style={{ color: '#67e8f9' }}>Official EPA drinking water records</a></p>
-        <Link href="/" style={{ color: '#67e8f9' }}>Check another ZIP</Link>
-      </div>
-    );
-  }
-
+  const liveViolationsDown = data.violationCoverage !== 'available';
   const cappedScore = CAP_SCORE(data.score);
   const sc = data.scoreColor || SCORE_COLOR(cappedScore);
   const letterGrade = data.grade || '—';
@@ -387,8 +359,8 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flexShrink: 0 }}>
             {[
-              { label: 'Open Violations', value: data.openViolations, color: data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
-              { label: 'Total Violations', value: data.totalViolations, color: '#cbd5e1' },
+              { label: 'Open Violations', value: data.violationCoverage === 'unavailable' ? '—' : data.openViolations, color: data.openViolations > 0 ? '#ef4444' : '#22d3ee' },
+              { label: 'Total Violations', value: data.violationCoverage === 'unavailable' ? '—' : data.totalViolations, color: '#cbd5e1' },
               { label: 'PFAS Detected', value: data.pfasCoverage === 'available' ? data.pfasCount : '—', color: data.pfasCoverage !== 'available' ? '#94a3b8' : data.pfasCount > 0 ? '#f59e0b' : '#22d3ee' },
             ].map(({ label, value, color }) => (
               <div key={label} style={{ textAlign: 'center', padding: '8px 16px', background: '#0d2240', borderRadius: 8 }}>
@@ -399,7 +371,24 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
           </div>
         </div>
 
-        <ReportNextSteps zip={zip} historicalOnly={false} supplierReportHref={data.dataFreshness?.links?.ccr} />
+        {liveViolationsDown && (
+          <section aria-label="Data availability" style={{ padding: 20, border: '1px solid #f59e0b', borderRadius: 12, marginBottom: 20 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 8px' }}>
+              {data.violationCoverage === 'cached'
+                ? 'Showing last successful EPA violation records'
+                : 'Historical records available; current compliance unverified'}
+            </h2>
+            <p style={{ margin: 0, color: '#cbd5e1', lineHeight: 1.6 }}>
+              {data.violationCoverage === 'cached'
+                ? 'A live EPA refresh was unavailable, so this grade uses the last successful violation pull plus packaged UCMR5 and sample data. Confirm current compliance with your supplier. This is not a tap test.'
+                : 'Current EPA violation records could not be loaded. The grade below uses historical UCMR5 and packaged samples and does not establish current compliance. This report describes the listed supplier, not a test of your tap.'}
+            </p>
+            <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ marginTop: 16, cursor: retrying ? 'wait' : 'pointer', opacity: retrying ? 0.7 : 1, padding: '10px 16px', background: '#155e75', color: '#fff', borderRadius: 8, border: 0 }}>{retrying ? 'Checking EPA records…' : 'Retry current records'}</button>
+            {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
+          </section>
+        )}
+
+        <ReportNextSteps zip={zip} historicalOnly={liveViolationsDown} supplierReportHref={data.dataFreshness?.links?.ccr} />
 
         {/* Quick share */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
@@ -552,6 +541,9 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
           </div>
 
           {/* Contaminants */}
+          {liveViolationsDown && (
+            <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 12px' }}>Available measurements</h2>
+          )}
           {data.contaminants?.length > 0 && (
             <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 4 }}>CONTAMINANTS DETECTED</div>
@@ -586,7 +578,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
           <div style={{ padding: '14px 18px', background: '#040d14', border: '1px solid #0f2336', borderRadius: 10, marginBottom: 20 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 8 }}>DATA SOURCES</div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {(data.dataSources || [data.dataSource]).map((s: string) => (
+              {(data.dataSources || [data.dataSource]).filter(Boolean).map((s: string) => (
                 <span key={s} style={{ fontSize: 13, fontWeight: 600, padding: '3px 9px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 6, color: '#0891b2' }}>{s}</span>
               ))}
             </div>
@@ -662,6 +654,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
             return (
               <div style={{ marginBottom: 20 }}>
                 <FilterRecommendationsBanner />
+                <AffiliateDisclosure />
                 <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '2px solid rgba(8,145,178,0.35)', borderRadius: 12 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RECOMMENDED FOR YOUR WATER</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -824,7 +817,9 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
         <div>
           <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>EPA VIOLATION HISTORY</div>
-            {!data.violations?.length ? (
+            {data.violationCoverage === 'unavailable' ? (
+              <p style={{ fontSize: 14, color: '#fbbf24', margin: 0 }}>Current EPA violation records could not be loaded. Historical measurements and the safety grade still use packaged UCMR5 and sample data.</p>
+            ) : !data.violations?.length ? (
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <span style={{ fontSize: 24 }}>✅</span>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#22d3ee' }}>No violations on record</div>
@@ -858,6 +853,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
       {tab === 'filters' && (
         <div>
           <FilterRecommendationsBanner style={{ marginBottom: 20 }} />
+          <AffiliateDisclosure />
           <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 16, lineHeight: 1.6 }}>
             Based on <strong style={{ color: '#e2e8f0' }}>{data.city?.split(',')[0]}</strong>'s water profile — {data.pfasCount > 0 ? 'PFAS detected, ' : ''}{data.openViolations > 0 ? `${data.openViolations} open violations, ` : ''}score {cappedScore}/88 — here are the right filters for your home.
           </p>

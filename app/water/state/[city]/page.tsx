@@ -133,7 +133,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   const { city: stateSlug } = await params;
   const stateAbbr = SLUG_TO_STATE[stateSlug];
   const stateName = stateAbbr ? STATE_NAMES[stateAbbr] : null;
-  if (!stateName) return { title: 'Water Quality | WaterCheckup' };
+  if (!stateName) return { title: 'Water Quality' };
   const rows = buildStateRows(stateAbbr);
   const atRisk = rows.filter((r) => r.band === 'at_risk').length;
   const topChem = topContaminantsInState(rows, 1)[0];
@@ -142,7 +142,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
       ? ` Common analytes include ${topChem.name} (${topChem.cityCount} cities).`
       : ' ';
   return {
-    title: `${stateName} Tap Water Quality — PFAS by City, Grades & EPA UCMR5 | WaterCheckup`,
+    title: `${stateName} Tap Water Quality — PFAS by City, Grades & EPA UCMR5`,
     description: `${stateName} tap water: ${rows.length} city reports, ${atRisk} at elevated risk (EPA limits / UCMR5). Grades, contaminants above guidelines, and filter guidance.${descExtra}`,
     alternates: { canonical: `https://watercheckup.com/water/state/${stateSlug}` },
   };

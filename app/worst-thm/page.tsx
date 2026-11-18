@@ -4,7 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'Cities with the Highest THM & Disinfection Byproduct Risk | WaterCheckup',
+  title: 'Cities with the Highest THM & Disinfection Byproduct Risk',
   description:
     'US cities where trihalomethanes (THMs), haloacetic acids, or disinfection byproducts show up in our water-quality profiles — editorial ranking by urgency tier, with filter guidance.',
   alternates: { canonical: 'https://watercheckup.com/worst-thm' },

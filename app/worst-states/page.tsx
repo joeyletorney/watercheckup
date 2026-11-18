@@ -4,7 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { buildWorstStatesRankings } from '@/lib/worst-states-rankings';
 
 export const metadata: Metadata = {
-  title: 'Worst States for Drinking Water Quality (2026 EPA Data) | WaterCheckup',
+  title: 'Worst States for Drinking Water Quality (2026 EPA Data)',
   description:
     'US states ranked by share of tracked cities with UCMR5 PFAS over EPA limits — same methodology as WaterCheckup state rankings. See which states have the worst drinking water.',
   alternates: { canonical: 'https://watercheckup.com/worst-states' },

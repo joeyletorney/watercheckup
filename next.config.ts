@@ -63,6 +63,18 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/',
+        has: [{ type: 'host' as const, value: 'www.watercheckup.com' }],
+        destination: 'https://watercheckup.com/',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host' as const, value: 'www.watercheckup.com' }],
+        destination: 'https://watercheckup.com/:path*',
+        permanent: true,
+      },
+      {
         source: '/blog/waterdrop-g3p800-vs-aquasana-smartflow',
         destination: '/blog/waterdrop-g3p600-vs-aquasana-smartflow',
         permanent: true,

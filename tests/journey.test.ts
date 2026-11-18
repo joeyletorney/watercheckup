@@ -33,7 +33,12 @@ test('city report links resolve only to curated supplier matches, never a slug g
   assert.equal(ny?.supplierId, 'NY7003493');
   assert.equal(resolveReportCityLink({ pwsid: 'UNKNOWN', zip: '00000', city: 'PO BOX 1562' }), undefined);
   const la = resolveReportCityLink({ pwsid: 'CA1910067', zip: '90012', city: 'LOS ANGELES' });
-  assert.notEqual(la?.href, '/water/los-angeles', 'do not cross into the legacy Los Angeles page anchored to a different supplier');
+  assert.equal(la?.href, '/water/los-angeles');
+  assert.equal(
+    resolveReportCityLink({ pwsid: 'CA1910156', zip: '90210', city: 'BEVERLY HILLS' })?.href,
+    undefined,
+    'Beverly Hills must not inherit the Los Angeles city page',
+  );
 });
 
 test('performance telemetry keeps metric units and the document entry path without query data', () => {

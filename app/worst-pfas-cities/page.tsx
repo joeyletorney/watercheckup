@@ -9,7 +9,7 @@ import {
 } from '@/lib/city-rankings';
 
 export const metadata: Metadata = {
-  title: '20 Worst Cities for PFAS — MCL Violations & Peak Readings (2026) | WaterCheckup',
+  title: '20 Worst Cities for PFAS — MCL Violations & Peak Readings (2026)',
   description:
     'US cities where EPA UCMR5 shows regulated PFAS over federal MCLs, plus cities with the highest unregulated PFAS peaks (e.g. 6:2 FTS). Links to free city reports.',
   alternates: { canonical: 'https://watercheckup.com/worst-pfas-cities' },

@@ -4,7 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 
 export const metadata: Metadata = {
-  title: 'Water Quality Rankings Hub — PFAS, Lead, Violations & More | WaterCheckup',
+  title: 'Water Quality Rankings Hub — PFAS, Lead, Violations & More',
   description:
     'All WaterCheckup data-backed rankings: Water Safety Score, PFAS MCL cities, lead risk, hardness, EPA violations, and state comparisons.',
   alternates: { canonical: 'https://watercheckup.com/worst' },

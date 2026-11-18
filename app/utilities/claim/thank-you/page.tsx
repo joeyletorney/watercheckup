@@ -5,7 +5,7 @@ import { SiteHeader } from '@/app/components/SiteHeader';
 import { stateLabel } from '@/lib/us-state-names';
 
 export const metadata: Metadata = {
-  title: 'Claim Received | WaterCheckup',
+  title: 'Claim Received',
   description: 'Your public water system CCR claim has been received. We will verify and set up your official listing within 2 business days.',
   robots: { index: false, follow: false },
 };

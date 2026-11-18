@@ -6,7 +6,7 @@ import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildCitiesWithPfoaAtEpaLimit } from '@/lib/city-rankings';
 
 export const metadata: Metadata = {
-  title: 'Cities Where PFOA Hit the EPA 4 ppt Limit — UCMR5 Data (2026) | WaterCheckup',
+  title: 'Cities Where PFOA Hit the EPA 4 ppt Limit — UCMR5 Data (2026)',
   description:
     'Tracked US cities where EPA UCMR5 found PFOA at or above the April 2024 benchmark of 4 ppt — from Sugar Land TX (4.1 ppt) to supplier-specific historical results. Free city reports.',
   alternates: { canonical: 'https://watercheckup.com/pfoa-at-epa-limit' },

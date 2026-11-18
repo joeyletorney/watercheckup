@@ -21,7 +21,7 @@ export const CITIES: Record<string, {
 }> = {
   'chicago': {
     name: 'Chicago', state: 'IL', zip: '60601', population: '2.7M',
-    system: 'Chicago Department of Water Management', pwsid: 'IL0310660',
+    system: 'Chicago Department of Water Management', pwsid: 'IL0316000',
     issues: ['Lead service lines', 'Chloramine disinfection byproducts', 'Legacy pipe infrastructure'],
     facts: [
       'Chicago has over 400,000 lead service lines -- among the most in any US city.',
@@ -35,10 +35,10 @@ export const CITIES: Record<string, {
   'los-angeles': {
     name: 'Los Angeles', state: 'CA', zip: '90001', population: '4M',
     system: 'Los Angeles Department of Water and Power', pwsid: 'CA1910067',
-    issues: ['Chromium-6 (hexavalent chromium)', 'PFAS in some districts', 'Drought-driven water blending'],
+    issues: ['Chromium-6 (hexavalent chromium)', 'Drought-driven water blending', 'Hard water / high TDS'],
     facts: [
       "LA's water has one of the highest chromium-6 levels of any major US city -- a known carcinogen.",
-      'Multiple LADWP water districts have detected PFAS above EPA health advisory levels.',
+      'This UCMR5 snapshot for LADWP (CA1910067) lists no reportable PFAS detections; chromium-6 and blending remain the documented concerns.',
       'Water is blended from the Colorado River and local groundwater -- quality varies by district.',
       'Only RO systems remove chromium-6 -- activated carbon does not.',
     ],
@@ -73,7 +73,7 @@ export const CITIES: Record<string, {
   },
   'phoenix': {
     name: 'Phoenix', state: 'AZ', zip: '85001', population: '1.6M',
-    system: 'Phoenix Water Services', pwsid: 'AZ0413012',
+    system: 'Phoenix Water Services', pwsid: 'AZ0407025',
     issues: ['High TDS / hard water', 'PFAS from military sites', 'Arsenic in groundwater'],
     facts: [
       'Phoenix water has some of the highest TDS of any major US city -- over 600 mg/L.',
@@ -99,7 +99,7 @@ export const CITIES: Record<string, {
   },
   'san-antonio': {
     name: 'San Antonio', state: 'TX', zip: '78201', population: '1.5M',
-    system: 'San Antonio Water System', pwsid: 'TX2150001',
+    system: 'San Antonio Water System', pwsid: 'TX0150018',
     issues: ['Hard water / high mineral content', 'Disinfection byproducts', 'Edwards Aquifer dependency'],
     facts: [
       'San Antonio draws from the Edwards Aquifer -- naturally hard water with high calcium and magnesium.',
@@ -122,7 +122,7 @@ export const CITIES: Record<string, {
   },
   'seattle': {
     name: 'Seattle', state: 'WA', zip: '98101', population: '750K',
-    system: 'Seattle Public Public water systems', pwsid: 'WA5303160',
+    system: 'Seattle Public Utilities', pwsid: 'WA5377050',
     issues: ['Naturally soft / corrosive water', 'Lead leaching from older pipes', 'Chloramine use'],
     facts: [
       "Seattle's source water from the Cedar and Tolt rivers is among the purest in the US.",
@@ -134,7 +134,7 @@ export const CITIES: Record<string, {
   },
   'denver': {
     name: 'Denver', state: 'CO', zip: '80201', population: '750K',
-    system: 'Denver Water', pwsid: 'CO0121900',
+    system: 'Denver Water', pwsid: 'CO0116001',
     issues: ['Lead service lines', 'Chloramine DBPs', 'Wildfire-impacted watershed'],
     facts: [
       'Denver Water is replacing lead service lines but thousands remain active in older neighborhoods.',
@@ -145,8 +145,8 @@ export const CITIES: Record<string, {
     urgency: 'medium',
   },
   'boston': {
-    name: 'Boston', state: 'MA', zip: '02101', population: '675K',
-    system: 'MWRA -- Boston Distribution', pwsid: 'MA4245000',
+    name: 'Boston', state: 'MA', zip: '02108', population: '675K',
+    system: 'Boston Water and Sewer Commission (MWRA)', pwsid: 'MA3035000',
     issues: ['Lead service lines in pre-1986 buildings', 'Disinfection byproducts', 'Corrosive soft water'],
     facts: [
       'MWRA source water from Quabbin Reservoir is one of the cleanest large water supplies in the US.',
@@ -170,7 +170,7 @@ export const CITIES: Record<string, {
   },
   'san-francisco': {
     name: 'San Francisco', state: 'CA', zip: '94102', population: '870K',
-    system: 'SF Public Public water systems Commission', pwsid: 'CA3700963',
+    system: 'San Francisco Public Utilities Commission', pwsid: 'CA3810011',
     issues: ['Chloramine disinfection byproducts', 'PFAS in some sources', 'Lead in building plumbing'],
     facts: [
       'SF water comes from Hetch Hetchy Reservoir in Yosemite -- one of the cleanest sources in the country.',
@@ -182,7 +182,7 @@ export const CITIES: Record<string, {
   },
   'detroit': {
     name: 'Detroit', state: 'MI', zip: '48201', population: '630K',
-    system: 'Great Lakes Water Authority', pwsid: 'MI0003342',
+    system: 'Great Lakes Water Authority / City of Detroit', pwsid: 'MI0001800',
     issues: ['Lead service lines', 'PFAS contamination', 'Industrial legacy pollution'],
     facts: [
       'Detroit has thousands of lead service lines -- the Flint crisis put the entire region on alert.',
@@ -206,7 +206,7 @@ export const CITIES: Record<string, {
   },
   'portland': {
     name: 'Portland', state: 'OR', zip: '97201', population: '650K',
-    system: 'Portland Water Bureau', pwsid: 'OR4191508',
+    system: 'Portland Water Bureau', pwsid: 'OR4100657',
     issues: ['Naturally corrosive water', 'Lead in older plumbing', 'Cryptosporidium risk in Bull Run'],
     facts: [
       "Portland's Bull Run watershed water is exceptionally clean -- among the best source water in any major US city.",
@@ -218,7 +218,7 @@ export const CITIES: Record<string, {
   },
   'las-vegas': {
     name: 'Las Vegas', state: 'NV', zip: '89101', population: '650K',
-    system: 'Las Vegas Valley Water District', pwsid: 'NV0000272',
+    system: 'Las Vegas Valley Water District', pwsid: 'NV0000090',
     issues: ['Extremely hard water', 'High TDS', 'Disinfection byproducts', 'Colorado River dependency'],
     facts: [
       'Las Vegas water is among the hardest in the US -- TDS commonly exceeds 600-800 mg/L.',
@@ -230,7 +230,7 @@ export const CITIES: Record<string, {
   },
   'nashville': {
     name: 'Nashville', state: 'TN', zip: '37201', population: '700K',
-    system: 'Metro Nashville Water Services', pwsid: 'TN0000613',
+    system: 'Metro Nashville Water Services', pwsid: 'TN0000494',
     issues: ['Disinfection byproducts', 'Combined sewer overflow risk', 'Aging infrastructure'],
     facts: [
       'Nashville has logged violations for disinfection byproducts -- THMs and HAAs above legal limits.',
@@ -242,7 +242,7 @@ export const CITIES: Record<string, {
   },
   'baltimore': {
     name: 'Baltimore', state: 'MD', zip: '21201', population: '580K',
-    system: 'Baltimore City Department of Public Works', pwsid: 'MD0050001',
+    system: 'Baltimore City Department of Public Works', pwsid: 'MD0300002',
     issues: ['Lead service lines', 'Aging water mains', 'Disinfection byproducts'],
     facts: [
       'Baltimore has one of the highest concentrations of lead service lines on the East Coast.',
@@ -267,16 +267,16 @@ export const CITIES: Record<string, {
   },
   'rockville': {
     name: 'Rockville', state: 'MD', zip: '20850', population: '67K',
-    system: 'Washington Suburban Sanitary Commission (WSSC Water)', pwsid: 'MD0150005',
+    system: 'City of Rockville Water', pwsid: 'MD0150003',
     issues: ['Disinfection byproducts', 'PFAS monitoring', 'Lead in older home plumbing'],
     facts: [
-      'Rockville is served by WSSC Water — the same Potomac/Patuxent system that serves Gaithersburg, Bethesda, and Silver Spring.',
-      'WSSC finished water meets federal standards; older homes can still add lead from premise plumbing.',
-      'EPA UCMR5 monitored PFAS in the WSSC system; kitchen RO is the usual at-the-tap upgrade for PFAS + DBPs.',
-      'Compare this report with nearby Montgomery County WSSC cities for the same public water system profile.',
+      'Rockville operates its own community water system (MD0150003), separate from WSSC Water in neighboring Montgomery County cities.',
+      'Finished water meets federal standards; older homes can still add lead from premise plumbing.',
+      'Kitchen RO is the usual at-the-tap upgrade when DBPs or metals are the concern.',
+      'Compare this report with nearby WSSC cities if your meter is actually billed by WSSC rather than the City of Rockville.',
     ],
     urgency: 'medium',
-    waterProfile: { hardness: 105, tds: 210, pH: 7.5, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.1, source: 'WSSC Water CCR 2024' },
+    waterProfile: { hardness: 105, tds: 210, pH: 7.5, treatment: 'chloramine', fluoride: 0.7, nitrate: 1.1, source: 'City of Rockville CCR 2024' },
   },
   'silver-spring': {
     name: 'Silver Spring', state: 'MD', zip: '20910', population: '82K',
@@ -306,7 +306,7 @@ export const CITIES: Record<string, {
   },
   'memphis': {
     name: 'Memphis', state: 'TN', zip: '38101', population: '630K',
-    system: 'Memphis Light Gas and Water', pwsid: 'TN0000613',
+    system: 'Memphis Light Gas and Water', pwsid: 'TN0000450',
     issues: ['PFAS contamination', 'Aquifer vulnerability', '1,4-dioxane from upstream'],
     facts: [
       'Memphis sits atop the Memphis Sand Aquifer -- once considered pristine, now showing PFAS contamination.',
@@ -318,7 +318,7 @@ export const CITIES: Record<string, {
   },
   'louisville': {
     name: 'Louisville', state: 'KY', zip: '40201', population: '630K',
-    system: 'Louisville Water Company', pwsid: 'KY0720933',
+    system: 'Louisville Water Company', pwsid: 'KY0560258',
     issues: ['Ohio River contamination', 'Disinfection byproducts', 'Industrial runoff'],
     facts: [
       'Louisville draws from the Ohio River -- one of the most industrially impacted rivers in the US.',
@@ -330,7 +330,7 @@ export const CITIES: Record<string, {
   },
   'cleveland': {
     name: 'Cleveland', state: 'OH', zip: '44101', population: '370K',
-    system: 'Cleveland Water', pwsid: 'OH1801212',
+    system: 'Cleveland Public Water System', pwsid: 'OH1801212',
     issues: ['Lead service lines', 'Lake Erie algal blooms', 'PFAS from industrial legacy'],
     facts: [
       'Cleveland draws from Lake Erie -- which experiences harmful algal blooms that produce cyanotoxins.',
@@ -354,7 +354,7 @@ export const CITIES: Record<string, {
   },
   'indianapolis': {
     name: 'Indianapolis', state: 'IN', zip: '46201', population: '880K',
-    system: 'Citizens Energy Group', pwsid: 'IN5271014',
+    system: 'Citizens Water - Indianapolis', pwsid: 'IN5249004',
     issues: ['Disinfection byproducts', 'Agricultural nitrates', 'Aging infrastructure'],
     facts: [
       'Indy water comes from the White River and Fall Creek -- both receive significant agricultural runoff.',
@@ -366,7 +366,7 @@ export const CITIES: Record<string, {
   },
   'charlotte': {
     name: 'Charlotte', state: 'NC', zip: '28201', population: '900K',
-    system: 'Charlotte Water', pwsid: 'NC0464020',
+    system: 'Charlotte Water', pwsid: 'NC0160010',
     issues: ['GenX / PFAS contamination', 'Disinfection byproducts', 'Catawba River contamination'],
     facts: [
       'North Carolina is ground zero for GenX (HFPO-DA) PFAS contamination from Chemours/DuPont.',
@@ -378,7 +378,7 @@ export const CITIES: Record<string, {
   },
   'raleigh': {
     name: 'Raleigh', state: 'NC', zip: '27601', population: '470K',
-    system: 'City of Raleigh Public Public water systems', pwsid: 'NC0392010',
+    system: 'City of Raleigh Public Utilities', pwsid: 'NC0392010',
     issues: ['GenX and PFAS', 'Trihalomethanes', 'Agricultural runoff'],
     facts: [
       "Like Charlotte, Raleigh sits in North Carolina's PFAS contamination zone from industrial sources.",
@@ -390,7 +390,7 @@ export const CITIES: Record<string, {
   },
   'omaha': {
     name: 'Omaha', state: 'NE', zip: '68101', population: '490K',
-    system: 'Metropolitan Public water systems District', pwsid: 'NE3107902',
+    system: 'Metropolitan Utilities District', pwsid: 'NE3105507',
     issues: ['Nitrates from agriculture', 'Atrazine pesticide', 'Disinfection byproducts'],
     facts: [
       'Nebraska is the heart of corn country -- nitrate runoff from fertilizer is a constant concern.',
@@ -402,7 +402,7 @@ export const CITIES: Record<string, {
   },
   'kansas-city': {
     name: 'Kansas City', state: 'MO', zip: '64101', population: '500K',
-    system: 'Kansas City Water Services', pwsid: 'MO2024499',
+    system: 'Kansas City Water Services', pwsid: 'MO1010415',
     issues: ['Missouri River contamination', 'Disinfection byproducts', 'Agricultural runoff'],
     facts: [
       'Kansas City draws from the Missouri River -- heavily impacted by upstream agriculture.',
@@ -414,7 +414,7 @@ export const CITIES: Record<string, {
   },
   'new-orleans': {
     name: 'New Orleans', state: 'LA', zip: '70112', population: '380K',
-    system: 'Sewerage & Water Board of New Orleans', pwsid: 'LA1029011',
+    system: 'Sewerage & Water Board of New Orleans', pwsid: 'LA1071009',
     issues: ['Lead contamination', 'Disinfection byproducts', 'Aging infrastructure', 'Post-flooding risk'],
     facts: [
       'New Orleans has severe aging infrastructure -- water main breaks are a near-daily occurrence.',
@@ -438,7 +438,7 @@ export const CITIES: Record<string, {
   },
   'st-louis': {
     name: 'St. Louis', state: 'MO', zip: '63101', population: '300K',
-    system: 'Missouri American Water -- St. Louis', pwsid: 'MO2024499',
+    system: 'City of St. Louis Water Division', pwsid: 'MO6010715',
     issues: ['Mississippi River contamination', 'Lead pipes', 'Industrial legacy'],
     facts: [
       'St. Louis draws from the Missouri and Mississippi Rivers -- both receive heavy industrial discharge.',
@@ -450,7 +450,7 @@ export const CITIES: Record<string, {
   },
   'salt-lake-city': {
     name: 'Salt Lake City', state: 'UT', zip: '84101', population: '200K',
-    system: 'Salt Lake City Public Public water systems', pwsid: 'UTAH27006',
+    system: 'Salt Lake City Public Utilities', pwsid: 'UTAH18026',
     issues: ['PFAS from Hill AFB', 'Hard water', 'Arsenic'],
     facts: [
       'Hill Air Force Base has been a major PFAS contamination source in the Salt Lake Valley.',
@@ -462,7 +462,7 @@ export const CITIES: Record<string, {
   },
   'albuquerque': {
     name: 'Albuquerque', state: 'NM', zip: '87101', population: '560K',
-    system: 'Albuquerque Bernalillo County Water Public water system Authority', pwsid: 'NM3567905',
+    system: 'Albuquerque Bernalillo County Water Utility Authority', pwsid: 'NM3510701',
     issues: ['Arsenic in groundwater', 'Hard water', 'Chromium-6'],
     facts: [
       'New Mexico has some of the highest naturally occurring arsenic levels in the US.',
@@ -474,7 +474,7 @@ export const CITIES: Record<string, {
   },
   'tucson': {
     name: 'Tucson', state: 'AZ', zip: '85701', population: '540K',
-    system: 'Tucson Water', pwsid: 'AZ0404008',
+    system: 'Tucson Water', pwsid: 'AZ0410112',
     issues: ['PFAS from military sites', 'Arsenic', 'Hard water'],
     facts: [
       'Davis-Monthan Air Force Base has contributed PFAS contamination to Tucson groundwater.',
@@ -498,7 +498,7 @@ export const CITIES: Record<string, {
   },
   'san-diego': {
     name: 'San Diego', state: 'CA', zip: '92101', population: '1.4M',
-    system: 'San Diego Public Public water systems', pwsid: 'CA3710001',
+    system: 'City of San Diego Public Utilities', pwsid: 'CA3710020',
     issues: ['Imported water vulnerability', 'Chromium-6', 'Hard water', 'PFAS'],
     facts: [
       'San Diego imports over 85% of its water from Northern California and the Colorado River.',
@@ -510,7 +510,7 @@ export const CITIES: Record<string, {
   },
   'san-jose': {
     name: 'San Jose', state: 'CA', zip: '95101', population: '1M',
-    system: 'San Jose Water Company', pwsid: 'CA4310004',
+    system: 'San Jose Water Company', pwsid: 'CA4310011',
     issues: ['Chromium-6', 'PFAS from tech industry', 'Nitrates from agriculture'],
     facts: [
       'Silicon Valley has a troubling history of industrial chemical contamination in groundwater.',
@@ -522,7 +522,7 @@ export const CITIES: Record<string, {
   },
   'washington-dc': {
     name: 'Washington DC', state: 'DC', zip: '20001', population: '700K',
-    system: 'DC Water (WASA)', pwsid: 'DC0000004',
+    system: 'DC Water (WASA)', pwsid: 'DC0000002',
     issues: ['Lead service lines', 'Disinfection byproducts', 'Potomac River contamination'],
     facts: [
       'DC faced a major lead crisis in the early 2000s and still has thousands of lead service lines.',
@@ -546,7 +546,7 @@ export const CITIES: Record<string, {
   },
   'milwaukee': {
     name: 'Milwaukee', state: 'WI', zip: '53201', population: '590K',
-    system: 'Milwaukee Water Works', pwsid: 'WI6480243',
+    system: 'Milwaukee Water Works', pwsid: 'WI2410100',
     issues: ['Lead service lines', 'Cryptosporidium (1993 outbreak)', 'Industrial PFAS'],
     facts: [
       'Milwaukee had the largest Cryptosporidium outbreak in US history in 1993 -- 150,000+ affected.',
@@ -558,7 +558,7 @@ export const CITIES: Record<string, {
   },
   'buffalo': {
     name: 'Buffalo', state: 'NY', zip: '14201', population: '260K',
-    system: 'Erie County Water Authority', pwsid: 'NY5907717',
+    system: 'Buffalo Water Authority', pwsid: 'NY1400422',
     issues: ['Lead service lines', 'Lake Erie algal blooms', 'Industrial legacy'],
     facts: [
       "Lake Erie is Buffalo's water source -- the same lake that caught fire due to pollution in 1969.",
@@ -570,7 +570,7 @@ export const CITIES: Record<string, {
   },
   'anchorage': {
     name: 'Anchorage', state: 'AK', zip: '99501', population: '290K',
-    system: 'Anchorage Water and Wastewater Public water system', pwsid: 'AK2320078',
+    system: 'Anchorage Water and Wastewater Utility', pwsid: 'AK2210906',
     issues: ['PFAS from Elmendorf AFB', 'Naturally soft / corrosive water', 'Legacy fuel spills'],
     facts: [
       'Elmendorf Air Force Base has been a major source of PFAS contamination in the Anchorage area.',
@@ -582,7 +582,7 @@ export const CITIES: Record<string, {
   },
   'honolulu': {
     name: 'Honolulu', state: 'HI', zip: '96801', population: '350K',
-    system: 'Honolulu Board of Water Supply', pwsid: 'HI0000335',
+    system: 'Honolulu Board of Water Supply', pwsid: 'HI0000331',
     issues: ['Agricultural pesticide runoff', 'Red Hill fuel contamination', 'PFAS from military'],
     facts: [
       "The 2021 Red Hill fuel spill contaminated the Navy's groundwater system -- affecting thousands.",
@@ -594,7 +594,7 @@ export const CITIES: Record<string, {
   },
   'baton-rouge': {
     name: 'Baton Rouge', state: 'LA', zip: '70801', population: '230K',
-    system: 'Baton Rouge Water Company', pwsid: 'LA1029011',
+    system: 'Baton Rouge Water Company', pwsid: 'LA1033005',
     issues: ['Mississippi River contamination', 'Industrial corridor runoff', 'PFAS'],
     facts: [
       'Baton Rouge sits in "Cancer Alley" -- the stretch of Louisiana with the highest concentration of industrial plants.',
@@ -606,7 +606,7 @@ export const CITIES: Record<string, {
   },
   'richmond': {
     name: 'Richmond', state: 'VA', zip: '23219', population: '230K',
-    system: 'Richmond Department of Public Public water systems', pwsid: 'VA6107600',
+    system: 'Richmond Department of Public Utilities', pwsid: 'VA4760100',
     issues: ['James River contamination', 'Disinfection byproducts', 'Industrial legacy'],
     facts: [
       'Richmond draws from the James River, which carries industrial discharge from upstream facilities.',
@@ -618,7 +618,7 @@ export const CITIES: Record<string, {
   },
   'el-paso': {
     name: 'El Paso', state: 'TX', zip: '79901', population: '680K',
-    system: 'El Paso Water', pwsid: 'TX0710001',
+    system: 'El Paso Water', pwsid: 'TX0710002',
     issues: ['Arsenic in groundwater', 'Extremely hard water', 'High TDS'],
     facts: [
       'El Paso relies heavily on the Hueco Bolson aquifer -- which has naturally elevated arsenic.',
@@ -630,7 +630,7 @@ export const CITIES: Record<string, {
   },
   'oklahoma-city': {
     name: 'Oklahoma City', state: 'OK', zip: '73101', population: '680K',
-    system: 'Oklahoma City Water Public water systems Trust', pwsid: 'OK1021508',
+    system: 'Oklahoma City Water Utilities Trust', pwsid: 'OK1020902',
     issues: ['Disinfection byproducts', 'Agricultural runoff', 'Hard water'],
     facts: [
       'OKC draws from Atoka and McGee Creek reservoirs in southeastern Oklahoma.',
@@ -642,7 +642,7 @@ export const CITIES: Record<string, {
   },
   'mesa': {
     name: 'Mesa', state: 'AZ', zip: '85201', population: '500K',
-    system: 'Mesa Public water systems', pwsid: 'AZ0404008',
+    system: 'Mesa Utilities', pwsid: 'AZ0407095',
     issues: ['Hard water / high TDS', 'PFAS from military sites', 'Colorado River dependency'],
     facts: [
       'Mesa water comes from the Colorado River via the Salt River Project -- extremely hard.',
@@ -654,7 +654,7 @@ export const CITIES: Record<string, {
   },
   'virginia-beach': {
     name: 'Virginia Beach', state: 'VA', zip: '23451', population: '460K',
-    system: 'Virginia Beach Department of Public Public water systems', pwsid: 'VA6107600',
+    system: 'Virginia Beach Department of Public Utilities', pwsid: 'VA3810900',
     issues: ['PFAS from Naval Air Station Oceana', 'Disinfection byproducts', 'Saltwater intrusion risk'],
     facts: [
       'Naval Air Station Oceana has been identified as a PFAS source affecting Virginia Beach groundwater.',
@@ -666,7 +666,7 @@ export const CITIES: Record<string, {
   },
   'long-beach': {
     name: 'Long Beach', state: 'CA', zip: '90801', population: '460K',
-    system: 'Long Beach Water Department', pwsid: 'CA3700963',
+    system: 'Long Beach Utilities Department', pwsid: 'CA1910065',
     issues: ['Chromium-6', 'Nitrates', 'PFAS from industrial sites'],
     facts: [
       'Long Beach draws from a blend of local groundwater and imported MWD water.',
@@ -678,19 +678,19 @@ export const CITIES: Record<string, {
   },
   'colorado-springs': {
     name: 'Colorado Springs', state: 'CO', zip: '80901', population: '480K',
-    system: 'Colorado Springs Public water systems', pwsid: 'CO0121900',
+    system: 'Colorado Springs Utilities', pwsid: 'CO0121150',
     issues: ['PFAS from Peterson SFB', 'Wildfire-impacted watershed', 'Disinfection byproducts'],
     facts: [
       'Peterson Space Force Base has been identified as a major PFAS source in the Colorado Springs area.',
       'Wildfire smoke and ash from Colorado mountain fires have impacted Pikes Peak watershed water quality.',
-      'Colorado Springs Public water systems has invested heavily in treatment but PFAS levels remain a concern.',
+      'Colorado Springs Utilities has invested heavily in treatment but PFAS levels remain a concern.',
       'RO filtration is recommended for Colorado Springs residents -- especially near military installations.',
     ],
     urgency: 'high',
   },
   'wichita': {
     name: 'Wichita', state: 'KS', zip: '67201', population: '390K',
-    system: 'Wichita Water & Sewer', pwsid: 'KS2000911',
+    system: 'City of Wichita Water & Sewer', pwsid: 'KS2017308',
     issues: ['Atrazine from agriculture', 'Nitrates', 'Disinfection byproducts'],
     facts: [
       "Wichita lies at the heart of Kansas wheat and corn country -- atrazine runoff is a chronic issue.",
@@ -702,7 +702,7 @@ export const CITIES: Record<string, {
   },
   'arlington': {
     name: 'Arlington', state: 'TX', zip: '76001', population: '390K',
-    system: 'Arlington Water Public water systems', pwsid: 'TX2200001',
+    system: 'Arlington Water Utilities', pwsid: 'TX2200001',
     issues: ['Disinfection byproducts', 'Trinity River basin contamination', 'Hard water'],
     facts: [
       'Arlington draws from Benbrook and Mountain Creek Lakes -- both affected by DFW metro runoff.',
@@ -726,7 +726,7 @@ export const CITIES: Record<string, {
   },
   'aurora': {
     name: 'Aurora', state: 'CO', zip: '80010', population: '370K',
-    system: 'Aurora Water', pwsid: 'CO0121900',
+    system: 'Aurora Water', pwsid: 'CO0103005',
     issues: ['PFAS from Buckley SFB', 'Wildfire watershed risk', 'Disinfection byproducts'],
     facts: [
       "Buckley Space Force Base has contributed PFAS contamination to Aurora's water sources.",
@@ -738,7 +738,7 @@ export const CITIES: Record<string, {
   },
   'anaheim': {
     name: 'Anaheim', state: 'CA', zip: '92801', population: '350K',
-    system: 'City of Anaheim Public Public water systems', pwsid: 'CA3010001',
+    system: 'City of Anaheim Public Utilities', pwsid: 'CA3010001',
     issues: ['Nitrates from agriculture', 'PFAS', 'Chromium-6'],
     facts: [
       'Anaheim sits in the Santa Ana River basin -- historically impacted by agricultural and industrial use.',
@@ -750,7 +750,7 @@ export const CITIES: Record<string, {
   },
   'corpus-christi': {
     name: 'Corpus Christi', state: 'TX', zip: '78401', population: '320K',
-    system: 'Corpus Christi Water Department', pwsid: 'TX1780001',
+    system: 'Corpus Christi Water Department', pwsid: 'TX1780003',
     issues: ['Disinfection byproducts', 'Industrial petrochemical runoff', 'Hard water'],
     facts: [
       'Corpus Christi lies adjacent to major petrochemical refining operations along the Gulf Coast.',
@@ -762,7 +762,7 @@ export const CITIES: Record<string, {
   },
   'riverside': {
     name: 'Riverside', state: 'CA', zip: '92501', population: '310K',
-    system: 'Riverside Public Public water systems', pwsid: 'CA3310001',
+    system: 'City of Riverside Public Utilities', pwsid: 'CA3310031',
     issues: ['Nitrates from citrus agriculture', 'Chromium-6', 'PFAS from March AFB'],
     facts: [
       "Riverside sits in the Inland Empire -- California's most contaminated groundwater region.",
@@ -774,7 +774,7 @@ export const CITIES: Record<string, {
   },
   'lexington': {
     name: 'Lexington', state: 'KY', zip: '40501', population: '320K',
-    system: 'Kentucky American Water -- Lexington', pwsid: 'KY0720933',
+    system: 'Kentucky American Water', pwsid: 'KY0340250',
     issues: ['Kentucky River contamination', 'Disinfection byproducts', 'Agricultural runoff'],
     facts: [
       'Lexington draws from the Kentucky River -- which receives agricultural and industrial discharge.',
@@ -786,7 +786,7 @@ export const CITIES: Record<string, {
   },
   'stockton': {
     name: 'Stockton', state: 'CA', zip: '95201', population: '310K',
-    system: 'City of Stockton Municipal Public water systems', pwsid: 'CA3910001',
+    system: 'City of Stockton Municipal Utilities', pwsid: 'CA3910001',
     issues: ['Arsenic', 'Nitrates from agriculture', 'Disinfection byproducts'],
     facts: [
       'Stockton sits in the San Joaquin Delta -- one of the most agriculturally intensive regions in the US.',
@@ -798,7 +798,7 @@ export const CITIES: Record<string, {
   },
   'st-paul': {
     name: 'St. Paul', state: 'MN', zip: '55101', population: '310K',
-    system: 'Saint Paul Regional Water Services', pwsid: 'MN1820014',
+    system: 'Saint Paul Regional Water Services', pwsid: 'MN1620026',
     issues: ['PFAS from 3M industrial sites', 'Lead service lines', 'Chloramine byproducts'],
     facts: [
       "Minnesota is the epicenter of 3M PFAS contamination -- St. Paul's water has been tested and flagged.",
@@ -834,7 +834,7 @@ export const CITIES: Record<string, {
   },
   'newark': {
     name: 'Newark', state: 'NJ', zip: '07101', population: '310K',
-    system: 'Newark Watershed', pwsid: 'NJ0803001',
+    system: 'Newark Water Department', pwsid: 'NJ0714001',
     issues: ['Lead contamination crisis', 'Aging infrastructure', 'Passaic River contamination'],
     facts: [
       "Newark declared a lead emergency in 2019 -- the city's pipes were leaching dangerous levels into tap water.",
@@ -846,7 +846,7 @@ export const CITIES: Record<string, {
   },
   'plano': {
     name: 'Plano', state: 'TX', zip: '75023', population: '290K',
-    system: 'Plano Water Public water systems', pwsid: 'TX0430005',
+    system: 'Plano Water Utilities', pwsid: 'TX0430007',
     issues: ['Disinfection byproducts', 'Hard water', 'Trinity River basin runoff'],
     facts: [
       'Plano draws water from the North Texas Municipal Water District -- shared DFW regional supply.',
@@ -858,7 +858,7 @@ export const CITIES: Record<string, {
   },
   'henderson': {
     name: 'Henderson', state: 'NV', zip: '89002', population: '320K',
-    system: 'City of Henderson Public water systems', pwsid: 'NV0000272',
+    system: 'City of Henderson Utilities', pwsid: 'NV0000076',
     issues: ['Extremely hard water', 'High TDS', 'Colorado River dependency', 'Disinfection byproducts'],
     facts: [
       'Henderson shares the Las Vegas Valley water supply -- among the hardest water in the US.',
@@ -870,7 +870,7 @@ export const CITIES: Record<string, {
   },
   'orlando': {
     name: 'Orlando', state: 'FL', zip: '32801', population: '310K',
-    system: 'Orlando Public water systems Commission Water', pwsid: 'FL3480962',
+    system: 'Orlando Utilities Commission Water', pwsid: 'FL3480962',
     issues: ['PFAS contamination', 'Sulfur taste from Floridan Aquifer', 'Disinfection byproducts'],
     facts: [
       "Orlando's Floridan Aquifer water has a naturally sulfurous hydrogen sulfide taste and odor.",
@@ -882,7 +882,7 @@ export const CITIES: Record<string, {
   },
   'chandler': {
     name: 'Chandler', state: 'AZ', zip: '85224', population: '280K',
-    system: 'Chandler Water Public water systems', pwsid: 'AZ0404008',
+    system: 'Chandler Water Utilities', pwsid: 'AZ0407090',
     issues: ['Hard water / high TDS', 'PFAS from Williams Gateway', 'Arsenic'],
     facts: [
       "Chandler's water is a blend of Colorado River and Salt River sources -- both extremely hard.",
@@ -894,7 +894,7 @@ export const CITIES: Record<string, {
   },
   'laredo': {
     name: 'Laredo', state: 'TX', zip: '78040', population: '260K',
-    system: 'City of Laredo Public water systems', pwsid: 'TX2400001',
+    system: 'City of Laredo Utilities', pwsid: 'TX2400001',
     issues: ['Rio Grande contamination', 'Hard water', 'Disinfection byproducts'],
     facts: [
       "Laredo draws from the Rio Grande -- one of the most contaminated rivers in North America.",
@@ -906,12 +906,12 @@ export const CITIES: Record<string, {
   },
   'madison': {
     name: 'Madison', state: 'WI', zip: '53701', population: '270K',
-    system: 'Madison Water Public water system', pwsid: 'WI6480243',
+    system: 'Madison Water Utility', pwsid: 'WI1130224',
     issues: ['PFAS from 3M / industrial sources', 'Nitrates from agriculture', 'Lead in older buildings'],
     facts: [
       "Wisconsin's PFAS contamination from 3M manufacturing reaches Madison's groundwater.",
       'Agricultural nitrates from Dane County farming are a persistent concern in Madison wells.',
-      'Madison Water Public water system has PFAS data showing contamination above EPA health limits in some wells.',
+      'Madison Water Utility has PFAS data showing contamination above EPA health limits in some wells.',
       'RO filtration addresses PFAS, nitrates, and lead -- the full Madison concern profile.',
     ],
     urgency: 'high',
@@ -930,7 +930,7 @@ export const CITIES: Record<string, {
   },
   'lubbock': {
     name: 'Lubbock', state: 'TX', zip: '79401', population: '260K',
-    system: 'Lubbock Water Public water systems', pwsid: 'TX1520002',
+    system: 'Lubbock Water Utilities', pwsid: 'TX1520002',
     issues: ['Nitrates from agriculture', 'Hard water', 'Arsenic in Ogallala Aquifer'],
     facts: [
       'Lubbock draws from the Ogallala Aquifer -- the largest aquifer in North America, now declining rapidly.',
@@ -942,7 +942,7 @@ export const CITIES: Record<string, {
   },
   'garland': {
     name: 'Garland', state: 'TX', zip: '75040', population: '240K',
-    system: 'Garland Water Public water systems', pwsid: 'TX0570010',
+    system: 'Garland Water Utilities', pwsid: 'TX0570010',
     issues: ['Disinfection byproducts', 'Hard water', 'Lake Ray Hubbard runoff'],
     facts: [
       'Garland draws from Lake Ray Hubbard -- a reservoir receiving DFW metropolitan area stormwater.',
@@ -954,7 +954,7 @@ export const CITIES: Record<string, {
   },
   'winston-salem': {
     name: 'Winston-Salem', state: 'NC', zip: '27101', population: '250K',
-    system: 'Winston-Salem/Forsyth County Public water systems', pwsid: 'NC0464020',
+    system: 'Winston-Salem/Forsyth County Utilities', pwsid: 'NC0234010',
     issues: ['PFAS / GenX contamination', 'Yadkin River industrial discharge', 'Disinfection byproducts'],
     facts: [
       'Winston-Salem draws from the Yadkin River -- which receives industrial discharge from the Piedmont Triad.',
@@ -966,7 +966,7 @@ export const CITIES: Record<string, {
   },
   'scottsdale': {
     name: 'Scottsdale', state: 'AZ', zip: '85251', population: '240K',
-    system: 'Scottsdale Water', pwsid: 'AZ0404008',
+    system: 'Scottsdale Water', pwsid: 'AZ0407098',
     issues: ['Hard water', 'High TDS', 'PFAS from military sites', 'Arsenic'],
     facts: [
       "Scottsdale uses advanced water reclamation, but its Colorado River source is extremely hard.",
@@ -978,7 +978,7 @@ export const CITIES: Record<string, {
   },
   'norfolk': {
     name: 'Norfolk', state: 'VA', zip: '23501', population: '240K',
-    system: 'Norfolk Department of Public water systems', pwsid: 'VA3710100',
+    system: 'Norfolk Department of Utilities', pwsid: 'VA3710100',
     issues: ['PFAS from Naval Station Norfolk', 'Disinfection byproducts', 'Saltwater intrusion risk'],
     facts: [
       'Naval Station Norfolk -- the largest naval base in the world -- is a significant PFAS source.',
@@ -990,7 +990,7 @@ export const CITIES: Record<string, {
   },
   'jersey-city': {
     name: 'Jersey City', state: 'NJ', zip: '07302', population: '290K',
-    system: 'Jersey City Municipal Public water systems Authority', pwsid: 'NJ1009001',
+    system: 'Jersey City Municipal Utilities Authority', pwsid: 'NJ0906001',
     issues: ['Lead from aging infrastructure', 'Industrial contamination', 'Chromium-6'],
     facts: [
       'Jersey City has extensive 19th-century pipe infrastructure -- lead contamination is a real risk.',
@@ -1002,7 +1002,7 @@ export const CITIES: Record<string, {
   },
   'irving': {
     name: 'Irving', state: 'TX', zip: '75061', population: '240K',
-    system: 'Irving Water Public water systems', pwsid: 'TX0570050',
+    system: 'Irving Water Utilities', pwsid: 'TX0570050',
     issues: ['Disinfection byproducts', 'Hard water', 'Elm Fork Trinity River runoff'],
     facts: [
       'Irving shares the North Texas Municipal Water District supply -- a regional DFW water blend.',
@@ -1014,7 +1014,7 @@ export const CITIES: Record<string, {
   },
   'chula-vista': {
     name: 'Chula Vista', state: 'CA', zip: '91910', population: '270K',
-    system: 'Sweetwater Authority', pwsid: 'CA3710010',
+    system: 'Sweetwater Authority', pwsid: 'CA3710025',
     issues: ['Chromium-6', 'PFAS', 'Imported water vulnerability', 'Hard water'],
     facts: [
       'Chula Vista draws from a blend of Colorado River and local groundwater -- both with concerns.',
@@ -1038,7 +1038,7 @@ export const CITIES: Record<string, {
   },
   'reno': {
     name: 'Reno', state: 'NV', zip: '89501', population: '260K',
-    system: 'Truckee Meadows Water Authority', pwsid: 'NV0000272',
+    system: 'Truckee Meadows Water Authority', pwsid: 'NV0000190',
     issues: ['Hard water', 'Disinfection byproducts', 'Mining legacy contamination'],
     facts: [
       "Reno's Truckee River source water carries the legacy of Nevada's historic silver mining operations.",
@@ -1050,7 +1050,7 @@ export const CITIES: Record<string, {
   },
   'fort-wayne': {
     name: 'Fort Wayne', state: 'IN', zip: '46801', population: '265K',
-    system: 'Fort Wayne City Public water systems', pwsid: 'IN5271014',
+    system: 'Fort Wayne City Utilities', pwsid: 'IN5202020',
     issues: ['Agricultural nitrates', 'Disinfection byproducts', 'Maumee River runoff'],
     facts: [
       'Fort Wayne draws from the Maumee River and St. Joseph River -- both receive heavy agricultural runoff.',
@@ -1074,7 +1074,7 @@ export const CITIES: Record<string, {
   },
   'glendale-az': {
     name: 'Glendale', state: 'AZ', zip: '85301', population: '250K',
-    system: 'City of Glendale Water Services', pwsid: 'AZ0404008',
+    system: 'City of Glendale Water Services', pwsid: 'AZ0407093',
     issues: ['Hard water / high TDS', 'PFAS from Luke AFB', 'Arsenic'],
     facts: [
       'Luke Air Force Base PFAS contamination is a major concern for West Valley groundwater including Glendale.',
@@ -1098,7 +1098,7 @@ export const CITIES: Record<string, {
   },
   'fremont': {
     name: 'Fremont', state: 'CA', zip: '94536', population: '230K',
-    system: 'Alameda County Water District', pwsid: 'CA3700963',
+    system: 'Alameda County Water District', pwsid: 'CA0110001',
     issues: ['PFAS from industrial sites', 'Chromium-6', 'Nitrates'],
     facts: [
       "Fremont's East Bay location puts it in a zone with documented PFAS contamination from industrial operations.",
@@ -1110,7 +1110,7 @@ export const CITIES: Record<string, {
   },
   'boise': {
     name: 'Boise', state: 'ID', zip: '83701', population: '240K',
-    system: 'Boise Public Works Water Division', pwsid: 'ID4010022',
+    system: 'Veolia Water Idaho (Boise)', pwsid: 'ID4010016',
     issues: ['Nitrates from agriculture', 'PFAS from Gowen Field', 'Disinfection byproducts'],
     facts: [
       "Gowen Field Air National Guard Base is a documented PFAS source in Boise's groundwater.",
@@ -1122,7 +1122,7 @@ export const CITIES: Record<string, {
   },
   'birmingham': {
     name: 'Birmingham', state: 'AL', zip: '35201', population: '210K',
-    system: 'Birmingham Water Works Board', pwsid: 'AL0000577',
+    system: 'Birmingham Water Works Board (Central Alabama Water System)', pwsid: 'AL0000738',
     issues: ['Industrial legacy contamination', 'Disinfection byproducts', 'Lead service lines'],
     facts: [
       "Birmingham's steel and iron legacy left significant industrial contamination in local waterways.",
@@ -1133,8 +1133,8 @@ export const CITIES: Record<string, {
     urgency: 'high',
   },
   'rochester': {
-    name: 'Rochester', state: 'NY', zip: '14601', population: '210K',
-    system: 'Rochester Pure Waters District', pwsid: 'NY5907717',
+    name: 'Rochester', state: 'NY', zip: '14604', population: '210K',
+    system: 'City of Rochester Water Bureau', pwsid: 'NY2704518',
     issues: ['Lead service lines', 'Lake Ontario source water', 'Industrial legacy contamination'],
     facts: [
       'Rochester draws from Lake Ontario -- which receives runoff from the Great Lakes basin.',
@@ -1146,7 +1146,7 @@ export const CITIES: Record<string, {
   },
   'spokane': {
     name: 'Spokane', state: 'WA', zip: '99201', population: '220K',
-    system: 'Spokane Water Department', pwsid: 'WA5303160',
+    system: 'Spokane Water Department', pwsid: 'WA5383100',
     issues: ['PFAS from Fairchild AFB', 'Naturally soft water', 'Lead in older buildings'],
     facts: [
       'Fairchild Air Force Base is a documented PFAS contamination source in the Spokane area.',
@@ -1158,7 +1158,7 @@ export const CITIES: Record<string, {
   },
   'des-moines': {
     name: 'Des Moines', state: 'IA', zip: '50301', population: '215K',
-    system: 'Des Moines Water Works', pwsid: 'IA7048001',
+    system: 'Des Moines Water Works', pwsid: 'IA7727031',
     issues: ['Nitrates from agricultural runoff', 'Atrazine pesticide', 'Disinfection byproducts'],
     facts: [
       'Des Moines Water Works sued upstream counties for agricultural nitrate pollution -- raising national awareness.',
@@ -1182,7 +1182,7 @@ export const CITIES: Record<string, {
   },
   'tacoma': {
     name: 'Tacoma', state: 'WA', zip: '98401', population: '220K',
-    system: 'Tacoma Water', pwsid: 'WA5303160',
+    system: 'Tacoma Water', pwsid: 'WA5386800',
     issues: ['PFAS from Joint Base Lewis-McChord', 'Industrial legacy contamination', 'Lead in older buildings'],
     facts: [
       'Joint Base Lewis-McChord is one of the largest PFAS contamination sites in the US.',
@@ -1206,7 +1206,7 @@ export const CITIES: Record<string, {
   },
   'little-rock': {
     name: 'Little Rock', state: 'AR', zip: '72201', population: '200K',
-    system: 'Little Rock Water Reclamation Authority', pwsid: 'AR0000601',
+    system: 'Central Arkansas Water', pwsid: 'AR0000465',
     issues: ['Disinfection byproducts', 'Arkansas River contamination', 'Industrial runoff'],
     facts: [
       'Little Rock draws from Lake Maumelle and the Arkansas River -- both receiving agricultural runoff.',
@@ -1218,7 +1218,7 @@ export const CITIES: Record<string, {
   },
   'huntsville': {
     name: 'Huntsville', state: 'AL', zip: '35801', population: '215K',
-    system: 'Huntsville Public water systems Water', pwsid: 'AL0000577',
+    system: 'Huntsville Utilities Water', pwsid: 'AL0000882',
     issues: ['PFAS from Redstone Arsenal', 'Disinfection byproducts', 'Agricultural runoff'],
     facts: [
       'Redstone Arsenal -- the US Army missile and space program base -- is a documented PFAS source.',
@@ -1229,8 +1229,8 @@ export const CITIES: Record<string, {
     urgency: 'high',
   },
   'worcester': {
-    name: 'Worcester', state: 'MA', zip: '01601', population: '200K',
-    system: 'Worcester Department of Public Works', pwsid: 'MA4245000',
+    name: 'Worcester', state: 'MA', zip: '01608', population: '200K',
+    system: 'Worcester DPWP, Water Supply Division', pwsid: 'MA2348000',
     issues: ['Lead in older building plumbing', 'Corrosive soft water', 'Disinfection byproducts'],
     facts: [
       "Worcester's water is naturally soft -- slightly acidic and corrosive to older pipes.",
@@ -1242,7 +1242,7 @@ export const CITIES: Record<string, {
   },
   'knoxville': {
     name: 'Knoxville', state: 'TN', zip: '37901', population: '190K',
-    system: 'Knoxville Public water systems Board', pwsid: 'TN0000613',
+    system: 'Knoxville Utilities Board', pwsid: 'TN0000366',
     issues: ['TVA industrial legacy', 'Disinfection byproducts', 'Agricultural runoff'],
     facts: [
       'Knoxville draws from the Tennessee River -- which carries TVA industrial legacy contamination.',
@@ -1254,7 +1254,7 @@ export const CITIES: Record<string, {
   },
   'providence': {
     name: 'Providence', state: 'RI', zip: '02901', population: '180K',
-    system: 'Providence Water Supply Board', pwsid: 'RI1858421',
+    system: 'Providence Water Supply Board', pwsid: 'RI1592024',
     issues: ['Lead service lines', 'Disinfection byproducts', 'Corrosive soft water'],
     facts: [
       "Providence's source water from the Scituate Reservoir is high quality -- the risk is in the pipes.",
@@ -1266,7 +1266,7 @@ export const CITIES: Record<string, {
   },
   'grand-rapids': {
     name: 'Grand Rapids', state: 'MI', zip: '49501', population: '195K',
-    system: 'Grand Rapids Water System', pwsid: 'MI0003342',
+    system: 'Grand Rapids Water System', pwsid: 'MI0002790',
     issues: ['PFAS from 3M/industrial sources', 'Lead service lines', 'Lake Michigan source water'],
     facts: [
       "Michigan's statewide PFAS crisis from 3M manufacturing affects groundwater throughout the state.",
@@ -1278,7 +1278,7 @@ export const CITIES: Record<string, {
   },
   'dayton': {
     name: 'Dayton', state: 'OH', zip: '45401', population: '135K',
-    system: 'Greater Dayton Water', pwsid: 'OH5700722',
+    system: 'City of Dayton Water', pwsid: 'OH5700722',
     issues: ['PFAS from Wright-Patterson AFB', 'Industrial legacy', 'Great Miami Aquifer risk'],
     facts: [
       'Wright-Patterson Air Force Base is one of the largest PFAS contamination sites in the US.',
@@ -1290,7 +1290,7 @@ export const CITIES: Record<string, {
   },
   'jackson': {
     name: 'Jackson', state: 'MS', zip: '39201', population: '150K',
-    system: 'City of Jackson Department of Public Works', pwsid: 'MS0360011',
+    system: 'City of Jackson Department of Public Works', pwsid: 'MS0250008',
     issues: ['Infrastructure crisis', 'Lead contamination', 'Disinfection byproducts'],
     facts: [
       "Jackson's water system experienced catastrophic infrastructure failure -- with boil-water notices lasting months.",
@@ -1302,7 +1302,7 @@ export const CITIES: Record<string, {
   },
   'savannah': {
     name: 'Savannah', state: 'GA', zip: '31401', population: '145K',
-    system: 'Savannah Water Department', pwsid: 'GA1290000',
+    system: 'Savannah Water Department', pwsid: 'GA0510003',
     issues: ['Industrial PFAS from chemical plants', 'Disinfection byproducts', 'Port contamination'],
     facts: [
       "Savannah's port and chemical industry corridor has contributed PFAS contamination to local water sources.",
@@ -1326,7 +1326,7 @@ export const CITIES: Record<string, {
   },
   'fort-lauderdale': {
     name: 'Fort Lauderdale', state: 'FL', zip: '33301', population: '180K',
-    system: 'Broward County Water and Wastewater Services', pwsid: 'FL4060486',
+    system: 'City of Fort Lauderdale Water', pwsid: 'FL4060486',
     issues: ['PFAS contamination', 'Saltwater intrusion', 'Disinfection byproducts'],
     facts: [
       "Fort Lauderdale's Biscayne Aquifer is under increasing threat from saltwater intrusion.",
@@ -1362,7 +1362,7 @@ export const CITIES: Record<string, {
   },
   'cape-coral': {
     name: 'Cape Coral', state: 'FL', zip: '33901', population: '190K',
-    system: 'City of Cape Coral Public water systems', pwsid: 'FL1170525',
+    system: 'City of Cape Coral Utilities', pwsid: 'FL5360325',
     issues: ['PFAS from military sites', 'Brackish groundwater', 'Disinfection byproducts'],
     facts: [
       'Cape Coral uses an extensive canal system -- unique in Florida -- with elevated salinity risk.',
@@ -1374,7 +1374,7 @@ export const CITIES: Record<string, {
   },
   'tallahassee': {
     name: 'Tallahassee', state: 'FL', zip: '32301', population: '190K',
-    system: 'City of Tallahassee Public water systems', pwsid: 'FL1370655',
+    system: 'City of Tallahassee Utilities', pwsid: 'FL1370655',
     issues: ['PFAS from military installations', 'Nitrates from agriculture', 'Disinfection byproducts'],
     facts: [
       'Tallahassee area groundwater has been impacted by PFAS from nearby military training facilities.',
@@ -1386,7 +1386,7 @@ export const CITIES: Record<string, {
   },
   'cary': {
     name: 'Cary', state: 'NC', zip: '27511', population: '175K',
-    system: 'Town of Cary', pwsid: 'NC0190010',
+    system: 'Town of Cary', pwsid: 'NC0392020',
     issues: ['GenX / PFAS contamination', 'Haw River source water', 'Disinfection byproducts'],
     facts: [
       "Cary draws from Jordan Lake -- which receives flow from the Haw River, affected by North Carolina's PFAS contamination.",
@@ -1398,7 +1398,7 @@ export const CITIES: Record<string, {
   },
   'fort-collins': {
     name: 'Fort Collins', state: 'CO', zip: '80521', population: '165K',
-    system: 'Fort Collins Public water systems', pwsid: 'CO0121900',
+    system: 'Fort Collins Utilities', pwsid: 'CO0135291',
     issues: ['Wildfire watershed contamination', 'Disinfection byproducts', 'Agricultural runoff'],
     facts: [
       "Fort Collins draws from the Cache la Poudre River -- impacted by Colorado's wildfires.",
@@ -1410,7 +1410,7 @@ export const CITIES: Record<string, {
   },
   'peoria-az': {
     name: 'Peoria', state: 'AZ', zip: '85345', population: '175K',
-    system: 'City of Peoria Water Resources', pwsid: 'AZ0413015',
+    system: 'City of Peoria Water Resources', pwsid: 'AZ0407096',
     issues: ['Hard water / high TDS', 'PFAS from Luke AFB', 'Arsenic'],
     facts: [
       'Peoria is one of the West Valley cities most affected by Luke Air Force Base PFAS contamination.',
@@ -1422,7 +1422,7 @@ export const CITIES: Record<string, {
   },
   'tempe': {
     name: 'Tempe', state: 'AZ', zip: '85281', population: '180K',
-    system: 'Tempe Water Public water systems', pwsid: 'AZ0404008',
+    system: 'Tempe Water', pwsid: 'AZ0407100',
     issues: ['Hard water / high TDS', 'PFAS from military sites', 'Arsenic'],
     facts: [
       "Tempe shares the Salt River Project water supply -- extremely hard Colorado River water.",
@@ -1434,7 +1434,7 @@ export const CITIES: Record<string, {
   },
   'west-palm-beach': {
     name: 'West Palm Beach', state: 'FL', zip: '33401', population: '115K',
-    system: 'Palm Beach County Water Public water systems', pwsid: 'FL1170525',
+    system: 'City of West Palm Beach Water', pwsid: 'FL4501559',
     issues: ['PFAS contamination', 'Lake Okeechobee agricultural runoff', 'Saltwater intrusion'],
     facts: [
       'Lake Okeechobee -- Palm Beach County source water -- receives heavy agricultural discharge from sugar farming.',
@@ -1446,7 +1446,7 @@ export const CITIES: Record<string, {
   },
   'sioux-falls': {
     name: 'Sioux Falls', state: 'SD', zip: '57101', population: '195K',
-    system: 'Sioux Falls Water Purification Plant', pwsid: 'SD4680046',
+    system: 'Sioux Falls Water Purification Plant', pwsid: 'SD4600294',
     issues: ['Agricultural nitrates', 'Atrazine', 'Disinfection byproducts'],
     facts: [
       'Sioux Falls draws from the Big Sioux River and local aquifers -- both receive agricultural runoff.',
@@ -1458,7 +1458,7 @@ export const CITIES: Record<string, {
   },
   'hartford': {
     name: 'Hartford', state: 'CT', zip: '06101', population: '125K',
-    system: 'Metropolitan District Commission', pwsid: 'CT1040011',
+    system: 'Metropolitan District Commission', pwsid: 'CT0640011',
     issues: ['Lead from older infrastructure', 'Disinfection byproducts', 'PFAS'],
     facts: [
       "Hartford has some of Connecticut's oldest housing stock -- lead service lines and plumbing are widespread.",
@@ -1470,7 +1470,7 @@ export const CITIES: Record<string, {
   },
   'stamford': {
     name: 'Stamford', state: 'CT', zip: '06901', population: '135K',
-    system: 'Aquarion Water Company of Connecticut', pwsid: 'CT1040011',
+    system: 'Aquarion Water Company of Connecticut', pwsid: 'CT1350011',
     issues: ['PFAS contamination', 'Industrial legacy', 'Lead in older buildings'],
     facts: [
       'Stamford has significant industrial legacy contamination from its manufacturing history.',
@@ -1482,7 +1482,7 @@ export const CITIES: Record<string, {
   },
   'fargo': {
     name: 'Fargo', state: 'ND', zip: '58102', population: '125K',
-    system: 'Fargo Public Works Water Department', pwsid: 'ND1800410',
+    system: 'Fargo Public Works Water Department', pwsid: 'ND0900336',
     issues: ['Nitrates from Red River Valley agriculture', 'Disinfection byproducts', 'Hard water'],
     facts: [
       'Fargo draws from the Red River of the North -- receiving heavy agricultural runoff from Minnesota and North Dakota.',
@@ -1494,7 +1494,7 @@ export const CITIES: Record<string, {
   },
   'provo': {
     name: 'Provo', state: 'UT', zip: '84601', population: '116K',
-    system: 'Provo City Water Division', pwsid: 'UTAH27006',
+    system: 'Provo City Water Division', pwsid: 'UTAH25006',
     issues: ['PFAS from military sources', 'Hard water', 'Arsenic'],
     facts: [
       "Provo's Utah County location places it within the PFAS contamination zone from regional military activity.",
@@ -1506,7 +1506,7 @@ export const CITIES: Record<string, {
   },
   'modesto': {
     name: 'Modesto', state: 'CA', zip: '95351', population: '215K',
-    system: 'City of Modesto Public water systems', pwsid: 'CA5010010',
+    system: 'City of Modesto Utilities', pwsid: 'CA5010010',
     issues: ['1,2,3-TCP', 'Arsenic', 'Nitrates from Central Valley agriculture'],
     facts: [
       'Modesto sits in Stanislaus County -- the heart of California dairy and row crop agriculture.',
@@ -1518,7 +1518,7 @@ export const CITIES: Record<string, {
   },
   'glendale-ca': {
     name: 'Glendale', state: 'CA', zip: '91201', population: '200K',
-    system: 'Glendale Water and Power', pwsid: 'CA3700963',
+    system: 'Glendale Water and Power', pwsid: 'CA1910043',
     issues: ['Chromium-6', 'PFAS from industrial sites', 'Disinfection byproducts'],
     facts: [
       'Glendale sits above the San Fernando Valley -- a Superfund zone with documented groundwater contamination.',
@@ -1530,7 +1530,7 @@ export const CITIES: Record<string, {
   },
   'brownsville': {
     name: 'Brownsville', state: 'TX', zip: '78520', population: '190K',
-    system: 'Brownsville Public Public water systems Board', pwsid: 'TX0310001',
+    system: 'Brownsville Public Utilities Board', pwsid: 'TX0310001',
     issues: ['Rio Grande contamination', 'Disinfection byproducts', 'Hard water'],
     facts: [
       'Brownsville draws from the Rio Grande at the US-Mexico border -- a heavily impacted water source.',
@@ -1542,7 +1542,7 @@ export const CITIES: Record<string, {
   },
   'mcallen': {
     name: 'McAllen', state: 'TX', zip: '78501', population: '143K',
-    system: 'McAllen Water Department', pwsid: 'TX1080001',
+    system: 'McAllen Public Utility', pwsid: 'TX1080006',
     issues: ['Rio Grande contamination', 'Hard water', 'Disinfection byproducts'],
     facts: [
       'McAllen draws from the Rio Grande -- one of the most contaminated rivers along the US border.',
@@ -1554,7 +1554,7 @@ export const CITIES: Record<string, {
   },
   'chattanooga': {
     name: 'Chattanooga', state: 'TN', zip: '37401', population: '180K',
-    system: 'Tennessee American Water', pwsid: 'TN0000613',
+    system: 'Tennessee American Water', pwsid: 'TN0000107',
     issues: ['Tennessee River industrial legacy', 'Disinfection byproducts', 'TVA contamination'],
     facts: [
       'Chattanooga draws from the Tennessee River -- impacted by TVA industrial legacy and upstream industry.',
@@ -1566,7 +1566,7 @@ export const CITIES: Record<string, {
   },
   'springfield-mo': {
     name: 'Springfield', state: 'MO', zip: '65801', population: '165K',
-    system: 'City Public water systems of Springfield', pwsid: 'MO2024499',
+    system: 'City Utilities of Springfield', pwsid: 'MO5010754',
     issues: ['Karst geology contamination risk', 'Agricultural runoff', 'Disinfection byproducts'],
     facts: [
       "Springfield sits on karst limestone geology -- which allows surface contaminants to reach groundwater rapidly.",
@@ -1578,7 +1578,7 @@ export const CITIES: Record<string, {
   },
   'murfreesboro': {
     name: 'Murfreesboro', state: 'TN', zip: '37130', population: '140K',
-    system: 'Murfreesboro Water Resources', pwsid: 'TN0000613',
+    system: 'Murfreesboro Water Resources / Consolidated UD', pwsid: 'TN0000791',
     issues: ['Stones River contamination', 'Agricultural runoff', 'Disinfection byproducts'],
     facts: [
       'Murfreesboro draws from the Stones River -- which receives agricultural and suburban runoff from Middle Tennessee.',
@@ -1590,7 +1590,7 @@ export const CITIES: Record<string, {
   },
   'montgomery': {
     name: 'Montgomery', state: 'AL', zip: '36101', population: '200K',
-    system: 'Water Works and Sanitary Sewer Board of Montgomery', pwsid: 'AL0000577',
+    system: 'Water Works and Sanitary Sewer Board of Montgomery', pwsid: 'AL0001070',
     issues: ['Disinfection byproducts', 'Alabama River contamination', 'Industrial discharge'],
     facts: [
       'Montgomery draws from the Alabama River -- which receives agricultural and industrial discharge.',
@@ -1602,7 +1602,7 @@ export const CITIES: Record<string, {
   },
   'alexandria': {
     name: 'Alexandria', state: 'VA', zip: '22301', population: '155K',
-    system: 'Alexandria Renew Enterprises / UOSA', pwsid: 'VA6510010',
+    system: 'City of Alexandria Water', pwsid: 'VA6510010',
     issues: ['Lead from older infrastructure', 'Potomac River contamination', 'Disinfection byproducts'],
     facts: [
       'Alexandria draws from the Potomac River -- which receives agricultural and urban runoff from a large watershed.',
@@ -1614,7 +1614,7 @@ export const CITIES: Record<string, {
   },
   'lakewood': {
     name: 'Lakewood', state: 'CO', zip: '80226', population: '155K',
-    system: 'Denver Water (Lakewood Service Area)', pwsid: 'CO0121900',
+    system: 'Denver Water (Lakewood Service Area)', pwsid: 'CO0116001',
     issues: ['PFAS from Buckley SFB area', 'Wildfire watershed risk', 'Lead in older homes'],
     facts: [
       "Lakewood is served by Denver Water -- which has documented PFAS concerns from Colorado military bases.",
@@ -1638,12 +1638,12 @@ export const CITIES: Record<string, {
       'Compare filters by the exact model’s certified PFOA reduction claim, capacity, and replacement schedule; a certification does not guarantee every household result.',
     ],
     urgency: 'high',
-    waterProfile: { hardness: 205, tds: 330, pH: 7.7, treatment: 'chlorine', fluoride: 0.7, nitrate: 2.1, source: 'Parkersburg Public water system Board CCR 2024' },
+    waterProfile: { hardness: 205, tds: 330, pH: 7.7, treatment: 'chlorine', fluoride: 0.7, nitrate: 2.1, source: 'Parkersburg Utility Board CCR 2024' },
   },
 
   'portsmouth-nh': {
     name: 'Portsmouth', state: 'NH', zip: '03801', population: '22K',
-    system: 'Portsmouth Water Division', pwsid: 'NH1181010',
+    system: 'Portsmouth Water Division', pwsid: 'NH1951010',
     issues: ['PFAS from Pease Air Force Base AFFF', 'Groundwater contamination', 'Military site legacy'],
     facts: [
       "Portsmouth was one of the first US communities to discover PFAS in its drinking water — traced to Pease Air Force Base firefighting foam use.",
@@ -1656,7 +1656,7 @@ export const CITIES: Record<string, {
 
   'portland-me': {
     name: 'Portland', state: 'ME', zip: '04101', population: '68K',
-    system: 'Portland Water District', pwsid: 'ME0090870',
+    system: 'Portland Water District', pwsid: 'ME0091300',
     issues: ['PFAS contamination above EPA limits', 'Sebago Lake source water', 'Industrial legacy runoff'],
     facts: [
       "Portland's water system draws from Sebago Lake — one of the cleanest large lakes in New England — but PFAS have been detected above EPA limits.",
@@ -1668,7 +1668,7 @@ export const CITIES: Record<string, {
   },
   'sugar-land': {
     name: 'Sugar Land', state: 'TX', zip: '77478', population: '91K',
-    system: 'City of Sugar Land Water Public water system', pwsid: 'TX0790005',
+    system: 'City of Sugar Land Water Utility', pwsid: 'TX0790005',
     issues: ['672 ppt 6:2 FTS peak in UCMR5', 'PFOA at EPA 4 ppt limit', 'Fort Bend County industrial legacy'],
     facts: [
       'EPA UCMR5 monitoring found 672 ppt of 6:2 FTS in Sugar Land water — the highest peak PFAS reading of any large Texas system in the federal dataset.',
@@ -1677,7 +1677,7 @@ export const CITIES: Record<string, {
       'PFAS in the Brazos River corridor is linked to decades of industrial and agricultural activity in Fort Bend County.',
     ],
     urgency: 'high',
-    waterProfile: { hardness: 200, tds: 420, pH: 7.8, treatment: 'chloramine', fluoride: 0.7, nitrate: 2.1, source: 'Sugar Land Public water system CCR 2024' },
+    waterProfile: { hardness: 200, tds: 420, pH: 7.8, treatment: 'chloramine', fluoride: 0.7, nitrate: 2.1, source: 'Sugar Land Utility CCR 2024' },
   },
   'miami': {
     name: 'Miami', state: 'FL', zip: '33101', population: '2.8M',
@@ -1695,7 +1695,7 @@ export const CITIES: Record<string, {
   },
   'fort-worth': {
     name: 'Fort Worth', state: 'TX', zip: '76102', population: '936K',
-    system: 'City of Fort Worth Water Department', pwsid: 'TX0840007',
+    system: 'City of Fort Worth Water Department', pwsid: 'TX2200012',
     issues: ['PFAS above EPA limits', 'PFHxS and PFOS violations', 'Trinity River source water', 'Lead risk in older neighborhoods'],
     facts: [
       'Fort Worth water tested at 102 ppt total PFAS in EPA UCMR5 monitoring, with PFHxS (4.5 ppt) and PFOS (4.8 ppt) above EPA MCLs.',
@@ -1721,7 +1721,7 @@ export const CITIES: Record<string, {
   },
   'dallas': {
     name: 'Dallas', state: 'TX', zip: '75201', population: '1.3M',
-    system: 'Dallas Water Public water systems', pwsid: 'TX0570004',
+    system: 'Dallas Water Utilities', pwsid: 'TX0570004',
     issues: ['PFAS above EPA MCL', 'PFOA, PFOS, PFHxS violations', 'Trinity River industrial contamination', 'TTHMs from surface water treatment'],
     facts: [
       'Dallas water tested at 18.2 ppt PFAS in EPA UCMR5 monitoring, with PFOA (6.3 ppt), PFOS (5.1 ppt), and PFHxS (3.8 ppt) all above or near EPA MCLs.',
@@ -1730,11 +1730,11 @@ export const CITIES: Record<string, {
       'Only reverse osmosis removes PFAS reliably. Dallas\'s chloramine treatment also requires a different carbon media than standard filters.',
     ],
     urgency: 'high',
-    waterProfile: { hardness: 210, tds: 430, pH: 8.0, treatment: 'chloramine', fluoride: 0.7, nitrate: 2.8, source: 'Dallas Water Public water systems CCR 2024' },
+    waterProfile: { hardness: 210, tds: 430, pH: 8.0, treatment: 'chloramine', fluoride: 0.7, nitrate: 2.8, source: 'Dallas Water Utilities CCR 2024' },
   },
   'sacramento': {
     name: 'Sacramento', state: 'CA', zip: '95814', population: '524K',
-    system: 'Sacramento Regional Water Authority', pwsid: 'CA3410020',
+    system: 'City of Sacramento Main', pwsid: 'CA3410020',
     issues: ['PFAS 41 ppt — 3 MCL violations', 'Lead at 70 ppb — above EPA action level', 'American River PFAS contamination', 'Arsenic from groundwater blending'],
     facts: [
       'Sacramento water has LEAD at 70 ppb — nearly 5 times the EPA action level of 15 ppb. This is one of the highest lead readings of any major California city.',
@@ -1747,7 +1747,7 @@ export const CITIES: Record<string, {
   },
   'pensacola': {
     name: 'Pensacola', state: 'FL', zip: '32501', population: '55K',
-    system: 'Emerald Coast Public water systems Authority (ECUA)', pwsid: 'FL1170525',
+    system: 'Emerald Coast Utilities Authority (ECUA)', pwsid: 'FL1170525',
     issues: ['PFAS at 220 ppt — 4 MCL violations', 'Eglin Air Force Base PFAS legacy', 'PFHxS at 55 ppt — 5x EPA limit', 'Lead above action level'],
     facts: [
       'Pensacola water has PFHxS at 55 ppt — over 5 times the EPA limit of 10 ppt — linked to decades of AFFF firefighting foam use at Eglin Air Force Base.',
@@ -1773,7 +1773,7 @@ export const CITIES: Record<string, {
   },
   austin: {
     name: 'Austin', state: 'TX', zip: '78701', population: '1.1M',
-    system: 'Austin Water Public water system', pwsid: 'TX2270001',
+    system: 'Austin Water Utility', pwsid: 'TX2270001',
     issues: ['PFAS detected above EPA limits', 'PFOS violation in UCMR5', 'Disinfection byproducts', 'Lake Austin algal bloom risk'],
     facts: [
       'Austin water tested at 8.4 ppt total PFAS in EPA UCMR5 monitoring, with PFOS (4.8 ppt) above the EPA\'s 4 ppt legal limit.',
@@ -1786,7 +1786,7 @@ export const CITIES: Record<string, {
   },
   'fairfax-county': {
     name: 'Fairfax', state: 'VA', zip: '22030', population: '1.1M',
-    system: 'Fairfax County area water systems (Dale City / regional)', pwsid: 'VA6153625',
+    system: 'Fairfax County Water Authority', pwsid: 'VA6059501',
     issues: ['PFAS at 21.9 ppt', 'PFOA and PFOS above EPA MCLs', 'Potomac River watershed runoff', 'Lead risk in pre-1986 homes'],
     facts: [
       'EPA UCMR5 monitoring in the Fairfax County area shows PFAS at 21.9 ppt, with PFOA (7.1 ppt) and PFOS (5.7 ppt) above EPA MCLs.',

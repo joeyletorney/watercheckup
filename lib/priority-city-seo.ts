@@ -27,9 +27,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Free Raleigh water quality report — EPA violation history, PFAS data, lead risk, and NSF-certified filter recommendations from a 30-year water expert.',
   },
   'los-angeles': {
-    title: 'Los Angeles Tap Water 2026 — Chromium-6, PFAS & Safety Grade',
+    title: 'Los Angeles Tap Water 2026 — Chromium-6, Hardness & Safety Grade',
     description:
-      'C- grade: LA tap water has chromium-6 above CA health goals, 11.4 ppt PFAS, and 268 mg/L hardness. Free 2026 Los Angeles water quality report from EPA data.',
+      'LADWP tap water: chromium-6 is the main documented concern in this profile. This UCMR5 snapshot lists no reportable PFAS for CA1910067. Free 2026 Los Angeles water quality report from EPA data.',
   },
   houston: {
     title: 'Is Houston Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
@@ -114,7 +114,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
   dallas: {
     title: 'Dallas Tap Water 2026 — PFAS Violations & Quality Report',
     description:
-      'Dallas water has PFOA, PFOS, and PFHxS above EPA limits and elevated TTHMs from chloramine treatment. See the full 2026 Dallas Water Public water systems report and filter picks.',
+      'Dallas water has PFOA, PFOS, and PFHxS above EPA limits and elevated TTHMs from chloramine treatment. See the full 2026 Dallas Water Utilities report and filter picks.',
   },
   sacramento: {
     title: 'Sacramento Water 2026 — Lead 70 ppb + PFAS 41 ppt Violations',

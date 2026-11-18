@@ -9,7 +9,7 @@ import { CITIES } from '../water/[city]/cities-data';
 const LEAD_ISSUE_RE = /lead|service line|lsl/i;
 
 export const metadata: Metadata = {
-  title: 'Top 25 Cities with the Highest Lead Pipe Risk (2026) | WaterCheckup',
+  title: 'Top 25 Cities with the Highest Lead Pipe Risk (2026)',
   description:
     'US cities where lead service lines and plumbing risk are flagged in WaterCheckup profiles — ranked by Water Safety Score (lowest first). Not measured ppb at every tap.',
   alternates: { canonical: 'https://watercheckup.com/worst-lead' },

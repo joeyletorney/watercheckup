@@ -9,14 +9,14 @@ const LEARN_HERO_IMAGE = '/girldrinkingwater.jpg';
 const LEARN_HERO_ALT = 'Girl drinking clean water — water quality education and guides';
 
 export const metadata: Metadata = {
-  title: 'Water Quality Guides — PFAS, Lead, Filters & EPA Data | WaterCheckup',
+  title: 'Water Quality Guides — PFAS, Lead, Filters & EPA Data',
   description:
     'Expert guides on PFAS contamination, lead in tap water, water filter certifications, EPA violations, and well water safety. Free, based on real EPA data.',
   alternates: {
     canonical: 'https://watercheckup.com/blog',
   },
   openGraph: {
-    title: 'Water Quality Guides — PFAS, Lead, Filters & EPA Data | WaterCheckup',
+    title: 'Water Quality Guides — PFAS, Lead, Filters & EPA Data',
     description:
       'Expert guides on PFAS contamination, lead in tap water, water filter certifications, EPA violations, and well water safety.',
   },

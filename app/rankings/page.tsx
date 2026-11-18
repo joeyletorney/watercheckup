@@ -11,7 +11,7 @@ import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 const ctr = getCtrSerpOverride('/rankings');
 
 export const metadata: Metadata = {
-  title: ctr?.title ?? 'Tap Water Quality Rankings by State 2026 | WaterCheckup',
+  title: ctr?.title ?? 'Tap Water Quality Rankings by State 2026',
   description:
     ctr?.description ??
     'Compare U.S. state tap water quality using EPA UCMR5 data across WaterCheckup city reports. Grades by share of tracked cities above EPA limits, plus the most contaminated cities.',

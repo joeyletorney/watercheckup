@@ -56,6 +56,7 @@ test('historical report offers a neutral quiz handoff before measurements withou
   const { default: ResultsClient } = await import('../app/results/[zip]/ResultsClient');
   const html = renderToStaticMarkup(React.createElement(ResultsClient, { zip: '78205', initialData: {
     violationCoverage: 'unavailable', systemName: 'Example supplier', pwsid: 'TX0150018', summary: 'Current records unavailable.',
+    score: 70, grade: 'B', pfasCount: 2, pfasCoverage: 'available',
     contaminants: [], dataFreshness: { ucmr5SnapshotLabel: 'April 2025', links: { ccr: 'https://www.epa.gov/ccr', sdwis: 'https://www.epa.gov/sdwis' } },
   } }));
   assert.ok(html.indexOf('What to do next') < html.indexOf('Available measurements'));
@@ -63,6 +64,8 @@ test('historical report offers a neutral quiz handoff before measurements withou
   assert.doesNotMatch(html, /concern=|situation=|source=city/);
   assert.match(html, /current compliance unverified/);
   assert.match(html, /do not establish that treatment is necessary/);
+  assert.match(html, /Affiliate disclosure/);
+  assert.match(html, /Waterdrop G3P600 RO/);
 });
 
 test('commercial comparisons expose active merchant links, scoped evidence and no discontinued-model purchase', async () => {

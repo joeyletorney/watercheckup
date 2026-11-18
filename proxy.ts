@@ -16,6 +16,12 @@ const BLOCKED_USER_AGENTS = [
 ]
 
 export function proxy(request: NextRequest) {
+  const url = new URL(request.url)
+  if (url.hostname === 'www.watercheckup.com') {
+    url.hostname = 'watercheckup.com'
+    return NextResponse.redirect(url, 308)
+  }
+
   const userAgent = request.headers.get('user-agent') ?? ''
 
   if (BLOCKED_USER_AGENTS.some((pattern) => pattern.test(userAgent))) {

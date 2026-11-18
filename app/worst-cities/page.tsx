@@ -8,7 +8,7 @@ import { SearchDemandCities } from '@/components/SearchDemandCities';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 
 export const metadata: Metadata = {
-  title: '25 Worst Cities for Tap Water 2026 — Safety Grades | WaterCheckup',
+  title: '25 Worst Cities for Tap Water 2026 — Safety Grades',
   description:
     'Lowest Water Safety Scores (0–88): PFAS, lead, hardness & EPA violations by city. Free 2026 tap water reports with NSF filter picks for each metro.',
   alternates: { canonical: 'https://watercheckup.com/worst-cities' },

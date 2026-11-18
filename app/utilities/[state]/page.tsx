@@ -21,7 +21,7 @@ export async function generateMetadata(
   const code = params.state.toUpperCase();
   const name = stateLabel(code);
   return {
-    title: `${name} Public Water Systems | WaterCheckup`,
+    title: `${name} Public Water Systems`,
     description: `Browse EPA public water systems in ${name}. PWSID, population served, violations snapshot, and full 2026-style reports.`,
     alternates: {
       canonical: `https://watercheckup.com/utilities/${params.state.toLowerCase()}`,

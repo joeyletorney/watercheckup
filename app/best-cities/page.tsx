@@ -8,7 +8,7 @@ import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { cacheLife } from 'next/cache'
 
 export const metadata: Metadata = {
-  title: '10 Best Cities for Tap Water Quality (2026 Safety Score) | WaterCheckup',
+  title: '10 Best Cities for Tap Water Quality (2026 Safety Score)',
   description:
     'US cities with the highest Water Safety Scores on WaterCheckup — best composite grades from EPA UCMR5 and contaminant profiles among tracked metros.',
   alternates: { canonical: 'https://watercheckup.com/best-cities' },
