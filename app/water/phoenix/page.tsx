@@ -44,7 +44,7 @@ const FILTERS = [
     badge: 'BEST NO-INSTALL',
     price: '~$90',
     why: "NSF P473 certified for PFAS removal. Also removes arsenic and chromium. Good for renters who can't install under-sink systems.",
-    link: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
+    link: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`,
     best: false,
   },
 ];

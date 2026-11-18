@@ -4,7 +4,7 @@ import { getBlogTopPicksHeading } from '@/lib/blog-top-picks';
 import { lookupFilterProductImage } from '@/lib/filter-product-images';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
-import { clearlyFilteredDirectUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
+import { clearlyFilteredAmazonUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 import { AffiliateLink } from '@/components/AffiliateLink';
 
 type Props = {
@@ -55,9 +55,9 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
           const directHref =
             pick.brand === 'Waterdrop'
               ? pick.link
-              : clearlyFilteredDirectUrl(pick.link);
+              : clearlyFilteredAmazonUrl();
           const directLabel =
-            pick.brand === 'Waterdrop' ? 'Check price at Waterdrop →' : 'Check price at Clearly Filtered →';
+            pick.brand === 'Waterdrop' ? 'Check price at Waterdrop →' : 'Check price on Amazon →';
           const imgSrc = lookupFilterProductImage(pick);
           return (
             <div
@@ -98,7 +98,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                     target="_blank"
                     rel="noopener noreferrer sponsored"
                     product={pick.product}
-                    destination="direct"
+                    destination={isClearlyFilteredBrand(pick.brand) ? "amazon" : "direct"}
                     page="blog"
                     brand={pick.brand}
                     className={i === 0 ? 'wc-blog-top-picks__btn wc-blog-top-picks__btn--primary' : 'wc-blog-top-picks__btn wc-blog-top-picks__btn--secondary'}

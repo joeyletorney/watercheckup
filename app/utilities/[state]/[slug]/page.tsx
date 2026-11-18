@@ -80,7 +80,7 @@ const PITCHER_PICKS = [
     reason:
       "Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473 — 365+ contaminants.",
     link: "https://www.clearlyfiltered.com/products/filtered-water-pitcher",
-    amazon: "https://www.amazon.com/dp/B076B6FXT5?tag=watercheckup-20",
+    amazon: "https://www.amazon.com/dp/B0DFC22BHT?tag=watercheckup-20",
     badge: "BEST FOR PFAS & LEAD",
   },
   {

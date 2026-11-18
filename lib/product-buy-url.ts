@@ -1,7 +1,7 @@
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import {
-  clearlyFilteredDirectUrl,
+  clearlyFilteredAmazonUrl,
   isClearlyFilteredBrand,
   isWaterdropBrand,
   WATERDROP_REF,
@@ -12,7 +12,7 @@ const WATERDROP_K19 = `https://www.waterdropfilter.com/products/countertop-ro-wa
 
 export type ProductBuyLink = { href: string; label: string; destination: 'direct' | 'amazon' };
 
-/** Pick the best affiliate URL for a product card (Waterdrop/Clearly → brand site when possible). */
+/** Pick the best affiliate URL for a product card (Clearly Filtered → Amazon while direct approval is pending). */
 export function resolveProductBuyLink(input: {
   name: string;
   brand?: string;
@@ -21,15 +21,15 @@ export function resolveProductBuyLink(input: {
 }): ProductBuyLink {
   const { name, brand, amazon, directLink } = input;
 
+  if (isClearlyFilteredBrand(brand ?? '') || /clearly\s*filtered/i.test(name)) {
+    return { href: clearlyFilteredAmazonUrl(), label: 'Check price on Amazon →', destination: 'amazon' };
+  }
+
   const preferredAmazon = preferredAmazonPurchaseUrl(amazon);
   if (preferredAmazon) return { href: preferredAmazon, label: 'Check price on Amazon →', destination: 'amazon' };
 
   if (directLink) {
     return { href: directLink, label: 'Check manufacturer price →', destination: 'direct' };
-  }
-
-  if (isClearlyFilteredBrand(brand ?? '') || /clearly\s*filtered/i.test(name)) {
-    return { href: clearlyFilteredDirectUrl(), label: 'ClearlyFiltered.com →', destination: 'direct' };
   }
 
   if (isWaterdropBrand(brand ?? '') || /waterdrop/i.test(name)) {

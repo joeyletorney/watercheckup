@@ -45,7 +45,7 @@ const FILTER_PICKS = [
     badge: 'BEST NO-INSTALL OPTION',
     price: '~$90',
     why: 'NSF P473 certified for PFAS removal. Removes radium, arsenic, and 365+ contaminants. Best budget option for renters in San Antonio.',
-    dp: 'B076B6FXT5',
+    dp: 'B0DFC22BHT',
     best: false,
   },
 ] as const;

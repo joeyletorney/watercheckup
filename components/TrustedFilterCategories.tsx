@@ -5,7 +5,7 @@ import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import { AffiliateLink } from './AffiliateLink';
 import { TRUSTED_FILTER_CATEGORIES } from '@/lib/trusted-filter-categories';
 import {
-  clearlyFilteredDirectUrl,
+  clearlyFilteredAmazonUrl,
   isClearlyFilteredBrand,
   isWaterdropBrand,
   resolveAffiliateAmazonUrl,
@@ -68,7 +68,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
 
   const direct = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
   const clearlyDirect = isClearlyFilteredBrand(p.brand)
-    ? clearlyFilteredDirectUrl(p.brandLink)
+    ? clearlyFilteredAmazonUrl()
     : undefined;
   const amazon = resolveAffiliateAmazonUrl(p.brand, p.amazon);
 
@@ -81,7 +81,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
         href={clearlyDirect}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        onClick={() => track('direct')}
+        onClick={() => track('amazon')}
         style={{
           fontSize: 12,
           fontWeight: 800,
@@ -92,7 +92,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
           background: 'linear-gradient(135deg,#10b981,#059669)',
         }}
       >
-        ClearlyFiltered.com →
+        Check price on Amazon →
       </a>
     );
   }

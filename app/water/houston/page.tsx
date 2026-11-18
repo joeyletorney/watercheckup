@@ -44,7 +44,7 @@ const FILTER_PICKS = [
     badge: 'BEST NO-INSTALL',
     price: '~$90',
     why: 'NSF P473 certified for PFAS removal. Good for renters. Removes PFAS, arsenic, and 365+ contaminants without installation.',
-    dp: 'B076B6FXT5',
+    dp: 'B0DFC22BHT',
     best: false,
   },
 ] as const;

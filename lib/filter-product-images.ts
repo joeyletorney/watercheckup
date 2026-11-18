@@ -23,7 +23,7 @@ const IMG_BY_ASIN: Record<string, string> = {
   B07MFYQBTX: 'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/MK99-B.png?v=1757994240',
   B07ZY9RVN2: 'https://cdn.shopify.com/s/files/1/0159/8429/5990/files/MK99-B.png?v=1757994240',
   B076S1W5QY: 'https://www.epicwaterfilters.com/cdn/shop/files/Smartshieldmexicowhitebox.png?v=1767726801',
-  B076B6FXT5:
+  B0DFC22BHT:
     'https://cdn.shopify.com/s/files/1/1011/0318/files/NewPitcher_PDP_1_33692813-0a8f-4ee9-9f9c-4de3c5a6e397.png?v=1724107995',
   B0DWTTYTQN: 'https://shop.culligan.com/cdn/shop/files/UMC_10C_White_Zoom_IAPMO.jpg?v=1769531157',
   B09LKTLVNR: 'https://www.pur.com/wp-content/uploads/product_ppt111w_pour_digital.png',
@@ -64,8 +64,8 @@ const IMG_BY_PRODUCT_KEY: Record<string, string> = {
   'frizzlife mk99': IMG_BY_ASIN.B07MFYQBTX,
   'epic smart shield': IMG_BY_ASIN.B076S1W5QY,
   'aquasana claryum 3-stage': IMG_BY_ASIN.B0FN9Y9JSP,
-  'clearly filtered 3.5l pitcher': IMG_BY_ASIN.B076B6FXT5,
-  'clearly filtered water pitcher': IMG_BY_ASIN.B076B6FXT5,
+  'clearly filtered 3.5l pitcher': IMG_BY_ASIN.B0DFC22BHT,
+  'clearly filtered water pitcher': IMG_BY_ASIN.B0DFC22BHT,
   'zerowater 10-cup pitcher': IMG_BY_ASIN.B0DWTTYTQN,
   'pur plus 11-cup pitcher': IMG_BY_ASIN.B09LKTLVNR,
   'waterdrop pitcher filter': IMG_BY_ASIN.B07C3P2RZP,

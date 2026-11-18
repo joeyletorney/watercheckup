@@ -10,7 +10,7 @@ const TOP_3_PITCHER = [
     price: '~$90',
     reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Ideal for NYC renters without under-sink install.',
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
-    amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
+    amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`,
     badge: 'BEST FOR NYC RENTERS',
   },
   {

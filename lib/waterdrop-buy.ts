@@ -1,6 +1,11 @@
-/** Direct-to-brand buy links (Waterdrop, Clearly Filtered) — no Amazon on those picks. */
+/** Brand purchase routing and manufacturer reference links. */
 
-import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+import { amazonDpUrl, normalizeAmazonUrl } from '@/lib/amazon-affiliate';
+
+/** Owner-confirmed pitcher listing; direct affiliate approval is pending. */
+export function clearlyFilteredAmazonUrl(): string {
+  return amazonDpUrl('B0DFC22BHT');
+}
 
 export const WATERDROP_REF = 'anbyjkqb';
 
@@ -49,9 +54,10 @@ export function clearlyFilteredDirectUrl(link?: string): string {
   return appendClearlyFilteredAffiliate(base);
 }
 
-/** Returns undefined for direct-buy brands so UI uses brand site instead of Amazon. */
+/** Waterdrop retains direct routing; Clearly Filtered uses the confirmed Amazon pitcher. */
 export function resolveAffiliateAmazonUrl(brand: string, amazon?: string): string | undefined {
-  if (isWaterdropBrand(brand) || isClearlyFilteredBrand(brand)) return undefined;
+  if (isClearlyFilteredBrand(brand)) return clearlyFilteredAmazonUrl();
+  if (isWaterdropBrand(brand)) return undefined;
   return normalizeAmazonUrl(amazon);
 }
 

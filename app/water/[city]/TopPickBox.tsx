@@ -7,7 +7,7 @@ import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 type Pick = { product: string; brand: string; price: string; reason: string; link: string; amazon: string; badge?: string; outOfStock?: boolean };
 
 function showBuyDirectBrand(brand: string) {
-  return brand === 'Waterdrop' || brand === 'Clearly Filtered';
+  return brand === 'Waterdrop';
 }
 
 function directBuyLabel(brand: string) {

@@ -203,7 +203,7 @@ const WELL_PRODUCTS = [
     removes: ['PFAS >99.9%','Lead >99.5%','Arsenic >99.4%','Nitrates','Bacteria','365+ contaminants'],
     bestFor: 'Budget well water solution — removes arsenic, PFAS, nitrates at point of use',
     pros: ['No installation','Removes arsenic & PFAS','Best well-water pitcher on market'],
-    asin: 'B076B6FXT5',
+    asin: 'B0DFC22BHT',
     tag: 'watercheckup-20',
   },
 ];

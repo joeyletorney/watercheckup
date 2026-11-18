@@ -219,7 +219,7 @@ export const TOP_PFAS: TopPickRow[] = [
     price: '~$90',
     reason: 'Rare NSF P473 / 401 pitcher — 99.9% PFAS on published claims.',
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
-    amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON}`,
     badge: 'PITCHER',
   },
   {
@@ -284,7 +284,7 @@ export const TOP_PITCHER: TopPickRow[] = [
     price: '~$90',
     reason: 'NSF 42/53/244/401/P473 — broadest pitcher certification for PFAS and lead.',
     link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher',
-    amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON}`,
+    amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON}`,
     badge: 'PITCHER',
   },
   {
