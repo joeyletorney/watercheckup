@@ -4,7 +4,7 @@ import { amazonDpUrl, extractAmazonAsin, normalizeAmazonUrl } from './amazon-aff
 /** Exact product destinations checked in the November 11 product-link audit.
  * Missing, search-only and known mismatched listings must not become primary Amazon buttons.
  */
-const VERIFIED_ASINS = new Set(['B0DWTTYTQN', 'B09LKTLVNR', 'B0CQS3HQ8F', 'B0CHZ8VQBB', 'B07P1XFYJP', 'B0GGTSFZMY', 'B008GNRMYK', 'B00XAJJVHQ', 'B01LFMTYBM', 'B0BK8ZRY2K', 'B08746G2XX']);
+const VERIFIED_ASINS = new Set(['B0DFC22BHT', 'B0DWTTYTQN', 'B09LKTLVNR', 'B0CQS3HQ8F', 'B0CHZ8VQBB', 'B07P1XFYJP', 'B0GGTSFZMY', 'B008GNRMYK', 'B00XAJJVHQ', 'B01LFMTYBM', 'B0BK8ZRY2K', 'B08746G2XX']);
 export function preferredAmazonPurchaseUrl(href?: string): string | undefined {
   if (!href) return undefined;
   let url: URL;

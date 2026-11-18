@@ -1,7 +1,7 @@
 import type { Post } from './post-types';
 import { GUIDE_SOURCES } from './commercial-guide-sources';
 import { PitcherGuideArticle } from './pitcher-guide-content';
-import { clearlyFilteredDirectUrl } from '@/lib/waterdrop-buy';
+import { clearlyFilteredAmazonUrl } from '@/lib/waterdrop-buy';
 export { GUIDE_SOURCES } from './commercial-guide-sources';
 
 type Choice = { costSummary?: string; merchant?: { href: string; label: string; brand: string; sponsored: boolean }; costSource?: string; option: string; fit: string; constraint: string; evidence: string; source: string; cost: string };
@@ -52,7 +52,7 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
       source: GUIDE_SOURCES.clearlyFilteredPds,
       costSource: GUIDE_SOURCES.clearlyFiltered,
       cost: 'The linked sheet rates filter life at 100 gallons. Check the current cartridge price, model compatibility and any time limit. At an illustrative 365 gallons/year, four 100-gallon cartridge lives cover the volume before any earlier replacement. No unverified annual dollar total is quoted.',
-      merchant: { href: clearlyFilteredDirectUrl('https://www.clearlyfiltered.com/products/filtered-water-pitcher'), label: 'Check price at Clearly Filtered →', brand: 'Clearly Filtered', sponsored: true },
+      merchant: { href: clearlyFilteredAmazonUrl(), label: 'Check price on Amazon →', brand: 'Clearly Filtered', sponsored: true },
     }, {
       option: 'ZeroWater 5-stage 10-cup pitcher',
       fit: 'For readers who want to reduce dissolved solids and compare the published contaminant tests.',

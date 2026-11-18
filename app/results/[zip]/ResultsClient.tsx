@@ -621,7 +621,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
                 name: 'Clearly Filtered Pitcher',
                 brand: 'Clearly Filtered',
                 price: '~$90',
-                amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`,
+                amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${TAG}`,
                 reasonDefault: 'Pitcher option without plumbing changes. Verify the exact cartridge’s published reduction claims and replacement schedule.',
               },
             ] as const;
@@ -886,7 +886,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
               badge: 'BEST NO-INSTALL',
               price: '~$90',
               reason: 'Pitcher option without plumbing changes. Verify the exact cartridge’s published reduction claims and replacement schedule.',
-              amazon: `https://www.amazon.com/dp/B076B6FXT5?tag=${TAG}`,
+              amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${TAG}`,
               best: false,
             },
           ].map((f, i) => {

@@ -35,7 +35,7 @@ const FILTERS = [
     badge: 'BEST NO-INSTALL',
     price: '~$90',
     why: 'No-install pitcher option. Check the exact cartridge’s current independent certification, claimed compounds, and replacement capacity before purchasing.',
-    link: `https://www.amazon.com/dp/B076B6FXT5?tag=${AMAZON_TAG}`,
+    link: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`,
     best: false,
   },
 ];
