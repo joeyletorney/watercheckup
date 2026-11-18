@@ -141,6 +141,34 @@ test('a successful lookup normalizes sample units and does not invent PFAS cover
   } finally { globalThis.fetch = original; }
 });
 
+test('unaddressed EPA compliance_status_code U is counted and labeled as open', async () => {
+  const original = globalThis.fetch;
+  (globalThis as typeof globalThis & { __wcEpaCircuit?: unknown }).__wcEpaCircuit = { fails: 0, openUntil: 0 };
+  globalThis.fetch = async (input) => {
+    const url = String(input);
+    const rows = url.includes('/VIOLATION/') ? [{
+      pwsid: 'MA3035000',
+      compliance_status_code: 'U',
+      violation_category_code: 'MCL',
+      contaminant_code: 'TESTU',
+      contaminant_name: 'Unaddressed Test Contaminant',
+      compl_per_begin_date: '2024-01-15',
+    }] : [];
+    return new Response(JSON.stringify(rows), { headers: { 'Content-Type': 'application/json' } });
+  };
+  try {
+    const response = await lookupWaterReport('01601');
+    const data = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(data.violationCoverage, 'available');
+    assert.equal(data.openViolations, 1);
+    assert.equal(data.violations[0].status, 'Unaddressed');
+    const row = data.contaminants.find((c: { name: string; note?: string }) => c.name === 'Unaddressed Test Contaminant');
+    assert.match(String(row?.note || ''), /OPEN/);
+    assert.doesNotMatch(String(row?.note || ''), /Resolved/);
+  } finally { globalThis.fetch = original; }
+});
+
 test('state aliases do not shadow NYC, and excluded ZIP pages are absent from the sitemap', async () => {
   const rewrites = await config.rewrites!();
   assert.ok(Array.isArray(rewrites));

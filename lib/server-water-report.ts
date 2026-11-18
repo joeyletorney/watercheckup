@@ -120,7 +120,12 @@ function systemsFromZipLookup(zip: string): any[] {
 }
 
 function violationStatusCode(v: any): string {
-  return String(f(v, 'violation_status_code') || f(v, 'compliance_status_code') || '');
+  return String(f(v, 'violation_status_code') || f(v, 'compliance_status_code') || '').toUpperCase();
+}
+
+function isOpenViolationStatus(status: string): boolean {
+  const s = status.toUpperCase();
+  return s === 'O' || s === 'U' || s.startsWith('UNADDR');
 }
 
 function violationBeginDate(v: any): string {
@@ -347,6 +352,7 @@ const VIOL_LABELS: Record<string, string> = {
 };
 const STATUS_META: Record<string, { label: string; color: string }> = {
   O: { label: 'Open', color: '#ef4444' },
+  U: { label: 'Unaddressed', color: '#ef4444' },
   R: { label: 'Resolved', color: '#22d3ee' },
   A: { label: 'Addressed', color: '#f59e0b' },
 };
@@ -748,10 +754,7 @@ export async function lookupWaterReport(zip: string, refresh = false) {
       }));
     };
 
-    const openV = viols.filter(v => {
-      const status = violationStatusCode(v).toUpperCase();
-      return status === 'O' || status === 'U' || status.startsWith('UNADDR');
-    });
+    const openV = viols.filter(v => isOpenViolationStatus(violationStatusCode(v)));
     const healthV = viols.filter(v => ['MCL', 'MRDL', 'TT'].includes(f(v, 'violation_category_code') || ''));
     const pfasContaminants = getPfasForPwsid(pwsid);
     const pfasAboveMcl = pfasContaminants.filter(p => p.severity === 'high');
@@ -819,8 +822,8 @@ export async function lookupWaterReport(zip: string, refresh = false) {
         const ctx = HEALTH_CONTEXT[name];
         contaminants.push({
           name, level: null, limit: null, unit: '',
-          severity: sc === 'O' ? 'high' : 'moderate',
-          note: `${sc === 'O' ? 'OPEN' : 'Resolved'} — ${VIOL_LABELS[f(v, 'violation_category_code') || ''] || ''}`,
+          severity: isOpenViolationStatus(sc) ? 'high' : 'moderate',
+          note: `${isOpenViolationStatus(sc) ? 'OPEN' : 'Resolved'} — ${VIOL_LABELS[f(v, 'violation_category_code') || ''] || ''}`,
           violationBased: true, source: 'EPA SDWIS',
           healthEffects: ctx?.effects,
           healthSources: ctx?.sources,
