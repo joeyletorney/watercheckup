@@ -434,7 +434,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
     excerpt:
       'Hard water is about geology, not bad public water system work. These ten major metros sit on aquifers and river sources where calcium and magnesium are naturally high — plus practical fixes for scale and drinking water.',
     seo: {
-      title: 'Top 10 US Cities With the Hardest Tap Water (2026) | WaterCheckup',
+      title: 'Top 10 US Cities With the Hardest Tap Water (2026)',
       description:
         'Which major US cities have the hardest tap water? Regional geology, typical hardness patterns, links to free city water reports, and filter guidance.',
       canonical: 'https://watercheckup.com/blog/top-10-cities-hardest-tap-water',

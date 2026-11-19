@@ -17,6 +17,7 @@ import ucmr5Raw from "@/lib/ucmr5.json";
 import { getAllUtilityStaticParams, getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
 import { shouldIndexUtility } from "@/lib/utility-indexability";
 import { getCtrSerpOverride } from "@/lib/ctr-serp-seo";
+import { withoutBrandSuffix } from "@/lib/serp-copy";
 import { cacheLife } from "next/cache";
 
 /** Prerender top utilities at build; all other `/utilities/[state]/[slug]` paths ISR on first request. */
@@ -167,7 +168,7 @@ export async function generateMetadata(
   }
   const path = `/utilities/${params.state.toLowerCase()}/${params.slug}`;
   const ctr = getCtrSerpOverride(path);
-  const title = ctr?.title ?? `Is ${u.name} Water Safe? 2026 Report`;
+  const title = withoutBrandSuffix(ctr?.title ?? `Is ${u.name} Water Safe? 2026 Report`);
   const description =
     ctr?.description ??
     `${u.name} (${u.pwsid}) — population served, EPA violations snapshot, PFAS testing, and filter picks. ${stateLabel(u.state)} public water system report.`;
@@ -181,7 +182,7 @@ export async function generateMetadata(
       canonical: `https://watercheckup.com${path}`,
     },
     openGraph: {
-      title: ctr?.title ?? `Is ${u.name} Water Safe? 2026`,
+      title: withoutBrandSuffix(ctr?.title ?? `Is ${u.name} Water Safe? 2026`),
       description:
         ctr?.description ??
         `Free EPA-based report: violations, UCMR5 PFAS, and certified filter recommendations for ${u.name}.`,

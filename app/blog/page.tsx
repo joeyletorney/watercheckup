@@ -9,16 +9,16 @@ const LEARN_HERO_IMAGE = '/girldrinkingwater.jpg';
 const LEARN_HERO_ALT = 'Girl drinking clean water — water quality education and guides';
 
 export const metadata: Metadata = {
-  title: 'Water Quality Guides — PFAS, Lead, Filters & EPA Data',
+  title: 'Water Filter & Tap Water Guides: PFAS, Lead & EPA Data',
   description:
-    'Expert guides on PFAS contamination, lead in tap water, water filter certifications, EPA violations, and well water safety. Free, based on real EPA data.',
+    'Expert guides on PFAS, lead, water filters, EPA violations, and well water. Free, based on public-supplier data — not a test of your tap.',
   alternates: {
     canonical: 'https://watercheckup.com/blog',
   },
   openGraph: {
-    title: 'Water Quality Guides — PFAS, Lead, Filters & EPA Data',
+    title: 'Water Filter & Tap Water Guides: PFAS, Lead & EPA Data',
     description:
-      'Expert guides on PFAS contamination, lead in tap water, water filter certifications, EPA violations, and well water safety.',
+      'Expert guides on PFAS, lead, water filters, EPA violations, and well water. Free, based on public-supplier data — not a test of your tap.',
   },
 };
 
@@ -71,7 +71,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'reverse-osmosis-vs-distilled-water': {
-    title: 'Distilled Water vs. Reverse Osmosis – Which Is Actually Purer?',
+    title: 'RO vs Distilled Water: Which Should You Drink? (2026)',
     excerpt:
       'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
     date: 'May 18, 2026',
@@ -288,7 +288,7 @@ const POST_BY_SLUG: Record<
     badgeColor: '#06b6d4',
   },
   'best-whole-house-water-filter': {
-    title: 'Best Whole-House Water Filters 2026: Tested for PFAS, Chlorine & Hard Water',
+    title: 'Best Whole-House Water Filters 2026: PFAS, Chlorine & Hard Water',
     excerpt: 'Protect every tap, shower, and appliance. The top whole-house systems ranked by NSF certifications, contaminant removal, and long-term cost.',
     date: 'June 1, 2026',
     readTime: '10 min read',

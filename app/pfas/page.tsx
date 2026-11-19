@@ -5,14 +5,14 @@ import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { clearlyFilteredAmazonUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 
 export const metadata: Metadata = {
-  title: 'PFAS Forever Chemicals in Tap Water — 2026 Contamination Guide',
+  title: 'PFAS in Tap Water: Is Your City Affected? (2026)',
   description:
-    'PFAS chemicals are in the tap water of millions of Americans. Find out if your city is affected, what the health risks are, and which filters actually remove forever chemicals.',
+    'See if PFAS showed up in your city’s EPA monitoring, the health risks, and which filters are certified to reduce them. Free ZIP lookup.',
   alternates: { canonical: 'https://watercheckup.com/pfas' },
   openGraph: {
-    title: 'PFAS Forever Chemicals in Tap Water — 2026 Contamination Guide',
+    title: 'PFAS in Tap Water: Is Your City Affected? (2026)',
     description:
-      'PFAS chemicals are in the tap water of millions of Americans. Find out if your city is affected, what the health risks are, and which filters actually remove forever chemicals.',
+      'See if PFAS showed up in your city’s EPA monitoring, the health risks, and which filters are certified to reduce them. Free ZIP lookup.',
     images: [{ url: 'https://watercheckup.com/api/og?city=PFAS+Guide&score=&grade=&violations=', width: 1200, height: 630 }],
   },
 };

@@ -9,6 +9,7 @@ import ucmr5Raw from '../../../../lib/ucmr5.json';
 import { getAverageHardnessForState } from '@/lib/water-hardness';
 import { computeCityWaterScore } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
+import { buildStateSeoDescription, buildStateSeoTitle } from '@/lib/serp-copy';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, hasBenchmark, aboveBenchmark], ...], lithiumUgL?]
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -137,14 +138,19 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   const rows = buildStateRows(stateAbbr);
   const atRisk = rows.filter((r) => r.band === 'at_risk').length;
   const topChem = topContaminantsInState(rows, 1)[0];
-  const descExtra =
-    topChem != null
-      ? ` Common analytes include ${topChem.name} (${topChem.cityCount} cities).`
-      : ' ';
+  const title = buildStateSeoTitle(stateName);
+  const description = buildStateSeoDescription({
+    stateName,
+    cityCount: rows.length,
+    atRiskCount: atRisk,
+    topAnalyte: topChem,
+  });
   return {
-    title: `${stateName} Tap Water Quality — PFAS by City, Grades & EPA UCMR5`,
-    description: `${stateName} tap water: ${rows.length} city reports, ${atRisk} at elevated risk (EPA limits / UCMR5). Grades, contaminants above guidelines, and filter guidance.${descExtra}`,
+    title,
+    description,
     alternates: { canonical: `https://watercheckup.com/water/state/${stateSlug}` },
+    openGraph: { title, description },
+    twitter: { title, description },
   };
 }
 
@@ -193,7 +199,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
             EPA WATER QUALITY DATA · {stateAbbr}
           </div>
           <h1 style={{ fontSize: 30, fontWeight: 900, color: '#f1f5f9', margin: '0 0 14px', lineHeight: 1.2 }}>
-            {stateName} Tap Water Quality by City
+            {stateName} Tap Water Quality 2026
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 24px' }}>
             EPA UCMR5 PFAS monitoring, MCL / guideline flags, and WaterCheckup grades for {totalCities} cities in {stateName}.

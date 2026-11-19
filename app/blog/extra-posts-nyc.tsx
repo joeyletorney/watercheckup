@@ -295,7 +295,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
     excerpt:
       'How to verify NYCDEP water results, understand gaps in historical PFAS data, and decide whether household testing or filtration is appropriate.',
     seo: {
-      title: 'PFAS in New York City Water — What Residents Need to Know (2026) | WaterCheckup',
+      title: 'PFAS in New York City Water — What Residents Need to Know (2026)',
       description:
         'Verify NYCDEP supplier information, historical data coverage, and household testing options before choosing filtration.',
     },

@@ -1,6 +1,7 @@
 /**
  * Hand-tuned title + meta description for URLs with high impressions / low CTR (GSC).
- * When set, these replace priority-city formatting and default blog SEO for SERP snippets.
+ * City pages (`/water/{city}`) use the generated template in `lib/serp-copy.ts` instead.
+ * When set, these replace default blog / rankings / utility SEO for SERP snippets.
  */
 export type CtrSerpCopy = {
   title: string;
@@ -8,122 +9,35 @@ export type CtrSerpCopy = {
 };
 
 export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
-  '/water/gaithersburg': {
-    title: 'Water Testing Gaithersburg MD — WSSC Tap & Well Tests (2026)',
-    description:
-      'Need water testing in Gaithersburg? Free WSSC/EPA report for tap water, well water testing guidance, PFAS levels, and NSF-certified filter picks. No login.',
-  },
-  '/water/san-antonio': {
-    title: 'PFAS in San Antonio Water — Contamination & SAWS Report (2026)',
-    description:
-      'San Antonio water contamination concerns: PFAS in UCMR5, hard Edwards Aquifer water, radium context, and DBPs. Free EPA report — see levels and filter fixes.',
-  },
-  '/water/raleigh': {
-    title: 'Raleigh Water Quality 2026 — PFAS, GenX & THM Report',
-    description:
-      'Wake County PFAS and GenX concerns, THM violations, and agricultural runoff in Raleigh tap water. Free EPA graded report and NSF filter picks.',
-  },
-  '/water/phoenix': {
-    title: 'Phoenix Tap Water: C- Grade, Chromium-6 & PFAS',
-    description:
-      'Phoenix water has very hard minerals, 7.4 ppt PFAS and chromium-6 above CA health goals. See the C- grade, contaminant table and filter picks.',
-  },
-  '/water/baltimore': {
-    title: 'Baltimore Water Quality — Lead, PFAS & City Testing (2026)',
-    description:
-      'Baltimore city water testing context: lead at the tap in older rowhouses, PFAS monitoring, and NSF-certified filter picks.',
-  },
-  '/water/chicago': {
-    title: 'Chicago Tap Water: B Grade — Lead Lines, PFAS & DBPs',
-    description:
-      '150,000+ lead service lines, PFAS in monitoring, chloramine byproducts. Free 2026 Chicago water report (75/88) & filter picks.',
-  },
-  '/water/houston': {
-    title: 'Is Houston Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
-    description:
-      'Houston water has disinfection byproduct concerns and PFAS detections. Free EPA report — contaminant levels, violation history, and the right filter for your home.',
-  },
-  '/water/new-york': {
-    title: 'NYC Tap Water — Supplier Report & Building Lead Context',
-    description:
-      'NYCDEP supplier information, building-plumbing lead context, and clearly labeled gaps in our historical PFAS snapshot. Free report and official source links.',
-  },
-  '/water/miami': {
-    title: 'Miami Tap Water: D Grade — PFOS 33 ppt & PFAS MCL Violations',
-    description:
-      'MDWASA water: PFOS, PFOA, PFHxS above EPA limits in UCMR5. Biscayne Aquifer source. Free 2026 Miami-Dade graded report & NSF filter picks.',
-  },
-  '/water/sugar-land': {
-    title: 'Sugar Land Tap Water: F Grade — 672 ppt 6:2 FTS Peak',
-    description:
-      'Highest peak PFAS in large Texas systems: 672 ppt 6:2 FTS, PFOA at EPA limit. Free 2026 Sugar Land UCMR5 report & NSF 58 filter picks.',
-  },
-  '/water/dallas': {
-    title: 'Dallas Tap Water: D Grade — PFAS MCL Violations & DBPs',
-    description:
-      'PFOA, PFOS & PFHxS above EPA limits in UCMR5. Elevated TTHMs from chloramine treatment. Free 2026 Dallas water report & filter quiz.',
-  },
-  '/water/los-angeles': {
-    title: 'Los Angeles Tap Water — Chromium-6, Hardness & EPA Report',
-    description:
-      'Chromium-6 above CA health goals and hard water in the LADWP profile. This UCMR5 snapshot lists no reportable PFAS for CA1910067. Free 2026 LA EPA report — no signup.',
-  },
-  '/water/philadelphia': {
-    title: 'Philadelphia Water Quality — PFAS, Lead Lines & DBPs (2026)',
-    description:
-      'Philly tap water: PFAS from the Delaware River, lead service lines in ~25% of homes, and chloramine DBPs. Free EPA report and NSF filter picks.',
-  },
-  '/water/columbus': {
-    title: 'Columbus OH Tap Water: PFAS MCL Violations — 2026 Report',
-    description:
-      'Regulated PFAS above EPA limits in UCMR5 (18 ppt peak). Scioto River source. Free 2026 Columbus graded report & certified filter picks.',
-  },
-  '/water/fort-worth': {
-    title: 'Fort Worth Tap Water: 102 ppt PFAS — 2026 Safety Report',
-    description:
-      'PFHxS & PFOS above EPA MCLs in Trinity basin water. Free 2026 Fort Worth graded report, UCMR5 compound table & NSF filter picks.',
-  },
   '/blog/san-antonio-water-quality': {
-    title: 'San Antonio Water Quality: PFAS, Hardness & SAWS Data',
+    title: 'Is San Antonio Tap Water Safe? SAWS PFAS & Hardness (2026)',
     description:
-      'SAWS meets legal limits, but San Antonio still has PFAS signals, radium context and very hard water. See what the 2026 data means.',
+      'SAWS meets legal limits, but San Antonio still has PFAS signals, radium context and very hard water. See what the 2026 data means — and which filters help.',
   },
   '/blog/pfas-in-san-antonio-water': {
     title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
     description:
       'Which PFAS compounds showed up in SAWS monitoring, how levels compare with EPA limits, and which NSF filters are built to remove them.',
   },
-  '/water/san-diego': {
-    title: 'San Diego Water Quality — PFAS, Hard Water & Chromium-6 (2026)',
-    description:
-      'San Diego imports 85%+ of its water. See PFAS monitoring, hardness, chromium-6 context, and chloramine DBPs — free EPA report and filter picks.',
-  },
   '/blog/best-water-filter-for-lead-removal': {
     title: 'Best Water Filters for Lead Removal 2026 — Evidence & Costs',
-    description: 'Compare lead-reduction pitchers, countertop RO and installed filters with official model evidence, installation limits and replacement-cost assumptions.',
+    description:
+      'Compare lead-reduction pitchers, countertop RO and installed filters with official model evidence, installation limits and replacement-cost assumptions.',
   },
   '/blog/best-water-filter-hard-water': {
     title: 'Best Water Filter for Hard Water 2026 — Softener vs RO',
-    description: 'Compare whole-house softeners, drinking-water RO and scale conditioners: official guidance, installation constraints and ownership-cost assumptions.',
+    description:
+      'Compare whole-house softeners, drinking-water RO and scale conditioners: official guidance, installation constraints and ownership-cost assumptions.',
   },
   '/blog/best-countertop-water-filter': {
     title: 'Best Countertop Water Filters 2026 — RO & Pitcher Comparison',
-    description: 'Compare countertop RO and a lead-reduction pitcher with official evidence, setup limits, replacement schedules and sourced cost assumptions.',
+    description:
+      'Compare countertop RO and a lead-reduction pitcher with official evidence, setup limits, replacement schedules and sourced cost assumptions.',
   },
   '/rankings': {
-    title: 'Tap Water Quality Rankings by State 2026 — PFAS & Grades',
+    title: 'Worst Tap Water in America: 2026 City Rankings',
     description:
-      'Compare all 50 states by PFAS violations and water quality grades. See which cities rank worst and open free EPA city reports.',
-  },
-  '/water/fairfax-county': {
-    title: 'Fairfax County Water Quality — PFAS & Northern VA Report (2026)',
-    description:
-      'Fairfax and Northern Virginia water: PFAS above EPA limits in UCMR5, WSSC vs Fairfax Water systems, and NSF filter picks.',
-  },
-  '/water/nashville': {
-    title: 'Nashville Water Quality 2026 — Cumberland River PFAS & DBPs',
-    description:
-      'Metro Nashville tap water: PFAS monitoring, chloramine DBPs, and construction-related lead risk. Free EPA graded report.',
+      'See the worst tap water in America for 2026 — city and state rankings from EPA PFAS data and safety grades, plus free reports and filter picks. No signup.',
   },
   '/blog/what-water-filter-removes-pfas': {
     title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',
@@ -146,7 +60,7 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Historical UCMR5 peaks compared with compound-specific benchmarks. Supplier identity and sampling context matter; peaks are not official compliance findings.',
   },
   '/utilities/nc/greensboro-townsend': {
-    title: 'Greensboro Townsend Water — EPA Report & PFAS (2026)',
+    title: 'Is Greensboro Townsend Water Safe? 2026 EPA Report',
     description:
       'Greensboro area public water system: violations snapshot, UCMR5 PFAS testing, population served & certified filter recommendations. Free report.',
   },

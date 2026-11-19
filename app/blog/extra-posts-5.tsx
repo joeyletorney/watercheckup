@@ -35,11 +35,11 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
   // ─── POST 2: BEST WHOLE-HOUSE WATER FILTER ───────────────────────────────
   'best-whole-house-water-filter': {
-    title: 'Best Whole-House Water Filters 2026: Tested for PFAS, Chlorine & Hard Water',
+    title: 'Best Whole-House Water Filters 2026: PFAS, Chlorine & Hard Water',
     excerpt: 'Whole-house filters protect every tap, shower, and appliance. Here are the top systems ranked by what they remove, certification, and long-term cost.',
     seo: {
-      title: 'Best Whole-House Water Filters 2026: Tested for PFAS, Chlorine & Hard Water',
-      description: 'Protect every tap in your home. We ranked the best whole-house water filters by NSF certifications, contaminant removal, and long-term cost — including options for PFAS, chloramine, and hard water.',
+      title: 'Best Whole-House Water Filters 2026: PFAS, Chlorine & Scale',
+      description: 'Protect every tap. Compare whole-house filters by NSF claims, PFAS, chloramine, and hardness — plus long-term cost. Not a lab ranking.',
       canonical: 'https://watercheckup.com/blog/best-whole-house-water-filter',
       openGraph: {
         title: 'Best Whole-House Water Filters 2026: Ranked for PFAS, Chloramine & Hard Water',
@@ -126,12 +126,12 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     title: 'Best Under-Sink Water Filters 2026: What Actually Works',
     excerpt: 'Under-sink filters range from $126 carbon filters to $439 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
     seo: {
-      title: 'Under-Sink Water Filters 2026 | Carbon vs. Reverse Osmosis',
-      description: 'Compare under-sink carbon filters and reverse osmosis systems by model claims, installation needs and upkeep.',
+      title: 'Best Under-Sink Water Filters 2026: Carbon vs RO',
+      description: 'Compare under-sink carbon filters and reverse osmosis by model claims, installation needs, and upkeep. Match the filter to your water.',
       canonical: 'https://watercheckup.com/blog/best-under-sink-water-filter',
       openGraph: {
-        title: 'Under-Sink Water Filters 2026 | Carbon vs. Reverse Osmosis',
-        description: 'Compare under-sink carbon filters and reverse osmosis systems by model claims, installation needs and upkeep.',
+        title: 'Best Under-Sink Water Filters 2026: Carbon vs RO',
+        description: 'Compare under-sink carbon filters and reverse osmosis by model claims, installation needs, and upkeep. Match the filter to your water.',
       },
     },
     date: '2026-06-01',
@@ -459,12 +459,12 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     title: 'PFAS in City Water: Compare Historical Monitoring Carefully',
     excerpt: 'EPA UCMR5 monitoring revealed which US water systems have the highest PFAS — regulated MCL violations and peak readings. Sugar Land TX leads Texas at 672 ppt 6:2 FTS. Here are the worst 10 — and what residents can do.',
     seo: {
-      title: 'PFAS in City Water: Compare Historical Monitoring Carefully',
-      description: 'Compare historical PFAS monitoring by verified supplier and compound, with official source links and clear limitations.',
+      title: 'Highest PFAS in US Tap Water: 2026 City List',
+      description: 'Compare historical UCMR5 PFAS monitoring by verified supplier and compound, with official source links and clear limitations. Not a household tap test.',
       canonical: 'https://watercheckup.com/blog/top-10-most-pfas-contaminated-cities',
       openGraph: {
-        title: 'PFAS Monitoring by Supplier — Sources and Comparisons',
-        description: 'Compare historical PFAS monitoring by verified supplier and compound, with official source links and clear limitations.',
+        title: 'Highest PFAS in US Tap Water: 2026 City List',
+        description: 'Compare historical UCMR5 PFAS monitoring by verified supplier and compound, with official source links and clear limitations. Not a household tap test.',
       },
     },
     date: '2026-06-01',

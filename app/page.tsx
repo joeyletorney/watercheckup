@@ -1,17 +1,21 @@
 import type { Metadata } from 'next';
 import HomeLanding from './HomeLanding';
 import { SITE_FAQ_SCHEMA } from '@/lib/site-faq-schema';
-import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats';
+import { HOME_SEO_DESCRIPTION, HOME_SEO_TITLE } from '@/lib/serp-copy';
 
 export const metadata: Metadata = {
-  title: 'Free Tap Water Report by ZIP — PFAS, Lead & Grade',
-  description: SITE_HOME_META_DESCRIPTION,
+  title: HOME_SEO_TITLE,
+  description: HOME_SEO_DESCRIPTION,
   alternates: {
     canonical: 'https://watercheckup.com',
   },
   openGraph: {
-    title: 'Free Tap Water Report by ZIP — PFAS, Lead & Safety Grade',
-    description: SITE_HOME_META_DESCRIPTION,
+    title: HOME_SEO_TITLE,
+    description: HOME_SEO_DESCRIPTION,
+  },
+  twitter: {
+    title: HOME_SEO_TITLE,
+    description: HOME_SEO_DESCRIPTION,
   },
 };
 

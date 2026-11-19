@@ -27,7 +27,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-34ZFC3J521'
 export const metadata: Metadata = {
   metadataBase: new URL('https://watercheckup.com'),
   title: {
-    default: "WaterCheckup — See What's in Your Tap Water",
+    default: 'Is My Tap Water Safe? Free Water Quality by ZIP',
     template: '%s | WaterCheckup',
   },
   description: SITE_HOME_META_DESCRIPTION,
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://watercheckup.com',
     siteName: 'WaterCheckup',
-    title: "WaterCheckup -- See What's Really in Your Tap Water",
+    title: 'Is My Tap Water Safe? Free Water Quality by ZIP',
     description: SITE_HOME_META_DESCRIPTION,
     images: [
       {
@@ -69,9 +69,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "WaterCheckup -- See What's in Your Tap Water",
+    title: 'Is My Tap Water Safe? Free Water Quality by ZIP',
     description:
-      'Free EPA-backed water snapshot by ZIP — violations, PFAS, lead, plain-English guidance, and filter ideas. Some links may earn a commission.',
+      'Free water quality report by ZIP — no signup. See PFAS, lead, and EPA data for your public supplier, plus NSF filter picks.',
     images: ['/api/og'],
     creator: '@watercheckup',
   },
@@ -121,7 +121,7 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': 'https://watercheckup.com/#webpage',
       url: 'https://watercheckup.com',
-      name: "WaterCheckup — See What's in Your Tap Water",
+      name: 'Is My Tap Water Safe? Free Water Quality by ZIP',
       isPartOf: { '@id': 'https://watercheckup.com/#website' },
       about: { '@id': 'https://watercheckup.com/#organization' },
       description: SITE_HOME_META_DESCRIPTION,

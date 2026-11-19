@@ -12,17 +12,17 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'New York City tap water quality: PFOS in EPA monitoring, lead in pre-1986 buildings. Free 2026 NYC water report with grade and NSF filter picks.',
   },
   'san-antonio': {
-    title: 'Is San Antonio Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
+    title: 'Is San Antonio Tap Water Safe? 2026 PFAS & DBP Report',
     description:
       "San Antonio water has PFAS detections, DBP violations, and hard water concerns. Free EPA report — see exactly what's in your water and which filter fixes it.",
   },
   gaithersburg: {
-    title: 'Is Gaithersburg Tap Water Safe? 2026 EPA Report | WaterCheckup',
+    title: 'Is Gaithersburg Tap Water Safe? 2026 EPA Report',
     description:
       'Free EPA report for Gaithersburg (WSSC Water) — PFAS levels, disinfection byproducts, violation history, and NSF-certified filter picks. No login required.',
   },
   raleigh: {
-    title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report | WaterCheckup',
+    title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report',
     description:
       'Free Raleigh water quality report — EPA violation history, PFAS data, lead risk, and NSF-certified filter recommendations from a 30-year water expert.',
   },
@@ -32,7 +32,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'LADWP tap water: chromium-6 is the main documented concern in this profile. This UCMR5 snapshot lists no reportable PFAS for CA1910067. Free 2026 Los Angeles water quality report from EPA data.',
   },
   houston: {
-    title: 'Is Houston Tap Water Safe? 2026 PFAS & DBP Report | WaterCheckup',
+    title: 'Is Houston Tap Water Safe? 2026 PFAS & DBP Report',
     description:
       'Houston water has disinfection byproduct concerns and PFAS detections. Free EPA report — contaminant levels, violation history, and the right filter for your home.',
   },
@@ -172,7 +172,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Las Vegas Valley Water: Colorado River source, very hard water, UCMR5 PFAS snapshot. Free 2026 Las Vegas tap water report.',
   },
   baltimore: {
-    title: 'Is Baltimore Tap Water Safe? 2026 Lead & PFAS Report | WaterCheckup',
+    title: 'Is Baltimore Tap Water Safe? 2026 Lead & PFAS Report',
     description:
       'Baltimore has lead service line risk and PFAS concerns. Free EPA water quality report — violation history, lead risk by home age, and NSF-certified filter picks.',
   },
@@ -213,39 +213,40 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
   },
 };
 
-/** H1 copy for priority city pages — matches 2026 title-tag pattern */
+/** H1 copy for priority city pages — matches the “is tap water safe?” SERP intent */
 export const PRIORITY_CITY_H1: Record<string, string> = {
-  gaithersburg: 'Water Testing in Gaithersburg, MD (2026)',
-  'san-antonio': 'PFAS in San Antonio Water — Quality Report (2026)',
-  raleigh: 'Raleigh Water Quality — PFAS, GenX & THMs (2026)',
-  houston: 'Is Houston Tap Water Safe? (2026)',
-  baltimore: 'Baltimore Water Quality & Lead Testing (2026)',
-  chicago: 'Chicago Tap Water Quality 2026',
-  phoenix: 'Phoenix Tap Water Quality 2026',
-  'new-york': 'New York City Water Quality 2026',
-  'los-angeles': 'Los Angeles Water Quality 2026',
-  philadelphia: 'Philadelphia Water Quality — PFAS & Lead (2026)',
-  'san-diego': 'San Diego Water Quality — PFAS & Hardness (2026)',
-  'sugar-land': 'Sugar Land Water Quality 2026',
-  miami: 'Miami Water Quality 2026',
-  'fort-worth': 'Fort Worth Water Quality 2026',
-  columbus: 'Columbus Water Quality 2026',
-  dallas: 'Dallas Water Quality 2026',
-  sacramento: 'Sacramento Water Quality 2026',
-  pensacola: 'Pensacola Water Quality 2026',
-  fresno: 'Fresno Water Quality 2026',
-  austin: 'Austin Water Quality 2026',
-  'fairfax-county': 'Fairfax County Water Quality 2026',
-  stamford: 'Stamford Tap Water 2026 — PFAS & Lead',
-  'kansas-city': 'Kansas City Tap Water 2026 — Missouri River & DBPs',
-  richmond: 'Richmond VA Tap Water 2026 — James River Quality',
-  parkersburg: 'Parkersburg Water — Supplier-Specific PFAS Monitoring',
+  gaithersburg: 'Is Gaithersburg Tap Water Safe?',
+  'san-antonio': 'Is San Antonio Tap Water Safe?',
+  raleigh: 'Is Raleigh Tap Water Safe?',
+  houston: 'Is Houston Tap Water Safe?',
+  baltimore: 'Is Baltimore Tap Water Safe?',
+  chicago: 'Is Chicago Tap Water Safe?',
+  phoenix: 'Is Phoenix Tap Water Safe?',
+  'new-york': 'Is New York City Tap Water Safe?',
+  'los-angeles': 'Is Los Angeles Tap Water Safe?',
+  philadelphia: 'Is Philadelphia Tap Water Safe?',
+  'san-diego': 'Is San Diego Tap Water Safe?',
+  'sugar-land': 'Is Sugar Land Tap Water Safe?',
+  miami: 'Is Miami Tap Water Safe?',
+  'fort-worth': 'Is Fort Worth Tap Water Safe?',
+  columbus: 'Is Columbus Tap Water Safe?',
+  dallas: 'Is Dallas Tap Water Safe?',
+  sacramento: 'Is Sacramento Tap Water Safe?',
+  pensacola: 'Is Pensacola Tap Water Safe?',
+  fresno: 'Is Fresno Tap Water Safe?',
+  austin: 'Is Austin Tap Water Safe?',
+  'fairfax-county': 'Is Fairfax County Tap Water Safe?',
+  stamford: 'Is Stamford Tap Water Safe?',
+  'kansas-city': 'Is Kansas City Tap Water Safe?',
+  richmond: 'Is Richmond Tap Water Safe?',
+  parkersburg: 'Is Parkersburg Tap Water Safe?',
 };
 
 type PriorityCityRecord = {
   name: string;
   state: string;
   zip?: string;
+  system?: string;
   issues: string[];
   urgency: 'high' | 'medium' | 'low';
   pwsid: string;
