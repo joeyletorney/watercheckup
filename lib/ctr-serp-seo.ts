@@ -38,6 +38,11 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
     description:
       'Best countertop water filter for taste in 2026 — pitcher vs countertop RO, with NSF evidence, setup limits, and replacement-cost assumptions.',
   },
+  '/blog/best-shower-filter-2026': {
+    title: 'Best Shower Filter 2026: Chlorine vs Chloramine',
+    description:
+      'Do shower filters work? Compare 2026 picks for chlorine, chloramine, and hard water. NSF 177, ZIP report, and honest limits.',
+  },
   '/blog/best-water-filter-pitcher-2025': {
     title: 'Best Water Filter Pitcher 2026: What They Remove',
     description:

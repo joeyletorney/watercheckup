@@ -105,7 +105,9 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Most people overestimate how much they need whole-house filtration. If your only concern is drinking and cooking water quality — PFAS, lead, nitrates — an ',
         React.createElement('a', { href: '/blog/best-under-sink-water-filter', style: linkStyle }, 'under-sink RO system'),
-        ' costs $375–849 and provides more thorough contaminant removal than any whole-house filter at a fraction of the total cost. Whole-house makes sense when chlorine or chloramine in shower water is a real concern, or when you want consistent filtered water at every faucet.'
+        ' costs $375–849 and provides more thorough contaminant removal than any whole-house filter at a fraction of the total cost. Whole-house makes sense when chlorine or chloramine in shower water is a real concern, or when you want consistent filtered water at every faucet. If the shower is the only room that bothers you, a ',
+        React.createElement('a', { href: '/blog/best-shower-filter-2026', style: linkStyle }, 'shower filter'),
+        ' is the cheaper first step — with honest limits on chloramine, hardness, lead, and PFAS.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Check Your Water Before You Buy'),

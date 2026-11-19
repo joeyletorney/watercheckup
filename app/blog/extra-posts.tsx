@@ -140,6 +140,14 @@ export const EXTRA_POSTS: Record<string, Post> = {
         <p style={pStyle}>
           Read your CCR or call your public water system — they will state whether the residual disinfectant is chlorine, chloramine, or a combination. Match that to your filter&apos;s certifications.
         </p>
+        <p style={pStyle}>
+          At the shower, KDF/carbon cartridges are built around free chlorine; vitamin C handles chloramine better.
+          See the{' '}
+          <a href="/blog/best-shower-filter-2026" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+            2026 shower filter guide
+          </a>
+          {' '}for what those devices can and cannot do.
+        </p>
       </>
     ),
   },

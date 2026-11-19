@@ -12,9 +12,11 @@ type Props = {
   picks: TopPickRow[];
   /** Short label under the tab — optional context line */
   subtitle?: string;
+  /** GA4 `source_page` / `page` for affiliate_click. Defaults to `blog`. */
+  page?: string;
 };
 
-export function BlogTopPicks({ picks, subtitle }: Props) {
+export function BlogTopPicks({ picks, subtitle, page = 'blog' }: Props) {
   const available = picks.filter((p, i) => !p.outOfStock && !unavailablePurchase(p.product, p.amazon) && picks.findIndex(other => other.product === p.product) === i);
   const budget = [...available].sort((a, b) =>
     (Number(a.price.replace(/[^0-9.]/g, '')) || Infinity) -
@@ -100,7 +102,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                     rel="noopener noreferrer sponsored"
                     product={pick.product}
                     destination={isClearlyFilteredBrand(pick.brand) ? "amazon" : "direct"}
-                    page="blog"
+                    page={page}
                     brand={pick.brand}
                     className={i === 0 ? 'wc-blog-top-picks__btn wc-blog-top-picks__btn--primary' : 'wc-blog-top-picks__btn wc-blog-top-picks__btn--secondary'}
                   >
@@ -113,7 +115,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                     rel="noopener noreferrer sponsored"
                     product={pick.product}
                     destination="amazon"
-                    page="blog"
+                    page={page}
                     brand={pick.brand}
                     className="wc-blog-top-picks__btn wc-blog-top-picks__btn--primary"
                     aria-label={`${isAmazonSearch(pick.amazon) ? "Browse Amazon results" : "Check price on Amazon"} for ${pick.product}`}

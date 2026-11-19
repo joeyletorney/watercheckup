@@ -2,6 +2,7 @@
 import { isAmazonSearch } from '@/lib/product-availability';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import { AffiliateLink } from './AffiliateLink';
 import { TRUSTED_FILTER_CATEGORIES } from '@/lib/trusted-filter-categories';
@@ -307,6 +308,14 @@ export function TrustedFilterCategories({ productsById }: Props) {
                   <p style={{ fontSize: 12, color: '#94a3b8', margin: '4px 4px 0', lineHeight: 1.5 }}>
                     Ranked by NSF/WQA certifications, fit for this category, and value — not paid placement order.
                   </p>
+                  {cat.guideHref ? (
+                    <Link
+                      href={cat.guideHref}
+                      style={{ fontSize: 13, fontWeight: 700, color: cat.accent, textDecoration: 'none', margin: '4px 4px 0' }}
+                    >
+                      {cat.guideLabel ?? 'Read the buying guide →'}
+                    </Link>
+                  ) : null}
                 </div>
               ) : null}
             </div>

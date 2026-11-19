@@ -4,6 +4,7 @@ export const BLOG_POST_SLUGS = [
   'arsenic-in-well-water-epa-limit-and-treatment',
   'best-countertop-water-filter',
   'best-ro-system-for-pfas-removal',
+  'best-shower-filter-2026',
   'best-under-sink-water-filter',
   'best-water-filter-for-lead-removal',
   'best-water-filter-gaithersburg-md',

@@ -37,7 +37,7 @@ const SEGMENT_SUBTITLES: Record<BlogPickSegment, string> = {
   countertop: 'Countertop RO — plug-in, no permanent plumbing',
   pitcher: 'Pitcher filters — NSF 53 lead and PFAS options, no install',
   wholeHouse: 'Whole-house carbon systems — every tap and shower',
-  shower: 'Shower filters — chlorine and hardness-related skin & hair relief',
+  shower: 'Shower filters — chlorine and chloramine reduction for skin and hair',
   faucet: 'Faucet-mount filters — renters, no under-sink install',
   well: 'Private well — UV, iron treatment, and drinking-water RO',
   hardWater: 'Hard water — softeners, whole-house carbon, RO, and shower filters',
@@ -357,22 +357,34 @@ export const TOP_WHOLE_HOUSE: TopPickRow[] = [
 
 export const TOP_SHOWER: TopPickRow[] = [
   {
-    product: 'AquaBliss High Output SF100',
+    product: 'AquaBliss SF100 Daily Revitalize',
     brand: 'AquaBliss',
-    price: '~$35',
-    reason: 'KDF/GAC media — reduces chlorine and scale feel; installs in minutes; universal fit.',
+    price: '~$28',
+    reason:
+      'Calcium sulfite, redox (KDF-style) media, activated carbon, plus vitamin C, tourmaline, and zeolite. About $28 on Amazon (sale; brand about $37). Not a softener, not NSF/ANSI 177, and not a chloramine specialist — confirm fit.',
     link: 'https://aquabliss.com/products/sf100-shower-filter',
     amazon: `https://www.amazon.com/dp/B01MUBU0YC?tag=${AMAZON}`,
-    badge: 'SHOWER',
+    badge: 'BUDGET CHLORINE',
   },
   {
     product: 'AquaTru Shower Filter',
     brand: 'AquaTru',
-    price: '~$149',
-    reason: 'NSF/ANSI 177 on listings — high chlorine reduction; quick-change cartridge.',
+    price: '~$104',
+    reason:
+      'Copper-zinc alloy (comparable to KDF), calcium sulfite, and catalytic carbon. IAPMO R&T certified to NSF/ANSI 177 for free chlorine (confirm exact model; chloramine reduction is a maker claim). About $104 on Amazon or $149 from the brand. Cartridge about 90 days; replacement about $39.95. Not a softener.',
     link: 'https://aquatru.com/products/aquatru-shower',
     amazon: `https://www.amazon.com/dp/B0FLHFTGYD?tag=${AMAZON}`,
-    badge: 'SHOWER',
+    badge: 'IAPMO NSF 177',
+  },
+  {
+    product: 'Sonaki Vitamin C Inline Shower Filter SUF-100v',
+    brand: 'Sonaki',
+    price: '~$83',
+    reason:
+      'Vitamin C (ascorbic acid) inline filter, model SUF-100v (VitaPure 100). About $83 on Amazon or $79 from the brand. Cartridge life 4–6 weeks. Not NSF/ANSI 177 certified. Confirm shower-arm fit.',
+    link: 'https://www.sonaki.com/products/sonaki-inline-vitamin-c-shower-filter',
+    amazon: `https://www.amazon.com/dp/B01BLO3FAU?tag=${AMAZON}`,
+    badge: 'CHLORAMINE',
   },
 ];
 
@@ -505,6 +517,7 @@ export const BLOG_SLUG_PICK_SEGMENT: Record<string, BlogPickSegment> = {
   'waterdrop-g3p600-vs-aquasana-smartflow': 'compareG3',
   'best-water-filter-gaithersburg-md': 'undersink',
   'best-whole-house-water-filter': 'wholeHouse',
+  'best-shower-filter-2026': 'shower',
   'whole-house-water-filter-vs-under-sink-which-to-choose': 'wholeHouse',
   'chloramine-vs-chlorine-in-tap-water': 'wholeHouse',
   'hard-water-explained-scale-softeners-and-your-taps': 'hardWater',

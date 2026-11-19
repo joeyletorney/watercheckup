@@ -77,6 +77,7 @@ const IMG_BY_PRODUCT_KEY: Record<string, string> = {
   'express water wh300scks': IMG_BY_ASIN.B01LFMTYBM,
   'waterdrop whf3t-pg': IMG_BY_ASIN.B0FYCRPXLZ,
   'aquabliss high output sf100': IMG_BY_ASIN.B01MUBU0YC,
+  'aquabliss sf100 daily revitalize': IMG_BY_ASIN.B01MUBU0YC,
   'aquatru shower filter': IMG_BY_ASIN.B0FLHFTGYD,
   'hqua-ows-12 uv sterilizer': IMG_BY_ASIN.B01N2YMU3O,
   'ispring wcfm500k iron & sulfur (well)': IMG_BY_ASIN.B08TMZYYQY,

@@ -54,6 +54,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { href: '/well', label: 'Well water filters' },
       { href: '/blog/best-countertop-water-filter', label: 'Best countertop filters' },
       { href: '/blog/best-whole-house-water-filter', label: 'Best whole-house filters' },
+      { href: '/blog/best-shower-filter-2026', label: 'Best shower filters' },
       { href: '/blog/best-water-filter-for-lead-removal', label: 'Best for lead removal' },
     ],
     viewAll: { href: '/blog', label: 'Blog & guides' },

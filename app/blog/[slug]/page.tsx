@@ -191,6 +191,12 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
               href: '/',
               btn: 'Check PFAS in my ZIP →',
             },
+            'best-shower-filter-2026': {
+              headline: 'Does your city use chlorine or chloramine?',
+              sub: 'Your ZIP report and CCR list the disinfectant. That choice decides KDF versus vitamin C at the shower.',
+              href: '/',
+              btn: 'Check My ZIP →',
+            },
           };
           const cta = ctaBySlug[params.slug] ?? {
             headline: 'Check your supplier’s water records',
@@ -218,7 +224,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           {post.content}
         </div>
 
-        {nextSteps ? <BlogNextSteps slug={params.slug} guidance={nextSteps} /> : !COMMERCIAL_GUIDES[params.slug] ? <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} /> : null}
+        {nextSteps ? <BlogNextSteps slug={params.slug} guidance={nextSteps} /> : !COMMERCIAL_GUIDES[params.slug] && params.slug !== 'best-shower-filter-2026' ? <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} page={`/blog/${params.slug}`} /> : null}
 
         {(params.slug === 'best-water-filter-for-lead-removal' ||
           params.slug === 'what-water-filter-removes-pfas') && (

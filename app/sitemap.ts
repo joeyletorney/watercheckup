@@ -112,6 +112,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { url: `${base}/blog/san-antonio-water-quality`, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/pfas-in-san-antonio-water`, changeFrequency: 'weekly', priority: 0.89 },
     { url: `${base}/blog/best-water-filter-hard-water`, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${base}/blog/best-shower-filter-2026`, changeFrequency: 'monthly', priority: 0.88 },
     { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, changeFrequency: 'monthly', priority: 0.86 },
     { url: `${base}/blog/top-10-cities-hardest-tap-water`, changeFrequency: 'monthly', priority: 0.86 },
   ]

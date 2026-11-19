@@ -63,6 +63,11 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         <h2 style={h2Style}>Bottom line</h2>
         <p style={pStyle}>
           Treat hard water when scale is costing you money or comfort. For drinking taste and purity, point-of-use RO is separate from whole-house softening — they solve different problems.
+          A shower filter does not soften water; if chlorine at the shower is the complaint, use the{' '}
+          <a href="/blog/best-shower-filter-2026" style={{ color: '#22d3ee', fontWeight: 600, textDecoration: 'none' }}>
+            shower filter guide
+          </a>
+          {' '}instead of buying a “softening” shower cartridge.
         </p>
       </>
     ),

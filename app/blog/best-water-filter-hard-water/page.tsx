@@ -27,7 +27,7 @@ export default function BestFilterHardWaterPage() {
       <p style={{ fontSize: 13 }}>Updated November 11, 2026 · Official source review · Some site links may be affiliate links</p>
       <BlogCommercialComparison slug={SLUG} />
       <CommercialGuideArticle slug={SLUG} />
-      <p><Link href="/blog/best-water-filter-for-lead-removal">Compare lead-removal options</Link> · <Link href="/blog/best-countertop-water-filter">Compare countertop filters</Link></p>
+      <p><Link href="/blog/best-water-filter-for-lead-removal">Compare lead-removal options</Link> · <Link href="/blog/best-countertop-water-filter">Compare countertop filters</Link> · <Link href="/blog/best-shower-filter-2026">Shower filters for chlorine (not hardness)</Link></p>
       <p><Link href="/">Review your utility water report →</Link></p>
     </article>
   </div>;
