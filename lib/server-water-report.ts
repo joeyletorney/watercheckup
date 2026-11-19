@@ -15,6 +15,8 @@ import {
   isLookupableZip,
   pickLocalCommunitySystem,
 } from '@/lib/zip-supplier';
+import { looksLikeFacilityOrMailingLabel, resolveZipReportPlace } from '@/lib/zip-report-place';
+import { labelSdwisViolationSubject } from '@/lib/sdwis-violation-labels';
 import { getDataFreshness } from '@/lib/water-data-meta';
 import {
   computeZipWaterScore,
@@ -108,15 +110,38 @@ function systemsFromZipLookup(zip: string): any[] {
   const local = getZipSupplier(zip);
   if (!local?.p) return [];
   const st = local.p.slice(0, 2);
+  const packagedCity = String(local.c || '');
+  const catalogCity = Object.values(CITIES).find(city => city.zip === zip)?.name || '';
+  const cityName = packagedCity && !looksLikeFacilityOrMailingLabel(packagedCity)
+    ? packagedCity
+    : catalogCity;
   return [{
     pwsid: local.p,
     pws_name: local.n,
-    city_name: local.c || Object.values(CITIES).find(city => city.zip === zip)?.name || '',
+    city_name: cityName,
     state_code: local.s && local.s.length === 2 ? local.s : st,
     population_served_count: local.pop,
     primary_source_code: local.src === 'SW' || local.src === 'SWP' ? 'SW' : 'GW',
     pws_type_code: 'CWS',
   }];
+}
+
+function withResolvedZipPlace<T extends {
+  city?: string;
+  pwsid?: string;
+  systemName?: string;
+  stateCode?: string;
+}>(body: T, zip: string): T {
+  return {
+    ...body,
+    city: resolveZipReportPlace({
+      zip,
+      pwsid: body.pwsid,
+      city: body.city,
+      state: body.stateCode,
+      systemName: body.systemName,
+    }),
+  };
 }
 
 function violationStatusCode(v: any): string {
@@ -601,7 +626,8 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     if (body && typeof body === 'object' && 'rawViolations' in body) {
       delete (body as { rawViolations?: unknown }).rawViolations;
     }
-    return NextResponse.json(body, { status: cached.status, headers: okHeaders });
+    const publicBody = body && typeof body === 'object' ? withResolvedZipPlace(body as { city?: string; pwsid?: string; systemName?: string; stateCode?: string }, zip) : body;
+    return NextResponse.json(publicBody, { status: cached.status, headers: okHeaders });
   }
 
   try {
@@ -817,13 +843,22 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     for (const v of healthV.slice(0, 4)) {
       const cc = f(v, 'contaminant_code') || '';
       const sc = violationStatusCode(v);
-      const name = CONTAM_NAMES[cc] || f(v, 'contaminant_name') || `Contaminant ${cc}`;
+      const cat = f(v, 'violation_category_code') || '';
+      const subject = labelSdwisViolationSubject({
+        contaminantCode: cc,
+        contaminantName: f(v, 'contaminant_name'),
+        ruleCode: f(v, 'rule_code'),
+        category: cat,
+      }, CONTAM_NAMES);
+      // Rule/treatment-technique codes are not measured contaminants.
+      if (!subject || subject.kind !== 'contaminant') continue;
+      const name = subject.name;
       if (!contaminants.find(c => c.name === name)) {
         const ctx = HEALTH_CONTEXT[name];
         contaminants.push({
           name, level: null, limit: null, unit: '',
           severity: isOpenViolationStatus(sc) ? 'high' : 'moderate',
-          note: `${isOpenViolationStatus(sc) ? 'OPEN' : 'Resolved'} — ${VIOL_LABELS[f(v, 'violation_category_code') || ''] || ''}`,
+          note: `${isOpenViolationStatus(sc) ? 'OPEN' : 'Resolved'} — ${VIOL_LABELS[cat] || ''}`,
           violationBased: true, source: 'EPA SDWIS',
           healthEffects: ctx?.effects,
           healthSources: ctx?.sources,
@@ -909,9 +944,15 @@ export async function lookupWaterReport(zip: string, refresh = false) {
         const sc  = violationStatusCode(v);
         const cc  = f(v, 'contaminant_code')         || '';
         const begin = violationBeginDate(v);
+        const subject = labelSdwisViolationSubject({
+          contaminantCode: cc,
+          contaminantName: f(v, 'contaminant_name'),
+          ruleCode: f(v, 'rule_code'),
+          category: cat,
+        }, CONTAM_NAMES);
         return {
           rule:        VIOL_LABELS[cat] || cat || 'Violation',
-          contaminant: CONTAM_NAMES[cc] || f(v, 'contaminant_name') || '',
+          contaminant: subject?.name || '',
           year:        (begin || '').slice(0, 4) || '—',
           status:      STATUS_META[sc]?.label || sc || '—',
           statusColor: STATUS_META[sc]?.color || '#94a3b8',
@@ -968,7 +1009,13 @@ export async function lookupWaterReport(zip: string, refresh = false) {
 
     const payload = {
       zip,
-      city:             [cityName, stateCode].filter(Boolean).join(', ') || `ZIP ${zip}`,
+      city:             resolveZipReportPlace({
+                          zip,
+                          pwsid,
+                          city: cityName,
+                          state: stateCode,
+                          systemName: pwsName,
+                        }),
       systemName:       pwsName,
       pwsid,
       stateCode,

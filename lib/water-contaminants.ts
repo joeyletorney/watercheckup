@@ -1,3 +1,5 @@
+import { isSdwisRuleContaminantCode } from './sdwis-violation-labels';
+
 /**
  * EPA SDWIS / LCR contaminant catalog and helpers for /api/water.
  */
@@ -323,7 +325,7 @@ export function buildDynamicSampleContaminants(
 
   for (const s of allSamples) {
     const code = String(f(s, 'contaminant_code') || '').trim();
-    if (!code || CATALOG_CODE_SET.has(code)) continue;
+    if (!code || CATALOG_CODE_SET.has(code) || isSdwisRuleContaminantCode(code)) continue;
     const list = byCode.get(code) || [];
     list.push(s);
     byCode.set(code, list);

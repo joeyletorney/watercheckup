@@ -1,3 +1,5 @@
+import { looksLikeFacilityOrMailingLabel } from './zip-report-place';
+
 /** SERP copy for `/results/[zip]` — grade and stats upfront for CTR */
 
 export type ZipReportSeoInput = {
@@ -10,8 +12,14 @@ export type ZipReportSeoInput = {
   pfasAboveMcl?: number;
 };
 
+function zipSeoPlace(input: ZipReportSeoInput): string {
+  const city = input.city?.split(',')[0]?.trim() || '';
+  if (!city || looksLikeFacilityOrMailingLabel(city)) return `ZIP ${input.zip}`;
+  return city;
+}
+
 export function buildZipResultsTitle(input: ZipReportSeoInput): string {
-  const city = input.city?.split(',')[0]?.trim() || `ZIP ${input.zip}`;
+  const city = zipSeoPlace(input);
   const score = Math.min(Math.max(0, Math.round(Number(input.score) || 0)), 88);
   const grade = input.grade?.trim();
   if (grade && grade !== '—' && score > 0) {
@@ -22,7 +30,7 @@ export function buildZipResultsTitle(input: ZipReportSeoInput): string {
 }
 
 export function buildZipResultsDescription(input: ZipReportSeoInput): string {
-  const city = input.city?.split(',')[0]?.trim() || `ZIP ${input.zip}`;
+  const city = zipSeoPlace(input);
   const score = Math.min(Math.max(0, Math.round(Number(input.score) || 0)), 88);
   const grade = input.grade?.trim() || '—';
   const open = Number(input.openViolations) || 0;
