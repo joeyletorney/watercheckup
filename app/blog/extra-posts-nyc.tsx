@@ -5,7 +5,7 @@ const AMAZON_TAG = 'watercheckup-20';
 
 const TOP_3_PITCHER = [
   {
-    product: 'Clearly Filtered 3.5L Pitcher',
+    product: 'Clearly Filtered 10-Cup Pitcher',
     brand: 'Clearly Filtered',
     price: '~$90',
     reason: 'NSF 42/53/244/401/P473 — removes lead at 99.5% and PFAS at 99.9%. Ideal for NYC renters without under-sink install.',

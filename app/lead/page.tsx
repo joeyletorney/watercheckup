@@ -87,7 +87,7 @@ const FILTERS: FilterPick[] = [
   },
   {
     rank: 2,
-    name: 'Clearly Filtered 3.5L Pitcher',
+    name: 'Clearly Filtered 10-Cup Pitcher',
     brand: 'Clearly Filtered',
     price: '~$90',
     badge: 'BEST PITCHER',
@@ -99,14 +99,14 @@ const FILTERS: FilterPick[] = [
   },
   {
     rank: 3,
-    name: 'Aquasana SmartFlow RO',
-    brand: 'Aquasana',
-    price: '~$449',
-    badge: 'MOST CERTIFIED',
+    name: "Frizzlife SK99-NEW",
+    brand: "Frizzlife",
+    price: "Check current price",
+    badge: "DIRECT-CONNECT CARBON",
     badgeColor: '#d97706',
-    why: 'WQA Gold Seal plus multiple NSF standards — strong choice if you want maximum documented contaminant coverage including lead.',
-    cert: 'NSF/ANSI 42, 53, 58, 401 + WQA Gold Seal',
-    amazon: 'https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheckup-20',
+    why: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
+    cert: "Check exact model performance data",
+    amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
   },
 ];
 

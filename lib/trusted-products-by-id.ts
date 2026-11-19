@@ -5,7 +5,7 @@ import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 
 export const TRUSTED_PRODUCTS_BY_ID: Record<number, TrustedFilterProduct | undefined> =
   Object.fromEntries(
-    PRODUCTS.map((p) => [
+    PRODUCTS.filter(p => !p.retired).map((p) => [
       p.id,
       {
         id: p.id,

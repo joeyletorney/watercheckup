@@ -603,10 +603,10 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
               },
               {
                 key: 'aquasana',
-                name: 'Aquasana SmartFlow RO',
-                price: '~$449',
-                amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}`,
-                reasonDefault: 'NSF 42/53/58/401 certified — the most certifications of any under-sink RO. 90+ contaminants removed.',
+                name: "Frizzlife SK99-NEW",
+                price: "Check current price",
+                amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
+                reasonDefault: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
               },
               {
                 key: 'pitcher',
@@ -869,12 +869,12 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
               best: true,
             },
             {
-              name: 'Aquasana SmartFlow RO',
-              badge: 'MOST CERTIFIED',
-              price: '~$449',
-              reason: 'NSF 42/53/58/401 certified — the most certifications of any under-sink RO. 90+ contaminants removed.',
-              amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${TAG}`,
-              best: false,
+              name: "Frizzlife SK99-NEW",
+              badge: "DIRECT-CONNECT CARBON",
+              price: "Check current price",
+              reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
+              amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
+              best: "Compare fit and model evidence",
             },
             {
               name: 'Clearly Filtered Pitcher',

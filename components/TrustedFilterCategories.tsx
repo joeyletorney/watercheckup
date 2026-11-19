@@ -1,4 +1,5 @@
 'use client';
+import { isAmazonSearch } from '@/lib/product-availability';
 
 import { useState } from 'react';
 import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
@@ -159,7 +160,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
             border: '1px solid rgba(255,255,255,0.12)',
           }}
         >
-          Check price on Amazon →
+          {isAmazonSearch(amazon) ? "Browse Amazon results →" : "Check price on Amazon →"}
         </a>
       ) : null}
     </div>
@@ -289,7 +290,7 @@ export function TrustedFilterCategories({ productsById }: Props) {
                         </div>
                         <div style={{ textAlign: 'right', flexShrink: 0 }}>
                           <div style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b', marginBottom: 8 }}>
-                            ${p.price}
+                            {[9, 13, 27, 32].includes(p.id) ? "Check current price" : `~$${p.price}`}
                           </div>
                           <PickBuyButtons p={p} />
                         </div>

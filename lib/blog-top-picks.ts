@@ -58,22 +58,22 @@ export const TOP_LEAD: TopPickRow[] = [
     badge: 'UNDER-SINK RO',
   },
   {
-    product: 'Aquasana SmartFlow RO',
-    brand: 'Aquasana',
-    price: '~$449',
-    reason: 'WQA Gold Seal plus NSF 42/53/58/401 — broad certification stack; 99%+ lead on listings.',
-    link: 'https://www.aquasana.com/under-sink-water-filters',
-    amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON}`,
-    badge: 'UNDER-SINK RO',
+    product: "Frizzlife SK99-NEW",
+    brand: "Frizzlife",
+    price: "Check current price",
+    reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
+    link: "https://www.frizzlife.com/products/sk99-new",
+    amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
+    badge: "DIRECT-CONNECT CARBON",
   },
   {
-    product: 'AquaTru Under-Sink RO',
-    brand: 'AquaTru',
-    price: '~$375',
-    reason: 'NSF 42/53/58 tankless RO. Quick-change filters; compact under-sink install.',
-    link: 'https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier',
-    amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON}`,
-    badge: 'UNDER-SINK RO',
+    product: "Epic Smart Shield",
+    brand: "Epic Water Filters",
+    price: "Check current price",
+    reason: "Carbon-block under-sink filter connecting to the existing cold-water line. No RO drain or dedicated faucet. Not reverse osmosis or a softener; check the exact model’s performance data for your concern.",
+    link: "https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system",
+    amazon: "https://www.amazon.com/dp/B076S1W5QY?tag=watercheckup-20",
+    badge: "DIRECT-CONNECT CARBON",
   },
   {
     product: 'Frizzlife MK99',
@@ -151,34 +151,34 @@ export const TOP_PFAS: TopPickRow[] = [
     badge: 'UNDER-SINK RO',
   },
   {
-    product: 'Aquasana SmartFlow RO',
-    brand: 'Aquasana',
-    price: '~$449',
-    reason: 'WQA Gold Seal + NSF 42/53/58/401 — strong PFAS and microplastic coverage.',
-    link: 'https://www.aquasana.com/under-sink-water-filters',
-    amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON}`,
-    badge: 'UNDER-SINK RO',
+    product: "Frizzlife SK99-NEW",
+    brand: "Frizzlife",
+    price: "Check current price",
+    reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
+    link: "https://www.frizzlife.com/products/sk99-new",
+    amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
+    badge: "DIRECT-CONNECT CARBON",
   },
   {
-    product: 'AquaTru Under-Sink RO',
-    brand: 'AquaTru',
-    price: '~$375',
-    reason: 'NSF 42/53/58; quick-change filters; compact tankless under-sink RO.',
-    link: 'https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier',
-    amazon: `https://www.amazon.com/dp/B0GGTSFZMY?tag=${AMAZON}`,
-    badge: 'UNDER-SINK RO',
+    product: "Epic Smart Shield",
+    brand: "Epic Water Filters",
+    price: "Check current price",
+    reason: "Carbon-block under-sink filter connecting to the existing cold-water line. No RO drain or dedicated faucet. Not reverse osmosis or a softener; check the exact model’s performance data for your concern.",
+    link: "https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system",
+    amazon: "https://www.amazon.com/dp/B076S1W5QY?tag=watercheckup-20",
+    badge: "DIRECT-CONNECT CARBON",
   },
   {
-    product: 'Waterdrop D6',
-    brand: 'Waterdrop',
-    price: '~$399',
-    reason: '600 GPD tankless RO — NSF 42/53/58; fast fill, twist-off cartridges.',
-    link: 'https://www.waterdropfilter.com/products/ro-water-filter-system-d6?ref=anbyjkqb',
-    amazon: `https://www.amazon.com/dp/B08746G2XX?tag=${AMAZON}`,
-    badge: 'UNDER-SINK RO',
+    product: "Waterdrop G3P600",
+    brand: "Waterdrop",
+    price: "Check current price",
+    reason: "Tankless kitchen reverse osmosis. Needs an outlet, dedicated faucet and drain connection. Match the exact model’s listed reduction claims to your concern.",
+    link: "https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb",
+    amazon: "https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20",
+    badge: "UNDER-SINK RO",
   },
   {
-    product: 'Frizzlife PD1000-TAM4',
+    product: 'Frizzlife PD1000-TAM4 + MWT3 / IMC-1 Bundle',
     brand: 'Frizzlife',
     price: '~$799',
     reason: '1000 GPD tankless RO — NSF 58/372; top flow rate for large households.',
@@ -187,13 +187,13 @@ export const TOP_PFAS: TopPickRow[] = [
     badge: 'UNDER-SINK RO',
   },
   {
-    product: 'Waterdrop K19-S Countertop RO',
-    brand: 'Waterdrop',
-    price: '~$249',
-    reason: 'Plug-in NSF 58 RO — 99%+ PFAS and lead; best for renters.',
-    link: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb',
-    amazon: '',
-    badge: 'COUNTERTOP RO',
+    product: "AquaTru Classic Countertop RO",
+    brand: "AquaTru",
+    price: "Check current price",
+    reason: "Countertop reverse osmosis without plumbing changes. Requires an outlet, manual tank refills and cleaning. Check the exact Classic model’s performance data and replacement costs.",
+    link: "https://aquatru.com/products/countertop-reverse-osmosis-water-purifier",
+    amazon: "https://www.amazon.com/dp/B0CQS3HQ8F?tag=watercheckup-20",
+    badge: "COUNTERTOP RO",
   },
   {
     product: 'AquaTru Classic',
@@ -214,7 +214,7 @@ export const TOP_PFAS: TopPickRow[] = [
     badge: 'UNDER-COUNTER',
   },
   {
-    product: 'Clearly Filtered 3.5L Pitcher',
+    product: 'Clearly Filtered 10-Cup Pitcher',
     brand: 'Clearly Filtered',
     price: '~$90',
     reason: 'Rare NSF P473 / 401 pitcher — 99.9% PFAS on published claims.',
@@ -279,7 +279,7 @@ export const TOP_COUNTERTOP: TopPickRow[] = [
 
 export const TOP_PITCHER: TopPickRow[] = [
   {
-    product: 'Clearly Filtered 3.5L Pitcher',
+    product: 'Clearly Filtered 10-Cup Pitcher',
     brand: 'Clearly Filtered',
     price: '~$90',
     reason: 'NSF 42/53/244/401/P473 — broadest pitcher certification for PFAS and lead.',
@@ -318,7 +318,7 @@ export const TOP_PITCHER: TopPickRow[] = [
 
 export const TOP_WHOLE_HOUSE: TopPickRow[] = [
   {
-    product: 'Aquasana Rhino EQ-1000',
+    product: 'Aquasana Whole House WH-1000-B',
     brand: 'Aquasana',
     price: '~$999',
     reason: 'WQA Gold Seal + NSF 42/61 — chlorine, chloramine, PFAS, THMs at every tap and shower.',
@@ -378,7 +378,7 @@ export const TOP_SHOWER: TopPickRow[] = [
 
 export const TOP_FAUCET: TopPickRow[] = [
   {
-    product: 'PUR PLUS Faucet Mount FM2000B',
+    product: 'PUR PLUS Vertical Faucet Filter (Stainless Steel)',
     brand: 'PUR',
     price: '~$35',
     reason: 'NSF 42/53 — lead, arsenic, mercury; one-click on/off; no permanent install.',
@@ -467,7 +467,7 @@ export const TOP_DISTILLER_RO: TopPickRow[] = [
 
 export const TOP_COMPARE_G3: TopPickRow[] = [TOP_PFAS[0], TOP_PFAS[1]];
 
-export const TOP_COMPARE_K19: TopPickRow[] = [TOP_PFAS[5], TOP_PFAS[6]];
+export const TOP_COMPARE_K19: TopPickRow[] = [TOP_PFAS[6], TOP_PFAS[8]];
 
 const PICKS_BY_SEGMENT: Record<BlogPickSegment, TopPickRow[]> = {
   lead: TOP_LEAD,

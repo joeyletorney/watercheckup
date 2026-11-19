@@ -52,30 +52,30 @@ const RO_PICKS = [
     badge: "EDITORS PICK",
   },
   {
-    product: "Aquasana SmartFlow RO",
-    brand: "Aquasana",
-    price: "~$449",
+    product: "Frizzlife SK99-NEW",
+    brand: "Frizzlife",
+    price: "Check current price",
     reason:
-      "WQA Gold Seal + NSF 42/53/58/401. Most certifications of any under-sink RO. Removes 90+ contaminants.",
-    link: "https://www.aquasana.com/under-sink-water-filters",
-    amazon: "https://www.amazon.com/dp/B0CHZ8VQBB?tag=watercheckup-20",
-    badge: "MOST CERTIFIED",
+      "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
+    link: "https://www.frizzlife.com/products/sk99-new",
+    amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
+    badge: "DIRECT-CONNECT CARBON",
   },
   {
-    product: "AquaTru Under-Sink RO",
-    brand: "AquaTru",
-    price: "~$375",
+    product: "Epic Smart Shield",
+    brand: "Epic Water Filters",
+    price: "Check current price",
     reason:
-      "NSF 42/53/58 certified. Quick-change filters, no tools. Compact tankless design, 4-stage filtration.",
-    link: "https://aquatru.com/products/under-sink-reverse-osmosis-water-purifier",
-    amazon: "https://www.amazon.com/dp/B0GGTSFZMY?tag=watercheckup-20",
-    badge: "EASIEST FILTER CHANGE",
+      "Carbon-block under-sink filter connecting to the existing cold-water line. No RO drain or dedicated faucet. Not reverse osmosis or a softener; check the exact model’s performance data for your concern.",
+    link: "https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system",
+    amazon: "https://www.amazon.com/dp/B076S1W5QY?tag=watercheckup-20",
+    badge: "DIRECT-CONNECT CARBON",
   },
 ];
 
 const PITCHER_PICKS = [
   {
-    product: "Clearly Filtered 3.5L Pitcher",
+    product: "Clearly Filtered 10-Cup Pitcher",
     brand: "Clearly Filtered",
     price: "~$90",
     reason:

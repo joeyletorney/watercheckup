@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
+import { isAmazonSearch } from '@/lib/product-availability';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 
@@ -402,7 +403,7 @@ export default function WellWaterPage() {
                     ) : (
                       <a href={normalizeAmazonUrl(p.amazon) ?? p.amazon} target="_blank" rel="noopener noreferrer sponsored"
                         style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#e2e8f0', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #2d4a6c', whiteSpace: 'nowrap' }}>
-                        Amazon →
+                        {isAmazonSearch(p.amazon) ? "Browse Amazon results →" : "Check price on Amazon →"}
                       </a>
                     )}
                   </div>

@@ -31,7 +31,7 @@ const FILTERS = [
     best: true,
   },
   {
-    name: 'Clearly Filtered 3.5L Pitcher',
+    name: 'Clearly Filtered 10-Cup Pitcher',
     badge: 'BEST NO-INSTALL',
     price: '~$90',
     why: 'No-install pitcher option. Check the exact cartridge’s current independent certification, claimed compounds, and replacement capacity before purchasing.',

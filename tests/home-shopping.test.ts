@@ -30,11 +30,18 @@ test('Amazon preference never promotes missing, mismatched, unverified or search
   assert.equal(homeShoppingProduct(999), undefined);
 });
 
-test('verified model chooses Amazon over brand routing while unavailable K19 listing keeps manufacturer fallback', () => {
+test('verified model chooses Amazon over brand routing while discontinued K19 routes to current comparisons', () => {
   const g3 = resolveProductBuyLink({ name: 'Waterdrop G3P600', brand: 'Waterdrop', amazon: 'https://www.amazon.com/dp/B07P1XFYJP', directLink: 'https://www.waterdropfilter.com/' });
   assert.equal(g3.destination, 'amazon');
   assert.equal(g3.label, 'Check price on Amazon →');
   const k19 = resolveProductBuyLink({ name: 'Waterdrop K19-S', brand: 'Waterdrop', amazon: '' });
   assert.equal(k19.destination, 'direct');
-  assert.match(k19.href, /waterdropfilter.com/);
+  assert.equal(k19.href, '/#find-a-filter');
+});
+
+test('current home picks exclude unavailable models and preserve RO versus carbon distinctions', () => {
+  for (const id of [5, 6, 26, 28]) assert.equal(homeShoppingProduct(id), undefined);
+  const under = HOME_SHOPPING_CATEGORIES.find(c => c.id === 'under-sink')!;
+  assert.deepEqual(under.picks.map(p => p.id), [23, 47, 25]);
+  for (const pick of under.picks.filter(p => p.id !== 47)) assert.match(pick.tradeoff, /not reverse osmosis/i);
 });
