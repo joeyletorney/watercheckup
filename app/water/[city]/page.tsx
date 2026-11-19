@@ -16,6 +16,7 @@ import { UtilityOperatorCcrCta } from '@/components/UtilityOperatorCcrCta';
 import { VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { CityPageHeroImage } from '@/components/CityPageHeroImage';
 import { PRIORITY_CITY_H1, PRIORITY_CITY_SEO } from '@/lib/priority-city-seo';
+import { buildCityPageH1, citySeoDisplayName } from '@/lib/serp-copy';
 import { getPriorityCityIntroParagraphs } from '@/lib/priority-city-intros';
 import { AuthorReviewBadge } from '@/components/AuthorReviewBadge';
 import { AuthorByline } from '@/components/AuthorByline';
@@ -632,18 +633,14 @@ export default async function CityPage(props: { params: Promise<{ city: string }
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 12px' }}>
             {PRIORITY_CITY_H1[slug]
-              ?? (slug === 'gaithersburg'
-                ? 'Gaithersburg, MD Water Quality Report'
-                : cd
-                  ? `${cd.name}, ${cd.state} tap water: what\u2019s in it in 2026`
-                  : `${cityName} tap water: what\u2019s in it in 2026`)}
+              ?? buildCityPageH1(cd ? citySeoDisplayName(slug, cd.name) : cityName)}
           </h1>
 
           {slug === 'gaithersburg' ? (
             <>
               <AuthorByline />
               <ArticleSchema
-                headline={PRIORITY_CITY_H1.gaithersburg ?? 'Is Gaithersburg Tap Water Safe? (2026)'}
+                headline={PRIORITY_CITY_H1.gaithersburg ?? 'Is Gaithersburg Tap Water Safe?'}
                 slug="gaithersburg"
                 datePublished="2026-01-01"
                 dateModified="2026-07-17"

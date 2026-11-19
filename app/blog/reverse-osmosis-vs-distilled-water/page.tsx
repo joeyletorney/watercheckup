@@ -10,14 +10,12 @@ const topPicks = resolveBlogTopPicks(SLUG);
 const topPicksSubtitle = getTopPicksSubtitle(SLUG, topPicks);
 
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Distilled Water vs. Reverse Osmosis – Which Is Actually Purer?',
-  },
+  title: 'RO vs Distilled Water: Which Should You Drink? (2026)',
   description:
     'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
   alternates: { canonical: 'https://watercheckup.com/blog/reverse-osmosis-vs-distilled-water' },
   openGraph: {
-    title: 'Distilled Water vs. Reverse Osmosis – Which Is Actually Purer?',
+    title: 'RO vs Distilled Water: Which Should You Drink? (2026)',
     description:
       'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
     type: 'article',

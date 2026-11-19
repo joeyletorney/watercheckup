@@ -4,15 +4,17 @@ import { SiteHeader } from '../../components/SiteHeader';
 import { BlogCommercialComparison } from '@/components/BlogCommercialComparison';
 import { CommercialGuideArticle, COMMERCIAL_GUIDES } from '../commercial-guide-data';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
+import { withoutBrandSuffix } from '@/lib/serp-copy';
 
 const SLUG = 'best-water-filter-hard-water';
 const guide = COMMERCIAL_GUIDES[SLUG];
 const ctr = getCtrSerpOverride(`/blog/${SLUG}`);
+const hardWaterTitle = withoutBrandSuffix(ctr?.title ?? guide.title);
 export const metadata: Metadata = {
-  title: { absolute: ctr?.title ?? guide.title },
+  title: hardWaterTitle,
   description: ctr?.description ?? guide.excerpt,
   alternates: { canonical: `https://watercheckup.com/blog/${SLUG}` },
-  openGraph: { title: ctr?.title ?? guide.title, description: ctr?.description ?? guide.excerpt },
+  openGraph: { title: hardWaterTitle, description: ctr?.description ?? guide.excerpt },
 };
 
 export default function BestFilterHardWaterPage() {

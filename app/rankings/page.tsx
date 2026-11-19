@@ -6,16 +6,25 @@ import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { SearchDemandCities } from '@/components/SearchDemandCities';
 import { RankingsTable } from './RankingsTable';
 import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
+import { RANKINGS_SEO_DESCRIPTION, RANKINGS_SEO_TITLE } from '@/lib/serp-copy';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 
 const ctr = getCtrSerpOverride('/rankings');
+const rankingsTitle = ctr?.title ?? RANKINGS_SEO_TITLE;
+const rankingsDescription = ctr?.description ?? RANKINGS_SEO_DESCRIPTION;
 
 export const metadata: Metadata = {
-  title: ctr?.title ?? 'Tap Water Quality Rankings by State 2026',
-  description:
-    ctr?.description ??
-    'Compare U.S. state tap water quality using EPA UCMR5 data across WaterCheckup city reports. Grades by share of tracked cities above EPA limits, plus the most contaminated cities.',
+  title: rankingsTitle,
+  description: rankingsDescription,
   alternates: { canonical: 'https://watercheckup.com/rankings' },
+  openGraph: {
+    title: rankingsTitle,
+    description: rankingsDescription,
+  },
+  twitter: {
+    title: rankingsTitle,
+    description: rankingsDescription,
+  },
 };
 
 export default function RankingsPage() {
@@ -40,7 +49,7 @@ export default function RankingsPage() {
           NATIONAL COMPARISON · 50 STATES + DC
         </div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 22px' }}>
-          Tap Water Quality Rankings by State 2026
+          Worst Tap Water in America: 2026 City Rankings
         </h1>
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 20px' }}>
           States are ordered by the share of <strong style={{ color: '#e2e8f0' }}>tracked cities</strong> with UCMR5 data flagged

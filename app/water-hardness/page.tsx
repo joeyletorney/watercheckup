@@ -14,14 +14,14 @@ const HERO_IMAGE = "/faucetdripping.jpg";
 const HERO_ALT = "Dripping faucet showing hard water mineral buildup";
 
 export const metadata: Metadata = {
-  title: "Water Hardness Calculator — Check by ZIP Code Free (2026)",
+  title: "Water Hardness by ZIP Code — Free Calculator (2026)",
   description:
-    "Find your water hardness by ZIP code instantly. See if you need a water softener and get certified filter recommendations based on your actual water data.",
+    "Check water hardness by ZIP instantly. See if you need a softener, compare grain hardness, and get filter picks. Free, no signup.",
   alternates: { canonical: "https://watercheckup.com/water-hardness" },
   openGraph: {
-    title: "Water Hardness Calculator — Check by ZIP Code Free (2026)",
+    title: "Water Hardness by ZIP Code — Free Calculator (2026)",
     description:
-      "Find your water hardness by ZIP code instantly. See if you need a water softener and get certified filter recommendations based on your actual water data.",
+      "Check water hardness by ZIP instantly. See if you need a softener, compare grain hardness, and get filter picks. Free, no signup.",
   },
 };
 

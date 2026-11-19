@@ -2,11 +2,16 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Contaminants',
+  title: 'Water Contaminants Guide: Lead, PFAS, Nitrates & More',
   description:
     'Plain-language guide to common drinking water contaminants — lead, PFAS, nitrates, disinfection byproducts — and how certified filters remove them.',
   alternates: {
     canonical: 'https://watercheckup.com/contaminants',
+  },
+  openGraph: {
+    title: 'Water Contaminants Guide: Lead, PFAS, Nitrates & More',
+    description:
+      'Plain-language guide to common drinking water contaminants — lead, PFAS, nitrates, disinfection byproducts — and how certified filters remove them.',
   },
 };
 

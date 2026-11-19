@@ -10,12 +10,14 @@ const HERO_IMAGE = '/lookingdownwell.jpg';
 const HERO_ALT = 'Looking down into a water well — private well water quality';
 
 export const metadata: Metadata = {
-  title: 'Well Water Filter Guide 2026 — What\'s in Your Well & What Removes It',
-  description: 'Private well water is unregulated by the EPA. Find the top contaminants in your state — arsenic, bacteria, nitrates, iron, radon — and the best certified filters to remove them. Free, no login.',
+  title: 'Well Water Filter Guide 2026: Test First, Then Treat',
+  description:
+    'Private wells are not EPA-regulated. See common well contaminants — bacteria, arsenic, nitrates, iron, radon — and certified filters. Test before you treat.',
   alternates: { canonical: 'https://watercheckup.com/well' },
   openGraph: {
-    title: 'Well Water Filter Guide 2026',
-    description: 'Private well water is unregulated by the EPA. Check the top risks for your state and find the right certified filter.',
+    title: 'Well Water Filter Guide 2026: Test First, Then Treat',
+    description:
+      'Private wells are not EPA-regulated. See common well contaminants — bacteria, arsenic, nitrates, iron, radon — and certified filters. Test before you treat.',
     images: [{ url: 'https://watercheckup.com/api/og?city=Well+Water&score=&grade=&violations=', width: 1200, height: 630 }],
   },
 };
