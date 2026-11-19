@@ -50,6 +50,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       description: ogDescription,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.dateModified ?? post.date,
       authors: ['Joe Letorney'],
       images: [
         {
@@ -159,7 +160,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
             <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: 2, padding: '3px 10px', borderRadius: 4, background: post.badgeColor + '22', color: '#075985', border: `1px solid ${post.badgeColor}44` }}>
               {post.badge}
             </span>
-            <span className="wc-reading-meta">{post.dateDisplay}</span>
+            <span className="wc-reading-meta">{post.dateDisplay.startsWith('Updated ') ? post.dateDisplay : `Updated ${post.dateDisplay}`}</span>
             <span className="wc-reading-meta">·</span>
             <span className="wc-reading-meta">{post.readTime}</span>
           </div>

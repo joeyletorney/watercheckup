@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 import { TOP_SHOWER } from '@/lib/blog-top-picks';
 import { ShowerGuideQuickPicks } from '@/components/ShowerGuideQuickPicks';
 
@@ -27,9 +28,7 @@ export const EXTRA_POSTS_SHOWER: Record<string, Post> = {
           'Do shower filters work? Compare 2026 picks for chlorine, chloramine, and hard water. NSF 177, ZIP report, and honest limits.',
       },
     },
-    date: '2026-11-19',
-    dateModified: '2026-11-19',
-    dateDisplay: 'November 19, 2026',
+    ...blogPostDateFields('best-shower-filter-2026', '2026-11-19'),
     readTime: '9 min read',
     badge: 'Filters',
     badgeColor: '#a78bfa',
@@ -71,7 +70,7 @@ export const EXTRA_POSTS_SHOWER: Record<string, Post> = {
         <p style={pStyle}>
           A shower filter is one of the cheapest water-treatment gadgets you can buy, which is why the marketing is
           loud. This guide is the opposite of that: what the media can do at shower flow, which disinfectant your
-          city actually uses, and which problems belong on a different piece of equipment.
+          city actually uses, and which problems belong on a different piece of equipment. EPA PFAS MCLs (2024, compliance 2029) and the Lead and Copper Rule Improvements (lead service line replacement within 10 years) are drinking-water rules — they do not make a shower cartridge remove PFAS or lead. Current picks: AquaBliss SF100 about $28, AquaTru Shower about $104, Sonaki SUF-100v about $83.
         </p>
 
         <h2 style={h2Style}>Do shower filters work?</h2>

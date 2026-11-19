@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Post } from './post-types';
 import { commercialPost } from './commercial-guide-data';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -55,7 +56,7 @@ const TOP_3_PFAS = [
 const PFAS_FILTER_FAQ = [
   {
     q: 'What water filters remove PFAS?',
-    a: 'Reverse osmosis systems and activated carbon filters certified for PFAS removal are the most effective. The Waterdrop G3P600 and Waterdrop K19-S countertop RO both remove 99%+ of PFAS. The Clearly Filtered pitcher is the best non-RO option for PFAS removal.',
+    a: 'Reverse osmosis systems and activated carbon filters certified for PFAS removal are the most effective. The Waterdrop G3P600 (~$399) and AquaTru Classic countertop RO (~$380) are the current RO options; Waterdrop K19-S is discontinued. The Clearly Filtered pitcher (~$90) is the best no-install option with published PFAS lab tests (NSF 42/372 certified).',
   },
   {
     q: 'Do Brita or PUR filters remove PFAS?',
@@ -97,9 +98,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         description: 'Most US tap water meets EPA standards — but 200 million Americans have PFAS in their water and 9 million homes still have lead pipes. Here\'s what "safe" actually means for your city.',
       },
     },
-    date: '2026-04-15',
-    dateModified: '2026-06-01',
-    dateDisplay: 'April 15, 2026',
+    ...blogPostDateFields('is-tap-water-safe-to-drink', '2026-04-15'),
     readTime: '9 min read',
     badge: 'Safety',
     badgeColor: '#ef4444',
@@ -125,7 +124,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       ),
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#ef4444' } }, '⚠ The regulation gap: '),
-        'PFAS compounds contaminate the tap water of over 200 million Americans. The EPA set its first-ever PFAS limits in 2024 — 80 years after these chemicals entered widespread use. Many other contaminants are in a similar position.'
+        'PFAS compounds contaminate the tap water of over 200 million Americans. The EPA set its first-ever PFAS limits in 2024 — 80 years after these chemicals entered widespread use — and public water systems have until 2029 to comply. Many other contaminants are in a similar position. Separately, the Lead and Copper Rule Improvements require lead service line replacement within 10 years.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Who Has the Biggest Risk'),
@@ -175,15 +174,14 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'why-does-tap-water-taste-bad': {
     title: "Why Does My Tap Water Taste Bad? The 7 Most Common Causes",
     excerpt: "Chlorine, sulfur, metal, earthy — bad water taste usually has a specific cause. Here is how to diagnose it and what actually fixes each one.",
-    date: '2026-04-16',
-    dateDisplay: 'April 16, 2026',
+    ...blogPostDateFields('why-does-tap-water-taste-bad', '2026-04-16'),
     readTime: '7 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
     topPicks: TOP_3_RO,
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Bad-tasting tap water is one of the most common reasons people switch to bottled water — spending thousands of dollars a year on something that can almost always be fixed at the tap for a fraction of the cost. The key is diagnosing the specific cause, because different tastes have different solutions.'
+        'Bad-tasting tap water is one of the most common reasons people switch to bottled water — spending thousands of dollars a year on something that can almost always be fixed at the tap for a fraction of the cost. The key is diagnosing the specific cause, because different tastes have different solutions. Chlorine vs chloramine still matters in 2026: check your CCR, then pick NSF 42 carbon for free chlorine or catalytic carbon / vitamin C for chloramine. Current pitcher prices: Waterdrop PT-07B about $16 (NSF 42/372 only); ZeroWater 10-cup about $23 (NSF 42/53).'
       ),
 
       React.createElement('h2', { style: h2Style }, '1. Chlorine or Bleach Taste'),
@@ -281,8 +279,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
           'Fluoride in tap water is controversial but the science is clear. A 30-year water treatment expert breaks down the real risks, benefits, and whether you should filter it out.',
       },
     },
-    date: '2026-04-17',
-    dateDisplay: 'April 17, 2026',
+    ...blogPostDateFields('fluoride-in-tap-water-safe-or-not', '2026-04-17'),
     readTime: '8 min read',
     badge: 'Health',
     badgeColor: '#f59e0b',
@@ -306,7 +303,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The US Public Health Service recommends ',
         React.createElement('strong', { style: strongStyle }, '0.7 mg/L'),
-        ' as the optimal fluoride level — reduced from the previous range of 0.7–1.2 mg/L in 2015 based on newer research. The EPA\'s enforceable maximum is 4.0 mg/L, with a secondary non-enforceable limit of 2.0 mg/L for cosmetic effects (dental fluorosis).'
+        ' as the optimal fluoride level — reduced from the previous range of 0.7–1.2 mg/L in 2015 based on newer research. The EPA\'s enforceable maximum is 4.0 mg/L, with a secondary non-enforceable limit of 2.0 mg/L for cosmetic effects (dental fluorosis). Those numbers are unchanged in 2026; they are separate from the 2024 PFAS MCLs. Pitcher filters certified only to NSF 42 (Waterdrop PT-07B, about $16) do not remove fluoride — NSF 58 RO does (Waterdrop G3P600 about $399, AquaTru Classic about $380).'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Emerging Concerns'),
@@ -370,8 +367,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
           'Reverse osmosis pros and cons for tap water: PFAS, lead, minerals, cost. Honest 2026 guide + link to free ZIP water quality check.',
       },
     },
-    date: '2026-04-18',
-    dateDisplay: 'April 18, 2026',
+    ...blogPostDateFields('reverse-osmosis-pros-and-cons', '2026-04-18'),
     readTime: '9 min read',
     badge: 'Filters',
     badgeColor: '#06b6d4',
@@ -397,7 +393,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       ),
       React.createElement('h3', { style: h3Style }, 'Long-term cost savings vs. bottled water'),
       React.createElement('p', { style: pStyle },
-        'An under-sink RO system costs $200-500 upfront plus $50-100/year in replacement filters. At $1-2 per bottle, a household drinking 2 gallons/day spends $730-1,460/year on bottled water. An RO system pays for itself in 6-12 months and produces water at roughly $0.01 per gallon.'
+        'An under-sink RO system currently lists around $399 for the Waterdrop G3P600, plus roughly $170/year in replacement filters. AquaTru Classic countertop RO is about $380. At $1-2 per bottle, a household drinking 2 gallons/day spends $730-1,460/year on bottled water. An RO system typically pays for itself in well under a year versus bottled water. The 2024 PFAS MCLs (2029 compliance) are why NSF 58 still matters more than taste-only carbon.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Cons'),
@@ -435,8 +431,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'lead-in-tap-water-signs-and-symptoms': {
     title: 'Lead in Tap Water: Signs, Symptoms, and How to Know If Your Home Is at Risk',
     excerpt: 'Lead has no taste or smell. Symptoms of exposure are easy to miss. Here is how to assess your risk, what to test for, and what to do.',
-    date: '2026-04-19',
-    dateDisplay: 'April 19, 2026',
+    ...blogPostDateFields('lead-in-tap-water-signs-and-symptoms', '2026-04-19'),
     readTime: '8 min read',
     badge: 'Lead',
     badgeColor: '#d97706',
@@ -447,7 +442,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       ),
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#ef4444' } }, '⚠ No safe level: '),
-        'The CDC states explicitly that there is no known safe blood lead level in children. Even low-level chronic exposure causes irreversible cognitive effects. The EPA\'s "action level" of 15 ppb in water is a trigger for public water system action — not a threshold below which lead is safe.'
+        'The CDC states explicitly that there is no known safe blood lead level in children. Even low-level chronic exposure causes irreversible cognitive effects. The EPA\'s "action level" of 15 ppb in water is a trigger for public water system action — not a threshold below which lead is safe. The Lead and Copper Rule Improvements require systems to replace lead service lines within 10 years; that does not treat water already in your kitchen plumbing, so NSF 53 filters (Frizzlife SK99-NEW about $126, ZeroWater 10-cup about $23) still matter in 2026.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How Lead Gets Into Tap Water'),
@@ -493,7 +488,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('h2', { style: h2Style }, 'What Actually Removes Lead From Water'),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'NSF 53-certified filters'),
-        ' remove lead. This includes solid carbon block filters (under-sink and countertop), the Clearly Filtered pitcher, and Brita\'s Longlast+ cartridge. Do not assume all filters remove lead — standard Brita (non-Longlast+) and most pitcher filters do not.'
+        ' remove lead. This includes solid carbon block filters (under-sink and countertop) and Brita Elite OB06 in a listed pitcher. Clearly Filtered 10-cup is NSF 42/372; its lead figures are published lab tests, not an NSF 53 listing. Do not assume all filters remove lead — Waterdrop PT-07B (~$16) is NSF 42/372 only.'
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'NSF 58-certified RO systems'),
@@ -507,8 +502,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
   'radon-in-drinking-water': {
     title: 'Radon in Drinking Water: Risk, Testing, and Treatment for Well Water Users',
     excerpt: 'Most people know radon as an airborne basement risk. But radon dissolves in groundwater too — and showering releases it into the air you breathe.',
-    date: '2026-04-21',
-    dateDisplay: 'April 21, 2026',
+    ...blogPostDateFields('radon-in-drinking-water', '2026-04-21'),
     readTime: '7 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
@@ -522,7 +516,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Radon in water is almost exclusively a concern for ',
         React.createElement('strong', { style: strongStyle }, 'private well users'),
-        '. Public water systems that use groundwater are required to treat for radon. Private wells are not regulated or monitored — if you are on a private well, you are responsible for testing.'
+        '. Public water systems that use groundwater are required to treat for radon. Private wells are not regulated or monitored — if you are on a private well, you are responsible for testing. The 2024 PFAS MCLs do not cover radon; a PFAS-certified pitcher or RO will not treat radon in shower steam.'
       ),
       React.createElement('p', { style: pStyle },
         'Risk varies significantly by geography. Regions with granite bedrock release the most radon: ',
@@ -586,9 +580,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
           'Only NSF 58 reverse osmosis & P473 pitchers remove PFAS reliably — not standard Brita. Compare top picks + free ZIP report.',
       },
     },
-    date: '2026-04-22',
-    dateModified: '2026-06-04',
-    dateDisplay: 'April 22, 2026',
+    ...blogPostDateFields('what-water-filter-removes-pfas', '2026-04-22'),
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#0891b2',
@@ -644,13 +636,13 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
         React.createElement('a', { href: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`, style: linkStyle, target: '_blank', rel: 'noopener noreferrer' }, 'Buy on Amazon')
       ),
 
-      React.createElement('h3', { style: h3Style }, '🥇 Countertop — Waterdrop K19-S Countertop RO'),
+      React.createElement('h3', { style: h3Style }, '🥇 Countertop — AquaTru Classic Countertop RO'),
       React.createElement('p', { style: pStyle },
-        'Reverse osmosis is the gold standard for PFAS removal. No installation needed — just plug in and pour. Certified to remove PFAS, lead, and 90+ contaminants. Best option for renters.'
+        'Reverse osmosis is the gold standard for PFAS removal. No plumbing change — plug in, fill the tank, and pour. NSF 42/53/58/401 on the Classic PDS; about $380. Waterdrop K19-S is discontinued. Best current no-install RO for renters.'
       ),
       React.createElement('p', { style: { ...pStyle, marginBottom: 56 } },
         '👉 ',
-        React.createElement('a', { href: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=anbyjkqb', style: linkStyle, target: '_blank', rel: 'noopener noreferrer sponsored' }, 'Check K19 availability on Waterdrop')
+        React.createElement('a', { href: 'https://www.amazon.com/dp/B0CQS3HQ8F?tag=watercheckup-20', style: linkStyle, target: '_blank', rel: 'noopener noreferrer sponsored' }, 'Check AquaTru Classic on Amazon')
       ),
 
       React.createElement('h3', { style: h3Style }, '🥇 Under-Counter — Waterdrop G3P600'),
@@ -687,7 +679,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('h2', { style: h2Style }, 'How to Choose'),
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, 'Decision guide: '),
-        'If you have multiple contaminants (PFAS + lead + nitrates + arsenic): under-sink RO is the most comprehensive solution. If you are a renter and cannot install under-sink: Clearly Filtered pitcher (NSF 244 certified). If you want under-sink without RO: Aquasana 3-stage with NSF 58 certification. Always verify the specific certification for PFAS — not all systems are certified even if they advertise PFAS removal.'
+        'If you have multiple contaminants (PFAS + lead + nitrates + arsenic): under-sink RO (Waterdrop G3P600, about $399) is the most comprehensive solution. If you are a renter and cannot install under-sink: AquaTru Classic (~$380) or Clearly Filtered pitcher (~$90; NSF 42/372, PFAS figures from published lab tests). If you want under-sink without RO: Frizzlife SK99-NEW (~$126, IAPMO 42/53/372) or Epic Smart Shield (check current price). Always verify the specific certification for PFAS — not all systems are certified even if they advertise PFAS removal.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How to Know If You Have PFAS in Your Water'),

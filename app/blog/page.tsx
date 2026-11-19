@@ -1,4 +1,5 @@
 import { COMMERCIAL_GUIDES } from './commercial-guide-data';
+import { BLOG_POST_DATE_MODIFIED, blogUpdatedDisplay } from '@/lib/blog-post-dates';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -265,7 +266,7 @@ const POST_BY_SLUG: Record<
   },
   'waterdrop-k19s-vs-aquatru-classic': {
     title: 'Waterdrop K19-S vs AquaTru Classic: Which Countertop RO Should You Buy?',
-    excerpt: 'Both plug in, both remove PFAS. The AquaTru costs $226 more. Here\'s whether that extra money is worth it — certifications, tank size, and long-term filter costs compared.',
+    excerpt: 'K19-S is discontinued. AquaTru Classic (~$380) is the current plug-in countertop RO — certifications, tank size, and long-term filter costs compared.',
     date: 'June 1, 2026',
     readTime: '7 min read',
     badge: 'Comparison',
@@ -466,7 +467,8 @@ const BLOG_INDEX_ORDER = [
 const POSTS = BLOG_INDEX_ORDER.map(slug => {
   const meta = POST_BY_SLUG[slug];
   if (!meta) throw new Error(`Blog index: missing slug "${slug}" in POST_BY_SLUG`);
-  return { slug, ...meta };
+  const modified = BLOG_POST_DATE_MODIFIED[slug];
+  return { slug, ...meta, date: modified ? blogUpdatedDisplay(modified) : meta.date };
 });
 
 // Category groupings for the blog index

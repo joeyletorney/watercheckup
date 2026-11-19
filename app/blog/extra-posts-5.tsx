@@ -1,6 +1,7 @@
 import { commercialPost } from './commercial-guide-data';
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -11,7 +12,7 @@ const WATERDROP_TAG = 'anbyjkqb';
 const TOP_3_WHOLE_HOUSE = [
   { product: 'Aquasana Whole House WH-1000-B', brand: 'Aquasana', price: "Check current price", reason: "Whole-house chlorine-focused system. Confirm WH-1000-B package contents, installation and the current performance sheet. Do not assume PFAS or chloramine reduction.", link: 'https://www.aquasana.com/whole-house-water-filters/rhino/probypass-100365536.html', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$500', reason: 'NSF-certified filters — sediment + carbon. Pressure gauges included. Strong DIY option for chloramine and chlorine at every tap.', link: 'https://www.expresswater.com/products/heavy-metal-whole-house', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
-  { product: 'Springwell CF4 Whole-House Filter', brand: 'Springwell', price: '~$895', reason: '4-stage filtration. Removes chlorine, chloramine, PFAS, VOCs, sediment, and heavy metals at every faucet. Air injection oxidation for iron and sulfur removal.', link: 'https://www.springwellwater.com/product/water-filters/whole-house-water-filters/', amazon: `https://www.amazon.com/s?k=Springwell+CF4+whole+house+water+filter&tag=${AMAZON_TAG}`, badge: 'BEST FOR WELL WATER' },
+  { product: 'iSpring WGB32B 3-Stage', brand: 'iSpring', price: '~$359', reason: 'Popular DIY whole-house sediment + dual carbon — NSF 42; strong value entry point.', link: 'https://www.amazon.com/dp/B008GNRMYK?tag=watercheckup-20', amazon: `https://www.amazon.com/gp/product/B008GNRMYK?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
 ];
 
 const TOP_3_UNDERSINK = [
@@ -46,9 +47,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         description: 'Protect every tap, shower, and appliance. The best whole-house water filters ranked by NSF certifications and real contaminant removal.',
       },
     },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
+    ...blogPostDateFields('best-whole-house-water-filter', '2026-06-01'),
     readTime: '10 min read',
     badge: 'Home',
     badgeColor: '#7c3aed',
@@ -62,7 +61,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'A whole-house water filter treats every gallon that enters your home — drinking water, shower water, laundry, ice maker, everything. For homeowners dealing with chloramine odor, PFAS contamination, or elevated THMs, it is the most comprehensive solution available. But the market is cluttered with systems that make big claims without certifications to back them up. Here is what you actually need to know.'
+        'A whole-house water filter treats every gallon that enters your home — drinking water, shower water, laundry, ice maker, everything. For homeowners dealing with chloramine odor, PFAS contamination, or elevated THMs, it is the most comprehensive solution available. But the market is cluttered with systems that make big claims without certifications to back them up. Here is what you actually need to know. Current catalog prices: Aquasana WH-1000-B is check-current-price; iSpring WGB32B about $359; Express Water WH300SCKS about $500. The 2024 PFAS MCLs (2029 compliance) are a drinking-water issue — whole-house carbon is not a substitute for NSF 58 RO at the kitchen tap.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What a Whole-House Filter Does — and Doesn\'t Do'),
@@ -105,7 +104,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'Most people overestimate how much they need whole-house filtration. If your only concern is drinking and cooking water quality — PFAS, lead, nitrates — an ',
         React.createElement('a', { href: '/blog/best-under-sink-water-filter', style: linkStyle }, 'under-sink RO system'),
-        ' costs $375–849 and provides more thorough contaminant removal than any whole-house filter at a fraction of the total cost. Whole-house makes sense when chlorine or chloramine in shower water is a real concern, or when you want consistent filtered water at every faucet. If the shower is the only room that bothers you, a ',
+        ' (Waterdrop G3P600, about $399) provides more thorough contaminant removal than any whole-house filter at a fraction of the total cost. Whole-house makes sense when chlorine or chloramine in shower water is a real concern, or when you want consistent filtered water at every faucet. If the shower is the only room that bothers you, a ',
         React.createElement('a', { href: '/blog/best-shower-filter-2026', style: linkStyle }, 'shower filter'),
         ' is the cheaper first step — with honest limits on chloramine, hardness, lead, and PFAS.'
       ),
@@ -136,9 +135,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         description: 'Compare under-sink carbon filters and reverse osmosis by model claims, installation needs, and upkeep. Match the filter to your water.',
       },
     },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
+    ...blogPostDateFields('best-under-sink-water-filter', '2026-06-01'),
     readTime: '10 min read',
     badge: 'Filters',
     badgeColor: '#0891b2',
@@ -148,7 +145,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       { q: 'Do I need reverse osmosis or will a carbon filter work?', a: 'It depends on your water. If you have PFAS, nitrates, arsenic, or high TDS, reverse osmosis is the only certified solution. If your main concerns are lead and chlorine, an IAPMO-certified carbon filter like the Frizzlife SK99-NEW (NSF/ANSI 42, 53, and 372) works at much lower cost. Check your water at WaterCheckup first.' },
       { q: 'How hard is it to install an under-sink water filter?', a: 'Most under-sink filters require connecting to the cold water line under your sink and drilling a small hole for the dedicated faucet. Most homeowners can install in 30–60 minutes with basic tools. The Waterdrop G3P600 includes an installation kit and video guide. If you rent, ask your landlord — most allow it since it\'s reversible.' },
       { q: 'Do under-sink RO systems waste a lot of water?', a: 'Traditional RO systems waste 3–4 gallons for every 1 gallon purified. Newer tankless systems like the Waterdrop G3P600 use a 3:1 ratio — 3 gallons purified per 1 wasted, which is significantly more efficient. Look for tankless RO systems for better water efficiency.' },
-      { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99-NEW): $126 upfront + $60/year in filters. Mid-range RO (Aquasana SmartFlow): $449 upfront + $145/year. Premium RO (Waterdrop G3P600): $399 upfront + $170/year. Over 5 years, all three are dramatically cheaper than bottled water.' },
+      { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99-NEW): about $126 upfront + about $60/year in filters. Premium RO (Waterdrop G3P600): about $399 upfront + about $170/year. Aquasana SmartFlow listings were unavailable at our November 2026 check — do not treat $449 as a live price. Over 5 years, certified carbon or RO is still dramatically cheaper than bottled water.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
@@ -172,9 +169,9 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'Installation takes about an hour and a basic understanding of plumbing. Waterdrop provides a detailed video guide. If you have PFAS in your city water, lead pipes in an older home, or you simply want the cleanest possible drinking and cooking water, this is the right system.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Aquasana SmartFlow — Best Mid-Range for Certification Coverage'),
+      React.createElement('h2', { style: h2Style }, 'Aquasana SmartFlow — Historical comparison only'),
       React.createElement('p', { style: pStyle },
-        'The SmartFlow carries WQA Gold Seal plus NSF 42/53/58/401 — the most third-party certifications of any under-sink RO at its price point. NSF 401 certification covers emerging contaminants that standard RO testing doesn\'t include, like certain microplastics and pharmaceuticals. At $449 with a $145/year filter cost, it\'s meaningfully cheaper than the G3P600 if the smart faucet isn\'t important to you.'
+        'Retail listings for Aquasana SmartFlow were unavailable at our November 2026 product check, so we no longer treat it as a current buy. Historically it carried WQA Gold Seal plus NSF 42/53/58/401, including NSF 401 for emerging contaminants. If you already own one, keep replacing filters on schedule; new buyers should use the G3P600 (~$399) or Frizzlife SK99-NEW (~$126) instead.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Frizzlife SK99-NEW — Best Budget Under-Sink Filter (No RO Needed)'),
@@ -190,7 +187,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The single most important step before buying is checking what\'s actually in your water. Enter your ZIP on ',
         React.createElement('a', { href: '/', style: linkStyle }, 'WaterCheckup'),
-        ' to see your public water system\'s PFAS levels, lead testing results, violations, and a contaminant-matched filter recommendation. If PFAS is detected above EPA limits, get the G3P600 or SmartFlow. If lead is the only concern and your budget is tight, the SK99 is sufficient. Or take the ',
+        ' to see your public water system\'s PFAS levels, lead testing results, violations, and a contaminant-matched filter recommendation. If PFAS is detected above EPA limits, get the G3P600. If lead is the only concern and your budget is tight, the SK99-NEW is sufficient. Public systems have until 2029 to meet the 2024 PFAS MCLs. Or take the ',
         React.createElement('a', { href: '/quiz', style: linkStyle }, '3-question filter quiz'),
         ' and we\'ll match you to the right system in 60 seconds.'
       ),
@@ -222,16 +219,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     excerpt: 'Two of the best under-sink RO systems — but very different products. Here\'s an honest comparison of performance, certifications, flow rate, and value.',
     seo: {
       title: 'Waterdrop G3P600 vs Aquasana SmartFlow: Honest 2026 Comparison',
-      description: 'Waterdrop G3P600 ($399) vs Aquasana SmartFlow ($449): we compare certifications, flow rate, filter cost, and real contaminant removal so you can decide which is worth the money.',
+      description: 'Waterdrop G3P600 (~$399) vs Aquasana SmartFlow (listings unavailable Nov 2026): certifications, flow rate, filter cost, and contaminant removal compared.',
       canonical: 'https://watercheckup.com/blog/waterdrop-g3p600-vs-aquasana-smartflow',
       openGraph: {
         title: 'Waterdrop G3P600 vs Aquasana SmartFlow: Which RO is Better? (2026)',
         description: 'An honest head-to-head: certifications, flow rate, filter cost, and contaminant removal at similar price points — here\'s which one.',
       },
     },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
+    ...blogPostDateFields('waterdrop-g3p600-vs-aquasana-smartflow', '2026-06-01'),
     readTime: '8 min read',
     badge: 'Comparison',
     badgeColor: '#7c3aed',
@@ -240,14 +235,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       { product: "Frizzlife SK99-NEW", brand: "Frizzlife", price: "Check current price", reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.", link: "https://www.frizzlife.com/products/sk99-new", amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20", badge: "DIRECT-CONNECT CARBON" },
     ],
     faq: [
-      { q: 'Is the Waterdrop G3P600 or Aquasana SmartFlow a better buy?', a: 'They are similarly priced (~$399 vs ~$449). The G3P600 wins on flow rate (600 GPD vs ~50 GPD) and has a smart TDS display. The SmartFlow wins on certification breadth (adds NSF 401 and WQA Gold Seal). Both remove PFAS, lead, and core contaminants via NSF 58 RO.' },
+      { q: 'Is the Waterdrop G3P600 or Aquasana SmartFlow a better buy?', a: 'G3P600 is the current buy at about $399. SmartFlow listings were unavailable at our November 2026 check. Historically SmartFlow added NSF 401 and WQA Gold Seal; G3P600 wins on flow (600 GPD) and has a smart TDS faucet.' },
       { q: 'Does the Aquasana SmartFlow remove PFAS?', a: 'Yes. The SmartFlow is NSF/ANSI 58 certified, which covers reverse osmosis performance including PFAS removal. It also holds NSF 401 certification for emerging contaminants — a certification the G3P600 does not have.' },
       { q: 'What is the difference in flow rate between the G3P600 and SmartFlow?', a: 'The Waterdrop G3P600 produces 600 gallons per day — fast enough that you never wait for water. The Aquasana SmartFlow produces roughly 50 GPD, which is typical for non-tankless RO systems and is adequate for drinking and cooking but noticeably slower at the faucet.' },
       { q: 'Which has better filter replacement costs?', a: 'Both run $130–170/year in filter replacement. The G3P600 uses Waterdrop\'s sealed cartridge system (no mess, no tools). The SmartFlow uses standard quick-connect filters. Long-term costs are similar.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'The Waterdrop G3P600 and Aquasana SmartFlow are two of the most recommended under-sink RO systems — but they\'re targeting very different buyers. One is a premium performance system at $399. The other is a certification-heavy value play at $449. Here\'s what actually separates them.'
+        'The Waterdrop G3P600 and Aquasana SmartFlow have been two of the most compared under-sink RO systems — but they target different buyers. The G3P600 remains current at about $399. SmartFlow retail listings were unavailable at our November 2026 check, so treat the sections below as a historical comparison if you already own one, not a current shopping list.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Core Difference: Speed vs. Certifications'),
@@ -283,8 +278,8 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'you have a large family, want instant-flow water, value real-time TDS monitoring, or are treating PFAS/lead in a heavily contaminated area and want the most reliable system.'
       ),
       React.createElement('p', { style: pStyle },
-        React.createElement('strong', { style: strongStyle }, 'Buy the SmartFlow if: '),
-        'budget matters, you want the broadest NSF certification coverage including NSF 401, or you\'re a couple/small household where 50 GPD flow is plenty.'
+        React.createElement('strong', { style: strongStyle }, 'If you already own a SmartFlow: '),
+        'keep replacing filters on schedule. New buyers should not hunt a $449 listing — that SKU was unavailable at our November 2026 check. Use G3P600 (~$399) or a non-RO carbon block (Frizzlife SK99-NEW ~$126) instead.'
       ),
 
       React.createElement('p', { style: { ...pStyle, marginTop: 28 } },
@@ -300,19 +295,17 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
   // ─── POST 5: WATERDROP K19-S vs AQUATRU CLASSIC ───────────────────────────
   'waterdrop-k19s-vs-aquatru-classic': {
     title: 'Waterdrop K19-S vs AquaTru Classic: Which Countertop RO Should You Buy?',
-    excerpt: 'Both are plug-in countertop RO systems with no installation. The AquaTru costs $226 more. Here\'s whether that extra money is worth it.',
+    excerpt: 'K19-S is discontinued. AquaTru Classic (~$380) is the current plug-in countertop RO — certifications, tank size, and filter cost compared.',
     seo: {
       title: 'Waterdrop K19-S vs AquaTru Classic: 2026 Comparison',
-      description: 'Waterdrop K19-S ($249) vs AquaTru Classic ($475): plug-in countertop RO systems compared on certifications, tank size, filter cost, and contaminant removal. Which is worth the extra money?',
+      description: 'Waterdrop K19-S is discontinued; AquaTru Classic is about $380. Plug-in countertop RO compared on certifications, tank size, filter cost, and contaminant removal.',
       canonical: 'https://watercheckup.com/blog/waterdrop-k19s-vs-aquatru-classic',
       openGraph: {
         title: 'Waterdrop K19-S vs AquaTru Classic: Which Countertop RO Wins? (2026)',
-        description: 'Both plug in, both remove PFAS. One costs $226 more. Here\'s the honest comparison of certifications, tank size, and long-term filter costs.',
+        description: 'K19-S is discontinued. AquaTru Classic is about $380. Honest comparison of certifications, tank size, and long-term filter costs.',
       },
     },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
+    ...blogPostDateFields('waterdrop-k19s-vs-aquatru-classic', '2026-06-01'),
     readTime: '7 min read',
     badge: 'Comparison',
     badgeColor: '#0891b2',
@@ -321,14 +314,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$380', reason: 'Best certification coverage: NSF 42/53/58/401. Adds NSF 401 for emerging contaminants beyond standard RO scope. Quick-change filters. Worth it if you want the widest certified coverage.', link: 'https://aquatru.com/products/countertop-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
     ],
     faq: [
-      { q: 'Is the AquaTru worth $226 more than the Waterdrop K19-S?', a: 'For most people, no. Both remove PFAS, lead, arsenic, and TDS via reverse osmosis. The AquaTru adds NSF 401 certification for emerging contaminants — if that specific certification matters to you, it\'s worth the premium. Otherwise the K19-S delivers comparable protection with strong NSF certification.' },
-      { q: 'Which is better for renters?', a: 'Both require zero installation — just plug in. The K19-S is lighter and more compact, making it easier to move. At $249 vs $475, the K19-S is the more practical renter choice.' },
+      { q: 'Is the AquaTru worth more than the Waterdrop K19-S?', a: 'K19-S is discontinued, so the live choice is AquaTru Classic at about $380 (catalog), not a $249 vs $475 matchup. AquaTru adds NSF 401 on the Classic PDS. Existing K19 owners can still buy K19RF replacements (about $68.99, checked Nov. 11, 2026).' },
+      { q: 'Which is better for renters?', a: 'AquaTru Classic is the current no-install countertop RO we list (~$380). K19-S is discontinued. Both were plug-in designs; do not buy a used K19 expecting the same support as a current Classic listing.' },
       { q: 'How do filter replacement costs compare?', a: 'The Waterdrop K19-S runs about $110/year in filters. The AquaTru Classic runs about $130/year. The AquaTru uses a 4-stage system with quick-change cartridges; the K19-S uses 4 stages as well. Annual running costs are similar.' },
       { q: 'Do both remove PFAS?', a: 'Yes. Both are reverse osmosis systems certified to NSF/ANSI 58, which covers PFAS removal. The AquaTru additionally holds NSF 401 for emerging contaminants. Check your city\'s PFAS levels for free at WaterCheckup.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Both the Waterdrop K19-S and AquaTru Classic sit on your countertop, plug into a standard outlet, and remove PFAS, lead, and arsenic through reverse osmosis — no installation, no plumber, no landlord permission. The question is whether the AquaTru\'s $226 premium is worth it.'
+        'Both the Waterdrop K19-S and AquaTru Classic sit on your countertop, plug into a standard outlet, and remove PFAS, lead, and arsenic through reverse osmosis — no installation, no plumber, no landlord permission. As of the November 2026 catalog check, K19-S is discontinued. AquaTru Classic is about $380, not $475. The rest of this comparison is for existing K19 owners and anyone still seeing old listings.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What They Have in Common'),
@@ -350,9 +343,9 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'The Verdict'),
       React.createElement('p', { style: pStyle },
-        'For most renters and apartment dwellers, the ',
-        React.createElement('strong', { style: strongStyle }, 'Waterdrop K19-S is the better buy'),
-        '. It costs nearly half as much, removes the same core contaminants, and is NSF certified. The $226 you save goes toward nearly two years of filter replacements.'
+        'For new purchases in 2026, the ',
+        React.createElement('strong', { style: strongStyle }, 'AquaTru Classic is the current countertop RO'),
+        '. K19-S is discontinued. Existing K19 owners can keep using K19RF cartridges; do not assume a used K19 matches Classic certifications or support.'
       ),
       React.createElement('p', { style: pStyle },
         'Choose the AquaTru if you specifically want NSF 401 certification or if the AquaTru brand\'s track record matters to you. It\'s a genuinely excellent machine — just not worth double the price for most households.'
@@ -381,9 +374,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         description: 'WSSC water has PFAS above EWG health guidelines, Potomac River DBPs, and lead risk in older homes. Here\'s what EPA data shows and the right filter for Gaithersburg residents.',
       },
     },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
+    ...blogPostDateFields('best-water-filter-gaithersburg-md', '2026-06-01'),
     readTime: '7 min read',
     badge: 'Local',
     badgeColor: '#059669',
@@ -400,7 +391,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Gaithersburg residents are served by WSSC Water — one of the largest public water systems in the US, drawing from the Potomac and Patuxent rivers. By federal standards, WSSC water is compliant. But EPA UCMR5 monitoring tells a more complete story: PFAS has been detected, disinfection byproducts from Potomac source water are present, and homes built before 1986 carry lead risk from in-building plumbing. Here\'s what the data shows and the right filter for Gaithersburg.'
+        'Gaithersburg residents are served by WSSC Water — one of the largest public water systems in the US, drawing from the Potomac and Patuxent rivers. By federal standards, WSSC water is compliant. But EPA UCMR5 monitoring tells a more complete story: PFAS has been detected, disinfection byproducts from Potomac source water are present, and homes built before 1986 carry lead risk from in-building plumbing. Here\'s what the data shows and the right filter for Gaithersburg. WSSC still has until 2029 to meet the 2024 PFAS MCLs; the Lead and Copper Rule Improvements require lead service line replacement within 10 years. Current homeowner pick: Waterdrop G3P600 about $399.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What EPA Data Shows for WSSC / Gaithersburg'),
@@ -425,9 +416,9 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'The G3P600 installs under the sink with a dedicated faucet. 600 GPD means no waiting — instant-pressure filtered water. NSF 42/53/58 certified. Smart LED faucet displays TDS in real time so you can verify it\'s working. Filter replacement runs about $170/year. Takes about an hour to install and Waterdrop includes a video guide.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'For Renters: Waterdrop K19-S'),
+      React.createElement('h2', { style: h2Style }, 'For Renters: AquaTru Classic'),
       React.createElement('p', { style: pStyle },
-        'If you can\'t drill under the sink, the K19-S sits on the counter and plugs in. Same NSF 58 RO filtration — removes PFAS, lead, and DBPs. 170 oz tank. Zero installation. At $249, it\'s the most cost-effective PFAS protection available for renters in Gaithersburg.'
+        'If you can\'t drill under the sink, AquaTru Classic sits on the counter and plugs in. NSF 42/53/58/401 on the Classic PDS — PFAS, lead, and DBPs. About $380. Waterdrop K19-S is discontinued. Public systems have until 2029 to meet the 2024 PFAS MCLs, so a tap filter still matters in Gaithersburg in 2026.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Check Your Specific Address'),
@@ -469,9 +460,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         description: 'Compare historical UCMR5 PFAS monitoring by verified supplier and compound, with official source links and clear limitations. Not a household tap test.',
       },
     },
-    date: '2026-06-01',
-    dateModified: '2026-06-01',
-    dateDisplay: 'June 1, 2026',
+    ...blogPostDateFields('top-10-most-pfas-contaminated-cities', '2026-06-01'),
     readTime: '10 min read',
     badge: 'PFAS',
     badgeColor: '#ef4444',
@@ -482,7 +471,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     ],
     content: React.createElement('div', null,
       React.createElement('h2', null, 'Compare supplier-specific historical results'),
-      React.createElement('p', null, 'A national top-ten list depends on which compounds, sample dates, suppliers, and statistic are compared. This article’s former fixed city ordering has been withdrawn while source attribution is corrected. Use the current supplier-specific reports instead.'),
+      React.createElement('p', null, 'A national top-ten list depends on which compounds, sample dates, suppliers, and statistic are compared. This article’s former fixed city ordering has been withdrawn while source attribution is corrected. Use the current supplier-specific reports instead. UCMR5 monitoring ran 2023–2025; the April 2024 PFAS MCLs (PFOA/PFOS 4 ppt) have a 2029 compliance deadline, so a historical peak is not the same as a 2026 treated-water violation.'),
       React.createElement('p', null, 'Sugar Land’s official results support a historical 672 ppt peak of 6:2 FTS and a PFOA peak of 4.1 ppt. The 4 ppt PFOA benchmark does not apply to 6:2 FTS. The city reports a PFOA annual average of 1.03 ppt at the affected sampling location, so that individual peak does not establish a compliance violation.'),
       React.createElement('a', { href: 'https://www.sugarlandtx.gov/2461/PFAS' }, 'Sugar Land’s official PFAS results'),
       React.createElement('p', null, 'New York City System is NY7003493; a 106 ppt result from another New York supplier must not be attributed to NYCDEP. Philadelphia Water Department is PA1510001; Collegeville–Trappe is a separate utility. Parkersburg Utility Board and Lubeck PSD are also separate suppliers.'),

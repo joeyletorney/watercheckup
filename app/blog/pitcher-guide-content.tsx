@@ -3,7 +3,7 @@ import { GUIDE_SOURCES } from './commercial-guide-sources';
 export function PitcherGuideArticle() {
   return <>
     <h2>How to choose a pitcher that reduces lead</h2>
-    <p>Start with the cartridge, not the brand name. The same pitcher can accept filters with different reduction claims. EPA’s consumer tool recommends checking for a specific lead-reduction claim under NSF/ANSI 53 and Class I particulate reduction under NSF/ANSI 42. Match the exact pitcher and replacement cartridge to the performance sheet.</p>
+    <p>Start with the cartridge, not the brand name. The same pitcher can accept filters with different reduction claims. EPA’s consumer tool recommends checking for a specific lead-reduction claim under NSF/ANSI 53 and Class I particulate reduction under NSF/ANSI 42. Match the exact pitcher and replacement cartridge to the performance sheet. Current catalog prices: Clearly Filtered 10-cup about $90 (NSF 42/372; broader lead/PFAS figures are lab tests), ZeroWater 10-cup about $23 (NSF 42/53), Waterdrop PT-07B about $16 (NSF 42/372 only), PUR PLUS 11-cup check-current-price. The 2024 EPA PFAS MCLs (compliance 2029) do not make a pitcher “PFAS certified” unless the cartridge’s own sheet says so.</p>
     <p><a href={GUIDE_SOURCES.epaLead}>Use EPA’s guide to lead-reduction certification →</a></p>
     <p>Brita Elite OB06 is a lead-reduction option in the compatible systems listed on its sheet. The Original cartridge is a different product; do not transfer Elite’s claims to it.</p>
 

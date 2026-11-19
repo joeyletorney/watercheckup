@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const AMAZON_TAG = 'watercheckup-20';
 
@@ -99,9 +100,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
       description:
         'Great source water — older buildings can still add lead at the tap. PFAS monitoring, DEP context, and filter picks for NYC renters & owners.',
     },
-    date: '2026-05-18',
-    dateModified: '2026-06-04',
-    dateDisplay: 'May 18, 2026',
+    ...blogPostDateFields('is-new-york-city-tap-water-safe-2026', '2026-05-18'),
     readTime: '9 min read',
     badge: 'NYC',
     badgeColor: '#0891b2',
@@ -114,7 +113,7 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
         { style: pStyle },
         'New Yorkers love to brag about their tap water — and for good reason. Much of it travels from the ',
         React.createElement('strong', { style: strongStyle }, 'Catskill and Delaware watersheds'),
-        ', protected land with minimal industrial runoff. NYCDEP treats and delivers water that routinely ranks among the best of any large U.S. city.',
+        ', protected land with minimal industrial runoff. NYCDEP treats and delivers water that routinely ranks among the best of any large U.S. city. Building pipes are the 2026 issue: the EPA Lead and Copper Rule Improvements require systems to replace lead service lines within 10 years, but that does not measure lead already leaching from apartment plumbing. Renters can still use a Clearly Filtered pitcher (~$90) or ZeroWater 10-cup (~$23).',
       ),
       React.createElement(
         'p',
@@ -299,15 +298,14 @@ export const EXTRA_POSTS_NYC: Record<string, Post> = {
       description:
         'Verify NYCDEP supplier information, historical data coverage, and household testing options before choosing filtration.',
     },
-    date: '2026-05-18',
-    dateDisplay: 'May 18, 2026',
+    ...blogPostDateFields('pfas-in-new-york-city-water', '2026-05-18'),
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#0891b2',
     topPicks: TOP_3_RO,
     content: React.createElement('div', null,
       React.createElement('h2', null, 'What do we know about NYCDEP water?'),
-      React.createElement('p', null, 'New York City System is PWSID NY7003493. Our packaged UCMR5 snapshot has no matching record for that supplier. We cannot infer either a detection or a nondetection from that gap, and we do not substitute another New York supplier’s measurements.'),
+      React.createElement('p', null, 'New York City System is PWSID NY7003493. Our packaged UCMR5 snapshot has no matching record for that supplier. We cannot infer either a detection or a nondetection from that gap, and we do not substitute another New York supplier’s measurements. UCMR5 ran 2023–2025; the April 2024 PFAS MCLs still have a 2029 compliance deadline, so a missing snapshot is not a 2026 treated-water result.'),
       React.createElement('p', null, React.createElement('a', { href: 'https://www.nyc.gov/site/dep/water/drinking-water-quality-report.page' }, 'Read NYCDEP’s current drinking-water quality report'), ' for supplier monitoring and sampling dates. A historical individual peak is not an official compliance finding; regulatory determinations use the applicable monitoring and averaging rules.'),
       React.createElement('h2', null, 'What should you do at home?'),
       React.createElement('p', null, 'Confirm the supplier on your water bill. For lead questions, check your building’s service-line and plumbing information. A certified laboratory test is the appropriate next step when you need an address-level answer.'),

@@ -20,6 +20,7 @@ export const metadata: Metadata = {
       'Both remove contaminants, but they work differently and suit different needs. Here\'s a straight comparison to help you decide.',
     type: 'article',
     publishedTime: '2026-05-18',
+    modifiedTime: '2026-10-01',
     authors: ['Joe Letorney'],
   },
 };
@@ -71,6 +72,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
     headline: 'Reverse Osmosis vs Distilled Water — Which is Better? (2026)',
     description: metadata.description,
     datePublished: '2026-05-18',
+    dateModified: '2026-10-01',
     author: {
       '@type': 'Person',
       name: BLOG_AUTHOR_BYLINE.name,
@@ -111,7 +113,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           actually performs — and which one makes sense for drinking, cooking, and everyday home use.
         </p>
         <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 32px' }}>
-          By {BLOG_AUTHOR_BYLINE.name} · {BLOG_AUTHOR_BYLINE.credentials} · 10 min read · May 18, 2026
+          By {BLOG_AUTHOR_BYLINE.name} · {BLOG_AUTHOR_BYLINE.credentials} · 10 min read · Updated October 1, 2026
         </p>
 
         <div
@@ -128,7 +130,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           </div>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
             <strong style={{ color: '#f1f5f9' }}>For most households, reverse osmosis wins.</strong> It delivers
-            near-distilled purity at the kitchen sink with enough flow for drinking and cooking.{' '}
+            near-distilled purity at the kitchen sink with enough flow for drinking and cooking. Current catalog: Waterdrop G3P600 about $399; AquaTru Classic about $380; CO-Z 4L distiller about $119. The 2024 PFAS MCLs (compliance 2029) are a reason to prefer NSF 58 RO for family drinking water.{' '}
             <strong style={{ color: '#f1f5f9' }}>Choose distillation</strong> when you specifically need ultra-low-TDS
             water in smaller batches (CPAP, certain appliances, lab-style purity) and accept higher energy use and slower
             output.

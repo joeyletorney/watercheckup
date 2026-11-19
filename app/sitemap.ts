@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POST_SLUGS, HIGH_PRIORITY_BLOG_SLUGS } from '@/lib/blog-post-slugs'
+import { BLOG_POST_DATE_MODIFIED } from '@/lib/blog-post-dates'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { SITE_ORIGIN } from '@/lib/site-url'
 
@@ -31,7 +32,6 @@ const HIGH_PRIORITY_CITIES = new Set([
 
 function buildSitemap(): MetadataRoute.Sitemap {
   const base = SITE_ORIGIN
-  // Omit lastmod until individual content/data revisions are tracked.
 
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
@@ -70,6 +70,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
 
   const blogPostEntries = BLOG_POST_SLUGS.map((slug) => ({
     url: `${base}/blog/${slug}`,
+    lastModified: BLOG_POST_DATE_MODIFIED[slug],
     changeFrequency: 'monthly' as const,
     priority: HIGH_PRIORITY_BLOG_SLUGS.has(slug) ? 0.9 : 0.75,
   }))
@@ -108,13 +109,13 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { url: `${base}/water/pensacola`, changeFrequency: 'weekly', priority: 0.88 },
     { url: `${base}/water/fairfax-county`, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${base}/water/miami`, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${base}/blog/san-antonio-water-quality`, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/blog/pfas-in-san-antonio-water`, changeFrequency: 'weekly', priority: 0.89 },
-    { url: `${base}/blog/best-water-filter-hard-water`, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${base}/blog/best-shower-filter-2026`, changeFrequency: 'monthly', priority: 0.88 },
-    { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, changeFrequency: 'monthly', priority: 0.86 },
-    { url: `${base}/blog/top-10-cities-hardest-tap-water`, changeFrequency: 'monthly', priority: 0.86 },
+    { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, lastModified: BLOG_POST_DATE_MODIFIED['top-10-most-pfas-contaminated-cities'], changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${base}/blog/san-antonio-water-quality`, lastModified: BLOG_POST_DATE_MODIFIED['san-antonio-water-quality'], changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/blog/pfas-in-san-antonio-water`, lastModified: BLOG_POST_DATE_MODIFIED['pfas-in-san-antonio-water'], changeFrequency: 'weekly', priority: 0.89 },
+    { url: `${base}/blog/best-water-filter-hard-water`, lastModified: BLOG_POST_DATE_MODIFIED['best-water-filter-hard-water'], changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${base}/blog/best-shower-filter-2026`, lastModified: BLOG_POST_DATE_MODIFIED['best-shower-filter-2026'], changeFrequency: 'monthly', priority: 0.88 },
+    { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, lastModified: BLOG_POST_DATE_MODIFIED['reverse-osmosis-vs-distilled-water'], changeFrequency: 'monthly', priority: 0.86 },
+    { url: `${base}/blog/top-10-cities-hardest-tap-water`, lastModified: BLOG_POST_DATE_MODIFIED['top-10-cities-hardest-tap-water'], changeFrequency: 'monthly', priority: 0.86 },
   ]
 
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -33,8 +34,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Hard Water Explained: Scale, Softeners, and What It Means for Your Taps',
     excerpt:
       'Calcium and magnesium make water “hard.” Here is how hardness affects appliances, whether it is a health risk, and when a softener or RO makes sense.',
-    date: '2026-04-04',
-    dateDisplay: 'April 4, 2026',
+    ...blogPostDateFields('hard-water-explained-scale-softeners-and-your-taps', '2026-04-04'),
     readTime: '8 min read',
     badge: 'Home',
     badgeColor: '#cbd5e1',
@@ -58,7 +58,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <div style={calloutStyle}>
           <strong style={strongStyle}>Drinking water note: </strong>
-          If you need low-sodium drinking water for medical reasons, talk to your doctor — softened water can add sodium at the tap. Many people use RO for drinking and a softener for the rest of the home.
+          If you need low-sodium drinking water for medical reasons, talk to your doctor — softened water can add sodium at the tap. Many people use RO for drinking and a softener for the rest of the home. Current catalog prices: Waterdrop G3P600 under-sink RO is about $399; AquaTru Classic countertop RO is about $380. A shower filter still does not soften hardness.
         </div>
         <h2 style={h2Style}>Bottom line</h2>
         <p style={pStyle}>
@@ -77,8 +77,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Bottled Water vs. Tap Water: Cost, Safety, and PFAS Reality',
     excerpt:
       'Bottled water is not automatically “purer.” Here is how regulation compares, what PFAS studies found, and when filtering tap water wins.',
-    date: '2026-04-05',
-    dateDisplay: 'April 5, 2026',
+    ...blogPostDateFields('bottled-water-vs-tap-water-cost-safety-and-pfas', '2026-04-05'),
     readTime: '8 min read',
     badge: 'Lifestyle',
     badgeColor: '#38bdf8',
@@ -98,7 +97,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <div style={warnStyle}>
           <strong style={{ color: '#f59e0b' }}>PFAS: </strong>
-          Studies and reporting have detected PFAS in some bottled products — not all brands, not all lots. If PFAS is your concern, certified filtration or verified lab results beat assumptions.
+          Studies and reporting have detected PFAS in some bottled products — not all brands, not all lots. If PFAS is your concern, certified filtration or verified lab results beat assumptions. Tap-side, public systems are still working toward the April 2024 EPA PFAS MCLs (PFOA/PFOS at 4 ppt), with a 2029 compliance deadline — bottled water is not covered by that drinking-water rule.
         </div>
         <h2 style={h2Style}>Cost and plastic</h2>
         <p style={pStyle}>
@@ -122,8 +121,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         "Chromium-6 was made famous by Erin Brockovich and it's still in millions of Americans' tap water. See if your city is affected and what filter removes it.",
       canonical: 'https://watercheckup.com/blog/chromium-6-in-drinking-water-should-you-worry',
     },
-    date: '2026-04-06',
-    dateDisplay: 'April 6, 2026',
+    ...blogPostDateFields('chromium-6-in-drinking-water-should-you-worry', '2026-04-06'),
     readTime: '7 min read',
     badge: 'Contaminants',
     badgeColor: '#eab308',
@@ -135,7 +133,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>What EPA regulates</h2>
         <p style={pStyle}>
-          EPA sets a standard for <strong style={strongStyle}>total chromium</strong> in drinking water. Public water systems may also monitor or report additional information depending on state rules and UCMR monitoring cycles. Your CCR is the first place to look for detections.
+          EPA sets a standard for <strong style={strongStyle}>total chromium</strong> in drinking water. Public water systems may also monitor or report additional information depending on state rules and UCMR monitoring cycles. Your CCR is the first place to look for detections. There is still no separate federal Cr-6 MCL in 2026 — unlike the 2024 PFAS MCLs — so a “total chromium” line is not the same as a hexavalent-chromium result.
         </p>
         <h2 style={h2Style}>Hollywood vs. your tap</h2>
         <p style={pStyle}>
@@ -157,8 +155,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Nitrate in Well Water: Why Infants and Pregnancy Need Extra Care',
     excerpt:
       'Nitrate is a common well-water issue. Here is how it causes methemoglobinemia, what the EPA limit means, and why RO is often the fix.',
-    date: '2026-04-07',
-    dateDisplay: 'April 7, 2026',
+    ...blogPostDateFields('nitrate-in-well-water-infants-and-pregnancy', '2026-04-07'),
     readTime: '8 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
@@ -174,7 +171,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </div>
         <h2 style={h2Style}>EPA limit</h2>
         <p style={pStyle}>
-          The MCL for nitrate (as nitrogen) is <strong style={strongStyle}>10 mg/L</strong> in public systems. Private wells are not monitored by EPA — owners must test.
+          The MCL for nitrate (as nitrogen) is <strong style={strongStyle}>10 mg/L</strong> in public systems. Private wells are not monitored by EPA — owners must test. The 2024 PFAS drinking-water limits do not change that nitrate MCL; wells still need a nitrate panel, especially for formula and pregnancy.
         </p>
         <h2 style={h2Style}>Pregnancy</h2>
         <p style={pStyle}>
@@ -192,8 +189,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'How to Test Your Tap Water: Mail-In Labs, Strips, and What to Order',
     excerpt:
       'Test strips are not enough for lead or PFAS. Here is how to pick a certified lab panel, avoid contamination, and read the results.',
-    date: '2026-04-08',
-    dateDisplay: 'April 8, 2026',
+    ...blogPostDateFields('how-to-test-your-tap-water-mail-in-labs-explained', '2026-04-08'),
     readTime: '9 min read',
     badge: 'Testing',
     badgeColor: '#2dd4bf',
@@ -209,7 +205,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>Mail-in lab panels</h2>
         <p style={pStyle}>
-          Choose a lab accredited for drinking water methods. Common add-ons: <strong style={strongStyle}>lead</strong> (first-draw vs. flushed), <strong style={strongStyle}>copper</strong>, <strong style={strongStyle}>bacteria</strong>, <strong style={strongStyle}>nitrate</strong> (wells), <strong style={strongStyle}>arsenic</strong>, <strong style={strongStyle}>PFAS</strong> (EPA methods 533/537.1).
+          Choose a lab accredited for drinking water methods. Common add-ons: <strong style={strongStyle}>lead</strong> (first-draw vs. flushed), <strong style={strongStyle}>copper</strong>, <strong style={strongStyle}>bacteria</strong>, <strong style={strongStyle}>nitrate</strong> (wells), <strong style={strongStyle}>arsenic</strong>, <strong style={strongStyle}>PFAS</strong> (EPA methods 533/537.1). In 2026 a household PFAS panel is still the only way to measure your tap against the 2024 MCLs if your supplier has not yet reported treated-water results on the 2029 compliance timeline.
         </p>
         <h2 style={h2Style}>Sampling tips</h2>
         <p style={pStyle}>
@@ -227,8 +223,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Refrigerator Water Filters: What They Actually Remove',
     excerpt:
       'Fridge filters are convenient — but certification varies wildly. Here is how to read NSF claims and when you still need RO.',
-    date: '2026-04-09',
-    dateDisplay: 'April 9, 2026',
+    ...blogPostDateFields('refrigerator-water-filters-what-they-actually-remove', '2026-04-09'),
     readTime: '7 min read',
     badge: 'Filters',
     badgeColor: '#06b6d4',
@@ -244,7 +239,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>Limitations</h2>
         <p style={pStyle}>
-          Fridge filters have low flow and limited contact time. They can be excellent for taste and odor — but may not be the right tool for PFAS, nitrates, or high lead.
+          Fridge filters have low flow and limited contact time. They can be excellent for taste and odor — but may not be the right tool for PFAS, nitrates, or high lead. Current faucet-mount alternatives in the catalog: PUR PLUS Vertical (~$60) and Brita Elite Advanced (~$30), both NSF 42/53 — still not RO.
         </p>
         <h2 style={h2Style}>When to upgrade</h2>
         <p style={pStyle}>
@@ -258,8 +253,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Whole-House Water Filter vs. Under-Sink: Which Should You Choose?',
     excerpt:
       'Point-of-entry systems treat everything entering the home; point-of-use treats drinking water. Here is how to decide without overspending.',
-    date: '2026-04-10',
-    dateDisplay: 'April 10, 2026',
+    ...blogPostDateFields('whole-house-water-filter-vs-under-sink-which-to-choose', '2026-04-10'),
     readTime: '9 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
@@ -283,7 +277,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </div>
         <h2 style={h2Style}>Decision framework</h2>
         <p style={pStyle}>
-          Start with your water report and goals: <strong style={strongStyle}>skin/hair irritation from chlorine?</strong> → consider whole-house carbon. <strong style={strongStyle}>PFAS/lead/nitrate for drinking?</strong> → prioritize certified RO or targeted POU filters.
+          Start with your water report and goals: <strong style={strongStyle}>skin/hair irritation from chlorine?</strong> → consider whole-house carbon (iSpring WGB32B is about $359; Aquasana WH-1000-B is check-current-price). <strong style={strongStyle}>PFAS/lead/nitrate for drinking?</strong> → prioritize certified RO (Waterdrop G3P600 about $399) or targeted POU filters. The 2024 PFAS MCLs (2029 compliance) are a drinking-water issue, not a reason to buy a whole-house carbon tank by itself.
         </p>
       </>
     ),
@@ -293,8 +287,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Boil Water Advisory: What to Do, What to Avoid, and How Long It Lasts',
     excerpt:
       'Microbiological outbreaks trigger boil notices. Here is the safe playbook — including why you should not use home RO during a boil advisory.',
-    date: '2026-04-11',
-    dateDisplay: 'April 11, 2026',
+    ...blogPostDateFields('boil-water-advisory-what-to-do-and-how-long', '2026-04-11'),
     readTime: '6 min read',
     badge: 'Safety',
     badgeColor: '#ef4444',
@@ -302,7 +295,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          A <strong style={strongStyle}>boil water advisory</strong> usually means the public water system suspects or confirms microbial contamination — or a loss of pressure that can let contaminated water into the system.
+          A <strong style={strongStyle}>boil water advisory</strong> usually means the public water system suspects or confirms microbial contamination — or a loss of pressure that can let contaminated water into the system. Chemical rules updated in 2024 (PFAS MCLs) do not change boil-notice procedure: boiling still does not remove PFAS, lead, or nitrate.
         </p>
         <div style={warnStyle}>
           <strong style={{ color: '#ef4444' }}>Do this: </strong>
@@ -324,8 +317,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Microplastics in Drinking Water: What We Know (and What We Don’t)',
     excerpt:
       'Microplastics show up in environmental samples worldwide. Here is how they get into water, what research is still settling, and what filters may help.',
-    date: '2026-04-12',
-    dateDisplay: 'April 12, 2026',
+    ...blogPostDateFields('microplastics-in-drinking-water-what-we-know', '2026-04-12'),
     readTime: '8 min read',
     badge: 'Science',
     badgeColor: '#8b5cf6',
@@ -341,7 +333,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>Health science status</h2>
         <p style={pStyle}>
-          Health agencies are still building the evidence base for long-term human risk at low levels. That uncertainty does not mean “ignore everything else” — lead, PFAS, and bacteria are clearer priorities where present.
+          Health agencies are still building the evidence base for long-term human risk at low levels. That uncertainty does not mean “ignore everything else” — lead, PFAS, and bacteria are clearer priorities where present. There is still no federal microplastics MCL in 2026; NSF 401 “emerging contaminants” listings on some RO units (AquaTru Classic, about $380) are not a substitute for a dedicated microplastics standard.
         </p>
         <div style={calloutStyle}>
           <strong style={strongStyle}>Practical approach: </strong>
@@ -355,8 +347,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
     title: 'Arsenic in Well Water: The EPA Limit and Treatment That Actually Works',
     excerpt:
       'Arsenic is a natural groundwater contaminant in many regions. Here is how to test, when 10 ppb matters, and what treatment options are common.',
-    date: '2026-04-13',
-    dateDisplay: 'April 13, 2026',
+    ...blogPostDateFields('arsenic-in-well-water-epa-limit-and-treatment', '2026-04-13'),
     readTime: '8 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
@@ -368,7 +359,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
         </p>
         <h2 style={h2Style}>EPA standard</h2>
         <p style={pStyle}>
-          The MCL for arsenic in public drinking water is <strong style={strongStyle}>10 μg/L (10 ppb)</strong>. Private wells are not federally regulated — owners must test and treat.
+          The MCL for arsenic in public drinking water is <strong style={strongStyle}>10 μg/L (10 ppb)</strong>. Private wells are not federally regulated — owners must test and treat. That 10 ppb MCL is unchanged in 2026; it is separate from the 2024 PFAS limits that apply only to public systems.
         </p>
         <h2 style={h2Style}>Health notes</h2>
         <p style={pStyle}>
@@ -397,8 +388,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
       canonical:
         'https://watercheckup.com/blog/why-distilled-water-and-reverse-osmosis-are-best-for-high-purity',
     },
-    date: '2026-04-14',
-    dateDisplay: 'April 14, 2026',
+    ...blogPostDateFields('why-distilled-water-and-reverse-osmosis-are-best-for-high-purity', '2026-04-14'),
     readTime: '10 min read',
     badge: 'Purity',
     badgeColor: '#06b6d4',
@@ -469,7 +459,7 @@ export const EXTRA_POSTS_2: Record<string, Post> = {
 
         <h2 style={h2Style}>Bottom line</h2>
         <p style={pStyle}>
-          For <strong style={strongStyle}>maximum practical purity</strong> from residential equipment, distillation and reverse osmosis are the two technologies that deserve the top tier. Between them, <strong style={strongStyle}>RO is usually the better fit for households</strong>; distillation remains a gold-standard batch method when you specifically want water produced by evaporation and condensation.
+          For <strong style={strongStyle}>maximum practical purity</strong> from residential equipment, distillation and reverse osmosis are the two technologies that deserve the top tier. Between them, <strong style={strongStyle}>RO is usually the better fit for households</strong>; distillation remains a gold-standard batch method when you specifically want water produced by evaporation and condensation. Current catalog: Waterdrop G3P600 tankless RO about $399; CO-Z 4L countertop distiller about $119; AquaTru Classic countertop RO about $380.
         </p>
         <p style={pStyle}>
           Start with your actual water quality (CCR + WaterCheckup + testing if needed), then pick certified equipment matched to those results — not marketing adjectives like “pure” or “natural.”
