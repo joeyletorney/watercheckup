@@ -73,8 +73,15 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     : undefined;
   const amazon = resolveAffiliateAmazonUrl(p.brand, p.amazon);
 
-  const track = (destination: 'amazon' | 'direct' | 'brand') =>
-    trackAffiliateClick({ product: p.name, destination, page: 'trusted-picks', brand: p.brand });
+  const track = (destination: 'amazon' | 'direct' | 'brand', href?: string) =>
+    trackAffiliateClick({
+      product: p.name,
+      destination,
+      page: 'trusted-picks',
+      brand: p.brand,
+      productId: String(p.id),
+      href,
+    });
 
   if (isClearlyFilteredBrand(p.brand) && clearlyDirect) {
     return (
@@ -82,7 +89,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
         href={clearlyDirect}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        onClick={() => track('amazon')}
+        onClick={() => track('amazon', clearlyDirect)}
         style={{
           fontSize: 12,
           fontWeight: 800,
@@ -104,7 +111,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
         href={direct}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        onClick={() => track('direct')}
+        onClick={() => track('direct', direct)}
         style={{
           fontSize: 12,
           fontWeight: 800,
@@ -148,7 +155,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
           href={amazon}
           target="_blank"
           rel="noopener noreferrer sponsored"
-          onClick={() => track('amazon')}
+          onClick={() => track('amazon', amazon)}
           style={{
             fontSize: 12,
             fontWeight: 700,

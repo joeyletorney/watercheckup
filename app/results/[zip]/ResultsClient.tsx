@@ -20,7 +20,16 @@ const SCORE_COLOR = (s: number) =>
 const SCORE_LABEL = (s: number) =>
   s >= 80 ? 'Excellent' : s >= 62 ? 'Fair' : s >= 50 ? 'Concerning' : s >= 35 ? 'Poor' : 'High Risk';
 
-const CAP_SCORE = (s: number) => Math.min(Math.max(0, s), 88);
+const CAP_SCORE = (s: unknown) => {
+  const n = typeof s === 'number' ? s : Number(s);
+  if (!Number.isFinite(n)) return 0;
+  return Math.min(Math.max(0, n), 88);
+};
+
+function hasRenderableScore(data: { score?: unknown; grade?: unknown } | null | undefined): boolean {
+  if (!data) return false;
+  return typeof data.grade === 'string' && data.grade !== '' && data.grade !== '—';
+}
 
 const SEVERITY_COLOR: Record<string, string> = {
   high: '#ef4444',
@@ -216,12 +225,18 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
       sessionStorage.removeItem('wc_water_search');
     } catch { /* storage unavailable */ }
     if (pending?.zip === zip && typeof pending.startedAt === 'number' && Date.now() - pending.startedAt < 300000) {
+      const epaDown = data?.lookupStatus === 503 || /temporarily unavailable/i.test(String(data?.lookupError || ''));
       window.gtag?.('event', 'water_search_result', {
-        result_status: !data || data.lookupError ? 'no_match' : 'report_displayed',
+        result_status: !data || data.lookupError ? (epaDown ? 'epa_unavailable' : 'no_match') : 'report_displayed',
         elapsed_ms: Math.max(0, Date.now() - pending.startedAt),
       });
     }
-    if (!data || data.lookupError) return;
+    if (!data || data.lookupError) {
+      if (data?.lookupStatus === 503 || /temporarily unavailable/i.test(String(data?.lookupError || ''))) {
+        window.gtag?.('event', 'epa_data_fetch', { fetch_status: 'failed', page: 'zip-report' });
+      }
+      return;
+    }
     window.gtag?.('event', 'water_report_view', { report_status: data.violationCoverage === 'unavailable' ? 'historical_only' : 'current_records_available', page: 'zip-report' });
   }, [data]);
 
@@ -268,13 +283,22 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
     finally { setAlertSending(false); }
   };
 
+  const epaTemporarilyDown =
+    data?.lookupStatus === 503 || /temporarily unavailable/i.test(String(data?.lookupError || ''));
+
   if (!data || data.lookupError) {
     return (
       <div style={{ maxWidth: 680, margin: '80px auto', padding: '0 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🚱</div>
-        <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>Report unavailable for ZIP {zip}</h1>
-        <p style={{ color: '#cbd5e1', marginBottom: 24 }}>{data?.lookupError || 'We could not load this report. Try again shortly or check your supplier’s current report.'}</p>
-        <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ padding: '12px 24px', marginRight: 12, borderRadius: 10, border: '1px solid #67e8f9', background: '#071828', color: '#f1f5f9', cursor: 'pointer' }}>{retrying ? 'Checking records…' : 'Try again'}</button>
+        <h1 style={{ fontSize: 24, fontWeight: 800, color: '#f1f5f9', marginBottom: 12 }}>
+          {epaTemporarilyDown ? 'Data temporarily unavailable' : `Report unavailable for ZIP ${zip}`}
+        </h1>
+        <p style={{ color: '#cbd5e1', marginBottom: 24 }}>
+          {epaTemporarilyDown
+            ? `EPA water records for ZIP ${zip} could not be loaded. Please retry in a moment.`
+            : data?.lookupError || 'We could not load this report. Try again shortly or check your supplier’s current report.'}
+        </p>
+        <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ padding: '12px 24px', marginRight: 12, borderRadius: 10, border: '1px solid #67e8f9', background: '#071828', color: '#f1f5f9', cursor: 'pointer' }}>{retrying ? 'Checking records…' : 'Retry'}</button>
         {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
         <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: '#0891b2', borderRadius: 10, color: '#fff', fontWeight: 700, textDecoration: 'none' }}>
           Try another ZIP →
@@ -284,9 +308,11 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
   }
 
   const liveViolationsDown = data.violationCoverage !== 'available';
+  const scoreReady = hasRenderableScore(data);
+  const blankScoreFromEpaGap = liveViolationsDown && !scoreReady;
   const cappedScore = CAP_SCORE(data.score);
-  const sc = data.scoreColor || SCORE_COLOR(cappedScore);
-  const letterGrade = data.grade || '—';
+  const sc = blankScoreFromEpaGap ? '#94a3b8' : (data.scoreColor || SCORE_COLOR(cappedScore));
+  const letterGrade = blankScoreFromEpaGap ? '—' : (data.grade || '—');
   const pfasNotice = getPfasCoverageNotice(data.pfasCoverage);
   const scoreLabel = data.scoreLabel || SCORE_LABEL(cappedScore);
   const quizHref = quizHrefFromReport({
@@ -341,6 +367,24 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
         </p>
 
         {/* Score + summary row */}
+        {blankScoreFromEpaGap ? (
+          <div
+            role="status"
+            style={{ padding: '20px 24px', background: '#071828', border: '2px solid #f59e0b55', borderRadius: 16, marginBottom: 20 }}
+          >
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#fbbf24', letterSpacing: 2, marginBottom: 8 }}>
+              DATA TEMPORARILY UNAVAILABLE
+            </div>
+            <h2 style={{ fontSize: 20, fontWeight: 800, color: '#f1f5f9', margin: '0 0 8px' }}>
+              Water score cannot be shown right now
+            </h2>
+            <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>
+              Live EPA records for this ZIP could not be loaded, and there is not enough packaged monitoring to grade the supplier. Please retry.
+            </p>
+            <button type="button" disabled={retrying} onClick={retryCurrentRecords} style={{ cursor: retrying ? 'wait' : 'pointer', opacity: retrying ? 0.7 : 1, padding: '10px 16px', background: '#155e75', color: '#fff', borderRadius: 8, border: 0 }}>{retrying ? 'Checking EPA records…' : 'Retry'}</button>
+            {retryMessage && <p role="status" style={{ marginTop: 12, color: '#fbbf24' }}>{retryMessage}</p>}
+          </div>
+        ) : (
         <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap', padding: '20px 24px', background: '#071828', border: `2px solid ${sc}30`, borderRadius: 16, marginBottom: 20 }}>
           <ScoreDial score={cappedScore} grade={letterGrade} />
           <div style={{ flex: 1, minWidth: 200 }}>
@@ -370,6 +414,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
             ))}
           </div>
         </div>
+        )}
 
         {liveViolationsDown && (
           <section aria-label="Data availability" style={{ padding: 20, border: '1px solid #f59e0b', borderRadius: 12, marginBottom: 20 }}>
@@ -709,6 +754,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
                               page: 'results',
                               brand: 'brand' in prod ? prod.brand : undefined,
                               zip,
+                              href: buy.href,
                             })
                           }
                           style={{
@@ -913,6 +959,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
                       page: 'results',
                       brand: f.brand,
                       zip,
+                      href: buy.href,
                     })
                   }
                   style={{

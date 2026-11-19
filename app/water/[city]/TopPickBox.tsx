@@ -50,8 +50,8 @@ function buildWaterdropUrl(baseUrl: string, product: string, citySlug: string) {
   } catch { return baseUrl; }
 }
 
-function trackClick(product: string, destination: 'amazon' | 'direct', city: string, brand: string) {
-  trackAffiliateClick({ product, destination, page: 'city', city, brand });
+function trackClick(product: string, destination: 'amazon' | 'direct', city: string, brand: string, href: string) {
+  trackAffiliateClick({ product, destination, page: 'city', city, brand, href });
 }
 
 export default function TopPickBox({
@@ -139,7 +139,7 @@ export default function TopPickBox({
                     href={directUrl}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
-                    onClick={() => trackClick(pick.product, 'direct', slug, pick.brand)}
+                    onClick={() => trackClick(pick.product, 'direct', slug, pick.brand, directUrl)}
                     style={{ display: 'block', padding: '8px 16px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}
                   >
                     {directBuyLabel(pick.brand)}
@@ -149,7 +149,7 @@ export default function TopPickBox({
                   href={amazonUrl}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
-                  onClick={() => trackClick(pick.product, 'amazon', slug, pick.brand)}
+                  onClick={() => trackClick(pick.product, 'amazon', slug, pick.brand, amazonUrl)}
                   style={{ display: 'block', padding: '6px 12px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 600, textAlign: 'center', border: 'none', whiteSpace: 'nowrap' }}
                 >
                   Amazon →

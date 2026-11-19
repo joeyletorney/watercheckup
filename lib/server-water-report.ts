@@ -41,9 +41,12 @@ const LCR_DATA = lcrDataRaw as Record<string, { lead?: number; copper?: number }
 
 const EPA = 'https://data.epa.gov/efservice';
 /** EPA Envirofacts renamed SDWA_VIOLATIONS → VIOLATION; 4s was too short and 404s opened the circuit. */
-const EPA_TIMEOUT_MS = 12_000;
-const EPA_CIRCUIT_FAIL_THRESHOLD = 3;
+const EPA_TIMEOUT_MS = 10_000;
+const EPA_RETRY_ATTEMPTS = 2;
+const EPA_RETRY_BACKOFF_MS = 400;
+const EPA_CIRCUIT_FAIL_THRESHOLD = 5;
 const EPA_CIRCUIT_COOLDOWN_MS = 60_000;
+const EPA_UNAVAILABLE_MESSAGE = 'Water data is temporarily unavailable. Please try again shortly.';
 
 type EpaCircuit = { fails: number; openUntil: number };
 const gEpa = globalThis as unknown as { __wcEpaCircuit?: EpaCircuit };
@@ -68,8 +71,30 @@ function noteEpaFailure() {
   }
 }
 
-async function epaGet(path: string, refresh = false) {
-  if (isEpaCircuitOpen()) throw new Error('EPA circuit open');
+function epaHttpStatus(err: unknown): number | undefined {
+  if (err instanceof Error) {
+    const match = /^EPA (\d{3})$/.exec(err.message);
+    if (match) return Number(match[1]);
+  }
+  return undefined;
+}
+
+function isRetryableEpaError(err: unknown): boolean {
+  const status = epaHttpStatus(err);
+  if (status != null) return status >= 500;
+  if (err instanceof Error && (err.name === 'AbortError' || /timeout|network|fetch|ECONN|ENOTFOUND|ETIMEDOUT/i.test(err.message))) {
+    return true;
+  }
+  return err instanceof TypeError;
+}
+
+function shouldTripEpaCircuit(err: unknown): boolean {
+  const status = epaHttpStatus(err);
+  if (status != null) return status >= 500;
+  return true;
+}
+
+async function epaFetchOnce(path: string, refresh: boolean) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), EPA_TIMEOUT_MS);
   try {
@@ -79,21 +104,35 @@ async function epaGet(path: string, refresh = false) {
       signal: ctrl.signal,
     });
     if (!res.ok) {
-      // Missing tables (404) should not trip the circuit — EPA retired SDWA_VIOLATIONS.
-      if (res.status >= 500) noteEpaFailure();
       throw new Error(`EPA ${res.status}`);
     }
     const text = await res.text();
     const data = JSON.parse(text);
     if (!Array.isArray(data)) throw new Error('Unexpected EPA response');
-    noteEpaSuccess();
     return data;
-  } catch (err) {
-    if (!(err instanceof Error && /^EPA \d/.test(err.message))) noteEpaFailure();
-    throw err;
   } finally {
     clearTimeout(timer);
   }
+}
+
+async function epaGet(path: string, refresh = false) {
+  if (isEpaCircuitOpen()) throw new Error('EPA circuit open');
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= EPA_RETRY_ATTEMPTS; attempt++) {
+    try {
+      const data = await epaFetchOnce(path, refresh);
+      noteEpaSuccess();
+      return data;
+    } catch (err) {
+      lastErr = err;
+      if (!isRetryableEpaError(err) || attempt === EPA_RETRY_ATTEMPTS) {
+        if (shouldTripEpaCircuit(err)) noteEpaFailure();
+        throw err;
+      }
+      await new Promise((resolve) => setTimeout(resolve, EPA_RETRY_BACKOFF_MS * attempt));
+    }
+  }
+  throw lastErr;
 }
 
 /** null = EPA error/outage (stop cascading); array = response (possibly empty) */
@@ -557,6 +596,23 @@ async function getUsgsHardnessTDS(stateCode: string): Promise<any[]> {
   }
 }
 
+function epaUnavailableResponse(headers: Record<string, string>) {
+  return NextResponse.json(
+    {
+      error: EPA_UNAVAILABLE_MESSAGE,
+      dataFreshness: getDataFreshness(),
+    },
+    {
+      status: 503,
+      headers: {
+        ...headers,
+        // Brief CDN cache so EPA outages don't stampede serverless invocations
+        'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
+      },
+    },
+  );
+}
+
 function logWaterLookup(payload: Record<string, unknown>) {
   try {
     console.log(
@@ -720,6 +776,10 @@ export async function lookupWaterReport(zip: string, refresh = false) {
         }
       }
       if (!Array.isArray(systems) || !systems.length) {
+        if (epaDown) {
+          logWaterLookup({ zip, outcome: 'epa_unavailable', ms: Date.now() - t0 });
+          return epaUnavailableResponse(H);
+        }
         logWaterLookup({ zip, outcome: 'no_system', ms: Date.now() - t0 });
         return NextResponse.json(
           {
@@ -1063,21 +1123,31 @@ export async function lookupWaterReport(zip: string, refresh = false) {
 
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err || 'Unknown error');
+    const lastGood = await getLastGoodWaterResponse(zip);
+    if (lastGood?.body && typeof lastGood.body === 'object') {
+      const body = { ...lastGood.body } as Record<string, unknown>;
+      delete body.rawViolations;
+      const publicBody = withResolvedZipPlace(
+        {
+          ...body,
+          violationCoverage: 'cached',
+          scoreLabel:
+            typeof body.scoreLabel === 'string'
+              ? `${body.scoreLabel} (using last successful EPA records)`
+              : 'Using last successful EPA records',
+          summary:
+            'Showing the last successful EPA records. A live refresh was unavailable; confirm current compliance with your supplier.',
+        } as { city?: string; pwsid?: string; systemName?: string; stateCode?: string },
+        zip,
+      );
+      logWaterLookup({ zip, outcome: 'last_good', ms: Date.now() - t0, message });
+      return NextResponse.json(publicBody, {
+        status: 200,
+        headers: { ...H, 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600' },
+      });
+    }
     logWaterLookup({ zip, outcome: 'error', ms: Date.now() - t0, message });
-    return NextResponse.json(
-      {
-        error: 'Water data is temporarily unavailable. Please try again shortly.',
-        dataFreshness: getDataFreshness(),
-      },
-      {
-        status: 503,
-        headers: {
-          ...H,
-          // Brief CDN cache so EPA outages don't stampede serverless invocations
-          'Cache-Control': 'public, s-maxage=30, stale-while-revalidate=60',
-        },
-      }
-    );
+    return epaUnavailableResponse(H);
   }
 }
 
