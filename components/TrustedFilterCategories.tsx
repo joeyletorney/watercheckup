@@ -74,18 +74,15 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     !isClearlyFilteredBrand(p.brand)
   ) {
     return (
-      <a
+      <AffiliateLink
         href={p.brandLink}
+        product={p.name}
+        brand={p.brand}
+        destination="brand"
+        page="trusted-picks"
+        productId={String(p.id)}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        onClick={() => trackAffiliateClick({
-          product: p.name,
-          destination: 'brand',
-          page: 'trusted-picks',
-          brand: p.brand,
-          productId: String(p.id),
-          href: p.brandLink,
-        })}
         style={{
           fontSize: 12,
           fontWeight: 800,
@@ -97,7 +94,7 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
         }}
       >
         {brandSiteLabel(p.brand)}
-      </a>
+      </AffiliateLink>
     );
   }
 

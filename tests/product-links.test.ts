@@ -16,6 +16,12 @@ test('legacy PD1000 remaps keep the Amazon ASIN for old URLs, but the catalog bu
   assert.equal(preferredAmazonPurchaseUrl('https://www.amazon.com/dp/B0BK8ZRY2K?tag=watercheckup-20'), undefined);
 });
 
+test('trusted-pick brand buttons opt out of the global sponsored-link fallback', () => {
+  const src = readFileSync(new URL('../components/TrustedFilterCategories.tsx', import.meta.url), 'utf8');
+  assert.match(src, /<AffiliateLink[\s\S]*destination="brand"[\s\S]*page="trusted-picks"/);
+  assert.doesNotMatch(src, /rel="noopener noreferrer sponsored"\s+onClick=\{\(\) => trackAffiliateClick/);
+});
+
 test('well API no longer ships Amazon 404 ASINs and points lab tests at MyTapScore', () => {
   const well = readFileSync(new URL('../app/api/well/route.ts', import.meta.url), 'utf8');
   for (const asin of ['B01NCDKLWC', 'B00JO7R694', 'B07FJLNLSD', 'B07Q9C9BMX', 'B09TY8MDF9']) {
