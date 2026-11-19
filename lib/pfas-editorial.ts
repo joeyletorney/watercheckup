@@ -16,9 +16,16 @@ export function pfasSnapshotSentence(pfas: CityPfasSnapshot): string {
 }
 
 const DETECTION_CLAIM =
-  /\bPFAS[\s\S]{0,200}?(?:detected|detections|detection|has shown up|have shown up|shows? up|has appeared|have appeared|logged PFAS detections)[\s\S]{0,140}?[.!?]/gi;
+  /\bPFAS[\s\S]{0,200}?(?:has detected|have detected|were detected|was detected|detections|has shown up|have shown up|shows? up|has appeared|have appeared|logged PFAS detections)[\s\S]{0,140}?[.!?]/gi;
 const ABSENCE_CLAIM =
   /\b(?:no PFAS|none (?:was |were )?detected|lists no reportable PFAS|detected none|no reportable PFAS detections)[\s\S]{0,160}?[.!?]/gi;
+
+function alreadyMatchesSnapshot(text: string, pfas: CityPfasSnapshot): boolean {
+  if (text.includes(pfasSnapshotSentence(pfas))) return true;
+  if (!pfas) return /no matching PFAS record/i.test(text);
+  if (!pfas.compounds.length) return /lists no reportable PFAS detections/i.test(text);
+  return /UCMR5 monitoring lists \d+ PFAS compound/i.test(text);
+}
 
 function matches(re: RegExp, text: string): boolean {
   re.lastIndex = 0;
@@ -32,6 +39,7 @@ export function alignEditorialPfasCopy(text: string, pfas: CityPfasSnapshot): st
   const sentence = pfasSnapshotSentence(pfas);
   const hasDetections = !!pfas?.compounds.length;
   let out = text;
+  if (alreadyMatchesSnapshot(out, pfas)) return out.replace(/[ \t]{2,}/g, ' ').trim();
   if (!hasDetections && matches(DETECTION_CLAIM, out)) {
     out = out.replace(DETECTION_CLAIM, `${sentence} `);
   }

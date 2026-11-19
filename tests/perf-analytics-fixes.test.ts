@@ -35,6 +35,8 @@ test('Boston editorial PFAS copy matches the missing UCMR5 snapshot', () => {
   const paragraphs = getPriorityCityIntroParagraphs('boston') ?? [];
   const joined = paragraphs.join(' ');
   assert.doesNotMatch(joined, /PFAS monitoring has detected/i);
+  assert.doesNotMatch(joined, /no matching This packaged/i);
+  assert.equal((joined.match(/no matching PFAS record/gi) ?? []).length, 1);
   assert.match(joined, /no matching PFAS record/i);
   assert.match(joined, /does not establish detection or nondetection/i);
 
