@@ -87,7 +87,7 @@ export function BlogTopPicks({ picks, subtitle }: Props) {
                     ) : null}
                   </div>
                   <div className="wc-blog-top-picks__meta">
-                    {pick.brand} · {pick.price}
+                    {pick.brand} · {/WH-1000-B|MWT3|10-Cup Pitcher|Vertical Faucet/.test(pick.product) ? "Check current price" : pick.price}
                   </div>
                   <div className="wc-blog-top-picks__reason">{pick === budget ? 'Lowest listed upfront cost among these options. ' : pick === renter ? 'No permanent plumbing changes; compare its tank or cartridge capacity. ' : pick === homeowner ? 'Under-sink option for a homeowner who can install a dedicated system. ' : ''}Compare the exact model and cartridge’s current contaminant-reduction listing, rated capacity, and annual replacement cost before buying.</div>
                 </div>

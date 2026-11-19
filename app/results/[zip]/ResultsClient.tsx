@@ -602,7 +602,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
                 reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
               },
               {
-                key: 'aquasana',
+                key: 'frizzlife',
                 name: "Frizzlife SK99-NEW",
                 price: "Check current price",
                 amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
@@ -626,7 +626,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
             }[] = needsRO
               ? [
                   { prod: baseProducts[0], badge: 'TOP PICK FOR YOUR WATER', reason: roTopReason, highlight: true },
-                  { prod: baseProducts[1], badge: 'MOST CERTIFIED', reason: baseProducts[1].reasonDefault, highlight: false },
+                  { prod: baseProducts[1], badge: 'DIRECT-CONNECT CARBON', reason: baseProducts[1].reasonDefault, highlight: false },
                   { prod: baseProducts[2], badge: 'BEST NO-INSTALL', reason: baseProducts[2].reasonDefault, highlight: false },
                 ]
               : [
@@ -874,7 +874,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
               price: "Check current price",
               reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
               amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
-              best: "Compare fit and model evidence",
+              best: false,
             },
             {
               name: 'Clearly Filtered Pitcher',
