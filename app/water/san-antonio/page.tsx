@@ -84,9 +84,27 @@ export default function SanAntonioWaterPage() {
 
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
-          Is San Antonio Tap Water Safe?
+          Is San Antonio Tap Water Safe? PFAS in 2026
         </h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
+        <div
+          style={{
+            padding: '14px 16px',
+            background: '#0d2240',
+            border: '1px solid #155e75',
+            borderRadius: 10,
+            margin: '0 0 18px',
+          }}
+        >
+          <p style={{ fontSize: 14, color: '#e2e8f0', lineHeight: 1.65, margin: 0 }}>
+            EPA UCMR5 lists PFAS detections for SAWS (PWSID TX0150018). For compound-by-compound levels and what they
+            mean, read{' '}
+            <Link prefetch href="/blog/pfas-in-san-antonio-water" style={{ color: '#67e8f9', fontWeight: 700 }}>
+              PFAS in San Antonio water
+            </Link>
+            .
+          </p>
+        </div>
         <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>
           San Antonio Water System (SAWS) · Edwards Aquifer · 2024–2026 data
         </p>

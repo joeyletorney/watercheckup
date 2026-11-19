@@ -91,11 +91,21 @@ test('city descriptions use real supplier data and handle missing PFAS coverage'
   assert.doesNotMatch(String(nyc.description), /\d+(\.\d+)?\s*ppt/i);
 
   const gaithersburg = cityMeta('gaithersburg');
-  assert.match(String(gaithersburg.title), /Is Gaithersburg Tap Water Safe\?/);
+  assert.equal(gaithersburg.title, 'Is Gaithersburg Water Safe? 2026 Quality Report');
   assert.match(String(gaithersburg.description), /WSSC/i);
-  assert.match(String(gaithersburg.description), /filter/i);
+  assert.match(String(gaithersburg.description), /well vs city/i);
+  assert.match(String(gaithersburg.description), /not a treatment company/i);
 
-  for (const slug of ['indianapolis', 'stamford', 'tacoma', 'louisville']) {
+  const sanAntonio = cityMeta('san-antonio');
+  assert.equal(sanAntonio.title, 'Is San Antonio Tap Water Safe? 2026 PFAS Report');
+  assert.match(String(sanAntonio.description), /PFAS/i);
+  assert.match(String(sanAntonio.description), /PFAS guide/i);
+
+  const baltimore = cityMeta('baltimore');
+  assert.equal(baltimore.title, 'Is Baltimore Tap Water Safe? 2026 Quality Report');
+  assert.match(String(baltimore.description), /Ashburton/i);
+
+  for (const slug of ['indianapolis', 'stamford', 'tacoma', 'louisville', 'jersey-city', 'nashville']) {
     const meta = cityMeta(slug);
     const title = String(meta.title);
     const description = String(meta.description);

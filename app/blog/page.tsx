@@ -304,8 +304,8 @@ const POST_BY_SLUG: Record<
     badgeColor: '#0891b2',
   },
   'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitchers of 2026: Ranked by What They Actually Remove',
-    excerpt: 'Filter pitchers vary wildly in what they remove. Here are the top options ranked by NSF certifications, not just taste.',
+    title: 'Best Water Filter Pitcher 2026: What They Remove',
+    excerpt: 'Filter pitchers vary wildly in what they remove. Here are the top 2026 options ranked by NSF certifications, not just taste.',
     date: 'April 20, 2026',
     readTime: '9 min read',
     badge: 'Filters',

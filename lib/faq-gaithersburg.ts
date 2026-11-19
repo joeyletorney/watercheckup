@@ -40,6 +40,6 @@ export const gaithersburgFAQs = [
   {
     question: "What water treatment or filtration does Gaithersburg need?",
     answer:
-      "Match the filter to the result, not a neighbor’s setup. NSF 53 carbon handles lead at the tap. PFAS and disinfection byproducts need NSF 58 reverse osmosis or a PFAS-certified pitcher. A softener only treats hardness. Whole-house gear is for wells with iron, sulfur, or bacteria — not a substitute for kitchen RO on WSSC water.",
+      "WaterCheckup is not a treatment company. Match any filter to a documented result, not a neighbor’s setup. NSF 53 carbon handles lead at the tap. PFAS and disinfection byproducts need NSF 58 reverse osmosis or a PFAS-certified pitcher. A softener only treats hardness. Whole-house gear is for wells with iron, sulfur, or bacteria — not a substitute for kitchen RO on WSSC water.",
   },
 ];

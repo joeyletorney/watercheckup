@@ -4,18 +4,23 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CityRankingList } from '@/components/CityRankingList';
 import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildLeadRiskCities } from '@/lib/city-rankings';
+import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { CITIES } from '../water/[city]/cities-data';
 
 const LEAD_ISSUE_RE = /lead|service line|lsl/i;
 
+const ctr = getCtrSerpOverride('/worst-lead');
+
 export const metadata: Metadata = {
-  title: 'Top 25 Cities with the Highest Lead Pipe Risk (2026)',
+  title: ctr?.title ?? 'Worst US Cities for Lead in Tap Water (2026)',
   description:
-    'US cities where lead service lines and plumbing risk are flagged in WaterCheckup profiles — ranked by Water Safety Score (lowest first). Not measured ppb at every tap.',
+    ctr?.description ??
+    'The worst US cities for lead in tap water in 2026 — ranked by lead-pipe risk and WaterCheckup score, not measured ppb at every tap. See your city.',
   alternates: { canonical: 'https://watercheckup.com/worst-lead' },
   openGraph: {
-    title: 'Top 25 Cities with Lead Pipe Risk in Tap Water — 2026',
+    title: ctr?.title ?? 'Worst US Cities for Lead in Tap Water (2026)',
     description:
+      ctr?.description ??
       'Lead has no safe level for children. These tracked cities have the highest lead-risk profiles in our database.',
   },
 };
@@ -37,7 +42,7 @@ export default function WorstLeadPage() {
             LEAD AT THE TAP — 2026
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
-            Top 25 cities with the highest lead pipe risk
+            Worst US cities for lead in tap water in 2026
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             The EPA has no safe level for lead exposure in children. Lead in tap water usually comes from pipes, solder,
