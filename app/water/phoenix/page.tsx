@@ -26,7 +26,7 @@ const FILTERS = [
   {
     name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR PHOENIX',
-    price: '~$439',
+    price: '~$399',
     why: "Removes chromium-6, PFAS, arsenic, hardness, and sodium. The only filter type that handles Phoenix's full contaminant profile. NSF 42/53/58 certified.",
     link: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     best: true,
@@ -43,7 +43,7 @@ const FILTERS = [
     name: 'Clearly Filtered Pitcher',
     badge: 'BEST NO-INSTALL',
     price: '~$90',
-    why: "NSF P473 certified for PFAS removal. Also removes arsenic and chromium. Good for renters who can't install under-sink systems.",
+    why: "NSF/ANSI 42 and 372 certified. Broader PFAS, arsenic, and chromium figures are published lab tests, not NSF listings. Good for renters who can't install under-sink systems.",
     link: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`,
     best: false,
   },

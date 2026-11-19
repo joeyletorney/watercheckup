@@ -29,7 +29,7 @@ export function resolveProductBuyLink(input: {
   const preferredAmazon = preferredAmazonPurchaseUrl(amazon);
   if (preferredAmazon) return { href: preferredAmazon, label: 'Check price on Amazon →', destination: 'amazon' };
 
-  if (directLink) {
+  if (directLink && !isAmazonSearch(directLink)) {
     return { href: directLink, label: 'Check manufacturer price →', destination: 'direct' };
   }
 

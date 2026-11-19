@@ -28,7 +28,7 @@ const FILTER_PICKS = [
   {
     name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR SA WATER',
-    price: '~$439',
+    price: '~$399',
     why: 'Removes 99%+ PFAS, radium, arsenic, sodium, and hardness minerals. NSF 58 certified. Tankless design fits under most SA kitchen sinks. Handles the full SA contaminant profile.',
     dp: 'B07P1XFYJP',
     best: true,
@@ -45,7 +45,7 @@ const FILTER_PICKS = [
     name: 'Clearly Filtered Pitcher',
     badge: 'BEST NO-INSTALL OPTION',
     price: '~$90',
-    why: 'NSF P473 certified for PFAS removal. Removes radium, arsenic, and 365+ contaminants. Best budget option for renters in San Antonio.',
+    why: 'NSF/ANSI 42 and 372 certified. Broader PFAS, radium, and arsenic figures are published lab tests, not NSF listings. Best no-install option for renters in San Antonio.',
     dp: 'B0DFC22BHT',
     best: false,
   },

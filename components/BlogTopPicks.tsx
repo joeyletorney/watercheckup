@@ -54,13 +54,21 @@ export function BlogTopPicks({ picks, subtitle, page = 'blog' }: Props) {
       <div className="wc-blog-top-picks__list">
         {visible.map((pick, i) => {
           const preferredAmazon = preferredAmazonPurchaseUrl(pick.amazon);
-          const showDirect = !preferredAmazon && (pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand));
-          const directHref =
-            pick.brand === 'Waterdrop'
-              ? pick.link
-              : clearlyFilteredAmazonUrl();
+          const brandHref = pick.link && !preferredAmazonPurchaseUrl(pick.link) ? pick.link : undefined;
+          const showDirect =
+            !preferredAmazon &&
+            !isAmazonSearch(pick.amazon) &&
+            !!brandHref &&
+            (pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand) || !pick.amazon);
+          const directHref = isClearlyFilteredBrand(pick.brand)
+            ? clearlyFilteredAmazonUrl()
+            : brandHref ?? pick.link;
           const directLabel =
-            pick.brand === 'Waterdrop' ? 'Check price at Waterdrop →' : 'Check price on Amazon →';
+            pick.brand === 'Waterdrop'
+              ? 'Check price at Waterdrop →'
+              : isClearlyFilteredBrand(pick.brand)
+                ? 'Check price on Amazon →'
+                : 'Check manufacturer price →';
           const imgSrc = lookupFilterProductImage(pick);
           return (
             <div
@@ -89,7 +97,7 @@ export function BlogTopPicks({ picks, subtitle, page = 'blog' }: Props) {
                     ) : null}
                   </div>
                   <div className="wc-blog-top-picks__meta">
-                    {pick.brand} · {/WH-1000-B|MWT3|10-Cup Pitcher|Vertical Faucet/.test(pick.product) ? "Check current price" : pick.price}
+                    {pick.brand} · {/WH-1000-B|MWT3|PD1000|PUR PLUS 11-Cup|Epic Smart Shield|Fleck|Aquasure|AFWFilters/.test(pick.product) ? "Check current price" : pick.price}
                   </div>
                   <div className="wc-blog-top-picks__reason">{pick === budget ? 'Lowest listed upfront cost among these options. ' : pick === renter ? 'No permanent plumbing changes; compare its tank or cartridge capacity. ' : pick === homeowner ? 'Under-sink option for a homeowner who can install a dedicated system. ' : ''}Compare the exact model and cartridge’s current contaminant-reduction listing, rated capacity, and annual replacement cost before buying.</div>
                 </div>

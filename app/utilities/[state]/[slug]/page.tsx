@@ -45,7 +45,7 @@ const RO_PICKS = [
   {
     product: "Waterdrop G3P600 RO",
     brand: "Waterdrop",
-    price: "~$439",
+    price: "~$399",
     reason:
       "Tankless 600 GPD, removes 99%+ PFAS & lead, 10-stage filtration. Smart faucet TDS display.",
     link: "https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb",
@@ -80,17 +80,17 @@ const PITCHER_PICKS = [
     brand: "Clearly Filtered",
     price: "~$90",
     reason:
-      "Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473 — 365+ contaminants.",
-    link: "https://www.clearlyfiltered.com/products/filtered-water-pitcher",
+      "NSF/ANSI 42 and 372 certified. Broader PFAS, lead, and 53/401/P473 figures are published lab tests, not NSF listings.",
+    link: "https://clearlyfiltered.com/products/clean-water-pitcher",
     amazon: "https://www.amazon.com/dp/B0DFC22BHT?tag=watercheckup-20",
     badge: "BEST FOR PFAS & LEAD",
   },
   {
-    product: "Waterdrop Pitcher Filter",
+    product: "Waterdrop PT-07B Pitcher",
     brand: "Waterdrop",
-    price: "~$40",
+    price: "~$16",
     reason:
-      "7-stage filtration, 200-gallon life. Removes chlorine, PFOA/PFOS, heavy metals. No installation.",
+      "Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No installation.",
     link: "https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb",
     amazon: "https://www.amazon.com/dp/B07C3P2RZP?tag=watercheckup-20",
     badge: "BEST VALUE",
@@ -98,7 +98,7 @@ const PITCHER_PICKS = [
   {
     product: "ZeroWater 10-Cup Pitcher",
     brand: "ZeroWater",
-    price: "~$40",
+    price: "~$23",
     reason:
       "Reduces TDS to zero. NSF 42/53 certified for lead, chromium, and arsenic. Includes TDS meter.",
     link: "https://zerowater.com/collections/water-filter-pitchers-dispensers",

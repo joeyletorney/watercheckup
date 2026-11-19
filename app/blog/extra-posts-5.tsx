@@ -9,15 +9,15 @@ const TAP_SCORE_WELL_URL = 'https://mytapscore.com/collections/well-water-tests?
 const WATERDROP_TAG = 'anbyjkqb';
 
 const TOP_3_WHOLE_HOUSE = [
-  { product: 'Aquasana Whole House WH-1000-B', brand: 'Aquasana', price: "Check current price", reason: "Whole-house chlorine-focused system. Confirm WH-1000-B package contents, installation and the current performance sheet. Do not assume PFAS or chloramine reduction.", link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'NSF 42/61 whole-house sediment + carbon. Pressure gauges included. Strong DIY option for chloramine and chlorine at every tap.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
+  { product: 'Aquasana Whole House WH-1000-B', brand: 'Aquasana', price: "Check current price", reason: "Whole-house chlorine-focused system. Confirm WH-1000-B package contents, installation and the current performance sheet. Do not assume PFAS or chloramine reduction.", link: 'https://www.aquasana.com/whole-house-water-filters/rhino/probypass-100365536.html', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$500', reason: 'NSF-certified filters — sediment + carbon. Pressure gauges included. Strong DIY option for chloramine and chlorine at every tap.', link: 'https://www.expresswater.com/products/heavy-metal-whole-house', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
   { product: 'Springwell CF4 Whole-House Filter', brand: 'Springwell', price: '~$895', reason: '4-stage filtration. Removes chlorine, chloramine, PFAS, VOCs, sediment, and heavy metals at every faucet. Air injection oxidation for iron and sulfur removal.', link: 'https://www.springwellwater.com/product/water-filters/whole-house-water-filters/', amazon: `https://www.amazon.com/s?k=Springwell+CF4+whole+house+water+filter&tag=${AMAZON_TAG}`, badge: 'BEST FOR WELL WATER' },
 ];
 
 const TOP_3_UNDERSINK = [
 
-  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20`, badge: 'BEST VALUE' },
-  { product: 'Frizzlife SK99 Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'NSF 42/53/401 certified. Removes lead at 99.9%, PFAS, chloramine, cysts — without a full RO system. Quick-change twist-off cartridges, no tools. Best budget under-sink.', link: 'https://www.frizzlife.com/products/sk99-new', amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$399', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20`, badge: 'BEST VALUE' },
+  { product: 'Frizzlife SK99-NEW Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'IAPMO certified to NSF/ANSI 42, 53, and 372. Quick-change carbon — not NSF 401. Best budget under-sink.', link: 'https://www.frizzlife.com/products/sk99-new', amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
 ];
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };
@@ -126,7 +126,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
   // ─── POST 3: BEST UNDER-SINK WATER FILTER ────────────────────────────────
   'best-under-sink-water-filter': {
     title: 'Best Under-Sink Water Filters 2026: What Actually Works',
-    excerpt: 'Under-sink filters range from $126 carbon filters to $439 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
+    excerpt: 'Under-sink filters range from $126 carbon filters to $399 RO systems. Here\'s which one you actually need based on what\'s in your water — and which certifications matter.',
     seo: {
       title: 'Best Under-Sink Water Filters 2026: Carbon vs RO',
       description: 'Compare under-sink carbon filters and reverse osmosis by model claims, installation needs, and upkeep. Match the filter to your water.',
@@ -144,23 +144,23 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badgeColor: '#0891b2',
     topPicks: TOP_3_UNDERSINK,
     faq: [
-      { q: 'What is the best under-sink water filter?', a: 'For comprehensive contaminant removal including PFAS and lead, the Waterdrop G3P600 RO is our top pick — NSF 42/53/58 certified, tankless, and 600 GPD. For the best budget option, the Frizzlife SK99 removes lead at 99.9% and PFAS without a full RO system at $126.' },
-      { q: 'Do I need reverse osmosis or will a carbon filter work?', a: 'It depends on your water. If you have PFAS, nitrates, arsenic, or high TDS, reverse osmosis is the only certified solution. If your main concerns are lead and chlorine, an NSF 42/53 certified carbon filter like the Frizzlife SK99 works at much lower cost. Check your water at WaterCheckup first.' },
+      { q: 'What is the best under-sink water filter?', a: 'For comprehensive contaminant removal including PFAS and lead, the Waterdrop G3P600 RO is our top pick — NSF 42/53/58 certified, tankless, and 600 GPD. For the best budget option, the Frizzlife SK99-NEW is IAPMO certified to NSF/ANSI 42, 53, and 372 (not NSF 401) at $126.' },
+      { q: 'Do I need reverse osmosis or will a carbon filter work?', a: 'It depends on your water. If you have PFAS, nitrates, arsenic, or high TDS, reverse osmosis is the only certified solution. If your main concerns are lead and chlorine, an IAPMO-certified carbon filter like the Frizzlife SK99-NEW (NSF/ANSI 42, 53, and 372) works at much lower cost. Check your water at WaterCheckup first.' },
       { q: 'How hard is it to install an under-sink water filter?', a: 'Most under-sink filters require connecting to the cold water line under your sink and drilling a small hole for the dedicated faucet. Most homeowners can install in 30–60 minutes with basic tools. The Waterdrop G3P600 includes an installation kit and video guide. If you rent, ask your landlord — most allow it since it\'s reversible.' },
       { q: 'Do under-sink RO systems waste a lot of water?', a: 'Traditional RO systems waste 3–4 gallons for every 1 gallon purified. Newer tankless systems like the Waterdrop G3P600 use a 3:1 ratio — 3 gallons purified per 1 wasted, which is significantly more efficient. Look for tankless RO systems for better water efficiency.' },
-      { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99): $126 upfront + $60/year in filters. Mid-range RO (Aquasana SmartFlow): $449 upfront + $145/year. Premium RO (Waterdrop G3P600): $439 upfront + $170/year. Over 5 years, all three are dramatically cheaper than bottled water.' },
+      { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99-NEW): $126 upfront + $60/year in filters. Mid-range RO (Aquasana SmartFlow): $449 upfront + $145/year. Premium RO (Waterdrop G3P600): $399 upfront + $170/year. Over 5 years, all three are dramatically cheaper than bottled water.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Under-sink water filters are the most popular home water treatment option — and the most confusing to buy. There are $126 carbon filters and $439 reverse osmosis systems, and the marketing on both sounds similar. The difference is what they actually remove. This guide cuts through the noise.'
+        'Under-sink water filters are the most popular home water treatment option — and the most confusing to buy. There are $126 carbon filters and $399 reverse osmosis systems, and the marketing on both sounds similar. The difference is what they actually remove. This guide cuts through the noise.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Under-Sink Carbon Filter vs. Reverse Osmosis: The Real Difference'),
       React.createElement('div', { style: calloutStyle },
-        React.createElement('strong', { style: strongStyle }, 'Under-sink carbon filter (e.g., Frizzlife SK99, $126): '),
+        React.createElement('strong', { style: strongStyle }, 'Under-sink carbon filter (e.g., Frizzlife SK99-NEW, $126): '),
         'Removes lead, chlorine, chloramine, PFAS, cysts, and VOCs. Does NOT remove nitrates, arsenic, fluoride, or TDS. Best for homes where lead and chlorine are the primary concerns.',
         React.createElement('br', null), React.createElement('br', null),
-        React.createElement('strong', { style: strongStyle }, 'Under-sink reverse osmosis (e.g., Waterdrop G3P600, $439): '),
+        React.createElement('strong', { style: strongStyle }, 'Under-sink reverse osmosis (e.g., Waterdrop G3P600, $399): '),
         'Removes 99%+ of virtually all contaminants — PFAS, lead, arsenic, nitrates, fluoride, TDS, radium, and more. The most comprehensive drinking water solution available for residential use.',
       ),
 
@@ -177,13 +177,13 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'The SmartFlow carries WQA Gold Seal plus NSF 42/53/58/401 — the most third-party certifications of any under-sink RO at its price point. NSF 401 certification covers emerging contaminants that standard RO testing doesn\'t include, like certain microplastics and pharmaceuticals. At $449 with a $145/year filter cost, it\'s meaningfully cheaper than the G3P600 if the smart faucet isn\'t important to you.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Frizzlife SK99 — Best Budget Under-Sink Filter (No RO Needed)'),
+      React.createElement('h2', { style: h2Style }, 'Frizzlife SK99-NEW — Best Budget Under-Sink Filter (No RO Needed)'),
       React.createElement('p', { style: pStyle },
-        'If your main concerns are lead and chlorine — not PFAS, nitrates, or arsenic — the Frizzlife SK99 is exceptional value at $126. NSF 42/53/401 certified. Removes lead at 99.9%, PFAS (with NSF 401), chloramine, and cysts through a 3-stage carbon block system. Quick-change twist-off cartridges swap in seconds. About $60/year in filter replacement.'
+        'If your main concerns are lead and chlorine — not PFAS, nitrates, or arsenic — the Frizzlife SK99-NEW is exceptional value at $126. IAPMO certified to NSF/ANSI 42, 53, and 372 — not NSF 401. Quick-change twist-off cartridges swap in seconds. About $60/year in filter replacement.'
       ),
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#f59e0b' } }, 'Important: '),
-        'The Frizzlife SK99 is NOT a reverse osmosis system. It doesn\'t remove nitrates, fluoride, arsenic, or significantly reduce TDS. If your water has PFAS above EPA limits or other serious contaminants, you need the RO options above.'
+        'The Frizzlife SK99-NEW is NOT a reverse osmosis system. It doesn\'t remove nitrates, fluoride, arsenic, or significantly reduce TDS. If your water has PFAS above EPA limits or other serious contaminants, you need the RO options above.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How to Choose the Right One'),
@@ -222,7 +222,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     excerpt: 'Two of the best under-sink RO systems — but very different products. Here\'s an honest comparison of performance, certifications, flow rate, and value.',
     seo: {
       title: 'Waterdrop G3P600 vs Aquasana SmartFlow: Honest 2026 Comparison',
-      description: 'Waterdrop G3P600 ($439) vs Aquasana SmartFlow ($449): we compare certifications, flow rate, filter cost, and real contaminant removal so you can decide which is worth the money.',
+      description: 'Waterdrop G3P600 ($399) vs Aquasana SmartFlow ($449): we compare certifications, flow rate, filter cost, and real contaminant removal so you can decide which is worth the money.',
       canonical: 'https://watercheckup.com/blog/waterdrop-g3p600-vs-aquasana-smartflow',
       openGraph: {
         title: 'Waterdrop G3P600 vs Aquasana SmartFlow: Which RO is Better? (2026)',
@@ -236,18 +236,18 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badge: 'Comparison',
     badgeColor: '#7c3aed',
     topPicks: [
-      { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless 600 GPD flow with smart LED TDS faucet. NSF 42/53/58 certified. Best if you want instant-flow water and real-time quality monitoring.', link: WATERDROP, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, badge: 'FASTEST FLOW' },
+      { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$399', reason: 'Tankless 600 GPD flow with smart LED TDS faucet. NSF 42/53/58 certified. Best if you want instant-flow water and real-time quality monitoring.', link: WATERDROP, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, badge: 'FASTEST FLOW' },
       { product: "Frizzlife SK99-NEW", brand: "Frizzlife", price: "Check current price", reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.", link: "https://www.frizzlife.com/products/sk99-new", amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20", badge: "DIRECT-CONNECT CARBON" },
     ],
     faq: [
-      { q: 'Is the Waterdrop G3P600 or Aquasana SmartFlow a better buy?', a: 'They are similarly priced (~$439 vs ~$449). The G3P600 wins on flow rate (600 GPD vs ~50 GPD) and has a smart TDS display. The SmartFlow wins on certification breadth (adds NSF 401 and WQA Gold Seal). Both remove PFAS, lead, and core contaminants via NSF 58 RO.' },
+      { q: 'Is the Waterdrop G3P600 or Aquasana SmartFlow a better buy?', a: 'They are similarly priced (~$399 vs ~$449). The G3P600 wins on flow rate (600 GPD vs ~50 GPD) and has a smart TDS display. The SmartFlow wins on certification breadth (adds NSF 401 and WQA Gold Seal). Both remove PFAS, lead, and core contaminants via NSF 58 RO.' },
       { q: 'Does the Aquasana SmartFlow remove PFAS?', a: 'Yes. The SmartFlow is NSF/ANSI 58 certified, which covers reverse osmosis performance including PFAS removal. It also holds NSF 401 certification for emerging contaminants — a certification the G3P600 does not have.' },
       { q: 'What is the difference in flow rate between the G3P600 and SmartFlow?', a: 'The Waterdrop G3P600 produces 600 gallons per day — fast enough that you never wait for water. The Aquasana SmartFlow produces roughly 50 GPD, which is typical for non-tankless RO systems and is adequate for drinking and cooking but noticeably slower at the faucet.' },
       { q: 'Which has better filter replacement costs?', a: 'Both run $130–170/year in filter replacement. The G3P600 uses Waterdrop\'s sealed cartridge system (no mess, no tools). The SmartFlow uses standard quick-connect filters. Long-term costs are similar.' },
     ],
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'The Waterdrop G3P600 and Aquasana SmartFlow are two of the most recommended under-sink RO systems — but they\'re targeting very different buyers. One is a premium performance system at $439. The other is a certification-heavy value play at $449. Here\'s what actually separates them.'
+        'The Waterdrop G3P600 and Aquasana SmartFlow are two of the most recommended under-sink RO systems — but they\'re targeting very different buyers. One is a premium performance system at $399. The other is a certification-heavy value play at $449. Here\'s what actually separates them.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Core Difference: Speed vs. Certifications'),
@@ -318,7 +318,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badgeColor: '#0891b2',
     topPicks: [
       { product: "AquaTru Classic Countertop RO", brand: "AquaTru", price: "Check current price", reason: "Countertop reverse osmosis without plumbing changes. Requires an outlet, manual tank refills and cleaning. Check the exact Classic model’s performance data and replacement costs.", link: "https://aquatru.com/products/countertop-reverse-osmosis-water-purifier", amazon: "https://www.amazon.com/dp/B0CQS3HQ8F?tag=watercheckup-20", badge: "COUNTERTOP RO" },
-      { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'Best certification coverage: NSF 42/53/58/401. Adds NSF 401 for emerging contaminants beyond standard RO scope. Quick-change filters. Worth it if you want the widest certified coverage.', link: 'https://aquatru.com/products/countertop-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+      { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$380', reason: 'Best certification coverage: NSF 42/53/58/401. Adds NSF 401 for emerging contaminants beyond standard RO scope. Quick-change filters. Worth it if you want the widest certified coverage.', link: 'https://aquatru.com/products/countertop-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
     ],
     faq: [
       { q: 'Is the AquaTru worth $226 more than the Waterdrop K19-S?', a: 'For most people, no. Both remove PFAS, lead, arsenic, and TDS via reverse osmosis. The AquaTru adds NSF 401 certification for emerging contaminants — if that specific certification matters to you, it\'s worth the premium. Otherwise the K19-S delivers comparable protection with strong NSF certification.' },

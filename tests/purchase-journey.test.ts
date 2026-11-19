@@ -101,7 +101,7 @@ test('commercial comparisons expose active merchant links, scoped evidence and n
         } else {
           const { clearlyFilteredDirectUrl } = await import('../lib/waterdrop-buy');
           assert.equal(choice.merchant.brand, 'Clearly Filtered');
-          assert.equal(choice.merchant.href, clearlyFilteredDirectUrl('https://www.clearlyfiltered.com/products/filtered-water-pitcher'));
+          assert.equal(choice.merchant.href, clearlyFilteredDirectUrl('https://clearlyfiltered.com/products/clean-water-pitcher'));
         }
       }
     }

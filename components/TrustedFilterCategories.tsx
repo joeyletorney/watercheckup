@@ -68,6 +68,37 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
   const preferredAmazon = preferredAmazonPurchaseUrl(p.amazon);
   if (preferredAmazon) return <AffiliateLink href={preferredAmazon} product={p.name} brand={p.brand} destination="amazon" page="trusted-picks" target="_blank" rel="sponsored noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 44, padding: '10px 16px', borderRadius: 8, fontSize: 14, fontWeight: 800, background: '#fbbf24', color: '#162332', textDecoration: 'none' }}>Check price on Amazon →</AffiliateLink>;
 
+  if (
+    p.brandLink &&
+    !isAmazonSearch(p.amazon) &&
+    !isWaterdropBrand(p.brand) &&
+    !isClearlyFilteredBrand(p.brand)
+  ) {
+    return (
+      <AffiliateLink
+        href={p.brandLink}
+        product={p.name}
+        brand={p.brand}
+        destination="brand"
+        page="trusted-picks"
+        productId={String(p.id)}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        style={{
+          fontSize: 12,
+          fontWeight: 800,
+          color: '#0f172a',
+          padding: '7px 12px',
+          borderRadius: 7,
+          textDecoration: 'none',
+          background: 'linear-gradient(135deg,#f59e0b,#d97706)',
+        }}
+      >
+        {brandSiteLabel(p.brand)}
+      </AffiliateLink>
+    );
+  }
+
   const direct = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
   const clearlyDirect = isClearlyFilteredBrand(p.brand)
     ? clearlyFilteredAmazonUrl()
@@ -298,7 +329,7 @@ export function TrustedFilterCategories({ productsById }: Props) {
                         </div>
                         <div style={{ textAlign: 'right', flexShrink: 0 }}>
                           <div style={{ fontSize: 18, fontWeight: 900, color: '#f59e0b', marginBottom: 8 }}>
-                            {[9, 13, 27, 32].includes(p.id) ? "Check current price" : `~$${p.price}`}
+                            {[11, 25, 27, 39, 40, 42, 43].includes(p.id) ? "Check current price" : `~$${p.price}`}
                           </div>
                           <PickBuyButtons p={p} />
                         </div>

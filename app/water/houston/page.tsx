@@ -26,7 +26,7 @@ const FILTER_PICKS = [
   {
     name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR HOUSTON WATER',
-    price: '~$439',
+    price: '~$399',
     why: "Removes 99%+ PFAS, arsenic, radium, TTHMs, sodium, and hardness. NSF 42/53/58 certified. The right choice for Houston's high PFAS and arsenic levels.",
     dp: 'B07P1XFYJP',
     best: true,
@@ -43,7 +43,7 @@ const FILTER_PICKS = [
     name: 'Clearly Filtered Pitcher',
     badge: 'BEST NO-INSTALL',
     price: '~$90',
-    why: 'NSF P473 certified for PFAS removal. Good for renters. Removes PFAS, arsenic, and 365+ contaminants without installation.',
+    why: 'NSF/ANSI 42 and 372 certified. Broader PFAS and arsenic figures are published lab tests, not NSF listings. Good no-install option for renters.',
     dp: 'B0DFC22BHT',
     best: false,
   },
