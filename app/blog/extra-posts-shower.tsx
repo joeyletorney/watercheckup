@@ -61,7 +61,7 @@ export const EXTRA_POSTS_SHOWER: Record<string, Post> = {
       },
       {
         q: 'How often should I replace a shower filter?',
-        a: 'Follow the manufacturer’s gallon or month rating — often about six months for KDF/carbon cartridges, and often shorter for vitamin C. An expired cartridge can stop reducing chlorine. Replace sooner if flow drops or the chlorine smell returns.',
+        a: 'Follow the manufacturer’s gallon or month rating. AquaTru’s cartridge is about 90 days (replacement about $39.95). Sonaki vitamin C (SUF-100v) is 4–6 weeks. An expired cartridge can stop reducing chlorine. Replace sooner if flow drops or the chlorine smell returns.',
       },
     ],
     content: (
@@ -120,27 +120,31 @@ export const EXTRA_POSTS_SHOWER: Record<string, Post> = {
         </div>
 
         <h2 style={h2Style}>KDF, carbon, and vitamin C</h2>
-        <h3 style={h3Style}>KDF-55 (copper-zinc) + GAC</h3>
+        <h3 style={h3Style}>Budget mixed media: AquaBliss SF100 Daily Revitalize</h3>
         <p style={pStyle}>
-          The AquaBliss High Output SF100 is the typical budget pattern: KDF media plus granular activated carbon
-          in a housing that screws onto a standard shower arm. KDF uses a redox reaction that is effective for{' '}
-          <strong style={strongStyle}>free chlorine</strong> at shower flow. Carbon helps with odor. Universal-fit
-          claims still fail on some handheld hoses and unusual threads — check the listing.
+          The AquaBliss SF100 Daily Revitalize (formerly High Output) is the typical budget shower filter: calcium
+          sulfite, redox (KDF-style) media, activated carbon, plus vitamin C, tourmaline, and zeolite in a housing
+          that screws onto a standard shower arm. The redox and carbon mix is aimed at{' '}
+          <strong style={strongStyle}>free chlorine</strong> at shower flow. It includes some vitamin C, but it is
+          not a chloramine specialist. It is not a softener, and no NSF/ANSI 177 certification is claimed. About $28
+          on Amazon (sale; brand about $37). Universal-fit claims still fail on some handheld hoses and unusual
+          threads — check the listing.
         </p>
-        <h3 style={h3Style}>NSF/ANSI 177 shower filters</h3>
+        <h3 style={h3Style}>IAPMO R&T / NSF/ANSI 177: AquaTru Shower</h3>
         <p style={pStyle}>
-          NSF/ANSI 177 is the standard written for shower filtration systems. It is about chlorine reduction at
-          shower conditions, not drinking-water health claims. AquaTru’s shower filter is the product already in
-          our catalog whose listings often cite NSF/ANSI 177 and a quick-change cartridge. Confirm the{' '}
-          <strong style={strongStyle}>exact SKU</strong> in the NSF or IAPMO database before you treat that as
-          certified — listings and house-brand variants change.
+          NSF/ANSI 177 is the standard written for shower filtration systems. It is about free-chlorine reduction at
+          shower conditions, not drinking-water health claims. AquaTru’s shower filter uses a copper-zinc alloy
+          (comparable to KDF), calcium sulfite, and catalytic carbon. IAPMO R&T
+          certified to NSF/ANSI 177 for free chlorine (confirm exact model; chloramine reduction is a maker claim).
+          About $104 on Amazon or $149 from the brand. Cartridge life is about 90 days; the replacement is about
+          $39.95. It is not a softener.
         </p>
-        <h3 style={h3Style}>Vitamin C for chloramine</h3>
+        <h3 style={h3Style}>Vitamin C for chloramine: Sonaki SUF-100v</h3>
         <p style={pStyle}>
           Ascorbic acid reduces both free chlorine and chloramine. That is why vitamin C cartridges are the honest
-          shower-filter answer when your CCR says chloramine. Capacity is usually lower than KDF — often a few
-          months — so budget replacements. Sonaki-style vitamin C filters are the widely sold example; we link a
-          current Amazon search rather than inventing a SKU. Confirm thread size and the stated gallon life.
+          shower-filter answer when your CCR says chloramine. The Sonaki Vitamin C Inline Shower Filter, model
+          SUF-100v (VitaPure 100), is the chloramine pick here. Cartridge life is 4–6 weeks, so budget replacements.
+          It is not NSF/ANSI 177 certified. About $83 on Amazon or $79 from the brand. Confirm thread size.
         </p>
 
         <h2 style={h2Style}>Hard water: a shower filter is not a softener</h2>
@@ -177,10 +181,11 @@ export const EXTRA_POSTS_SHOWER: Record<string, Post> = {
         <h2 style={h2Style}>How to choose in 2026</h2>
         <p style={pStyle}>
           1. Check the disinfectant on your ZIP report / CCR.{' '}
-          2. If it is free chlorine, start with KDF/GAC (AquaBliss SF100) or an NSF/ANSI 177 listing (AquaTru) if
-          you want a third-party chlorine claim.{' '}
-          3. If it is chloramine, use vitamin C or plan catalytic carbon at the whole house — not a chlorine-only
-          KDF cartridge.{' '}
+          2. If it is free chlorine, start with AquaBliss SF100 Daily Revitalize (budget mixed media) or AquaTru if
+          you want IAPMO R&T certification to NSF/ANSI 177 for free chlorine (confirm exact model; chloramine
+          reduction is a maker claim).{' '}
+          3. If it is chloramine, use vitamin C (Sonaki SUF-100v) or plan catalytic carbon at the whole house —
+          not a chlorine-only cartridge.{' '}
           4. If the complaint is scale, skip the shower filter as a “softener” and read the hard-water guide.{' '}
           5. Replace on schedule. A spent cartridge is just extra plumbing.
         </p>

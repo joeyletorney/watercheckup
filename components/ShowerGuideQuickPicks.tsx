@@ -31,15 +31,16 @@ export function ShowerGuideQuickPicks() {
         <ul style={{ margin: '12px 0 0', paddingLeft: 20 }}>
           <li>
             <strong style={{ color: '#e2e8f0', fontWeight: 700 }}>Chlorine, budget: </strong>
-            AquaBliss SF100 (KDF/GAC)
+            AquaBliss SF100 Daily Revitalize (calcium sulfite, redox media, carbon, plus vitamin C; not NSF 177)
           </li>
           <li>
-            <strong style={{ color: '#e2e8f0', fontWeight: 700 }}>Chlorine, NSF 177 listings: </strong>
-            AquaTru Shower Filter
+            <strong style={{ color: '#e2e8f0', fontWeight: 700 }}>Chlorine, IAPMO NSF 177: </strong>
+            AquaTru Shower — IAPMO R&T certified to NSF/ANSI 177 for free chlorine (confirm exact model; chloramine
+            reduction is a maker claim)
           </li>
           <li>
             <strong style={{ color: '#e2e8f0', fontWeight: 700 }}>Chloramine: </strong>
-            vitamin C (Sonaki-style) — not a KDF-only cartridge
+            Sonaki SUF-100v vitamin C (VitaPure 100) — 4–6 week cartridge, not NSF 177
           </li>
         </ul>
       </div>

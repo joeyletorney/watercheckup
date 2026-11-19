@@ -6,7 +6,7 @@ import { BLOG_POST_SLUGS } from '../lib/blog-post-slugs';
 import { articleNextSteps } from '../lib/blog-next-steps';
 import { CTR_SERP_OVERRIDES } from '../lib/ctr-serp-seo';
 import { SERP_DESCRIPTION_MAX, SERP_TITLE_MAX } from '../lib/serp-copy';
-import { TOP_SHOWER } from '../lib/blog-top-picks';
+import { getTopPicksSubtitle, TOP_SHOWER } from '../lib/blog-top-picks';
 import { TRUSTED_FILTER_CATEGORIES } from '../lib/trusted-filter-categories';
 import sitemap from '../app/sitemap';
 import { buildAffiliateClickEvent, productIdFromName } from '../lib/affiliate-tracking';
@@ -69,12 +69,61 @@ test('shower filter SERP copy and affiliate picks keep tracking fields', () => {
   assert.match(serp.description, /chloramine/i);
 
   assert.ok(TOP_SHOWER.length >= 3);
-  assert.ok(TOP_SHOWER.some((p) => /AquaBliss/i.test(p.product)));
-  assert.ok(TOP_SHOWER.some((p) => /AquaTru/i.test(p.product)));
-  assert.ok(TOP_SHOWER.some((p) => /vitamin c/i.test(`${p.product} ${p.reason}`)));
+  const aquaBliss = TOP_SHOWER.find((p) => /AquaBliss/i.test(p.product));
+  const aquaTru = TOP_SHOWER.find((p) => /AquaTru/i.test(p.product));
+  const sonaki = TOP_SHOWER.find((p) => /Sonaki/i.test(p.product));
+  assert.ok(aquaBliss);
+  assert.ok(aquaTru);
+  assert.ok(sonaki);
+  assert.match(aquaBliss.product, /SF100 Daily Revitalize/);
+  assert.doesNotMatch(aquaBliss.product, /High Output/);
+  assert.equal(aquaBliss.price, '~$28');
+  assert.match(aquaBliss.reason, /calcium sulfite/i);
+  assert.match(aquaBliss.reason, /vitamin C/i);
+  assert.match(aquaBliss.reason, /Not a softener/);
+  assert.doesNotMatch(aquaBliss.reason, /scale feel|hardness benefit/i);
+  assert.doesNotMatch(aquaBliss.reason, /no vitamin C|without vitamin C/i);
+  assert.equal(new URL(aquaBliss.amazon).pathname, '/dp/B01MUBU0YC');
+
+  assert.equal(aquaTru.price, '~$104');
+  assert.equal(aquaTru.badge, 'IAPMO NSF 177');
+  assert.match(
+    aquaTru.reason,
+    /IAPMO R&T certified to NSF\/ANSI 177 for free chlorine \(confirm exact model; chloramine reduction is a maker claim\)/,
+  );
+  assert.match(aquaTru.reason, /comparable to KDF/);
+  assert.doesNotMatch(aquaTru.reason, /\bKDF filter\b/i);
+  assert.match(aquaTru.reason, /90 days/);
+  assert.match(aquaTru.reason, /\$39\.95/);
+  assert.match(aquaTru.reason, /Not a softener/);
+  assert.equal(new URL(aquaTru.amazon).pathname, '/dp/B0FLHFTGYD');
+
+  assert.equal(sonaki.price, '~$83');
+  assert.equal(sonaki.link, 'https://www.sonaki.com/products/sonaki-inline-vitamin-c-shower-filter');
+  assert.equal(new URL(sonaki.amazon).pathname, '/dp/B01BLO3FAU');
+  assert.match(sonaki.reason, /4–6 weeks|4-6 weeks/);
+  assert.match(sonaki.reason, /Not NSF\/ANSI 177 certified/);
+  assert.match(sonaki.product, /SUF-100v/);
+
+  assert.equal(
+    getTopPicksSubtitle(SLUG, TOP_SHOWER),
+    'Shower filters — chlorine and chloramine reduction for skin and hair',
+  );
+  assert.doesNotMatch(getTopPicksSubtitle(SLUG, TOP_SHOWER) ?? '', /hardness-related/);
+
+  const guideAndPicks = [
+    readFileSync(join(process.cwd(), 'lib/blog-top-picks.ts'), 'utf8'),
+    readFileSync(join(process.cwd(), 'app/blog/extra-posts-shower.tsx'), 'utf8'),
+    readFileSync(join(process.cwd(), 'components/ShowerGuideQuickPicks.tsx'), 'utf8'),
+  ].join('\n');
+  assert.doesNotMatch(guideAndPicks, /NSF 177 LISTINGS/);
+  assert.doesNotMatch(guideAndPicks, /High Output SF100/);
+  assert.doesNotMatch(guideAndPicks, /amazon\.com\/s\?k=Sonaki/);
+
   for (const pick of TOP_SHOWER) {
     assert.equal(new URL(pick.amazon).protocol, 'https:');
     assert.equal(new URL(pick.amazon).searchParams.get('tag'), 'watercheckup-20');
+    assert.match(pick.amazon, /\/dp\/[A-Z0-9]{10}/);
   }
 
   const css = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
