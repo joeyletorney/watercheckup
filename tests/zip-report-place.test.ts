@@ -97,6 +97,17 @@ test('0800 is the LT2 treatment-technique rule, not a contaminant', () => {
   assert.doesNotMatch(String(labeled?.name), /Contaminant/i);
 });
 
+test('an MCL with an unmapped chemical code is not swallowed by rule_code', () => {
+  const labeled = labelSdwisViolationSubject({
+    contaminantCode: '2065',
+    category: 'MCL',
+    ruleCode: '320',
+  });
+  assert.equal(labeled?.kind, 'contaminant');
+  assert.match(String(labeled?.name), /EPA code 2065/);
+  assert.doesNotMatch(String(labeled?.name), /Synthetic Organic|Rule/i);
+});
+
 test('lookup of NYC ZIPs sanitizes the EPA mailing address and does not list 0800 as a contaminant', async () => {
   const original = globalThis.fetch;
   (globalThis as typeof globalThis & { __wcEpaCircuit?: unknown }).__wcEpaCircuit = { fails: 0, openUntil: 0 };

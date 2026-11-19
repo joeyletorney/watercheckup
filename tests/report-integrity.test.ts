@@ -143,6 +143,32 @@ test('a successful lookup normalizes sample units and does not invent PFAS cover
   } finally { globalThis.fetch = original; }
 });
 
+test('an unnamed MCL keeps a contaminant-table row even when EPA also sends a rule_code', async () => {
+  const original = globalThis.fetch;
+  (globalThis as typeof globalThis & { __wcEpaCircuit?: unknown }).__wcEpaCircuit = { fails: 0, openUntil: 0 };
+  globalThis.fetch = async (input) => {
+    const url = String(input);
+    const rows = url.includes('/VIOLATION/') ? [{
+      pwsid: 'MA2348000',
+      compliance_status_code: 'O',
+      violation_category_code: 'MCL',
+      contaminant_code: '2065',
+      rule_code: '320',
+      compl_per_begin_date: '2024-06-01',
+    }] : [];
+    return new Response(JSON.stringify(rows), { headers: { 'Content-Type': 'application/json' } });
+  };
+  try {
+    const response = await lookupWaterReport('01608', true);
+    const data = await response.json();
+    assert.equal(response.status, 200);
+    const row = data.contaminants.find((c: { name: string; note?: string }) => /EPA code 2065/i.test(c.name));
+    assert.ok(row, 'unmapped MCL codes must still appear as contaminants');
+    assert.match(String(row?.note || ''), /OPEN/);
+    assert.equal(data.violations[0].contaminant, 'EPA code 2065');
+  } finally { globalThis.fetch = original; }
+});
+
 test('unaddressed EPA compliance_status_code U is counted and labeled as open', async () => {
   const original = globalThis.fetch;
   (globalThis as typeof globalThis & { __wcEpaCircuit?: unknown }).__wcEpaCircuit = { fails: 0, openUntil: 0 };

@@ -83,14 +83,17 @@ export function labelSdwisViolationSubject(
   }
 
   const ruleFromRuleCode = SDWIS_RULE_CODE_NAMES[ruleCode];
-  if (ruleFromRuleCode) return { kind: 'rule', name: ruleFromRuleCode };
-
+  // rule_code is present on MCL/MRDL rows too (VOC, SOC, Arsenic Rule, …).
+  // Only treat it as the subject when this is a treatment-technique / rule
+  // violation, or when there is no contaminant code at all.
   if (code) {
     if (category === 'TT') {
+      if (ruleFromRuleCode) return { kind: 'rule', name: ruleFromRuleCode };
       return { kind: 'rule', name: `Treatment technique (EPA code ${rawCode || code})` };
     }
     return { kind: 'contaminant', name: `EPA code ${rawCode || code}` };
   }
 
+  if (ruleFromRuleCode) return { kind: 'rule', name: ruleFromRuleCode };
   return null;
 }
