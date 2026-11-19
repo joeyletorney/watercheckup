@@ -6,7 +6,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import ucmr5Raw from '../../lib/ucmr5.json';
 
 export const metadata: Metadata = {
-  title: 'Most PFAS-Contaminated Water Systems in America (EPA Data 2026) | WaterCheckup',
+  title: 'Most PFAS-Contaminated Water Systems in America (EPA Data 2026)',
   description: 'Ranked list of the 50 US water systems with the highest PFAS contamination detected by the EPA UCMR5 monitoring program. Real ppt readings, historical peaks above benchmarks, and affected populations.',
   alternates: { canonical: 'https://watercheckup.com/worst-water' },
   openGraph: {

@@ -15,6 +15,7 @@ import { stateLabel } from "@/lib/us-state-names";
 import { computeUtilityWaterScore } from "@/lib/city-water-score";
 import ucmr5Raw from "@/lib/ucmr5.json";
 import { getAllUtilityStaticParams, getUtilityByStateSlug, type UtilityJsonRecord } from "@/lib/utilities-data";
+import { shouldIndexUtility } from "@/lib/utility-indexability";
 import { getCtrSerpOverride } from "@/lib/ctr-serp-seo";
 import { cacheLife } from "next/cache";
 
@@ -162,22 +163,25 @@ export async function generateMetadata(
   const params = await props.params;
   const u = getUtilityByStateSlug(params.state, params.slug);
   if (!u) {
-    return { title: "Public water system report | WaterCheckup" };
+    return { title: "Public water system report" };
   }
   const path = `/utilities/${params.state.toLowerCase()}/${params.slug}`;
   const ctr = getCtrSerpOverride(path);
-  const title = ctr?.title ?? `Is ${u.name} Water Safe? 2026 Report | WaterCheckup`;
+  const title = ctr?.title ?? `Is ${u.name} Water Safe? 2026 Report`;
   const description =
     ctr?.description ??
     `${u.name} (${u.pwsid}) — population served, EPA violations snapshot, PFAS testing, and filter picks. ${stateLabel(u.state)} public water system report.`;
   return {
     title,
     description,
+    robots: shouldIndexUtility(u)
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     alternates: {
       canonical: `https://watercheckup.com${path}`,
     },
     openGraph: {
-      title: ctr?.title ?? `Is ${u.name} Water Safe? 2026 | WaterCheckup`,
+      title: ctr?.title ?? `Is ${u.name} Water Safe? 2026`,
       description:
         ctr?.description ??
         `Free EPA-based report: violations, UCMR5 PFAS, and certified filter recommendations for ${u.name}.`,

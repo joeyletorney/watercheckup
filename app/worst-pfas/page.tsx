@@ -6,7 +6,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import ucmr5Raw from '../../lib/ucmr5.json';
 
 export const metadata: Metadata = {
-  title: '10 Water Systems with the Highest PFAS Contamination (UCMR5 vs EPA MCL) | WaterCheckup',
+  title: '10 Water Systems with the Highest PFAS Contamination (UCMR5 vs EPA MCL)',
   description:
     'The 10 US water systems with the highest regulated PFAS above EPA limits — compound-by-compound ppt values and multiples of the MCL from federal UCMR5 monitoring.',
   alternates: { canonical: 'https://watercheckup.com/worst-pfas' },

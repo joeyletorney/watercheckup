@@ -2,10 +2,19 @@ import { CITIES } from '@/app/water/[city]/cities-data';
 import { decodePfasMonitoring } from '@/lib/pfas-monitoring';
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimitShared, getClientIp, RATE } from '@/lib/rate-limit';
-import { getCachedWaterResponse, setCachedWaterResponse } from '@/lib/water-lookup-cache';
+import {
+  getCachedWaterResponse,
+  getLastGoodWaterResponse,
+  setCachedWaterResponse,
+  setLastGoodWaterResponse,
+} from '@/lib/water-lookup-cache';
 import ucmr5Raw from '@/lib/ucmr5.json';
-import zipLookupRaw from '@/lib/zip-lookup.json';
 import lcrDataRaw from '@/lib/lcr-data.json';
+import {
+  getZipSupplier,
+  isLookupableZip,
+  pickLocalCommunitySystem,
+} from '@/lib/zip-supplier';
 import { getDataFreshness } from '@/lib/water-data-meta';
 import {
   computeZipWaterScore,
@@ -26,12 +35,11 @@ import {
 // ucmr5 format: pwsid -> [maxPfasPpt, overMCLcount, [[analyte, ppt, hasMCL, overMCL], ...], lithium?]
 const ucmr5 = ucmr5Raw as Record<string, any[]>;
 
-const ZIP_LOOKUP = zipLookupRaw as Record<string, { p: string; n: string; c: string; s: string; pop: number; src: string }>;
-
 const LCR_DATA = lcrDataRaw as Record<string, { lead?: number; copper?: number }>;
 
 const EPA = 'https://data.epa.gov/efservice';
-const EPA_TIMEOUT_MS = 4_000;
+/** EPA Envirofacts renamed SDWA_VIOLATIONS → VIOLATION; 4s was too short and 404s opened the circuit. */
+const EPA_TIMEOUT_MS = 12_000;
 const EPA_CIRCUIT_FAIL_THRESHOLD = 3;
 const EPA_CIRCUIT_COOLDOWN_MS = 60_000;
 
@@ -69,7 +77,8 @@ async function epaGet(path: string, refresh = false) {
       signal: ctrl.signal,
     });
     if (!res.ok) {
-      noteEpaFailure();
+      // Missing tables (404) should not trip the circuit — EPA retired SDWA_VIOLATIONS.
+      if (res.status >= 500) noteEpaFailure();
       throw new Error(`EPA ${res.status}`);
     }
     const text = await res.text();
@@ -96,17 +105,31 @@ async function epaGetList(path: string): Promise<any[] | null> {
 }
 
 function systemsFromZipLookup(zip: string): any[] {
-  const local = ZIP_LOOKUP[zip];
+  const local = getZipSupplier(zip);
   if (!local?.p) return [];
   const st = local.p.slice(0, 2);
   return [{
     pwsid: local.p,
     pws_name: local.n,
-    city_name: Object.values(CITIES).find(city => city.zip === zip)?.name || '',
-    state_code: st,
+    city_name: local.c || Object.values(CITIES).find(city => city.zip === zip)?.name || '',
+    state_code: local.s && local.s.length === 2 ? local.s : st,
     population_served_count: local.pop,
-    primary_source_code: local.src === 'SW' ? 'SW' : 'GW',
+    primary_source_code: local.src === 'SW' || local.src === 'SWP' ? 'SW' : 'GW',
+    pws_type_code: 'CWS',
   }];
+}
+
+function violationStatusCode(v: any): string {
+  return String(f(v, 'violation_status_code') || f(v, 'compliance_status_code') || '').toUpperCase();
+}
+
+function isOpenViolationStatus(status: string): boolean {
+  const s = status.toUpperCase();
+  return s === 'O' || s === 'U' || s.startsWith('UNADDR');
+}
+
+function violationBeginDate(v: any): string {
+  return String(f(v, 'compliance_period_begin_date') || f(v, 'compl_per_begin_date') || '');
 }
 
 function f(o: any, k: string): any {
@@ -329,6 +352,7 @@ const VIOL_LABELS: Record<string, string> = {
 };
 const STATUS_META: Record<string, { label: string; color: string }> = {
   O: { label: 'Open', color: '#ef4444' },
+  U: { label: 'Unaddressed', color: '#ef4444' },
   R: { label: 'Resolved', color: '#22d3ee' },
   A: { label: 'Addressed', color: '#f59e0b' },
 };
@@ -533,6 +557,10 @@ export async function GET(req: NextRequest) {
     logWaterLookup({ zip: zip || '', outcome: 'invalid_zip' });
     return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400, headers: H });
   }
+  if (!isLookupableZip(zip)) {
+    logWaterLookup({ zip, outcome: 'invalid_zip' });
+    return NextResponse.json({ error: `No public water system found for ZIP ${zip}.`, zip, hintWell: true }, { status: 404, headers: H });
+  }
 
   const ip = getClientIp(req);
   const ipLim = await checkRateLimitShared(`water:ip:${ip}`, RATE.waterLookupPerIp.max, RATE.waterLookupPerIp.windowMs);
@@ -557,13 +585,23 @@ export async function GET(req: NextRequest) {
 export async function lookupWaterReport(zip: string, refresh = false) {
   const H = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
   if (!/^\d{5}$/.test(zip)) return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400, headers: H });
+  if (!isLookupableZip(zip)) {
+    return NextResponse.json(
+      { error: `No public water system found for ZIP ${zip}. This ZIP is not a valid US community ZIP code.`, zip, hintWell: true },
+      { status: 404, headers: H },
+    );
+  }
   const t0 = Date.now();
   const okHeaders = { ...H, 'Cache-Control': refresh ? 'no-store' : 'public, s-maxage=3600, stale-while-revalidate=7200' };
 
   const cached = refresh ? null : await getCachedWaterResponse(zip);
   if (cached) {
     logWaterLookup({ zip, outcome: 'cache_hit', ms: Date.now() - t0 });
-    return NextResponse.json(cached.body, { status: cached.status, headers: okHeaders });
+    const body = cached.body && typeof cached.body === 'object' ? { ...cached.body } : cached.body;
+    if (body && typeof body === 'object' && 'rawViolations' in body) {
+      delete (body as { rawViolations?: unknown }).rawViolations;
+    }
+    return NextResponse.json(body, { status: cached.status, headers: okHeaders });
   }
 
   try {
@@ -574,7 +612,7 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     let popCount: string | null = null;
     let srcCode = '';
 
-    const storedSupplier = ZIP_LOOKUP[zip];
+    const storedSupplier = getZipSupplier(zip);
     const override = storedSupplier ? undefined : VERIFIED_POSTAL_FALLBACKS[zip];
     if (override) {
       // Local-first: hardcoded major-city map, optional single EPA enrich
@@ -612,22 +650,12 @@ export async function lookupWaterReport(zip: string, refresh = false) {
 
       if (!systems.length && !epaDown) {
         const first = await epaGetList(
-          `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/rows/1:10/JSON`
+          `WATER_SYSTEM/ZIP_CODE/${zip}/PWS_ACTIVITY_CODE/A/PWS_TYPE_CODE/CWS/rows/1:10/JSON`
         );
         if (first === null) {
           epaDown = true;
         } else {
           systems = first;
-        }
-      }
-      if (!systems.length && !epaDown) {
-        const next = await epaGetList(
-          `WATER_SYSTEM/ZIP_CODE/BEGINNING/${zip}/PWS_ACTIVITY_CODE/A/rows/1:10/JSON`
-        );
-        if (next === null) {
-          epaDown = true;
-        } else {
-          systems = next;
         }
       }
       if (!systems.length && !epaDown) {
@@ -677,10 +705,7 @@ export async function lookupWaterReport(zip: string, refresh = false) {
           { status: 404, headers: H }
         );
       }
-      const sys = [...systems].sort((a, b) =>
-        (parseInt(f(b, 'population_served_count')) || 0) -
-        (parseInt(f(a, 'population_served_count')) || 0)
-      )[0];
+      const sys = pickLocalCommunitySystem(systems, zip) || systems[0];
       pwsid     = f(sys, 'pwsid') || f(sys, 'PWSID');
       pwsName   = f(sys, 'pws_name') || f(sys, 'PWS_NAME') || 'Unknown Water System';
       cityName  = f(sys, 'city_name') || f(sys, 'CITY_NAME') || '';
@@ -692,15 +717,30 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     // ─── Parallel data fetch ────────────────────────────────────────────────
     const skipLiveEpa = isEpaCircuitOpen();
     const [violations, lcr, sdwaSamples, usgsData, echoData, usgsHardness] = await Promise.all([
-      skipLiveEpa ? Promise.resolve(null) : epaGet(`SDWA_VIOLATIONS/PWSID/${pwsid}/rows/1:50/JSON`, refresh).catch(() => null),
+      skipLiveEpa ? Promise.resolve(null) : epaGet(`VIOLATION/PWSID/${pwsid}/rows/1:50/JSON`, refresh).catch(() => null),
       skipLiveEpa ? Promise.resolve([]) : epaGet(`LCR_SAMPLE_RESULT/PWSID/${pwsid}/rows/1:250/JSON`, refresh).catch(() => []),
-      skipLiveEpa ? Promise.resolve([]) : epaGet(`SDWA_SAMPLES/PWSID/${pwsid}/rows/1:250/JSON`, refresh).catch(() => []),
+      // SDWA_SAMPLES was retired from Envirofacts; LCR_SAMPLE_RESULT still covers lead/copper.
+      Promise.resolve([]),
       stateCode && !skipLiveEpa ? getUsgsSourceWater(stateCode) : Promise.resolve(null),
       skipLiveEpa ? Promise.resolve(null) : getEchoEnforcement(pwsid),
       stateCode && !skipLiveEpa ? getUsgsHardnessTDS(stateCode) : Promise.resolve([]),
     ]);
-    const violationCoverage = Array.isArray(violations) ? 'available' : 'unavailable';
-    const viols: any[] = Array.isArray(violations) ? violations : [];
+    let liveViolations = Array.isArray(violations) ? violations : null;
+    let violationCoverage: 'available' | 'cached' | 'unavailable' = liveViolations ? 'available' : 'unavailable';
+    if (!liveViolations) {
+      const lastGood = await getLastGoodWaterResponse(zip);
+      const rawCached = lastGood?.body?.rawViolations;
+      if (
+        lastGood?.body &&
+        lastGood.body.pwsid === pwsid &&
+        lastGood.body.violationCoverage === 'available' &&
+        Array.isArray(rawCached)
+      ) {
+        violationCoverage = 'cached';
+        liveViolations = rawCached as any[];
+      }
+    }
+    const viols: any[] = Array.isArray(liveViolations) ? liveViolations : [];
     const allSamples = [...(Array.isArray(lcr) ? lcr : []), ...(Array.isArray(sdwaSamples) ? sdwaSamples : [])];
 
     /** Winning sample by max raw measure; ppb display converts mg/L → ppb when UOM says mg/L */
@@ -714,7 +754,7 @@ export async function lookupWaterReport(zip: string, refresh = false) {
       }));
     };
 
-    const openV = viols.filter(v => (f(v, 'violation_status_code') || '') === 'O');
+    const openV = viols.filter(v => isOpenViolationStatus(violationStatusCode(v)));
     const healthV = viols.filter(v => ['MCL', 'MRDL', 'TT'].includes(f(v, 'violation_category_code') || ''));
     const pfasContaminants = getPfasForPwsid(pwsid);
     const pfasAboveMcl = pfasContaminants.filter(p => p.severity === 'high');
@@ -776,14 +816,14 @@ export async function lookupWaterReport(zip: string, refresh = false) {
 
     for (const v of healthV.slice(0, 4)) {
       const cc = f(v, 'contaminant_code') || '';
-      const sc = f(v, 'violation_status_code') || '';
+      const sc = violationStatusCode(v);
       const name = CONTAM_NAMES[cc] || f(v, 'contaminant_name') || `Contaminant ${cc}`;
       if (!contaminants.find(c => c.name === name)) {
         const ctx = HEALTH_CONTEXT[name];
         contaminants.push({
           name, level: null, limit: null, unit: '',
-          severity: sc === 'O' ? 'high' : 'moderate',
-          note: `${sc === 'O' ? 'OPEN' : 'Resolved'} — ${VIOL_LABELS[f(v, 'violation_category_code') || ''] || ''}`,
+          severity: isOpenViolationStatus(sc) ? 'high' : 'moderate',
+          note: `${isOpenViolationStatus(sc) ? 'OPEN' : 'Resolved'} — ${VIOL_LABELS[f(v, 'violation_category_code') || ''] || ''}`,
           violationBased: true, source: 'EPA SDWIS',
           healthEffects: ctx?.effects,
           healthSources: ctx?.sources,
@@ -847,27 +887,32 @@ export async function lookupWaterReport(zip: string, refresh = false) {
       contaminants: sortedContaminants,
       openViolations: openV.length,
     });
-    const score = violationCoverage === 'available' ? safety.score : null;
-    const grade = violationCoverage === 'available' ? safety.grade : '—';
-    const scoreLabel = violationCoverage === 'available' ? safety.label : 'Current compliance unavailable';
+    const score = safety.score;
+    const grade = safety.grade;
+    const scoreLabel = violationCoverage === 'available'
+      ? safety.label
+      : violationCoverage === 'cached'
+        ? `${safety.label} (using last successful EPA records)`
+        : `${safety.label} (historical monitoring; live EPA violations unavailable)`;
     const scoreColor = safety.scoreColor;
     const nationalPercentile = nationalPercentileFromSafetyScore(score ?? 0);
 
     // ─── Format violations ───────────────────────────────────────────────────
     const fmtViols = [...viols]
       .sort((a, b) =>
-        new Date(f(b, 'compliance_period_begin_date') || 0).getTime() -
-        new Date(f(a, 'compliance_period_begin_date') || 0).getTime()
+        new Date(violationBeginDate(b) || 0).getTime() -
+        new Date(violationBeginDate(a) || 0).getTime()
       )
       .slice(0, 10)
       .map(v => {
         const cat = f(v, 'violation_category_code') || '';
-        const sc  = f(v, 'violation_status_code')   || '';
+        const sc  = violationStatusCode(v);
         const cc  = f(v, 'contaminant_code')         || '';
+        const begin = violationBeginDate(v);
         return {
           rule:        VIOL_LABELS[cat] || cat || 'Violation',
           contaminant: CONTAM_NAMES[cc] || f(v, 'contaminant_name') || '',
-          year:        (f(v, 'compliance_period_begin_date') || '').slice(0, 4) || '—',
+          year:        (begin || '').slice(0, 4) || '—',
           status:      STATUS_META[sc]?.label || sc || '—',
           statusColor: STATUS_META[sc]?.color || '#94a3b8',
         };
@@ -884,9 +929,10 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     } : null;
 
     // ─── Data sources used ───────────────────────────────────────────────────
-    const dataSources = violationCoverage === 'available' ? ['EPA SDWIS'] : [];
+    const dataSources =
+      violationCoverage === 'unavailable' ? ['Historical EPA records'] : ['EPA SDWIS'];
     if (LCR_DATA[pwsid]) dataSources.push('EPA LCR National Dataset');
-    if (pfasCount > 0) dataSources.push('EPA UCMR5 PFAS');
+    if (pfasCount > 0 || ucmr5Row) dataSources.push('EPA UCMR5 PFAS');
     if (countMeasuredContaminants(contaminants) > measuredBeforeCcr) {
       dataSources.push('Public water system CCR');
     }
@@ -895,7 +941,9 @@ export async function lookupWaterReport(zip: string, refresh = false) {
     if (echoData)      dataSources.push('EPA ECHO Enforcement');
 
     const summary = violationCoverage === 'unavailable'
-      ? 'Current EPA violation records could not be loaded. Available measurements below are historical and do not establish current compliance.'
+      ? 'Current EPA violation records could not be loaded. The grade below uses historical UCMR5 and packaged samples and does not establish current compliance.'
+      : violationCoverage === 'cached'
+      ? 'Showing the last successful EPA violation records. A live refresh was unavailable; confirm current compliance with your supplier.'
       : openCount > 0
       ? `${pwsName} has ${openCount} open violation(s) on record with EPA.`
       : viols.length > 0
@@ -937,8 +985,9 @@ export async function lookupWaterReport(zip: string, refresh = false) {
       dataSource:       dataSources.join(' + '),
       dataSources,
       dataFreshness:    getDataFreshness(),
-      openViolations:   violationCoverage === 'available' ? openCount : null,
-      totalViolations:  violationCoverage === 'available' ? viols.length : null,
+      openViolations:   violationCoverage === 'unavailable' ? null : openCount,
+      totalViolations:  violationCoverage === 'unavailable' ? null : viols.length,
+      rawViolations:    violationCoverage === 'available' ? viols : undefined,
       hasLCR:           allSamples.length > 0 || !!(LCR_DATA[pwsid]?.lead || LCR_DATA[pwsid]?.copper),
       hasEWG:           false,
       hasPFAS:          pfasCount > 0,
@@ -954,11 +1003,16 @@ export async function lookupWaterReport(zip: string, refresh = false) {
       summary,
       pfasSummary,
     };
-    if (violationCoverage === 'unavailable') {
-      return NextResponse.json(payload, { headers: { ...H, 'Cache-Control': 'no-store' } });
+    const { rawViolations: _rawViolations, ...publicPayload } = payload;
+    if (violationCoverage === 'available') {
+      await setCachedWaterResponse(zip, { status: 200, body: payload });
+      await setLastGoodWaterResponse(zip, { status: 200, body: payload });
+      return NextResponse.json(publicPayload, { headers: okHeaders });
     }
-    await setCachedWaterResponse(zip, { status: 200, body: payload });
-    return NextResponse.json(payload, { headers: okHeaders });
+    if (violationCoverage === 'cached') {
+      return NextResponse.json(publicPayload, { headers: { ...H, 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600' } });
+    }
+    return NextResponse.json(publicPayload, { headers: { ...H, 'Cache-Control': 'no-store' } });
 
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err || 'Unknown error');

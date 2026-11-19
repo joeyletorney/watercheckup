@@ -5,7 +5,7 @@ import { EpaIframeShell } from '../components/EpaIframeShell';
 const FYLCCR_ENTRY = 'https://sdwis.epa.gov/fylccr';
 
 export const metadata: Metadata = {
-  title: 'EPA Find Your Local CCR | WaterCheckup',
+  title: 'EPA Find Your Local CCR',
   robots: { index: false, follow: false },
   alternates: { canonical: 'https://watercheckup.com/epa/ccr-finder' },
 };

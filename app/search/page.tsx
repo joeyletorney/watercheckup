@@ -5,7 +5,7 @@ import { WaterSearch } from '@/components/WaterSearch';
 import { resolveWaterSearch } from '@/lib/water-search';
 
 export const metadata: Metadata = {
-  title: 'Find your water report | WaterCheckup',
+  title: 'Find your water report',
   robots: { index: false, follow: true },
 };
 

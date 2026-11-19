@@ -84,7 +84,7 @@ test('a failed EPA violation request preserves historical records without claimi
   globalThis.fetch = async (input) => {
     const url = String(input);
     requests.push(url);
-    if (url.includes('SDWA_VIOLATIONS')) throw new Error('Simulated upstream outage');
+    if (url.includes('/VIOLATION/')) throw new Error('Simulated upstream outage');
     return new Response('[]', { headers: { 'Content-Type': 'application/json' } });
   };
   try {
@@ -97,9 +97,11 @@ test('a failed EPA violation request preserves historical records without claimi
     assert.equal(data.totalViolations, null);
     assert.ok(Array.isArray(data.contaminants));
     assert.equal(data.pwsid, 'NY7003493');
-    assert.equal(data.score, null);
+    assert.equal(typeof data.score, 'number');
+    assert.ok(data.grade);
     assert.match(data.summary, /historical/);
-    assert.ok(requests.some(url => url.includes('SDWA_VIOLATIONS/PWSID/NY7003493')));
+    assert.ok(requests.some(url => url.includes('VIOLATION/PWSID/NY7003493')));
+    assert.equal(data.rawViolations, undefined);
     globalThis.fetch = async () => new Response('[]', { headers: { 'Content-Type': 'application/json' } });
     (globalThis as any).__wcEpaCircuit = { fails: 0, openUntil: 0 };
     const recovered = await lookupWaterReport('10001');
@@ -139,11 +141,50 @@ test('a successful lookup normalizes sample units and does not invent PFAS cover
   } finally { globalThis.fetch = original; }
 });
 
+test('unaddressed EPA compliance_status_code U is counted and labeled as open', async () => {
+  const original = globalThis.fetch;
+  (globalThis as typeof globalThis & { __wcEpaCircuit?: unknown }).__wcEpaCircuit = { fails: 0, openUntil: 0 };
+  globalThis.fetch = async (input) => {
+    const url = String(input);
+    const rows = url.includes('/VIOLATION/') ? [{
+      pwsid: 'MA3035000',
+      compliance_status_code: 'U',
+      violation_category_code: 'MCL',
+      contaminant_code: 'TESTU',
+      contaminant_name: 'Unaddressed Test Contaminant',
+      compl_per_begin_date: '2024-01-15',
+    }] : [];
+    return new Response(JSON.stringify(rows), { headers: { 'Content-Type': 'application/json' } });
+  };
+  try {
+    const response = await lookupWaterReport('01601');
+    const data = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(data.violationCoverage, 'available');
+    assert.equal(data.openViolations, 1);
+    assert.equal(data.violations[0].status, 'Unaddressed');
+    const row = data.contaminants.find((c: { name: string; note?: string }) => c.name === 'Unaddressed Test Contaminant');
+    assert.match(String(row?.note || ''), /OPEN/);
+    assert.doesNotMatch(String(row?.note || ''), /Resolved/);
+  } finally { globalThis.fetch = original; }
+});
+
 test('state aliases do not shadow NYC, and excluded ZIP pages are absent from the sitemap', async () => {
   const rewrites = await config.rewrites!();
   assert.ok(Array.isArray(rewrites));
   assert.equal(rewrites.some(rule => rule.source === '/water/new-york'), false);
-  assert.equal(sitemap().some(row => row.url.includes('/results/')), false);
+  const map = sitemap();
+  assert.equal(map.some(row => row.url.includes('/results/')), false);
+  assert.equal(map.some(row => row.url.includes('/utilities')), false);
+  assert.ok(map.some(row => row.url.endsWith('/water/boston')));
+  assert.ok(map.some(row => row.url.includes('/water/state/')));
+  assert.ok(map.some(row => row.url.includes('/blog/')));
+  const redirects = await config.redirects!();
+  assert.ok(redirects.some(rule =>
+    Array.isArray(rule.has) &&
+    rule.has.some(h => h.value === 'www.watercheckup.com') &&
+    rule.permanent === true
+  ));
 });
 
 test('metals affect an uncurated supplier index even without a hardness measurement', () => {
@@ -185,8 +226,8 @@ test('manual refresh bypasses both report and EPA dataset caches without caching
     const response = await lookupWaterReport('10001', true);
     assert.equal(response.status, 200);
     assert.equal(response.headers.get('Cache-Control'), 'no-store');
-    const datasets = calls.filter(call => /SDWA_VIOLATIONS|LCR_SAMPLE_RESULT|SDWA_SAMPLES/.test(call.url));
-    assert.equal(datasets.length, 3);
+    const datasets = calls.filter(call => /\/VIOLATION\/|LCR_SAMPLE_RESULT/.test(call.url));
+    assert.equal(datasets.length, 2);
     for (const call of datasets) {
       assert.equal(call.options?.cache, 'no-store');
       assert.equal('next' in (call.options || {}), false);

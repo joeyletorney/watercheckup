@@ -5,12 +5,12 @@ import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { clearlyFilteredAmazonUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 
 export const metadata: Metadata = {
-  title: 'Lead in Tap Water — Health Risks, EPA Limits, Service Lines & Filters That Work | WaterCheckup',
+  title: 'Lead in Tap Water — Health Risks, EPA Limits, Service Lines & Filters That Work',
   description:
     'Lead in drinking water has no safe level. Learn how lead enters tap water from service lines and plumbing, what EPA Lead and Copper Rule testing shows, and which certified filters remove lead. Free ZIP lookup with LCR sample data.',
   alternates: { canonical: 'https://watercheckup.com/lead' },
   openGraph: {
-    title: 'Lead in Tap Water — Free EPA Data by ZIP | WaterCheckup',
+    title: 'Lead in Tap Water — Free EPA Data by ZIP',
     description:
       'See Lead and Copper Rule tap sampling for your water system. Understand service line risk and pick filters certified for lead removal.',
     images: [{ url: 'https://watercheckup.com/api/og?city=Lead+Guide&score=&grade=&violations=', width: 1200, height: 630 }],

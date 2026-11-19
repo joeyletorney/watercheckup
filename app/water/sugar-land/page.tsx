@@ -91,7 +91,7 @@ export default function SugarLandWaterPage() {
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>Sugar Land Water Quality 2026</h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
-        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>City of Sugar Land Water Public water system · Brazos River / groundwater · UCMR5 2023–2025</p>
+        <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 8px' }}>City of Sugar Land Water Utility · Brazos River / groundwater · UCMR5 2023–2025</p>
         <p style={{ fontSize: 13, color: '#94a3b8', margin: '0 0 28px' }}>Source: EPA UCMR5 (PWSID TX0790005) · EPA SDWIS · Public water system CCR</p>
 
         <p style={{ color: '#cbd5e1', lineHeight: 1.7 }}>The city reports a PFOA annual average of 1.03 ppt at the location with the 4.1 ppt peak. <a href="https://www.sugarlandtx.gov/2461/PFAS" style={{ color: '#67e8f9' }}>Read Sugar Land’s official explanation and results.</a> A 4 ppt PFOA benchmark does not apply to 6:2 FTS.</p>

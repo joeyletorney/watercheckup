@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://watercheckup.com'),
   title: {
     default: "WaterCheckup — See What's in Your Tap Water",
-    template: '%s',
+    template: '%s | WaterCheckup',
   },
   description: SITE_HOME_META_DESCRIPTION,
   keywords: [

@@ -25,7 +25,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const data = await fetchWaterData(params.zip);
   if (!data || data.lookupError || data.violationCoverage === 'unavailable') {
     return {
-      title: `ZIP ${params.zip} Water Quality — Check Tap Water | WaterCheckup`,
+      title: `ZIP ${params.zip} Water Quality — Check Tap Water`,
       description: `Water records for ZIP ${params.zip}. Historical measurements may be available; current compliance must be verified with your supplier.`,
       alternates: { canonical: `https://watercheckup.com/results/${params.zip}` },
       robots: { index: false, follow: true },
@@ -60,6 +60,7 @@ export default async function ResultsPage(props: Props) {
   const params = await props.params;
   if (!/^\d{5}$/.test(params.zip)) notFound();
   const data = await fetchWaterData(params.zip);
+  if (data?.lookupStatus === 404) notFound();
 
   return (
     <div style={{ minHeight: '100vh', background: '#020918', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>

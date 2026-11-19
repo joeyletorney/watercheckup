@@ -4,7 +4,7 @@ import { SiteHeader } from '../components/SiteHeader';
 import { CITIES } from '../water/[city]/cities-data';
 
 export const metadata: Metadata = {
-  title: 'Top 25 Cities with the Most EPA Water Violations (2026) | WaterCheckup',
+  title: 'Top 25 Cities with the Most EPA Water Violations (2026)',
   description: 'The 25 US cities with the worst EPA Safe Drinking Water Act violation records — open violations, enforcement actions, and contaminant history. Based on federal SDWIS data.',
   alternates: { canonical: 'https://watercheckup.com/worst-violations' },
   openGraph: {

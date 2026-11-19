@@ -64,9 +64,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'PFOA, PFOS & PFHxS above EPA limits in UCMR5. Elevated TTHMs from chloramine treatment. Free 2026 Dallas water report & filter quiz.',
   },
   '/water/los-angeles': {
-    title: 'Los Angeles Tap Water: C- Grade — Chromium-6 & 11 ppt PFAS',
+    title: 'Los Angeles Tap Water — Chromium-6, Hardness & EPA Report',
     description:
-      'Chromium-6 above CA health goals, PFAS in LADWP monitoring, 268 mg/L hardness. Free 2026 LA graded EPA report — no signup.',
+      'Chromium-6 above CA health goals and hard water in the LADWP profile. This UCMR5 snapshot lists no reportable PFAS for CA1910067. Free 2026 LA EPA report — no signup.',
   },
   '/water/philadelphia': {
     title: 'Philadelphia Water Quality — PFAS, Lead Lines & DBPs (2026)',

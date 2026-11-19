@@ -26,7 +26,7 @@ import { PitcherCartridgeVideo } from '@/components/PitcherCartridgeVideo';
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const params = await props.params;
   const post = POSTS[params.slug];
-  if (!post) return { title: 'Post Not Found | WaterCheckup' };
+  if (!post) return { title: 'Post Not Found' };
 
   const ctr = getCtrSerpOverride(`/blog/${params.slug}`);
   const docTitle = ctr?.title ?? post.seo?.title ?? post.title;

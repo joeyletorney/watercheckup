@@ -5,7 +5,7 @@ import { CityRankingList } from '@/components/CityRankingList';
 import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildHardestCities, buildStateHardnessTable } from '@/lib/city-rankings';
 export const metadata: Metadata = {
-  title: 'Hardest Tap Water in America — Top States & Cities (2026) | WaterCheckup',
+  title: 'Hardest Tap Water in America — Top States & Cities (2026)',
   description:
     'US states and cities with the hardest tap water (mg/L as CaCO₃) from CCR profiles and EPA UCMR5 monitoring. Scaling, RO, and water-softener context.',
   alternates: { canonical: 'https://watercheckup.com/worst-hardness' },

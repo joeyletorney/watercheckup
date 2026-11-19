@@ -7,7 +7,7 @@ import { stateLabel } from "@/lib/us-state-names";
 import { getUniqueUtilityStatesLowercase } from "@/lib/utilities-data";
 
 export const metadata: Metadata = {
-  title: "Public Water Systems (EPA) | WaterCheckup",
+  title: "Public Water Systems (EPA)",
   description: "Browse EPA SDWIS public water systems by state — violations snapshots, PFAS data, and filter guidance.",
   alternates: { canonical: "https://watercheckup.com/utilities" },
 };

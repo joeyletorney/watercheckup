@@ -102,7 +102,7 @@ const PITCHER_PICKS = [
 
 const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS; why?: string }> = {
   'chicago':       { label: 'Lead detected in tap water', picks: RO_PICKS, why: 'Chosen for Chicago because it removes lead at the tap — the primary concern for homes with older plumbing in Chicago.' },
-  'los-angeles':   { label: 'Chromium-6 & PFAS detected', picks: RO_PICKS, why: 'Chosen for LA because it removes both chromium-6 and PFAS — the two primary concerns in the LA municipal supply.' },
+  'los-angeles':   { label: 'Chromium-6 flagged in LADWP water', picks: RO_PICKS, why: 'Chosen for LA because reverse osmosis is the residential technology with published chromium-6 reduction data. This UCMR5 snapshot lists no reportable PFAS for LADWP (CA1910067).' },
   'houston':       { label: 'Elevated THMs in tap water', picks: RO_PICKS, why: 'Chosen for Houston because RO is the most effective method for removing trihalomethanes and disinfection byproducts.' },
   'new-york':      { label: 'Lead risk from building pipes', picks: PITCHER_PICKS, why: 'Chosen for NYC because building pipe lead risk is the main concern — a certified pitcher is practical for renters and apartment dwellers.' },
   'phoenix':       { label: 'PFAS + high TDS detected', picks: RO_PICKS, why: 'Chosen for Phoenix because it removes both PFAS and the high dissolved solids common in Arizona groundwater.' },
@@ -134,7 +134,7 @@ const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress
   'washington-dc': { url: 'https://dcwater.com/lead', label: 'DC Water Lead Info', hasAddress: false },
   'minneapolis': { url: 'https://www.minneapolismn.gov/resident-services/home-property/water/lead/', label: 'Minneapolis Lead Info', hasAddress: false },
   'st-louis': { url: 'https://www.stlwater.com/lead-service-line-inventory/', label: 'St. Louis Lead Service Line Inventory', hasAddress: false },
-  'indianapolis': { url: 'https://www.citizensenergygroup.com/My-Home/Public water systems/Water/Lead-Service-Lines', label: 'Indianapolis Lead Service Lines', hasAddress: false },
+  'indianapolis': { url: 'https://www.citizensenergygroup.com/My-Home/Utilities/Water/Lead-Service-Lines', label: 'Indianapolis Lead Service Lines', hasAddress: false },
   'baltimore': { url: 'https://www.bwsh2o.com/lead', label: 'Baltimore Water Lead Info', hasAddress: false },
 };
 
@@ -517,7 +517,7 @@ export async function generateMetadata(props: { params: Promise<{ city: string }
   cacheLife('weeks');
   const params = await props.params;
   const cd = CITIES[params.city];
-  if (!cd) return { title: 'Water Quality Report | WaterCheckup' };
+  if (!cd) return { title: 'Water Quality Report' };
 
   const pwsid = resolveCityPwsid(params.city, cd.pwsid, cd.zip);
   const pfas = getCityPfasData(pwsid);
@@ -899,8 +899,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
               const { maxPpt, violations, compounds } = pfas;
               const hasDetections = compounds.length > 0;
               const statusColor = violations > 0 ? '#ef4444' : hasDetections ? '#f59e0b' : '#22d3ee';
-              const statusLabel = violations > 0 ? 'HISTORICAL PEAKS ABOVE BENCHMARK' : hasDetections ? 'HISTORICAL PFAS DETECTIONS' : 'NO PFAS DETECTED';
-              const statusIcon = violations > 0 ? '🚨' : hasDetections ? '⚠️' : '✅';
+              const statusLabel = violations > 0 ? 'HISTORICAL PEAKS ABOVE BENCHMARK' : hasDetections ? 'HISTORICAL PFAS DETECTIONS' : 'NO REPORTABLE PFAS IN THIS UCMR5 SNAPSHOT';
+              const statusIcon = violations > 0 ? '🚨' : hasDetections ? '⚠️' : '📋';
 
               return (
                 <div style={{ marginBottom: 72 }}>
@@ -916,7 +916,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                       <div style={{ fontSize: 13, color: '#cbd5e1', marginTop: 3 }}>
                         {hasDetections
                           ? `Max detected: ${maxPpt} ppt · ${compounds.length} compound${compounds.length !== 1 ? 's' : ''} found · ${violations} compound above benchmark${violations !== 1 ? 's' : ''}`
-                          : 'All 29 PFAS compounds tested below detection limits'}
+                          : 'This packaged snapshot lists no reportable detections for this PWSID. That is not a household tap test and does not prove every compound is absent.'}
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AffiliateLink } from './AffiliateLink';
+import { AffiliateDisclosure } from './AffiliateDisclosure';
 import type { HomeShoppingCategory, HomeShoppingProduct } from '@/lib/home-shopping';
 
 function ProductPhoto({ product }: { product: HomeShoppingProduct }) {
@@ -34,6 +35,7 @@ export function HomeFilterShop({ categories }: { categories: HomeShoppingCategor
     </figure>
     <div className="wc-shop-choices" role="group" aria-label="Filter installation options">{categories.map(c => <button key={c.id} type="button" aria-pressed={c.id === categoryId} aria-controls="wc-shop-products" onClick={() => setCategoryId(c.id)}>{c.label}</button>)}</div>
     <p className="wc-shop-category-note">{category.description} <Link href={category.guide}>Read the buying guide →</Link></p>
+    <AffiliateDisclosure style={{ margin: '0 0 8px' }} />
     <p className="wc-shop-disclosure">As an Amazon Associate I earn from qualifying purchases. Check current prices, model and availability on Amazon.</p>
     <div id="wc-shop-products" className="wc-shop-products" aria-label={`${category.label}: compare ${category.picks.length} options`}>
       {category.picks.map(pick => {
