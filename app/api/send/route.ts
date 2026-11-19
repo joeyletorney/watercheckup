@@ -69,9 +69,9 @@ export async function POST(req: NextRequest) {
       : totalViolations > 0 ? `✅ ${totalViolations} resolved — no open issues` : `✅ No violations on record`;
 
     const products = [
-      { name: 'iSpring RCC7AK', price: '$229', cert: 'NSF 42+53+58', removes: 'Lead >98.9%, PFAS >96%, Fluoride >97%', asin: 'B005LJ8EXU' },
-      { name: 'APEC ROES-50',   price: '$189', cert: 'WQA Gold Seal', removes: 'Lead >99%, Arsenic >99%, Fluoride >96%', asin: 'B00I0ZGOZM' },
-      { name: 'Waterdrop G3P600', price: '$299', cert: 'NSF 42+53+58+372', removes: 'PFAS >99%, Lead >99%, 600 GPD Tankless', asin: 'B07P1XFYJP' },
+      { name: 'iSpring RCC7AK', price: '$190', cert: 'NSF/ANSI 58', removes: 'Lead >98.9%, PFAS >96%, Fluoride >97%', asin: 'B005LJ8EXU' },
+      { name: 'APEC ROES-50',   price: '$145', cert: 'WQA Gold Seal', removes: 'Lead >99%, Arsenic >99%, Fluoride >96%', asin: 'B00I0ZGOZM' },
+      { name: 'Waterdrop G3P600', price: '$399', cert: 'NSF 42+53+58+372', removes: 'PFAS >99%, Lead >99%, 600 GPD Tankless', asin: 'B07P1XFYJP' },
     ];
 
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8">

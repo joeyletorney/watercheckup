@@ -5,8 +5,8 @@ const AMAZON_TAG = 'watercheckup-20';
 
 const TOP_3_RO = [
 
-  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS and radium. Best value for SA homeowners.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20`, badge: 'BEST VALUE' },
-  { product: 'Clearly Filtered Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF P473 certified for PFAS. Removes radium, arsenic, and 365+ contaminants. Best no-install option for SA renters.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS' },
+  { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$399', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372, 600 GPD, removes 99%+ PFAS and radium. Best value for SA homeowners.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20`, badge: 'BEST VALUE' },
+  { product: 'Clearly Filtered Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF/ANSI 42 and 372 certified. Broader PFAS, radium, and arsenic figures are published lab tests, not NSF listings. Best no-install option for SA renters.', link: 'https://clearlyfiltered.com/products/clean-water-pitcher', amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`, badge: 'BEST FOR RENTERS' },
 ];
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };
@@ -263,7 +263,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
       ),
       React.createElement('h3', { style: h3Style }, '2. NSF P473-Certified Carbon Filters'),
       React.createElement('p', { style: pStyle },
-        'High-capacity carbon block filters certified to NSF P473 (specifically for PFOA/PFOS) or NSF 244 can remove significant PFAS through adsorption. The Clearly Filtered pitcher is independently certified to remove 99%+ of PFAS and requires no installation — best option for renters.'
+        'High-capacity carbon block filters certified to NSF P473 (specifically for PFOA/PFOS) or NSF 244 can remove significant PFAS through adsorption. The Clearly Filtered pitcher is NSF/ANSI 42 and 372 certified; broader PFAS figures are published lab tests, not NSF listings. It requires no installation — a practical option for renters.'
       ),
       React.createElement('h3', { style: h3Style }, 'What Does NOT Work for PFAS'),
       React.createElement('div', { style: warnStyle },
@@ -292,7 +292,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
       ...[
         { q: 'Does San Antonio tap water have PFAS?', a: 'Yes. The UCMR5 snapshot for SAWS (TX0150018) lists PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those are historical peaks for this supplier, not a test of your kitchen tap. See the San Antonio city report for the scored profile and filter context.' },
         { q: 'Is the PFAS level in San Antonio water dangerous?', a: 'None of the six EPA-regulated PFAS have peaks above April 2024 MCL benchmarks in this SAWS snapshot. Independent guidelines such as EWG’s 1 ppt are tighter. The EPA health goal (MCLG) for PFOA and PFOS is zero. A historical peak is not an official compliance finding.' },
-        { q: 'How do I remove PFAS from San Antonio tap water?', a: 'Use a reverse osmosis system (NSF 58 certified) or a pitcher filter certified to NSF P473. RO is the most comprehensive option — it also removes SA\'s radium, arsenic, and hardness minerals. Renters without the ability to install under-sink systems can use the Clearly Filtered pitcher (NSF P473 certified).' },
+        { q: 'How do I remove PFAS from San Antonio tap water?', a: 'Use a reverse osmosis system (NSF 58 certified) or a carbon pitcher with published PFAS lab tests. RO is the most comprehensive option — it also removes SA\'s radium, arsenic, and hardness minerals. Renters without the ability to install under-sink systems can use the Clearly Filtered pitcher (NSF/ANSI 42 and 372 certified; broader PFAS figures are lab tests, not NSF listings).' },
         { q: 'Does boiling San Antonio water remove PFAS?', a: 'No. Boiling concentrates PFAS because it evaporates water while leaving the chemicals behind. The remaining water has higher PFAS concentration after boiling, not lower.' },
         { q: 'Does SAWS test for PFAS?', a: 'Yes — SAWS was included in the EPA\'s mandatory UCMR5 PFAS testing program (2023–2025). Results are publicly available. SAWS also conducts its own monitoring. Check the SAWS website or watercheckup.com for current data.' },
       ].map(({ q, a }) =>

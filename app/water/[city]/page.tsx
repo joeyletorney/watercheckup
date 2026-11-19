@@ -96,9 +96,9 @@ const RO_PICKS = [
 ];
 
 const PITCHER_PICKS = [
-  { product: 'Clearly Filtered 10-Cup Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'Only pitcher certified to remove PFAS at 99.9%. NSF 42/53/244/401/P473 — 365+ contaminants.', link: 'https://www.clearlyfiltered.com/products/filtered-water-pitcher', amazon: 'https://www.amazon.com/dp/B0DFC22BHT?tag=watercheckup-20', badge: 'BEST FOR PFAS & LEAD' },
-  { product: 'Waterdrop Pitcher Filter', brand: 'Waterdrop', price: '~$40', reason: '7-stage filtration, 200-gallon life. Removes chlorine, PFOA/PFOS, heavy metals. No installation.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B07C3P2RZP?tag=watercheckup-20', badge: 'BEST VALUE' },
-  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$40', reason: 'Reduces TDS to zero. NSF 42/53 certified for lead, chromium, and arsenic. Includes TDS meter.', link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers', amazon: 'https://www.amazon.com/dp/B0DWTTYTQN?tag=watercheckup-20', badge: 'REMOVES TDS' },
+  { product: 'Clearly Filtered 10-Cup Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF/ANSI 42 and 372 certified. Broader PFAS, lead, and 53/401/P473 figures are published lab tests, not NSF listings.', link: 'https://clearlyfiltered.com/products/clean-water-pitcher', amazon: 'https://www.amazon.com/dp/B0DFC22BHT?tag=watercheckup-20', badge: 'BEST FOR PFAS & LEAD' },
+  { product: 'Waterdrop PT-07B Pitcher', brand: 'Waterdrop', price: '~$16', reason: 'Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No installation.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: 'https://www.amazon.com/dp/B07C3P2RZP?tag=watercheckup-20', badge: 'BEST VALUE' },
+  { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$23', reason: 'Reduces TDS to zero. NSF 42/53 certified for lead, chromium, and arsenic. Includes TDS meter.', link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers', amazon: 'https://www.amazon.com/dp/B0DWTTYTQN?tag=watercheckup-20', badge: 'REMOVES TDS' },
 ];
 
 const TOP_PICKS: Record<string, { label: string; picks: typeof RO_PICKS; why?: string }> = {

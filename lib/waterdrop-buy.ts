@@ -10,7 +10,7 @@ export function clearlyFilteredAmazonUrl(): string {
 export const WATERDROP_REF = 'anbyjkqb';
 
 export const CLEARLY_FILTERED_PITCHER_URL =
-  'https://www.clearlyfiltered.com/products/filtered-water-pitcher';
+  'https://clearlyfiltered.com/products/clean-water-pitcher';
 
 export const WATERDROP_DIRECT_BY_ID: Partial<Record<number, string>> = {
   47: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=${WATERDROP_REF}`,

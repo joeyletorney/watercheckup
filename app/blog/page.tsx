@@ -297,7 +297,7 @@ const POST_BY_SLUG: Record<
   },
   'best-under-sink-water-filter': {
     title: 'Best Under-Sink Water Filters 2026: What Actually Works',
-    excerpt: 'From $126 carbon filters to $439 RO systems — here\'s which under-sink filter you actually need based on what\'s in your water and which certifications matter.',
+    excerpt: 'From $126 carbon filters to $399 RO systems — here\'s which under-sink filter you actually need based on what\'s in your water and which certifications matter.',
     date: 'June 1, 2026',
     readTime: '10 min read',
     badge: 'Filters',

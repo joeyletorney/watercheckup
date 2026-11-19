@@ -1,14 +1,29 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { normalizeAmazonUrl, AMAZON_ASSOCIATE_TAG } from '../lib/amazon-affiliate';
 import { PRODUCTS } from '../lib/home-products-catalog';
 import { WATERDROP_DIRECT_BY_ID, resolveAffiliateAmazonUrl } from '../lib/waterdrop-buy';
+import { preferredAmazonPurchaseUrl } from '../lib/home-shopping';
 
-test('legacy PD1000 cards select the verified PD1000 listing and preserve affiliate tags', () => {
+test('legacy PD1000 remaps keep the Amazon ASIN for old URLs, but the catalog button uses the brand PDP', () => {
   const original = 'https://www.amazon.com/dp/B083DFW1QS?tag=watercheckup-20';
   assert.equal(normalizeAmazonUrl(original), 'https://www.amazon.com/dp/B0BK8ZRY2K?tag=watercheckup-20');
   assert.equal(normalizeAmazonUrl('https://www.amazon.com/dp/B0BK8ZRY2K?tag=custom-20'), 'https://www.amazon.com/dp/B0BK8ZRY2K?tag=custom-20');
-  assert.equal(PRODUCTS.find(p => p.id === 27)?.amazon.includes('B0BK8ZRY2K'), true);
+  const pd1000 = PRODUCTS.find(p => p.id === 27);
+  assert.equal(pd1000?.amazon, '');
+  assert.equal(pd1000?.brandLink, 'https://www.frizzlife.com/products/pd1000-tam4');
+  assert.equal(preferredAmazonPurchaseUrl('https://www.amazon.com/dp/B0BK8ZRY2K?tag=watercheckup-20'), undefined);
+});
+
+test('well API no longer ships Amazon 404 ASINs and points lab tests at MyTapScore', () => {
+  const well = readFileSync(new URL('../app/api/well/route.ts', import.meta.url), 'utf8');
+  for (const asin of ['B01NCDKLWC', 'B00JO7R694', 'B07FJLNLSD', 'B07Q9C9BMX', 'B09TY8MDF9']) {
+    assert.doesNotMatch(well, new RegExp(asin));
+  }
+  assert.match(well, /SIMPLELAB_WELL_TESTS_URL/);
+  assert.match(well, /Clearly Filtered 10-Cup Pitcher/);
+  assert.doesNotMatch(well, /Well Water Edition/);
 });
 
 test('every catalog card has a real destination after brand routing', () => {
@@ -24,6 +39,17 @@ test('every catalog card has a real destination after brand routing', () => {
     }
     if (p.brand === 'Waterdrop') assert.equal(new URL(href!).searchParams.get('ref'), 'anbyjkqb');
   }
+});
+
+test('catalog prices and names match the November 2026 product audit', () => {
+  assert.equal(PRODUCTS.find(p => p.id === 47)?.price, 399);
+  assert.equal(PRODUCTS.find(p => p.id === 10)?.price, 23);
+  assert.equal(PRODUCTS.find(p => p.id === 31)?.price, 380);
+  assert.equal(PRODUCTS.find(p => p.id === 13)?.price, 60);
+  assert.equal(PRODUCTS.find(p => p.id === 20)?.name, 'AquaBliss SF100 Daily Revitalize');
+  assert.deepEqual(PRODUCTS.find(p => p.id === 9)?.cert, ['NSF/ANSI 42', 'NSF/ANSI 372']);
+  assert.deepEqual(PRODUCTS.find(p => p.id === 34)?.cert, ['NSF/ANSI 372']);
+  assert.equal(PRODUCTS.find(p => p.id === 37)?.cert?.includes('NSF/ANSI 55 Class B'), false);
 });
 
 test('discontinued or mismatched Waterdrop Amazon alternatives are not offered', () => {

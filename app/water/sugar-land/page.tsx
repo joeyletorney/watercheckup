@@ -25,7 +25,7 @@ const FILTERS = [
   {
     name: 'Waterdrop G3P600 Reverse Osmosis',
     badge: 'BEST FOR SUGAR LAND',
-    price: '~$439',
+    price: '~$399',
     why: 'Under-sink RO option to compare. Verify the exact model’s certified reduction claims for the compound of concern and its replacement-filter costs. Historical peaks do not establish household exposure.',
     link: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`,
     best: true,
