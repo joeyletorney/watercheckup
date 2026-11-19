@@ -33,8 +33,8 @@ const aqua: Choice = {
 
 export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
   'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitchers 2026: Lead, PFAS & Filter Costs',
-    excerpt: 'Compare Brita Elite, Clearly Filtered, ZeroWater and PUR PLUS by documented reduction claims, cartridge life and replacement costs.',
+    title: 'Best Water Filter Pitcher 2026: What They Remove',
+    excerpt: 'Compare Brita Elite, Clearly Filtered, ZeroWater and PUR PLUS by documented lead and PFAS claims, cartridge life and replacement costs.',
     checkedDate: 'November 13, 2026',
     verdict: 'For a lead concern, start with an exact pitcher-and-cartridge combination with a certified lead-reduction claim. For PFAS, check the named compounds separately. The options below serve different needs; their order is not a test ranking.',
     choices: [{
@@ -72,8 +72,8 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal 2026: Options & Evidence',
-    excerpt: 'Compare a lead-reduction pitcher, countertop RO and installed filtration by exact evidence, installation needs and ownership costs.',
+    title: 'Best Water Filter for Lead 2026: Top-Rated Picks',
+    excerpt: 'Top-rated water filters for lead-contaminated areas: compare a lead-reduction pitcher, countertop RO and installed NSF 53/58 options.',
     verdict: 'For lead alone, start with a filter whose exact model and cartridge have a certified lead-reduction claim. RO is an option when additional contaminants justify it; it is not required for every lead concern.',
     choices: [pitcher, aqua, {
       option: 'Installed point-of-use filter: select an exact certified model',
@@ -85,8 +85,8 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2026: RO & Pitcher Comparison',
-    excerpt: 'Compare countertop RO and a lead-reduction pitcher with official model evidence, setup limits and replacement-cost assumptions.',
+    title: 'Best Countertop Water Filter 2026 (for Taste)',
+    excerpt: 'Best countertop water filter for taste in 2026: compare a pitcher and countertop RO with official evidence, setup limits and costs.',
     verdict: 'For simple setup, compare a compatible pitcher with the Elite cartridge. Consider AquaTru Classic when its additional documented reduction claims match your concern and you accept power, tanks and upkeep.',
     choices: [pitcher, aqua, {
       option: 'Waterdrop K19-S: existing-owner reference',
@@ -98,8 +98,8 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-water-filter-hard-water': {
-    title: 'Best Water Filter for Hard Water 2026: Softener vs RO',
-    excerpt: 'Compare whole-house softening, drinking-water RO and scale conditioning by purpose, installation and ongoing costs.',
+    title: 'Best Filter for Hard Water 2026: Softener vs RO',
+    excerpt: 'The best filter for hard water in 2026: compare whole-house softening, drinking-water RO and scale conditioning by purpose and cost.',
     verdict: 'For hardness throughout the home, compare a properly sized ion-exchange softener. For drinking water only, compare RO within its feed-water limits. Carbon and shower filters should not be sold as whole-home softeners.',
     choices: [{
       option: 'Whole-house ion-exchange softener',

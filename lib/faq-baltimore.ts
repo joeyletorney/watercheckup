@@ -25,4 +25,14 @@ export const baltimoreFAQs = [
     answer:
       "Baltimore's water, sourced from surface reservoirs rather than mineral-heavy groundwater, tends to be softer than groundwater-supplied cities. Since Baltimore relies heavily on surface water from rainfall and snowmelt, it can be more susceptible to seasonal changes in taste and clarity than groundwater-fed systems.",
   },
+  {
+    question: "Is Baltimore’s water quality report the same as a lab test of my tap?",
+    answer:
+      "No. DPW’s Consumer Confidence Report summarizes treated water and utility sampling. It cannot see lead, copper, or sediment from your service line or indoor plumbing. A certified first-draw tap sample is the address-level test. Use this page for the EPA snapshot, then test the kitchen faucet if the home is older or the pipe material is unknown.",
+  },
+  {
+    question: "How do I get lead testing in Baltimore, MD?",
+    answer:
+      "DPW’s 2025 Water Quality Report tells residents concerned about lead to contact the City and Ashburton Laboratory at (410) 396-0150 to arrange testing. Check the Baltimore Service Line Partnership inventory for pipe material. Certified mail-in labs can run a broader metals or PFAS panel. WaterCheckup does not sell tests.",
+  },
 ];

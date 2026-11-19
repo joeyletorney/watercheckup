@@ -25,12 +25,12 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     seo: {
       title: 'Is San Antonio Tap Water Safe? Free SAWS Report (2026)',
       description:
-        'PFAS at 15 ppt · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & UCMR5 data show — free guide, no signup.',
+        'PFAS in UCMR5 · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & EPA data show — free guide, no signup.',
       canonical: 'https://watercheckup.com/blog/san-antonio-water-quality',
       openGraph: {
         title: 'Is San Antonio Tap Water Safe? Free SAWS Report (2026)',
         description:
-          'PFAS at 15 ppt · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & UCMR5 data show — free guide, no signup.',
+          'PFAS in UCMR5 · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & EPA data show — free guide, no signup.',
       },
     },
     date: '2026-05-27',
@@ -73,7 +73,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
         ),
         React.createElement('li', null,
           React.createElement('strong', { style: strongStyle }, 'PFAS: '),
-          'PFBA detected at 15 ppt in EPA UCMR5 monitoring. Below the EPA\'s new 4 ppt MCL for PFOA/PFOS, but above EWG\'s 1 ppt health guideline. Only RO and NSF P473-certified filters remove PFAS.'
+          'UCMR5 snapshot for SAWS (TX0150018): PFBA 9.2 ppt, PFBS 3.8 ppt, PFPeA 3.2 ppt. Historical peaks, not current tap readings. None of the six EPA-regulated PFAS sit above April 2024 MCL benchmarks in this snapshot. See the PFAS guide for compound-by-compound context.'
         ),
         React.createElement('li', null,
           React.createElement('strong', { style: strongStyle }, 'Radium (combined): '),
@@ -124,7 +124,9 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'San Antonio Water Contamination: PFAS'),
       React.createElement('p', { style: pStyle },
-        'PFAS ("forever chemicals") have been detected in SAWS water in EPA\'s UCMR5 national monitoring program (2023–2025). The compound found was PFBA at 15 ppt. This is below the EPA\'s new Maximum Contaminant Level for the six regulated PFAS, but above the EWG health guideline of 1 ppt.'
+        'PFAS ("forever chemicals") show up in the UCMR5 snapshot for SAWS (PWSID TX0150018): PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those are historical peaks. None of the six EPA-regulated PFAS (PFOA, PFOS, PFNA, PFHxS, HFPO-DA) have peaks above April 2024 MCL benchmarks in this file. Full compound notes: ',
+        React.createElement('a', { href: '/blog/pfas-in-san-antonio-water', style: linkStyle }, 'PFAS in San Antonio water'),
+        '.'
       ),
       React.createElement('p', { style: pStyle },
         'PFAS are not removed by standard pitcher filters (Brita, PUR) or boiling. The only reliable options are ',
@@ -157,7 +159,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
         { q: 'Is San Antonio tap water safe to drink in 2026?', a: 'SAWS meets all EPA legal standards with no open violations. However, PFAS, radium, and arsenic are present above independent health guidelines. For healthy adults, SA tap water poses low acute risk. For children, pregnant women, or immunocompromised individuals, a certified RO filter is strongly recommended.' },
         { q: 'Why does San Antonio water taste different?', a: 'The Edwards Aquifer water has naturally high mineral content — calcium, magnesium, and sodium — which gives it a distinctive taste. The hardness (272 mg/L) is one of the highest of any major US city. An RO filter removes these minerals and significantly improves taste.' },
         { q: 'Why is San Antonio water so hard?', a: 'Rainwater percolates through Texas Hill Country limestone before reaching the Edwards Aquifer. As it travels through porous rock, it dissolves calcium and magnesium — the minerals that cause hardness. At 272 mg/L, SA water is classified as "very hard."' },
-        { q: 'Does San Antonio water have PFAS contamination?', a: 'Yes. EPA UCMR5 monitoring detected PFBA at 15 ppt in SAWS water. This is below the EPA\'s new 4 ppt MCL for PFOA/PFOS but above EWG\'s 1 ppt health guideline. Only reverse osmosis or NSF P473-certified filters reliably remove PFAS.' },
+        { q: 'Does San Antonio water have PFAS contamination?', a: 'Yes. The UCMR5 snapshot for SAWS (TX0150018) lists PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those peaks are not official compliance findings. None of the six EPA-regulated PFAS sit above April 2024 MCL benchmarks in this snapshot. NSF 58 RO or a PFAS-certified pitcher is the residential option if you want reduction at the tap.' },
         { q: 'What is the best water filter for San Antonio water?', a: 'For San Antonio\'s full contaminant profile (PFAS, radium, arsenic, hardness), a reverse osmosis system is the gold standard. For whole-home hard water, pair it with a salt-based softener. Renters can use the Clearly Filtered pitcher — certified to remove PFAS, radium, and arsenic without installation.' },
       ].map(({ q, a }) =>
         React.createElement(React.Fragment, { key: q },
@@ -174,12 +176,12 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     seo: {
       title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
       description:
-        'PFBA detected at 15 ppt in UCMR5 monitoring. How it compares to EPA limits and which NSF filters remove PFAS from SAWS water. Free guide.',
+        'Which PFAS compounds showed up in SAWS UCMR5 monitoring, how they compare with EPA limits, and which NSF filters are built to remove them.',
       canonical: 'https://watercheckup.com/blog/pfas-in-san-antonio-water',
       openGraph: {
         title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
         description:
-          'PFBA detected at 15 ppt in UCMR5 monitoring. How it compares to EPA limits and which NSF filters remove PFAS from SAWS water. Free guide.',
+          'Which PFAS compounds showed up in SAWS UCMR5 monitoring, how they compare with EPA limits, and which NSF filters are built to remove them.',
       },
     },
     dateModified: '2026-07-15',
@@ -192,21 +194,20 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     content: React.createElement(React.Fragment, null,
 
       React.createElement('p', { style: pStyle },
-        'The EPA\'s UCMR5 national monitoring program (2023–2025) tested over 6,000 water systems across the US for PFAS forever chemicals. San Antonio Water System (SAWS, PWSID TX2150001) was among those tested. Here\'s exactly what was found, what it means for your health, and what you can do about it.'
+        'The EPA\'s UCMR5 national monitoring program (2023–2025) tested public water systems for PFAS forever chemicals. This site\'s San Antonio report uses San Antonio Water System (SAWS, PWSID TX0150018). Here is what that UCMR5 snapshot lists, what it means, and what you can do about it.'
       ),
 
-      React.createElement('p', { style: pStyle },
-        'For PFAS levels alongside hardness, radium, and the full safety grade, see our ',
-        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio water quality report'),
-        '.'
+      React.createElement('div', { style: calloutStyle },
+        React.createElement('strong', { style: { color: '#22d3ee' } }, 'City report: '),
+        'For PFAS alongside hardness, radium, and the safety grade, start with the ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio tap water safety report'),
+        ' and return here for the compound-level UCMR5 notes.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What PFAS Were Found in San Antonio Water?'),
       React.createElement('div', { style: calloutStyle },
-        React.createElement('strong', { style: { color: '#f59e0b' } }, 'Compound detected: '),
-        'PFBA (perfluorobutanoic acid) at ',
-        React.createElement('strong', { style: strongStyle }, '15 ppt'),
-        '. This is a short-chain PFAS compound. It is below the EPA\'s new MCL for the six regulated PFAS (PFOA, PFOS, PFNA, PFHxS, HFPO-DA), but above EWG\'s health guideline of 1 ppt.'
+        React.createElement('strong', { style: { color: '#f59e0b' } }, 'UCMR5 snapshot for SAWS (TX0150018): '),
+        'PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. These are historical peaks, not current tap readings or official compliance findings. None of the six EPA-regulated PFAS (PFOA, PFOS, PFNA, PFHxS, HFPO-DA) have peaks above April 2024 MCL benchmarks in this file.'
       ),
       React.createElement('p', { style: pStyle },
         'PFBA is not currently regulated under the EPA\'s April 2024 PFAS rule, which covers six specific compounds. However, it is part of the broader PFAS family of over 12,000 synthetic chemicals. The science on PFBA\'s long-term health effects is less developed than for PFOA and PFOS, but it belongs to the same class of persistent chemicals.'
@@ -214,15 +215,17 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'How Do San Antonio\'s PFAS Levels Compare?'),
       React.createElement('p', { style: pStyle },
-        'PFBA at 15 ppt puts San Antonio in the middle range nationally — below cities with serious PFAS contamination (some public water systems show PFAS above 100 ppt) but well above the most conservative health guidelines:'
+        'Compare the SAWS snapshot with the federal MCLs and with independent health guidelines. Do not treat a historical peak as today\'s tap reading:'
       ),
       React.createElement('ul', { style: { ...pStyle, paddingLeft: 20 } },
-        React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'EPA MCL (PFOA/PFOS): '), '4 ppt — PFBA is not currently subject to this limit'),
-        React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'EWG health guideline: '), '1 ppt — SA\'s 15 ppt exceeds this by 15×'),
-        React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'National average detected PFAS: '), '~4–8 ppt in systems where PFAS was found'),
+        React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'EPA MCL (PFOA/PFOS): '), '4 ppt — PFBA and PFPeA are not currently subject to this limit; PFBS is used in the Hazard Index, not a standalone 4 ppt MCL'),
+        React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'This snapshot: '), '0 of 6 regulated PFAS above April 2024 MCL benchmarks for TX0150018'),
+        React.createElement('li', null, React.createElement('strong', { style: strongStyle }, 'EWG health guideline: '), '1 ppt — independent of EPA MCLs; PFBA 9.2 ppt is above that guideline'),
       ),
       React.createElement('p', { style: pStyle },
-        'For context: cities like Parkersburg, WV, Portsmouth, NH, and parts of Michigan have seen PFAS levels exceeding 100–500 ppt. San Antonio\'s level is moderate, but still above what independent scientists consider health-protective.'
+        'For hardness, radium, and the scored San Antonio profile next to this PFAS snapshot, see the ',
+        React.createElement('a', { href: '/water/san-antonio', style: linkStyle }, 'San Antonio tap water safety report'),
+        '.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What Are the Health Risks of PFAS in Drinking Water?'),
@@ -243,7 +246,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Does SAWS Treat for PFAS?'),
       React.createElement('p', { style: pStyle },
-        'SAWS has not implemented full-scale PFAS treatment as of 2026. The detected level (PFBA at 15 ppt) is below the compounds covered by the EPA\'s April 2024 rule, so SAWS is not currently required to treat for it. This may change as EPA expands PFAS regulation to include short-chain compounds.'
+        'SAWS is not currently required to treat for the unregulated short-chain compounds in this snapshot (PFBA, PFPeA). PFBS is part of the EPA Hazard Index calculation, not a standalone 4 ppt MCL. Check SAWS’s current annual report and notices for anything newer than this UCMR5 file.'
       ),
       React.createElement('p', { style: pStyle },
         'In the meantime, point-of-use filtration at your tap is the most reliable way to reduce PFAS in your drinking water regardless of what the public water system does upstream.'
@@ -272,9 +275,9 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, 'Key takeaways: '),
         React.createElement('br', null),
-        '• PFBA detected at 15 ppt in SAWS water (2024 EPA monitoring)',
+        '• UCMR5 for SAWS (TX0150018): PFBA 9.2 ppt, PFBS 3.8 ppt, PFPeA 3.2 ppt',
         React.createElement('br', null),
-        '• Below EPA MCL for regulated PFAS, but 15× above EWG health guideline',
+        '• 0 of 6 regulated PFAS above April 2024 MCL benchmarks in this snapshot',
         React.createElement('br', null),
         '• SAWS is not currently required to treat for PFBA',
         React.createElement('br', null),
@@ -287,8 +290,8 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Frequently Asked Questions'),
       ...[
-        { q: 'Does San Antonio tap water have PFAS?', a: 'Yes. EPA UCMR5 monitoring (2023–2025) detected PFBA at 15 ppt in SAWS water. PFBA is a short-chain PFAS compound. It is below the EPA\'s current MCL for the six regulated PFAS but above EWG\'s health guideline.' },
-        { q: 'Is the PFAS level in San Antonio water dangerous?', a: 'The detected level (15 ppt) is below the EPA\'s legally enforceable limits. However, independent health scientists consider any detectable PFAS a concern with long-term exposure, especially for children and pregnant women. The EPA\'s own health goal (MCLG) for PFOA and PFOS is zero.' },
+        { q: 'Does San Antonio tap water have PFAS?', a: 'Yes. The UCMR5 snapshot for SAWS (TX0150018) lists PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those are historical peaks for this supplier, not a test of your kitchen tap. See the San Antonio city report for the scored profile and filter context.' },
+        { q: 'Is the PFAS level in San Antonio water dangerous?', a: 'None of the six EPA-regulated PFAS have peaks above April 2024 MCL benchmarks in this SAWS snapshot. Independent guidelines such as EWG’s 1 ppt are tighter. The EPA health goal (MCLG) for PFOA and PFOS is zero. A historical peak is not an official compliance finding.' },
         { q: 'How do I remove PFAS from San Antonio tap water?', a: 'Use a reverse osmosis system (NSF 58 certified) or a pitcher filter certified to NSF P473. RO is the most comprehensive option — it also removes SA\'s radium, arsenic, and hardness minerals. Renters without the ability to install under-sink systems can use the Clearly Filtered pitcher (NSF P473 certified).' },
         { q: 'Does boiling San Antonio water remove PFAS?', a: 'No. Boiling concentrates PFAS because it evaporates water while leaving the chemicals behind. The remaining water has higher PFAS concentration after boiling, not lower.' },
         { q: 'Does SAWS test for PFAS?', a: 'Yes — SAWS was included in the EPA\'s mandatory UCMR5 PFAS testing program (2023–2025). Results are publicly available. SAWS also conducts its own monitoring. Check the SAWS website or watercheckup.com for current data.' },

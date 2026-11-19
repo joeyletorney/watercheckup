@@ -163,9 +163,9 @@ const LOCAL_SEARCH_INTENT: Record<string, {
           'Private wells are different from WSSC water: EPA municipal monitoring does not cover them. If your home uses a well near Gaithersburg or rural Montgomery County, test for bacteria, nitrate, arsenic, radon, hardness, iron, manganese, and PFAS. Annual bacteria/nitrate testing plus a broader panel every few years is a practical baseline.',
       },
       {
-        heading: 'Gaithersburg water treatment and reverse osmosis',
+        heading: 'If you choose a filter after you test',
         body:
-          'For WSSC tap water, reverse osmosis is the broadest kitchen treatment because it targets PFAS, lead at the tap, disinfection byproducts, and many dissolved contaminants together. A softener is only for hardness/scale; it does not remove PFAS or lead. Whole-house treatment makes more sense for wells with iron, sulfur, bacteria, or very hard water.',
+          'WaterCheckup is not a treatment company. Match any filter to a documented result: NSF 53 carbon for lead at the tap; NSF 58 reverse osmosis or a PFAS-certified pitcher for PFAS and disinfection byproducts; a softener only for hardness. Whole-house gear is for wells with iron, sulfur, or bacteria — not a substitute for kitchen treatment on WSSC water.',
       },
       {
         heading: 'How to get a water test in Gaithersburg, MD',
@@ -219,19 +219,19 @@ const LOCAL_SEARCH_INTENT: Record<string, {
       'Searches for "city water testing Baltimore MD" usually come from residents who want to know whether the risk is the public water supply or their building plumbing. In Baltimore, both matter: the city treats public water, but older service lines, rowhouse plumbing, and main disturbances can change what reaches your tap.',
     sections: [
       {
-        heading: 'Baltimore tap water testing for lead',
+        heading: 'Water quality report vs a lab tap test',
         body:
-          'Lead is the first contaminant to test at the faucet in older Baltimore homes and rentals. Use a first-draw sample after water sits overnight, and use an NSF 53 lead-certified filter or RO system while you wait for results if children, pregnancy, or old plumbing are involved.',
+          'Baltimore DPW’s Consumer Confidence Report (CCR) is a city-wide summary of treated water leaving the plants and of utility sampling in the distribution system. It is not a test of your kitchen faucet. A certified lab first-draw sample after water sits overnight is the address-level answer for lead, copper, and metals from building plumbing. Use this page for the EPA/UCMR5 snapshot first, then test the tap if the home is older, the service line is unknown, or children or a pregnancy are in the house.',
+      },
+      {
+        heading: 'How to get lead testing in Baltimore',
+        body:
+          'DPW’s 2025 Water Quality Report tells residents concerned about lead to contact the City and Ashburton Laboratory at (410) 396-0150 to arrange water testing. The same report points to the Baltimore Service Line Partnership (servicelinepartnership.baltimorecity.gov) for pipe-material inventory. Certified mail-in labs are another option when you want a broader metals or PFAS panel. This site does not sell tests or run a lab.',
       },
       {
         heading: 'Baltimore PFAS and city water quality',
         body:
           'UCMR5 and EPA monitoring help identify PFAS and regulated violation history for the public water system. Those datasets are useful, but they do not replace address-level tap testing when the concern is lead, copper, sediment, or building plumbing.',
-      },
-      {
-        heading: 'Water treatment options in Baltimore',
-        body:
-          'For lead at the tap, choose NSF 53 or NSF 58. For PFAS plus lead together, under-sink reverse osmosis gives broader coverage. Whole-home filters are usually secondary unless you have sediment, taste/odor, or repeated main-break concerns.',
       },
     ],
     links: [
@@ -661,6 +661,18 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                 Below: EPA violation history, UCMR5 PFAS monitoring, lead risk in older homes, and NSF-certified filters
                 for Montgomery County tap water.
               </p>
+              <div style={{ padding: '16px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, margin: '0 0 22px' }}>
+                <h2 style={{ fontSize: 16, fontWeight: 800, color: '#e2e8f0', margin: '0 0 8px', lineHeight: 1.35 }}>
+                  Well water vs city (WSSC) water in Gaithersburg
+                </h2>
+                <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
+                  Most in-town Gaithersburg addresses are on WSSC municipal water — the EPA/UCMR5 snapshot on this page.
+                  Private wells on the rural edge of Montgomery County are not in that city data and need their own lab
+                  tests (bacteria and nitrate yearly; a broader metals/PFAS panel every few years or after flooding).
+                  WaterCheckup publishes public-supplier reports and filter comparisons. It is not a water-treatment company
+                  and does not install, service, or sell whole-house systems.
+                </p>
+              </div>
             </>
           )}
 

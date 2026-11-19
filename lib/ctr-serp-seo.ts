@@ -1,7 +1,11 @@
 /**
  * Hand-tuned title + meta description for URLs with high impressions / low CTR (GSC).
- * City pages (`/water/{city}`) use the generated template in `lib/serp-copy.ts` instead.
- * When set, these replace default blog / rankings / utility SEO for SERP snippets.
+ * City pages default to `lib/serp-copy.ts`; an entry here wins when present.
+ * When set, these replace default blog / rankings / utility / city SEO for SERP snippets.
+ *
+ * Keep `/blog/best-water-filter-pitcher-2025`. There is no 2026 slug, and the
+ * 2025 URL already ranks near position 7. A 301 would throw that away to
+ * cosmetic-year the path. Title and description are 2026; the URL stays.
  */
 export type CtrSerpCopy = {
   title: string;
@@ -20,19 +24,44 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Which PFAS compounds showed up in SAWS monitoring, how levels compare with EPA limits, and which NSF filters are built to remove them.',
   },
   '/blog/best-water-filter-for-lead-removal': {
-    title: 'Best Water Filters for Lead Removal 2026 — Evidence & Costs',
+    title: 'Best Water Filter for Lead 2026: Top-Rated Picks',
     description:
-      'Compare lead-reduction pitchers, countertop RO and installed filters with official model evidence, installation limits and replacement-cost assumptions.',
+      'Top-rated water filters for lead-contaminated areas — pitchers, countertop RO, and NSF 53/58 options with official evidence and 2026 costs.',
   },
   '/blog/best-water-filter-hard-water': {
-    title: 'Best Water Filter for Hard Water 2026 — Softener vs RO',
+    title: 'Best Filter for Hard Water 2026: Softener vs RO',
     description:
-      'Compare whole-house softeners, drinking-water RO and scale conditioners: official guidance, installation constraints and ownership-cost assumptions.',
+      'The best filter for hard water in 2026: whole-house softeners vs drinking-water RO vs scale conditioners, with costs, limits, and official guidance.',
   },
   '/blog/best-countertop-water-filter': {
-    title: 'Best Countertop Water Filters 2026 — RO & Pitcher Comparison',
+    title: 'Best Countertop Water Filter 2026 (for Taste)',
     description:
-      'Compare countertop RO and a lead-reduction pitcher with official evidence, setup limits, replacement schedules and sourced cost assumptions.',
+      'Best countertop water filter for taste in 2026 — pitcher vs countertop RO, with NSF evidence, setup limits, and replacement-cost assumptions.',
+  },
+  '/blog/best-water-filter-pitcher-2025': {
+    title: 'Best Water Filter Pitcher 2026: What They Remove',
+    description:
+      'Best water filter pitcher of 2026, compared by certified lead and PFAS claims — cartridge life, replacement costs, and what they actually remove.',
+  },
+  '/water/gaithersburg': {
+    title: 'Is Gaithersburg Water Safe? 2026 Quality Report',
+    description:
+      'WSSC Water quality for Gaithersburg, MD: PFAS in UCMR5, DBPs, older-home lead. Well vs city water explained. NSF filter picks — not a treatment company.',
+  },
+  '/water/san-antonio': {
+    title: 'Is San Antonio Tap Water Safe? 2026 PFAS Report',
+    description:
+      'SAWS tap water: PFAS in UCMR5, hard Edwards Aquifer water, and DBP context. Is San Antonio water safe? See the PFAS guide and NSF filter picks.',
+  },
+  '/water/baltimore': {
+    title: 'Is Baltimore Tap Water Safe? 2026 Quality Report',
+    description:
+      'Baltimore City DPW: lead pipe risk and PFAS snapshot. A CCR is not a tap test — Ashburton Lab can arrange lead testing. NSF filter picks.',
+  },
+  '/worst-lead': {
+    title: 'Worst US Cities for Lead in Tap Water (2026)',
+    description:
+      'The worst US cities for lead in tap water in 2026 — ranked by lead-pipe risk and WaterCheckup score, not measured ppb at every tap. See your city.',
   },
   '/rankings': {
     title: 'Worst Tap Water in America: 2026 City Rankings',
@@ -57,7 +86,7 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/pfoa-at-epa-limit': {
     title: 'Cities Where PFOA Hit the EPA 4 ppt Limit (2026)',
     description:
-      'Historical UCMR5 peaks compared with compound-specific benchmarks. Supplier identity and sampling context matter; peaks are not official compliance findings.',
+      'Historical UCMR5 peaks compared with compound benchmarks. Supplier identity and sampling context matter; peaks are not official compliance findings.',
   },
   '/utilities/nc/greensboro-townsend': {
     title: 'Is Greensboro Townsend Water Safe? 2026 EPA Report',

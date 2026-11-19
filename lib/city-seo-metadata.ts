@@ -4,6 +4,7 @@ import {
   type CityPfasSnapshot,
   type ScoreWaterProfile,
 } from './city-water-score';
+import { getCtrSerpOverride } from './ctr-serp-seo';
 import {
   buildCitySeoDescription,
   buildCitySeoTitle,
@@ -59,8 +60,9 @@ export function buildCityPageMetadata(
     grade: ws.grade,
   });
 
-  const title = generatedTitle;
-  const description = generatedDescription;
+  const ctr = getCtrSerpOverride(`/water/${slug}`);
+  const title = ctr?.title ?? generatedTitle;
+  const description = ctr?.description ?? generatedDescription;
   const ogQuery = `city=${encodeURIComponent(city.name + ', ' + city.state)}&score=${ws.score}&grade=${encodeURIComponent(ws.grade)}&violations=${pfas?.violations ?? 0}`;
 
   return {
