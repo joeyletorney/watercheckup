@@ -9,7 +9,7 @@ const TAP_SCORE_WELL_URL = 'https://mytapscore.com/collections/well-water-tests?
 const WATERDROP_TAG = 'anbyjkqb';
 
 const TOP_3_WHOLE_HOUSE = [
-  { product: 'Aquasana Rhino EQ-1000', brand: 'Aquasana', price: '~$999', reason: 'WQA Gold Seal + NSF 42/61. Removes chlorine, chloramine, PFAS, THMs, VOCs at every tap and shower in the home. 10-year / 1M gallon filter life.', link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Aquasana Whole House WH-1000-B', brand: 'Aquasana', price: "Check current price", reason: "Whole-house chlorine-focused system. Confirm WH-1000-B package contents, installation and the current performance sheet. Do not assume PFAS or chloramine reduction.", link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'NSF 42/61 whole-house sediment + carbon. Pressure gauges included. Strong DIY option for chloramine and chlorine at every tap.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
   { product: 'Springwell CF4 Whole-House Filter', brand: 'Springwell', price: '~$895', reason: '4-stage filtration. Removes chlorine, chloramine, PFAS, VOCs, sediment, and heavy metals at every faucet. Air injection oxidation for iron and sulfur removal.', link: 'https://www.springwellwater.com/product/water-filters/whole-house-water-filters/', amazon: `https://www.amazon.com/s?k=Springwell+CF4+whole+house+water+filter&tag=${AMAZON_TAG}`, badge: 'BEST FOR WELL WATER' },
 ];
@@ -55,7 +55,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     topPicks: TOP_3_WHOLE_HOUSE,
     faq: [
       { q: 'What does a whole-house water filter actually remove?', a: 'A quality whole-house carbon filter removes chlorine, chloramine, THMs, VOCs, PFAS (in some systems), sediment, and heavy metals at every tap and shower. It does NOT soften hard water or remove nitrates — those require different systems. Check the specific NSF certifications of any system you consider.' },
-      { q: 'Do whole-house water filters remove PFAS?', a: 'Some do. The Aquasana Rhino EQ-1000 is certified to reduce PFAS at the whole-house level. Most basic carbon filters are not. Look for NSF/ANSI 58 or specific PFAS reduction claims on the product listing.' },
+      { q: 'Do whole-house water filters remove PFAS?', a: "Some specifically tested systems can reduce PFAS, but the WH-1000 chlorine-reduction sheet does not establish PFAS reduction. Choose treatment from exact-model, compound-specific performance evidence at the required household flow; a chlorine claim is not a PFAS claim." },
       { q: 'How long do whole-house water filters last?', a: 'Entry-level systems need filter replacement every 3–6 months. Premium systems like the Aquasana Rhino advertise 10 years / 1 million gallons. Actual life depends on water quality and household usage. Higher sediment levels shorten filter life.' },
       { q: 'Is a whole-house filter worth it?', a: 'For homeowners in cities with chloramine treatment, PFAS contamination, or elevated THMs, a whole-house system protects your skin and lungs from chlorine in showers — not just your drinking water. For PFAS specifically, a drinking water RO under the sink is often the better targeted investment.' },
       { q: 'What is the difference between a water filter and a water softener?', a: 'A water filter removes contaminants. A water softener removes hardness (calcium and magnesium) through ion exchange. They serve different purposes. If you have both hard water and contamination concerns, you may need both — a softener for scale protection and a whole-house filter (or under-sink RO) for contaminant removal.' },
@@ -85,12 +85,12 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         '— the system\'s components don\'t leach contaminants into water. Required for drinking water contact.',
         React.createElement('br', null),
         React.createElement('strong', { style: strongStyle }, 'WQA Gold Seal '),
-        '— independent validation by the Water Quality Association. The Aquasana Rhino EQ-1000 carries this.',
+        "— independent validation by the Water Quality Association. Verify the exact model and certified claim; a seal alone does not establish PFAS reduction.",
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Aquasana Rhino EQ-1000 — Our Top Pick'),
+      React.createElement('h2', { style: h2Style }, 'Aquasana Whole House WH-1000-B — Chlorine-Focused Option'),
       React.createElement('p', { style: pStyle },
-        'The Rhino wins on lifespan and PFAS coverage. Rated for 10 years / 1 million gallons — most competing systems need annual filter replacement at $200–300/year. WQA Gold Seal and NSF 42/61 certified. The EQ-1000 reduces PFAS, chloramine, THMs, VOCs, and sediment at every tap. For homeowners in PFAS-affected cities, this is the most comprehensive single-system option.'
+        "The linked WH-1000-B package is a whole-house chlorine-focused option. The manufacturer advertises up to 10 years or 1 million gallons for the main tank; pre/post filters still need scheduled changes. Its chlorine-reduction evidence does not establish PFAS or chloramine reduction. Confirm the exact package, flow, fittings and performance sheet before buying."
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('a', { href: '/worst-pfas', style: linkStyle }, 'Check if your city has PFAS violations →')
@@ -235,7 +235,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badgeColor: '#7c3aed',
     topPicks: [
       { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$439', reason: 'Tankless 600 GPD flow with smart LED TDS faucet. NSF 42/53/58 certified. Best if you want instant-flow water and real-time quality monitoring.', link: WATERDROP, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON_TAG}`, badge: 'FASTEST FLOW' },
-      { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401 — the broadest certification stack at this price. Best if NSF 401 emerging-contaminant coverage matters most.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+      { product: "Frizzlife SK99-NEW", brand: "Frizzlife", price: "Check current price", reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.", link: "https://www.frizzlife.com/products/sk99-new", amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20", badge: "DIRECT-CONNECT CARBON" },
     ],
     faq: [
       { q: 'Is the Waterdrop G3P600 or Aquasana SmartFlow a better buy?', a: 'They are similarly priced (~$439 vs ~$449). The G3P600 wins on flow rate (600 GPD vs ~50 GPD) and has a smart TDS display. The SmartFlow wins on certification breadth (adds NSF 401 and WQA Gold Seal). Both remove PFAS, lead, and core contaminants via NSF 58 RO.' },
@@ -315,7 +315,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badge: 'Comparison',
     badgeColor: '#0891b2',
     topPicks: [
-      { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'Best value countertop RO. NSF 42/53/58 certified. 170 oz tank. Removes 99%+ PFAS, lead, arsenic. Plug-in, zero installation. Best for most renters and apartment dwellers.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: '', badge: 'BEST VALUE' },
+      { product: "AquaTru Classic Countertop RO", brand: "AquaTru", price: "Check current price", reason: "Countertop reverse osmosis without plumbing changes. Requires an outlet, manual tank refills and cleaning. Check the exact Classic model’s performance data and replacement costs.", link: "https://aquatru.com/products/countertop-reverse-osmosis-water-purifier", amazon: "https://www.amazon.com/dp/B0CQS3HQ8F?tag=watercheckup-20", badge: "COUNTERTOP RO" },
       { product: 'AquaTru Classic Countertop RO', brand: 'AquaTru', price: '~$475', reason: 'Best certification coverage: NSF 42/53/58/401. Adds NSF 401 for emerging contaminants beyond standard RO scope. Quick-change filters. Worth it if you want the widest certified coverage.', link: 'https://aquatru.com/products/countertop-reverse-osmosis-water-purifier', amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
     ],
     faq: [
@@ -387,8 +387,8 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     badgeColor: '#059669',
     topPicks: [
 
-      { product: 'Waterdrop K19-S Countertop RO', brand: 'Waterdrop', price: '~$249', reason: 'Best for Gaithersburg renters. Same NSF 58 RO protection — no installation needed. Removes PFAS, lead, and DBPs. Plug-in, no landlord permission required.', link: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_TAG}`, amazon: '', badge: 'BEST FOR RENTERS' },
-      { product: 'Aquasana SmartFlow RO', brand: 'Aquasana', price: '~$449', reason: 'WQA Gold Seal + NSF 42/53/58/401. Best mid-range option for Gaithersburg homeowners who want maximum certification coverage including NSF 401 for emerging contaminants.', link: 'https://www.aquasana.com/under-sink-water-filters', amazon: `https://www.amazon.com/dp/B0CHZ8VQBB?tag=${AMAZON_TAG}`, badge: 'MOST CERTIFIED' },
+      { product: "AquaTru Classic Countertop RO", brand: "AquaTru", price: "Check current price", reason: "Countertop reverse osmosis without plumbing changes. Requires an outlet, manual tank refills and cleaning. Check the exact Classic model’s performance data and replacement costs.", link: "https://aquatru.com/products/countertop-reverse-osmosis-water-purifier", amazon: "https://www.amazon.com/dp/B0CQS3HQ8F?tag=watercheckup-20", badge: "COUNTERTOP RO" },
+      { product: "Frizzlife SK99-NEW", brand: "Frizzlife", price: "Check current price", reason: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.", link: "https://www.frizzlife.com/products/sk99-new", amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20", badge: "DIRECT-CONNECT CARBON" },
     ],
     faq: [
       { q: 'Is Gaithersburg tap water safe to drink?', a: 'WSSC water meets all federal EPA standards and has no active violations. However, EPA UCMR5 monitoring detected PFAS at 6.7 ppt in the WSSC system — above EWG health guidelines. Homes built before 1986 also face lead risk from premise plumbing. For the cleanest possible drinking water, a reverse osmosis filter certified to NSF 58 removes PFAS and lead at the tap.' },

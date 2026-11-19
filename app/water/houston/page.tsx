@@ -32,11 +32,11 @@ const FILTER_PICKS = [
     best: true,
   },
   {
-    name: 'Aquasana SmartFlow RO',
-    badge: 'MOST CERTIFIED',
-    price: '~$449',
-    why: 'NSF 42/53/58/401 certified — removes PFAS, arsenic, radium, and TTHMs. Most certifications of any under-sink RO system.',
-    dp: 'B0CHZ8VQBB',
+    name: "Frizzlife SK99-NEW",
+    badge: "DIRECT-CONNECT CARBON",
+    price: "Check current price",
+    why: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
+    dp: "B08NDYVZV5",
     best: false,
   },
   {
