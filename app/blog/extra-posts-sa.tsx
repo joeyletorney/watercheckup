@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const AMAZON_TAG = 'watercheckup-20';
 
@@ -33,9 +34,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
           'PFAS in UCMR5 · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & EPA data show — free guide, no signup.',
       },
     },
-    date: '2026-05-27',
-    dateModified: '2026-06-04',
-    dateDisplay: 'May 27, 2026',
+    ...blogPostDateFields('san-antonio-water-quality', '2026-05-27'),
     readTime: '9 min read',
     badge: 'San Antonio',
     badgeColor: '#0891b2',
@@ -45,7 +44,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'San Antonio Water System (SAWS) serves 1.5 million residents from the ',
         React.createElement('strong', { style: strongStyle }, 'Edwards Aquifer'),
-        ' — a limestone aquifer under the Texas Hill Country. The source water is generally safe by EPA standards, but it comes with a specific set of concerns: extreme hardness, naturally occurring radium, detected PFAS, and elevated sodium. Here\'s what the 2024 data shows and what to do about it.'
+        ' — a limestone aquifer under the Texas Hill Country. The source water is generally safe by EPA standards, but it comes with a specific set of concerns: extreme hardness, naturally occurring radium, detected PFAS, and elevated sodium. Here\'s what the 2024 SAWS / UCMR5 snapshot shows and what to do about it in 2026. SAWS still has until 2029 to meet the April 2024 PFAS MCLs; hardness is unchanged by that rule. Current drinking-water RO: Waterdrop G3P600 about $399.'
       ),
 
       React.createElement('p', { style: pStyle },
@@ -160,7 +159,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
         { q: 'Why does San Antonio water taste different?', a: 'The Edwards Aquifer water has naturally high mineral content — calcium, magnesium, and sodium — which gives it a distinctive taste. The hardness (272 mg/L) is one of the highest of any major US city. An RO filter removes these minerals and significantly improves taste.' },
         { q: 'Why is San Antonio water so hard?', a: 'Rainwater percolates through Texas Hill Country limestone before reaching the Edwards Aquifer. As it travels through porous rock, it dissolves calcium and magnesium — the minerals that cause hardness. At 272 mg/L, SA water is classified as "very hard."' },
         { q: 'Does San Antonio water have PFAS contamination?', a: 'Yes. The UCMR5 snapshot for SAWS (TX0150018) lists PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those peaks are not official compliance findings. None of the six EPA-regulated PFAS sit above April 2024 MCL benchmarks in this snapshot. NSF 58 RO or a PFAS-certified pitcher is the residential option if you want reduction at the tap.' },
-        { q: 'What is the best water filter for San Antonio water?', a: 'For San Antonio\'s full contaminant profile (PFAS, radium, arsenic, hardness), a reverse osmosis system is the gold standard. For whole-home hard water, pair it with a salt-based softener. Renters can use the Clearly Filtered pitcher — certified to remove PFAS, radium, and arsenic without installation.' },
+        { q: 'What is the best water filter for San Antonio water?', a: 'For San Antonio\'s full contaminant profile (PFAS, radium, arsenic, hardness), a reverse osmosis system is the gold standard. For whole-home hard water, pair it with a salt-based softener. Renters can use the Clearly Filtered pitcher (~$90; NSF 42/372, with published lab tests for PFAS/radium/arsenic) — no installation.' },
       ].map(({ q, a }) =>
         React.createElement(React.Fragment, { key: q },
           React.createElement('h3', { style: h3Style }, q),
@@ -184,9 +183,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
           'Which PFAS compounds showed up in SAWS UCMR5 monitoring, how they compare with EPA limits, and which NSF filters are built to remove them.',
       },
     },
-    dateModified: '2026-07-15',
-    date: '2026-05-27',
-    dateDisplay: 'May 27, 2026',
+    ...blogPostDateFields('pfas-in-san-antonio-water', '2026-05-27'),
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#ef4444',
@@ -194,7 +191,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     content: React.createElement(React.Fragment, null,
 
       React.createElement('p', { style: pStyle },
-        'The EPA\'s UCMR5 national monitoring program (2023–2025) tested public water systems for PFAS forever chemicals. This site\'s San Antonio report uses San Antonio Water System (SAWS, PWSID TX0150018). Here is what that UCMR5 snapshot lists, what it means, and what you can do about it.'
+        'The EPA\'s UCMR5 national monitoring program (2023–2025) tested public water systems for PFAS forever chemicals. This site\'s San Antonio report uses San Antonio Water System (SAWS, PWSID TX0150018). Here is what that UCMR5 snapshot lists, what it means, and what you can do about it. The April 2024 PFAS drinking-water limits (PFOA/PFOS 4 ppt) have a 2029 compliance deadline, so a historical peak is not the same as a treated-water violation in 2026.'
       ),
 
       React.createElement('div', { style: calloutStyle },

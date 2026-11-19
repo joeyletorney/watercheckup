@@ -1,4 +1,5 @@
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 import { GUIDE_SOURCES } from './commercial-guide-sources';
 import { PitcherGuideArticle } from './pitcher-guide-content';
 import { clearlyFilteredAmazonUrl } from '@/lib/waterdrop-buy';
@@ -35,7 +36,7 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
   'best-water-filter-pitcher-2025': {
     title: 'Best Water Filter Pitcher 2026: What They Remove',
     excerpt: 'Compare Brita Elite, Clearly Filtered, ZeroWater and PUR PLUS by documented lead and PFAS claims, cartridge life and replacement costs.',
-    checkedDate: 'November 13, 2026',
+    checkedDate: 'November 3, 2026',
     verdict: 'For a lead concern, start with an exact pitcher-and-cartridge combination with a certified lead-reduction claim. For PFAS, check the named compounds separately. The options below serve different needs; their order is not a test ranking.',
     choices: [{
       ...pitcher,
@@ -126,15 +127,15 @@ export function CommercialGuideArticle({ slug }: { slug: string }) {
   return <>
     <h2>Match the treatment to your water</h2>
     <p>{hard
-      ? 'Measure hardness with a hardness-specific test or laboratory result reported as calcium carbonate. A TDS meter measures total dissolved solids and does not isolate calcium and magnesium. RO at one tap does not soften showers, laundry or the water heater.'
-      : 'Review your utility report and use a household tap test when plumbing-related lead is the concern. A city-wide report cannot establish the lead level at your faucet. Compare the exact system, cartridge and reduction claim before ordering.'}</p>
+      ? 'Measure hardness with a hardness-specific test or laboratory result reported as calcium carbonate. A TDS meter measures total dissolved solids and does not isolate calcium and magnesium. RO at one tap does not soften showers, laundry or the water heater. The EPA Lead and Copper Rule Improvements (lead service line replacement within 10 years) do not treat hardness.'
+      : 'Review your utility report and use a household tap test when plumbing-related lead is the concern. A city-wide report cannot establish the lead level at your faucet. Compare the exact system, cartridge and reduction claim before ordering. Public systems have until 2029 to meet the 2024 PFAS MCLs, and lead service line replacement under the Lead and Copper Rule Improvements is a 10-year program — neither replaces a tap filter in 2026.'}</p>
     <p><a href={GUIDE_SOURCES.cdc}>CDC: choosing home water filters</a> explains why the filter must match the substance of concern. A certification standard is not a promise to remove everything; review the listed claims and operating conditions.</p>
     <h2>Installation and daily use</h2>
     <p>{hard
       ? 'A softener serves a different purpose from a drinking-water filter. Ask the installer about sizing, bypass plumbing, regeneration discharge and service access. A conditioner should be evaluated for scale reduction rather than advertised as a mineral-removing softener.'
       : 'A pitcher needs no outlet or plumbing, but you must refill and clean it. A batch-fill countertop RO system still needs an accessible outlet, space to lift out tanks, and somewhere to discard concentrate. Under-sink systems require fitting and pressure checks; RO typically adds a drain connection. Check the manual and rental agreement before modifying plumbing.'}</p>
     <h2>Budget for replacement filters</h2>
-    <p>The comparison uses an illustrative one gallon of finished drinking water per day, not a measured household average. More use or difficult feed water can mean earlier replacement. Budget recurring costs separately from first-year purchases and check what the starter bundle includes. Prices checked November 11, 2026 can change.</p>
+    <p>The comparison uses an illustrative one gallon of finished drinking water per day, not a measured household average. More use or difficult feed water can mean earlier replacement. Budget recurring costs separately from first-year purchases and check what the starter bundle includes. Prices checked against the November 2026 product catalog (Waterdrop G3P600 ~$399, AquaTru Classic ~$380, Clearly Filtered pitcher ~$90) can change.</p>
     <p><a href={GUIDE_SOURCES.aquaLife}>AquaTru’s Classic replacement schedule</a>: pre/carbon at six months or 600 gallons; VOC at one year or 600 gallons; RO at two years or 1,200 gallons, whichever comes first. Use the schedule for the exact model, not the Carafe or another product family.</p>
     <h2>{lead ? 'Lead reduction is not pipe replacement' : 'What this comparison establishes'}</h2>
     <p>{lead
@@ -147,11 +148,11 @@ export function CommercialGuideArticle({ slug }: { slug: string }) {
 
 export function commercialPost(slug: string, date: string, badge: string, badgeColor: string): Post {
   const guide = COMMERCIAL_GUIDES[slug];
-  const updatedToday = slug === 'best-countertop-water-filter' || slug === 'best-water-filter-pitcher-2025';
+  const dates = blogPostDateFields(slug, date);
   return {
     title: guide.title, excerpt: guide.excerpt,
     seo: { title: guide.title, description: guide.excerpt, canonical: `https://watercheckup.com/blog/${slug}` },
-    date, dateModified: updatedToday ? '2026-11-13' : '2026-11-12', dateDisplay: updatedToday ? 'November 13, 2026' : 'November 12, 2026', readTime: '6 min read', badge, badgeColor,
+    ...dates, readTime: '6 min read', badge, badgeColor,
     topPicks: [],
     faq: slug === 'best-water-filter-pitcher-2025' ? [
       { q: 'Can Brita Elite reduce lead?', a: 'Yes. The OB06 performance sheet lists lead reduction in specified compatible pitcher and dispenser systems. The Original cartridge is different; check the exact combination.' },

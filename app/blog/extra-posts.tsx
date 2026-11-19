@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -33,8 +34,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     title: 'How to Read Your Consumer Confidence Report (CCR)',
     excerpt:
       'Every public water system sends an annual water quality report. Here is how to find yours, what the tables mean, and which lines actually matter for your health.',
-    date: '2026-03-31',
-    dateDisplay: 'March 31, 2026',
+    ...blogPostDateFields('how-to-read-your-consumer-confidence-report', '2026-03-31'),
     readTime: '9 min read',
     badge: 'Guides',
     badgeColor: '#22c55e',
@@ -45,7 +45,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
           The <strong style={strongStyle}>Consumer Confidence Report (CCR)</strong> is the annual water quality report your public water system must provide (by July 1 for the previous calendar year). If you get a water bill, you should get a CCR — often by mail, email, or a link on the public water system website.
         </p>
         <p style={pStyle}>
-          Think of it as the public water system&apos;s report card: what was detected, at what levels, and how that compares to EPA limits. It is not a substitute for testing <em>your</em> plumbing, but it is the best free overview of your supplier&apos;s water.
+          Think of it as the public water system&apos;s report card: what was detected, at what levels, and how that compares to EPA limits. It is not a substitute for testing <em>your</em> plumbing, but it is the best free overview of your supplier&apos;s water. A separate EPA revision of the Consumer Confidence Report rule takes effect January 1, 2027, so later reports should be easier to read than many of the PDFs systems still post in 2026.
         </p>
 
         <h2 style={h2Style}>Where to get your CCR</h2>
@@ -74,7 +74,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
 
         <h2 style={h2Style}>Lead and copper: read carefully</h2>
         <p style={pStyle}>
-          Lead results in a CCR often reflect <strong style={strongStyle}>system-wide sampling programs</strong>, not necessarily the water at your kitchen tap. If you have lead service lines or older plumbing, consider a certified lead test and a filter certified for lead (NSF/ANSI 53).
+          Lead results in a CCR often reflect <strong style={strongStyle}>system-wide sampling programs</strong>, not necessarily the water at your kitchen tap. If you have lead service lines or older plumbing, consider a certified lead test and a filter certified for lead (NSF/ANSI 53). The EPA Lead and Copper Rule Improvements require systems to replace lead service lines within 10 years — that is distribution-system work, not a tap-level result in this year&apos;s CCR.
         </p>
 
         <h2 style={h2Style}>Disinfection byproducts (TTHM, HAA5)</h2>
@@ -94,8 +94,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     title: 'Chloramine vs. Chlorine in Tap Water: What It Means for Filters',
     excerpt:
       'Many cities switched to chloramine for longer-lasting disinfection. That changes taste, byproduct chemistry, and which filters work best — here is the practical breakdown.',
-    date: '2026-04-01',
-    dateDisplay: 'April 1, 2026',
+    ...blogPostDateFields('chloramine-vs-chlorine-in-tap-water', '2026-04-01'),
     readTime: '8 min read',
     badge: 'Treatment',
     badgeColor: '#0ea5e9',
@@ -103,7 +102,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          Most U.S. drinking water is disinfected with <strong style={strongStyle}>chlorine</strong> or <strong style={strongStyle}>chloramine</strong> (chlorine + ammonia). Both keep water safe from bacteria as it travels through pipes — but they behave differently in your home.
+          Most U.S. drinking water is disinfected with <strong style={strongStyle}>chlorine</strong> or <strong style={strongStyle}>chloramine</strong> (chlorine + ammonia). Both keep water safe from bacteria as it travels through pipes — but they behave differently in your home. Your 2026 CCR still names the residual disinfectant; that line is what decides whether a shower cartridge should be KDF/carbon (free chlorine) or vitamin C (chloramine).
         </p>
 
         <h2 style={h2Style}>Chlorine (free chlorine)</h2>
@@ -156,8 +155,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     title: 'Private Well Water Testing 101: What to Order and How Often',
     excerpt:
       'Wells are not covered by EPA drinking water rules the same way city water is. Here is a sensible testing schedule, which labs to use, and what results mean for treatment.',
-    date: '2026-04-02',
-    dateDisplay: 'April 2, 2026',
+    ...blogPostDateFields('private-well-water-testing-101', '2026-04-02'),
     readTime: '10 min read',
     badge: 'Wells',
     badgeColor: '#a855f7',
@@ -165,7 +163,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          If you drink from a <strong style={strongStyle}>private well</strong>, you are your own public water system. There is no annual CCR in the mailbox — safety depends on regular testing and maintaining pumps, casings, and any treatment equipment.
+          If you drink from a <strong style={strongStyle}>private well</strong>, you are your own public water system. There is no annual CCR in the mailbox — safety depends on regular testing and maintaining pumps, casings, and any treatment equipment. The EPA&apos;s 2024 PFAS drinking-water limits (compliance due 2029) apply to public water systems, not private wells, so well owners still need a certified lab panel rather than a city report.
         </p>
 
         <div style={warnStyle}>
@@ -212,8 +210,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     title: 'Disinfection Byproducts (TTHM & HAA5): What They Are and How to Reduce Them',
     excerpt:
       'Disinfecting water creates byproducts like TTHM and HAA5. Here is what the acronyms mean, how EPA regulates them, and practical ways to lower exposure at home.',
-    date: '2026-04-03',
-    dateDisplay: 'April 3, 2026',
+    ...blogPostDateFields('disinfection-byproducts-tthm-haa5-explained', '2026-04-03'),
     readTime: '7 min read',
     badge: 'Health',
     badgeColor: '#f59e0b',
@@ -221,7 +218,7 @@ export const EXTRA_POSTS: Record<string, Post> = {
     content: (
       <>
         <p style={pStyle}>
-          Chlorine and chloramine keep distribution systems safe, but they also react with natural organic matter to form <strong style={strongStyle}>disinfection byproducts (DBPs)</strong>. Two common groups regulated in drinking water are <strong style={strongStyle}>trihalomethanes (TTHM)</strong> and <strong style={strongStyle}>haloacetic acids (HAA5)</strong>.
+          Chlorine and chloramine keep distribution systems safe, but they also react with natural organic matter to form <strong style={strongStyle}>disinfection byproducts (DBPs)</strong>. Two common groups regulated in drinking water are <strong style={strongStyle}>trihalomethanes (TTHM)</strong> and <strong style={strongStyle}>haloacetic acids (HAA5)</strong>. Those MCLs are unchanged in 2026; the newer EPA work on PFAS (2024 limits, 2029 compliance) and lead service-line replacement does not replace TTHM/HAA5 monitoring on your CCR.
         </p>
 
         <h2 style={h2Style}>What TTHM and HAA5 are (in plain English)</h2>

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -102,8 +103,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'Pregnant women are more vulnerable to water contaminants including lead and PFAS. A 30-year water expert explains what to avoid and how to protect yourself and your baby.',
       canonical: 'https://watercheckup.com/blog/tap-water-safety-during-pregnancy',
     },
-    date: '2026-04-18',
-    dateDisplay: 'April 18, 2026',
+    ...blogPostDateFields('tap-water-safety-during-pregnancy', '2026-04-18'),
     readTime: '8 min read',
     badge: 'PREGNANCY',
     badgeColor: '#8b5cf6',
@@ -158,10 +158,10 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'The best filter for pregnant women'),
       React.createElement('p', { style: pStyle },
-        'A reverse osmosis system is the most comprehensive option -- it removes lead, PFAS, nitrates, and DBPs in a single pass. Look for NSF 58 certification for PFAS removal and NSF 53 for lead. Under-sink RO systems from Waterdrop and APEC run $200-400 and require no professional installation.'
+        'A reverse osmosis system is the most comprehensive option -- it removes lead, PFAS, nitrates, and DBPs in a single pass. Look for NSF 58 certification for PFAS removal and NSF 53 for lead. The Waterdrop G3P600 under-sink RO is about $399. Public systems are still working toward the 2024 PFAS MCLs (2029 compliance), and the Lead and Copper Rule Improvements require lead service line replacement within 10 years -- neither replaces a tap filter during pregnancy.'
       ),
       React.createElement('p', { style: pStyle },
-        'For renters or those who cannot install under-sink systems, the Waterdrop K19-S Countertop RO requires zero plumbing and sits on your counter. A Clearly Filtered pitcher (NSF 53 certified for lead) is another solid option if RO is not feasible.'
+        'For renters or those who cannot install under-sink systems, the AquaTru Classic countertop RO (~$380) requires no plumbing. Waterdrop K19-S is discontinued. A Clearly Filtered pitcher (~$90; NSF 42/372, lead figures from published lab tests) is another solid option if RO is not feasible. ZeroWater 10-cup is about $23 with NSF 42/53 lead listing.'
       ),
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, 'Bottom line: '),
@@ -172,8 +172,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
   'best-ro-system-for-pfas-removal': {
     title: 'Best Reverse Osmosis Systems for PFAS Removal in 2026',
     excerpt: 'Not all RO systems are certified to remove PFAS. Here are the ones that actually work, tested against NSF 58 standards, at every budget.',
-    date: '2026-04-20',
-    dateDisplay: 'April 20, 2026',
+    ...blogPostDateFields('best-ro-system-for-pfas-removal', '2026-04-20'),
     readTime: '7 min read',
     badge: 'BUYING GUIDE',
     badgeColor: '#0891b2',
@@ -209,19 +208,19 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, 'APEC ROES-50 -- Best budget pick'),
       React.createElement('p', { style: pStyle },
-        'APEC has been making RO systems since 1989 and the ROES-50 is their flagship under-sink unit. It uses a tank rather than tankless design -- bulkier but extremely reliable. NSF 58 certified, handles PFAS well, runs around $195-220. If you want a proven workhorse at lower cost, this is it.'
+        'APEC has been making RO systems since 1989 and the ROES-50 is their flagship under-sink unit. It uses a tank rather than tankless design -- bulkier but extremely reliable. NSF 58 certified, handles PFAS well, currently around $145. If you want a proven workhorse at lower cost, this is it. The 2024 PFAS MCLs (compliance due 2029) are why NSF 58 still belongs on the spec sheet.'
       ),
 
       React.createElement('h3', { style: h3Style }, 'iSpring RCC7AK -- Best for remineralization'),
       React.createElement('p', { style: pStyle },
-        'RO strips everything including beneficial minerals, which can make water taste flat. The iSpring RCC7AK adds an alkaline remineralization stage that puts calcium and magnesium back in. NSF 58 certified, PFAS removal verified, runs around $220-250. Good choice if you find straight RO water tastes off.'
+        'RO strips everything including beneficial minerals, which can make water taste flat. The iSpring RCC7AK adds an alkaline remineralization stage that puts calcium and magnesium back in. NSF/ANSI 58 certified, currently around $190. Good choice if you find straight RO water tastes off.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'Best countertop RO for renters'),
 
-      React.createElement('h3', { style: h3Style }, 'Waterdrop K19-S Countertop RO -- No installation required'),
+      React.createElement('h3', { style: h3Style }, 'AquaTru Classic Countertop RO -- No installation required'),
       React.createElement('p', { style: pStyle },
-        'No installation needed — just plug in. NSF 58 certified, removes PFAS, lead, arsenic, and 1,000+ contaminants. Perfect for renters. 170 oz tank, 3:1 pure to drain ratio. Runs around $199. This is the answer for anyone renting or who cannot do under-sink work. Performance is close to full under-sink RO systems.'
+        'No plumbing change — plug in, fill the tank, and pour. NSF 42/53/58/401 on the Classic PDS. About $380. Waterdrop K19-S is discontinued; this is the current no-install RO we list. Performance is close to full under-sink RO for drinking and cooking.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What RO does NOT remove'),
@@ -244,8 +243,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         "Water quality varies dramatically from city to city. Before you move, check what's in the tap water — PFAS, lead, and other contaminants that could affect your family.",
       canonical: 'https://watercheckup.com/blog/moving-to-new-city-water-quality-check',
     },
-    date: '2026-04-22',
-    dateDisplay: 'April 22, 2026',
+    ...blogPostDateFields('moving-to-new-city-water-quality-check', '2026-04-22'),
     readTime: '6 min read',
     badge: 'MOVING',
     badgeColor: '#10b981',
@@ -292,7 +290,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'Step 3: What to buy for the first 30 days'),
       React.createElement('p', { style: pStyle },
-        'While you are getting settled and figuring out your water situation, a countertop RO system like the Waterdrop K19-S Countertop RO is the lowest-friction option -- no installation, sits on the counter, plugs in like an appliance. Once you know what you are dealing with, you can decide whether to upgrade to an under-sink system.'
+        'While you are getting settled and figuring out your water situation, a countertop RO like AquaTru Classic (~$380) is the lowest-friction option -- no installation, sits on the counter, plugs in like an appliance. Waterdrop K19-S is discontinued. Once you know what you are dealing with, you can decide whether to upgrade to an under-sink G3P600 (~$399). Check whether the new city has already posted 2024-rule PFAS monitoring; systems have until 2029 to meet those MCLs.'
       ),
       React.createElement('p', { style: pStyle },
         'If you are moving somewhere with hard water (Southwest, Texas, Nevada), a shower filter with KDF media can reduce chlorine feel at the head — it does not soften hardness. See the ',
@@ -310,8 +308,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
   'what-is-ppm-ppb-ppt-water-quality': {
     title: 'PPM, PPB, PPT: What Those Numbers on Your Water Report Actually Mean',
     excerpt: 'Your water report says lead is 12 ppb or PFAS is 6 ppt. What does that actually mean? Here\'s a plain-English guide with real-world examples anyone can understand.',
-    date: '2026-05-06',
-    dateDisplay: 'May 6, 2026',
+    ...blogPostDateFields('what-is-ppm-ppb-ppt-water-quality', '2026-05-06'),
     readTime: '6 min read',
     badge: 'Education',
     badgeColor: '#0891b2',
@@ -362,7 +359,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
 
       React.createElement('h3', { style: h3Style }, '☣️ PFAS: 4 ppt — the EPA limit for PFOA and PFOS'),
       React.createElement('p', { style: pStyle },
-        'The EPA\'s 2024 limit for PFOA and PFOS is 4 parts per trillion. Here\'s the accurate picture:'
+        'The EPA\'s 2024 limit for PFOA and PFOS is 4 parts per trillion. Public water systems have until 2029 to comply; a 2026 CCR may still show monitoring results rather than treated-water compliance. Here\'s the accurate picture:'
       ),
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: { color: '#e2e8f0' } }, '4 ppt = 4 drops spread across 20 Olympic swimming pools. '),
@@ -446,8 +443,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
           'Limestone aquifers, desert rivers, and Great Plains geology — where hardness is the norm and how to treat it.',
       },
     },
-    date: '2026-05-09',
-    dateDisplay: 'May 9, 2026',
+    ...blogPostDateFields('top-10-cities-hardest-tap-water', '2026-05-09'),
     readTime: '9 min read',
     badge: 'Home',
     badgeColor: '#cbd5e1',
@@ -467,7 +463,7 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         React.createElement('strong', { style: strongStyle }, 'most often'),
         ' produce very hard tap water. It is ',
         React.createElement('strong', { style: strongStyle }, 'not'),
-        ' a milligram-for-milligram national public water system leaderboard: your exact ZIP, well field, and seasonal blend can differ from a neighbor. Always read your Consumer Confidence Report or run a home hardness strip if you need a number for sizing a softener.'
+        ' a milligram-for-milligram national public water system leaderboard: your exact ZIP, well field, and seasonal blend can differ from a neighbor. Always read your Consumer Confidence Report or run a home hardness strip if you need a number for sizing a softener. Softener kits in the catalog are check-current-price (Fleck 5600SXT, Aquasure Harmony); drinking-water RO is separate — Waterdrop G3P600 about $399. A shower filter still does not soften hardness.'
       ),
 
       React.createElement('p', { style: pStyle },

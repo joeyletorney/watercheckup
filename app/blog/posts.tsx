@@ -1,6 +1,7 @@
 import { commercialPost } from './commercial-guide-data';
 import React from 'react';
 import type { Post } from './post-types';
+import { blogPostDateFields } from '@/lib/blog-post-dates';
 import { EXTRA_POSTS } from './extra-posts';
 import { EXTRA_POSTS_2 } from './extra-posts-2';
 import { EXTRA_POSTS_3 } from './extra-posts-3';
@@ -37,8 +38,7 @@ export const POSTS: Record<string, Post> = {
   'is-pfas-in-my-tap-water': {
     title: 'Is PFAS in My Tap Water? What the EPA Data Actually Shows',
     excerpt: 'PFAS "forever chemicals" have been found in 45% of US tap water. Here\'s how to find out if your water is affected — and what to do about it.',
-    date: '2026-03-28',
-    dateDisplay: 'March 28, 2026',
+    ...blogPostDateFields('is-pfas-in-my-tap-water', '2026-03-28'),
     readTime: '8 min read',
     badge: 'PFAS',
     badgeColor: '#0891b2',
@@ -72,7 +72,7 @@ export const POSTS: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The EPA finalized its first-ever PFAS drinking water standard in April 2024, setting limits for PFOA and PFOS at ',
         React.createElement('strong', { style: strongStyle }, '4 parts per trillion'),
-        ' — down from the previous health advisory of 70 ppt. That\'s an 18x tightening of the standard. It signals how serious the agency now considers this threat.'
+        ' — down from the previous health advisory of 70 ppt. That\'s an 18x tightening of the standard. Public water systems have until 2029 to comply; 2026 is still in that implementation window, so a ZIP check can show monitoring results before a utility is fully treating to the new MCLs.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How to Find Out If PFAS Is in Your Water'),
@@ -126,7 +126,7 @@ export const POSTS: Record<string, Post> = {
         ' is the gold standard. The Waterdrop G3 and G2 series are NSF 58 certified, install under your kitchen sink in about 30 minutes, and produce clean water at the tap. At roughly $0.10 per gallon, it\'s far cheaper than bottled water and far more effective than most pitcher filters.'
       ),
       React.createElement('p', { style: pStyle },
-        'If you\'re a renter with no plumbing access, the Waterdrop K19-S countertop RO is the best no-install option with genuine PFAS certification.'
+        'If you\'re a renter with no plumbing access, the AquaTru Classic countertop RO (~$380) is the current no-install option with NSF 42/53/58/401 listings. Waterdrop K19-S is discontinued.'
       ),
       React.createElement('p', { style: pStyle },
         'The most important thing: ',
@@ -141,8 +141,7 @@ export const POSTS: Record<string, Post> = {
   'what-does-epa-water-violation-mean': {
     title: 'What Does an EPA Water Violation Actually Mean for Your Health?',
     excerpt: 'Your public water system sent a notice. Or you found a violation on EPA\'s database. Here\'s exactly what it means, what the risk is, and what to do.',
-    date: '2026-03-30',
-    dateDisplay: 'March 30, 2026',
+    ...blogPostDateFields('what-does-epa-water-violation-mean', '2026-03-30'),
     readTime: '7 min read',
     badge: 'EPA',
     badgeColor: '#7c3aed',
@@ -204,7 +203,7 @@ export const POSTS: Record<string, Post> = {
 
       React.createElement('div', { style: calloutStyle },
         React.createElement('strong', { style: strongStyle }, '💡 The takeaway: '),
-        'A violation is a red flag, but the absence of violations is not a green light. Filtration makes sense even for water systems with clean compliance records — especially for families with infants, pregnant women, or immunocompromised individuals.'
+        'A violation is a red flag, but the absence of violations is not a green light. Filtration makes sense even for water systems with clean compliance records — especially for families with infants, pregnant women, or immunocompromised individuals. The EPA Lead and Copper Rule Improvements also require systems to replace lead service lines within 10 years; that is a pipe-replacement deadline, not a reason to skip a certified tap filter in the meantime.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'What to Do After a Violation'),
