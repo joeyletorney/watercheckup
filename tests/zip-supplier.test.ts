@@ -71,6 +71,8 @@ test('90210 lookup uses the Beverly Hills PWSID even when EPA returns a larger n
     assert.equal(response.status, 200);
     assert.equal(data.pwsid, 'CA1910156');
     assert.match(String(data.systemName), /BEVERLY HILLS/i);
+    assert.match(String(data.city), /Beverly Hills/i);
+    assert.doesNotMatch(String(data.city), /\d+\s+\S+.*(St|Ave|Rd|Dr)/i);
   } finally {
     globalThis.fetch = original;
   }

@@ -133,6 +133,8 @@ test('a successful lookup normalizes sample units and does not invent PFAS cover
     const data = await response.json();
     assert.equal(response.status, 200);
     assert.equal(data.pwsid, 'NY7003493');
+    assert.match(String(data.city), /New York City/i);
+    assert.doesNotMatch(String(data.city), /WEST LAKE|DRIVE/i);
     assert.equal(data.pfasCoverage, 'unavailable');
     assert.equal(data.grade, '—');
     assert.equal(data.nationalPercentile, null);
