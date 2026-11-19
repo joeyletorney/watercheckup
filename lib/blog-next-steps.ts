@@ -2,7 +2,7 @@
 const SHOPPING_GUIDES = new Set([
   'best-water-filter-for-lead-removal', 'best-countertop-water-filter', 'best-water-filter-hard-water',
   'best-water-filter-pitcher-2025', 'best-ro-system-for-pfas-removal', 'best-whole-house-water-filter',
-  'best-under-sink-water-filter', 'waterdrop-g3p600-vs-aquasana-smartflow',
+  'best-under-sink-water-filter', 'best-shower-filter-2026', 'waterdrop-g3p600-vs-aquasana-smartflow',
   'waterdrop-k19s-vs-aquatru-classic', 'best-water-filter-gaithersburg-md',
   'whole-house-water-filter-vs-under-sink-which-to-choose', 'refrigerator-water-filters-what-they-actually-remove',
   'what-water-filter-removes-pfas', 'reverse-osmosis-pros-and-cons',

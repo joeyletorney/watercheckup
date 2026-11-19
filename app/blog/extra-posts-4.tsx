@@ -295,7 +295,9 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'While you are getting settled and figuring out your water situation, a countertop RO system like the Waterdrop K19-S Countertop RO is the lowest-friction option -- no installation, sits on the counter, plugs in like an appliance. Once you know what you are dealing with, you can decide whether to upgrade to an under-sink system.'
       ),
       React.createElement('p', { style: pStyle },
-        'If you are moving somewhere with hard water (Southwest, Texas, Nevada), a shower filter with KDF media will noticeably help your skin and hair within a week -- a $30-50 improvement you will feel immediately.'
+        'If you are moving somewhere with hard water (Southwest, Texas, Nevada), a shower filter with KDF media can reduce chlorine feel at the head — it does not soften hardness. See the ',
+        React.createElement('a', { href: '/blog/best-shower-filter-2026', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'shower filter guide'),
+        ' for chlorine vs chloramine picks.'
       ),
 
       React.createElement('div', { style: calloutStyle },

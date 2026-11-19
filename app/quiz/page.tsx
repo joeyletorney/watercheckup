@@ -258,6 +258,12 @@ export default function QuizPage() {
                 <p style={{ lineHeight: 1.7, marginBottom: 20 }}>
                   <Link href="/blog/best-whole-house-water-filter" style={{ color: '#67e8f9' }}>Compare whole-home treatment options →</Link>
                   {' · '}<Link href="/blog/best-countertop-water-filter" style={{ color: '#67e8f9' }}>Compare separate kitchen options →</Link>
+                  {' · '}<Link href="/blog/best-shower-filter-2026" style={{ color: '#67e8f9' }}>Shower filter if chlorine at the shower is the main issue →</Link>
+                </p>
+              )}
+              {answers.source === 'city' && answers.concern === 'taste' && answers.situation !== 'owner_full' && (
+                <p style={{ lineHeight: 1.7, marginBottom: 20 }}>
+                  <Link href="/blog/best-shower-filter-2026" style={{ color: '#67e8f9' }}>Chlorine or chloramine at the shower? Compare shower filters →</Link>
                 </p>
               )}
               {answers.source === 'well' && <p style={{ lineHeight: 1.7, marginBottom: 20 }}><Link href="/well" style={{ color: '#67e8f9' }}>Read the well-water testing and treatment guide →</Link></p>}

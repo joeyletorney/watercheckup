@@ -303,6 +303,15 @@ const POST_BY_SLUG: Record<
     badge: 'Filters',
     badgeColor: '#0891b2',
   },
+  'best-shower-filter-2026': {
+    title: 'Best Shower Filter 2026: Chlorine, Chloramine, and Hard Water',
+    excerpt:
+      'Do shower filters work? An honest 2026 guide to KDF, vitamin C, NSF 177, and what shower filters cannot remove — including lead, PFAS, and hardness.',
+    date: 'November 19, 2026',
+    readTime: '9 min read',
+    badge: 'Filters',
+    badgeColor: '#a78bfa',
+  },
   'best-water-filter-pitcher-2025': {
     title: 'Best Water Filter Pitcher 2026: What They Remove',
     excerpt: 'Filter pitchers vary wildly in what they remove. Here are the top 2026 options ranked by NSF certifications, not just taste.',
@@ -420,6 +429,7 @@ const BLOG_INDEX_ORDER = [
   'best-under-sink-water-filter',
   'best-countertop-water-filter',
   'best-whole-house-water-filter',
+  'best-shower-filter-2026',
   'best-ro-system-for-pfas-removal',
   'best-water-filter-for-lead-removal',
   'lead-in-tap-water-signs-and-symptoms',
@@ -481,6 +491,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
     icon: '🔬',
     slugs: [
       'best-water-filter-pitcher-2025',
+      'best-shower-filter-2026',
       'best-water-filter-hard-water',
       'top-10-cities-hardest-tap-water',
       'reverse-osmosis-vs-distilled-water',

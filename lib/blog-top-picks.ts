@@ -360,19 +360,31 @@ export const TOP_SHOWER: TopPickRow[] = [
     product: 'AquaBliss High Output SF100',
     brand: 'AquaBliss',
     price: '~$35',
-    reason: 'KDF/GAC media — reduces chlorine and scale feel; installs in minutes; universal fit.',
+    reason:
+      'KDF/GAC media for free chlorine and some scale feel. Screws onto many shower arms in minutes. Not a softener and not a chloramine specialist — confirm fit and current listing claims.',
     link: 'https://aquabliss.com/products/sf100-shower-filter',
     amazon: `https://www.amazon.com/dp/B01MUBU0YC?tag=${AMAZON}`,
-    badge: 'SHOWER',
+    badge: 'BUDGET CHLORINE',
   },
   {
     product: 'AquaTru Shower Filter',
     brand: 'AquaTru',
-    price: '~$149',
-    reason: 'NSF/ANSI 177 on listings — high chlorine reduction; quick-change cartridge.',
+    price: 'Check current price',
+    reason:
+      'Listings often cite NSF/ANSI 177 for shower chlorine reduction and a quick-change cartridge. Confirm the exact SKU’s current NSF listing before buying. Not a lead, PFAS, or hardness filter.',
     link: 'https://aquatru.com/products/aquatru-shower',
     amazon: `https://www.amazon.com/dp/B0FLHFTGYD?tag=${AMAZON}`,
-    badge: 'SHOWER',
+    badge: 'NSF 177 LISTINGS',
+  },
+  {
+    product: 'Sonaki Vitamin C Shower Filter',
+    brand: 'Sonaki',
+    price: 'Check current price',
+    reason:
+      'Vitamin C (ascorbic acid) reduces chloramine as well as free chlorine. Cartridge life is shorter than KDF — check the current gallon rating and shower-arm fit. NSF/ANSI 177 is not assumed.',
+    link: 'https://www.amazon.com/s?k=Sonaki+Vitamin+C+shower+filter&tag=watercheckup-20',
+    amazon: `https://www.amazon.com/s?k=Sonaki+Vitamin+C+shower+filter&tag=${AMAZON}`,
+    badge: 'CHLORAMINE',
   },
 ];
 
@@ -505,6 +517,7 @@ export const BLOG_SLUG_PICK_SEGMENT: Record<string, BlogPickSegment> = {
   'waterdrop-g3p600-vs-aquasana-smartflow': 'compareG3',
   'best-water-filter-gaithersburg-md': 'undersink',
   'best-whole-house-water-filter': 'wholeHouse',
+  'best-shower-filter-2026': 'shower',
   'whole-house-water-filter-vs-under-sink-which-to-choose': 'wholeHouse',
   'chloramine-vs-chlorine-in-tap-water': 'wholeHouse',
   'hard-water-explained-scale-softeners-and-your-taps': 'hardWater',

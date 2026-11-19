@@ -8,6 +8,7 @@ import { EXTRA_POSTS_4 } from './extra-posts-4';
 import { EXTRA_POSTS_5 } from './extra-posts-5';
 import { EXTRA_POSTS_NYC } from './extra-posts-nyc';
 import { EXTRA_POSTS_SA } from './extra-posts-sa';
+import { EXTRA_POSTS_SHOWER } from './extra-posts-shower';
 
 const WATERDROP = 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
 const AMAZON_TAG = 'watercheckup-20';
@@ -240,4 +241,5 @@ export const POSTS: Record<string, Post> = {
   ...EXTRA_POSTS_4,
   ...EXTRA_POSTS_5,
   ...EXTRA_POSTS_NYC,
+  ...EXTRA_POSTS_SHOWER,
 };

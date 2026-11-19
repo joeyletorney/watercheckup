@@ -7,6 +7,8 @@ export type TrustedFilterCategory = {
   accent: string;
   summary: string;
   productIds: number[];
+  guideHref?: string;
+  guideLabel?: string;
 };
 
 export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
@@ -57,5 +59,7 @@ export const TRUSTED_FILTER_CATEGORIES: TrustedFilterCategory[] = [
     accent: '#a78bfa',
     summary: 'Chlorine and hardness at the shower head',
     productIds: [20, 36],
+    guideHref: '/blog/best-shower-filter-2026',
+    guideLabel: 'Read the 2026 shower filter guide →',
   },
 ];
