@@ -1,3 +1,4 @@
+import { Children, isValidElement, type ReactNode } from 'react';
 import { BlogNextSteps } from '@/components/BlogNextSteps';
 import { articleNextSteps } from '@/lib/blog-next-steps';
 import { BlogCommercialComparison } from '@/components/BlogCommercialComparison';
@@ -66,6 +67,13 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       images: [`https://watercheckup.com/api/og/blog?title=${encodeURIComponent(ogImageTitle)}&badge=${encodeURIComponent(post.badge ?? '')}&excerpt=${encodeURIComponent(ogImageExcerpt ?? '')}`],
     },
   };
+}
+
+function articleText(node: ReactNode): string {
+  return Children.toArray(node).map(child => {
+    if (typeof child === 'string' || typeof child === 'number') return String(child);
+    return isValidElement<{ children?: ReactNode }>(child) ? articleText(child.props.children) : '';
+  }).join(' ');
 }
 
 export default async function BlogPost(props: { params: Promise<{ slug: string }> }) {
@@ -204,7 +212,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         })()}
 
         <div className="wc-reading-prose" style={{ fontSize: 16 }}>
-          {/k19|smartflow|d6|under.sink/i.test(post.title) && <aside style={{ padding: 16, marginBottom: 24, border: '1px solid #64748b', borderRadius: 8 }}>
+          {/k19|smartflow|waterdrop d6|aquatru under.sink/i.test(`${post.title} ${articleText(post.content)}`) && <aside style={{ padding: 16, marginBottom: 24, border: '1px solid #64748b', borderRadius: 8 }}>
             <strong>Purchase options updated November 18, 2026.</strong> Waterdrop K19 is discontinued; D6, Aquasana SmartFlow and AquaTru Under-Sink listings were unavailable at our check. Older comparisons below may still discuss them. Use the current options above or <Link href="/#find-a-filter">compare available filters</Link>. Replacement models have their own specifications; stock can change.
           </aside>}
           {post.content}

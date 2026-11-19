@@ -320,8 +320,8 @@ export const TOP_WHOLE_HOUSE: TopPickRow[] = [
   {
     product: 'Aquasana Whole House WH-1000-B',
     brand: 'Aquasana',
-    price: '~$999',
-    reason: 'WQA Gold Seal + NSF 42/61 — chlorine, chloramine, PFAS, THMs at every tap and shower.',
+    price: "Check current price",
+    reason: "Whole-house chlorine-focused system. Confirm WH-1000-B package contents, installation and the current performance sheet. Do not assume PFAS or chloramine reduction.",
     link: 'https://www.aquasana.com/whole-house-water-filters',
     amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON}`,
     badge: 'WHOLE HOUSE',

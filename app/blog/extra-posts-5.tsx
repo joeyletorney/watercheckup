@@ -9,7 +9,7 @@ const TAP_SCORE_WELL_URL = 'https://mytapscore.com/collections/well-water-tests?
 const WATERDROP_TAG = 'anbyjkqb';
 
 const TOP_3_WHOLE_HOUSE = [
-  { product: 'Aquasana Whole House WH-1000-B', brand: 'Aquasana', price: '~$999', reason: 'WQA Gold Seal + NSF 42/61. Removes chlorine, chloramine, PFAS, THMs, VOCs at every tap and shower in the home. 10-year / 1M gallon filter life.', link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
+  { product: 'Aquasana Whole House WH-1000-B', brand: 'Aquasana', price: "Check current price", reason: "Whole-house chlorine-focused system. Confirm WH-1000-B package contents, installation and the current performance sheet. Do not assume PFAS or chloramine reduction.", link: 'https://www.aquasana.com/whole-house-water-filters', amazon: `https://www.amazon.com/dp/B00XAJJVHQ?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
   { product: 'Express Water WH300SCKS 3-Stage', brand: 'Express Water', price: '~$548', reason: 'NSF 42/61 whole-house sediment + carbon. Pressure gauges included. Strong DIY option for chloramine and chlorine at every tap.', link: 'https://www.expresswater.com', amazon: `https://www.amazon.com/dp/B01LFMTYBM?tag=${AMAZON_TAG}`, badge: 'HIGH FLOW' },
   { product: 'Springwell CF4 Whole-House Filter', brand: 'Springwell', price: '~$895', reason: '4-stage filtration. Removes chlorine, chloramine, PFAS, VOCs, sediment, and heavy metals at every faucet. Air injection oxidation for iron and sulfur removal.', link: 'https://www.springwellwater.com/product/water-filters/whole-house-water-filters/', amazon: `https://www.amazon.com/s?k=Springwell+CF4+whole+house+water+filter&tag=${AMAZON_TAG}`, badge: 'BEST FOR WELL WATER' },
 ];
@@ -55,7 +55,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
     topPicks: TOP_3_WHOLE_HOUSE,
     faq: [
       { q: 'What does a whole-house water filter actually remove?', a: 'A quality whole-house carbon filter removes chlorine, chloramine, THMs, VOCs, PFAS (in some systems), sediment, and heavy metals at every tap and shower. It does NOT soften hard water or remove nitrates — those require different systems. Check the specific NSF certifications of any system you consider.' },
-      { q: 'Do whole-house water filters remove PFAS?', a: 'Some do. The Aquasana Whole House WH-1000-B is certified to reduce PFAS at the whole-house level. Most basic carbon filters are not. Look for NSF/ANSI 58 or specific PFAS reduction claims on the product listing.' },
+      { q: 'Do whole-house water filters remove PFAS?', a: "Some specifically tested systems can reduce PFAS, but the WH-1000 chlorine-reduction sheet does not establish PFAS reduction. Choose treatment from exact-model, compound-specific performance evidence at the required household flow; a chlorine claim is not a PFAS claim." },
       { q: 'How long do whole-house water filters last?', a: 'Entry-level systems need filter replacement every 3–6 months. Premium systems like the Aquasana Rhino advertise 10 years / 1 million gallons. Actual life depends on water quality and household usage. Higher sediment levels shorten filter life.' },
       { q: 'Is a whole-house filter worth it?', a: 'For homeowners in cities with chloramine treatment, PFAS contamination, or elevated THMs, a whole-house system protects your skin and lungs from chlorine in showers — not just your drinking water. For PFAS specifically, a drinking water RO under the sink is often the better targeted investment.' },
       { q: 'What is the difference between a water filter and a water softener?', a: 'A water filter removes contaminants. A water softener removes hardness (calcium and magnesium) through ion exchange. They serve different purposes. If you have both hard water and contamination concerns, you may need both — a softener for scale protection and a whole-house filter (or under-sink RO) for contaminant removal.' },
@@ -85,12 +85,12 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         '— the system\'s components don\'t leach contaminants into water. Required for drinking water contact.',
         React.createElement('br', null),
         React.createElement('strong', { style: strongStyle }, 'WQA Gold Seal '),
-        '— independent validation by the Water Quality Association. The Aquasana Whole House WH-1000-B carries this.',
+        "— independent validation by the Water Quality Association. Verify the exact model and certified claim; a seal alone does not establish PFAS reduction.",
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Aquasana Whole House WH-1000-B — Our Top Pick'),
+      React.createElement('h2', { style: h2Style }, 'Aquasana Whole House WH-1000-B — Chlorine-Focused Option'),
       React.createElement('p', { style: pStyle },
-        'The Rhino wins on lifespan and PFAS coverage. Rated for 10 years / 1 million gallons — most competing systems need annual filter replacement at $200–300/year. WQA Gold Seal and NSF 42/61 certified. The EQ-1000 reduces PFAS, chloramine, THMs, VOCs, and sediment at every tap. For homeowners in PFAS-affected cities, this is the most comprehensive single-system option.'
+        "The linked WH-1000-B package is a whole-house chlorine-focused option. The manufacturer advertises up to 10 years or 1 million gallons for the main tank; pre/post filters still need scheduled changes. Its chlorine-reduction evidence does not establish PFAS or chloramine reduction. Confirm the exact package, flow, fittings and performance sheet before buying."
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('a', { href: '/worst-pfas', style: linkStyle }, 'Check if your city has PFAS violations →')
