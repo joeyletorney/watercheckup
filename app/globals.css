@@ -2132,6 +2132,16 @@ button.wc-nav-badge-nsf:focus-visible {
   font-weight: 600;
 }
 
+/* BlogTopPicks buttons are teal with white labels; the prose link color
+   would otherwise paint them blue on teal when the picks sit in article body. */
+.wc-reading-prose a.wc-blog-top-picks__btn--primary {
+  color: #fff !important;
+}
+
+.wc-reading-prose a.wc-blog-top-picks__btn--secondary {
+  color: #cbd5e1 !important;
+}
+
 .wc-reading-prose div[style*='background: #0d2240'],
 .wc-reading-prose div[style*='background:#0d2240'],
 .wc-reading-prose div[style*='background: #ef4444'],

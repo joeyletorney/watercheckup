@@ -77,6 +77,17 @@ test('shower filter SERP copy and affiliate picks keep tracking fields', () => {
     assert.equal(new URL(pick.amazon).searchParams.get('tag'), 'watercheckup-20');
   }
 
+  const css = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+  assert.match(
+    css,
+    /\.wc-reading-prose a\.wc-blog-top-picks__btn--primary\s*\{[^}]*color:\s*#fff\s*!important/,
+    'prose link color must not override pick-button labels',
+  );
+  assert.match(
+    css,
+    /\.wc-reading-prose a\.wc-blog-top-picks__btn--secondary\s*\{[^}]*color:\s*#cbd5e1\s*!important/,
+  );
+
   const picksSource = readFileSync(join(process.cwd(), 'components/BlogTopPicks.tsx'), 'utf8');
   assert.match(picksSource, /rel="noopener noreferrer sponsored"/);
   assert.match(picksSource, /page=\{page\}/);
