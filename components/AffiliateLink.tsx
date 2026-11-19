@@ -10,6 +10,7 @@ type Props = ComponentProps<'a'> & {
   brand?: string;
   city?: string;
   zip?: string;
+  productId?: string;
 };
 
 /** Sponsored outbound link with GA4 affiliate_click tracking. */
@@ -20,16 +21,28 @@ export function AffiliateLink({
   brand,
   city,
   zip,
+  productId,
   onClick,
+  href,
   children,
   ...rest
 }: Props) {
   return (
     <a
       {...rest}
+      href={href}
       data-wc-affiliate-tracked="true"
       onClick={(e) => {
-        trackAffiliateClick({ product, destination, page, brand, city, zip });
+        trackAffiliateClick({
+          product,
+          destination,
+          page,
+          brand,
+          city,
+          zip,
+          productId,
+          href: typeof href === 'string' ? href : undefined,
+        });
         onClick?.(e);
       }}
     >

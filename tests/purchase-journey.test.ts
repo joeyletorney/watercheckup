@@ -36,12 +36,23 @@ test('merchant click tracking sends stable product and destination fields withou
   const events: unknown[][] = [];
   try {
     Object.defineProperty(globalThis, 'window', { configurable: true, value: { gtag: (...args: unknown[]) => events.push(args) } });
-    trackAffiliateClick({ product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', destination: 'direct', page: 'quiz' });
+    trackAffiliateClick({
+      product: 'Waterdrop G3P600 RO',
+      brand: 'Waterdrop',
+      destination: 'direct',
+      page: 'quiz',
+      href: 'https://www.waterdropfilter.com/products/g3p600',
+    });
     assert.equal(events.length, 1);
     assert.equal(events[0][0], 'event');
     assert.equal(events[0][1], 'affiliate_click');
-    assert.deepEqual((events[0][2] as Record<string, unknown>).item_name, 'Waterdrop G3P600 RO');
-    assert.equal((events[0][2] as Record<string, unknown>).destination, 'direct');
+    const payload = events[0][2] as Record<string, unknown>;
+    assert.deepEqual(payload.item_name, 'Waterdrop G3P600 RO');
+    assert.equal(payload.destination, 'direct');
+    assert.equal(payload.link_url, 'https://www.waterdropfilter.com/products/g3p600');
+    assert.equal(payload.link_domain, 'waterdropfilter.com');
+    assert.equal(payload.source_page, 'quiz');
+    assert.equal(payload.product_id, 'waterdrop-g3p600-ro');
     Object.defineProperty(globalThis, 'window', { configurable: true, value: {} });
     assert.doesNotThrow(() => trackAffiliateClick({ product: 'Pitcher', destination: 'amazon', page: 'quiz' }));
   } finally {

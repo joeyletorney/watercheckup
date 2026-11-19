@@ -148,16 +148,17 @@ export function buildStateRankingRows(): {
 
   const partial = abbreviations.map((abbr) => {
     const citiesInState = Object.entries(CITIES).filter(([, cd]) => cd.state === abbr);
-    const totalCities = citiesInState.filter(([, cd]) => !!getPfas(resolvedId(cd))).length;
+    const totalCities = citiesInState.length;
+    const scoredCities = citiesInState.filter(([, cd]) => !!getPfas(resolvedId(cd))).length;
     let citiesAtRisk = 0;
     let citiesSafe = 0;
     for (const [, cd] of citiesInState) {
       if (isCityAtRisk(cd)) citiesAtRisk += 1;
       else if (isCitySafeBand(cd)) citiesSafe += 1;
     }
-    const pctAtRisk = totalCities > 0 ? (100 * citiesAtRisk) / totalCities : 0;
-    const { grade, gradeColor } = letterGradeFromPctAtRisk(pctAtRisk, totalCities);
-    const worstContaminant = totalCities > 0 ? worstContaminantForState(abbr) : '—';
+    const pctAtRisk = scoredCities > 0 ? (100 * citiesAtRisk) / scoredCities : 0;
+    const { grade, gradeColor } = letterGradeFromPctAtRisk(pctAtRisk, scoredCities);
+    const worstContaminant = scoredCities > 0 ? worstContaminantForState(abbr) : '—';
     return {
       stateAbbr: abbr,
       stateName: STATE_NAMES[abbr],

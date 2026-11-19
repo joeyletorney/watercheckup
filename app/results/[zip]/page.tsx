@@ -11,13 +11,23 @@ import { resolveReportCityLink } from '@/lib/report-city-link.server';
 // export const dynamicParams = true;
 // // export const revalidate = 86400;
 
+/** Same US-East pin as `/api/water` — EPA Envirofacts and ECHO live in the east. */
+export const preferredRegion = ['iad1'];
+export const maxDuration = 60;
+
 interface Props { params: Promise<{ zip: string }> }
 
 const fetchWaterData = cache(async (zip: string) => {
   if (!/^\d{5}$/.test(zip)) return null;
   const response = await lookupWaterReport(zip);
   const body = await response.json();
-  return response.ok ? body : { lookupError: body.error, lookupStatus: response.status, pwsid: body.pwsid };
+  if (response.ok) return body;
+  return {
+    lookupError: body.error || 'Water data is temporarily unavailable. Please try again shortly.',
+    lookupStatus: response.status,
+    pwsid: body.pwsid,
+    dataFreshness: body.dataFreshness,
+  };
 });
 
 export async function generateMetadata(props: Props): Promise<Metadata> {

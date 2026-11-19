@@ -3,7 +3,7 @@ export const chicagoFAQs = [
   {
     question: "Is Chicago, IL tap water safe to drink?",
     answer:
-      "Chicago's water leaves the treatment plant with no detectable lead and has one of the best source-water profiles of any major US city — Lake Michigan. Under EPA's UCMR5 monitoring, Chicago tested for 29 PFAS compounds and detected none above minimum reporting levels, an unusually clean result among large cities.",
+      "Chicago's water leaves the treatment plant with no detectable lead and has one of the best source-water profiles of any major US city — Lake Michigan. This packaged UCMR5 snapshot has no matching PFAS record for Chicago’s PWSID; missing coverage does not establish detection or nondetection. Lead at the tap from service lines remains the primary documented concern.",
   },
   {
     question: "Does Chicago have lead pipes?",
@@ -18,7 +18,7 @@ export const chicagoFAQs = [
   {
     question: "Is there PFAS in Chicago's water?",
     answer:
-      "No PFAS were detected above minimum reporting levels in Chicago's 2024 UCMR5 testing across 29 compounds — a notably clean result compared to most major US cities, largely attributed to Lake Michigan's source water quality.",
+      "This packaged UCMR5 snapshot has no matching PFAS record for Chicago Department of Water Management (IL0316000). Missing coverage does not establish that PFAS was detected or that it was absent. Check the city’s current Consumer Confidence Report for the latest monitoring.",
   },
   {
     question: "How do I know if my home in Chicago has a lead service line?",

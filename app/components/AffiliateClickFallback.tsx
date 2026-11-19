@@ -23,6 +23,7 @@ export function AffiliateClickFallback() {
         destination: amazon ? 'amazon' : simplelab ? 'simplelab' : 'direct',
         brand: amazon ? 'Amazon' : simplelab ? 'Tap Score' : url.hostname,
         page: window.location.pathname,
+        linkUrl: url.href,
         linkDomain: url.hostname,
       });
     };

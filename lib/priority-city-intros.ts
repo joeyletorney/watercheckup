@@ -1,3 +1,8 @@
+import { CITIES } from '@/app/water/[city]/cities-data';
+import { resolveCityPwsid } from './city-pwsid';
+import { alignEditorialPfasParagraphs } from './pfas-editorial';
+import { getCityPfasData } from './ucmr5-city-pfas';
+
 /** Editorial intros (2–3 paragraphs) for high-traffic city water report pages */
 export const PRIORITY_CITY_INTROS: Record<string, readonly string[]> = {
   'san-antonio': [
@@ -62,7 +67,7 @@ export const PRIORITY_CITY_INTROS: Record<string, readonly string[]> = {
   ],
   boston: [
     'Greater Boston is served by the Massachusetts Water Resources Authority — Quabbin and Wachusett reservoir water that is among the best-treated municipal supplies in the US. MWRA\'s challenge is not source contamination; it is aging service lines and home plumbing in America\'s oldest housing stock.',
-    'Lead solder was legal until 1986. Boston\'s triple-deckers and Victorian homes are full of it. MWRA adds corrosion control, but pregnant households should still filter or test. PFAS monitoring has detected low-level compounds — worth watching, but lead remains the primary urban Boston concern.',
+    'Lead solder was legal until 1986. Boston\'s triple-deckers and Victorian homes are full of it. MWRA adds corrosion control, but pregnant households should still filter or test. This packaged UCMR5 snapshot has no matching PFAS record for this supplier — missing coverage does not establish detection or nondetection. Lead remains the primary urban Boston concern.',
     'If you are on MWRA water, start with a lab test or ZIP report, then choose filtration matched to results. RO is powerful but not mandatory for every Boston address the way it is in PFAS-hot cities like Miami or Houston.',
   ],
   milwaukee: [
@@ -213,5 +218,10 @@ export const PRIORITY_CITY_INTROS: Record<string, readonly string[]> = {
 };
 
 export function getPriorityCityIntroParagraphs(slug: string): readonly string[] | undefined {
-  return PRIORITY_CITY_INTROS[slug];
+  const raw = PRIORITY_CITY_INTROS[slug];
+  if (!raw?.length) return undefined;
+  const city = CITIES[slug];
+  if (!city) return raw;
+  const pfas = getCityPfasData(resolveCityPwsid(slug, city.pwsid, city.zip));
+  return alignEditorialPfasParagraphs(raw, pfas);
 }

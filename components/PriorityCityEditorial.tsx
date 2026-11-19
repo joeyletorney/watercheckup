@@ -1,4 +1,4 @@
-import { PRIORITY_CITY_INTROS } from '@/lib/priority-city-intros';
+import { getPriorityCityIntroParagraphs } from '@/lib/priority-city-intros';
 
 /** Renders 2–3 editorial paragraphs for priority city water report pages */
 export function PriorityCityEditorial({
@@ -8,7 +8,7 @@ export function PriorityCityEditorial({
   slug: string;
   style?: React.CSSProperties;
 }) {
-  const paragraphs = PRIORITY_CITY_INTROS[slug];
+  const paragraphs = getPriorityCityIntroParagraphs(slug);
   if (!paragraphs?.length) return null;
 
   return (

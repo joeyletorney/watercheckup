@@ -15,6 +15,7 @@ import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBloc
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
+import { AdSenseSlot } from '@/components/AdSenseLoader';
 
 const AMAZON_TAG = 'watercheckup-20';
 
@@ -339,11 +340,7 @@ export default function SanAntonioWaterPage() {
         </div>
 
         {/* AdSense slot — mid-page (between filters and FAQ) */}
-        <div
-          id="wc-ad-mid"
-          style={{ margin: '0 0 20px', minHeight: 90, background: 'transparent', textAlign: 'center' }}
-          aria-label="Advertisement"
-        />
+        <AdSenseSlot slotId="wc-ad-mid" />
 
         {/* Reddit community block */}
         <div style={{ padding: '20px 22px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
@@ -456,11 +453,7 @@ export default function SanAntonioWaterPage() {
         </div>
 
         {/* AdSense slot — below FAQ, above related guides */}
-        <div
-          id="wc-ad-bottom"
-          style={{ margin: '0 0 20px', minHeight: 90, background: 'transparent', textAlign: 'center' }}
-          aria-label="Advertisement"
-        />
+        <AdSenseSlot slotId="wc-ad-bottom" />
 
         <NewsletterSignup
           source="water-san-antonio"

@@ -27,9 +27,11 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
 
   return [...withData]
     .sort((a, b) => b.pctAtRisk - a.pctAtRisk || a.stateName.localeCompare(b.stateName))
-    .map((row) => {
+    .flatMap((row) => {
       const cityEntries = Object.entries(CITIES).filter(([slug, cd]) =>
         cd.state === row.stateAbbr && !!getCityPfasData(resolveCityPwsid(slug, cd.pwsid, cd.zip)));
+      // Tracked city pages without UCMR5 still appear on /rankings; they cannot supply a graded "worst city".
+      if (!cityEntries.length) return [];
 
       let worstSlug = cityEntries[0]?.[0] ?? '';
       let worstCityName = cityEntries[0]?.[1]?.name ?? '—';
@@ -46,9 +48,11 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
         }
       }
 
+      if (!worstSlug || !CITIES[worstSlug]) return [];
+
       const topIssues = Array.from(new Set(cityEntries.flatMap(([, cd]) => cd.issues))).slice(0, 3);
 
-      return {
+      return [{
         stateAbbr: row.stateAbbr,
         stateName: row.stateName,
         stateSlug: row.stateSlug,
@@ -62,6 +66,6 @@ export function buildWorstStatesRankings(): WorstStateRow[] {
         worstSlug,
         worstCityName,
         topIssues,
-      };
+      }];
     });
 }
