@@ -54,6 +54,10 @@ import { parkersburgFAQs } from '@/lib/faq-parkersburg';
 import { quizHrefFromCityPage, shouldEmphasizeLabTest } from '@/lib/results-quiz-link';
 import { Fragment } from 'react/jsx-runtime';
 import { Suspense } from 'react';
+import {
+  GAITHERSBURG_TESTING_SOURCES,
+  type CityLocalSearchIntent,
+} from '@/lib/city-water-testing';
 
 const CITY_FAQS: Record<string, { question: string; answer: string }[]> = {
   gaithersburg: gaithersburgFAQs,
@@ -139,41 +143,61 @@ const SERVICE_LINE_URLS: Record<string, { url: string; label: string; hasAddress
   'baltimore': { url: 'https://www.bwsh2o.com/lead', label: 'Baltimore Water Lead Info', hasAddress: false },
 };
 
-const LOCAL_SEARCH_INTENT: Record<string, {
-  eyebrow: string;
-  title: string;
-  intro: string;
-  sections: { heading: string; body: string }[];
-  links: { href: string; label: string }[];
-}> = {
+const LOCAL_SEARCH_INTENT: Record<string, CityLocalSearchIntent> = {
   gaithersburg: {
-    eyebrow: 'GAITHERSBURG WATER TESTING & TREATMENT',
-    title: 'Water testing in Gaithersburg, MD: WSSC tap water vs private wells',
+    eyebrow: 'HOW TO TEST YOUR WATER IN GAITHERSBURG, MD',
+    title: 'How to test your water in Gaithersburg, MD',
     intro:
-      'Searches like "Gaithersburg well water testing," "water testing Gaithersburg MD," and "Gaithersburg reverse osmosis" usually mean one of two things: you are either on WSSC municipal water and want to know what is at your tap, or you are on a nearby Montgomery County private well and need a lab test.',
+      'A water test in Gaithersburg, MD starts with knowing who supplies the tap. Most in-town addresses are on WSSC Water. The annual Consumer Confidence Report (CCR) is a system-wide summary, not a test of your kitchen faucet. Use this page for the free WSSC/EPA snapshot, then decide between a home kit and a Maryland-certified laboratory for address-level results.',
     sections: [
       {
-        heading: 'Gaithersburg water quality testing for WSSC customers',
+        heading: 'WSSC Water is the public utility',
         body:
-          'For most Gaithersburg addresses, WSSC Water is the public water system. Start with the WSSC/EPA data on this page, then test your kitchen tap if you live in an older home, have infants, are pregnant, or want address-level lead/PFAS confirmation. City-wide water data cannot see what your building plumbing adds after treatment.',
+          'Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), which treats Potomac and Patuxent River water for Montgomery and Prince George’s counties. Searches for “WSSC Gaithersburg” and “water test Gaithersburg MD” should start with WSSC’s own water quality report, then this page’s EPA/UCMR5 snapshot. WSSC monitoring does not see lead, copper, or other metals your building plumbing can add after the water leaves the plant.',
+        sources: [GAITHERSBURG_TESTING_SOURCES.wsscCcr, GAITHERSBURG_TESTING_SOURCES.wsscWqr],
       },
       {
-        heading: 'Well water testing near Gaithersburg',
+        heading: 'How to request and read the CCR',
         body:
-          'Private wells are different from WSSC water: EPA municipal monitoring does not cover them. If your home uses a well near Gaithersburg or rural Montgomery County, test for bacteria, nitrate, arsenic, radon, hardness, iron, manganese, and PFAS. Annual bacteria/nitrate testing plus a broader panel every few years is a practical baseline.',
+          'WSSC publishes its Water Quality Report — the Consumer Confidence Report required under the Safe Drinking Water Act — each year (WSSC aims for April 1, ahead of EPA’s July 1 deadline). Read it on WSSC’s water-quality page or download the current PDF. Ask WSSC for a printed copy if you need one. In the CCR, look for detections versus EPA limits, the disinfectant used, lead/copper sampling context, and any violation language. A CCR average is not your faucet. EPA’s CCR finder is another route if you are comparing systems.',
+        sources: [
+          GAITHERSBURG_TESTING_SOURCES.readCcr,
+          GAITHERSBURG_TESTING_SOURCES.ccrFinder,
+          GAITHERSBURG_TESTING_SOURCES.wsscCcr,
+        ],
+      },
+      {
+        heading: 'Maryland certified-lab guidance',
+        body:
+          'For results you can use in real-estate, medical, or treatment decisions, use a laboratory certified by the Maryland Department of the Environment — not a brand name from a search ad. MDE’s Laboratory Certification Program publishes the current list of certified drinking-water labs and which tests each lab is approved for (microbiology, metals, PFAS, and others). Certification is test-specific: a lab approved for bacteria is not automatically approved for PFAS. We do not name a “best” local lab here because that list changes; use MDE’s page and confirm the lab is certified for the analytes you need.',
+        sources: [GAITHERSBURG_TESTING_SOURCES.mdeLabs, GAITHERSBURG_TESTING_SOURCES.mdeLabsPdf],
+      },
+      {
+        heading: 'Home test kit vs certified lab',
+        body:
+          'A store or mail-in home kit is a screening tool: useful for hardness, chlorine taste, or a first look at metals. It is not a substitute for a Maryland-certified lab when you need lead, PFAS, or bacteria results you can rely on. Certified labs issue chain-of-custody instructions, method codes, and reporting limits. Home kits vary in quality and often cannot report PFAS at parts-per-trillion. WaterCheckup is not a laboratory and does not sell tests. If you only need a supplier snapshot, this free WSSC/EPA page is the place to start.',
+        sources: [GAITHERSBURG_TESTING_SOURCES.tapTest],
+      },
+      {
+        heading: 'What to test for in Gaithersburg',
+        body:
+          'On WSSC city water: lead and copper (first-draw after water sits overnight, especially in pre-1986 plumbing), PFAS if you want address-level confirmation beyond UCMR5, and disinfection byproducts if taste/odor or pregnancy is a concern. Hardness is a comfort/scale issue, not a toxicity test. On a private well: bacteria and nitrate at least yearly, plus a broader panel (arsenic, radon, PFAS, metals, iron, manganese, hardness) every few years or after flooding, a new well, or a change in taste or color. Match any filter to those documented results — not a neighbor’s setup.',
+      },
+      {
+        heading: 'Well water vs WSSC city water',
+        body:
+          'Private wells on the rural edge of Montgomery County are not covered by EPA municipal monitoring or by WSSC’s CCR. If you are on a well, skip the city-water snapshot as your only answer and use a certified well panel. Most in-town Gaithersburg addresses are WSSC.',
       },
       {
         heading: 'If you choose a filter after you test',
         body:
           'WaterCheckup is not a treatment company. Match any filter to a documented result: NSF 53 carbon for lead at the tap; NSF 58 reverse osmosis or a PFAS-certified pitcher for PFAS and disinfection byproducts; a softener only for hardness. Whole-house gear is for wells with iron, sulfur, or bacteria — not a substitute for kitchen treatment on WSSC water.',
       },
-      {
-        heading: 'How to get a water test in Gaithersburg, MD',
-        body:
-          'Start with this free WSSC/EPA report so you know what the public system already measured. Then test your own kitchen tap if the home was built before 1986, you have infants or a pregnancy in the house, or you are on a private well. Montgomery County does not cover wells in EPA city data. Use a first-draw sample after water sits overnight for lead. Mail-in city-water panels (Tap Score / certified labs) cover lead, PFAS, and metals; well panels should add bacteria, nitrate, arsenic, radon, iron, and manganese. WSSC’s treated water can still pick up lead from building plumbing — the lab result is the only address-level answer.',
-      },
     ],
     links: [
+      { href: GAITHERSBURG_TESTING_SOURCES.wsscCcr.href, label: 'WSSC water quality report' },
+      { href: GAITHERSBURG_TESTING_SOURCES.mdeLabs.href, label: 'Maryland certified lab list' },
+      { href: '/blog/how-to-test-your-tap-water-mail-in-labs-explained', label: 'Mail-in tap test guide' },
       { href: '/well', label: 'Private well testing guide' },
       { href: '/blog/best-water-filter-gaithersburg-md', label: 'Best filters for Gaithersburg' },
       { href: '/water/rockville', label: 'Rockville (WSSC) water report' },
@@ -643,7 +667,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                 headline={PRIORITY_CITY_H1.gaithersburg ?? 'Is Gaithersburg Tap Water Safe?'}
                 slug="gaithersburg"
                 datePublished="2026-01-01"
-                dateModified="2026-07-17"
+                dateModified="2026-11-19"
               />
             </>
           ) : (
@@ -1012,29 +1036,59 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                       <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
                         {section.body}
                       </p>
+                      {section.sources && section.sources.length > 0 ? (
+                        <p style={{ fontSize: 13, margin: '10px 0 0', lineHeight: 1.7 }}>
+                          {section.sources.map((source, index) => (
+                            <span key={source.href}>
+                              {index > 0 ? ' · ' : null}
+                              {source.external ? (
+                                <a
+                                  href={source.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}
+                                >
+                                  {source.label} →
+                                </a>
+                              ) : (
+                                <Link
+                                  prefetch
+                                  href={source.href}
+                                  style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}
+                                >
+                                  {source.label} →
+                                </Link>
+                              )}
+                            </span>
+                          ))}
+                        </p>
+                      ) : null}
                     </div>
                   ))}
                 </div>
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {LOCAL_SEARCH_INTENT[slug].links.map((link) => (
-                    <Link
-                      prefetch
-                      key={link.href}
-                      href={link.href}
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: '#67e8f9',
-                        textDecoration: 'none',
-                        padding: '7px 10px',
-                        background: 'rgba(8,145,178,0.12)',
-                        borderRadius: 8,
-                      }}
-                    >
-                      {link.label} →
-                    </Link>
-                  ))}
+                  {LOCAL_SEARCH_INTENT[slug].links.map((link) => {
+                    const external = /^https?:\/\//.test(link.href);
+                    const style = {
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: '#67e8f9',
+                      textDecoration: 'none',
+                      padding: '7px 10px',
+                      background: 'rgba(8,145,178,0.12)',
+                      borderRadius: 8,
+                    } as const;
+                    return external ? (
+                      <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" style={style}>
+                        {link.label} →
+                      </a>
+                    ) : (
+                      <Link prefetch key={link.href} href={link.href} style={style}>
+                        {link.label} →
+                      </Link>
+                    );
+                  })}
                 </div>
               </section>
             )}

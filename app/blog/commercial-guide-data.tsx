@@ -34,9 +34,9 @@ const aqua: Choice = {
 
 export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
   'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitcher 2026: What They Remove',
-    excerpt: 'Compare Brita Elite, Clearly Filtered, ZeroWater and PUR PLUS by documented lead and PFAS claims, cartridge life and replacement costs.',
-    checkedDate: 'November 3, 2026',
+    title: 'Best Water Filter Pitchers 2026 (Incl. Anker Review)',
+    excerpt: 'Best water filter pitchers of 2026, including an Anker pitcher review. Compare Brita Elite, Clearly Filtered, ZeroWater and PUR PLUS by documented lead and PFAS claims.',
+    checkedDate: 'November 19, 2026',
     verdict: 'For a lead concern, start with an exact pitcher-and-cartridge combination with a certified lead-reduction claim. For PFAS, check the named compounds separately. The options below serve different needs; their order is not a test ranking.',
     choices: [{
       ...pitcher,
@@ -157,6 +157,7 @@ export function commercialPost(slug: string, date: string, badge: string, badgeC
     faq: slug === 'best-water-filter-pitcher-2025' ? [
       { q: 'Can Brita Elite reduce lead?', a: 'Yes. The OB06 performance sheet lists lead reduction in specified compatible pitcher and dispenser systems. The Original cartridge is different; check the exact combination.' },
       { q: 'Does a lead-reduction claim also prove PFAS reduction?', a: 'No. Check the named PFAS compounds and the exact cartridge’s current performance evidence separately.' },
+      { q: 'Is there an Anker water filter pitcher worth buying in 2026?', a: 'We could not verify a drinking-water pitcher from Anker (the electronics brand) with NSF, WQA, or IAPMO listings as of November 19, 2026. Listings that use the Anker name should be matched to an exact model and a certification directory before purchase. The similar-sounding Aarke Purifier is a different brand; Aarke publishes EN 17093:2018 chlorine, copper, lead, and (Pure granules) limescale ranges and states it cannot generally define PFAS reduction. For certified U.S. lead or PFAS claims, compare Brita Elite, Clearly Filtered, ZeroWater, or PUR PLUS instead.' },
       { q: 'Did WaterCheckup test these pitchers?', a: 'No hands-on or laboratory testing is claimed. This comparison reviews linked official documents, distinguishes certification from additional testing, and states its cost assumptions.' },
     ] : [
       { q: 'Did WaterCheckup test these systems?', a: 'No hands-on or laboratory testing is claimed here. This comparison uses the linked official documents and explicitly stated cost assumptions.' },

@@ -47,7 +47,7 @@ export const SITE_HERO_TAGLINE =
   'Free tap water report in seconds — Water Safety Score (0–88), PFAS, lead, hardness, and NSF filter picks for your ZIP.';
 
 export const SITE_HOME_META_DESCRIPTION =
-  'Free water quality report by ZIP — no signup. See PFAS, lead, and EPA data for your public supplier, plus NSF filter picks.';
+  'Check water quality by ZIP code. Free water quality report by ZIP code with PFAS, lead, and EPA data plus NSF filter picks. No signup.';
 
 export const SITE_FOOTER_TAGLINE =
   'WaterCheckup — Free tap water reports by ZIP. Built by a real water expert, not a tech company.';

@@ -14,13 +14,18 @@ import { join } from 'node:path';
 const MIX = new Set<string>(BLOG_UPDATED_DATES);
 const SHOWER = 'best-shower-filter-2026';
 const HARD_WATER = 'best-water-filter-hard-water';
+const TODAY_UPDATED = new Set([
+  SHOWER,
+  'best-water-filter-pitcher-2025',
+  'waterdrop-g3p600-vs-aquasana-smartflow',
+]);
 
 test('every indexed blog slug has a dateModified and a matching sitemap lastmod', () => {
   const map = sitemap();
   for (const slug of BLOG_POST_SLUGS) {
     const iso = BLOG_POST_DATE_MODIFIED[slug];
     assert.ok(iso, `missing dateModified for ${slug}`);
-    if (slug === SHOWER) {
+    if (TODAY_UPDATED.has(slug)) {
       assert.equal(iso, '2026-11-19');
     } else {
       assert.ok(MIX.has(iso), `${slug} dateModified ${iso} is not in the Oct/Nov mix`);
@@ -38,7 +43,7 @@ test('POSTS keep original datePublished and show an Updated label from dateModif
     assert.ok(iso, slug);
     assert.equal(post.dateModified, iso, slug);
     assert.match(post.dateDisplay, /^Updated /);
-    assert.ok(post.date <= iso || slug === SHOWER, `${slug} published ${post.date} after modified ${iso}`);
+    assert.ok(post.date <= iso || TODAY_UPDATED.has(slug), `${slug} published ${post.date} after modified ${iso}`);
     counts[iso] = (counts[iso] ?? 0) + 1;
   }
   assert.ok(POSTS[SHOWER]);
@@ -46,7 +51,9 @@ test('POSTS keep original datePublished and show an Updated label from dateModif
   assert.equal(POSTS[SHOWER].dateModified, '2026-11-19');
 
   for (const day of BLOG_UPDATED_DATES) {
-    assert.ok((counts[day] ?? 0) >= 10, `${day} only used ${counts[day] ?? 0} times`);
+    // Oct 1 has 9 POSTS after the Waterdrop vs Aquasana GSC update moved to Nov 19.
+    const min = day === '2026-10-01' ? 9 : 10;
+    assert.ok((counts[day] ?? 0) >= min, `${day} only used ${counts[day] ?? 0} times`);
   }
 });
 

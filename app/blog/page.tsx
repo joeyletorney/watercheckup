@@ -257,8 +257,8 @@ const POST_BY_SLUG: Record<
     badgeColor: '#a855f7',
   },
   'waterdrop-g3p600-vs-aquasana-smartflow': {
-    title: 'Waterdrop G3P600 vs Aquasana SmartFlow RO: Which Should You Buy?',
-    excerpt: 'Two of the best under-sink RO systems — but very different products. An honest comparison of certifications, flow rate, filter cost, and real contaminant removal.',
+    title: 'Waterdrop vs Aquasana (2026): Which Filter Is Better?',
+    excerpt: 'Waterdrop vs Aquasana: G3P600 is the current under-sink RO buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
     date: 'June 1, 2026',
     readTime: '8 min read',
     badge: 'Comparison',
@@ -314,8 +314,8 @@ const POST_BY_SLUG: Record<
     badgeColor: '#a78bfa',
   },
   'best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitcher 2026: What They Remove',
-    excerpt: 'Filter pitchers vary wildly in what they remove. Here are the top 2026 options ranked by NSF certifications, not just taste.',
+    title: 'Best Water Filter Pitchers 2026 (Incl. Anker Review)',
+    excerpt: 'Best water filter pitchers of 2026, including an Anker review. Compare documented lead and PFAS claims — not just taste.',
     date: 'April 20, 2026',
     readTime: '9 min read',
     badge: 'Filters',
