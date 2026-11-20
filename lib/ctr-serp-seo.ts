@@ -3,9 +3,9 @@
  * City pages default to `lib/serp-copy.ts`; an entry here wins when present.
  * When set, these replace default blog / rankings / utility / city SEO for SERP snippets.
  *
- * Keep `/blog/best-water-filter-pitcher-2025`. There is no 2026 slug, and the
- * 2025 URL already ranks near position 7. A 301 would throw that away to
- * cosmetic-year the path. Title and description are 2026; the URL stays.
+ * Keep `/blog/best-water-filter-pitcher-2025`. A 2026 slug redirect would
+ * abandon a URL that already ranks (GSC position ~8 for Anker pitcher queries).
+ * Title, H1, and description are 2026 and mention the Anker review; the path stays.
  */
 export type CtrSerpCopy = {
   title: string;
@@ -44,14 +44,19 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Do shower filters work? Compare 2026 picks for chlorine, chloramine, and hard water. NSF 177, ZIP report, and honest limits.',
   },
   '/blog/best-water-filter-pitcher-2025': {
-    title: 'Best Water Filter Pitcher 2026: What They Remove',
+    title: 'Best Water Filter Pitchers 2026 (Incl. Anker Review)',
     description:
-      'Best water filter pitcher of 2026, compared by certified lead and PFAS claims — cartridge life, replacement costs, and what they actually remove.',
+      'Best water filter pitchers 2026, including an Anker review — compare certified lead and PFAS claims, cartridge life, and what they actually remove.',
+  },
+  '/blog/waterdrop-g3p600-vs-aquasana-smartflow': {
+    title: 'Waterdrop vs Aquasana (2026): Which Filter Is Better?',
+    description:
+      'Waterdrop vs Aquasana in 2026: G3P600 is the current buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
   },
   '/water/gaithersburg': {
-    title: 'Is Gaithersburg Water Safe? 2026 Quality Report',
+    title: 'Gaithersburg Water Test (WSSC MD) 2026 Report',
     description:
-      'WSSC Water quality for Gaithersburg, MD: PFAS in UCMR5, DBPs, older-home lead. Well vs city water explained. NSF filter picks — not a treatment company.',
+      'Water test Gaithersburg MD: WSSC CCR, Maryland certified labs, home kit vs lab. Lead, PFAS, wells vs city water. NSF picks — not a treatment company.',
   },
   '/water/san-antonio': {
     title: 'Is San Antonio Tap Water Safe? 2026 PFAS Report',

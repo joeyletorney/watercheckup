@@ -17,9 +17,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'SAWS tap water: PFAS in UCMR5, hard Edwards Aquifer water, and DBP context. Is San Antonio water safe? See the PFAS guide and NSF filter picks.',
   },
   gaithersburg: {
-    title: 'Is Gaithersburg Water Safe? 2026 Quality Report',
+    title: 'Gaithersburg Water Test (WSSC MD) 2026 Report',
     description:
-      'WSSC Water quality for Gaithersburg, MD: PFAS in UCMR5, DBPs, older-home lead. Well vs city water explained. NSF filter picks — not a treatment company.',
+      'Water test Gaithersburg MD: WSSC CCR, Maryland certified labs, home kit vs lab. Lead, PFAS, wells vs city water. NSF picks — not a treatment company.',
   },
   raleigh: {
     title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report',

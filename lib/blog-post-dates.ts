@@ -17,7 +17,7 @@ export const BLOG_UPDATED_DISPLAY: Record<string, string> = {
 /** slug → ISO dateModified (and visible Updated label). */
 export const BLOG_POST_DATE_MODIFIED: Record<string, string> = {
   'is-new-york-city-tap-water-safe-2026': '2026-10-01',
-  'waterdrop-g3p600-vs-aquasana-smartflow': '2026-10-01',
+  'waterdrop-g3p600-vs-aquasana-smartflow': '2026-11-19',
   'best-countertop-water-filter': '2026-10-01',
   'lead-in-tap-water-signs-and-symptoms': '2026-10-01',
   'what-does-epa-water-violation-mean': '2026-10-01',
@@ -57,7 +57,7 @@ export const BLOG_POST_DATE_MODIFIED: Record<string, string> = {
   'best-under-sink-water-filter': '2026-11-03',
   'tap-water-safety-during-pregnancy': '2026-11-03',
   'boil-water-advisory-what-to-do-and-how-long': '2026-11-03',
-  'best-water-filter-pitcher-2025': '2026-11-03',
+  'best-water-filter-pitcher-2025': '2026-11-19',
   'reverse-osmosis-pros-and-cons': '2026-11-03',
   'microplastics-in-drinking-water-what-we-know': '2026-11-03',
   'why-does-tap-water-taste-bad': '2026-11-03',

@@ -33,6 +33,15 @@ test('opportunity pages target the queries that actually earn clicks', () => {
   const pitcher = CTR_SERP_OVERRIDES['/blog/best-water-filter-pitcher-2025'];
   assert.match(pitcher.title, /2026/);
   assert.match(pitcher.title, /best water filter pitcher/i);
+  assert.match(pitcher.title, /anker review/i);
+
+  const waterdrop = CTR_SERP_OVERRIDES['/blog/waterdrop-g3p600-vs-aquasana-smartflow'];
+  assert.match(waterdrop.title, /waterdrop vs aquasana/i);
+  assert.match(waterdrop.title, /2026/);
+
+  const gaithersburg = CTR_SERP_OVERRIDES['/water/gaithersburg'];
+  assert.match(gaithersburg.title, /water test/i);
+  assert.match(gaithersburg.title, /WSSC/i);
 
   const worst = CTR_SERP_OVERRIDES['/worst-lead'];
   assert.match(worst.title, /worst us cities for lead in tap water/i);
@@ -61,6 +70,9 @@ test('Gaithersburg FAQs distinguish wells from WSSC and are not a treatment comp
   assert.match(well!.answer, /WSSC|private well/i);
   const treatment = gaithersburgFAQs.find((f) => /treatment or filtration/i.test(f.question));
   assert.match(treatment!.answer, /not a treatment company/i);
+  const ccr = gaithersburgFAQs.find((f) => /WSSC water quality report \(CCR\)/i.test(f.question));
+  assert.ok(ccr);
+  assert.match(ccr!.answer, /wsscwater\.com\/waterquality/);
 });
 
 test('Baltimore FAQs explain CCR vs lab testing and cite Ashburton Lab', () => {

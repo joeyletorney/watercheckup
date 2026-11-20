@@ -15,8 +15,8 @@ export default function HomeLanding() {
     <HomeStickyCta />
     <section id="wc-hero-anchor" aria-labelledby="wc-home-heading" style={{ margin: '20px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
       <div className="wc-home-simple-intro">
-        <h1 id="wc-home-heading">What’s in your local water?</h1>
-        <p>Free water report by ZIP or city. No signup.</p>
+        <h1 id="wc-home-heading">Is my tap water safe by ZIP code?</h1>
+        <p>Check water quality by ZIP code — free water quality report, no signup.</p>
         <Link href="/about" className="wc-founder-intro">
           <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
           <span><strong>Recommendations from a real Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>

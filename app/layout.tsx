@@ -9,6 +9,7 @@ import { GaPageView } from './components/GaPageView'
 import { WebVitals } from './components/WebVitals'
 import { SiteFooter } from './components/SiteFooter'
 import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
+import { HOME_SEO_TITLE } from '@/lib/serp-copy'
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -27,7 +28,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-34ZFC3J521'
 export const metadata: Metadata = {
   metadataBase: new URL('https://watercheckup.com'),
   title: {
-    default: 'Is My Tap Water Safe? Free Water Quality by ZIP',
+    default: HOME_SEO_TITLE,
     template: '%s | WaterCheckup',
   },
   description: SITE_HOME_META_DESCRIPTION,
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://watercheckup.com',
     siteName: 'WaterCheckup',
-    title: 'Is My Tap Water Safe? Free Water Quality by ZIP',
+    title: HOME_SEO_TITLE,
     description: SITE_HOME_META_DESCRIPTION,
     images: [
       {
@@ -69,9 +70,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Is My Tap Water Safe? Free Water Quality by ZIP',
-    description:
-      'Free water quality report by ZIP — no signup. See PFAS, lead, and EPA data for your public supplier, plus NSF filter picks.',
+    title: HOME_SEO_TITLE,
+    description: SITE_HOME_META_DESCRIPTION,
     images: ['/api/og'],
     creator: '@watercheckup',
   },
@@ -121,7 +121,7 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': 'https://watercheckup.com/#webpage',
       url: 'https://watercheckup.com',
-      name: 'Is My Tap Water Safe? Free Water Quality by ZIP',
+      name: HOME_SEO_TITLE,
       isPartOf: { '@id': 'https://watercheckup.com/#website' },
       about: { '@id': 'https://watercheckup.com/#organization' },
       description: SITE_HOME_META_DESCRIPTION,

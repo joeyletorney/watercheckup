@@ -60,9 +60,10 @@ test('Fairfax, rankings, homepage, and Virginia SERP copy match search intent', 
   assert.match(RANKINGS_SEO_DESCRIPTION, /worst tap water in America/i);
   assert.ok(RANKINGS_SEO_DESCRIPTION.length <= SERP_DESCRIPTION_MAX);
 
-  assert.equal(HOME_SEO_TITLE, 'Is My Tap Water Safe? Free Water Quality by ZIP');
+  assert.equal(HOME_SEO_TITLE, 'Is My Tap Water Safe by ZIP Code? Free Report');
   assert.ok(HOME_SEO_TITLE.length <= SERP_TITLE_MAX);
   assert.match(HOME_SEO_DESCRIPTION, /no signup/i);
+  assert.match(HOME_SEO_DESCRIPTION, /ZIP code/i);
   assert.match(HOME_SEO_DESCRIPTION, /PFAS/i);
   assert.match(HOME_SEO_DESCRIPTION, /lead/i);
   assert.match(HOME_SEO_DESCRIPTION, /filter/i);
@@ -91,9 +92,9 @@ test('city descriptions use real supplier data and handle missing PFAS coverage'
   assert.doesNotMatch(String(nyc.description), /\d+(\.\d+)?\s*ppt/i);
 
   const gaithersburg = cityMeta('gaithersburg');
-  assert.equal(gaithersburg.title, 'Is Gaithersburg Water Safe? 2026 Quality Report');
+  assert.equal(gaithersburg.title, 'Gaithersburg Water Test (WSSC MD) 2026 Report');
   assert.match(String(gaithersburg.description), /WSSC/i);
-  assert.match(String(gaithersburg.description), /well vs city/i);
+  assert.match(String(gaithersburg.description), /water test/i);
   assert.match(String(gaithersburg.description), /not a treatment company/i);
 
   const sanAntonio = cityMeta('san-antonio');

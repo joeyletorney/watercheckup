@@ -14,4 +14,7 @@ export const GUIDE_SOURCES = {
   softener: 'https://www.epa.gov/watersense/cation-exchange-water-softeners',
   selection: 'https://www.epa.gov/system/files/documents/2025-01/ws-products-home-water-treatment-guide_v2_508.pdf',
   k19: 'https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s',
+  aarkePurifier: 'https://aarke.com/products/purifier',
+  aarkeSupport: 'https://aarke.com/en-row/pages/product-documentation-purifier',
+  nsfCertifiedProducts: 'https://www.nsf.org/certified-products-systems',
 };

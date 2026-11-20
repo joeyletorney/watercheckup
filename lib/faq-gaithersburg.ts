@@ -28,9 +28,29 @@ export const gaithersburgFAQs = [
       "Gaithersburg is served by WSSC Water (Washington Suburban Sanitary Commission), one of the largest water utilities in the country, serving Montgomery and Prince George's counties in Maryland.",
   },
   {
+    question: "How do I test my water in Gaithersburg, MD?",
+    answer:
+      "Start with this free WSSC/EPA snapshot, then read WSSC Water’s current Consumer Confidence Report at wsscwater.com/waterquality. For address-level lead or PFAS, use a laboratory on the Maryland Department of the Environment certified drinking-water lab list — not a random search-ad provider. Take a first-draw kitchen sample after water sits overnight if you are checking lead. WaterCheckup is not a lab and does not sell tests.",
+  },
+  {
+    question: "How do I get the WSSC water quality report (CCR) for Gaithersburg?",
+    answer:
+      "WSSC Water publishes the annual Water Quality Report (Consumer Confidence Report) at wsscwater.com/waterquality and wsscwater.com/wqr. WSSC aims to post it by April 1. Email communications@wsscwater.com if you need a printed copy. The CCR is a system-wide summary of treated water, not a test of your own faucet.",
+  },
+  {
+    question: "Are there local providers who specialize in comprehensive water testing?",
+    answer:
+      "Maryland does not publish a single “best” household tester. Use the Maryland Department of the Environment Laboratory Certification Program list of certified drinking-water labs and confirm the lab is certified for the tests you need (metals, microbiology, PFAS). Some labs are utility labs that may not accept private samples — call first. Home kits are screening tools; certified-lab methods are the comprehensive option. WaterCheckup is not a testing company and does not recommend a named lab.",
+  },
+  {
+    question: "Should I use a home test kit or a certified lab in Gaithersburg?",
+    answer:
+      "Use a home kit only as a screen for hardness, chlorine, or a first look. Use a Maryland-certified laboratory for lead, PFAS, bacteria, or any result you would use to choose treatment or close a real-estate deal. Match the lab’s certified analyte list to what you need; certification is test-specific.",
+  },
+  {
     question: "How do I get water testing in Gaithersburg, MD?",
     answer:
-      "Use this page for the free WSSC/EPA snapshot first. Then order a certified mail-in tap test (or a county/state lab) if you want address-level results. Test the kitchen faucet after water sits overnight if you are checking lead. WSSC monitoring does not see what your pipes add after the water leaves the plant.",
+      "Use this page for the free WSSC/EPA snapshot first. Then order a certified mail-in tap test or use a lab from the Maryland Department of the Environment certified list if you want address-level results. Test the kitchen faucet after water sits overnight if you are checking lead. WSSC monitoring does not see what your pipes add after the water leaves the plant.",
   },
   {
     question: "Do I need well water testing in Gaithersburg?",

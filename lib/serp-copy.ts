@@ -165,7 +165,7 @@ export function buildStateSeoDescription(input: {
   return clipMeta(noChem, SERP_DESCRIPTION_MAX);
 }
 
-export const HOME_SEO_TITLE = 'Is My Tap Water Safe? Free Water Quality by ZIP';
+export const HOME_SEO_TITLE = 'Is My Tap Water Safe by ZIP Code? Free Report';
 export const HOME_SEO_DESCRIPTION = SITE_HOME_META_DESCRIPTION;
 
 export const RANKINGS_SEO_TITLE = 'Worst Tap Water in America: 2026 City Rankings';
