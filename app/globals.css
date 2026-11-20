@@ -2132,6 +2132,21 @@ button.wc-nav-badge-nsf:focus-visible {
   font-weight: 600;
 }
 
+/* Tables keep inline dark-theme colors unless overridden — pale slate on
+   the light article panel fails WCAG contrast. */
+.wc-reading-prose table {
+  color: var(--wc-reading-text) !important;
+}
+.wc-reading-prose th {
+  color: var(--wc-reading-heading) !important;
+  border-color: #cbd5e1 !important;
+  background: #f1f5f9;
+}
+.wc-reading-prose td {
+  color: var(--wc-reading-text) !important;
+  border-color: #e2e8f0 !important;
+}
+
 /* BlogTopPicks buttons are teal with white labels; the prose link color
    would otherwise paint them blue on teal when the picks sit in article body. */
 .wc-reading-prose a.wc-blog-top-picks__btn--primary {

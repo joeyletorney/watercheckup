@@ -47,6 +47,14 @@ test('Waterdrop vs Aquasana opens with a 2026 verdict and a comparison table', (
   assert.match(html, /<table/);
   assert.match(html, /Waterdrop G3P600/);
   assert.match(html, /Aquasana SmartFlow/);
+  const table = html.match(/<table[\s\S]*?<\/table>/)?.[0] ?? '';
+  assert.match(table, /color:\s*#334155/);
+  assert.doesNotMatch(table, /color:\s*['"]?#cbd5e1/);
+  assert.doesNotMatch(table, /color:\s*['"]?#e2e8f0/);
+  const css = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+  assert.match(css, /\.wc-reading-prose table\s*\{[^}]*color:\s*var\(--wc-reading-text\)\s*!important/);
+  assert.match(css, /\.wc-reading-prose th\s*\{[^}]*color:\s*var\(--wc-reading-heading\)\s*!important/);
+  assert.match(css, /\.wc-reading-prose td\s*\{[^}]*color:\s*var\(--wc-reading-text\)\s*!important/);
   assert.ok(post.topPicks.some((pick) => /tag=watercheckup-20/.test(pick.amazon)));
 });
 
