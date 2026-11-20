@@ -1,8 +1,8 @@
 import type { TopPickRow } from '@/app/blog/post-types';
 import { attachProductImages } from '@/lib/filter-product-images';
+import { WATERDROP_G3P600_URL, WATERDROP_PT07_URL } from '@/lib/waterdrop-buy';
 
-const WATERDROP_RO =
-  'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb';
+const WATERDROP_RO = WATERDROP_G3P600_URL;
 const AMAZON = 'watercheckup-20';
 
 export type BlogPickSegment =
@@ -78,7 +78,7 @@ export const TOP_LEAD: TopPickRow[] = [
   {
     product: 'Frizzlife MK99',
     brand: 'Frizzlife',
-    price: '~$59',
+    price: 'Check current price',
     reason: 'Under-sink carbon (not RO). NSF/ANSI 53 for lead — installs in minutes.',
     link: 'https://www.frizzlife.com/products/mk99',
     amazon: `https://www.amazon.com/dp/B07MFYQBTX?tag=${AMAZON}`,
@@ -132,9 +132,9 @@ export const TOP_LEAD: TopPickRow[] = [
   {
     product: 'Waterdrop PT-07B Pitcher',
     brand: 'Waterdrop',
-    price: '~$16',
+    price: 'Check current price',
     reason: 'Certified NSF/ANSI 42 and 372 only. Not NSF 53; PFOA/PFOS reduction is third-party lab testing, not certified lead reduction.',
-    link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
+    link: WATERDROP_PT07_URL,
     amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON}`,
     badge: 'PITCHER',
   },
@@ -253,7 +253,7 @@ export const TOP_UNDERSINK: TopPickRow[] = [
   {
     product: 'Frizzlife MK99',
     brand: 'Frizzlife',
-    price: '~$59',
+    price: 'Check current price',
     reason: 'Best-value under-sink carbon — NSF 53 lead; under 2-minute install.',
     link: 'https://www.frizzlife.com/products/mk99',
     amazon: `https://www.amazon.com/dp/B07MFYQBTX?tag=${AMAZON}`,
@@ -308,9 +308,9 @@ export const TOP_PITCHER: TopPickRow[] = [
   {
     product: 'Waterdrop PT-07B Pitcher',
     brand: 'Waterdrop',
-    price: '~$16',
+    price: 'Check current price',
     reason: 'Certified NSF/ANSI 42 and 372 only. Not NSF 53; PFOA/PFOS reduction is third-party lab testing, not certified lead reduction.',
-    link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
+    link: WATERDROP_PT07_URL,
     amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON}`,
     badge: 'PITCHER',
   },
@@ -537,6 +537,112 @@ export const BLOG_SLUG_PICK_SEGMENT: Record<string, BlogPickSegment> = {
 
 const MAX_PICKS = 10;
 
+/**
+ * Per-guide Top 3 that matches the products each article actually recommends.
+ * Pitcher guide omits PT-07B: brand collection currently lists it sold out, and
+ * the article leads with Brita Elite OB06, Clearly Filtered, and ZeroWater.
+ */
+export const GUIDE_TOP3_OVERRIDES: Record<string, TopPickRow[]> = {
+  'best-water-filter-pitcher-2025': [
+    {
+      product: 'Brita Elite OB06 in a compatible pitcher',
+      brand: 'Brita',
+      price: 'Check current price',
+      reason:
+        'Documented NSF/ANSI 53-style lead reduction on the OB06 sheet in listed pitcher systems. Buy the Elite cartridge, not Original.',
+      link: 'https://www.brita.com/products/brita-elite-replacement-filters/',
+      amazon: '',
+      badge: 'BEST OVERALL',
+    },
+    {
+      product: 'Clearly Filtered 10-Cup Pitcher',
+      brand: 'Clearly Filtered',
+      price: '~$90',
+      reason:
+        'NSF/ANSI 42 and 372 certified. Broader PFAS, lead, and 53/401/P473 figures are published lab tests, not NSF listings.',
+      link: 'https://clearlyfiltered.com/products/clean-water-pitcher',
+      amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON}`,
+      badge: 'BROADER LAB TESTS',
+    },
+    {
+      product: 'ZeroWater 10-Cup Pitcher',
+      brand: 'ZeroWater',
+      price: '~$23',
+      reason: 'NSF 42/53 — lead, chromium, arsenic; TDS meter included. Budget pitcher with a certified lead claim.',
+      link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers',
+      amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON}`,
+      badge: 'BUDGET NSF 53',
+    },
+  ],
+  'best-ro-system-for-pfas-removal': [
+    {
+      product: 'Waterdrop G3P600',
+      brand: 'Waterdrop',
+      price: '~$399',
+      reason:
+        'Tankless under-sink RO — NSF 42/53/58/372. 600 GPD, 2:1 pure-to-drain, smart TDS faucet. Best overall RO in this guide.',
+      link: WATERDROP_RO,
+      amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON}`,
+      badge: 'BEST OVERALL',
+    },
+    {
+      product: 'APEC ROES-50',
+      brand: 'APEC',
+      price: '~$145',
+      reason:
+        '5-stage under-sink RO with tank. NSF/ANSI 58 and 372 on the current Amazon listing. Budget workhorse from this guide.',
+      link: `https://www.amazon.com/dp/B00I0ZGOZM?tag=${AMAZON}`,
+      amazon: `https://www.amazon.com/dp/B00I0ZGOZM?tag=${AMAZON}`,
+      badge: 'BEST BUDGET',
+    },
+    {
+      product: 'AquaTru Classic Countertop RO',
+      brand: 'AquaTru',
+      price: '~$380',
+      reason: 'Countertop NSF 42/53/58/401 — no plumbing. No-install RO for renters from this guide.',
+      link: 'https://aquatru.com/products/countertop-reverse-osmosis-water-purifier',
+      amazon: `https://www.amazon.com/dp/B0CQS3HQ8F?tag=${AMAZON}`,
+      badge: 'NO-INSTALL RO',
+    },
+  ],
+  'best-under-sink-water-filter': [
+    {
+      product: 'Waterdrop G3P600',
+      brand: 'Waterdrop',
+      price: '~$399',
+      reason:
+        'Tankless under-sink RO — NSF 42/53/58/372. Best overall when PFAS, lead, or dissolved solids are the concern.',
+      link: WATERDROP_RO,
+      amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${AMAZON}`,
+      badge: 'BEST OVERALL',
+    },
+    {
+      product: 'Frizzlife SK99-NEW',
+      brand: 'Frizzlife',
+      price: '~$126',
+      reason:
+        'IAPMO certified to NSF/ANSI 42, 53, and 372. Direct-connect carbon — no RO drain. Best budget under-sink when you do not need RO.',
+      link: 'https://www.frizzlife.com/products/sk99-new',
+      amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON}`,
+      badge: 'BEST BUDGET',
+    },
+    {
+      product: 'Epic Smart Shield',
+      brand: 'Epic Water Filters',
+      price: 'Check current price',
+      reason:
+        'Carbon-block under-sink filter on the existing cold-water line. No RO drain or dedicated faucet. Amazon and brand prices often differ.',
+      link: 'https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system',
+      amazon: `https://www.amazon.com/dp/B076S1W5QY?tag=${AMAZON}`,
+      badge: 'DIRECT-CONNECT CARBON',
+    },
+  ],
+};
+
+export function hasExplicitTopPicks(slug: string): boolean {
+  return Boolean(GUIDE_TOP3_OVERRIDES[slug]?.length);
+}
+
 export function getTopPicksForSegment(segment: BlogPickSegment): TopPickRow[] {
   return attachProductImages((PICKS_BY_SEGMENT[segment] ?? TOP_RO).slice(0, MAX_PICKS));
 }
@@ -546,6 +652,8 @@ export function resolveBlogTopPicks(
   postPicks?: TopPickRow[],
   badge?: string
 ): TopPickRow[] {
+  const override = GUIDE_TOP3_OVERRIDES[slug];
+  if (override?.length) return attachProductImages(override.slice(0, MAX_PICKS));
   const segment =
     BLOG_SLUG_PICK_SEGMENT[slug] ?? (badge ? inferSegmentFromBadge(badge) : undefined);
   if (segment) return getTopPicksForSegment(segment);

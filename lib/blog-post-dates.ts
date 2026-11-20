@@ -16,10 +16,10 @@ export const BLOG_UPDATED_DISPLAY: Record<string, string> = {
 
 /** slug → ISO dateModified (and visible Updated label). */
 export const BLOG_POST_DATE_MODIFIED: Record<string, string> = {
-  'is-new-york-city-tap-water-safe-2026': '2026-10-01',
+  'is-new-york-city-tap-water-safe-2026': '2026-11-19',
   'waterdrop-g3p600-vs-aquasana-smartflow': '2026-11-19',
   'best-countertop-water-filter': '2026-10-01',
-  'lead-in-tap-water-signs-and-symptoms': '2026-10-01',
+  'lead-in-tap-water-signs-and-symptoms': '2026-11-19',
   'what-does-epa-water-violation-mean': '2026-10-01',
   'bottled-water-vs-tap-water-cost-safety-and-pfas': '2026-10-01',
   'reverse-osmosis-vs-distilled-water': '2026-10-01',
@@ -31,12 +31,12 @@ export const BLOG_POST_DATE_MODIFIED: Record<string, string> = {
   'san-antonio-water-quality': '2026-10-03',
   'is-pfas-in-my-tap-water': '2026-10-03',
   'best-water-filter-gaithersburg-md': '2026-10-03',
-  'best-ro-system-for-pfas-removal': '2026-10-03',
+  'best-ro-system-for-pfas-removal': '2026-11-19',
   'is-tap-water-safe-to-drink': '2026-10-03',
   'how-to-read-your-consumer-confidence-report': '2026-10-03',
   'best-water-filter-hard-water': '2026-10-03',
   'refrigerator-water-filters-what-they-actually-remove': '2026-10-03',
-  'fluoride-in-tap-water-safe-or-not': '2026-10-03',
+  'fluoride-in-tap-water-safe-or-not': '2026-11-19',
   'private-well-water-testing-101': '2026-10-03',
   'hard-water-explained-scale-softeners-and-your-taps': '2026-10-03',
 
@@ -54,13 +54,13 @@ export const BLOG_POST_DATE_MODIFIED: Record<string, string> = {
 
   'pfas-in-san-antonio-water': '2026-11-03',
   'what-water-filter-removes-pfas': '2026-11-03',
-  'best-under-sink-water-filter': '2026-11-03',
+  'best-under-sink-water-filter': '2026-11-19',
   'tap-water-safety-during-pregnancy': '2026-11-03',
   'boil-water-advisory-what-to-do-and-how-long': '2026-11-03',
   'best-water-filter-pitcher-2025': '2026-11-19',
   'reverse-osmosis-pros-and-cons': '2026-11-03',
   'microplastics-in-drinking-water-what-we-know': '2026-11-03',
-  'why-does-tap-water-taste-bad': '2026-11-03',
+  'why-does-tap-water-taste-bad': '2026-11-19',
   'radon-in-drinking-water': '2026-11-03',
   'disinfection-byproducts-tthm-haa5-explained': '2026-11-03',
 

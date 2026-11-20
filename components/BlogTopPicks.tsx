@@ -14,16 +14,20 @@ type Props = {
   subtitle?: string;
   /** GA4 `source_page` / `page` for affiliate_click. Defaults to `blog`. */
   page?: string;
+  /** Keep the supplied order (per-guide Top 3) instead of budget/renter/homeowner reshuffle. */
+  preserveOrder?: boolean;
 };
 
-export function BlogTopPicks({ picks, subtitle, page = 'blog' }: Props) {
+export function BlogTopPicks({ picks, subtitle, page = 'blog', preserveOrder = false }: Props) {
   const available = picks.filter((p, i) => !p.outOfStock && !unavailablePurchase(p.product, p.amazon) && picks.findIndex(other => other.product === p.product) === i);
   const budget = [...available].sort((a, b) =>
     (Number(a.price.replace(/[^0-9.]/g, '')) || Infinity) -
     (Number(b.price.replace(/[^0-9.]/g, '')) || Infinity))[0];
   const renter = available.find(p => /countertop|pitcher|no.install/i.test(`${p.product} ${p.badge}`));
   const homeowner = available.find(p => /under.sink|under.counter/i.test(`${p.product} ${p.badge}`));
-  const visible = Array.from(new Set([budget, renter, homeowner, ...available].filter((p): p is TopPickRow => !!p))).slice(0, 3);
+  const visible = preserveOrder
+    ? available.slice(0, 3)
+    : Array.from(new Set([budget, renter, homeowner, ...available].filter((p): p is TopPickRow => !!p))).slice(0, 3);
   const skipped = picks.filter(p => p.outOfStock || unavailablePurchase(p.product, p.amazon)).length;
   const tabLabel = getBlogTopPicksHeading(visible.length);
 
@@ -55,11 +59,13 @@ export function BlogTopPicks({ picks, subtitle, page = 'blog' }: Props) {
         {visible.map((pick, i) => {
           const preferredAmazon = preferredAmazonPurchaseUrl(pick.amazon);
           const brandHref = pick.link && !preferredAmazonPurchaseUrl(pick.link) ? pick.link : undefined;
+          const preferWaterdropDirect = pick.brand === 'Waterdrop' && !!brandHref;
           const showDirect =
-            !preferredAmazon &&
-            !isAmazonSearch(pick.amazon) &&
-            !!brandHref &&
-            (pick.brand === 'Waterdrop' || isClearlyFilteredBrand(pick.brand) || !pick.amazon);
+            preferWaterdropDirect ||
+            (!preferredAmazon &&
+              !isAmazonSearch(pick.amazon) &&
+              !!brandHref &&
+              (isClearlyFilteredBrand(pick.brand) || !pick.amazon));
           const directHref = isClearlyFilteredBrand(pick.brand)
             ? clearlyFilteredAmazonUrl()
             : brandHref ?? pick.link;
@@ -99,7 +105,7 @@ export function BlogTopPicks({ picks, subtitle, page = 'blog' }: Props) {
                   <div className="wc-blog-top-picks__meta">
                     {pick.brand} · {/WH-1000-B|MWT3|PD1000|PUR PLUS 11-Cup|Epic Smart Shield|Fleck|Aquasure|AFWFilters/.test(pick.product) ? "Check current price" : pick.price}
                   </div>
-                  <div className="wc-blog-top-picks__reason">{pick === budget ? 'Lowest listed upfront cost among these options. ' : pick === renter ? 'No permanent plumbing changes; compare its tank or cartridge capacity. ' : pick === homeowner ? 'Under-sink option for a homeowner who can install a dedicated system. ' : ''}Compare the exact model and cartridge’s current contaminant-reduction listing, rated capacity, and annual replacement cost before buying.</div>
+                  <div className="wc-blog-top-picks__reason">{!preserveOrder && pick === budget ? 'Lowest listed upfront cost among these options. ' : !preserveOrder && pick === renter ? 'No permanent plumbing changes; compare its tank or cartridge capacity. ' : !preserveOrder && pick === homeowner ? 'Under-sink option for a homeowner who can install a dedicated system. ' : ''}Compare the exact model and cartridge’s current contaminant-reduction listing, rated capacity, and annual replacement cost before buying.</div>
                 </div>
               </div>
               <div className="wc-blog-top-picks__actions">

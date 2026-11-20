@@ -18,6 +18,12 @@ const TODAY_UPDATED = new Set([
   SHOWER,
   'best-water-filter-pitcher-2025',
   'waterdrop-g3p600-vs-aquasana-smartflow',
+  'best-under-sink-water-filter',
+  'best-ro-system-for-pfas-removal',
+  'why-does-tap-water-taste-bad',
+  'fluoride-in-tap-water-safe-or-not',
+  'lead-in-tap-water-signs-and-symptoms',
+  'is-new-york-city-tap-water-safe-2026',
 ]);
 
 test('every indexed blog slug has a dateModified and a matching sitemap lastmod', () => {
@@ -51,8 +57,8 @@ test('POSTS keep original datePublished and show an Updated label from dateModif
   assert.equal(POSTS[SHOWER].dateModified, '2026-11-19');
 
   for (const day of BLOG_UPDATED_DATES) {
-    // Oct 1 has 9 POSTS after the Waterdrop vs Aquasana GSC update moved to Nov 19.
-    const min = day === '2026-10-01' ? 9 : 10;
+    // Oct 1/3 mix shrinks as factual product updates move to Nov 19.
+    const min = 7;
     assert.ok((counts[day] ?? 0) >= min, `${day} only used ${counts[day] ?? 0} times`);
   }
 });

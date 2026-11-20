@@ -18,7 +18,7 @@ const TOP_3_LEAD = [
 ];
 const TOP_3_PITCHER = [
   { product: 'Clearly Filtered 10-Cup Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF/ANSI 42 and 372 certified. Broader PFAS, lead, and 53/401/P473 figures are published lab tests, not NSF listings.', link: 'https://clearlyfiltered.com/products/clean-water-pitcher', amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Waterdrop PT-07B Pitcher', brand: 'Waterdrop', price: '~$16', reason: 'Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  { product: 'Waterdrop PT-07B Pitcher', brand: 'Waterdrop', price: 'Check current price', reason: 'Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No installation needed.', link: 'https://www.waterdropfilter.com/products/water-pitcher-with-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$23', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
 ];
 const TOP_3_PFAS = [
@@ -181,7 +181,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
     topPicks: TOP_3_RO,
     content: React.createElement(React.Fragment, null,
       React.createElement('p', { style: pStyle },
-        'Bad-tasting tap water is one of the most common reasons people switch to bottled water — spending thousands of dollars a year on something that can almost always be fixed at the tap for a fraction of the cost. The key is diagnosing the specific cause, because different tastes have different solutions. Chlorine vs chloramine still matters in 2026: check your CCR, then pick NSF 42 carbon for free chlorine or catalytic carbon / vitamin C for chloramine. Current pitcher prices: Waterdrop PT-07B about $16 (NSF 42/372 only); ZeroWater 10-cup about $23 (NSF 42/53).'
+        'Bad-tasting tap water is one of the most common reasons people switch to bottled water — spending thousands of dollars a year on something that can almost always be fixed at the tap for a fraction of the cost. The key is diagnosing the specific cause, because different tastes have different solutions. Chlorine vs chloramine still matters in 2026: check your CCR, then pick NSF 42 carbon for free chlorine or catalytic carbon / vitamin C for chloramine. Current pitcher prices: Waterdrop PT-07B check-current-price (NSF 42/372 only); ZeroWater 10-cup about $23 (NSF 42/53).'
       ),
 
       React.createElement('h2', { style: h2Style }, '1. Chlorine or Bleach Taste'),
@@ -303,7 +303,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('p', { style: pStyle },
         'The US Public Health Service recommends ',
         React.createElement('strong', { style: strongStyle }, '0.7 mg/L'),
-        ' as the optimal fluoride level — reduced from the previous range of 0.7–1.2 mg/L in 2015 based on newer research. The EPA\'s enforceable maximum is 4.0 mg/L, with a secondary non-enforceable limit of 2.0 mg/L for cosmetic effects (dental fluorosis). Those numbers are unchanged in 2026; they are separate from the 2024 PFAS MCLs. Pitcher filters certified only to NSF 42 (Waterdrop PT-07B, about $16) do not remove fluoride — NSF 58 RO does (Waterdrop G3P600 about $399, AquaTru Classic about $380).'
+        ' as the optimal fluoride level — reduced from the previous range of 0.7–1.2 mg/L in 2015 based on newer research. The EPA\'s enforceable maximum is 4.0 mg/L, with a secondary non-enforceable limit of 2.0 mg/L for cosmetic effects (dental fluorosis). Those numbers are unchanged in 2026; they are separate from the 2024 PFAS MCLs. Pitcher filters certified only to NSF 42 (Waterdrop PT-07B, check-current-price) do not remove fluoride — NSF 58 RO does (Waterdrop G3P600 about $399, AquaTru Classic about $380).'
       ),
 
       React.createElement('h2', { style: h2Style }, 'The Emerging Concerns'),
@@ -488,7 +488,7 @@ export const EXTRA_POSTS_3: Record<string, Post> = {
       React.createElement('h2', { style: h2Style }, 'What Actually Removes Lead From Water'),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'NSF 53-certified filters'),
-        ' remove lead. This includes solid carbon block filters (under-sink and countertop) and Brita Elite OB06 in a listed pitcher. Clearly Filtered 10-cup is NSF 42/372; its lead figures are published lab tests, not an NSF 53 listing. Do not assume all filters remove lead — Waterdrop PT-07B (~$16) is NSF 42/372 only.'
+        ' remove lead. This includes solid carbon block filters (under-sink and countertop) and Brita Elite OB06 in a listed pitcher. Clearly Filtered 10-cup is NSF 42/372; its lead figures are published lab tests, not an NSF 53 listing. Do not assume all filters remove lead — Waterdrop PT-07B (check current price) is NSF 42/372 only.'
       ),
       React.createElement('p', { style: pStyle },
         React.createElement('strong', { style: strongStyle }, 'NSF 58-certified RO systems'),
