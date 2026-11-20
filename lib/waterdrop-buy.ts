@@ -9,15 +9,34 @@ export function clearlyFilteredAmazonUrl(): string {
 
 export const WATERDROP_REF = 'anbyjkqb';
 
+/** Lucid 10-cup PT-07 / PT-07B PDP. Collection listing is often sold out — keep this URL, do not quote a live price. */
+export const WATERDROP_PT07_URL =
+  `https://www.waterdropfilter.com/products/water-pitcher-with-filter?ref=${WATERDROP_REF}`;
+
+export const WATERDROP_G3P600_URL =
+  `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=${WATERDROP_REF}`;
+
 export const CLEARLY_FILTERED_PITCHER_URL =
   'https://clearlyfiltered.com/products/clean-water-pitcher';
 
 export const WATERDROP_DIRECT_BY_ID: Partial<Record<number, string>> = {
-  47: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=${WATERDROP_REF}`,
+  47: WATERDROP_G3P600_URL,
   26: `https://www.waterdropfilter.com/products/ro-water-filter-system-d6?ref=${WATERDROP_REF}`,
   6: `https://www.waterdropfilter.com/products/countertop-ro-water-filter-system-wd-k19-s?ref=${WATERDROP_REF}`,
   34: `https://www.waterdropfilter.com/products/whole-house-water-filter-for-tap-water-wd-whf3t-pg?ref=${WATERDROP_REF}`,
 };
+
+/** Keep Waterdrop affiliate attribution on brand-site URLs. */
+export function appendWaterdropRef(url: string): string {
+  try {
+    const u = new URL(url);
+    if (!/(^|\.)waterdropfilter\.com$/i.test(u.hostname)) return url;
+    if (!u.searchParams.has('ref')) u.searchParams.set('ref', WATERDROP_REF);
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
 
 export function isWaterdropBrand(brand: string): boolean {
   return brand === 'Waterdrop';

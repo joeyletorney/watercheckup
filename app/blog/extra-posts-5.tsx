@@ -16,9 +16,9 @@ const TOP_3_WHOLE_HOUSE = [
 ];
 
 const TOP_3_UNDERSINK = [
-
   { product: 'Waterdrop G3P600 RO', brand: 'Waterdrop', price: '~$399', reason: 'Tankless design with smart LED faucet — with strong NSF certification. NSF 42/53/58/372 certified, 600 GPD, removes 99%+ PFAS and lead. Best value under-sink RO.', link: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`, amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20`, badge: 'BEST VALUE' },
   { product: 'Frizzlife SK99-NEW Under-Sink Filter', brand: 'Frizzlife', price: '~$126', reason: 'IAPMO certified to NSF/ANSI 42, 53, and 372. Quick-change carbon — not NSF 401. Best budget under-sink.', link: 'https://www.frizzlife.com/products/sk99-new', amazon: `https://www.amazon.com/dp/B08NDYVZV5?tag=${AMAZON_TAG}`, badge: 'BEST BUDGET' },
+  { product: 'Epic Smart Shield', brand: 'Epic Water Filters', price: 'Check current price', reason: 'Carbon-block under-sink filter connecting to the existing cold-water line. No RO drain or dedicated faucet. Not reverse osmosis or a softener; check the exact model’s performance data for your concern.', link: 'https://www.epicwaterfilters.com/products/epic-smart-shield-under-sink-water-filter-system', amazon: 'https://www.amazon.com/dp/B076S1W5QY?tag=watercheckup-20', badge: 'DIRECT-CONNECT CARBON' },
 ];
 
 const h2Style: React.CSSProperties = { fontSize: 22, fontWeight: 800, color: '#f1f5f9', margin: '56px 0 18px', lineHeight: 1.3 };
@@ -144,7 +144,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       { q: 'What is the best under-sink water filter?', a: 'For comprehensive contaminant removal including PFAS and lead, the Waterdrop G3P600 RO is our top pick — NSF 42/53/58 certified, tankless, and 600 GPD. For the best budget option, the Frizzlife SK99-NEW is IAPMO certified to NSF/ANSI 42, 53, and 372 (not NSF 401) at $126.' },
       { q: 'Do I need reverse osmosis or will a carbon filter work?', a: 'It depends on your water. If you have PFAS, nitrates, arsenic, or high TDS, reverse osmosis is the only certified solution. If your main concerns are lead and chlorine, an IAPMO-certified carbon filter like the Frizzlife SK99-NEW (NSF/ANSI 42, 53, and 372) works at much lower cost. Check your water at WaterCheckup first.' },
       { q: 'How hard is it to install an under-sink water filter?', a: 'Most under-sink filters require connecting to the cold water line under your sink and drilling a small hole for the dedicated faucet. Most homeowners can install in 30–60 minutes with basic tools. The Waterdrop G3P600 includes an installation kit and video guide. If you rent, ask your landlord — most allow it since it\'s reversible.' },
-      { q: 'Do under-sink RO systems waste a lot of water?', a: 'Traditional RO systems waste 3–4 gallons for every 1 gallon purified. Newer tankless systems like the Waterdrop G3P600 use a 3:1 ratio — 3 gallons purified per 1 wasted, which is significantly more efficient. Look for tankless RO systems for better water efficiency.' },
+      { q: 'Do under-sink RO systems waste a lot of water?', a: 'Traditional RO systems waste 3–4 gallons for every 1 gallon purified. Newer tankless systems like the Waterdrop G3P600 use a 2:1 ratio — 2 gallons purified per 1 wasted, which is significantly more efficient. Look for tankless RO systems for better water efficiency.' },
       { q: 'How much does an under-sink water filter cost per year?', a: 'Entry-level carbon filters (Frizzlife SK99-NEW): about $126 upfront + about $60/year in filters. Premium RO (Waterdrop G3P600): about $399 upfront + about $170/year. Aquasana SmartFlow listings were unavailable at our November 2026 check — do not treat $449 as a live price. Over 5 years, certified carbon or RO is still dramatically cheaper than bottled water.' },
     ],
     content: React.createElement(React.Fragment, null,
@@ -163,7 +163,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
       React.createElement('h2', { style: h2Style }, 'The Waterdrop G3P600 — Best Overall Under-Sink RO'),
       React.createElement('p', { style: pStyle },
-        'The G3P600 is the best-selling under-sink RO for a reason. Tankless design means no bulky storage tank under your sink. 600 GPD flow rate — you won\'t wait for water. NSF 42/53/58 certified. Smart LED faucet displays real-time TDS so you can see the system is working. Twist-off sealed cartridges make filter changes tool-free and mess-free.'
+        'The G3P600 is the best-selling under-sink RO for a reason. Tankless design means no bulky storage tank under your sink. 600 GPD flow rate — you won\'t wait for water. NSF 42/53/58 certified. 2:1 pure-to-drain ratio. Smart LED faucet displays real-time TDS so you can see the system is working. Twist-off sealed cartridges make filter changes tool-free and mess-free.'
       ),
       React.createElement('p', { style: pStyle },
         'Installation takes about an hour and a basic understanding of plumbing. Waterdrop provides a detailed video guide. If you have PFAS in your city water, lead pipes in an older home, or you simply want the cleanest possible drinking and cooking water, this is the right system.'
@@ -181,6 +181,11 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
       React.createElement('div', { style: warnStyle },
         React.createElement('strong', { style: { color: '#f59e0b' } }, 'Important: '),
         'The Frizzlife SK99-NEW is NOT a reverse osmosis system. It doesn\'t remove nitrates, fluoride, arsenic, or significantly reduce TDS. If your water has PFAS above EPA limits or other serious contaminants, you need the RO options above.'
+      ),
+
+      React.createElement('h2', { style: h2Style }, 'Epic Smart Shield — Direct-connect carbon (no extra faucet)'),
+      React.createElement('p', { style: pStyle },
+        'If you want under-sink carbon without drilling a dedicated faucet, Epic Smart Shield connects to the existing cold-water line. It is not reverse osmosis and does not soften water. Confirm the exact model’s current performance sheet for the reduction claims you need. Amazon and brand prices often differ — check the live listing.'
       ),
 
       React.createElement('h2', { style: h2Style }, 'How to Choose the Right One'),

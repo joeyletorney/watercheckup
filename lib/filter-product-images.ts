@@ -69,6 +69,7 @@ const IMG_BY_PRODUCT_KEY: Record<string, string> = {
   'zerowater 10-cup pitcher': IMG_BY_ASIN.B0DWTTYTQN,
   'pur plus 11-cup pitcher': IMG_BY_ASIN.B09LKTLVNR,
   'waterdrop pitcher filter': IMG_BY_ASIN.B07C3P2RZP,
+  'waterdrop pt-07b pitcher': IMG_BY_ASIN.B07C3P2RZP,
   'pur plus faucet mount fm2000b': IMG_BY_ASIN.B009V9K6BY,
   'brita complete faucet filtration': IMG_BY_ASIN.B00006IV0P,
   'aquasana rhino eq-1000': IMG_BY_ASIN.B00XAJJVHQ,

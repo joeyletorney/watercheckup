@@ -30,10 +30,20 @@ test('Amazon preference never promotes missing, mismatched, unverified or search
   assert.equal(homeShoppingProduct(999), undefined);
 });
 
-test('verified model chooses Amazon over brand routing while discontinued K19 routes to current comparisons', () => {
+test('Waterdrop models prefer waterdropfilter.com affiliate ref over Amazon', () => {
   const g3 = resolveProductBuyLink({ name: 'Waterdrop G3P600', brand: 'Waterdrop', amazon: 'https://www.amazon.com/dp/B07P1XFYJP', directLink: 'https://www.waterdropfilter.com/' });
-  assert.equal(g3.destination, 'amazon');
-  assert.equal(g3.label, 'Check price on Amazon →');
+  assert.equal(g3.destination, 'direct');
+  assert.equal(g3.href, 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb');
+  assert.equal(g3.label, 'Check price at Waterdrop →');
+  const pt = resolveProductBuyLink({
+    name: 'Waterdrop PT-07B Pitcher',
+    brand: 'Waterdrop',
+    amazon: 'https://www.amazon.com/dp/B07C3P2RZP?tag=watercheckup-20',
+    directLink: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
+  });
+  assert.equal(pt.destination, 'direct');
+  assert.equal(pt.href, 'https://www.waterdropfilter.com/products/water-pitcher-with-filter?ref=anbyjkqb');
+  assert.equal(new URL(pt.href).searchParams.get('ref'), 'anbyjkqb');
   const k19 = resolveProductBuyLink({ name: 'Waterdrop K19-S', brand: 'Waterdrop', amazon: '' });
   assert.equal(k19.destination, 'direct');
   assert.equal(k19.href, '/#find-a-filter');

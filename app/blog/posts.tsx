@@ -21,7 +21,7 @@ const TOP_3_RO = [
 ];
 const TOP_3_PITCHER = [
   { product: 'Clearly Filtered 10-Cup Pitcher', brand: 'Clearly Filtered', price: '~$90', reason: 'NSF/ANSI 42 and 372 certified. Broader PFAS, lead, and 53/401/P473 figures are published lab tests, not NSF listings.', link: 'https://clearlyfiltered.com/products/clean-water-pitcher', amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${AMAZON_TAG}`, badge: 'EDITORS PICK' },
-  { product: 'Waterdrop PT-07B Pitcher', brand: 'Waterdrop', price: '~$16', reason: 'Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No installation needed.', link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
+  { product: 'Waterdrop PT-07B Pitcher', brand: 'Waterdrop', price: 'Check current price', reason: 'Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No installation needed.', link: 'https://www.waterdropfilter.com/products/water-pitcher-with-filter?ref=anbyjkqb', amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`, badge: 'BEST VALUE' },
   { product: 'ZeroWater 10-Cup Pitcher', brand: 'ZeroWater', price: '~$23', reason: 'Reduces TDS to zero. NSF 42/53. Removes lead, chromium, and arsenic. Comes with a TDS testing meter.', link: 'https://zerowater.com/collections/water-filter-pitchers-dispensers', amazon: `https://www.amazon.com/dp/B0DWTTYTQN?tag=${AMAZON_TAG}`, badge: 'REMOVES TDS' },
 ];
 

@@ -14,7 +14,7 @@ import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stat
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
-import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
+import { getTopPicksSubtitle, hasExplicitTopPicks, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { withoutBrandSuffix } from '@/lib/serp-copy';
 import { PitcherCartridgeVideo } from '@/components/PitcherCartridgeVideo';
@@ -85,6 +85,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
   const nextSteps = articleNextSteps(params.slug);
   const topPicks = resolveBlogTopPicks(params.slug, post.topPicks, post.badge);
   const topPicksSubtitle = getTopPicksSubtitle(params.slug, topPicks);
+  const preserveTopPicksOrder = hasExplicitTopPicks(params.slug);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -225,7 +226,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           {post.content}
         </div>
 
-        {nextSteps ? <BlogNextSteps slug={params.slug} guidance={nextSteps} /> : !COMMERCIAL_GUIDES[params.slug] && params.slug !== 'best-shower-filter-2026' ? <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} page={`/blog/${params.slug}`} /> : null}
+        {nextSteps ? <BlogNextSteps slug={params.slug} guidance={nextSteps} /> : params.slug !== 'best-shower-filter-2026' && (!COMMERCIAL_GUIDES[params.slug] || preserveTopPicksOrder) ? <BlogTopPicks picks={topPicks} subtitle={topPicksSubtitle} page={`/blog/${params.slug}`} preserveOrder={preserveTopPicksOrder} /> : null}
 
         {(params.slug === 'best-water-filter-for-lead-removal' ||
           params.slug === 'what-water-filter-removes-pfas') && (

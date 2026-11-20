@@ -65,6 +65,33 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     );
   }
 
+  const waterdropDirect = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
+  if (isWaterdropBrand(p.brand) && waterdropDirect) {
+    return (
+      <AffiliateLink
+        href={waterdropDirect}
+        product={p.name}
+        brand={p.brand}
+        destination="direct"
+        page="trusted-picks"
+        productId={String(p.id)}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        style={{
+          fontSize: 12,
+          fontWeight: 800,
+          color: '#0f172a',
+          padding: '7px 12px',
+          borderRadius: 7,
+          textDecoration: 'none',
+          background: 'linear-gradient(135deg,#22d3ee,#06b6d4)',
+        }}
+      >
+        Waterdrop.com →
+      </AffiliateLink>
+    );
+  }
+
   const preferredAmazon = preferredAmazonPurchaseUrl(p.amazon);
   if (preferredAmazon) return <AffiliateLink href={preferredAmazon} product={p.name} brand={p.brand} destination="amazon" page="trusted-picks" target="_blank" rel="sponsored noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 44, padding: '10px 16px', borderRadius: 8, fontSize: 14, fontWeight: 800, background: '#fbbf24', color: '#162332', textDecoration: 'none' }}>Check price on Amazon →</AffiliateLink>;
 
@@ -99,7 +126,6 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
     );
   }
 
-  const direct = isWaterdropBrand(p.brand) ? waterdropDirectUrl(p.id) : undefined;
   const clearlyDirect = isClearlyFilteredBrand(p.brand)
     ? clearlyFilteredAmazonUrl()
     : undefined;
@@ -133,28 +159,6 @@ function PickBuyButtons({ p }: { p: TrustedFilterProduct }) {
         }}
       >
         Check price on Amazon →
-      </a>
-    );
-  }
-
-  if (isWaterdropBrand(p.brand) && direct) {
-    return (
-      <a data-wc-affiliate-tracked="true"
-        href={direct}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-        onClick={() => track('direct', direct)}
-        style={{
-          fontSize: 12,
-          fontWeight: 800,
-          color: '#0f172a',
-          padding: '7px 12px',
-          borderRadius: 7,
-          textDecoration: 'none',
-          background: 'linear-gradient(135deg,#22d3ee,#06b6d4)',
-        }}
-      >
-        Waterdrop.com →
       </a>
     );
   }

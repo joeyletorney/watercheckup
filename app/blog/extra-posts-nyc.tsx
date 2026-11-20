@@ -17,9 +17,9 @@ const TOP_3_PITCHER = [
   {
     product: 'Waterdrop PT-07B Pitcher',
     brand: 'Waterdrop',
-    price: '~$16',
+    price: 'Check current price',
     reason: 'Certified NSF/ANSI 42 and 372 only. Chlorine/taste; PFOA/PFOS reduction is third-party lab testing, not NSF 53 or certified lead reduction. No plumber needed.',
-    link: 'https://www.waterdropfilter.com/collections/pitcher-water-filter?ref=anbyjkqb',
+    link: 'https://www.waterdropfilter.com/products/water-pitcher-with-filter?ref=anbyjkqb',
     amazon: `https://www.amazon.com/dp/B07C3P2RZP?tag=${AMAZON_TAG}`,
     badge: 'BEST VALUE',
   },
