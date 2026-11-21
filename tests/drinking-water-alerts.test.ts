@@ -73,6 +73,8 @@ test('alerts article cites sources, current status, and does not invent Brita PF
   const boilLead = post.faq?.find((item) => /boiling remove lead/i.test(item.q));
   assert.ok(boilLead);
   assert.match(boilLead!.a, /does not remove lead/i);
+  assert.match(boilLead!.a, /not by itself a lead claim/i);
+  assert.match(html, /does not by itself verify lead reduction/i);
 
   const shower = post.faq?.find((item) => /shower/i.test(item.q));
   assert.ok(shower);

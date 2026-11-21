@@ -81,7 +81,7 @@ export const EXTRA_POSTS_ALERTS: Record<string, Post> = {
     faq: [
       {
         q: 'Does boiling remove lead?',
-        a: 'No. Boiling kills germs; it does not remove lead. Because some water evaporates, boiling can raise the concentration of lead and other metals. Use cold water for drinking and cooking, and a filter with a lead-reduction claim under NSF/ANSI 53 or an NSF/ANSI 58 reverse-osmosis system if lead is the concern.',
+        a: 'No. Boiling kills germs; it does not remove lead. Because some water evaporates, boiling can raise the concentration of lead and other metals. Use cold water for drinking and cooking, and a filter whose exact model has a lead-reduction claim (typically NSF/ANSI 53). An NSF/ANSI 58 reverse-osmosis listing is the RO system standard; it is not by itself a lead claim unless lead reduction is listed for that model.',
       },
       {
         q: 'Can I shower during a boil advisory?',
@@ -183,8 +183,9 @@ export const EXTRA_POSTS_ALERTS: Record<string, Post> = {
         </p>
         <h3 style={h3Style}>Certified filters and testing</h3>
         <p style={pStyle}>
-          A filter only helps with lead if the exact model has a lead-reduction claim under NSF/ANSI 53, or if it is a
-          reverse-osmosis system listed under NSF/ANSI 58. Our{' '}
+          A filter only helps with lead if the exact model has a lead-reduction claim — typically NSF/ANSI 53. NSF/ANSI
+          58 is the reverse-osmosis system standard; it does not by itself verify lead reduction unless that claim is
+          listed for the model. Our{' '}
           <Guide href="/blog/best-water-filter-for-lead-removal">lead filter guide</Guide> and{' '}
           <Guide href="/blog/best-water-filter-pitcher-2025">pitcher guide</Guide> walk through verified picks —
           including Brita Elite OB06 in a compatible pitcher for documented lead reduction, and the{' '}
@@ -294,7 +295,7 @@ export const EXTRA_POSTS_ALERTS: Record<string, Post> = {
               <tr>
                 <td style={tdStyle}>Lead</td>
                 <td style={tdStyle}>
-                  NSF/ANSI 53 lead-reduction filter or NSF/ANSI 58 RO — see the{' '}
+                  NSF/ANSI 53 lead-reduction claim on the exact model (NSF 58 RO only if lead is listed) — see the{' '}
                   <Guide href="/blog/best-water-filter-for-lead-removal">lead guide</Guide>
                   {', '}
                   <Guide href="/blog/best-water-filter-pitcher-2025">pitcher guide</Guide>
