@@ -220,14 +220,14 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
 
   // ─── POST 4: WATERDROP G3P600 vs AQUASANA SMARTFLOW ──────────────────────
   'waterdrop-g3p600-vs-aquasana-smartflow': {
-    title: 'Waterdrop vs Aquasana (2026): Which Filter Is Better?',
-    excerpt: 'Waterdrop vs Aquasana in 2026: G3P600 is the current under-sink RO buy (~$399). SmartFlow listings were unavailable. Honest comparison of flow, NSF claims, and who each filter fits.',
+    title: 'Aquasana vs Waterdrop (2026): Which Is Better?',
+    excerpt: 'Aquasana vs Waterdrop in 2026: G3P600 is the current under-sink RO buy (~$399). SmartFlow listings were unavailable. Honest comparison of flow, NSF claims, and who each filter fits.',
     seo: {
-      title: 'Waterdrop vs Aquasana (2026): Which Filter Is Better?',
-      description: 'Waterdrop vs Aquasana in 2026: G3P600 is the current buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
+      title: 'Aquasana vs Waterdrop (2026): Which Is Better?',
+      description: 'Aquasana vs Waterdrop in 2026: G3P600 is the current buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
       canonical: 'https://watercheckup.com/blog/waterdrop-g3p600-vs-aquasana-smartflow',
       openGraph: {
-        title: 'Waterdrop vs Aquasana (2026): Which Filter Is Better?',
+        title: 'Aquasana vs Waterdrop (2026): Which Is Better?',
         description: 'G3P600 is the current buy at about $399. SmartFlow listings were unavailable at our November 2026 check. Compare flow, NSF claims, and who each filter fits.',
       },
     },
@@ -256,7 +256,7 @@ export const EXTRA_POSTS_5: Record<string, Post> = {
         'The Waterdrop G3P600 and Aquasana SmartFlow have been two of the most compared under-sink RO systems — but they target different buyers. The G3P600 remains current at about $399. SmartFlow retail listings were unavailable at our November 2026 check, so treat the sections below as a historical comparison if you already own one, not a current shopping list.'
       ),
 
-      React.createElement('h2', { style: h2Style }, 'Waterdrop vs Aquasana comparison table'),
+      React.createElement('h2', { style: h2Style }, 'Aquasana vs Waterdrop comparison table'),
       React.createElement('div', { style: { overflowX: 'auto', margin: '0 0 28px', border: '1px solid #e2e8f0', borderRadius: 12, background: '#fff' } },
         React.createElement('table', { style: { width: '100%', borderCollapse: 'collapse', fontSize: 14, color: '#334155' } },
           React.createElement('thead', null,

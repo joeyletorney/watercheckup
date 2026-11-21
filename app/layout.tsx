@@ -8,7 +8,7 @@ import { AffiliateClickFallback } from './components/AffiliateClickFallback'
 import { GaPageView } from './components/GaPageView'
 import { WebVitals } from './components/WebVitals'
 import { SiteFooter } from './components/SiteFooter'
-import { SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
+import { AUTHOR_PAGE_URL, SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
 import { HOME_SEO_TITLE } from '@/lib/serp-copy'
 const inter = Inter({
   subsets: ['latin'],
@@ -105,7 +105,7 @@ const jsonLd = {
       founder: {
         '@type': 'Person',
         name: 'Joe Letorney',
-        url: 'https://watercheckup.com/about',
+        url: AUTHOR_PAGE_URL,
       },
       areaServed: 'United States',
       knowsAbout: [

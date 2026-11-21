@@ -168,6 +168,6 @@ export function buildStateSeoDescription(input: {
 export const HOME_SEO_TITLE = 'Is My Tap Water Safe by ZIP Code? Free Report';
 export const HOME_SEO_DESCRIPTION = SITE_HOME_META_DESCRIPTION;
 
-export const RANKINGS_SEO_TITLE = 'Worst Tap Water in America: 2026 City Rankings';
+export const RANKINGS_SEO_TITLE = 'Worst Tap Water Rankings 2026: Cities & States';
 export const RANKINGS_SEO_DESCRIPTION =
-  'See the worst tap water in America for 2026 — city and state rankings from EPA PFAS data and safety grades, plus free reports and filter picks. No signup.';
+  'Worst tap water in America, 2026: city water quality reports and state rankings from EPA PFAS data and safety grades. Free reports, no signup.';

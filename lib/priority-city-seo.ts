@@ -12,14 +12,14 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'New York City tap water quality: PFOS in EPA monitoring, lead in pre-1986 buildings. Free 2026 NYC water report with grade and NSF filter picks.',
   },
   'san-antonio': {
-    title: 'Is San Antonio Tap Water Safe? 2026 PFAS Report',
+    title: 'San Antonio Water Quality & Contamination (2026)',
     description:
-      'SAWS tap water: PFAS in UCMR5, hard Edwards Aquifer water, and DBP context. Is San Antonio water safe? See the PFAS guide and NSF filter picks.',
+      'San Antonio water quality and contamination: SAWS hardness, PFAS in UCMR5, radium context. Free EPA snapshot — not a tap test. See the PFAS guide.',
   },
   gaithersburg: {
-    title: 'Gaithersburg Water Test (WSSC MD) 2026 Report',
+    title: 'Gaithersburg, MD Water Quality, Testing & Treatment (2026)',
     description:
-      'Water test Gaithersburg MD: WSSC CCR, Maryland certified labs, home kit vs lab. Lead, PFAS, wells vs city water. NSF picks — not a treatment company.',
+      'Gaithersburg water quality (WSSC): water testing, well water, reverse osmosis, and how to choose a treatment company. Not a treatment company.',
   },
   raleigh: {
     title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report',
@@ -152,9 +152,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Denver Water: mountain source water with hardness and UCMR5 PFAS monitoring. Free 2026 Denver tap water report from EPA data.',
   },
   atlanta: {
-    title: 'Atlanta Tap Water 2026 — PFAS & Chloramine Report',
+    title: 'Atlanta Water Contamination: 2026 Tap Report',
     description:
-      'Atlanta Watershed tap water: PFAS UCMR5, chloramine DBPs, and Chattahoochee source. Free 2026 Atlanta water quality report.',
+      'Atlanta water contamination context: Chattahoochee source, UCMR5 PFAS, chloramine DBPs. Free 2026 report — not a current alert or tap test.',
   },
   minneapolis: {
     title: 'Minneapolis Tap Water 2026 — Lead Risk & PFAS',
@@ -172,9 +172,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'Las Vegas Valley Water: Colorado River source, very hard water, UCMR5 PFAS snapshot. Free 2026 Las Vegas tap water report.',
   },
   baltimore: {
-    title: 'Is Baltimore Tap Water Safe? 2026 Quality Report',
+    title: 'Baltimore Water Testing: Free & Certified Options (2026)',
     description:
-      'Baltimore City DPW: lead pipe risk and PFAS snapshot. A CCR is not a tap test — Ashburton Lab can arrange lead testing. NSF filter picks.',
+      'City water testing in Baltimore MD: free ZIP snapshot, Ashburton Lab, Maryland certified labs, well vs city water, and cost ranges. Not a lab.',
   },
   tampa: {
     title: 'Tampa Tap Water 2026 — PFAS & Chloramine',
@@ -215,11 +215,11 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
 
 /** H1 copy for priority city pages — matches the “is tap water safe?” SERP intent */
 export const PRIORITY_CITY_H1: Record<string, string> = {
-  gaithersburg: 'Is Gaithersburg Tap Water Safe?',
-  'san-antonio': 'Is San Antonio Tap Water Safe? PFAS in 2026',
+  gaithersburg: 'Gaithersburg, MD Water Quality, Testing & Treatment',
+  'san-antonio': 'San Antonio Water Quality: Contamination, PFAS & Hardness',
   raleigh: 'Is Raleigh Tap Water Safe?',
   houston: 'Is Houston Tap Water Safe?',
-  baltimore: 'Is Baltimore Tap Water Safe?',
+  baltimore: 'Baltimore Water Testing: Free & Certified Options',
   chicago: 'Is Chicago Tap Water Safe?',
   phoenix: 'Is Phoenix Tap Water Safe?',
   'new-york': 'Is New York City Tap Water Safe?',
@@ -237,8 +237,9 @@ export const PRIORITY_CITY_H1: Record<string, string> = {
   austin: 'Is Austin Tap Water Safe?',
   'fairfax-county': 'Is Fairfax County Tap Water Safe?',
   stamford: 'Is Stamford Tap Water Safe?',
-  'jersey-city': 'Is Jersey City Tap Water Safe?',
-  indianapolis: 'Is Indianapolis Tap Water Safe?',
+  'jersey-city': 'Is Jersey City Tap Water Safe to Drink?',
+  indianapolis: 'Is Indianapolis Tap Water Safe to Drink?',
+  atlanta: 'Atlanta Water Contamination: Is Tap Water Safe?',
   nashville: 'Is Nashville Tap Water Safe?',
   'kansas-city': 'Is Kansas City Tap Water Safe?',
   richmond: 'Is Richmond Tap Water Safe?',

@@ -44,6 +44,9 @@ export function SearchDemandCities({ title = 'Popular water quality reports', co
               }}
             >
               <div style={{ fontSize: 16, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
+                {c.name} tap water quality report
+              </div>
+              <div style={{ fontSize: 13, color: '#94a3b8', marginBottom: 6 }}>
                 {c.name}, {c.state}
               </div>
               {ws && (

@@ -10,7 +10,7 @@ import { POSTS } from '../posts';
 import { SiteHeader } from '../../components/SiteHeader';
 import { BlogFeaturedImage } from '@/components/BlogFeaturedImage';
 import { getBlogFeaturedImageUrl } from '@/lib/unsplash-images';
-import { BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
+import { AUTHOR_PAGE_URL, BLOG_AUTHOR_BYLINE, VIEW_ALL_WATER_SYSTEMS_LINK } from '@/lib/site-stats';
 import { buildFaqPageSchema } from '@/lib/build-faq-schema';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
@@ -107,7 +107,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
     author: {
       '@type': 'Person',
       name: 'Joe Letorney',
-      url: 'https://watercheckup.com/about',
+      url: AUTHOR_PAGE_URL,
     },
     publisher: {
       '@type': 'Organization',
@@ -167,7 +167,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           </div>
           <h1 className="wc-reading-title">{post.title}</h1>
           <p className="wc-reading-meta" style={{ margin: '0 0 12px' }}>
-            By <Link prefetch href="/about">{BLOG_AUTHOR_BYLINE.name}</Link>
+            By <Link prefetch href={BLOG_AUTHOR_BYLINE.href}>{BLOG_AUTHOR_BYLINE.name}</Link>
             {' | '}
             {BLOG_AUTHOR_BYLINE.credentials}
           </p>

@@ -21,15 +21,15 @@ const linkStyle: React.CSSProperties = { color: '#22d3ee', fontWeight: 600, text
 export const EXTRA_POSTS_SA: Record<string, Post> = {
 
   'san-antonio-water-quality': {
-    title: 'San Antonio Water Quality Report 2026 — Is SAWS Water Safe?',
-    excerpt: 'San Antonio tap water meets EPA standards but contains PFAS, radium, and some of the hardest water in the US. Here\'s what the 2024 SAWS data actually shows.',
+    title: 'San Antonio Water Quality: SAWS Hardness & PFAS',
+    excerpt: 'San Antonio water quality from SAWS and EPA data: hardness, radium, and PFAS monitoring. Not a tap test — see the city report and PFAS guide.',
     seo: {
-      title: 'Is San Antonio Tap Water Safe? Free SAWS Report (2026)',
+      title: 'San Antonio Water Quality: SAWS Hardness & PFAS',
       description:
         'PFAS in UCMR5 · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & EPA data show — free guide, no signup.',
       canonical: 'https://watercheckup.com/blog/san-antonio-water-quality',
       openGraph: {
-        title: 'Is San Antonio Tap Water Safe? Free SAWS Report (2026)',
+        title: 'San Antonio Water Quality: SAWS Hardness & PFAS',
         description:
           'PFAS in UCMR5 · 272 mg/L hardness · radium from Edwards Aquifer. What SAWS & EPA data show — free guide, no signup.',
       },
@@ -170,15 +170,15 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
   },
 
   'pfas-in-san-antonio-water': {
-    title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
-    excerpt: 'PFAS "forever chemicals" have been detected in San Antonio tap water. Here\'s exactly what was found, what the levels mean, and which filters actually remove PFAS from SAWS water.',
+    title: 'PFAS in San Antonio Water: 2026 EPA UCMR5 Data',
+    excerpt: 'PFAS in San Antonio water: UCMR5 compounds for SAWS (TX0150018), how they compare with EPA limits, and NSF 58 filter options.',
     seo: {
-      title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
+      title: 'PFAS in San Antonio Water: 2026 EPA UCMR5 Data',
       description:
-        'Which PFAS compounds showed up in SAWS UCMR5 monitoring, how they compare with EPA limits, and which NSF filters are built to remove them.',
+        'PFAS in San Antonio water: UCMR5 compounds for SAWS (TX0150018), how they compare with EPA limits, and NSF 58 filter options.',
       canonical: 'https://watercheckup.com/blog/pfas-in-san-antonio-water',
       openGraph: {
-        title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
+        title: 'PFAS in San Antonio Water: 2026 EPA UCMR5 Data',
         description:
           'Which PFAS compounds showed up in SAWS UCMR5 monitoring, how they compare with EPA limits, and which NSF filters are built to remove them.',
       },
@@ -191,7 +191,7 @@ export const EXTRA_POSTS_SA: Record<string, Post> = {
     content: React.createElement(React.Fragment, null,
 
       React.createElement('p', { style: pStyle },
-        'The EPA\'s UCMR5 national monitoring program (2023–2025) tested public water systems for PFAS forever chemicals. This site\'s San Antonio report uses San Antonio Water System (SAWS, PWSID TX0150018). Here is what that UCMR5 snapshot lists, what it means, and what you can do about it. The April 2024 PFAS drinking-water limits (PFOA/PFOS 4 ppt) have a 2029 compliance deadline, so a historical peak is not the same as a treated-water violation in 2026.'
+        'PFAS in San Antonio water is documented in EPA UCMR5 monitoring for San Antonio Water System (SAWS, PWSID TX0150018). This article answers that query with the UCMR5 snapshot: historical peaks of PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those peaks are not current tap readings. The April 2024 PFAS drinking-water limits (PFOA/PFOS 4 ppt) have a 2029 compliance deadline, so a historical peak is not a treated-water violation in 2026. For hardness, radium, and the city safety grade, use the San Antonio water quality report.'
       ),
 
       React.createElement('div', { style: calloutStyle },

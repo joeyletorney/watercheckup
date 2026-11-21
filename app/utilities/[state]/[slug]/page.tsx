@@ -19,6 +19,16 @@ import { shouldIndexUtility } from "@/lib/utility-indexability";
 import { getCtrSerpOverride } from "@/lib/ctr-serp-seo";
 import { withoutBrandSuffix } from "@/lib/serp-copy";
 import { cacheLife } from "next/cache";
+import { PLACE_TESTING_GUIDES } from "@/lib/place-water-testing";
+import { HowToTestYourWater } from "@/components/HowToTestYourWater";
+import { PageFaq } from "@/components/PageFaq";
+import { AuthorReviewBadge } from "@/components/AuthorReviewBadge";
+
+const UTILITY_TESTING_H1: Record<string, string> = {
+  annapolis: "Annapolis Well Water Testing: City vs Private Wells",
+  "maryland-city-anne-arundel-co": "City Water Testing in Anne Arundel County, MD",
+  "town-of-chestertown": "Chestertown MD Water Testing: Certified Labs",
+};
 
 /** Prerender top utilities at build; all other `/utilities/[state]/[slug]` paths ISR on first request. */
 // export const dynamicParams = true;
@@ -251,8 +261,9 @@ export default async function UtilityPage(props: { params: Promise<{ state: stri
             PUBLIC WATER SYSTEM REPORT
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: "#f1f5f9", lineHeight: 1.2, margin: "0 0 22px" }}>
-            Is {u.name} Water Safe to Drink in 2026?
+            {UTILITY_TESTING_H1[params.slug] ?? `Is ${u.name} Water Safe to Drink in 2026?`}
           </h1>
+          {PLACE_TESTING_GUIDES[params.slug] ? <AuthorReviewBadge /> : null}
 
           <p style={{ fontSize: 15, color: "#cbd5e1", margin: "0 0 20px", lineHeight: 1.6 }}>
             {stLabel} · PWSID {u.pwsid}
@@ -487,6 +498,16 @@ export default async function UtilityPage(props: { params: Promise<{ state: stri
         </div>
 
         <UtilityCcrSection utilityName={u.name} isClaimed={u.isClaimed === true} ccr={u.ccr} />
+
+        {PLACE_TESTING_GUIDES[params.slug] ? (
+          <>
+            <HowToTestYourWater guide={PLACE_TESTING_GUIDES[params.slug]} />
+            <PageFaq
+              faqs={PLACE_TESTING_GUIDES[params.slug].faqs}
+              pageUrl={`https://watercheckup.com/utilities/${params.state.toLowerCase()}/${params.slug}`}
+            />
+          </>
+        ) : null}
 
         {/* Violations */}
         <div style={{ marginBottom: 72 }}>

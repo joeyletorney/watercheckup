@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { AUTHOR_FORMER_WQA_CREDENTIAL } from '@/lib/site-stats';
+import { AUTHOR_FORMER_WQA_CREDENTIAL, AUTHOR_PAGE_PATH } from '@/lib/site-stats';
 
 /**
  * Drop this near the top of every city page, right under the H1.
@@ -27,7 +27,7 @@ export function AuthorByline() {
       </span>
       <Link
         prefetch
-        href="/about"
+        href={AUTHOR_PAGE_PATH}
         style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'underline', whiteSpace: 'nowrap' }}
       >
         Full bio →

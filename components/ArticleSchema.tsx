@@ -1,3 +1,5 @@
+import { AUTHOR_PAGE_URL } from '@/lib/site-stats';
+
 type Props = {
   headline: string;
   slug: string;
@@ -24,7 +26,7 @@ export function ArticleSchema({ headline, slug, datePublished, dateModified }: P
     author: {
       '@type': 'Person',
       name: 'Joe Letorney',
-      url: 'https://watercheckup.com/about',
+      url: AUTHOR_PAGE_URL,
     },
     datePublished,
     dateModified,

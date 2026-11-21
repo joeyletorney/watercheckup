@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
-import { BLOG_AUTHOR_BYLINE } from '@/lib/site-stats';
+import { AUTHOR_PAGE_URL, BLOG_AUTHOR_BYLINE } from '@/lib/site-stats';
 import { BlogTopPicks } from '@/components/BlogTopPicks';
 import { getTopPicksSubtitle, resolveBlogTopPicks } from '@/lib/blog-top-picks';
 
@@ -76,7 +76,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
     author: {
       '@type': 'Person',
       name: BLOG_AUTHOR_BYLINE.name,
-      url: 'https://watercheckup.com/about',
+      url: AUTHOR_PAGE_URL,
     },
     publisher: {
       '@type': 'Organization',
@@ -113,7 +113,7 @@ export default function ReverseOsmosisVsDistilledWaterPage() {
           actually performs — and which one makes sense for drinking, cooking, and everyday home use.
         </p>
         <p style={{ fontSize: 13, color: '#a8b4c4', margin: '0 0 32px' }}>
-          By {BLOG_AUTHOR_BYLINE.name} · {BLOG_AUTHOR_BYLINE.credentials} · 10 min read · Updated October 1, 2026
+          By <Link prefetch href={BLOG_AUTHOR_BYLINE.href}>{BLOG_AUTHOR_BYLINE.name}</Link> · {BLOG_AUTHOR_BYLINE.credentials} · 10 min read · Updated October 1, 2026
         </p>
 
         <div

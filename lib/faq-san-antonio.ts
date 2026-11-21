@@ -18,7 +18,7 @@ export const sanAntonioFAQs = [
   {
     question: "Is there PFAS in San Antonio's water?",
     answer:
-      "SAWS's 2024 UCMR5 monitoring detected only trace PFBS at about 3.8 parts per trillion (ppt) — near the minimum reporting level and below the EPA's 4 ppt legal limit for the more concerning PFOA/PFOS. Multiple other PFAS were not detected at all, making this one of the cleaner large-city PFAS profiles in the country.",
+      "Yes — PFAS in San Antonio water appears in EPA UCMR5 monitoring for SAWS (PWSID TX0150018): historical peaks of PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those peaks are not current tap readings. None of the six EPA-regulated PFAS (PFOA, PFOS, PFNA, PFHxS, HFPO-DA) sit above April 2024 MCL benchmarks in this snapshot. See the PFAS in San Antonio water guide for compound notes.",
   },
   {
     question: "Does San Antonio have lead pipes?",

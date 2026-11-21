@@ -49,7 +49,7 @@ export default function RankingsPage() {
           NATIONAL COMPARISON · 50 STATES + DC
         </div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 22px' }}>
-          Worst Tap Water in America: 2026 City Rankings
+          Worst Tap Water Rankings 2026: Cities &amp; States
         </h1>
         <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 20px' }}>
           States are ordered by the share of <strong style={{ color: '#e2e8f0' }}>tracked cities</strong> with UCMR5 data flagged
@@ -118,7 +118,7 @@ export default function RankingsPage() {
                 >
                   <div>
                     <span style={{ color: '#94a3b8', marginRight: 10, fontSize: 13 }}>{i + 1}.</span>
-                    <span style={{ fontWeight: 800, color: '#f1f5f9' }}>{c.name}</span>
+                    <span style={{ fontWeight: 800, color: '#f1f5f9' }}>{c.name} tap water quality report</span>
                     <span style={{ color: '#a8b4c4', marginLeft: 8, fontSize: 13 }}>{c.state}</span>
                   </div>
                   <span style={{ fontWeight: 800, color: c.gradeColor, fontSize: 14 }}>
@@ -167,7 +167,7 @@ export default function RankingsPage() {
                 >
                   <div>
                     <span style={{ color: '#94a3b8', marginRight: 10, fontSize: 13 }}>{i + 1}.</span>
-                    <span style={{ fontWeight: 800, color: '#f1f5f9' }}>{c.name}</span>
+                    <span style={{ fontWeight: 800, color: '#f1f5f9' }}>{c.name} tap water quality report</span>
                     <span style={{ color: '#a8b4c4', marginLeft: 8, fontSize: 13 }}>{c.state}</span>
                   </div>
                   <span style={{ fontWeight: 800, color: '#f87171', fontSize: 14 }}>{c.contaminantCount} contaminants</span>

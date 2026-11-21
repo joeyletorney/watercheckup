@@ -39,11 +39,12 @@ test('pitcher guide targets the Anker review query without inventing Anker NSF c
 
 test('Waterdrop vs Aquasana opens with a 2026 verdict and a comparison table', () => {
   const post = POSTS[COMPARE];
-  assert.equal(post.title, 'Waterdrop vs Aquasana (2026): Which Filter Is Better?');
+  assert.equal(post.title, 'Aquasana vs Waterdrop (2026): Which Is Better?');
   assert.equal(post.dateModified, '2026-11-19');
   assert.ok(post.faq?.some((item) => /waterdrop or aquasana better/i.test(item.q)));
   const html = renderToStaticMarkup(createElement('div', null, post.content));
   assert.match(html, /Verdict:/);
+  assert.match(html, /Aquasana vs Waterdrop comparison table/);
   assert.match(html, /<table/);
   assert.match(html, /Waterdrop G3P600/);
   assert.match(html, /Aquasana SmartFlow/);
@@ -60,9 +61,11 @@ test('Waterdrop vs Aquasana opens with a 2026 verdict and a comparison table', (
 
 test('Gaithersburg testing copy links WSSC CCR and the MDE certified lab list', () => {
   const cityPage = readFileSync(join(process.cwd(), 'app/water/[city]/page.tsx'), 'utf8');
-  assert.match(cityPage, /How to test your water in Gaithersburg, MD/);
-  assert.match(cityPage, /dateModified="2026-11-19"/);
-  assert.match(cityPage, /GAITHERSBURG_TESTING_SOURCES/);
+  const testing = readFileSync(join(process.cwd(), 'lib/place-water-testing.ts'), 'utf8');
+  assert.match(testing, /How to test your water in Gaithersburg, MD/);
+  assert.match(testing, /Gaithersburg well water testing/);
+  assert.match(cityPage, /dateModified="2026-11-21"/);
+  assert.match(cityPage, /GAITHERSBURG_TREATMENT_SECTIONS/);
 
   assert.equal(WSSC_WATER_QUALITY_REPORT_URL, 'https://www.wsscwater.com/waterquality');
   assert.equal(
@@ -97,13 +100,62 @@ test('GSC opportunity titles stay within SERP limits', () => {
     `/blog/${PITCHER}`,
     `/blog/${COMPARE}`,
     '/water/gaithersburg',
+    '/water/san-antonio',
+    '/water/baltimore',
+    '/blog/best-water-filter-for-lead-removal',
+    '/blog/best-water-filter-hard-water',
+    '/blog/best-countertop-water-filter',
+    '/blog/pfas-in-san-antonio-water',
+    '/rankings',
+    '/utilities/md/annapolis',
+    '/about/joe-letorney',
   ]) {
     const copy = CTR_SERP_OVERRIDES[path];
+    if (!copy && path === '/about/joe-letorney') continue;
     assert.ok(copy, path);
     assert.ok(copy.title.length <= SERP_TITLE_MAX, `${path} ${copy.title.length}`);
     assert.ok(copy.description.length <= SERP_DESCRIPTION_MAX, `${path} ${copy.description.length}`);
   }
   assert.equal(COMMERCIAL_GUIDES[PITCHER].title, CTR_SERP_OVERRIDES[`/blog/${PITCHER}`].title);
+  assert.equal(COMMERCIAL_GUIDES['best-water-filter-for-lead-removal'].title, CTR_SERP_OVERRIDES['/blog/best-water-filter-for-lead-removal'].title);
+  assert.equal(COMMERCIAL_GUIDES['best-water-filter-hard-water'].title, CTR_SERP_OVERRIDES['/blog/best-water-filter-hard-water'].title);
   assert.equal(BLOG_POST_DATE_MODIFIED[PITCHER], '2026-11-19');
   assert.equal(BLOG_POST_DATE_MODIFIED[COMPARE], '2026-11-19');
+});
+
+test('lead guide opens with a top pick and NSF 53 comparison table', () => {
+  const post = POSTS['best-water-filter-for-lead-removal'];
+  assert.equal(post.title, 'Best Water Filter for Lead Removal (2026)');
+  const html = renderToStaticMarkup(createElement('div', null, post.content));
+  assert.match(html, /BEST LEAD REMOVAL WATER FILTER FOR HOME/);
+  assert.match(html, /<table/);
+  assert.match(html, /NSF\/ANSI 53/);
+  assert.match(html, /Waterdrop G3P600/);
+  assert.match(html, /anbyjkqb/);
+  assert.match(html, /watercheckup-20/);
+  assert.ok(post.faq?.some((item) => /lead and PFAS/i.test(item.q)));
+});
+
+test('hard-water guide uses filter phrases and distinguishes softeners', () => {
+  const source = readFileSync(join(process.cwd(), 'app/blog/best-water-filter-hard-water/page.tsx'), 'utf8');
+  assert.match(source, /hard water filter/i);
+  assert.match(source, /water filter for hard water/i);
+  assert.match(source, /hardness water filter/i);
+  assert.match(source, /fridge filter/i);
+  assert.match(source, /not the same product as a/);
+});
+
+test('rankings lists cities with descriptive tap-water-report anchors', () => {
+  const source = readFileSync(join(process.cwd(), 'app/rankings/page.tsx'), 'utf8');
+  assert.match(source, /tap water quality report/);
+  const demand = readFileSync(join(process.cwd(), 'components/SearchDemandCities.tsx'), 'utf8');
+  assert.match(demand, /tap water quality report/);
+});
+
+test('author page uses the published headshot and TikTok sameAs', () => {
+  const source = readFileSync(join(process.cwd(), 'app/about/joe-letorney/page.tsx'), 'utf8');
+  assert.match(source, /joe-letorney\.jpeg/);
+  assert.match(source, /joethewaterpro/);
+  assert.match(source, /30-year water treatment expert/);
+  assert.match(source, /former WQA/i);
 });

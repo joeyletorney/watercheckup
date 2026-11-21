@@ -21,14 +21,14 @@ test('CTR SERP overrides stay within title and description limits', () => {
 
 test('opportunity pages target the queries that actually earn clicks', () => {
   const lead = CTR_SERP_OVERRIDES['/blog/best-water-filter-for-lead-removal'];
-  assert.match(lead.title, /best water filter for lead/i);
-  assert.match(lead.description, /top-rated water filters for lead-contaminated areas/i);
+  assert.match(lead.title, /best water filter for lead removal/i);
+  assert.match(lead.description, /lead removal water filter/i);
 
   const hard = CTR_SERP_OVERRIDES['/blog/best-water-filter-hard-water'];
-  assert.match(hard.title, /best filter for hard water/i);
+  assert.match(hard.title, /hard water filter/i);
 
   const countertop = CTR_SERP_OVERRIDES['/blog/best-countertop-water-filter'];
-  assert.match(countertop.title, /best countertop water filter 2026 \(for taste\)/i);
+  assert.match(countertop.title, /best countertop water filter 2026 \(pfas\)/i);
 
   const pitcher = CTR_SERP_OVERRIDES['/blog/best-water-filter-pitcher-2025'];
   assert.match(pitcher.title, /2026/);
@@ -36,12 +36,13 @@ test('opportunity pages target the queries that actually earn clicks', () => {
   assert.match(pitcher.title, /anker review/i);
 
   const waterdrop = CTR_SERP_OVERRIDES['/blog/waterdrop-g3p600-vs-aquasana-smartflow'];
-  assert.match(waterdrop.title, /waterdrop vs aquasana/i);
+  assert.match(waterdrop.title, /aquasana vs waterdrop/i);
   assert.match(waterdrop.title, /2026/);
 
   const gaithersburg = CTR_SERP_OVERRIDES['/water/gaithersburg'];
-  assert.match(gaithersburg.title, /water test/i);
-  assert.match(gaithersburg.title, /WSSC/i);
+  assert.match(gaithersburg.title, /water quality/i);
+  assert.match(gaithersburg.title, /testing/i);
+  assert.match(gaithersburg.title, /treatment/i);
 
   const worst = CTR_SERP_OVERRIDES['/worst-lead'];
   assert.match(worst.title, /worst us cities for lead in tap water/i);
@@ -59,9 +60,9 @@ test('keep the 2025 pitcher URL instead of inventing a 2026 slug', async () => {
 
 test('Jersey City, Stamford, Indianapolis, and Nashville H1s use the safety question', () => {
   for (const slug of ['jersey-city', 'stamford', 'indianapolis', 'nashville']) {
-    assert.match(PRIORITY_CITY_H1[slug], /^Is .+ Tap Water Safe\?/);
+    assert.match(PRIORITY_CITY_H1[slug], /^Is .+ Tap Water Safe/);
   }
-  assert.equal(PRIORITY_CITY_H1['san-antonio'], 'Is San Antonio Tap Water Safe? PFAS in 2026');
+  assert.equal(PRIORITY_CITY_H1['san-antonio'], 'San Antonio Water Quality: Contamination, PFAS & Hardness');
 });
 
 test('Gaithersburg FAQs distinguish wells from WSSC and are not a treatment company', () => {
@@ -86,7 +87,9 @@ test('Baltimore FAQs explain CCR vs lab testing and cite Ashburton Lab', () => {
 
 test('San Antonio PFAS post uses SAWS PWSID TX0150018 and links the city report', () => {
   const post = EXTRA_POSTS_SA['pfas-in-san-antonio-water'];
+  assert.match(post.title, /PFAS in San Antonio Water/i);
   const html = renderToStaticMarkup(createElement('div', null, post.content));
+  assert.match(html, /PFAS in San Antonio water/);
   assert.match(html, /TX0150018/);
   assert.doesNotMatch(html, /TX2150001/);
   assert.match(html, /\/water\/san-antonio/);
@@ -94,4 +97,7 @@ test('San Antonio PFAS post uses SAWS PWSID TX0150018 and links the city report'
   assert.doesNotMatch(html, /15 ppt/);
   const safety = sanAntonioFAQs.find((f) => /safe to drink/i.test(f.question));
   assert.ok(safety);
+  const pfasFaq = sanAntonioFAQs.find((f) => /PFAS in San Antonio/i.test(f.question));
+  assert.ok(pfasFaq);
+  assert.match(pfasFaq!.answer, /9\.2 ppt/);
 });

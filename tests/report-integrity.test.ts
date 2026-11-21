@@ -203,7 +203,15 @@ test('state aliases do not shadow NYC, and excluded ZIP pages are absent from th
   assert.equal(rewrites.some(rule => rule.source === '/water/new-york'), false);
   const map = sitemap();
   assert.equal(map.some(row => row.url.includes('/results/')), false);
-  assert.equal(map.some(row => row.url.includes('/utilities')), false);
+  const utilityUrls = map.filter(row => row.url.includes('/utilities')).map(row => row.url);
+  assert.deepEqual(
+    utilityUrls.sort(),
+    [
+      'https://watercheckup.com/utilities/md/annapolis',
+      'https://watercheckup.com/utilities/md/maryland-city-anne-arundel-co',
+      'https://watercheckup.com/utilities/md/town-of-chestertown',
+    ].sort(),
+  );
   assert.ok(map.some(row => row.url.endsWith('/water/boston')));
   assert.ok(map.some(row => row.url.includes('/water/state/')));
   assert.ok(map.some(row => row.url.includes('/blog/')));
