@@ -18,6 +18,7 @@ import { getTopPicksSubtitle, hasExplicitTopPicks, resolveBlogTopPicks } from '@
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { withoutBrandSuffix } from '@/lib/serp-copy';
 import { PitcherCartridgeVideo } from '@/components/PitcherCartridgeVideo';
+import { TikTokEmbed } from '@/components/TikTokEmbed';
 
 // export async function generateStaticParams() {
 //   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -174,7 +175,16 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
           <p className="wc-reading-excerpt">{post.excerpt}</p>
         </header>
 
-        {params.slug === 'best-water-filter-pitcher-2025' && <PitcherCartridgeVideo />}
+        {params.slug === 'best-water-filter-pitcher-2025' && (
+          <>
+            <TikTokEmbed
+              videoId="7710434939006668046"
+              url="https://www.tiktok.com/@joethewaterpro/video/7710434939006668046"
+              heading="Watch: my top 3 pitchers in 37 seconds"
+            />
+            <PitcherCartridgeVideo />
+          </>
+        )}
 
         {/* Check ZIP CTA — top (slug-specific copy for high-impression posts) */}
         <BlogCommercialComparison slug={params.slug} />
