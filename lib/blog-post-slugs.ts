@@ -16,6 +16,7 @@ export const BLOG_POST_SLUGS = [
   'chloramine-vs-chlorine-in-tap-water',
   'chromium-6-in-drinking-water-should-you-worry',
   'disinfection-byproducts-tthm-haa5-explained',
+  'drinking-water-alerts-november-2026',
   'fluoride-in-tap-water-safe-or-not',
   'hard-water-explained-scale-softeners-and-your-taps',
   'how-to-read-your-consumer-confidence-report',

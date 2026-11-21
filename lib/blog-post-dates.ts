@@ -12,6 +12,7 @@ export const BLOG_UPDATED_DISPLAY: Record<string, string> = {
   '2026-11-01': 'Updated November 1, 2026',
   '2026-11-03': 'Updated November 3, 2026',
   '2026-11-19': 'Updated November 19, 2026',
+  '2026-11-21': 'Updated November 21, 2026',
 };
 
 /** slug → ISO dateModified (and visible Updated label). */
@@ -66,6 +67,9 @@ export const BLOG_POST_DATE_MODIFIED: Record<string, string> = {
 
   // Real publish date is Nov 19, 2026 (PR #29). Leave it — Nov 3 would be earlier than published.
   'best-shower-filter-2026': '2026-11-19',
+
+  // Real publish date is Nov 21, 2026 — do not backdate into the Oct/Nov mix.
+  'drinking-water-alerts-november-2026': '2026-11-21',
 };
 
 export function blogUpdatedDisplay(iso: string): string {

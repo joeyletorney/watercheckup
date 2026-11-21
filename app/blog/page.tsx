@@ -28,6 +28,15 @@ const POST_BY_SLUG: Record<
   string,
   { title: string; excerpt: string; date: string; readTime: string; badge: string; badgeColor: string }
 > = {
+  'drinking-water-alerts-november-2026': {
+    title: 'Drinking Water Alerts This Week (Nov 2026): Spartanburg, Watertown, Marshfield & What to Do',
+    excerpt:
+      'A calm weekly roundup of current drinking-water notices: Spartanburg’s boil advisory, Watertown lead, Marshfield PFAS, and what actually helps at the tap.',
+    date: 'November 21, 2026',
+    readTime: '11 min read',
+    badge: 'Safety',
+    badgeColor: '#ef4444',
+  },
   'top-10-most-pfas-contaminated-cities': {
     title: 'Top 10 Most PFAS-Contaminated Cities in America (2026 EPA Data)',
     excerpt:
@@ -417,6 +426,7 @@ const POST_BY_SLUG: Record<
  * then filters & testing, contaminants & health, wells, then broader home / purity guides.
  */
 const BLOG_INDEX_ORDER = [
+  'drinking-water-alerts-november-2026',
   'top-10-most-pfas-contaminated-cities',
   'san-antonio-water-quality',
   'pfas-in-san-antonio-water',
@@ -486,7 +496,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   {
     label: 'Safety & Health',
     icon: '🏥',
-    slugs: ['is-new-york-city-tap-water-safe-2026', 'tap-water-safety-during-pregnancy', 'is-tap-water-safe-to-drink', 'boil-water-advisory-what-to-do-and-how-long', 'fluoride-in-tap-water-safe-or-not', 'microplastics-in-drinking-water-what-we-know'],
+    slugs: ['drinking-water-alerts-november-2026', 'is-new-york-city-tap-water-safe-2026', 'tap-water-safety-during-pregnancy', 'is-tap-water-safe-to-drink', 'boil-water-advisory-what-to-do-and-how-long', 'fluoride-in-tap-water-safe-or-not', 'microplastics-in-drinking-water-what-we-know'],
   },
   {
     label: 'Filter Guides',
@@ -519,7 +529,7 @@ const CATEGORIES: { label: string; icon: string; slugs: string[] }[] = [
   },
 ];
 
-const FEATURED_SLUGS = ['is-pfas-in-my-tap-water', 'best-water-filter-for-lead-removal', 'tap-water-safety-during-pregnancy'];
+const FEATURED_SLUGS = ['drinking-water-alerts-november-2026', 'is-pfas-in-my-tap-water', 'best-water-filter-for-lead-removal', 'tap-water-safety-during-pregnancy'];
 
 export default function BlogIndex() {
   const featuredPosts = FEATURED_SLUGS.map(s => POSTS.find(p => p.slug === s)!).filter(Boolean);
