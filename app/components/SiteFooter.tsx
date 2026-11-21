@@ -95,6 +95,24 @@ export function SiteFooter() {
           {SITE_FOOTER_TAGLINE}
         </p>
 
+        <p className="wc-footer-social">
+          <a
+            href="https://www.tiktok.com/@joethewaterpro"
+            target="_blank"
+            rel="noopener"
+            className="wc-footer-link wc-footer-social-link"
+            style={{ ...linkStyle, display: 'inline-flex', alignItems: 'center', gap: 8 }}
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
+              <path
+                fill="currentColor"
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.28 0 .54.04.79.1v3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.16 14.2 6.34 6.34 0 0 0 9.5 20.54a6.34 6.34 0 0 0 6.34-6.34V8.77a8.18 8.18 0 0 0 4.75 1.51V6.84a4.84 4.84 0 0 1-1-.15z"
+              />
+            </svg>
+            Follow on TikTok
+          </a>
+        </p>
+
         <p
           style={{
             margin: '16px 0 0',
