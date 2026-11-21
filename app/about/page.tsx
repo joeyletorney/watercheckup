@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { ABOUT_WATER_BG, ABOUT_WATER_BG_ALT } from '@/lib/unsplash-images';
-import { SITE_COMPARISON_ROWS } from '@/lib/site-stats';
+import { AUTHOR_PAGE_URL, AUTHOR_TIKTOK_URL, SITE_COMPARISON_ROWS } from '@/lib/site-stats';
 import { ComparisonCellDisplay } from '@/components/ComparisonCellDisplay';
 import { UserTestimonials } from '@/components/UserTestimonials';
 
@@ -173,7 +173,7 @@ const personLd = {
   description:
     'Joe Letorney is a water treatment professional with over 30 years of experience. Former WQA Certified Water Treatment Specialist Level VI and Certified Installer. Published author in Water Technology Magazine and Water Conditioning and Purification Magazine. Founder of WaterCheckup.',
   image: 'https://watercheckup.com/joe-letorney.jpeg',
-  sameAs: ['https://watercheckup.com/about'],
+  sameAs: ['https://watercheckup.com/about', AUTHOR_PAGE_URL, AUTHOR_TIKTOK_URL],
 };
 
 function PullQuote() {

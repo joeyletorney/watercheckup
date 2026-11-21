@@ -2,6 +2,7 @@ import type { Post } from './post-types';
 import { blogPostDateFields } from '@/lib/blog-post-dates';
 import { GUIDE_SOURCES } from './commercial-guide-sources';
 import { PitcherGuideArticle } from './pitcher-guide-content';
+import { LeadGuideArticle } from './lead-guide-content';
 import { clearlyFilteredAmazonUrl } from '@/lib/waterdrop-buy';
 export { GUIDE_SOURCES } from './commercial-guide-sources';
 
@@ -73,9 +74,9 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filter for Lead 2026: Top-Rated Picks',
-    excerpt: 'Top-rated water filters for lead-contaminated areas: compare a lead-reduction pitcher, countertop RO and installed NSF 53/58 options.',
-    verdict: 'For lead alone, start with a filter whose exact model and cartridge have a certified lead-reduction claim. RO is an option when additional contaminants justify it; it is not required for every lead concern.',
+    title: 'Best Water Filter for Lead Removal (2026)',
+    excerpt: 'Best lead removal water filter for home in 2026: NSF/ANSI 53 picks, lead plus PFAS or chlorine, budget options, and verified annual filter costs.',
+    verdict: 'Top pick for certified lead plus PFAS: Waterdrop G3P600 under-sink RO (NSF/ANSI 53 and 58, about $399). For lead alone on a budget, start with a pitcher-and-cartridge pair that has an explicit NSF/ANSI 53 (or IAPMO) lead-reduction claim. RO is not required for every lead concern.',
     choices: [pitcher, aqua, {
       option: 'Installed point-of-use filter: select an exact certified model',
       fit: 'For a dedicated drinking/cooking tap and fewer manual refills.',
@@ -86,8 +87,8 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-countertop-water-filter': {
-    title: 'Best Countertop Water Filter 2026 (for Taste)',
-    excerpt: 'Best countertop water filter for taste in 2026: compare a pitcher and countertop RO with official evidence, setup limits and costs.',
+    title: 'Best Countertop Water Filter 2026 (PFAS)',
+    excerpt: 'Best countertop water filter for 2026 — PFAS-free drinking water and taste. Pitcher vs countertop RO, with NSF evidence and replacement-cost assumptions.',
     verdict: 'For simple setup, compare a compatible pitcher with the Elite cartridge. Consider AquaTru Classic when its additional documented reduction claims match your concern and you accept power, tanks and upkeep.',
     choices: [pitcher, aqua, {
       option: 'Waterdrop K19-S: existing-owner reference',
@@ -99,8 +100,8 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-water-filter-hard-water': {
-    title: 'Best Filter for Hard Water 2026: Softener vs RO',
-    excerpt: 'The best filter for hard water in 2026: compare whole-house softening, drinking-water RO and scale conditioning by purpose and cost.',
+    title: 'Hard Water Filter vs Softener (2026 Guide)',
+    excerpt: 'A hard water filter, water filter for hard water, and hardness water filter are not the same as a softener. Compare filters, softeners, and conditioners.',
     verdict: 'For hardness throughout the home, compare a properly sized ion-exchange softener. For drinking water only, compare RO within its feed-water limits. Carbon and shower filters should not be sold as whole-home softeners.',
     choices: [{
       option: 'Whole-house ion-exchange softener',
@@ -122,7 +123,7 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
 
 export function CommercialGuideArticle({ slug }: { slug: string }) {
   if (slug === 'best-water-filter-pitcher-2025') return <PitcherGuideArticle />;
-  const lead = slug === 'best-water-filter-for-lead-removal';
+  if (slug === 'best-water-filter-for-lead-removal') return <LeadGuideArticle />;
   const hard = slug === 'best-water-filter-hard-water';
   return <>
     <h2>Match the treatment to your water</h2>
@@ -137,10 +138,8 @@ export function CommercialGuideArticle({ slug }: { slug: string }) {
     <h2>Budget for replacement filters</h2>
     <p>The comparison uses an illustrative one gallon of finished drinking water per day, not a measured household average. More use or difficult feed water can mean earlier replacement. Budget recurring costs separately from first-year purchases and check what the starter bundle includes. Prices checked against the November 2026 product catalog (Waterdrop G3P600 ~$399, AquaTru Classic ~$380, Clearly Filtered pitcher ~$90) can change.</p>
     <p><a href={GUIDE_SOURCES.aquaLife}>AquaTru’s Classic replacement schedule</a>: pre/carbon at six months or 600 gallons; VOC at one year or 600 gallons; RO at two years or 1,200 gallons, whichever comes first. Use the schedule for the exact model, not the Carafe or another product family.</p>
-    <h2>{lead ? 'Lead reduction is not pipe replacement' : 'What this comparison establishes'}</h2>
-    <p>{lead
-      ? 'A point-of-use filter treats the water passing through it; it does not remove a lead service line or replace corroding plumbing. Follow local utility instructions and the cartridge replacement schedule. A lower TDS reading does not prove lead removal.'
-      : 'These are comparisons of documented features and treatment categories. They are not hands-on tests, universal rankings or guarantees of water quality. Countertop RO is not a substitute for whole-house hardness treatment.'}</p>
+    <h2>What this comparison establishes</h2>
+    <p>These are comparisons of documented features and treatment categories. They are not hands-on tests, universal rankings or guarantees of water quality. Countertop RO is not a substitute for whole-house hardness treatment.</p>
     <p>For PFAS or another contaminant, check its explicit reduction claim on the model’s current performance sheet. Do not infer PFAS reduction solely from NSF/ANSI 58, or lead reduction from NSF/ANSI 372 (a materials lead-content standard).</p>
     <p>Some site links may earn a commission. The official evidence links in this comparison are provided for checking claims; a purchase is not required to use them.</p>
   </>;
@@ -159,6 +158,12 @@ export function commercialPost(slug: string, date: string, badge: string, badgeC
       { q: 'Does a lead-reduction claim also prove PFAS reduction?', a: 'No. Check the named PFAS compounds and the exact cartridge’s current performance evidence separately.' },
       { q: 'Is there an Anker water filter pitcher worth buying in 2026?', a: 'We could not verify a drinking-water pitcher from Anker (the electronics brand) with NSF, WQA, or IAPMO listings as of November 19, 2026. Listings that use the Anker name should be matched to an exact model and a certification directory before purchase. The similar-sounding Aarke Purifier is a different brand; Aarke publishes EN 17093:2018 chlorine, copper, lead, and (Pure granules) limescale ranges and states it cannot generally define PFAS reduction. For certified U.S. lead or PFAS claims, compare Brita Elite, Clearly Filtered, ZeroWater, or PUR PLUS instead.' },
       { q: 'Did WaterCheckup test these pitchers?', a: 'No hands-on or laboratory testing is claimed. This comparison reviews linked official documents, distinguishes certification from additional testing, and states its cost assumptions.' },
+    ] : slug === 'best-water-filter-for-lead-removal' ? [
+      { q: 'What is the best water filter for lead removal?', a: 'The current top pick on this page is Waterdrop G3P600 under-sink reverse osmosis when you want NSF/ANSI 53 lead reduction plus NSF/ANSI 58 for PFAS. Budget lead-only options include ZeroWater 10-cup (NSF 42/53) and Brita Elite OB06 in a compatible pitcher. Match the exact model and cartridge in a certification directory.' },
+      { q: 'What is the best affordable lead water filter?', a: 'The lowest documented pitcher price here is ZeroWater’s 10-cup (about $23) with NSF/ANSI 42 and 53 listings for lead. Brita Elite’s yearly filter allowance is $65.98 at one gallon per day on Brita’s published pack prices. Cheap fridge filters are not assumed to be NSF 53 for lead.' },
+      { q: 'What is the best water filter certified to remove lead and PFAS?', a: 'Look for NSF/ANSI 53 (or IAPMO equivalent) for lead plus NSF/ANSI 58 reverse osmosis for PFAS. Waterdrop G3P600 and AquaTru Classic are the two current picks on this site that meet that split. NSF/ANSI 372 is a materials lead-content mark, not lead or PFAS removal.' },
+      { q: 'What is the best water filter for lead and chlorine?', a: 'Chlorine taste is NSF/ANSI 42; lead is NSF/ANSI 53. G3P600, AquaTru Classic, Frizzlife SK99-NEW, Frizzlife MK99, ZeroWater, and Aquasana Claryum listings that name both 42 and 53 cover that pair. A 42-only fridge filter is not a lead filter.' },
+      { q: 'Did WaterCheckup test these systems?', a: 'No hands-on or laboratory testing is claimed here. This comparison uses NSF/IAPMO/WQA-style listings or the manufacturer’s current sheet as cited, plus catalog prices.' },
     ] : [
       { q: 'Did WaterCheckup test these systems?', a: 'No hands-on or laboratory testing is claimed here. This comparison uses the linked official documents and explicitly stated cost assumptions.' },
       { q: 'Does an NSF standard number prove every reduction claim?', a: 'No. Match the exact model and cartridge to the listed contaminant claim, operating limits and replacement schedule.' },

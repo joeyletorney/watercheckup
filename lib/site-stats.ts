@@ -109,7 +109,12 @@ export const AUTHOR_FORMER_WQA_CREDENTIAL =
 
 export const CITY_EXPERT_TRUST_BADGE = AUTHOR_REVIEW_BYLINE;
 
+export const AUTHOR_PAGE_PATH = '/about/joe-letorney';
+export const AUTHOR_PAGE_URL = `https://watercheckup.com${AUTHOR_PAGE_PATH}`;
+export const AUTHOR_TIKTOK_URL = 'https://www.tiktok.com/@joethewaterpro';
+
 export const BLOG_AUTHOR_BYLINE = {
   name: 'Joe Letorney',
   credentials: `30-year water treatment expert · ${AUTHOR_FORMER_WQA_CREDENTIAL}`,
+  href: AUTHOR_PAGE_PATH,
 } as const;

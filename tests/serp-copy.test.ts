@@ -55,7 +55,7 @@ test('Fairfax, rankings, homepage, and Virginia SERP copy match search intent', 
   assert.equal(fairfax.openGraph?.title, fairfax.title);
   assert.equal(fairfax.openGraph?.description, fairfax.description);
 
-  assert.equal(RANKINGS_SEO_TITLE, 'Worst Tap Water in America: 2026 City Rankings');
+  assert.equal(RANKINGS_SEO_TITLE, 'Worst Tap Water Rankings 2026: Cities & States');
   assert.ok(RANKINGS_SEO_TITLE.length <= SERP_TITLE_MAX);
   assert.match(RANKINGS_SEO_DESCRIPTION, /worst tap water in America/i);
   assert.ok(RANKINGS_SEO_DESCRIPTION.length <= SERP_DESCRIPTION_MAX);
@@ -92,25 +92,25 @@ test('city descriptions use real supplier data and handle missing PFAS coverage'
   assert.doesNotMatch(String(nyc.description), /\d+(\.\d+)?\s*ppt/i);
 
   const gaithersburg = cityMeta('gaithersburg');
-  assert.equal(gaithersburg.title, 'Gaithersburg Water Test (WSSC MD) 2026 Report');
+  assert.equal(gaithersburg.title, 'Gaithersburg, MD Water Quality, Testing & Treatment (2026)');
   assert.match(String(gaithersburg.description), /WSSC/i);
   assert.match(String(gaithersburg.description), /water test/i);
   assert.match(String(gaithersburg.description), /not a treatment company/i);
 
   const sanAntonio = cityMeta('san-antonio');
-  assert.equal(sanAntonio.title, 'Is San Antonio Tap Water Safe? 2026 PFAS Report');
+  assert.equal(sanAntonio.title, 'San Antonio Water Quality & Contamination (2026)');
   assert.match(String(sanAntonio.description), /PFAS/i);
   assert.match(String(sanAntonio.description), /PFAS guide/i);
 
   const baltimore = cityMeta('baltimore');
-  assert.equal(baltimore.title, 'Is Baltimore Tap Water Safe? 2026 Quality Report');
+  assert.equal(baltimore.title, 'Baltimore Water Testing: Free & Certified Options (2026)');
   assert.match(String(baltimore.description), /Ashburton/i);
 
   for (const slug of ['indianapolis', 'stamford', 'tacoma', 'louisville', 'jersey-city', 'nashville']) {
     const meta = cityMeta(slug);
     const title = String(meta.title);
     const description = String(meta.description);
-    assert.match(title, /^Is .+ Tap Water Safe\?/);
+    assert.match(title, /^Is .+ Tap Water Safe/);
     assert.ok(title.length <= SERP_TITLE_MAX, `${slug} title length ${title.length}: ${title}`);
     assert.ok(description.length <= SERP_DESCRIPTION_MAX, `${slug} desc length ${description.length}`);
     assert.match(description, /filter/i);

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import Link from 'next/link';
-import { AUTHOR_FORMER_WQA_CREDENTIAL, AUTHOR_REVIEW_BYLINE } from '@/lib/site-stats';
+import { AUTHOR_FORMER_WQA_CREDENTIAL, AUTHOR_PAGE_PATH, AUTHOR_REVIEW_BYLINE } from '@/lib/site-stats';
 
 type Variant = 'dark' | 'light';
 
@@ -29,7 +29,7 @@ export function AuthorReviewBadge({
       }}
     >
       Reviewed by{' '}
-      <Link prefetch href="/about" style={{ color: palette.link, fontWeight: 700, textDecoration: 'none' }}>
+      <Link prefetch href={AUTHOR_PAGE_PATH} style={{ color: palette.link, fontWeight: 700, textDecoration: 'none' }}>
         Joe Letorney
       </Link>
       , 30-year water treatment expert

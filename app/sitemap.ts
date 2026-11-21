@@ -4,7 +4,8 @@ import { BLOG_POST_DATE_MODIFIED } from '@/lib/blog-post-dates'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { SITE_ORIGIN } from '@/lib/site-url'
 
-/** Core + city + state + blog only. ZIP result pages and /utilities stay out of the index on purpose. */
+/** Core + city + state + blog, plus a few MD utility pages that earn Search Console impressions.
+ *  ZIP result pages stay out of the sitemap on purpose (~40K URLs, noindex). */
 
 export const dynamic = 'force-static'
 export const revalidate = 86400
@@ -36,6 +37,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
   const staticEntries = [
     { path: '',              priority: 1.0, changeFreq: 'daily'   as const },
     { path: '/about',        priority: 0.5, changeFreq: 'monthly' as const },
+    { path: '/about/joe-letorney', priority: 0.55, changeFreq: 'monthly' as const },
     { path: '/contact',      priority: 0.55, changeFreq: 'monthly' as const },
     { path: '/privacy',      priority: 0.35, changeFreq: 'yearly'  as const },
     { path: '/terms',        priority: 0.35, changeFreq: 'yearly'  as const },
@@ -112,6 +114,9 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, lastModified: BLOG_POST_DATE_MODIFIED['top-10-most-pfas-contaminated-cities'], changeFrequency: 'weekly', priority: 0.92 },
     { url: `${base}/blog/san-antonio-water-quality`, lastModified: BLOG_POST_DATE_MODIFIED['san-antonio-water-quality'], changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/pfas-in-san-antonio-water`, lastModified: BLOG_POST_DATE_MODIFIED['pfas-in-san-antonio-water'], changeFrequency: 'weekly', priority: 0.89 },
+    { url: `${base}/utilities/md/annapolis`, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/utilities/md/maryland-city-anne-arundel-co`, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/utilities/md/town-of-chestertown`, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/blog/best-water-filter-hard-water`, lastModified: BLOG_POST_DATE_MODIFIED['best-water-filter-hard-water'], changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/blog/best-shower-filter-2026`, lastModified: BLOG_POST_DATE_MODIFIED['best-shower-filter-2026'], changeFrequency: 'monthly', priority: 0.88 },
     { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, lastModified: BLOG_POST_DATE_MODIFIED['reverse-osmosis-vs-distilled-water'], changeFrequency: 'monthly', priority: 0.86 },

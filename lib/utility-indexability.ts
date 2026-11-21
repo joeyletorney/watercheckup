@@ -1,4 +1,7 @@
 import type { UtilityJsonRecord } from '@/lib/utilities-data';
+import { SEO_INDEX_UTILITY_SLUGS } from '@/lib/city-water-testing';
+
+const SEO_INDEX_SLUG_SET = new Set<string>(SEO_INDEX_UTILITY_SLUGS);
 
 /** Municipal community systems whose city names contain college/temple/etc. */
 const MUNICIPAL_SYSTEM_NAME =
@@ -10,7 +13,10 @@ const NON_COMMUNITY_NAME =
 /** Community systems with a real service population stay indexable. */
 export const MIN_INDEXABLE_UTILITY_POPULATION = 500;
 
-export function shouldIndexUtility(u: Pick<UtilityJsonRecord, 'name' | 'populationServed'>): boolean {
+export function shouldIndexUtility(
+  u: Pick<UtilityJsonRecord, 'name' | 'populationServed'> & { slug?: string },
+): boolean {
+  if (u.slug && SEO_INDEX_SLUG_SET.has(u.slug.toLowerCase())) return true;
   const pop = u.populationServed ?? 0;
   if (pop > 0 && pop < MIN_INDEXABLE_UTILITY_POPULATION) return false;
   if (MUNICIPAL_SYSTEM_NAME.test(u.name)) return true;

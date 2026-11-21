@@ -14,29 +14,29 @@ export type CtrSerpCopy = {
 
 export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/blog/san-antonio-water-quality': {
-    title: 'Is San Antonio Tap Water Safe? SAWS PFAS & Hardness (2026)',
+    title: 'San Antonio Water Quality: SAWS Hardness & PFAS',
     description:
-      'SAWS meets legal limits, but San Antonio still has PFAS signals, radium context and very hard water. See what the 2026 data means — and which filters help.',
+      'San Antonio water quality from SAWS and EPA data: hardness, radium, and PFAS monitoring. Not a tap test — see the city report and PFAS guide.',
   },
   '/blog/pfas-in-san-antonio-water': {
-    title: 'PFAS in San Antonio Water: 2026 EPA Data & What To Do',
+    title: 'PFAS in San Antonio Water: 2026 EPA UCMR5 Data',
     description:
-      'Which PFAS compounds showed up in SAWS monitoring, how levels compare with EPA limits, and which NSF filters are built to remove them.',
+      'PFAS in San Antonio water: UCMR5 compounds for SAWS (TX0150018), how they compare with EPA limits, and NSF 58 filter options.',
   },
   '/blog/best-water-filter-for-lead-removal': {
-    title: 'Best Water Filter for Lead 2026: Top-Rated Picks',
+    title: 'Best Water Filter for Lead Removal (2026)',
     description:
-      'Top-rated water filters for lead-contaminated areas — pitchers, countertop RO, and NSF 53/58 options with official evidence and 2026 costs.',
+      'Best lead removal water filter for home in 2026: NSF/ANSI 53 picks, lead plus PFAS or chlorine, budget options, and verified annual filter costs.',
   },
   '/blog/best-water-filter-hard-water': {
-    title: 'Best Filter for Hard Water 2026: Softener vs RO',
+    title: 'Hard Water Filter vs Softener (2026 Guide)',
     description:
-      'The best filter for hard water in 2026: whole-house softeners vs drinking-water RO vs scale conditioners, with costs, limits, and official guidance.',
+      'A hard water filter, water filter for hard water, and hardness water filter are not the same as a softener. Compare filters, softeners, and conditioners.',
   },
   '/blog/best-countertop-water-filter': {
-    title: 'Best Countertop Water Filter 2026 (for Taste)',
+    title: 'Best Countertop Water Filter 2026 (PFAS)',
     description:
-      'Best countertop water filter for taste in 2026 — pitcher vs countertop RO, with NSF evidence, setup limits, and replacement-cost assumptions.',
+      'Best countertop water filter for 2026 — PFAS-free drinking water and taste. Pitcher vs countertop RO, with NSF evidence and replacement-cost assumptions.',
   },
   '/blog/best-shower-filter-2026': {
     title: 'Best Shower Filter 2026: Chlorine vs Chloramine',
@@ -49,24 +49,54 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Best water filter pitchers 2026, including an Anker review — compare certified lead and PFAS claims, cartridge life, and what they actually remove.',
   },
   '/blog/waterdrop-g3p600-vs-aquasana-smartflow': {
-    title: 'Waterdrop vs Aquasana (2026): Which Filter Is Better?',
+    title: 'Aquasana vs Waterdrop (2026): Which Is Better?',
     description:
-      'Waterdrop vs Aquasana in 2026: G3P600 is the current buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
+      'Aquasana vs Waterdrop in 2026: G3P600 is the current buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
   },
   '/water/gaithersburg': {
-    title: 'Gaithersburg Water Test (WSSC MD) 2026 Report',
+    title: 'Gaithersburg, MD Water Quality, Testing & Treatment (2026)',
     description:
-      'Water test Gaithersburg MD: WSSC CCR, Maryland certified labs, home kit vs lab. Lead, PFAS, wells vs city water. NSF picks — not a treatment company.',
+      'Gaithersburg water quality (WSSC): water testing, well water, reverse osmosis, and how to choose a treatment company. Not a treatment company.',
   },
   '/water/san-antonio': {
-    title: 'Is San Antonio Tap Water Safe? 2026 PFAS Report',
+    title: 'San Antonio Water Quality & Contamination (2026)',
     description:
-      'SAWS tap water: PFAS in UCMR5, hard Edwards Aquifer water, and DBP context. Is San Antonio water safe? See the PFAS guide and NSF filter picks.',
+      'San Antonio water quality and contamination: SAWS hardness, PFAS in UCMR5, radium context. Free EPA snapshot — not a tap test. See the PFAS guide.',
   },
   '/water/baltimore': {
-    title: 'Is Baltimore Tap Water Safe? 2026 Quality Report',
+    title: 'Baltimore Water Testing: Free & Certified Options (2026)',
     description:
-      'Baltimore City DPW: lead pipe risk and PFAS snapshot. A CCR is not a tap test — Ashburton Lab can arrange lead testing. NSF filter picks.',
+      'City water testing in Baltimore MD: free ZIP snapshot, Ashburton Lab, Maryland certified labs, well vs city water, and cost ranges. Not a lab.',
+  },
+  '/water/jersey-city': {
+    title: 'Is Jersey City Tap Water Safe to Drink? 2026',
+    description:
+      'Is Jersey City tap water safe to drink? EPA snapshot, lead from older plumbing, and NSF filter picks. A CCR is not a test of your faucet.',
+  },
+  '/water/indianapolis': {
+    title: 'Is Indianapolis Tap Water Safe to Drink? 2026',
+    description:
+      'Is Indianapolis water safe to drink? Citizens Water EPA snapshot, nitrates, DBPs, lead lines, and NSF filter picks — not a household tap test.',
+  },
+  '/water/atlanta': {
+    title: 'Atlanta Water Contamination: 2026 Tap Report',
+    description:
+      'Atlanta water contamination context: Chattahoochee source, UCMR5 PFAS, chloramine DBPs. Free 2026 report — not a current alert or tap test.',
+  },
+  '/utilities/md/annapolis': {
+    title: 'Annapolis Well Water Testing: Certified Labs',
+    description:
+      'Annapolis well water testing: city wells vs a private well, Maryland certified labs, costs, and a free ZIP report. WaterCheckup is not a lab.',
+  },
+  '/utilities/md/maryland-city-anne-arundel-co': {
+    title: 'City Water Testing Anne Arundel County (2026)',
+    description:
+      'City water testing in Anne Arundel County: Maryland City PWS vs county water vs wells, MDE certified labs, and a free ZIP report.',
+  },
+  '/utilities/md/town-of-chestertown': {
+    title: 'Chestertown MD Water Testing (2026)',
+    description:
+      'Chestertown MD water testing: not a testing company. Town CCR, 410-778-0500 for lead questions, Maryland certified labs, and a ZIP report.',
   },
   '/worst-lead': {
     title: 'Worst US Cities for Lead in Tap Water (2026)',
@@ -74,9 +104,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'The worst US cities for lead in tap water in 2026 — ranked by lead-pipe risk and WaterCheckup score, not measured ppb at every tap. See your city.',
   },
   '/rankings': {
-    title: 'Worst Tap Water in America: 2026 City Rankings',
+    title: 'Worst Tap Water Rankings 2026: Cities & States',
     description:
-      'See the worst tap water in America for 2026 — city and state rankings from EPA PFAS data and safety grades, plus free reports and filter picks. No signup.',
+      'Worst tap water in America, 2026: city water quality reports and state rankings from EPA PFAS data and safety grades. Free reports, no signup.',
   },
   '/blog/what-water-filter-removes-pfas': {
     title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',

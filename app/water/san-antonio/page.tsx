@@ -85,7 +85,7 @@ export default function SanAntonioWaterPage() {
 
         <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 8 }}>CITY WATER REPORT · 2026</div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 8px' }}>
-          Is San Antonio Tap Water Safe? PFAS in 2026
+          San Antonio Water Quality: Contamination, PFAS & Hardness
         </h1>
         <AuthorReviewBadge style={{ marginBottom: 12 }} />
         <div
@@ -172,28 +172,32 @@ export default function SanAntonioWaterPage() {
             SAN ANTONIO WATER CONTAMINATION
           </div>
           <h2 style={{ fontSize: 24, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.25, margin: '0 0 12px' }}>
-            San Antonio water quality: PFAS, hard water, radium and SAWS data
+            San Antonio water quality and contamination (SAWS and EPA)
           </h2>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 18px' }}>
-            Searches for &quot;PFAS in San Antonio water,&quot; &quot;San Antonio water contamination,&quot; and
-            &quot;San Antonio water quality&quot; usually point to the same concern: SAWS water can meet federal
-            legal limits while still showing hardness, PFAS monitoring signals, radium context, and treatment
-            byproducts worth filtering at the tap.
+            San Antonio water quality and San Antonio water contamination are SAWS (PWSID TX0150018) plus EPA
+            UCMR5 — not a test of your kitchen tap. SAWS can meet federal legal limits while still showing
+            very hard Edwards Aquifer water, PFAS monitoring signals, and radium context. Compound-level PFAS
+            notes live on the{' '}
+            <Link prefetch href="/blog/pfas-in-san-antonio-water" style={{ color: '#67e8f9', fontWeight: 700 }}>
+              PFAS in San Antonio water
+            </Link>{' '}
+            article.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 18 }}>
             {[
               {
-                heading: 'PFAS in San Antonio water',
-                body: 'EPA UCMR5 monitoring is the federal dataset to watch for PFAS in SAWS water. If PFAS is detected, the most defensible home treatment is NSF 58 reverse osmosis or a filter specifically certified for PFAS reduction. Standard taste-and-odor carbon filters are not enough for this concern.',
+                heading: 'San Antonio water contamination: PFAS in UCMR5',
+                body: 'EPA UCMR5 for SAWS lists historical peaks of PFBA 9.2 ppt, PFBS 3.8 ppt, and PFPeA 3.2 ppt. Those are monitoring peaks, not current tap readings or official compliance findings. None of the six EPA-regulated PFAS (PFOA, PFOS, PFNA, PFHxS, HFPO-DA) sit above April 2024 MCL benchmarks in this snapshot. NSF 58 reverse osmosis is the residential option with the broadest published PFAS claims; standard taste-and-odor carbon is not enough.',
               },
               {
-                heading: 'San Antonio hard water treatment',
+                heading: 'San Antonio hard water (Edwards Aquifer)',
                 body: 'San Antonio is one of the harder large-city water supplies because the Edwards Aquifer is mineral-rich limestone. A softener can protect appliances and reduce scale, but it does not remove PFAS, radium, arsenic, nitrate, or lead. For drinking water, pair whole-home softening with RO at the kitchen tap when health contaminants matter.',
               },
               {
                 heading: 'Is San Antonio water safe to drink?',
-                body: 'Legal compliance is only one layer. This page combines EPA, UCMR5, SAWS and local water profile data so you can see the difference between "meets standards" and "what should I filter for my household."',
+                body: 'Legal compliance is only one layer. This page combines EPA UCMR5, SAWS’s water quality report, and the local hardness profile so you can see the difference between “meets standards” and what to filter for your household. A CCR is not a tap test.',
               },
             ].map((section) => (
               <div key={section.heading} style={{ padding: '16px 18px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 10 }}>
