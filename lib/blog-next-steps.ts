@@ -22,6 +22,16 @@ export function articleNextSteps(slug: string): ArticleNextSteps | undefined {
       { href: '/utilities', label: 'Find my water supplier', detail: 'Confirm your supplier and look for its current local notices.', step: 'supplier_directory' },
     ],
   };
+  if (slug === 'drinking-water-alerts-november-2026') return {
+    title: 'Start with your local notice',
+    description:
+      'Follow your water supplier or local health department’s current instructions. A shopping recommendation does not resolve an active advisory, a lead action-level result, or a PFAS finding.',
+    links: [
+      { href: '/#wc-hero-anchor', label: 'Check my ZIP', detail: 'See available public-supplier records for your system.', step: 'supplier_report' },
+      { href: 'https://www.cdc.gov/water-emergency/about/drinking-water-advisories-an-overview.html', label: 'Read CDC advisory guidance', detail: 'Understand boil, do-not-drink, and do-not-use notices.', step: 'advisory_guidance' },
+      { href: '/blog/boil-water-advisory-what-to-do-and-how-long', label: 'Boil-advisory playbook', detail: 'What to do, what to avoid, and how long notices last.', step: 'boil_guide' },
+    ],
+  };
   if (WELL_GUIDES.has(slug)) return {
     title: 'Choose testing before treatment', description: 'A public-supplier ZIP report does not measure private-well water. Ask a certified laboratory about the right panel and sampling instructions for your well.',
     links: [

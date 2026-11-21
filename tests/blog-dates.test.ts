@@ -25,6 +25,7 @@ const TODAY_UPDATED = new Set([
   'lead-in-tap-water-signs-and-symptoms',
   'is-new-york-city-tap-water-safe-2026',
 ]);
+const ALERTS = 'drinking-water-alerts-november-2026';
 
 test('every indexed blog slug has a dateModified and a matching sitemap lastmod', () => {
   const map = sitemap();
@@ -33,6 +34,8 @@ test('every indexed blog slug has a dateModified and a matching sitemap lastmod'
     assert.ok(iso, `missing dateModified for ${slug}`);
     if (TODAY_UPDATED.has(slug)) {
       assert.equal(iso, '2026-11-19');
+    } else if (slug === ALERTS) {
+      assert.equal(iso, '2026-11-21');
     } else {
       assert.ok(MIX.has(iso), `${slug} dateModified ${iso} is not in the Oct/Nov mix`);
     }
@@ -55,6 +58,10 @@ test('POSTS keep original datePublished and show an Updated label from dateModif
   assert.ok(POSTS[SHOWER]);
   assert.equal(POSTS[SHOWER].date, '2026-11-19');
   assert.equal(POSTS[SHOWER].dateModified, '2026-11-19');
+  assert.ok(POSTS[ALERTS]);
+  assert.equal(POSTS[ALERTS].date, '2026-11-21');
+  assert.equal(POSTS[ALERTS].dateModified, '2026-11-21');
+  assert.equal(POSTS[ALERTS].dateDisplay, 'Updated November 21, 2026');
 
   for (const day of BLOG_UPDATED_DATES) {
     // Oct 1/3 mix shrinks as factual product updates move to Nov 19.

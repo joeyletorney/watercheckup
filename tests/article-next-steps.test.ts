@@ -8,7 +8,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { BlogNextSteps } from '../components/BlogNextSteps';
 
 test('testing, wells and active advisories offer relevant next steps without a generic equipment sale', () => {
-  for (const slug of ['how-to-test-your-tap-water-mail-in-labs-explained', 'private-well-water-testing-101', 'nitrate-in-well-water-infants-and-pregnancy', 'radon-in-drinking-water', 'boil-water-advisory-what-to-do-and-how-long']) {
+  for (const slug of ['how-to-test-your-tap-water-mail-in-labs-explained', 'private-well-water-testing-101', 'nitrate-in-well-water-infants-and-pregnancy', 'radon-in-drinking-water', 'boil-water-advisory-what-to-do-and-how-long', 'drinking-water-alerts-november-2026']) {
     const next = articleNextSteps(slug);
     assert.ok(next);
     assert.equal(next.links.some(l => l.href.startsWith('/quiz')), false);
