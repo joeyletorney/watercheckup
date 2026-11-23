@@ -1,18 +1,33 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { WaterSearch } from '@/components/WaterSearch';
 
 export function HomeStickyCta() {
-  const [visible, setVisible] = useState(false);
+  const [heroGone, setHeroGone] = useState(false);
+  const [repeatVisible, setRepeatVisible] = useState(false);
+
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) return;
+    const observers: IntersectionObserver[] = [];
     const hero = document.getElementById('wc-hero-anchor');
-    if (!hero || !('IntersectionObserver' in window)) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(!entry.isIntersecting), { threshold: 0 });
-    observer.observe(hero);
-    return () => observer.disconnect();
+    if (hero) {
+      const heroObserver = new IntersectionObserver(([entry]) => setHeroGone(!entry.isIntersecting), { threshold: 0 });
+      heroObserver.observe(hero);
+      observers.push(heroObserver);
+    }
+    const repeat = document.getElementById('wc-zip-repeat');
+    if (repeat) {
+      const repeatObserver = new IntersectionObserver(([entry]) => setRepeatVisible(entry.isIntersecting), { threshold: 0.2 });
+      repeatObserver.observe(repeat);
+      observers.push(repeatObserver);
+    }
+    return () => observers.forEach((observer) => observer.disconnect());
   }, []);
-  return visible ? <div className="wc-home-sticky-cta">
-    <span>Ready to compare filters?</span><Link href="#find-a-filter">Find a Filter →</Link>
-  </div> : null;
+
+  return heroGone && !repeatVisible ? (
+    <div className="wc-home-sticky-cta">
+      <WaterSearch variant="compact" idPrefix="wc-sticky" />
+    </div>
+  ) : null;
 }

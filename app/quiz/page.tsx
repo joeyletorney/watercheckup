@@ -141,11 +141,11 @@ export default function QuizPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5, flexShrink: 0 }}>
               {showDirect ? (
-                <a data-wc-affiliate-tracked="true" className="wc-product-purchase" href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'direct', product: alt.product, page: 'quiz', brand: alt.brand, href: alt.link })} style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', whiteSpace: 'nowrap', border: i === 0 ? 'none' : '1px solid #1a3a5c' }}>
+                <a data-wc-affiliate-tracked="true" className="wc-buy-cta" href={alt.link} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'direct', product: alt.product, page: 'quiz', brand: alt.brand, href: alt.link })}>
                   {directBuyLabelForBrand(alt.brand)}
                 </a>
               ) : (
-              <a data-wc-affiliate-tracked="true" className="wc-product-purchase" href={preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'amazon', product: alt.product, page: 'quiz', brand: alt.brand, href: preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon })} style={{ display: 'block', padding: '7px 14px', background: i === 0 ? 'linear-gradient(135deg,#0891b2,#06b6d4)' : '#0d2240', color: i === 0 ? '#fff' : '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: i === 0 ? 700 : 600, textAlign: 'center', border: i === 0 ? 'none' : '1px solid #1a3a5c', whiteSpace: 'nowrap' }}>
+              <a data-wc-affiliate-tracked="true" className="wc-buy-cta" href={preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackAffiliateClick({ destination: 'amazon', product: alt.product, page: 'quiz', brand: alt.brand, href: preferredAmazon ?? normalizeAmazonUrl(alt.amazon) ?? alt.amazon })}>
                 Check price on Amazon →
               </a>
               )}

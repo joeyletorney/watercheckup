@@ -122,10 +122,11 @@ export default function JoeLetorneyAuthorPage() {
         </p>
 
         <p style={{ fontSize: 14, color: '#94a3b8' }}>
-          TikTok:{' '}
-          <a href={AUTHOR_TIKTOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#67e8f9' }}>
-            @joethewaterpro
+          <a href={AUTHOR_TIKTOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#67e8f9', fontWeight: 700 }}>
+            Follow on TikTok
           </a>
+          {' · '}
+          @joethewaterpro
         </p>
       </main>
     </div>

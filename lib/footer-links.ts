@@ -67,6 +67,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { href: '/contaminants', label: 'Contaminants guide' },
       { href: '/about', label: 'About us' },
       { href: '/contact', label: 'Contact' },
+      { href: 'https://www.tiktok.com/@joethewaterpro', label: 'Follow on TikTok' },
       { href: '/utilities/claim', label: 'For public water systems' },
     ],
   },

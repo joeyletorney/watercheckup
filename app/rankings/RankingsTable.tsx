@@ -96,7 +96,8 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
   }
 
   return (
-    <div style={{ overflowX: 'auto', borderRadius: 12, border: '1px solid #1a3a5c' }}>
+    <div className="wc-rankings-wrap">
+    <div className="wc-rankings-table-scroll" style={{ overflowX: 'auto', borderRadius: 12, border: '1px solid #1a3a5c' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
         <thead>
           <tr style={{ background: '#071828' }}>
@@ -137,6 +138,29 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
           ))}
         </tbody>
       </table>
+    </div>
+    <ul className="wc-rankings-cards">
+      {sorted.map((r) => (
+        <li key={`card-${r.stateAbbr}`}>
+          {r.totalCities > 0 ? (
+            <Link prefetch href={`/water/state/${r.stateSlug}`} className="wc-rankings-card">
+              <span className="wc-rankings-card-rank">#{r.rank}</span>
+              <span className="wc-rankings-card-name">{r.stateName}</span>
+              <span className="wc-rankings-card-grade" style={{ color: r.gradeColor }}>Grade {r.grade}</span>
+              <span className="wc-rankings-card-meta">
+                {r.citiesAtRisk} at risk · {r.citiesSafe} safer · {r.worstContaminant}
+              </span>
+            </Link>
+          ) : (
+            <div className="wc-rankings-card wc-rankings-card--muted">
+              <span className="wc-rankings-card-rank">#{r.rank}</span>
+              <span className="wc-rankings-card-name">{r.stateName}</span>
+              <span className="wc-rankings-card-meta">No city data yet</span>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
     </div>
   );
 }

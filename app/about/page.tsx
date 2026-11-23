@@ -271,10 +271,15 @@ export default function AboutPage() {
             >
               I&apos;ve Spent Most of My Life in Water. This Site is Why.
             </h1>
-            <p style={{ ...p, fontSize: 17, color: '#cbd5e1', marginBottom: 0 }}>
+            <p style={{ ...p, fontSize: 17, color: '#cbd5e1', marginBottom: 16 }}>
               Honestly, water has just always been part of my life. I grew up around it, worked in it for over 30 years,
               and somewhere along the way realized I knew things that most people really needed to know but had no easy
               way to find out.
+            </p>
+            <p style={{ margin: 0 }}>
+              <a href={AUTHOR_TIKTOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#67e8f9', fontWeight: 800 }}>
+                Follow on TikTok
+              </a>
             </p>
           </div>
             </section>

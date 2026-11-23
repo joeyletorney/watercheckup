@@ -8,6 +8,7 @@ import { RankingsTable } from './RankingsTable';
 import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 import { RANKINGS_SEO_DESCRIPTION, RANKINGS_SEO_TITLE } from '@/lib/serp-copy';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 
 const ctr = getCtrSerpOverride('/rankings');
 const rankingsTitle = ctr?.title ?? RANKINGS_SEO_TITLE;
@@ -76,6 +77,8 @@ export default function RankingsPage() {
         </div>
 
         <SearchDemandCities title="High-traffic city reports (from search demand)" compact />
+
+        <ConversionNextStep page="/rankings" headingId="wc-rankings-next-mid" />
 
         <div style={{ marginBottom: 14, fontSize: 13, color: '#a8b4c4' }}>
           Click column headers to sort. Default: best rank (lowest % cities at risk) first.
@@ -194,6 +197,8 @@ export default function RankingsPage() {
           C = 26–50%, D = 51–74%, F = 75% or more of those cities at risk). &quot;Worst contaminant&quot; is the analyte with
           the highest reported detection (ppt) among tracked cities in that state.
         </div>
+
+        <ConversionNextStep page="/rankings" headingId="wc-rankings-next-end" />
 
         <SiteTrustedFilterPicks />
       </div>

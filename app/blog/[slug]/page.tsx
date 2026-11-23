@@ -1,6 +1,7 @@
 import { Children, isValidElement, type ReactNode } from 'react';
 import { BlogNextSteps } from '@/components/BlogNextSteps';
-import { articleNextSteps } from '@/lib/blog-next-steps';
+import { articleNextSteps, isShoppingGuide } from '@/lib/blog-next-steps';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 import { BlogCommercialComparison } from '@/components/BlogCommercialComparison';
 import { COMMERCIAL_GUIDES } from '../commercial-guide-data';
 import type { Metadata } from 'next';
@@ -207,6 +208,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
             btn: 'Check My ZIP →',
           };
           return (
+            <>
             <div className="wc-reading-cta">
               <div>
                 <div className="wc-reading-cta__title">{cta.headline}</div>
@@ -216,6 +218,15 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
                 {cta.btn}
               </Link>
             </div>
+            {isShoppingGuide(params.slug) ? (
+              <ConversionNextStep
+                page={`/blog/${params.slug}`}
+                headingId="wc-guide-next-mid"
+                tone="light"
+                picks={params.slug.includes('whole-house') ? 'wholeHouse' : 'default'}
+              />
+            ) : null}
+            </>
           );
         })()}
 
@@ -252,6 +263,15 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
             ))}
           </section>
         )}
+
+        {isShoppingGuide(params.slug) ? (
+          <ConversionNextStep
+            page={`/blog/${params.slug}`}
+            headingId="wc-guide-next-end"
+            tone="light"
+            picks={params.slug.includes('whole-house') ? 'wholeHouse' : 'default'}
+          />
+        ) : null}
 
         <div className="wc-reading-inset" style={{ marginTop: 96 }}>
           <div className="wc-reading-inset__label">MORE GUIDES</div>

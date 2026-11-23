@@ -8,7 +8,7 @@ import { AffiliateClickFallback } from './components/AffiliateClickFallback'
 import { GaPageView } from './components/GaPageView'
 import { WebVitals } from './components/WebVitals'
 import { SiteFooter } from './components/SiteFooter'
-import { AUTHOR_PAGE_URL, SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
+import { AUTHOR_PAGE_URL, AUTHOR_TIKTOK_URL, SITE_HOME_META_DESCRIPTION } from '@/lib/site-stats'
 import { HOME_SEO_TITLE } from '@/lib/serp-copy'
 const inter = Inter({
   subsets: ['latin'],
@@ -115,7 +115,7 @@ const jsonLd = {
         'Water Filtration',
         'EPA Water Standards',
       ],
-      sameAs: ['https://twitter.com/watercheckup'],
+      sameAs: ['https://twitter.com/watercheckup', AUTHOR_TIKTOK_URL],
     },
     {
       '@type': 'WebPage',
@@ -142,20 +142,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="beforeInteractive">
-              {`
+          <Script id="ga-init" strategy="beforeInteractive">
+            {`
+              (function () {
+                var host = (location.hostname || '').replace(/:\\d+$/, '').toLowerCase();
+                if (host !== 'watercheckup.com') return;
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
                 gtag('js', new Date());
                 gtag('config', '${GA_ID}', { send_page_view: false });
-              `}
-            </Script>
-          </>
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+                document.head.appendChild(s);
+              })();
+            `}
+          </Script>
         )}
       </head>
       <body className="wc-ocean-bg">

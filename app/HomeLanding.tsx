@@ -13,18 +13,24 @@ export default function HomeLanding() {
   return <div className="wc-home-simple" style={{ minHeight: '100vh', position: 'relative', color: '#e2e8f0' }}>
     <SiteHeader variant="bar" navStyle={{ marginLeft: 'auto' }} />
     <HomeStickyCta />
-    <section id="wc-hero-anchor" aria-labelledby="wc-home-heading" style={{ margin: '20px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+    <section id="wc-hero-anchor" aria-labelledby="wc-home-heading" style={{ margin: '12px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
       <div className="wc-home-simple-intro">
         <h1 id="wc-home-heading">Is my tap water safe by ZIP code?</h1>
         <p>Check water quality by ZIP code — free water quality report, no signup.</p>
-        <Link href="/about/joe-letorney" className="wc-founder-intro">
-          <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
-          <span><strong>Recommendations from a real Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
-        </Link>
       </div>
-      <WaterSearch />
+      <WaterSearch autoFocusDesktop />
+      <Link href="/about/joe-letorney" className="wc-founder-intro wc-founder-intro--below-search">
+        <Image src="/joe-letorney.jpeg" alt="" width={44} height={44} />
+        <span><strong>Recommendations from a real Water Expert</strong><span>30 years in water treatment · Meet Joe →</span></span>
+      </Link>
     </section>
     <HomeFilterShop categories={buildHomeShoppingCategories()} />
+      <section id="wc-zip-repeat" className="wc-home-zip-repeat" aria-labelledby="wc-zip-repeat-heading">
+        <h2 id="wc-zip-repeat-heading">Still deciding? Check your ZIP</h2>
+        <p>Your city average is not your tap. Look up your public water supplier, then take the 60-second filter quiz.</p>
+        <WaterSearch variant="compact" idPrefix="wc-repeat" />
+        <Link href="/quiz" className="wc-home-zip-repeat-quiz">Take the 60-second filter quiz →</Link>
+      </section>
       <div className="wc-home-shortcuts">
         <section className="wc-home-expert" aria-labelledby="wc-home-expert-heading">
           <Image src="/joe-letorney.jpeg" alt="Joe Letorney, founder of WaterCheckup" width={96} height={96} style={{ borderRadius: '50%', objectFit: 'cover' }} />

@@ -1,4 +1,5 @@
 import { AffiliateLink } from '@/components/AffiliateLink';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
@@ -188,6 +189,8 @@ export default function SugarLandWaterPage() {
           ))}
         </div>
 
+        <ConversionNextStep page="/water/sugar-land" headingId="wc-sugar-land-next-mid" />
+
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>FREQUENTLY ASKED QUESTIONS</div>
           {FAQS.map((faq, i) => (
@@ -198,11 +201,7 @@ export default function SugarLandWaterPage() {
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 32 }}>
-          <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none' }}>
-            Check Your ZIP Code →
-          </Link>
-        </div>
+        <ConversionNextStep page="/water/sugar-land" headingId="wc-sugar-land-next-end" />
         <FounderCityAttribution />
         <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 32, lineHeight: 1.6, textAlign: 'center' }}>
           Data sourced from EPA UCMR5 (TX0790005), EPA SDWIS, and public water system CCRs. Not affiliated with the City of Sugar Land. Some filter links are affiliate links.
