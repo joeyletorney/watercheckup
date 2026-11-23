@@ -60,6 +60,8 @@ test('homepage ZIP search is numeric, fires form_start, and autofocuses only on 
   assert.match(search, /placeholder="5-digit ZIP"/);
 
   const home = readFileSync(join(root, 'app/HomeLanding.tsx'), 'utf8');
+  assert.match(home, /<h1 id="wc-home-heading">Is Your Tap Water Safe\?<\/h1>/);
+  assert.doesNotMatch(home, /by ZIP code\?/);
   assert.match(home, /<WaterSearch autoFocusDesktop \/>/);
   assert.match(home, /id="wc-zip-repeat"/);
   assert.match(home, /<WaterSearch variant="compact" idPrefix="wc-repeat" \/>/);

@@ -2501,7 +2501,7 @@ button.wc-nav-badge-nsf:focus-visible {
 /* Clear entry points and short, installation-first product comparisons. */
 .wc-simple-nav { display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
 .wc-home-simple-intro { max-width:760px; margin:24px auto 0; text-align:center; }
-.wc-home-simple-intro h1 { font-size:clamp(32px,4.6vw,52px); line-height:1.1; letter-spacing:-1.3px; margin:0 0 14px; color:#f8fafc; font-weight:850; }
+.wc-home-simple-intro h1 { font-size:clamp(32px,4.6vw,52px); line-height:1.1; letter-spacing:0.04em; margin:0 0 14px; color:#f8fafc; font-weight:850; text-transform:uppercase; }
 .wc-home-simple-intro p { max-width:580px; margin:0 auto; color:#cbd5e1; line-height:1.6; font-size:16px; }
 .wc-shop { max-width:1100px; margin:44px auto 0; padding:0 24px; scroll-margin-top:80px; }
 .wc-shop-heading-row { display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap; }

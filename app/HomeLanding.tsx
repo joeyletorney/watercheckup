@@ -15,7 +15,7 @@ export default function HomeLanding() {
     <HomeStickyCta />
     <section id="wc-hero-anchor" aria-labelledby="wc-home-heading" style={{ margin: '12px auto 0', padding: '0 24px', position: 'relative', zIndex: 2 }}>
       <div className="wc-home-simple-intro">
-        <h1 id="wc-home-heading">Is my tap water safe by ZIP code?</h1>
+        <h1 id="wc-home-heading">Is Your Tap Water Safe?</h1>
         <p>Check water quality by ZIP code — free water quality report, no signup.</p>
       </div>
       <WaterSearch autoFocusDesktop />
