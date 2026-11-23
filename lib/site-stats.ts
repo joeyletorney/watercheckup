@@ -112,6 +112,9 @@ export const CITY_EXPERT_TRUST_BADGE = AUTHOR_REVIEW_BYLINE;
 export const AUTHOR_PAGE_PATH = '/about/joe-letorney';
 export const AUTHOR_PAGE_URL = `https://watercheckup.com${AUTHOR_PAGE_PATH}`;
 export const AUTHOR_TIKTOK_URL = 'https://www.tiktok.com/@joethewaterpro';
+/** Tagged homepage URL for the TikTok profile bio so visits are not counted as Direct. */
+export const TIKTOK_BIO_UTM_URL =
+  'https://watercheckup.com/?utm_source=tiktok&utm_medium=social&utm_campaign=bio';
 
 export const BLOG_AUTHOR_BYLINE = {
   name: 'Joe Letorney',

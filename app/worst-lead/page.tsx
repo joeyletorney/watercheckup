@@ -6,6 +6,7 @@ import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildLeadRiskCities } from '@/lib/city-rankings';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { CITIES } from '../water/[city]/cities-data';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 
 const LEAD_ISSUE_RE = /lead|service line|lsl/i;
 
@@ -74,6 +75,8 @@ export default function WorstLeadPage() {
             ))}
           </div>
         </div>
+
+        <ConversionNextStep page="/worst-lead" headingId="wc-worst-lead-next-mid" />
 
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 64 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#ef4444', letterSpacing: 2, marginBottom: 10 }}>WHY THIS MATTERS</div>
@@ -221,6 +224,8 @@ export default function WorstLeadPage() {
             </Link>
           </div>
         </div>
+
+        <ConversionNextStep page="/worst-lead" headingId="wc-worst-lead-next-end" />
 
         <RankingRelatedLinks
           links={[

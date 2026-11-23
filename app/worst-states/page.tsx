@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { buildWorstStatesRankings } from '@/lib/worst-states-rankings';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 
 export const metadata: Metadata = {
   title: 'Worst States for Drinking Water Quality (2026 EPA Data)',
@@ -80,6 +81,8 @@ export default function WorstStatesPage() {
             </p>
           </div>
         </div>
+
+        <ConversionNextStep page="/worst-states" headingId="wc-worst-states-next-mid" />
 
         {/* ── TOP 25 ── */}
         <div style={{ marginBottom: 72 }}>
@@ -167,16 +170,7 @@ export default function WorstStatesPage() {
           </div>
         </div>
 
-        {/* ── CTA ── */}
-        <div style={{ padding: '24px 26px', background: 'linear-gradient(135deg,#071828,#040d14)', border: '1px solid rgba(8,145,178,0.3)', borderRadius: 14, marginBottom: 72, textAlign: 'center' }}>
-          <div style={{ fontSize: 18, fontWeight: 800, color: '#f1f5f9', marginBottom: 8 }}>Check your exact water</div>
-          <p style={{ fontSize: 14, color: '#cbd5e1', marginBottom: 18, lineHeight: 1.6 }}>
-            State rankings show the big picture. Your specific water system may be better or worse than your state average. Enter your ZIP for the full report.
-          </p>
-          <Link prefetch href="/" style={{ display: 'inline-block', padding: '12px 28px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
-            Check My Water Free →
-          </Link>
-        </div>
+        <ConversionNextStep page="/worst-states" headingId="wc-worst-states-next-end" heading="Check your exact water" />
 
         {/* ── RELATED ── */}
         <div style={{ fontSize: 13, fontWeight: 700, color: '#cbd5e1', letterSpacing: 2, marginBottom: 14 }}>RELATED RANKINGS</div>

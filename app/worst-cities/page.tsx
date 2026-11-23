@@ -6,6 +6,7 @@ import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { SearchDemandCities } from '@/components/SearchDemandCities';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 
 export const metadata: Metadata = {
   title: '25 Worst Cities for Tap Water 2026 — Safety Grades',
@@ -51,6 +52,8 @@ export default function WorstCitiesPage() {
 
         <SearchDemandCities title="Popular city water reports" compact />
 
+        <ConversionNextStep page="/worst-cities" headingId="wc-worst-cities-next-mid" />
+
         <CityRankingList
           items={cities.map((c) => ({
             slug: c.slug,
@@ -63,6 +66,8 @@ export default function WorstCitiesPage() {
             rightColor: c.gradeColor,
           }))}
         />
+
+        <ConversionNextStep page="/worst-cities" headingId="wc-worst-cities-next-end" />
 
         <RankingRelatedLinks
           links={[

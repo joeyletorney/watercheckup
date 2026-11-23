@@ -83,11 +83,18 @@ test('Gaithersburg testing copy links WSSC CCR and the MDE certified lab list', 
 });
 
 test('homepage ZIP-code SERP copy and FAQ schema match GSC queries', () => {
+  assert.equal(HOME_SEO_TITLE, 'Is My Tap Water Safe by ZIP Code? Free Report');
   assert.match(HOME_SEO_TITLE, /tap water safe by ZIP code/i);
   assert.ok(HOME_SEO_TITLE.length <= SERP_TITLE_MAX);
   assert.match(HOME_SEO_DESCRIPTION, /check water quality by ZIP code/i);
   assert.match(HOME_SEO_DESCRIPTION, /water quality report by ZIP code/i);
   assert.ok(HOME_SEO_DESCRIPTION.length <= SERP_DESCRIPTION_MAX);
+
+  const home = readFileSync(join(process.cwd(), 'app/HomeLanding.tsx'), 'utf8');
+  assert.match(home, /<h1 id="wc-home-heading">Is Your Tap Water Safe\?<\/h1>/);
+  assert.doesNotMatch(home, /Is my tap water safe by ZIP code/i);
+  const css = readFileSync(join(process.cwd(), 'app/globals.css'), 'utf8');
+  assert.match(css, /\.wc-home-simple-intro h1[^}]*text-transform:\s*uppercase/);
 
   assert.ok(HOME_FAQS.some((faq) => faq.question === 'Is my tap water safe?'));
   assert.ok(HOME_FAQS.some((faq) => faq.question === 'How do I check water quality by ZIP code?'));

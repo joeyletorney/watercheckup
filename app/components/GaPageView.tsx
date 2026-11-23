@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef } from 'react';
+import { isProductionAnalyticsHost } from '@/lib/analytics-host';
 
 export function GaPageView({ measurementId }: { measurementId: string }) {
   const pathname = usePathname();
@@ -9,6 +10,7 @@ export function GaPageView({ measurementId }: { measurementId: string }) {
 
   useEffect(() => {
     if (!measurementId || typeof window.gtag !== 'function') return;
+    if (!isProductionAnalyticsHost(window.location.hostname)) return;
     // Track paths only: claim and other query strings may contain personal data.
     const path = pathname;
     if (prev.current === path) return;

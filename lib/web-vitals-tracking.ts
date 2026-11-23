@@ -1,8 +1,10 @@
 import type { Metric } from 'web-vitals';
+import { isProductionAnalyticsHost } from '@/lib/analytics-host';
 
 /** Document-level metrics: use the entry path even if a later SPA navigation changes the URL. */
 export function trackWebVital(metric: Pick<Metric, 'name' | 'value' | 'rating' | 'id' | 'navigationType'>, entryPath: string): void {
   if (typeof window === 'undefined' || typeof window.gtag !== 'function' || !Number.isFinite(metric.value)) return;
+  if (!isProductionAnalyticsHost(window.location.hostname)) return;
   const path = entryPath.split('?')[0].split('#')[0];
   window.gtag('event', 'web_vital', {
     metric_name: metric.name,

@@ -1,4 +1,5 @@
 import { AffiliateLink } from '@/components/AffiliateLink';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
@@ -224,6 +225,8 @@ export default function HoustonWaterPage() {
           ))}
         </div>
 
+        <ConversionNextStep page="/water/houston" headingId="wc-houston-next-mid" />
+
         <CityFAQ slug="houston" faqs={houstonFAQs} />
 
         <div
@@ -263,25 +266,7 @@ export default function HoustonWaterPage() {
           </a>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: 32 }}>
-          <Link
-            prefetch
-            href="/"
-            style={{
-              display: 'inline-block',
-              padding: '14px 32px',
-              background: 'linear-gradient(135deg,#0891b2,#06b6d4)',
-              borderRadius: 10,
-              color: '#fff',
-              fontSize: 16,
-              fontWeight: 700,
-              textDecoration: 'none',
-            }}
-          >
-            Check Your ZIP Code →
-          </Link>
-          <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 12 }}>Free · No account · Any US ZIP code</p>
-        </div>
+        <ConversionNextStep page="/water/houston" headingId="wc-houston-next-end" />
 
         <FounderCityAttribution />
 

@@ -13,8 +13,12 @@ const HARDNESS_GUIDES = new Set(['hard-water-explained-scale-softeners-and-your-
 const TESTING = '/blog/how-to-test-your-tap-water-mail-in-labs-explained';
 export type ArticleNextSteps = { title: string; description: string; links: { href: string; label: string; detail: string; step: string }[] };
 
+export function isShoppingGuide(slug: string): boolean {
+  return SHOPPING_GUIDES.has(slug);
+}
+
 export function articleNextSteps(slug: string): ArticleNextSteps | undefined {
-  if (SHOPPING_GUIDES.has(slug)) return undefined;
+  if (isShoppingGuide(slug)) return undefined;
   if (slug === 'boil-water-advisory-what-to-do-and-how-long') return {
     title: 'Start with the current advisory', description: 'Follow your water supplier or local health department’s instructions, including when the advisory ends. A shopping recommendation does not resolve an active advisory.',
     links: [

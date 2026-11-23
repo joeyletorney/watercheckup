@@ -45,7 +45,7 @@ test('performance telemetry keeps metric units and the document entry path witho
   const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'window');
   const calls: unknown[][] = [];
   try {
-    Object.defineProperty(globalThis, 'window', { configurable: true, value: { location: { origin: 'https://watercheckup.com' }, gtag: (...args: unknown[]) => calls.push(args) } });
+    Object.defineProperty(globalThis, 'window', { configurable: true, value: { location: { origin: 'https://watercheckup.com', hostname: 'watercheckup.com' }, gtag: (...args: unknown[]) => calls.push(args) } });
     trackWebVital({ name: 'CLS', value: 0.01234, rating: 'good', id: 'metric-test', navigationType: 'navigate' }, '/quiz?email=private-test#answer');
     trackWebVital({ name: 'LCP', value: 1600.4, rating: 'good', id: 'metric-test-2', navigationType: 'navigate' }, '/');
     assert.equal(calls.length, 2);

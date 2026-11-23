@@ -62,6 +62,7 @@ import {
 } from '@/lib/city-water-testing';
 import { GAITHERSBURG_TREATMENT_SECTIONS, PLACE_TESTING_GUIDES } from '@/lib/place-water-testing';
 import { HowToTestYourWater } from '@/components/HowToTestYourWater';
+import { ConversionNextStep } from '@/components/ConversionNextStep';
 
 const CITY_FAQS: Record<string, { question: string; answer: string }[]> = {
   gaithersburg: gaithersburgFAQs,
@@ -726,8 +727,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
             return (
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-start' }}>
                 {/* Score circle */}
-                <div style={{ background: '#071828', border: `2px solid ${ws.scoreColor}30`, borderRadius: 16, padding: '20px 24px', display: 'flex', alignItems: 'center', gap: 20, flex: '0 0 auto' }}>
-                  <div style={{ position: 'relative', width: 88, height: 88 }}>
+                <div className="wc-city-score-card" style={{ background: '#071828', border: `2px solid ${ws.scoreColor}30`, borderRadius: 16, padding: '20px 24px', display: 'flex', alignItems: 'center', gap: 20 }}>
+                  <div style={{ position: 'relative', width: 88, height: 88, flexShrink: 0 }}>
                     <svg width="88" height="88" style={{ transform: 'rotate(-90deg)' }}>
                       <circle cx="44" cy="44" r="36" fill="none" stroke="#1a3a5c" strokeWidth="8" />
                       <circle
@@ -743,13 +744,13 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                       <span style={{ fontSize: 9, color: '#a8b4c4', letterSpacing: 1, marginTop: 2 }}>/ 88</span>
                     </div>
                   </div>
-                  <div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#a8b4c4', letterSpacing: 2, marginBottom: 4 }}>
                       WATERCHECKUP SAFETY SCORE
                     </div>
                     <div style={{ fontSize: 28, fontWeight: 900, color: ws.gradeColor, lineHeight: 1 }}>Grade: {ws.grade}</div>
                     <div style={{ fontSize: 13, color: ws.scoreColor, fontWeight: 600, marginTop: 4 }}>{ws.label}</div>
-                    <ScoreGradeDisclaimer style={{ marginTop: 10, maxWidth: 420 }} />
+                    <ScoreGradeDisclaimer style={{ marginTop: 10, maxWidth: '100%' }} />
                     <div style={{ fontSize: 13, color: '#a8b4c4', marginTop: 8 }}>
                       Same score for your ZIP —{' '}
                       <Link prefetch href="/" style={{ color: '#67e8f9', textDecoration: 'none' }}>look up your ZIP</Link> for the full contaminant report
@@ -872,8 +873,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                   </div>
 
                   {hasDetections && (
-                    <div style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 120px 120px', gap: 0 }}>
+                    <div className="wc-table-scroll" style={{ background: '#071828', border: '1px solid #1a3a5c', borderRadius: 10, marginBottom: 16 }}>
+                      <div className="wc-pfas-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 100px 120px 120px', gap: 0 }}>
                         {['Compound', 'Level (ppt)', 'EPA MCL', 'Interpretation'].map((h, i) => (
                           <div key={h} style={{ padding: '10px 14px', fontSize: 13, fontWeight: 800, color: '#a8b4c4', letterSpacing: 1, background: '#040d14', borderBottom: '1px solid #1a3a5c', textAlign: i > 0 ? 'center' : 'left' }}>
                             {h}
@@ -915,6 +916,8 @@ export default async function CityPage(props: { params: Promise<{ city: string }
             </div>
 
             <CityFilterTechMatrix rows={contaminantRows} cityName={cd.name} />
+
+            <ConversionNextStep page={`/water/${slug}`} headingId="wc-city-next-mid" />
 
             <TestVsFilterCta
               contextLabel={cd.name}
@@ -1079,18 +1082,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
         {/* ── STEP 4: EMAIL CAPTURE ── */}
         <EmailCapture cityName={cd?.name ?? cityName} slug={params.city} />
 
-        {/* ── STEP 5: ZIP CTA ── */}
-        <div style={{ background: 'linear-gradient(135deg, #071828, #040d14)', border: '1px solid #0f2d40', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 96 }}>
-          <div style={{ fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 10 }}>
-            Check your specific address
-          </div>
-          <p style={{ fontSize: 15, color: '#cbd5e1', marginBottom: 24, lineHeight: 1.6 }}>
-            City-wide data is just the start. Enter your ZIP to see your exact water system&apos;s EPA report, PFAS levels, and violation history — then get the right filter for your home.
-          </p>
-          <Link prefetch href="/" style={{ display: 'inline-block', padding: '14px 32px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', borderRadius: 10, color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none', boxShadow: '0 4px 20px #0891b244' }}>
-            Fix My Water — Free →
-          </Link>
-        </div>
+        <ConversionNextStep page={`/water/${slug}`} headingId="wc-city-next-end" heading="Check your specific address" />
 
         {/* ── RELATED BLOG POSTS ── */}
         <div style={{ marginBottom: 72 }}>

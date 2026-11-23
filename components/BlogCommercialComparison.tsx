@@ -7,7 +7,6 @@ import { GUIDE_STARTING_POINTS, guideQuizHref } from '@/lib/guide-journey';
 export function BlogCommercialComparison({ slug }: { slug: string }) {
   const guide = COMMERCIAL_GUIDES[slug];
   if (!guide) return null;
-  const buttonStyle = { display: 'inline-block', padding: '10px 14px', borderRadius: 8, background: '#0369a1', color: '#fff', fontWeight: 700, textDecoration: 'none', maxWidth: '100%' } as const;
   return <section aria-labelledby="commercial-comparison-heading" style={{ margin: '28px 0 40px', color: 'inherit' }}>
     <h2 id="commercial-comparison-heading" style={{ fontSize: 23, marginBottom: 12 }}>Quick comparison: choose by need</h2>
     <p style={{ lineHeight: 1.7 }}>{guide.verdict}</p>
@@ -26,8 +25,8 @@ export function BlogCommercialComparison({ slug }: { slug: string }) {
         <p style={{ margin: '0 0 10px' }}>{choice.fit}</p>
         {choice.merchant && <p style={{ margin: '0 0 12px' }}>
           {choice.merchant.sponsored
-            ? <AffiliateLink href={choice.merchant.href} product={choice.option} brand={choice.merchant.brand} page={`/blog/${slug}`} destination={new URL(choice.merchant.href).hostname === 'www.amazon.com' ? 'amazon' : 'direct'} rel="sponsored noopener noreferrer" target="_blank" style={buttonStyle}>{choice.merchant.label}</AffiliateLink>
-            : <JourneyLink href={choice.merchant.href} eventName="guide_next_step" step="manufacturer_reference" page={`/blog/${slug}`} rel="noopener noreferrer" target="_blank" style={buttonStyle}>{choice.merchant.label}</JourneyLink>}
+            ? <AffiliateLink href={choice.merchant.href} product={choice.option} brand={choice.merchant.brand} page={`/blog/${slug}`} destination={new URL(choice.merchant.href).hostname === 'www.amazon.com' ? 'amazon' : 'direct'} rel="sponsored noopener noreferrer" target="_blank" className="wc-buy-cta">{choice.merchant.label}</AffiliateLink>
+            : <JourneyLink href={choice.merchant.href} eventName="guide_next_step" step="manufacturer_reference" page={`/blog/${slug}`} rel="noopener noreferrer" target="_blank" className="wc-buy-cta">{choice.merchant.label}</JourneyLink>}
           {!choice.merchant.sponsored && <small style={{ display: 'block' }}>Manufacturer link; cartridge only. A compatible pitcher is separate.</small>}
         </p>}
         <p style={{ margin: '0 0 10px' }}><strong>Setup limits: </strong>{choice.constraint}</p>

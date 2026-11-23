@@ -60,13 +60,22 @@ export function SiteFooter() {
                   gap: 10,
                 }}
               >
-                {col.links.map((link) => (
+                {col.links.map((link) => {
+                  const external = link.href.startsWith('http');
+                  return (
                   <li key={`${col.title}-${link.href}-${link.label}`}>
-                    <Link prefetch={false} href={link.href} style={linkStyle} className="wc-footer-link">
+                    <Link
+                      prefetch={false}
+                      href={link.href}
+                      style={linkStyle}
+                      className="wc-footer-link"
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
                       {link.label}
                     </Link>
                   </li>
-                ))}
+                  );
+                })}
                 {col.viewAll ? (
                   <li>
                     <Link prefetch={false} href={col.viewAll.href} style={viewAllStyle} className="wc-footer-link">
