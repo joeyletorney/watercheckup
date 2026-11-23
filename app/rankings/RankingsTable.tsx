@@ -7,6 +7,19 @@ import type { StateRankingRowSerializable } from '@/lib/water-rankings';
 
 type SortKey = 'rank' | 'state' | 'grade' | 'atRisk' | 'safe' | 'worst';
 
+const SORT_OPTIONS: { key: SortKey; label: string }[] = [
+  { key: 'rank', label: 'Rank' },
+  { key: 'state', label: 'State' },
+  { key: 'grade', label: 'Grade' },
+  { key: 'atRisk', label: 'Cities at risk' },
+  { key: 'safe', label: 'Cities safer' },
+  { key: 'worst', label: 'Worst contaminant' },
+];
+
+function defaultDir(key: SortKey): number {
+  return key === 'atRisk' || key === 'safe' ? -1 : 1;
+}
+
 const thBase: CSSProperties = {
   padding: '12px 10px',
   color: '#cbd5e1',
@@ -85,7 +98,7 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
           if (sortKey === key) setSortDir((d) => -d);
           else {
             setSortKey(key);
-            setSortDir(key === 'state' || key === 'worst' ? 1 : key === 'rank' || key === 'grade' ? 1 : -1);
+            setSortDir(defaultDir(key));
           }
         }}
       >
@@ -97,6 +110,32 @@ export function RankingsTable({ rows }: { rows: StateRankingRowSerializable[] })
 
   return (
     <div className="wc-rankings-wrap">
+    <div className="wc-rankings-sort">
+      <label htmlFor="wc-rankings-sort-key">Sort by</label>
+      <select
+        id="wc-rankings-sort-key"
+        value={sortKey}
+        onChange={(event) => {
+          const key = event.target.value as SortKey;
+          setSortKey(key);
+          setSortDir(defaultDir(key));
+        }}
+      >
+        {SORT_OPTIONS.map((option) => (
+          <option key={option.key} value={option.key}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      <button
+        type="button"
+        className="wc-rankings-sort-dir"
+        onClick={() => setSortDir((dir) => -dir)}
+        aria-label={sortDir > 0 ? 'Sort descending' : 'Sort ascending'}
+      >
+        {sortDir > 0 ? 'Ascending' : 'Descending'}
+      </button>
+    </div>
     <div className="wc-rankings-table-scroll" style={{ overflowX: 'auto', borderRadius: 12, border: '1px solid #1a3a5c' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
         <thead>

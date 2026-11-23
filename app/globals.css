@@ -2896,7 +2896,18 @@ a.wc-cost-buy:hover {
 .wc-rankings-card-grade { font-size: 14px; font-weight: 800; }
 .wc-rankings-card-meta { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
 .wc-rankings-card--muted { opacity: 0.75; }
+.wc-rankings-sort { display: none; }
 @media (max-width: 640px) {
   .wc-rankings-table-scroll { display: none; }
   .wc-rankings-cards { display: grid; gap: 10px; }
+  .wc-rankings-sort {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 0 0 12px;
+  }
+  .wc-rankings-sort label { font-size: 13px; font-weight: 800; color: #cbd5e1; }
+  .wc-rankings-sort select,
+  .wc-rankings-sort-dir {
+    min-height: 44px; padding: 8px 12px; border-radius: 8px;
+    background: #071828; color: #f8fafc; border: 1px solid #1a3a5c; font-weight: 700;
+  }
 }

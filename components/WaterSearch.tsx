@@ -23,6 +23,7 @@ export function WaterSearch({
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const started = useRef(false);
+  const ignoreAutofocusStart = useRef(false);
   const [error, setError] = useState(initialError);
   const [pending, startTransition] = useTransition();
   const inputId = `${idPrefix}-zip`;
@@ -32,10 +33,16 @@ export function WaterSearch({
 
   useEffect(() => {
     if (!autoFocusDesktop) return;
-    if (window.matchMedia('(min-width: 768px)').matches) inputRef.current?.focus();
+    if (!window.matchMedia('(min-width: 768px)').matches) return;
+    ignoreAutofocusStart.current = true;
+    inputRef.current?.focus();
   }, [autoFocusDesktop]);
 
   function markFormStart() {
+    if (ignoreAutofocusStart.current) {
+      ignoreAutofocusStart.current = false;
+      return;
+    }
     if (started.current) return;
     started.current = true;
     window.gtag?.('event', 'form_start', {

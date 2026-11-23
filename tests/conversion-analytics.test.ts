@@ -52,6 +52,7 @@ test('homepage ZIP search is numeric, fires form_start, and autofocuses only on 
   const search = readFileSync(join(root, 'components/WaterSearch.tsx'), 'utf8');
   assert.match(search, /inputMode="numeric"/);
   assert.match(search, /form_start/);
+  assert.match(search, /ignoreAutofocusStart/);
   assert.match(search, /water_search_submitted/);
   assert.match(search, /water_search_invalid/);
   assert.match(search, /min-width: 768px/);
@@ -129,8 +130,13 @@ test('mobile product CTAs are full-width 44px high-contrast buttons', () => {
   assert.match(css, /background: #fbbf24/);
   assert.match(css, /color: #162332/);
   assert.match(css, /\.wc-rankings-cards/);
+  assert.match(css, /\.wc-rankings-sort/);
   assert.match(css, /\.wc-city-score-card/);
   assert.match(css, /\.wc-table-scroll/);
+
+  const rankings = readFileSync(join(root, 'app/rankings/RankingsTable.tsx'), 'utf8');
+  assert.match(rankings, /wc-rankings-sort/);
+  assert.match(rankings, /id="wc-rankings-sort-key"/);
 
   const city = readFileSync(join(root, 'app/water/[city]/page.tsx'), 'utf8');
   assert.match(city, /wc-city-score-card/);
