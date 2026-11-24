@@ -16,6 +16,8 @@ export type UtilityJsonRecord = {
   citiesServed: string | null;
   violationCount: number | null;
   primarySource: string | null;
+  /** SDWIS PWS_TYPE_CODE when present (CWS / NTNCWS / TNCWS). Older snapshots omit it. */
+  pwsType?: string | null;
   slug: string;
   isClaimed?: boolean;
   ccr?: UtilityCcrContent | null;

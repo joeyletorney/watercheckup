@@ -99,8 +99,11 @@ export const SEARCH_DEMAND_CITIES = [
 ] as const;
 
 export const SEARCH_DEMAND_EXTRA_LINKS = [
+  { href: '/lead', label: 'Lead in tap water' },
+  { href: '/pfas', label: 'PFAS guide' },
   { href: '/blog/best-water-filter-for-lead-removal', label: 'Best lead removal filters' },
   { href: '/blog/best-water-filter-hard-water', label: 'Hard water filter guide' },
+  { href: '/water/honolulu', label: 'Honolulu water quality' },
   { href: '/worst-hardness', label: 'Hardest tap water rankings' },
   { href: '/water-hardness', label: 'Hardness by ZIP' },
   { href: '/worst-pfas-cities', label: 'PFAS MCL city list' },

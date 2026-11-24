@@ -53,6 +53,7 @@ export type UtilityRecord = {
   citiesServed: string | null;
   violationCount: number | null;
   primarySource: string | null;
+  pwsType: string | null;
   slug: string;
 };
 
@@ -171,6 +172,7 @@ type SystemAccum = {
   state: string;
   populationServed: number | null;
   primarySource: string | null;
+  pwsType: string | null;
 };
 
 function normQuarter(q: string | undefined): string {
@@ -209,6 +211,7 @@ async function buildFromSdwaZip(zipPath: string): Promise<Omit<UtilityRecord, "s
       state,
       populationServed: parseNum(row.POPULATION_SERVED_COUNT),
       primarySource,
+      pwsType: (row.PWS_TYPE_CODE ?? "").trim().toUpperCase() || null,
     });
   });
 
@@ -245,6 +248,7 @@ async function buildFromSdwaZip(zipPath: string): Promise<Omit<UtilityRecord, "s
       citiesServed: citySet?.size ? Array.from(citySet).sort((a, b) => a.localeCompare(b, "en")).join(", ") : null,
       violationCount: violations.get(s.pwsid) ?? 0,
       primarySource: s.primarySource,
+      pwsType: s.pwsType,
     });
   }
   return out;
@@ -365,6 +369,7 @@ function parseEchoUtilitiesCsv(csv: string): Omit<UtilityRecord, "slug">[] {
       citiesServed: (r.CitiesServed ?? "").trim() || null,
       primarySource: (r.PrimarySourceDesc ?? "").trim() || null,
       violationCount: vio === "" || vio == null ? null : Number(vio),
+      pwsType: null,
     });
   }
   return out;

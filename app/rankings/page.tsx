@@ -9,6 +9,7 @@ import { SiteTrustedFilterPicks } from '@/components/SiteTrustedFilterPicks';
 import { RANKINGS_SEO_DESCRIPTION, RANKINGS_SEO_TITLE } from '@/lib/serp-copy';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
+import { PriorityDiscoveryLinks } from '@/components/PriorityDiscoveryLinks';
 
 const ctr = getCtrSerpOverride('/rankings');
 const rankingsTitle = ctr?.title ?? RANKINGS_SEO_TITLE;
@@ -75,6 +76,8 @@ export default function RankingsPage() {
             city.
           </p>
         </div>
+
+        <PriorityDiscoveryLinks title="Guides, states, and latest reports" compact />
 
         <SearchDemandCities title="High-traffic city reports (from search demand)" compact />
 

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { apexRedirectUrl } from '@/lib/apex-redirect'
+import { legacyWaterRedirectPath } from '@/lib/legacy-water-redirects'
 
 /** Aggressive SEO / scraper bots that burn function invocations without ranking value. */
 const BLOCKED_USER_AGENTS = [
@@ -20,6 +21,12 @@ export function proxy(request: NextRequest) {
   const url = new URL(request.url)
   if (url.hostname === 'www.watercheckup.com') {
     return NextResponse.redirect(apexRedirectUrl(request.url), 308)
+  }
+
+  const legacyPath = legacyWaterRedirectPath(url.pathname)
+  if (legacyPath && legacyPath !== url.pathname.replace(/\/+$/, '')) {
+    url.pathname = legacyPath
+    return NextResponse.redirect(url, 308)
   }
 
   const userAgent = request.headers.get('user-agent') ?? ''

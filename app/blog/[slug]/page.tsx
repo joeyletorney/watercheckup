@@ -19,6 +19,7 @@ import { getTopPicksSubtitle, hasExplicitTopPicks, resolveBlogTopPicks } from '@
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { withoutBrandSuffix } from '@/lib/serp-copy';
 import { PitcherCartridgeVideo } from '@/components/PitcherCartridgeVideo';
+import { breadcrumbListJsonLd } from '@/lib/breadcrumb-schema';
 
 // export async function generateStaticParams() {
 //   return Object.keys(POSTS).map(slug => ({ slug }));
@@ -88,15 +89,11 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
   const topPicksSubtitle = getTopPicksSubtitle(params.slug, topPicks);
   const preserveTopPicksOrder = hasExplicitTopPicks(params.slug);
 
-  const breadcrumbLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://watercheckup.com/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://watercheckup.com/blog/${params.slug}` },
-    ],
-  };
+  const breadcrumbLd = breadcrumbListJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post.title, path: `/blog/${params.slug}` },
+  ]);
 
   const articleLd = {
     '@context': 'https://schema.org',

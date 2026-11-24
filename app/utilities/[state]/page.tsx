@@ -6,6 +6,7 @@ import { SiteHeader } from "@/app/components/SiteHeader";
 import { UtilityOperatorCcrCta } from "@/components/UtilityOperatorCcrCta";
 import { stateLabel } from "@/lib/us-state-names";
 import { getStateUtilityCount, getUtilitiesInStatePage } from "@/lib/utilities-data";
+import { shouldIndexUtilityDirectoryPage } from "@/lib/utility-indexability";
 
 import { UtilitiesStateList } from "./UtilitiesStateList";
 
@@ -15,14 +16,20 @@ import { UtilitiesStateList } from "./UtilitiesStateList";
 export async function generateMetadata(
   props: {
     params: Promise<{ state: string }>;
+    searchParams: Promise<{ page?: string; q?: string }>;
   }
 ): Promise<Metadata> {
   const params = await props.params;
+  const searchParams = await props.searchParams;
+  const pageNum = Math.max(1, parseInt(searchParams.page || "1", 10) || 1);
+  const query = searchParams.q?.trim() || "";
   const code = params.state.toUpperCase();
   const name = stateLabel(code);
+  const indexable = shouldIndexUtilityDirectoryPage(pageNum, query);
   return {
     title: `${name} Public Water Systems`,
     description: `Browse EPA public water systems in ${name}. PWSID, population served, violations snapshot, and full 2026-style reports.`,
+    robots: indexable ? { index: true, follow: true } : { index: false, follow: true },
     alternates: {
       canonical: `https://watercheckup.com/utilities/${params.state.toLowerCase()}`,
     },

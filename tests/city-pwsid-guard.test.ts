@@ -53,4 +53,10 @@ test('tiny non-community utilities are noindex while large community systems sta
   assert.equal(shouldIndexUtility({ name: 'CITY OF TEMPLE', populationServed: 82000 }), true);
   assert.equal(shouldIndexUtility({ name: 'FIRST BAPTIST CHURCH', populationServed: 2500 }), false);
   assert.equal(shouldIndexUtility({ name: 'TEMPLE UNIVERSITY', populationServed: 18000 }), false);
+  assert.equal(shouldIndexUtility({ name: 'SHELL GAS STATION', populationServed: 800, pwsType: 'TNCWS' }), false);
+  assert.equal(shouldIndexUtility({ name: 'SUNNY DAYS DAYCARE', populationServed: 1200 }), false);
+  assert.equal(shouldIndexUtility({ name: 'LAKESIDE RV PARK', populationServed: 900 }), false);
+  assert.equal(shouldIndexUtility({ name: 'VILLAGE SQUARE SHOPPING CENTER', populationServed: 2500 }), false);
+  assert.equal(shouldIndexUtility({ name: 'GREENWOOD VILLAGE', populationServed: 0 }), false);
+  assert.equal(shouldIndexUtility({ name: 'CITY OF ANNAPOLIS', populationServed: 40000, slug: 'annapolis' }), true);
 });
