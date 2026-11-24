@@ -15,6 +15,7 @@ import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
 import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
+import { breadcrumbListJsonLd } from '@/lib/breadcrumb-schema';
 
 const AMAZON_TAG = 'watercheckup-20';
 
@@ -50,15 +51,12 @@ const FILTERS = [
   },
 ];
 
-const phoenixBreadcrumbLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
-    { '@type': 'ListItem', position: 2, name: 'Water Quality by City', item: 'https://watercheckup.com/water' },
-    { '@type': 'ListItem', position: 3, name: 'Phoenix Water Quality', item: 'https://watercheckup.com/water/phoenix' },
-  ],
-};
+const phoenixBreadcrumbLd = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Water Quality by City', path: '/water' },
+  { name: 'AZ', path: '/water/state/arizona' },
+  { name: 'Phoenix Water Quality', path: '/water/phoenix' },
+]);
 
 export default function PhoenixWaterPage() {
   return (

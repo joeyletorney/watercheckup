@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { PriorityDiscoveryLinks } from '@/components/PriorityDiscoveryLinks';
 
 export const metadata = {
   title: 'Water Quality Reports by City',
@@ -260,6 +261,10 @@ export default function WaterDirectoryPage() {
             Get My Free Water Report →
           </Link>
         </div>
+      </div>
+
+      <div className="mb-12">
+        <PriorityDiscoveryLinks title="Guides, states, and latest reports" compact />
       </div>
 
       {/* City grid by region */}

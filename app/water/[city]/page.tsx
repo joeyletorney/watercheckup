@@ -9,6 +9,7 @@ import EmailCapture from './EmailCapture';
 import { cacheLife } from 'next/cache'
 
 import { CITIES } from './cities-data';
+import { stateAbbrToSlug } from '@/lib/cities';
 import ucmr5Raw from '../../../lib/ucmr5.json';
 import cityBlurbs from '@/lib/cityBlurbs';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
@@ -63,6 +64,7 @@ import {
 import { GAITHERSBURG_TREATMENT_SECTIONS, PLACE_TESTING_GUIDES } from '@/lib/place-water-testing';
 import { HowToTestYourWater } from '@/components/HowToTestYourWater';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
+import { breadcrumbListJsonLd } from '@/lib/breadcrumb-schema';
 
 const CITY_FAQS: Record<string, { question: string; answer: string }[]> = {
   gaithersburg: gaithersburgFAQs,
@@ -520,15 +522,15 @@ export default async function CityPage(props: { params: Promise<{ city: string }
     },
   };
 
-  const breadcrumbLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
-      { '@type': 'ListItem', position: 2, name: 'Water Quality by City', item: 'https://watercheckup.com/water' },
-      { '@type': 'ListItem', position: 3, name: `${cd?.name ?? cityName} Water Quality`, item: `https://watercheckup.com/water/${slug}` },
-    ],
-  };
+  const cityCrumbName = `${cd?.name || cityName} Water Quality`.trim();
+  const breadcrumbLd = breadcrumbListJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Water Quality by City', path: '/water' },
+    ...(cd?.state
+      ? [{ name: cd.state, path: `/water/state/${stateAbbrToSlug(cd.state)}` }]
+      : []),
+    { name: cityCrumbName, path: `/water/${slug}` },
+  ]);
 
   const waterScore = cd ? computeCityWaterScore(cd, pfas) : null;
   const keyFinding = cd ? getCityKeyFinding(cd.urgency, cd.issues, pfas) : '';

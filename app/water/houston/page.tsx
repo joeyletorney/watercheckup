@@ -15,6 +15,7 @@ import { CityDedicatedScoreHero } from '@/components/CityDedicatedScoreHero';
 import { PriorityCityLiveDataBlock } from '@/components/PriorityCityLiveDataBlock';
 import { getCityPfasData } from '@/lib/ucmr5-city-pfas';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
+import { breadcrumbListJsonLd } from '@/lib/breadcrumb-schema';
 
 const AMAZON_TAG = 'watercheckup-20';
 
@@ -50,15 +51,12 @@ const FILTER_PICKS = [
   },
 ] as const;
 
-const houstonBreadcrumbLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://watercheckup.com' },
-    { '@type': 'ListItem', position: 2, name: 'Water Quality by City', item: 'https://watercheckup.com/water' },
-    { '@type': 'ListItem', position: 3, name: 'Houston Water Quality', item: 'https://watercheckup.com/water/houston' },
-  ],
-};
+const houstonBreadcrumbLd = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Water Quality by City', path: '/water' },
+  { name: 'TX', path: '/water/state/texas' },
+  { name: 'Houston Water Quality', path: '/water/houston' },
+]);
 
 export default function HoustonWaterPage() {
   return (

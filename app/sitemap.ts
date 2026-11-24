@@ -3,9 +3,17 @@ import { BLOG_POST_SLUGS, HIGH_PRIORITY_BLOG_SLUGS } from '@/lib/blog-post-slugs
 import { BLOG_POST_DATE_MODIFIED } from '@/lib/blog-post-dates'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { SITE_ORIGIN } from '@/lib/site-url'
+import {
+  CITY_PAGE_LASTMOD,
+  MD_UTILITY_GUIDE_LASTMOD,
+  STATE_PAGE_LASTMOD,
+  staticPathLastmod,
+} from '@/lib/sitemap-dates'
 
 /** Core + city + state + blog, plus a few MD utility pages that earn Search Console impressions.
- *  ZIP result pages stay out of the sitemap on purpose (~40K URLs, noindex). */
+ *  ZIP result pages stay out of the sitemap on purpose (~40K URLs, noindex).
+ *  Bulk `/utilities/[state]/[slug]` system pages are not listed — only the three
+ *  Maryland testing URLs that already earn impressions. */
 
 export const dynamic = 'force-static'
 export const revalidate = 86400
@@ -28,7 +36,7 @@ const HIGH_PRIORITY_CITIES = new Set([
   'sugar-land', 'miami', 'new-york', 'houston', 'san-antonio', 'phoenix',
   'los-angeles', 'philadelphia', 'chicago', 'columbus', 'pensacola',
   'parkersburg', 'fort-worth', 'dallas', 'sacramento', 'fresno', 'austin',
-  'fairfax-county', 'gaithersburg',
+  'fairfax-county', 'gaithersburg', 'honolulu',
 ]);
 
 function buildSitemap(): MetadataRoute.Sitemap {
@@ -66,6 +74,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { path: '/water-hardness', priority: 0.7, changeFreq: 'monthly' as const },
   ].map(p => ({
     url: `${base}${p.path}`,
+    lastModified: staticPathLastmod(p.path),
     changeFrequency: p.changeFreq,
     priority: p.priority,
   }))
@@ -79,6 +88,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
 
   const cityEntries = WATER_CITY_SLUGS.map(slug => ({
     url: `${base}/water/${slug}`,
+    lastModified: CITY_PAGE_LASTMOD,
     changeFrequency: 'monthly' as const,
     priority: HIGH_PRIORITY_CITIES.has(slug) ? 0.85 : 0.7,
   }))
@@ -90,7 +100,8 @@ function buildSitemap(): MetadataRoute.Sitemap {
     const slug = name.toLowerCase().replace(/\s+/g, '-')
     return {
       url: `${base}/water/state/${slug}`,
-        changeFrequency: 'monthly' as const,
+      lastModified: STATE_PAGE_LASTMOD,
+      changeFrequency: 'monthly' as const,
       priority: 0.72,
     }
   })
@@ -103,20 +114,21 @@ function buildSitemap(): MetadataRoute.Sitemap {
   ]
 
   const pinned: MetadataRoute.Sitemap = [
-    { url: `${base}/water/san-antonio`, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${base}/water/gaithersburg`, changeFrequency: 'weekly', priority: 0.92 },
-    { url: `${base}/water/houston`, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/water/phoenix`, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/water/sugar-land`, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${base}/water/pensacola`, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${base}/water/fairfax-county`, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${base}/water/miami`, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/san-antonio`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/water/gaithersburg`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.92 },
+    { url: `${base}/water/houston`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/phoenix`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/sugar-land`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/water/pensacola`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${base}/water/fairfax-county`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${base}/water/miami`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/water/honolulu`, lastModified: CITY_PAGE_LASTMOD, changeFrequency: 'weekly', priority: 0.86 },
     { url: `${base}/blog/top-10-most-pfas-contaminated-cities`, lastModified: BLOG_POST_DATE_MODIFIED['top-10-most-pfas-contaminated-cities'], changeFrequency: 'weekly', priority: 0.92 },
     { url: `${base}/blog/san-antonio-water-quality`, lastModified: BLOG_POST_DATE_MODIFIED['san-antonio-water-quality'], changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/blog/pfas-in-san-antonio-water`, lastModified: BLOG_POST_DATE_MODIFIED['pfas-in-san-antonio-water'], changeFrequency: 'weekly', priority: 0.89 },
-    { url: `${base}/utilities/md/annapolis`, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${base}/utilities/md/maryland-city-anne-arundel-co`, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${base}/utilities/md/town-of-chestertown`, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/utilities/md/annapolis`, lastModified: MD_UTILITY_GUIDE_LASTMOD, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/utilities/md/maryland-city-anne-arundel-co`, lastModified: MD_UTILITY_GUIDE_LASTMOD, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/utilities/md/town-of-chestertown`, lastModified: MD_UTILITY_GUIDE_LASTMOD, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/blog/best-water-filter-hard-water`, lastModified: BLOG_POST_DATE_MODIFIED['best-water-filter-hard-water'], changeFrequency: 'monthly', priority: 0.85 },
     { url: `${base}/blog/best-shower-filter-2026`, lastModified: BLOG_POST_DATE_MODIFIED['best-shower-filter-2026'], changeFrequency: 'monthly', priority: 0.88 },
     { url: `${base}/blog/reverse-osmosis-vs-distilled-water`, lastModified: BLOG_POST_DATE_MODIFIED['reverse-osmosis-vs-distilled-water'], changeFrequency: 'monthly', priority: 0.86 },
@@ -125,7 +137,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
 
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>()
   for (const e of merged) byUrl.set(e.url, e)
-  for (const e of pinned) byUrl.set(e.url, e)
+  for (const e of pinned) byUrl.set(e.url, { ...byUrl.get(e.url), ...e })
   return Array.from(byUrl.values())
 }
 
@@ -135,9 +147,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   } catch (error) {
     console.error("Sitemap generation failed", error);
     return [
-      { url: SITE_ORIGIN, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
-      { url: `${SITE_ORIGIN}/water`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-      { url: `${SITE_ORIGIN}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+      { url: SITE_ORIGIN, lastModified: staticPathLastmod(''), changeFrequency: 'daily', priority: 1 },
+      { url: `${SITE_ORIGIN}/water`, lastModified: staticPathLastmod('/water'), changeFrequency: 'weekly', priority: 0.8 },
+      { url: `${SITE_ORIGIN}/blog`, lastModified: staticPathLastmod('/blog'), changeFrequency: 'weekly', priority: 0.8 },
     ]
   }
 }
