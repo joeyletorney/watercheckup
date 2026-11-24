@@ -56,6 +56,14 @@ test('legacy /water/ca and /water/county/... resolve to live city or state pages
   const abbrs = waterStateAbbrRedirects();
   assert.equal(abbrs.length, 51);
   assert.ok(abbrs.every((row) => !CITIES[row.source.slice('/water/'.length)]));
+  for (const empty of ['de', 'mt', 'vt', 'wy']) {
+    assert.equal(Object.values(CITIES).some((cd) => cd.state === empty.toUpperCase()), false, empty);
+    assert.equal(resolveLegacyStateAbbrPath(empty), '/water');
+    assert.equal(legacyWaterRedirectPath(`/water/${empty}`), '/water');
+    assert.equal(legacyWaterRedirectPath(`/water/county/${empty}/anywhere`), '/water');
+  }
+  assert.equal(resolveLegacyCountyPath('delaware', 'kent'), '/water');
+  assert.equal(resolveLegacyCountyPath('wyoming', 'laramie'), '/water');
 });
 
 test('www apex and state-abbr redirects in next.config are permanent', async () => {
@@ -68,6 +76,16 @@ test('www apex and state-abbr redirects in next.config are permanent', async () 
   const ca = redirects.find((rule) => rule.source === '/water/ca');
   assert.equal(ca?.destination, '/water/state/california');
   assert.equal(ca?.permanent, true);
+  const de = redirects.find((rule) => rule.source === '/water/de');
+  assert.equal(de?.destination, '/water');
+  assert.equal(de?.permanent, true);
+  const delawareHub = redirects.find((rule) => rule.source === '/water/state/delaware');
+  assert.equal(delawareHub?.destination, '/water');
+  assert.equal(delawareHub?.permanent, true);
+  const rewrites = await nextConfig.rewrites!();
+  const rewriteList = Array.isArray(rewrites) ? rewrites : rewrites?.beforeFiles ?? [];
+  assert.equal(rewriteList.some((rule) => rule.source === '/water/delaware'), false);
+  assert.equal(rewriteList.some((rule) => rule.source === '/water/california'), true);
 });
 
 test('BreadcrumbList items always have a non-empty name on the ListItem and nested item', () => {

@@ -21,17 +21,27 @@ function slugifyLabel(value: string): string {
 
 const CITY_SLUGS = new Set(Object.keys(CITIES));
 
-/** Two-letter USPS codes that have `/water/state/<slug>` pages and are not city slugs. */
+/** States with at least one `/water/<city>` report — empty hubs 404 (`rows.length === 0`). */
+const LIVE_STATE_ABBRS = new Set(Object.values(CITIES).map((cd) => cd.state));
+
+function liveStateHubPath(abbr: string): string {
+  const upper = abbr.toUpperCase();
+  if (!LIVE_STATE_ABBRS.has(upper)) return '/water';
+  return `/water/state/${stateAbbrToSlug(upper)}`;
+}
+
+/** Two-letter USPS codes that are not city slugs. Empty-state hubs 308 to `/water`. */
 export function waterStateAbbrRedirects(): { source: string; destination: string }[] {
   return STATE_PAGE_ABBRS.filter((abbr) => !CITY_SLUGS.has(abbr.toLowerCase())).map((abbr) => ({
     source: `/water/${abbr.toLowerCase()}`,
-    destination: `/water/state/${stateAbbrToSlug(abbr)}`,
+    destination: liveStateHubPath(abbr),
   }));
 }
 
 /**
  * `/water/ca` → `/water/state/california`. Case-insensitive.
  * Returns null when the segment is not a state abbreviation or is a real city slug.
+ * States with no city reports (currently DE, MT, VT, WY) go to `/water`.
  */
 export function resolveLegacyStateAbbrPath(segment: string): string | null {
   const raw = segment.trim();
@@ -40,15 +50,15 @@ export function resolveLegacyStateAbbrPath(segment: string): string | null {
   if (CITY_SLUGS.has(lower)) return null;
   const abbr = lower.toUpperCase() as StatePageAbbr;
   if (!STATE_PAGE_ABBRS.includes(abbr)) return null;
-  return `/water/state/${stateAbbrToSlug(abbr)}`;
+  return liveStateHubPath(abbr);
 }
 
 function stateHubPathFromSegment(stateSeg: string): string | null {
   const lower = stateSeg.trim().toLowerCase();
   const fromSlug = stateSlugToAbbr(lower);
-  if (fromSlug) return `/water/state/${stateAbbrToSlug(fromSlug)}`;
+  if (fromSlug) return liveStateHubPath(fromSlug);
   if (/^[a-z]{2}$/.test(lower) && STATE_PAGE_ABBRS.includes(lower.toUpperCase() as StatePageAbbr)) {
-    return `/water/state/${stateAbbrToSlug(lower.toUpperCase())}`;
+    return liveStateHubPath(lower.toUpperCase());
   }
   return null;
 }

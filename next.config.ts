@@ -14,6 +14,9 @@ const STATE_SLUGS = [
   'west-virginia', 'wisconsin', 'wyoming', 'washington-dc', 'dc',
 ];
 
+/** States with no `/water/<city>` reports — state hubs 404 (`StatePage` notFound). */
+const STATE_ABBRS_WITHOUT_CITY_PAGES = ['de', 'mt', 'vt', 'wy'];
+
 /** `/water/ca` → `/water/state/california` (no 2-letter city slug clashes). */
 const STATE_ABBR_TO_SLUG: Record<string, string> = {
   al: 'alabama', ak: 'alaska', az: 'arizona', ar: 'arkansas', ca: 'california',
@@ -28,6 +31,8 @@ const STATE_ABBR_TO_SLUG: Record<string, string> = {
   tx: 'texas', ut: 'utah', vt: 'vermont', va: 'virginia', wa: 'washington',
   wv: 'west-virginia', wi: 'wisconsin', wy: 'wyoming', dc: 'washington-dc',
 };
+
+const EMPTY_STATE_SLUGS = STATE_ABBRS_WITHOUT_CITY_PAGES.map((abbr) => STATE_ABBR_TO_SLUG[abbr]);
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
@@ -70,7 +75,7 @@ const nextConfig: NextConfig = {
   /** Default 60s — many ZIP/city pages exceed that on 2-core Vercel builders and get SIGTERM. */
   // staticPageGenerationTimeout: 180,
   async rewrites() {
-    return STATE_SLUGS.filter((slug) => slug !== 'new-york').map((slug) => ({
+    return STATE_SLUGS.filter((slug) => slug !== 'new-york' && !EMPTY_STATE_SLUGS.includes(slug)).map((slug) => ({
       source: `/water/${slug}`,
       destination: `/water/state/${slug}`,
     }));
@@ -96,9 +101,14 @@ const nextConfig: NextConfig = {
       },
       ...Object.entries(STATE_ABBR_TO_SLUG).map(([abbr, slug]) => ({
         source: `/water/${abbr}`,
-        destination: `/water/state/${slug}`,
+        // DE/MT/VT/WY have no city reports, so `/water/state/<slug>` 404s.
+        destination: STATE_ABBRS_WITHOUT_CITY_PAGES.includes(abbr) ? '/water' : `/water/state/${slug}`,
         permanent: true,
       })),
+      ...EMPTY_STATE_SLUGS.flatMap((slug) => [
+        { source: `/water/${slug}`, destination: '/water', permanent: true },
+        { source: `/water/state/${slug}`, destination: '/water', permanent: true },
+      ]),
     ];
   },
 };
