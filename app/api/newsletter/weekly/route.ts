@@ -54,9 +54,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
     }
 
-    const preview = req.nextUrl.searchParams.get('preview');
-    if (preview) {
-      const date = previewDate(preview);
+    // Any presence of ?preview (including ?preview or ?preview=) is preview-only.
+    // An empty value must 400, not fall through to the live-send path.
+    if (req.nextUrl.searchParams.has('preview')) {
+      const date = previewDate(req.nextUrl.searchParams.get('preview') || '');
       if (!date) {
         return NextResponse.json({ error: 'preview must be a real YYYY-MM-DD date.' }, { status: 400, headers: CORS });
       }

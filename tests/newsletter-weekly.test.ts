@@ -93,7 +93,7 @@ test('GET preview=2026-11-30 returns HTML without sending mail', async () => {
   const originalFetch = globalThis.fetch;
   let fetchCalls = 0;
   process.env.CRON_SECRET = 'weekly-test-secret';
-  delete process.env.BREVO_API_KEY;
+  process.env.BREVO_API_KEY = 'test-placeholder';
   globalThis.fetch = async () => {
     fetchCalls += 1;
     return new Response('{}', { status: 200 });
@@ -106,6 +106,17 @@ test('GET preview=2026-11-30 returns HTML without sending mail', async () => {
       headers: { authorization: 'Bearer weekly-test-secret' },
     }));
     assert.equal(badDate.status, 400);
+
+    for (const url of [
+      'http://localhost/api/newsletter/weekly?preview',
+      'http://localhost/api/newsletter/weekly?preview=',
+    ]) {
+      const emptyPreview = await GET(new NextRequest(url, {
+        headers: { authorization: 'Bearer weekly-test-secret' },
+      }));
+      assert.equal(emptyPreview.status, 400, url);
+    }
+    assert.equal(fetchCalls, 0);
 
     const res = await GET(new NextRequest('http://localhost/api/newsletter/weekly?preview=2026-11-30', {
       headers: { authorization: 'Bearer weekly-test-secret' },
