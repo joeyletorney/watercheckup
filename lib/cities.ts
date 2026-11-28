@@ -58,6 +58,11 @@ const STATE_NAMES: Record<string, string> = {
   DC: 'Washington DC',
 };
 
+/** Full state name for an abbreviation (`TX` → `Texas`). */
+export function stateAbbrToName(abbr: string): string {
+  return STATE_NAMES[abbr.toUpperCase()] ?? abbr;
+}
+
 /** URL slug for a state (matches `app/water/state/[city]` hub segments, e.g. `texas`). */
 export function stateAbbrToSlug(abbr: string): string {
   const name = STATE_NAMES[abbr.toUpperCase()];

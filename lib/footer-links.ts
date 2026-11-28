@@ -51,6 +51,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Filters & guides',
     links: [
       { href: '/quiz', label: 'Pick a filter (quiz)' },
+      { href: '/best-water-filter', label: 'Best filter by city' },
       { href: '/pfas', label: 'Filters for PFAS' },
       { href: '/lead', label: 'Filters for lead' },
       { href: '/well', label: 'Well water filters' },

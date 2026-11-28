@@ -49,7 +49,11 @@ export const STATIC_PATH_LASTMOD: Record<string, string> = {
   '/lead': '2026-11-19',
   '/rankings': '2026-11-23',
   '/water-hardness': '2026-11-19',
+  '/best-water-filter': '2026-11-28',
 };
+
+/** City filter guides: first publish of /best-water-filter/[city]. */
+export const CITY_FILTER_PAGE_LASTMOD = '2026-11-28';
 
 export function staticPathLastmod(path: string): string {
   return STATIC_PATH_LASTMOD[path] ?? CITY_PAGE_LASTMOD;

@@ -4,11 +4,13 @@ import { BLOG_POST_DATE_MODIFIED } from '@/lib/blog-post-dates'
 import { WATER_CITY_SLUGS, CITIES } from './water/[city]/cities-data'
 import { SITE_ORIGIN } from '@/lib/site-url'
 import {
+  CITY_FILTER_PAGE_LASTMOD,
   CITY_PAGE_LASTMOD,
   MD_UTILITY_GUIDE_LASTMOD,
   STATE_PAGE_LASTMOD,
   staticPathLastmod,
 } from '@/lib/sitemap-dates'
+import { cityFilterPagePath, listCityFilterPageSlugs } from '@/lib/city-filter-pages'
 
 /** Core + city + state + blog, plus a few MD utility pages that earn Search Console impressions.
  *  ZIP result pages stay out of the sitemap on purpose (~40K URLs, noindex).
@@ -72,6 +74,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
     { path: '/lead',         priority: 0.9,  changeFreq: 'monthly' as const },
     { path: '/rankings',     priority: 0.9,  changeFreq: 'weekly'  as const },
     { path: '/water-hardness', priority: 0.7, changeFreq: 'monthly' as const },
+    { path: '/best-water-filter', priority: 0.86, changeFreq: 'weekly' as const },
   ].map(p => ({
     url: `${base}${p.path}`,
     lastModified: staticPathLastmod(p.path),
@@ -93,6 +96,13 @@ function buildSitemap(): MetadataRoute.Sitemap {
     priority: HIGH_PRIORITY_CITIES.has(slug) ? 0.85 : 0.7,
   }))
 
+  const cityFilterEntries = listCityFilterPageSlugs().map(slug => ({
+    url: `${base}${cityFilterPagePath(slug)}`,
+    lastModified: CITY_FILTER_PAGE_LASTMOD,
+    changeFrequency: 'monthly' as const,
+    priority: HIGH_PRIORITY_CITIES.has(slug) ? 0.82 : 0.68,
+  }))
+
   const stateAbbrMap: Record<string, boolean> = {}
   Object.values(CITIES).forEach(cd => { stateAbbrMap[cd.state] = true })
   const stateEntries = Object.keys(stateAbbrMap).map(abbr => {
@@ -111,6 +121,7 @@ function buildSitemap(): MetadataRoute.Sitemap {
     ...blogPostEntries,
     ...stateEntries,
     ...cityEntries,
+    ...cityFilterEntries,
   ]
 
   const pinned: MetadataRoute.Sitemap = [

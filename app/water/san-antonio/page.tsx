@@ -162,7 +162,7 @@ export default function SanAntonioWaterPage() {
 
         <PriorityCityEditorial slug="san-antonio" />
 
-        <CityFilterGuideLinks />
+        <CityFilterGuideLinks slug="san-antonio" name="San Antonio" />
 
         <PriorityCityLiveDataBlock slug="san-antonio" />
 

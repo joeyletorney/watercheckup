@@ -135,7 +135,7 @@ export default function HoustonWaterPage() {
 
         <PriorityCityEditorial slug="houston" />
 
-        <CityFilterGuideLinks />
+        <CityFilterGuideLinks slug="houston" name="Houston" />
 
         <PriorityCityLiveDataBlock slug="houston" />
 
