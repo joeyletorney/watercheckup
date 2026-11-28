@@ -63,6 +63,8 @@ import {
 } from '@/lib/city-water-testing';
 import { GAITHERSBURG_TREATMENT_SECTIONS, PLACE_TESTING_GUIDES } from '@/lib/place-water-testing';
 import { HowToTestYourWater } from '@/components/HowToTestYourWater';
+import { WellVsCityTesting } from '@/components/WellVsCityTesting';
+import { buildWellVsCityTestingGuide } from '@/lib/well-vs-city-testing';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
 import { breadcrumbListJsonLd } from '@/lib/breadcrumb-schema';
 
@@ -443,6 +445,11 @@ const LOCAL_SEARCH_INTENT: Record<string, CityLocalSearchIntent> = {
       { href: '/pfoa-at-epa-limit', label: 'Cities at the EPA PFOA limit' },
       { href: '/pfas', label: 'PFAS guide' },
       { href: '/blog/what-water-filter-removes-pfas', label: 'Filters that remove PFAS' },
+      { href: '/water/state/west-virginia', label: 'West Virginia tap water hub' },
+      { href: '/water/pittsburgh', label: 'Pittsburgh water report' },
+      { href: '/water/columbus', label: 'Columbus water report' },
+      { href: '/water/cincinnati', label: 'Cincinnati water report' },
+      { href: '/rankings', label: 'Best tap water by city' },
       { href: '/quiz', label: 'Find a Parkersburg filter' },
     ],
   },
@@ -586,7 +593,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                 headline={PRIORITY_CITY_H1.gaithersburg ?? 'Is Gaithersburg Tap Water Safe?'}
                 slug="gaithersburg"
                 datePublished="2026-01-01"
-                dateModified="2026-11-21"
+                dateModified="2026-11-28"
               />
             </>
           ) : (
@@ -596,25 +603,25 @@ export default async function CityPage(props: { params: Promise<{ city: string }
           {slug === 'gaithersburg' && (
             <>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: '#e2e8f0', margin: '0 0 18px', lineHeight: 1.3 }}>
-                Gaithersburg water quality, testing, and treatment (WSSC Water)
+                Gaithersburg city and well water testing (WSSC Water)
               </h2>
               <p style={{ fontSize: 15, color: '#cbd5e1', margin: '0 0 18px', lineHeight: 1.8 }}>
                 Gaithersburg is served by{' '}
                 <strong style={{ color: '#e2e8f0' }}>WSSC Water</strong> (Washington Suburban Sanitary Commission).
-                This page covers Gaithersburg water quality, water testing (city and well), and home water treatment
-                options for Montgomery County — reverse osmosis, whole-house filtration, and softeners. WaterCheckup
-                is not a water treatment company and does not install or service equipment.
+                This page covers Gaithersburg water testing — city / municipal water and well water — plus WSSC water
+                quality context for Montgomery County. WaterCheckup is not a laboratory or a water treatment company
+                and does not install or service equipment.
               </p>
               <div style={{ padding: '16px 18px', background: '#071828', border: '1px solid #1a3a5c', borderRadius: 12, margin: '0 0 22px' }}>
                 <h2 style={{ fontSize: 16, fontWeight: 800, color: '#e2e8f0', margin: '0 0 8px', lineHeight: 1.35 }}>
-                  Well water vs city (WSSC) water in Gaithersburg
+                  Well water vs city water testing in Gaithersburg
                 </h2>
                 <p style={{ fontSize: 14, color: '#cbd5e1', lineHeight: 1.75, margin: 0 }}>
                   Most in-town Gaithersburg addresses are on WSSC municipal water — the EPA/UCMR5 snapshot on this page.
-                  Private wells on the rural edge of Montgomery County are not in that city data and need their own lab
-                  tests (bacteria and nitrate yearly; a broader metals/PFAS panel every few years or after flooding).
-                  WaterCheckup publishes public-supplier reports and filter comparisons. It is not a water-treatment company
-                  and does not install, service, or sell whole-house systems.
+                  Private wells on the rural edge of Montgomery County are not in that city data. Well owners should test
+                  bacteria and nitrate yearly through a Maryland-certified lab (Montgomery County DPS: 240-777-0311 for
+                  permitting questions). WaterCheckup publishes public-supplier reports; it is not a lab or a
+                  water-treatment company.
                 </p>
               </div>
             </>
@@ -963,7 +970,11 @@ export default async function CityPage(props: { params: Promise<{ city: string }
               </section>
             )}
 
-            {LOCAL_SEARCH_INTENT[slug] && <HowToTestYourWater guide={LOCAL_SEARCH_INTENT[slug]} />}
+            {LOCAL_SEARCH_INTENT[slug] ? (
+              <HowToTestYourWater guide={LOCAL_SEARCH_INTENT[slug]} />
+            ) : (
+              cd && <WellVsCityTesting guide={buildWellVsCityTestingGuide(cd.name, cd.state)} />
+            )}
 
             {/* ── STEP 3: FILTER RECOMMENDATION ── */}
             <div className="wc-filter-rec-accent-wrap" style={{ marginBottom: 8, overflow: 'hidden' }}>

@@ -17,9 +17,9 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
       'San Antonio water quality and contamination: SAWS hardness, PFAS in UCMR5, radium context. Free EPA snapshot — not a tap test. See the PFAS guide.',
   },
   gaithersburg: {
-    title: 'Gaithersburg, MD Water Quality, Testing & Treatment (2026)',
+    title: 'Gaithersburg Water Testing: City vs Well Water (2026)',
     description:
-      'Gaithersburg water quality (WSSC): water testing, well water, reverse osmosis, and how to choose a treatment company. Not a treatment company.',
+      'Gaithersburg water testing (WSSC): city vs well water in Montgomery County, MDE certified labs. Not a treatment company.',
   },
   raleigh: {
     title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report',
@@ -215,7 +215,7 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
 
 /** H1 copy for priority city pages — matches the “is tap water safe?” SERP intent */
 export const PRIORITY_CITY_H1: Record<string, string> = {
-  gaithersburg: 'Gaithersburg, MD Water Quality, Testing & Treatment',
+  gaithersburg: 'Gaithersburg Water Testing: City vs Well Water',
   'san-antonio': 'San Antonio Water Quality: Contamination, PFAS & Hardness',
   raleigh: 'Is Raleigh Tap Water Safe?',
   houston: 'Is Houston Tap Water Safe?',

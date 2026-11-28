@@ -10,6 +10,7 @@ import { RANKINGS_SEO_DESCRIPTION, RANKINGS_SEO_TITLE } from '@/lib/serp-copy';
 import { getCtrSerpOverride } from '@/lib/ctr-serp-seo';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
 import { PriorityDiscoveryLinks } from '@/components/PriorityDiscoveryLinks';
+import { RankingRelatedLinks } from '@/components/RankingRelatedLinks';
 
 const ctr = getCtrSerpOverride('/rankings');
 const rankingsTitle = ctr?.title ?? RANKINGS_SEO_TITLE;
@@ -51,13 +52,25 @@ export default function RankingsPage() {
           NATIONAL COMPARISON · 50 STATES + DC
         </div>
         <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.15, margin: '0 0 22px' }}>
-          Worst Tap Water Rankings 2026: Cities &amp; States
+          Best Tap Water by City 2026: Rankings &amp; States
         </h1>
-        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 20px' }}>
-          States are ordered by the share of <strong style={{ color: '#e2e8f0' }}>tracked cities</strong> with UCMR5 data flagged
-          over an EPA limit or an active PFAS MCL violation (same bar as our state &amp; city reports). Grades use that
-          percentage only; &quot;safe&quot; cities are tracked locations with no such flag and a low regional concern profile.
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 16px' }}>
+          Compare the <strong style={{ color: '#e2e8f0' }}>best tap water by city</strong> and by state. The table below
+          defaults to best rank first — the lowest share of tracked cities with UCMR5 data flagged over an EPA limit or
+          an active PFAS MCL violation (same bar as our state and city reports). Sort any column to reverse the view.
           States without a city guide yet appear at the bottom.
+        </p>
+        <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.75, margin: '0 0 20px' }}>
+          Looking for a short list? See the{' '}
+          <Link prefetch href="/best-cities" style={{ color: '#22d3ee', fontWeight: 700 }}>
+            10 best cities for tap water
+          </Link>
+          {' '}or the{' '}
+          <Link prefetch href="/worst-cities" style={{ color: '#22d3ee', fontWeight: 700 }}>
+            worst drinking water by city
+          </Link>
+          {' '}(Water Safety Score). Grades here use the at-risk percentage only; &quot;safe&quot; cities are tracked
+          locations with no such flag and a low regional concern profile.
         </p>
 
         <div
@@ -202,6 +215,16 @@ export default function RankingsPage() {
         </div>
 
         <ConversionNextStep page="/rankings" headingId="wc-rankings-next-end" />
+
+        <RankingRelatedLinks
+          title="Related city lists"
+          links={[
+            { href: '/worst-cities', label: 'Worst drinking water by city', desc: 'Lowest Water Safety Scores among tracked metros' },
+            { href: '/best-cities', label: '10 best cities for tap water', desc: 'Highest Water Safety Scores' },
+            { href: '/worst-states', label: 'Worst states', desc: 'States ranked by share of cities at risk' },
+            { href: '/', label: 'Check your ZIP', desc: 'Free water quality report by ZIP code' },
+          ]}
+        />
 
         <SiteTrustedFilterPicks />
       </div>

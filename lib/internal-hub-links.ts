@@ -15,10 +15,15 @@ export const PRIORITY_GUIDE_LINKS: HubLink[] = [
 
 export const PRIORITY_PLACE_LINKS: HubLink[] = [
   { href: '/water/honolulu', label: 'Honolulu, HI' },
+  { href: '/water/gaithersburg', label: 'Gaithersburg water testing' },
+  { href: '/water/parkersburg', label: 'Parkersburg, WV' },
   { href: '/water/state/maryland', label: 'Maryland tap water' },
+  { href: '/water/state/west-virginia', label: 'West Virginia tap water' },
   { href: '/water/state/hawaii', label: 'Hawaii tap water' },
   { href: '/water/state/california', label: 'California tap water' },
   { href: '/water/state/texas', label: 'Texas tap water' },
+  { href: '/rankings', label: 'Best tap water by city' },
+  { href: '/worst-cities', label: 'Worst drinking water by city' },
   { href: '/water', label: 'All city reports' },
 ];
 

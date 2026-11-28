@@ -87,44 +87,40 @@ export const PLACE_TESTING_GUIDES: Record<string, PlaceTestingGuide> = {
     ],
   },
   gaithersburg: {
-    eyebrow: 'HOW TO TEST YOUR WATER IN GAITHERSBURG, MD',
-    title: 'How to test your water in Gaithersburg, MD',
+    eyebrow: 'WELL WATER VS CITY WATER TESTING IN GAITHERSBURG, MD',
+    title: 'Well water vs city water testing in Gaithersburg, MD',
     intro:
-      'City water testing in Gaithersburg, MD starts with knowing who supplies the tap. Most in-town addresses are on WSSC Water. The annual Consumer Confidence Report (CCR) is a system-wide summary, not a test of your kitchen faucet. Use this page for the free WSSC/EPA snapshot, then decide between a home kit and a Maryland-certified laboratory for address-level results.',
+      'Gaithersburg well water testing and Gaithersburg city water testing are not the same job. Most in-town addresses are on WSSC Water (municipal / city water). Private wells — more common on the rural edge of Montgomery County — are not in WSSC’s Consumer Confidence Report or in EPA municipal monitoring. Use this page for the free WSSC/EPA snapshot, then a Maryland-certified laboratory for an address-level result. WaterCheckup is not a lab and does not sell tests.',
     sections: [
       {
-        heading: 'City water testing in Gaithersburg, MD',
+        heading: 'Who needs to test in Gaithersburg and Montgomery County',
         body:
-          'A water test in Gaithersburg starts with WSSC Water (Washington Suburban Sanitary Commission), which treats Potomac and Patuxent River water for Montgomery and Prince George’s counties. Searches for “city water testing Gaithersburg MD” and “city water testing near me” should start with WSSC’s own water quality report, then this page’s EPA/UCMR5 snapshot. WSSC monitoring does not see lead, copper, or other metals your building plumbing can add after the water leaves the plant.',
-        sources: [S.wsscCcr, S.wsscWqr],
+          'If you pay a WSSC (or other public-system) bill, start here: this snapshot plus WSSC’s current Water Quality Report. Test your own tap when the home is pre-1986, you are pregnant or have young children, pipe material is unknown, or you want lead or PFAS at the kitchen faucet — a CCR cannot see what your plumbing adds. Well water testing in Gaithersburg, MD applies only if the home is on a private well. Montgomery County Department of Permitting Services (DPS), acting for the Maryland Department of the Environment, permits wells; it does not replace annual homeowner testing. Homeowners are responsible for well maintenance and drinking-water safety.',
+        sources: [S.wsscCcr, S.montgomeryDps, S.montgomeryDpsGuide, S.epaPrivateWells],
       },
       {
-        heading: 'City water testing in Montgomery County, MD',
+        heading: 'City water testing in Gaithersburg, MD (municipal / WSSC)',
         body:
-          'Most Montgomery County addresses are also on WSSC Water — the same Potomac/Patuxent supply described on this Gaithersburg page. Some municipalities (including Rockville) operate their own systems, so two neighbors can have different CCRs. Use the free ZIP report to confirm the supplier, then read that utility’s current Water Quality Report. For address-level lead or PFAS, use a Maryland-certified laboratory; WSSC’s CCR is not a tap test. WaterCheckup is not a treatment company.',
-        sources: [S.wsscCcr, S.readCcr, S.ccrFinder],
-      },
-      {
-        heading: 'Maryland certified-lab guidance',
-        body: MD_CERTIFIED_LAB_BODY,
-        sources: [S.mdeLabs, S.mdeLabsPdf],
-      },
-      {
-        heading: 'Home test kit vs certified lab',
-        body:
-          'A store or mail-in home kit is a screening tool: useful for hardness, chlorine taste, or a first look at metals. It is not a substitute for a Maryland-certified lab when you need lead, PFAS, or bacteria results you can rely on. Certified labs issue chain-of-custody instructions, method codes, and reporting limits. Home kits vary in quality and often cannot report PFAS at parts-per-trillion. WaterCheckup is not a laboratory and does not sell tests.',
-        sources: [S.tapTest],
-      },
-      {
-        heading: 'What to test for in Gaithersburg',
-        body:
-          'On WSSC city water: lead and copper (first-draw after water sits overnight, especially in pre-1986 plumbing), PFAS if you want address-level confirmation beyond UCMR5, and disinfection byproducts if taste/odor or pregnancy is a concern. Hardness is a comfort/scale issue, not a toxicity test. On a private well: bacteria and nitrate at least yearly, plus a broader panel (arsenic, radon, PFAS, metals, iron, manganese, hardness) every few years or after flooding, a new well, or a change in taste or color.',
+          'Municipal water testing in Gaithersburg means WSSC Water, which treats Potomac and Patuxent River water for most of Montgomery and Prince George’s counties. “City water testing Gaithersburg MD” should start with WSSC’s CCR, then this page’s EPA/UCMR5 snapshot. WSSC monitoring does not see lead, copper, or other metals your building plumbing can add after water leaves the plant. Some Montgomery County cities (including Rockville) operate their own systems — confirm the supplier with a ZIP report rather than assuming one county-wide grade.',
+        sources: [S.wsscCcr, S.wsscWqr, S.readCcr, S.ccrFinder],
       },
       {
         heading: 'Gaithersburg well water testing',
         body:
-          'Gaithersburg well water testing applies if your home is on a private well — more common on the rural edge of Montgomery County than on in-town WSSC addresses. Wells are not covered by EPA municipal monitoring or by WSSC’s CCR. Test bacteria and nitrate at least yearly through a Maryland-certified lab; add a broader panel (arsenic, radon, PFAS, metals, iron, manganese, hardness) every few years or after flooding, a new well, or a change in taste or color. Maryland Department of Health lists state-lab well-water fees (bacteria $41, nitrate $18, lead $20, hardness $23). Most in-town Gaithersburg addresses are WSSC city water, not a well.',
-        sources: [S.mdhFees, S.umdTesting, S.mdeLabs],
+          'Private wells are not covered by EPA municipal monitoring or by WSSC’s CCR. Montgomery County DPS tells well owners to test annually with a certified lab for bacteria and nitrates, and whenever color, odor, or taste changes or the well system is serviced or repaired. New or replacement potable wells need Certificate of Potability sampling before occupancy; that is a construction/permit step, not a substitute for yearly tests on an existing well. DPS well-and-septic questions: 240-777-0311 (or 311 in-county). WaterCheckup does not collect samples.',
+        sources: [S.montgomeryDpsGuide, S.montgomeryDps, S.umdTesting, S.epaPrivateWells],
+      },
+      {
+        heading: 'What to test for (city vs well)',
+        body:
+          'On WSSC city water: lead and copper (first-draw after water sits overnight, especially in pre-1986 plumbing), PFAS if you want address-level confirmation beyond UCMR5, and disinfection byproducts if taste/odor or pregnancy is a concern. Hardness is a comfort/scale issue, not a toxicity test. On a private well, University of Maryland Extension recommends total coliform, E. coli, and nitrate at least yearly; a broader panel (chloride, copper, hardness, lead, manganese, pH, sulfate, TDS, and local-concern contaminants such as arsenic or radon) initially or every three years, and after flooding, a new well, or a change in taste or color.',
+        sources: [S.umdTesting, S.tapTest],
+      },
+      {
+        heading: 'How to get a test: MDE certified labs and the Maryland Department of the Environment',
+        body:
+          'For results you can use in real-estate, medical, or treatment decisions, use a laboratory certified by the Maryland Department of the Environment Laboratory Certification Program — not a brand from a search ad. Certification is test-specific: a lab approved for bacteria is not automatically approved for PFAS. Confirm the lab accepts private samples and is certified for the analytes you need. Maryland Department of Health publishes state-lab well-water fees as a public lower bound (bacteria $41, nitrate $18, lead $20, hardness $23); commercial labs on the MDE list set their own prices. Home kits are screening tools only.',
+        sources: [S.mdeLabs, S.mdeLabsPdf, S.mdhFees, S.tapTest],
       },
       {
         heading: 'Rough cost ranges',
@@ -140,13 +136,17 @@ export const PLACE_TESTING_GUIDES: Record<string, PlaceTestingGuide> = {
     links: [
       zipLink(MD_TESTING_ZIP_REPORTS.gaithersburg, 'Gaithersburg ZIP report (20877)'),
       { href: S.wsscCcr.href, label: 'WSSC water quality report' },
-      { href: S.mdeLabs.href, label: 'Maryland certified lab list' },
+      { href: S.mdeLabs.href, label: 'Maryland certified lab list (MDE)' },
+      { href: S.montgomeryDps.href, label: 'Montgomery County well & septic (DPS)' },
       { href: '/blog/how-to-test-your-tap-water-mail-in-labs-explained', label: 'Mail-in tap test guide' },
       { href: '/well', label: 'Private well testing guide' },
+      { href: '/lead', label: 'Lead in tap water' },
+      { href: '/pfas', label: 'PFAS in tap water' },
       { href: '/blog/best-water-filter-gaithersburg-md', label: 'Best filters for Gaithersburg' },
       { href: '/water/rockville', label: 'Rockville water report' },
       { href: '/water/silver-spring', label: 'Silver Spring (WSSC) water report' },
       { href: '/water/bethesda', label: 'Bethesda (WSSC) water report' },
+      { href: '/water/state/maryland', label: 'Maryland tap water hub' },
       { href: '/quiz', label: 'Find a certified filter' },
     ],
     faqs: [],
