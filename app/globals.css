@@ -2524,6 +2524,9 @@ button.wc-nav-badge-nsf:focus-visible {
 .wc-shop-card details { color:#cbd5e1; font-size:13px; line-height:1.65; margin-top:16px; }
 .wc-shop-card summary { cursor:pointer; min-height:32px; font-weight:650; }
 .wc-shop-card details p { margin:8px 0; }
+.wc-shop-video { margin:1rem 0; max-width:720px; }
+.wc-shop-video figcaption { color:#e2e8f0; }
+.wc-shop-video video { max-width:100%; }
 .wc-home-shortcuts { max-width:1000px; margin:48px auto 0; padding:0 24px 64px; }
 .wc-home-shortcuts h2 { color:#f1f5f9; font-size:23px; margin:0 0 14px; }
 .wc-home-expert { display:flex; align-items:center; gap:20px; padding:24px 0; margin-bottom:28px; }
