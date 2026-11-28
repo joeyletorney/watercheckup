@@ -3,15 +3,16 @@ import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
 import { buildWorstStatesRankings } from '@/lib/worst-states-rankings';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
+import { WaterSearch } from '@/components/WaterSearch';
 
 export const metadata: Metadata = {
-  title: 'Worst States for Drinking Water Quality (2026 EPA Data)',
+  title: 'Worst Drinking Water by State (2026)',
   description:
-    'US states ranked by share of tracked cities with UCMR5 PFAS over EPA limits — same methodology as WaterCheckup state rankings. See which states have the worst drinking water.',
+    'Worst drinking water by state: US states ranked by share of tracked cities with UCMR5 PFAS over EPA limits. Check your ZIP and see the matching filter.',
   alternates: { canonical: 'https://watercheckup.com/worst-states' },
   openGraph: {
-    title: 'Worst States for Drinking Water Quality — 2026 EPA Data',
-    description: 'Which US states have the worst tap water? Ranked using EPA violation records, PFAS monitoring data, and lead risk across all 50 states, all for free.',
+    title: 'Worst Drinking Water by State (2026)',
+    description: 'Which US states have the worst tap water? Ranked using EPA PFAS monitoring and city scores. Check your ZIP for a matching filter.',
   },
 };
 
@@ -59,7 +60,7 @@ export default function WorstStatesPage() {
             STATE WATER QUALITY RANKINGS — 2026
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
-            Top 25 worst states for tap water quality
+            Worst Drinking Water by State (2026)
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 20px' }}>
             Same methodology as our{' '}
@@ -82,7 +83,13 @@ export default function WorstStatesPage() {
           </div>
         </div>
 
-        <ConversionNextStep page="/worst-states" headingId="wc-worst-states-next-mid" />
+        <ConversionNextStep
+          page="/worst-states"
+          headingId="wc-worst-states-next-mid"
+          heading="If your state is on this list, check your ZIP code and see the filter that matches"
+          intro="A state rank is not your tap. Enter your ZIP for a free supplier snapshot, then compare the filter that matches that report."
+          zipSearch={<WaterSearch variant="compact" idPrefix="wc-worst-states" />}
+        />
 
         {/* ── TOP 25 ── */}
         <div style={{ marginBottom: 72 }}>

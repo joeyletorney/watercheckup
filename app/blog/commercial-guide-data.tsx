@@ -3,7 +3,7 @@ import { blogPostDateFields } from '@/lib/blog-post-dates';
 import { GUIDE_SOURCES } from './commercial-guide-sources';
 import { PitcherGuideArticle } from './pitcher-guide-content';
 import { LeadGuideArticle } from './lead-guide-content';
-import { clearlyFilteredAmazonUrl } from '@/lib/waterdrop-buy';
+import { clearlyFilteredAmazonUrl, WATERDROP_G3P600_URL } from '@/lib/waterdrop-buy';
 export { GUIDE_SOURCES } from './commercial-guide-sources';
 
 type Choice = { costSummary?: string; merchant?: { href: string; label: string; brand: string; sponsored: boolean }; costSource?: string; option: string; fit: string; constraint: string; evidence: string; source: string; cost: string };
@@ -74,10 +74,20 @@ export const COMMERCIAL_GUIDES: Record<string, CommercialGuide> = {
     }],
   },
   'best-water-filter-for-lead-removal': {
-    title: 'Best Water Filter for Lead Removal (2026)',
-    excerpt: 'Best lead removal water filter for home in 2026: NSF/ANSI 53 picks, lead plus PFAS or chlorine, budget options, and verified annual filter costs.',
-    verdict: 'Top pick for certified lead plus PFAS: Waterdrop G3P600 under-sink RO (NSF/ANSI 53 and 58, about $399). For lead alone on a budget, start with a pitcher-and-cartridge pair that has an explicit NSF/ANSI 53 (or IAPMO) lead-reduction claim. RO is not required for every lead concern.',
-    choices: [pitcher, aqua, {
+    title: 'Top-Rated Lead Filters (NSF 53) — Best Affordable Picks 2026',
+    excerpt:
+      'Top-rated NSF 53 lead and PFAS water filters — affordable 2026 picks, certified comparison, and buy links. G3P600 is the under-sink top pick.',
+    verdict: 'Top-rated pick for certified lead plus PFAS: Waterdrop G3P600 under-sink RO (NSF/ANSI 53 and 58, about $399). Affordable lead-only starting points are ZeroWater 10-cup (about $23) and Brita Elite OB06. RO is not required for every lead concern.',
+    choices: [{
+      merchant: { href: WATERDROP_G3P600_URL, label: 'Check price at Waterdrop →', brand: 'Waterdrop', sponsored: true },
+      costSummary: 'About $399; catalog filter allowance about $150/year.',
+      option: 'Waterdrop G3P600 under-sink RO',
+      fit: 'Top-rated NSF/ANSI 53 lead plus NSF/ANSI 58 PFAS pick for a dedicated drinking tap.',
+      constraint: 'Needs under-sink space, a drain connection, and an outlet for the tankless pump. Get landlord approval for plumbing changes.',
+      evidence: 'NSF/ANSI 42, 53, 58, and 372 listings on the current G3P600 sheet used in this catalog. Confirm the live model’s lead and PFAS claims in a certification directory before buying.',
+      source: WATERDROP_G3P600_URL,
+      cost: 'Catalog unit price about $399 and filter allowance about $150/year as used on WaterCheckup. Check the live Waterdrop listing (ref anbyjkqb) and Amazon (tag watercheckup-20).',
+    }, pitcher, aqua, {
       option: 'Installed point-of-use filter: select an exact certified model',
       fit: 'For a dedicated drinking/cooking tap and fewer manual refills.',
       constraint: 'Check cold-water fittings, pressure and cabinet clearance. Dedicated faucets may require a hole; RO also needs a drain connection, and powered models need an outlet. Get landlord approval for plumbing changes.',

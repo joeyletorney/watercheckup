@@ -34,6 +34,16 @@ export default function HomeLanding() {
         <Link href="/quiz" className="wc-home-zip-repeat-quiz">Take the 60-second filter quiz →</Link>
       </section>
       <div className="wc-home-shortcuts">
+        <section className="wc-home-popular" aria-labelledby="wc-home-popular-heading">
+          <h2 id="wc-home-popular-heading">Popular guides</h2>
+          <div className="wc-home-guide-links">
+            <Link href="/water/gaithersburg">Gaithersburg water testing (city vs well) →</Link>
+            <Link href="/water/san-antonio">San Antonio water quality, PFAS & hardness →</Link>
+            <Link href="/blog/best-water-filter-for-lead-removal">Top-rated NSF 53 lead filters →</Link>
+            <Link href="/worst-states">Worst drinking water by state →</Link>
+            <Link href="/worst-cities">Worst drinking water by city →</Link>
+          </div>
+        </section>
         <section className="wc-home-expert" aria-labelledby="wc-home-expert-heading">
           <Image src="/joe-letorney.jpeg" alt="Joe Letorney, founder of WaterCheckup" width={96} height={96} style={{ borderRadius: '50%', objectFit: 'cover' }} />
           <div><h2 id="wc-home-expert-heading">Recommendations from a real Water Expert</h2><p>30 years in water treatment · Former WQA Certified Water Treatment Specialist, Level VI. Compare published model evidence and practical installation needs.</p><Link href="/about/joe-letorney">Meet Joe →</Link> · <Link href="/methodology">How we use water records →</Link></div>

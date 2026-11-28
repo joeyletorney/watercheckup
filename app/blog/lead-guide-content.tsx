@@ -1,5 +1,6 @@
 import { GUIDE_SOURCES } from './commercial-guide-sources';
 import { WATERDROP_G3P600_URL } from '@/lib/waterdrop-buy';
+import { AffiliateLink } from '@/components/AffiliateLink';
 
 const AMAZON = 'https://www.amazon.com/dp/B07P1XFYJP?tag=watercheckup-20';
 
@@ -77,35 +78,63 @@ const ROWS: Row[] = [
   },
 ];
 
+/** G3P600 hero with buy buttons — render above the long Brita comparison. */
+export function LeadGuideTopPick() {
+  return (
+    <div
+      style={{
+        margin: '0 0 28px',
+        padding: '18px 20px',
+        border: '2px solid #0369a1',
+        borderRadius: 12,
+        background: '#f0f9ff',
+      }}
+    >
+      <p style={{ margin: '0 0 8px', fontSize: 13, fontWeight: 800, letterSpacing: 1.2, color: '#0369a1' }}>
+        QUICK ANSWER · TOP-RATED NSF 53 LEAD AND PFAS PICK
+      </p>
+      <p style={{ margin: '0 0 10px', fontSize: 18, fontWeight: 800, color: '#0f172a', lineHeight: 1.35 }}>
+        Top pick: Waterdrop G3P600 under-sink RO when you want certified lead reduction plus PFAS (NSF/ANSI 53 and 58).
+      </p>
+      <p style={{ margin: '0 0 14px', fontSize: 15, color: '#334155', lineHeight: 1.7 }}>
+        About $399; catalog filter allowance about $150/year. Budget lead-only: Brita Elite OB06 in a compatible pitcher,
+        or ZeroWater 10-cup (NSF 42/53, about $23). A standard 372 “lead-free materials” mark is not lead removal. We did
+        not laboratory-test these products; claims below are from NSF/IAPMO/WQA-style listings or the manufacturer’s
+        current sheet as cited in this guide.
+      </p>
+      <p style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: 0 }}>
+        <AffiliateLink
+          href={WATERDROP_G3P600_URL}
+          product="Waterdrop G3P600"
+          brand="Waterdrop"
+          destination="direct"
+          page="/blog/best-water-filter-for-lead-removal"
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="wc-buy-cta"
+        >
+          Check price at Waterdrop →
+        </AffiliateLink>
+        <AffiliateLink
+          href={AMAZON}
+          product="Waterdrop G3P600"
+          brand="Waterdrop"
+          destination="amazon"
+          page="/blog/best-water-filter-for-lead-removal"
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="wc-buy-cta"
+        >
+          Check price on Amazon →
+        </AffiliateLink>
+      </p>
+    </div>
+  );
+}
+
 export function LeadGuideArticle() {
   return (
     <>
-      <div
-        style={{
-          margin: '0 0 28px',
-          padding: '18px 20px',
-          border: '2px solid #0369a1',
-          borderRadius: 12,
-          background: '#f0f9ff',
-        }}
-      >
-        <p style={{ margin: '0 0 8px', fontSize: 13, fontWeight: 800, letterSpacing: 1.2, color: '#0369a1' }}>
-          QUICK ANSWER · BEST LEAD REMOVAL WATER FILTER FOR HOME
-        </p>
-        <p style={{ margin: '0 0 10px', fontSize: 18, fontWeight: 800, color: '#0f172a', lineHeight: 1.35 }}>
-          Top pick: Waterdrop G3P600 under-sink RO when you want certified lead reduction plus PFAS (NSF/ANSI 53 and 58).
-        </p>
-        <p style={{ margin: 0, fontSize: 15, color: '#334155', lineHeight: 1.7 }}>
-          About $399; catalog filter allowance about $150/year.{' '}
-          <a href={WATERDROP_G3P600_URL}>Waterdrop G3P600 (ref anbyjkqb)</a>
-          {' · '}
-          <a href={AMAZON}>Amazon (tag watercheckup-20)</a>
-          . Budget lead-only: Brita Elite OB06 in a compatible pitcher, or ZeroWater 10-cup (NSF 42/53, about $23). A
-          standard 372 “lead-free materials” mark is not lead removal. We did not laboratory-test these products; claims
-          below are from NSF/IAPMO/WQA-style listings or the manufacturer’s current sheet as cited in this guide.
-        </p>
-      </div>
-
       <h2>Best water filter for lead removal — comparison</h2>
       <p>
         Certified water filters for lead need an explicit NSF/ANSI 53 (or equivalent IAPMO) lead-reduction claim for the

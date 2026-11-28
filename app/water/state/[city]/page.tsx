@@ -274,6 +274,9 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
 
           {featuredCities.length > 0 && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: '0 0 24px' }}>
+              <div style={{ width: '100%', fontSize: 13, fontWeight: 800, color: '#67e8f9', letterSpacing: 1.2, marginBottom: 4 }}>
+                Featured {stateName} reports
+              </div>
               {featuredCities.map((city) => (
                 <Link
                   key={city.slug}

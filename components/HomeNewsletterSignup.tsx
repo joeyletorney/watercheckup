@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import { trackNewsletterSignup } from '@/lib/track-event';
 
 export function HomeNewsletterSignup() {
   const [sent, setSent] = useState(false);
@@ -23,7 +24,7 @@ export function HomeNewsletterSignup() {
         return;
       }
       setSent(true);
-      window.gtag?.('event', 'newsletter_signup', { source: 'weekly-newsletter', method: 'newsletter_form' });
+      trackNewsletterSignup('weekly-newsletter');
     } catch {
       setError(controller.signal.aborted ? 'This request took too long. Please try again shortly.' : 'Could not subscribe. Please check your connection and try again.');
     } finally {

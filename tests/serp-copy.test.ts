@@ -94,13 +94,19 @@ test('city descriptions use real supplier data and handle missing PFAS coverage'
 
   const gaithersburg = cityMeta('gaithersburg');
   assert.equal(gaithersburg.title, 'Gaithersburg Water Testing: City vs Well Water (2026)');
+  assert.match(String(gaithersburg.description), /Gaithersburg well water testing/i);
+  assert.match(String(gaithersburg.description), /water testing Gaithersburg MD/i);
+  assert.match(String(gaithersburg.description), /Gaithersburg water quality/i);
   assert.match(String(gaithersburg.description), /WSSC/i);
-  assert.match(String(gaithersburg.description), /water test/i);
-  assert.match(String(gaithersburg.description), /not a treatment company/i);
+  assert.match(String(gaithersburg.description), /Maryland-certified labs/i);
+  assert.match(String(gaithersburg.description), /ZIP report/i);
 
   const sanAntonio = cityMeta('san-antonio');
   assert.equal(sanAntonio.title, 'San Antonio Water Quality & Contamination (2026)');
-  assert.match(String(sanAntonio.description), /PFAS/i);
+  assert.match(String(sanAntonio.description), /San Antonio water quality/i);
+  assert.match(String(sanAntonio.description), /contamination/i);
+  assert.match(String(sanAntonio.description), /3 PFAS compounds/i);
+  assert.match(String(sanAntonio.description), /272 mg\/L/i);
   assert.match(String(sanAntonio.description), /PFAS guide/i);
 
   const baltimore = cityMeta('baltimore');

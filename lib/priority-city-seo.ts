@@ -14,12 +14,12 @@ export const PRIORITY_CITY_SEO: Record<string, { title: string; description: str
   'san-antonio': {
     title: 'San Antonio Water Quality & Contamination (2026)',
     description:
-      'San Antonio water quality and contamination: SAWS hardness, PFAS in UCMR5, radium context. Free EPA snapshot — not a tap test. See the PFAS guide.',
+      'San Antonio water quality and contamination: 3 PFAS compounds, ~272 mg/L hardness. Free SAWS snapshot — PFAS guide and hard-water filter guide.',
   },
   gaithersburg: {
     title: 'Gaithersburg Water Testing: City vs Well Water (2026)',
     description:
-      'Gaithersburg water testing (WSSC): city vs well water in Montgomery County, MDE certified labs. Not a treatment company.',
+      'Gaithersburg well water testing vs WSSC city. Water testing Gaithersburg MD, Gaithersburg water quality, free ZIP report, Maryland-certified labs.',
   },
   raleigh: {
     title: 'Is Raleigh Tap Water Safe? 2026 EPA Water Quality Report',

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { AffiliateLink } from '@/components/AffiliateLink';
 import { conversionPicksFor, type ConversionPick } from '@/lib/conversion-picks';
@@ -8,6 +9,9 @@ type Props = {
   tone?: 'dark' | 'light';
   picks?: 'default' | 'wholeHouse' | ConversionPick[];
   heading?: string;
+  intro?: string;
+  /** Inline ZIP lookup (WaterSearch). When set, replaces the homepage ZIP link. */
+  zipSearch?: ReactNode;
 };
 
 /** ZIP + quiz + tracked product picks — used mid-page and at the end of high-engagement routes. */
@@ -17,6 +21,8 @@ export function ConversionNextStep({
   tone = 'dark',
   picks = 'default',
   heading = 'What to do next',
+  intro = 'Check your public-supplier records, then compare a filter only if a documented concern remains. A ZIP report is not a test of your own tap.',
+  zipSearch,
 }: Props) {
   const products = Array.isArray(picks) ? picks : conversionPicksFor(picks);
   return (
@@ -26,14 +32,14 @@ export function ConversionNextStep({
     >
       <p className="wc-next-step-eyebrow">YOUR NEXT STEP</p>
       <h2 id={headingId}>{heading}</h2>
-      <p>
-        Check your public-supplier records, then compare a filter only if a documented concern remains. A ZIP
-        report is not a test of your own tap.
-      </p>
+      <p>{intro}</p>
+      {zipSearch ? <div className="wc-next-step-zip-box">{zipSearch}</div> : null}
       <div className="wc-next-step-actions">
-        <Link href="/#wc-hero-anchor" className="wc-next-step-zip">
-          Check your ZIP
-        </Link>
+        {zipSearch ? null : (
+          <Link href="/#wc-hero-anchor" className="wc-next-step-zip">
+            Check your ZIP
+          </Link>
+        )}
         <Link href="/quiz" className="wc-next-step-quiz">
           Take the 60-second filter quiz
         </Link>

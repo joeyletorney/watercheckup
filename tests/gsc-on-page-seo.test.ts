@@ -15,6 +15,7 @@ import {
   MDE_CERTIFIED_LABS_PAGE_URL,
   WSSC_WATER_QUALITY_REPORT_URL,
 } from '../lib/city-water-testing';
+import { LeadGuideTopPick } from '../app/blog/lead-guide-content';
 
 const PITCHER = 'best-water-filter-pitcher-2025';
 const COMPARE = 'waterdrop-g3p600-vs-aquasana-smartflow';
@@ -108,6 +109,11 @@ test('homepage ZIP-code SERP copy and FAQ schema match GSC queries', () => {
   assert.match(home, /Free water quality report by ZIP code/);
   assert.match(home, /href="\/rankings"/);
   assert.match(home, /href="\/worst-cities"/);
+  assert.match(home, /Popular guides/);
+  assert.match(home, /href="\/water\/gaithersburg"/);
+  assert.match(home, /href="\/water\/san-antonio"/);
+  assert.match(home, /href="\/worst-states"/);
+  assert.match(home, /href="\/blog\/best-water-filter-for-lead-removal"/);
 });
 
 test('GSC opportunity titles stay within SERP limits', () => {
@@ -140,15 +146,26 @@ test('GSC opportunity titles stay within SERP limits', () => {
 
 test('lead guide opens with a top pick and NSF 53 comparison table', () => {
   const post = POSTS['best-water-filter-for-lead-removal'];
-  assert.equal(post.title, 'Best Water Filter for Lead Removal (2026)');
+  assert.equal(post.title, 'Top-Rated Lead Filters (NSF 53) — Best Affordable Picks 2026');
   const html = renderToStaticMarkup(createElement('div', null, post.content));
-  assert.match(html, /BEST LEAD REMOVAL WATER FILTER FOR HOME/);
   assert.match(html, /<table/);
   assert.match(html, /NSF\/ANSI 53/);
   assert.match(html, /Waterdrop G3P600/);
   assert.match(html, /anbyjkqb/);
   assert.match(html, /watercheckup-20/);
+  assert.match(html, /Best water filter certified to remove lead and PFAS/);
   assert.ok(post.faq?.some((item) => /lead and PFAS/i.test(item.q)));
+
+  const top = renderToStaticMarkup(createElement(LeadGuideTopPick));
+  assert.match(top, /TOP-RATED NSF 53 LEAD AND PFAS PICK/);
+  assert.match(top, /Waterdrop G3P600/);
+  assert.match(top, /Check price at Waterdrop/);
+  assert.match(top, /Check price on Amazon/);
+  assert.match(top, /anbyjkqb/);
+  assert.match(top, /watercheckup-20/);
+
+  const page = readFileSync(join(process.cwd(), 'app/blog/[slug]/page.tsx'), 'utf8');
+  assert.ok(page.indexOf('<LeadGuideTopPick') < page.indexOf('<BlogCommercialComparison'));
 });
 
 test('hard-water guide uses filter phrases and distinguishes softeners', () => {

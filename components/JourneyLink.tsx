@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import type { ComponentProps } from 'react';
+import { trackEvent } from '@/lib/track-event';
 
 type Props = ComponentProps<typeof Link> & {
   eventName: 'report_next_step' | 'guide_next_step' | 'guide_option_selected';
@@ -12,7 +13,7 @@ type Props = ComponentProps<typeof Link> & {
 
 export function JourneyLink({ eventName, step, page, reportStatus, onClick, ...props }: Props) {
   return <Link {...props} onClick={event => {
-    window.gtag?.('event', eventName, { step, page, ...(reportStatus ? { report_status: reportStatus } : {}), transport_type: 'beacon' });
+    trackEvent(eventName, { step, page, ...(reportStatus ? { report_status: reportStatus } : {}), transport_type: 'beacon' });
     onClick?.(event);
   }} />;
 }
