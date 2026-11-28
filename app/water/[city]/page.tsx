@@ -629,7 +629,7 @@ export default async function CityPage(props: { params: Promise<{ city: string }
 
           {cd && getPriorityCityIntroParagraphs(slug) && <PriorityCityEditorial slug={slug} />}
 
-          {cd && <CityFilterGuideLinks />}
+          {cd && <CityFilterGuideLinks slug={slug} name={cd.name} />}
 
           <ReportEvidenceSummary supplier={cd.system} pwsid={pwsidResolved} hardness={cd.waterProfile?.hardness} />
 

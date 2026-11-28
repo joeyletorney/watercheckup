@@ -295,7 +295,11 @@ export default function WaterDirectoryPage() {
         </h2>
         <p className="text-gray-600 mb-5">
           Answer 3 quick questions and get a personalized recommendation based
-          on your water report.
+          on your water report. Or open a{' '}
+          <Link prefetch href="/best-water-filter" className="font-semibold text-blue-700 hover:underline">
+            city filter guide
+          </Link>{' '}
+          matched to that city&apos;s measured contaminants.
         </p>
         <Link
           prefetch

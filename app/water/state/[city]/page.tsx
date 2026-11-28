@@ -10,6 +10,7 @@ import { getAverageHardnessForState } from '@/lib/water-hardness';
 import { computeCityWaterScore } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 import { buildStateSeoDescription, buildStateSeoTitle } from '@/lib/serp-copy';
+import { cityFilterPagePath, hasCityFilterPage } from '@/lib/city-filter-pages';
 import { featuredCitiesForState } from '@/lib/related-cities';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, hasBenchmark, aboveBenchmark], ...], lithiumUgL?]
@@ -407,6 +408,17 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
                         {city.name}
                       </Link>
                       <div style={{ fontSize: 13, color: '#94a3b8', marginTop: 2 }}>{city.system}</div>
+                      {hasCityFilterPage(city.slug) && (
+                        <div style={{ fontSize: 13, marginTop: 4 }}>
+                          <Link
+                            prefetch
+                            href={cityFilterPagePath(city.slug)}
+                            style={{ color: '#67e8f9', fontWeight: 600, textDecoration: 'none' }}
+                          >
+                            Best water filter for {city.name}
+                          </Link>
+                        </div>
+                      )}
                     </td>
                     <td style={{ padding: '12px 14px' }}>
                       <span style={{ fontWeight: 900, color: city.gradeColor }}>{city.grade}</span>

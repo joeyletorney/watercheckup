@@ -9,6 +9,7 @@ export type HubLink = {
 export const PRIORITY_GUIDE_LINKS: HubLink[] = [
   { href: '/lead', label: 'Lead in tap water' },
   { href: '/pfas', label: 'PFAS in tap water' },
+  { href: '/best-water-filter', label: 'Best water filter by city' },
   { href: '/faq', label: 'Water quality FAQ' },
   { href: '/about/joe-letorney', label: 'Meet Joe Letorney' },
 ];

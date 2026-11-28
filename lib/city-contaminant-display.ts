@@ -61,12 +61,15 @@ function mergeByName(rows: ContaminantRow[]): ContaminantRow[] {
   return sortContaminants(Array.from(byName.values()));
 }
 
+/** City-page table cap. Filter-guide analysis must use the uncapped set. */
+export const CITY_PAGE_CONTAMINANT_LIMIT = 18;
+
 /** City-page contaminant table: UCMR5 PFAS + packaged EWG/CCR + optional CCR hardness. */
 export function buildCityContaminantDisplay(
   slug: string,
   fallbackPwsid: string,
   waterProfile?: WaterProfile,
-  limit = 18,
+  limit = CITY_PAGE_CONTAMINANT_LIMIT,
   zip?: string,
   stateCode?: string,
 ): ContaminantRow[] {
@@ -77,5 +80,7 @@ export function buildCityContaminantDisplay(
     ...getPwsidCcrContaminants(pwsid),
     ...(hardnessRow(waterProfile) ? [hardnessRow(waterProfile)!] : []),
   ]);
-  return enrichContaminantRows(rows.slice(0, limit), stateCode ?? '');
+  const enriched = enrichContaminantRows(rows, stateCode ?? '');
+  if (!Number.isFinite(limit)) return enriched;
+  return enriched.slice(0, Math.max(0, limit));
 }

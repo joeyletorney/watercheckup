@@ -152,7 +152,7 @@ export default function SugarLandWaterPage() {
         </div>
 
         <PriorityCityEditorial slug="sugar-land" />
-        <CityFilterGuideLinks />
+        <CityFilterGuideLinks slug="sugar-land" name="Sugar Land" />
 
         <PriorityCityLiveDataBlock slug="sugar-land" />
 

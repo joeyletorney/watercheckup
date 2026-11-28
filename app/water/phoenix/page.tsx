@@ -124,7 +124,7 @@ export default function PhoenixWaterPage() {
           </Link>
         </div>
         <PriorityCityEditorial slug="phoenix" />
-        <CityFilterGuideLinks />
+        <CityFilterGuideLinks slug="phoenix" name="Phoenix" />
         <PriorityCityLiveDataBlock slug="phoenix" />
         <div style={{ padding: '20px 22px', background: '#0d2240', border: '1px solid #1a3a5c', borderRadius: 12, marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 16 }}>BEST FILTERS FOR PHOENIX WATER</div>
