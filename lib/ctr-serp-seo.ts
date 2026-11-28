@@ -54,9 +54,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'Aquasana vs Waterdrop in 2026: G3P600 is the current buy (~$399). SmartFlow listings were unavailable. Compare flow, NSF claims, and who each filter fits.',
   },
   '/water/gaithersburg': {
-    title: 'Gaithersburg, MD Water Quality, Testing & Treatment (2026)',
+    title: 'Gaithersburg Water Testing: City vs Well Water (2026)',
     description:
-      'Gaithersburg water quality (WSSC): water testing, well water, reverse osmosis, and how to choose a treatment company. Not a treatment company.',
+      'Gaithersburg water testing (WSSC): city vs well water in Montgomery County, MDE certified labs. Not a treatment company.',
   },
   '/water/san-antonio': {
     title: 'San Antonio Water Quality & Contamination (2026)',
@@ -104,9 +104,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'The worst US cities for lead in tap water in 2026 — ranked by lead-pipe risk and WaterCheckup score, not measured ppb at every tap. See your city.',
   },
   '/rankings': {
-    title: 'Worst Tap Water Rankings 2026: Cities & States',
+    title: 'Best Tap Water by City 2026: Rankings & States',
     description:
-      'Worst tap water in America, 2026: city water quality reports and state rankings from EPA PFAS data and safety grades. Free reports, no signup.',
+      'Best tap water by city, 2026: compare city reports and 50-state rankings from EPA PFAS data. See worst drinking water cities too. Free, no signup.',
   },
   '/blog/what-water-filter-removes-pfas': {
     title: 'What Filter Removes PFAS? (Most Pitchers Don’t) — 2026',

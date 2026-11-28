@@ -29,6 +29,14 @@ export const UMD_EXTENSION_WATER_TESTING_URL = 'https://extension.umd.edu/resour
 export const CHESTERTOWN_CCR_URL =
   'https://mde.maryland.gov/programs/water/water_supply/ConsumerConfidenceReports/Documents/CCR/Kent/0140002-Chestertown.pdf';
 
+/** Montgomery County DPS (acting for MDE) well permitting and homeowner guidance. */
+export const MONTGOMERY_DPS_WELL_SEPTIC_URL =
+  'https://www.montgomerycountymd.gov/department-environmental-protection/water/water-supply-wastewater/private-well-septic-service/onsite-well-septic-system-testing-permitting';
+export const MONTGOMERY_DPS_WELL_GUIDE_PDF_URL =
+  'https://www.montgomerycountymd.gov/DPS/Resources/Files/Land_Development/DPS_Guide_Well_Water1.pdf';
+export const EPA_PRIVATE_WELLS_URL = 'https://www.epa.gov/privatewells';
+export const EPA_DW_LAB_CERT_URL = 'https://www.epa.gov/dwlabcert';
+
 /** Utility detail pages that earn Search Console impressions and should stay indexable. */
 export const SEO_INDEX_UTILITY_SLUGS = [
   'annapolis',
@@ -81,6 +89,18 @@ export const GAITHERSBURG_TESTING_SOURCES = {
   aaCcr: { href: ANNE_ARUNDEL_CCR_URL, label: 'Anne Arundel County drinking water quality reports', external: true },
   aaWells: { href: ANNE_ARUNDEL_WELLS_URL, label: 'Anne Arundel County Health Department: wells', external: true },
   chestertownCcr: { href: CHESTERTOWN_CCR_URL, label: 'Town of Chestertown 2025 Consumer Confidence Report', external: true },
+  montgomeryDps: {
+    href: MONTGOMERY_DPS_WELL_SEPTIC_URL,
+    label: 'Montgomery County well & septic permitting (DPS)',
+    external: true,
+  },
+  montgomeryDpsGuide: {
+    href: MONTGOMERY_DPS_WELL_GUIDE_PDF_URL,
+    label: 'Montgomery County DPS well water guide (PDF)',
+    external: true,
+  },
+  epaPrivateWells: { href: EPA_PRIVATE_WELLS_URL, label: 'EPA private drinking water wells', external: true },
+  epaLabCert: { href: EPA_DW_LAB_CERT_URL, label: 'EPA drinking-water lab certification', external: true },
 } as const;
 
 export const MD_CERTIFIED_LAB_BODY =

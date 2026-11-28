@@ -40,9 +40,11 @@ test('opportunity pages target the queries that actually earn clicks', () => {
   assert.match(waterdrop.title, /2026/);
 
   const gaithersburg = CTR_SERP_OVERRIDES['/water/gaithersburg'];
-  assert.match(gaithersburg.title, /water quality/i);
-  assert.match(gaithersburg.title, /testing/i);
-  assert.match(gaithersburg.title, /treatment/i);
+  assert.match(gaithersburg.title, /gaithersburg water testing/i);
+  assert.match(gaithersburg.title, /city vs well/i);
+
+  const rankings = CTR_SERP_OVERRIDES['/rankings'];
+  assert.match(rankings.title, /best tap water by city/i);
 
   const worst = CTR_SERP_OVERRIDES['/worst-lead'];
   assert.match(worst.title, /worst us cities for lead in tap water/i);

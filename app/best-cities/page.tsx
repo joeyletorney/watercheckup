@@ -35,9 +35,13 @@ export default async function BestCitiesPage() {
             Among WaterCheckup&apos;s tracked city guides, these metros score highest on our exposure profile (88 =
             best possible — no municipal supply is perfect). &quot;Best&quot; here means fewer UCMR5 MCL flags and lighter
             contaminant profiles in our database — not a guarantee for every home. Older plumbing can still add lead at
-            the tap. Compare with the{' '}
+            the tap.             Compare with the{' '}
             <Link prefetch href="/worst-cities" style={{ color: '#22d3ee' }}>
               worst cities list
+            </Link>
+            {' '}and the full{' '}
+            <Link prefetch href="/rankings" style={{ color: '#22d3ee' }}>
+              best tap water by city rankings
             </Link>
             .
           </p>
@@ -62,6 +66,7 @@ export default async function BestCitiesPage() {
 
         <RankingRelatedLinks
           links={[
+            { href: '/rankings', label: 'Best tap water by city', desc: '50-state table, best rank first' },
             { href: '/worst-cities', label: 'Worst cities', desc: 'Lowest Water Safety Scores' },
             { href: '/water-hardness', label: 'Water hardness tool', desc: 'Hardness by ZIP and state' },
             { href: '/', label: 'Check your ZIP', desc: 'Your utility’s live EPA report' },

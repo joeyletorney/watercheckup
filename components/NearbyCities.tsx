@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { relatedCitySlugsFor } from '@/lib/related-cities';
 
 export type NearbyCityItem = {
   name: string;
@@ -23,13 +24,18 @@ export function NearbyCities({
   allCities,
   maxResults = 8,
 }: Props) {
+  const bySlug = new Map(allCities.map((c) => [c.slug, c]));
+  const related = relatedCitySlugsFor(currentSlug)
+    .map((slug) => bySlug.get(slug))
+    .filter((c): c is NearbyCityItem => c != null && c.slug !== currentSlug);
+  const used = new Set(related.map((c) => c.slug));
   const sameState = allCities.filter(
-    (c) => c.state === currentState && c.slug !== currentSlug
+    (c) => c.state === currentState && c.slug !== currentSlug && !used.has(c.slug)
   );
   const others = allCities.filter(
-    (c) => c.state !== currentState && c.slug !== currentSlug
+    (c) => c.state !== currentState && c.slug !== currentSlug && !used.has(c.slug)
   );
-  const combined = [...sameState, ...others].slice(0, maxResults);
+  const combined = [...related, ...sameState, ...others].slice(0, maxResults);
 
   if (combined.length === 0) return null;
 

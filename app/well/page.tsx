@@ -453,6 +453,7 @@ export default function WellWaterPage() {
           <span style={s.label}>RELATED GUIDES</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
+              { href: '/water/gaithersburg', label: 'Gaithersburg well vs city water testing' },
               { href: '/pfas', label: 'PFAS in Drinking Water — EPA Limits & Filters' },
               { href: '/lead', label: 'Lead in Tap Water — LCR Data, Service Lines & Filters' },
               { href: '/blog/is-pfas-in-my-tap-water', label: 'Is PFAS in My Tap Water?' },

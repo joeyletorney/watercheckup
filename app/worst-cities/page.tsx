@@ -40,7 +40,11 @@ export default function WorstCitiesPage() {
             Ranked by our <strong style={{ color: '#e2e8f0' }}>Water Safety Score</strong> — the same 0–88 exposure
             profile used on each city report. Regulatory PFAS MCL violations weigh heaviest; monitoring detections and
             lead, DBP, and chromium flags in our profiles add smaller penalties. This is not your ZIP&apos;s live SDWIS
-            compliance score.
+            compliance score. For the opposite view — best tap water by city and 50-state comparison — see the{' '}
+            <Link prefetch href="/rankings" style={{ color: '#22d3ee', fontWeight: 700 }}>
+              best tap water by city rankings
+            </Link>
+            .
           </p>
           <p style={{ fontSize: 14, color: '#a8b4c4', lineHeight: 1.65, margin: '0 0 14px' }}>
             Only tracked metros with WaterCheckup city guides ({cities.length} shown). For PFAS-only leaderboards see{' '}

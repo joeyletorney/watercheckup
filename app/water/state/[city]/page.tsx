@@ -11,6 +11,7 @@ import { computeCityWaterScore } from '@/lib/city-water-score';
 import { resolveCityPwsid } from '@/lib/city-pwsid';
 import { buildStateSeoDescription, buildStateSeoTitle } from '@/lib/serp-copy';
 import { cityFilterPagePath, hasCityFilterPage } from '@/lib/city-filter-pages';
+import { featuredCitiesForState } from '@/lib/related-cities';
 
 // UCMR5: [maxPFASppt, regulatedViolations, [[name, level, hasBenchmark, aboveBenchmark], ...], lithiumUgL?]
 const UCMR5 = ucmr5Raw as unknown as Record<string, [number, number, [string, number, number, number][], number?]>;
@@ -177,6 +178,7 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
     (best, c) => ((c.maxPpt ?? 0) > (best?.maxPpt ?? -1) ? c : best),
     sortedByPop[0],
   );
+  const featuredCities = featuredCitiesForState(stateAbbr);
 
   return (
     <div style={{ minHeight: '100vh', color: '#e2e8f0', fontFamily: "'Inter', sans-serif" }}>
@@ -257,6 +259,42 @@ export default async function StatePage({ params }: { params: Promise<{ city: st
               </div>
             ))}
           </div>
+
+          <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.7, margin: '0 0 20px' }}>
+            Compare {stateName} with the rest of the country:{' '}
+            <Link prefetch href="/rankings" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+              best tap water by city
+            </Link>
+            {' '}(50-state table) and{' '}
+            <Link prefetch href="/worst-cities" style={{ color: '#67e8f9', fontWeight: 700, textDecoration: 'none' }}>
+              worst drinking water by city
+            </Link>
+            .
+          </p>
+
+          {featuredCities.length > 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: '0 0 24px' }}>
+              {featuredCities.map((city) => (
+                <Link
+                  key={city.slug}
+                  prefetch
+                  href={`/water/${city.slug}`}
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: '#67e8f9',
+                    textDecoration: 'none',
+                    padding: '8px 12px',
+                    background: 'rgba(8,145,178,0.12)',
+                    border: '1px solid rgba(8,145,178,0.35)',
+                    borderRadius: 8,
+                  }}
+                >
+                  {city.label} →
+                </Link>
+              ))}
+            </div>
+          )}
 
           {worstForPfas && maxPpt > 4 && (
             <div

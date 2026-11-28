@@ -100,7 +100,7 @@ test('sitemap lastmod is a real content date, not Date.now, and omits bulk utili
   const joe = map.find((row) => row.url.endsWith('/about/joe-letorney'));
   const alerts = map.find((row) => row.url.endsWith('/blog/drinking-water-alerts-november-2026'));
   assert.equal(String(home?.lastModified ?? ''), STATIC_PATH_LASTMOD['']);
-  assert.equal(String(honolulu?.lastModified ?? ''), '2026-11-21');
+  assert.equal(String(honolulu?.lastModified ?? ''), '2026-11-28');
   assert.equal(String(lead?.lastModified ?? ''), STATIC_PATH_LASTMOD['/lead']);
   assert.equal(String(joe?.lastModified ?? ''), STATIC_PATH_LASTMOD['/about/joe-letorney']);
   assert.equal(String(alerts?.lastModified ?? ''), '2026-11-21');

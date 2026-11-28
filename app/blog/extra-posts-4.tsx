@@ -366,7 +366,9 @@ export const EXTRA_POSTS_4: Record<string, Post> = {
         'Just 4 drops dissolved into 13 million gallons of water — and that\'s already at the legal limit. PFAS are dangerous at these near-undetectable concentrations because they accumulate in your body over a lifetime and never break down.'
       ),
       React.createElement('p', { style: pStyle },
-        'Always identify the supplier and statistic before comparing concentrations. Parkersburg Utility Board and nearby Lubeck PSD are separate systems. A historical individual peak is not a household exposure measurement or an official finding of noncompliance; consult the supplier’s current report and EPA source data.'
+        'Always identify the supplier and statistic before comparing concentrations. ',
+        React.createElement('a', { href: '/water/parkersburg', style: { color: '#22d3ee', fontWeight: 600, textDecoration: 'none' } }, 'Parkersburg Utility Board'),
+        ' and nearby Lubeck PSD are separate systems. A historical individual peak is not a household exposure measurement or an official finding of noncompliance; consult the supplier’s current report and EPA source data.'
       ),
 
       React.createElement('h3', { style: h3Style }, '🥤 Nitrates: 10 ppm — the EPA limit'),

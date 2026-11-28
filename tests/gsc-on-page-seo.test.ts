@@ -62,9 +62,12 @@ test('Waterdrop vs Aquasana opens with a 2026 verdict and a comparison table', (
 test('Gaithersburg testing copy links WSSC CCR and the MDE certified lab list', () => {
   const cityPage = readFileSync(join(process.cwd(), 'app/water/[city]/page.tsx'), 'utf8');
   const testing = readFileSync(join(process.cwd(), 'lib/place-water-testing.ts'), 'utf8');
-  assert.match(testing, /How to test your water in Gaithersburg, MD/);
+  assert.match(testing, /Well water vs city water testing in Gaithersburg, MD/);
   assert.match(testing, /Gaithersburg well water testing/);
-  assert.match(cityPage, /dateModified="2026-11-21"/);
+  assert.match(testing, /municipal water testing in Gaithersburg/i);
+  assert.match(testing, /Maryland Department of the Environment/);
+  assert.match(testing, /240-777-0311/);
+  assert.match(cityPage, /dateModified="2026-11-28"/);
   assert.match(cityPage, /GAITHERSBURG_TREATMENT_SECTIONS/);
 
   assert.equal(WSSC_WATER_QUALITY_REPORT_URL, 'https://www.wsscwater.com/waterquality');
@@ -97,9 +100,14 @@ test('homepage ZIP-code SERP copy and FAQ schema match GSC queries', () => {
   assert.match(css, /\.wc-home-simple-intro h1[^}]*text-transform:\s*uppercase/);
 
   assert.ok(HOME_FAQS.some((faq) => faq.question === 'Is my tap water safe?'));
+  assert.ok(HOME_FAQS.some((faq) => faq.question === 'Is my tap water safe by ZIP code?'));
   assert.ok(HOME_FAQS.some((faq) => faq.question === 'How do I check water quality by ZIP code?'));
+  assert.ok(HOME_FAQS.some((faq) => faq.question === 'Can I get a water report by ZIP code?'));
   assert.equal(SITE_FAQ_SCHEMA['@type'], 'FAQPage');
   assert.equal(SITE_FAQ_SCHEMA.mainEntity.length, HOME_FAQS.length);
+  assert.match(home, /Free water quality report by ZIP code/);
+  assert.match(home, /href="\/rankings"/);
+  assert.match(home, /href="\/worst-cities"/);
 });
 
 test('GSC opportunity titles stay within SERP limits', () => {
@@ -155,6 +163,9 @@ test('hard-water guide uses filter phrases and distinguishes softeners', () => {
 test('rankings lists cities with descriptive tap-water-report anchors', () => {
   const source = readFileSync(join(process.cwd(), 'app/rankings/page.tsx'), 'utf8');
   assert.match(source, /tap water quality report/);
+  assert.match(source, /Best Tap Water by City 2026: Rankings/);
+  assert.match(source, /href="\/worst-cities"/);
+  assert.match(source, /href="\/best-cities"/);
   const demand = readFileSync(join(process.cwd(), 'components/SearchDemandCities.tsx'), 'utf8');
   assert.match(demand, /tap water quality report/);
 });

@@ -28,8 +28,8 @@ export default function HomeLanding() {
     </section>
     <HomeFilterShop categories={buildHomeShoppingCategories()} />
       <section id="wc-zip-repeat" className="wc-home-zip-repeat" aria-labelledby="wc-zip-repeat-heading">
-        <h2 id="wc-zip-repeat-heading">Still deciding? Check your ZIP</h2>
-        <p>Your city average is not your tap. Look up your public water supplier, then take the 60-second filter quiz.</p>
+        <h2 id="wc-zip-repeat-heading">Free water quality report by ZIP code</h2>
+        <p>Check water quality by ZIP code for free — no signup. Your city average is not your tap. Look up your public water supplier, then take the 60-second filter quiz.</p>
         <WaterSearch variant="compact" idPrefix="wc-repeat" />
         <Link href="/quiz" className="wc-home-zip-repeat-quiz">Take the 60-second filter quiz →</Link>
       </section>
@@ -41,6 +41,8 @@ export default function HomeLanding() {
         <section aria-labelledby="wc-home-guides-heading"><h2 id="wc-home-guides-heading">Need help deciding?</h2><div className="wc-home-guide-links">
           <Link href="/lead">Lead in tap water →</Link>
           <Link href="/pfas">PFAS in tap water →</Link>
+          <Link href="/rankings">Best tap water by city →</Link>
+          <Link href="/worst-cities">Worst drinking water by city →</Link>
           <Link href="/blog/best-water-filter-for-lead-removal">Filters for lead concerns →</Link>
           <Link href="/blog/best-countertop-water-filter">Countertop and pitcher comparison →</Link>
           <Link href="/blog/best-water-filter-hard-water">Hard water: softener or filter? →</Link>
@@ -49,10 +51,10 @@ export default function HomeLanding() {
           ))}
         </div></section>
         <details className="wc-home-resources"><summary>Explore water reports and learning resources</summary><div className="wc-home-guide-links">
-          <Link href="/water">Browse city reports →</Link><Link href="/utilities">Find a water utility →</Link><Link href="/water/honolulu">Honolulu water quality →</Link><Link href="/water/state/maryland">Maryland tap water →</Link><Link href="/water-hardness">Hardness by ZIP →</Link><Link href="/contaminants">Understand contaminants →</Link><Link href="/rankings">Water rankings →</Link><Link href="/faq">Frequently asked questions →</Link><Link href="/about/joe-letorney">Meet Joe Letorney →</Link><Link href="/blog">All guides →</Link>
+          <Link href="/water">Browse city reports →</Link><Link href="/utilities">Find a water utility →</Link><Link href="/water/honolulu">Honolulu water quality →</Link><Link href="/water/gaithersburg">Gaithersburg water testing →</Link><Link href="/water/parkersburg">Parkersburg tap water →</Link><Link href="/water/state/maryland">Maryland tap water →</Link><Link href="/water-hardness">Hardness by ZIP →</Link><Link href="/contaminants">Understand contaminants →</Link><Link href="/rankings">Best tap water by city →</Link><Link href="/worst-cities">Worst drinking water by city →</Link><Link href="/faq">Frequently asked questions →</Link><Link href="/about/joe-letorney">Meet Joe Letorney →</Link><Link href="/blog">All guides →</Link>
         </div></details>
         <section aria-labelledby="wc-home-faq-heading" className="wc-home-faq">
-          <h2 id="wc-home-faq-heading">Before you check your water</h2>
+          <h2 id="wc-home-faq-heading">Tap water safety by ZIP code — FAQ</h2>
           {HOME_FAQS.map(faq => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}
         </section>
         <HomeNewsletterSignup />
