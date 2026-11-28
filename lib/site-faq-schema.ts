@@ -5,8 +5,16 @@ export const HOME_FAQS = [
     answer: 'Most U.S. public systems meet EPA legal limits, but legal compliance is not the same as a test of your kitchen faucet. Enter your ZIP code for a free supplier snapshot (PFAS monitoring, lead-pipe context, and available EPA records). Building plumbing can add lead after water leaves the plant. The report is not a household tap test.',
   },
   {
+    question: 'Is my tap water safe by ZIP code?',
+    answer: 'Enter your ZIP for a free supplier snapshot. That answers “is my tap water safe by ZIP code” at the public-system level — EPA records, PFAS monitoring, and lead-pipe context for the listed utility. It is not a lab test of your kitchen faucet. Building plumbing can add lead after water leaves the plant.',
+  },
+  {
     question: 'How do I check water quality by ZIP code?',
-    answer: 'Enter your ZIP on the homepage search. WaterCheckup matches that ZIP to a public water supplier and shows available EPA records, including historical PFAS monitoring when coverage exists. That is a water quality report by ZIP code for the listed supplier — not a lab result from your own tap. Check the source notes and your utility’s current Consumer Confidence Report.',
+    answer: 'Enter your ZIP on the homepage search. Check water quality by ZIP code for free — no signup. WaterCheckup matches that ZIP to a public water supplier and shows available EPA records, including historical PFAS monitoring when coverage exists. That is a water quality report by ZIP code for the listed supplier — not a lab result from your own tap. Check the source notes and your utility’s current Consumer Confidence Report.',
+  },
+  {
+    question: 'Can I get a water report by ZIP code?',
+    answer: 'Yes. A water report by ZIP code on WaterCheckup matches your ZIP to a public water supplier and shows available EPA records. The ZIP lookup is free. Read the source notes and your utility’s current Consumer Confidence Report for the latest treated-water summary — the ZIP report is not a sample from your faucet.',
   },
   {
     question: 'What does my water report show?',

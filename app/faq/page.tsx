@@ -172,10 +172,12 @@ export default function FAQPage() {
                             key={link.href}
                             href={link.href}
                             style={{
+                              display: 'block',
                               fontSize: 14,
                               fontWeight: 700,
                               color: '#22d3ee',
                               textDecoration: 'none',
+                              marginBottom: 8,
                             }}
                           >
                             {link.label} →

@@ -135,6 +135,24 @@ export const FAQ_SECTIONS: FaqSection[] = [
         q: 'Is WaterCheckup affiliated with the EPA or my public water system?',
         a: 'No. WaterCheckup is an independent consumer tool. We aggregate publicly available EPA and other third-party datasets to make them easier to read; we do not speak for the EPA, your state regulator, or your water provider. Always confirm critical decisions (health, pregnancy, infants, legal compliance) with your public water system, a certified lab, or a licensed professional. Official enforcement and billing questions belong to your water system directly.',
       },
+      {
+        q: 'How do I compare the best tap water by city?',
+        a: 'Use the rankings table to compare best tap water by city and by state (it defaults to best rank first). The worst-cities list ranks the lowest Water Safety Scores among tracked metros. Both use EPA monitoring and our city profiles — not a test of your kitchen faucet.',
+        links: [
+          { href: '/rankings', label: 'Best tap water by city rankings' },
+          { href: '/worst-cities', label: 'Worst drinking water by city' },
+        ],
+      },
+      {
+        q: 'Where can I get well water testing in Gaithersburg, MD?',
+        a: 'Most in-town Gaithersburg addresses are on WSSC city water, not a private well. If you are on a well, use a Maryland Department of the Environment certified drinking-water lab and test bacteria and nitrate at least yearly. Montgomery County DPS (240-777-0311) handles well permits; it does not replace homeowner testing. The Gaithersburg city page walks through well vs municipal testing.',
+        links: [{ href: '/water/gaithersburg', label: 'Gaithersburg well vs city water testing' }],
+      },
+      {
+        q: 'Why is Parkersburg, WV in PFAS discussions?',
+        a: 'Parkersburg Utility Board (PWSID WV3305407) is in the Ohio River PFOA corridor associated with DuPont’s Washington Works plant. Nearby Lubeck PSD is a separate supplier — do not mix their results. The city report is a historical EPA snapshot, not a current tap test.',
+        links: [{ href: '/water/parkersburg', label: 'Parkersburg tap water report' }],
+      },
     ],
   },
 ];

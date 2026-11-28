@@ -107,5 +107,7 @@ export const SEARCH_DEMAND_EXTRA_LINKS = [
   { href: '/worst-hardness', label: 'Hardest tap water rankings' },
   { href: '/water-hardness', label: 'Hardness by ZIP' },
   { href: '/worst-pfas-cities', label: 'PFAS MCL city list' },
-  { href: '/rankings', label: 'State rankings table' },
+  { href: '/rankings', label: 'Best tap water by city' },
+  { href: '/worst-cities', label: 'Worst drinking water by city' },
+  { href: '/water/parkersburg', label: 'Parkersburg WV water report' },
 ] as const;

@@ -73,6 +73,11 @@ export const gaithersburgFAQs = [
       "Start with this free WSSC/EPA snapshot and WSSC’s CCR at wsscwater.com/waterquality. For address-level lead or PFAS, use a laboratory on the Maryland Department of the Environment certified drinking-water lab list. WaterCheckup is not a lab and does not sell tests.",
   },
   {
+    question: "Where can I get municipal water testing in Gaithersburg, MD?",
+    answer:
+      "Municipal water testing in Gaithersburg is city / WSSC water testing: this free snapshot plus WSSC’s CCR. For a kitchen-tap sample, use a Maryland Department of the Environment certified lab. That is not well water testing — private wells on the rural edge of Montgomery County need a well panel (bacteria and nitrate yearly). WaterCheckup is not a lab.",
+  },
+  {
     question: "Where can I get city water testing in Montgomery County, MD?",
     answer:
       "Most Montgomery County addresses are on WSSC Water — the same supply described on this Gaithersburg page. Some cities (including Rockville) have their own systems, so confirm the supplier with a ZIP report. Then read that utility’s CCR and use a Maryland-certified lab for a kitchen-tap sample.",
