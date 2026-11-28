@@ -14,6 +14,10 @@ import {
   listCityFilterPageSlugs,
   MAX_CITY_FILTER_PAGES,
 } from '../lib/city-filter-pages';
+import {
+  CITY_PAGE_CONTAMINANT_LIMIT,
+  buildCityContaminantDisplay,
+} from '../lib/city-contaminant-display';
 import { isMeasuredContaminant } from '../lib/city-filter-picks';
 import { AMAZON_ASSOCIATE_TAG } from '../lib/amazon-affiliate';
 import { WATERDROP_REF } from '../lib/waterdrop-buy';
@@ -146,6 +150,40 @@ test('filter-page breadcrumbs keep named items; city and state hubs link in', ()
 
   const waterHub = readFileSync(join(root, 'app/water/page.jsx'), 'utf8');
   assert.match(waterHub, /href="\/best-water-filter"/);
+});
+
+test('San Diego filter analysis keeps PFAS that the 18-row city table drops', () => {
+  const city = CITIES['san-diego'];
+  assert.ok(city);
+  const isPfas = (row: { isPFAS?: boolean; name: string }) =>
+    !!row.isPFAS || /pfas|pfoa|pfos|pfhxs|pfna|genx|hfpo|perfluoro/i.test(row.name);
+
+  const capped = buildCityContaminantDisplay(
+    'san-diego',
+    city.pwsid,
+    city.waterProfile,
+    CITY_PAGE_CONTAMINANT_LIMIT,
+    city.zip,
+    city.state,
+  );
+  const full = buildCityContaminantDisplay(
+    'san-diego',
+    city.pwsid,
+    city.waterProfile,
+    Number.POSITIVE_INFINITY,
+    city.zip,
+    city.state,
+  );
+  assert.ok(full.length > capped.length);
+  assert.equal(capped.some(isPfas), false);
+  assert.ok(full.some(isPfas));
+
+  const page = getCityFilterPage('san-diego');
+  assert.ok(page);
+  assert.equal(page.concerns.hasPfas, true);
+  assert.ok(page.certs.some((c) => c.code === 'NSF P473'));
+  assert.ok(page.certs.some((c) => c.code === 'NSF/ANSI 58'));
+  assert.match(page.picks[0]!.product, /G3P600/);
 });
 
 test('unknown or data-less slugs do not mint a filter page', () => {

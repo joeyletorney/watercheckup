@@ -92,11 +92,13 @@ function measuredRowsForCity(slug: string): {
   const city = CITIES[slug];
   if (!city) return null;
   const pwsid = resolveCityPwsid(slug, city.pwsid, city.zip);
+  // Uncapped: the city-page table limit of 18 would drop later PFAS/metals
+  // (San Diego) before NSF/product matching. Display can still slice.
   const rows = buildCityContaminantDisplay(
     slug,
     city.pwsid,
     city.waterProfile,
-    18,
+    Number.POSITIVE_INFINITY,
     city.zip,
     city.state,
   );
