@@ -7,15 +7,16 @@ import { buildWorstCitiesBySafetyScore } from '@/lib/city-rankings';
 import { SearchDemandCities } from '@/components/SearchDemandCities';
 import { ScoreGradeDisclaimer } from '@/components/ScoreGradeDisclaimer';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
+import { WaterSearch } from '@/components/WaterSearch';
 
 export const metadata: Metadata = {
-  title: '25 Worst Cities for Tap Water 2026 — Safety Grades',
+  title: 'Worst Drinking Water by City (2026)',
   description:
-    'Lowest Water Safety Scores (0–88): PFAS, lead, hardness & EPA violations by city. Free 2026 tap water reports with NSF filter picks for each metro.',
+    'Worst drinking water by city (2026): lowest Water Safety Scores for PFAS, lead, hardness, and EPA flags. Check your ZIP and see the matching filter.',
   alternates: { canonical: 'https://watercheckup.com/worst-cities' },
   openGraph: {
-    title: '25 Worst Cities for Tap Water — 2026 Water Safety Score',
-    description: 'Ranked by our 0–88 exposure profile score across tracked city water reports.',
+    title: 'Worst Drinking Water by City (2026)',
+    description: 'Ranked by our 0–88 exposure profile score across tracked city water reports. Check your ZIP for a matching filter.',
   },
 };
 
@@ -34,7 +35,7 @@ export default function WorstCitiesPage() {
             WATER SAFETY SCORE · 0–88
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 900, color: '#f1f5f9', lineHeight: 1.2, margin: '0 0 22px' }}>
-            25 worst cities for tap water quality
+            Worst Drinking Water by City (2026)
           </h1>
           <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.8, margin: '0 0 22px' }}>
             Ranked by our <strong style={{ color: '#e2e8f0' }}>Water Safety Score</strong> — the same 0–88 exposure
@@ -56,7 +57,13 @@ export default function WorstCitiesPage() {
 
         <SearchDemandCities title="Popular city water reports" compact />
 
-        <ConversionNextStep page="/worst-cities" headingId="wc-worst-cities-next-mid" />
+        <ConversionNextStep
+          page="/worst-cities"
+          headingId="wc-worst-cities-next-mid"
+          heading="If your city is on this list, check your ZIP code and see the filter that matches"
+          intro="A city score is not your tap. Enter your ZIP for a free supplier snapshot, then compare the filter that matches that report."
+          zipSearch={<WaterSearch variant="compact" idPrefix="wc-worst-cities" />}
+        />
 
         <CityRankingList
           items={cities.map((c) => ({

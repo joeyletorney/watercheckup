@@ -98,6 +98,9 @@ test('commercial comparisons expose active merchant links, scoped evidence and n
         const destination = new URL(choice.merchant.href);
         if (destination.hostname === 'www.amazon.com') {
           assert.equal(destination.searchParams.get('tag'), 'watercheckup-20');
+        } else if (choice.merchant.brand === 'Waterdrop') {
+          assert.match(choice.merchant.href, /waterdropfilter\.com/);
+          assert.match(choice.merchant.href, /ref=anbyjkqb/);
         } else {
           const { clearlyFilteredDirectUrl } = await import('../lib/waterdrop-buy');
           assert.equal(choice.merchant.brand, 'Clearly Filtered');

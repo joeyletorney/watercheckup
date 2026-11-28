@@ -14,6 +14,176 @@ import type { ReportCityLink } from '@/lib/report-city-link.server';
 
 const TAG = 'watercheckup-20';
 
+type ZipFilterPick = {
+  key: string;
+  name: string;
+  brand?: string;
+  price: string;
+  amazon: string;
+  directLink?: string;
+  badge: string;
+  reason: string;
+  highlight: boolean;
+};
+
+function buildZipFilterPicks(data: { pfasCount?: number; openViolations?: number }, cappedScore: number): ZipFilterPick[] {
+  const hasPfas = (data.pfasCount ?? 0) > 0;
+  const hasViolations = (data.openViolations ?? 0) > 0;
+  const needsRO = hasPfas || hasViolations || cappedScore < 57;
+  const baseProducts = [
+    {
+      key: 'waterdrop',
+      name: 'Waterdrop G3P600 RO',
+      brand: 'Waterdrop',
+      price: '~$399',
+      amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
+      directLink: 'https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb',
+      reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
+    },
+    {
+      key: 'frizzlife',
+      name: 'Frizzlife SK99-NEW',
+      price: 'Check current price',
+      amazon: 'https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20',
+      reasonDefault:
+        'Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.',
+    },
+    {
+      key: 'pitcher',
+      name: 'Clearly Filtered Pitcher',
+      brand: 'Clearly Filtered',
+      price: '~$90',
+      amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${TAG}`,
+      reasonDefault: 'Pitcher option without plumbing changes. Verify the exact cartridge’s published reduction claims and replacement schedule.',
+    },
+  ] as const;
+  const roTopReason = `Removes ${hasPfas ? 'PFAS, ' : ''}lead, and disinfection byproducts — the primary concerns for this water supply.`;
+  return needsRO
+    ? [
+        { ...baseProducts[0], badge: 'TOP PICK FOR YOUR WATER', reason: roTopReason, highlight: true },
+        { ...baseProducts[1], badge: 'DIRECT-CONNECT CARBON', reason: baseProducts[1].reasonDefault, highlight: false },
+        { ...baseProducts[2], badge: 'BEST NO-INSTALL', reason: baseProducts[2].reasonDefault, highlight: false },
+      ]
+    : [
+        {
+          ...baseProducts[2],
+          badge: 'TOP PICK FOR YOUR WATER',
+          reason: 'NSF-certified for lead, chlorine, and 365+ contaminants — strongest pitcher option when EPA data looks relatively clean.',
+          highlight: true,
+        },
+        {
+          ...baseProducts[0],
+          badge: 'MAXIMUM COVERAGE',
+          reason: 'Adds RO-level removal for PFAS and DBPs if you want extra margin beyond what EPA shows today.',
+          highlight: false,
+        },
+        {
+          ...baseProducts[1],
+          badge: 'MOST CERTIFIED RO',
+          reason: baseProducts[1].reasonDefault,
+          highlight: false,
+        },
+      ];
+}
+
+function ZipBuyButtons({
+  prod,
+  highlight,
+  zip,
+}: {
+  prod: Pick<ZipFilterPick, 'name' | 'brand' | 'amazon' | 'directLink'>;
+  highlight: boolean;
+  zip: string;
+}) {
+  const buy = resolveProductBuyLink({
+    name: prod.name,
+    brand: prod.brand,
+    amazon: prod.amazon,
+    directLink: prod.directLink,
+  });
+  const amazonAlt = buy.destination === 'direct' && prod.amazon ? prod.amazon : null;
+  const buttonStyle = (primary: boolean, destination: 'direct' | 'amazon') => ({
+    display: 'inline-flex' as const,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+    minHeight: 44,
+    padding: '10px 16px',
+    background: primary
+      ? destination === 'direct' && /clearly/i.test(prod.name)
+        ? 'linear-gradient(135deg,#059669,#10b981)'
+        : 'linear-gradient(135deg,#0891b2,#06b6d4)'
+      : '#0d2240',
+    border: primary ? 'none' : '1px solid #1a3a5c',
+    borderRadius: 8,
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: 800,
+    textDecoration: 'none',
+  });
+  return (
+    <div className="wc-matching-pick-buys">
+      <a
+        data-wc-affiliate-tracked="true"
+        href={buy.href}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        onClick={() =>
+          trackAffiliateClick({
+            product: prod.name,
+            destination: buy.destination,
+            page: 'results',
+            brand: prod.brand,
+            zip,
+            href: buy.href,
+          })
+        }
+        style={buttonStyle(highlight, buy.destination)}
+      >
+        {buy.label}
+      </a>
+      {amazonAlt ? (
+        <a
+          data-wc-affiliate-tracked="true"
+          href={amazonAlt}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          onClick={() =>
+            trackAffiliateClick({
+              product: prod.name,
+              destination: 'amazon',
+              page: 'results',
+              brand: prod.brand,
+              zip,
+              href: amazonAlt,
+            })
+          }
+          style={buttonStyle(false, 'amazon')}
+        >
+          Check price on Amazon →
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+function ZipMatchingPick({ pick, zip }: { pick: ZipFilterPick; zip: string }) {
+  return (
+    <aside className="wc-matching-pick" aria-labelledby="wc-matching-pick-heading">
+      <p className="wc-matching-pick-eyebrow">YOUR MATCHING FILTER PICK</p>
+      <h2 id="wc-matching-pick-heading" style={{ fontSize: 22, fontWeight: 900, color: '#f8fafc', lineHeight: 1.25, margin: '0 0 6px' }}>
+        {pick.name}
+      </h2>
+      <p style={{ fontSize: 13, fontWeight: 800, color: '#67e8f9', margin: '0 0 8px' }}>{pick.badge}</p>
+      <p style={{ fontSize: 14, color: '#a8b4c4', margin: '0 0 8px' }}>{pick.price}</p>
+      <p style={{ fontSize: 15, color: '#cbd5e1', lineHeight: 1.65, margin: '0 0 16px' }}>{pick.reason}</p>
+      <ZipBuyButtons prod={pick} highlight zip={zip} />
+      <p style={{ fontSize: 12, color: '#94a3b8', margin: '12px 0 0', lineHeight: 1.5 }}>
+        Confirm the live listing, model, and certification. Amazon tag watercheckup-20; Waterdrop links use ref anbyjkqb.
+      </p>
+    </aside>
+  );
+}
+
 const SCORE_COLOR = (s: number) =>
   s >= 80 ? '#22d3ee' : s >= 62 ? '#86efac' : s >= 50 ? '#f59e0b' : s >= 35 ? '#f97316' : '#ef4444';
 
@@ -435,6 +605,13 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
 
         <ReportNextSteps zip={zip} historicalOnly={liveViolationsDown} supplierReportHref={data.dataFreshness?.links?.ccr} />
 
+        {scoreReady ? (
+          <>
+            <AffiliateDisclosure />
+            <ZipMatchingPick pick={buildZipFilterPicks(data, cappedScore)[0]!} zip={zip} />
+          </>
+        ) : null}
+
         {/* Quick share */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
           <a
@@ -629,88 +806,16 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
             </div>
           </div>
 
-          {/* Top filter recommendation */}
+          {/* Additional filter options — matching top pick is already shown above the tabs */}
           {(() => {
-            const hasPfas = data.pfasCount > 0;
-            const hasViolations = data.openViolations > 0;
-            const needsRO = hasPfas || hasViolations || cappedScore < 57;
-
-            const roTopReason = `Removes ${hasPfas ? 'PFAS, ' : ''}lead, and disinfection byproducts — the primary concerns for this water supply.`;
-            const baseProducts = [
-              {
-                key: 'waterdrop',
-                name: 'Waterdrop G3P600 RO',
-                brand: 'Waterdrop',
-                price: '~$399',
-                amazon: `https://www.amazon.com/dp/B07P1XFYJP?tag=${TAG}`,
-                directLink: `https://www.waterdropfilter.com/products/waterdrop-reverse-osmosis-water-filtration-system?ref=anbyjkqb`,
-                reasonDefault: 'Removes 99%+ PFAS, lead, and disinfection byproducts. Tankless, 600 GPD, smart TDS display.',
-              },
-              {
-                key: 'frizzlife',
-                name: "Frizzlife SK99-NEW",
-                price: "Check current price",
-                amazon: "https://www.amazon.com/dp/B08NDYVZV5?tag=watercheckup-20",
-                reasonDefault: "Direct-connect carbon filtration for municipal cold water. Uses the existing faucet; no RO drain or electrical outlet. Does not reduce dissolved salts or soften water. Verify the exact cartridge’s listed reduction claims.",
-              },
-              {
-                key: 'pitcher',
-                name: 'Clearly Filtered Pitcher',
-                brand: 'Clearly Filtered',
-                price: '~$90',
-                amazon: `https://www.amazon.com/dp/B0DFC22BHT?tag=${TAG}`,
-                reasonDefault: 'Pitcher option without plumbing changes. Verify the exact cartridge’s published reduction claims and replacement schedule.',
-              },
-            ] as const;
-
-            const picks: {
-              prod: (typeof baseProducts)[number];
-              badge: string;
-              reason: string;
-              highlight: boolean;
-            }[] = needsRO
-              ? [
-                  { prod: baseProducts[0], badge: 'TOP PICK FOR YOUR WATER', reason: roTopReason, highlight: true },
-                  { prod: baseProducts[1], badge: 'DIRECT-CONNECT CARBON', reason: baseProducts[1].reasonDefault, highlight: false },
-                  { prod: baseProducts[2], badge: 'BEST NO-INSTALL', reason: baseProducts[2].reasonDefault, highlight: false },
-                ]
-              : [
-                  {
-                    prod: baseProducts[2],
-                    badge: 'TOP PICK FOR YOUR WATER',
-                    reason:
-                      'NSF-certified for lead, chlorine, and 365+ contaminants — strongest pitcher option when EPA data looks relatively clean.',
-                    highlight: true,
-                  },
-                  {
-                    prod: baseProducts[0],
-                    badge: 'MAXIMUM COVERAGE',
-                    reason: 'Adds RO-level removal for PFAS and DBPs if you want extra margin beyond what EPA shows today.',
-                    highlight: false,
-                  },
-                  {
-                    prod: baseProducts[1],
-                    badge: 'MOST CERTIFIED RO',
-                    reason: baseProducts[1].reasonDefault,
-                    highlight: false,
-                  },
-                ];
-
+            const picks = buildZipFilterPicks(data, cappedScore);
             return (
               <div style={{ marginBottom: 20 }}>
                 <FilterRecommendationsBanner />
-                <AffiliateDisclosure />
                 <div style={{ padding: '20px 22px', background: 'linear-gradient(135deg, #071828, #040d14)', border: '2px solid rgba(8,145,178,0.35)', borderRadius: 12 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>RECOMMENDED FOR YOUR WATER</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#0891b2', letterSpacing: 2, marginBottom: 12 }}>MORE FILTER OPTIONS FOR YOUR WATER</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {picks.map(({ prod, badge, reason, highlight }) => {
-                    const buy = resolveProductBuyLink({
-                      name: prod.name,
-                      brand: 'brand' in prod ? prod.brand : undefined,
-                      amazon: prod.amazon,
-                      directLink: 'directLink' in prod ? prod.directLink : undefined,
-                    });
-                    return (
+                  {picks.map((prod) => (
                     <div
                       key={prod.key}
                       style={{
@@ -718,8 +823,8 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
                         gap: 14,
                         alignItems: 'flex-start',
                         padding: '14px 16px',
-                        background: highlight ? 'rgba(8,145,178,0.08)' : '#071828',
-                        border: highlight ? '2px solid rgba(8,145,178,0.4)' : '1px solid #1a3a5c',
+                        background: prod.highlight ? 'rgba(8,145,178,0.08)' : '#071828',
+                        border: prod.highlight ? '2px solid rgba(8,145,178,0.4)' : '1px solid #1a3a5c',
                         borderRadius: 10,
                       }}
                     >
@@ -734,53 +839,19 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
                               letterSpacing: 1,
                               padding: '2px 7px',
                               borderRadius: 4,
-                              background: highlight ? '#0891b2' : '#1e3a5f',
+                              background: prod.highlight ? '#0891b2' : '#1e3a5f',
                               color: '#fff',
                             }}
                           >
-                            {badge}
+                            {prod.badge}
                           </span>
                         </div>
                         <div style={{ fontSize: 13, color: '#a8b4c4', marginBottom: 6 }}>{prod.price}</div>
-                        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>{reason}</p>
-                        <a data-wc-affiliate-tracked="true"
-                          href={buy.href}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          onClick={() =>
-                            trackAffiliateClick({
-                              product: prod.name,
-                              destination: buy.destination,
-                              page: 'results',
-                              brand: 'brand' in prod ? prod.brand : undefined,
-                              zip,
-                              href: buy.href,
-                            })
-                          }
-                          style={{
-                            display: 'inline-block',
-                            padding: '8px 14px',
-                            background: highlight
-                              ? buy.destination === 'direct'
-                                ? /clearly/i.test(prod.name)
-                                  ? 'linear-gradient(135deg,#059669,#10b981)'
-                                  : 'linear-gradient(135deg,#0891b2,#06b6d4)'
-                                : 'linear-gradient(135deg,#0891b2,#06b6d4)'
-                              : '#0d2240',
-                            border: highlight ? 'none' : '1px solid #1a3a5c',
-                            borderRadius: 8,
-                            color: '#fff',
-                            fontSize: 13,
-                            fontWeight: 700,
-                            textDecoration: 'none',
-                          }}
-                        >
-                          {buy.label}
-                        </a>
+                        <p style={{ fontSize: 13, color: '#cbd5e1', lineHeight: 1.6, margin: '0 0 18px' }}>{prod.reason}</p>
+                        <ZipBuyButtons prod={prod} highlight={prod.highlight} zip={zip} />
                       </div>
                     </div>
-                    );
-                  })}
+                  ))}
                 </div>
                 <button
                   type="button"

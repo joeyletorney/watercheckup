@@ -21,8 +21,11 @@ test('CTR SERP overrides stay within title and description limits', () => {
 
 test('opportunity pages target the queries that actually earn clicks', () => {
   const lead = CTR_SERP_OVERRIDES['/blog/best-water-filter-for-lead-removal'];
-  assert.match(lead.title, /best water filter for lead removal/i);
-  assert.match(lead.description, /lead removal water filter/i);
+  assert.match(lead.title, /top-rated/i);
+  assert.match(lead.title, /nsf 53/i);
+  assert.match(lead.title, /affordable/i);
+  assert.match(lead.description, /nsf 53 lead and pfas/i);
+  assert.match(lead.description, /affordable/i);
 
   const hard = CTR_SERP_OVERRIDES['/blog/best-water-filter-hard-water'];
   assert.match(hard.title, /hard water filter/i);

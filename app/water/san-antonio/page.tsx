@@ -1,5 +1,6 @@
 import { AffiliateLink } from '@/components/AffiliateLink';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
+import { WaterSearch } from '@/components/WaterSearch';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { FounderCityAttribution } from '@/components/FounderCityAttribution';
@@ -122,43 +123,59 @@ export default function SanAntonioWaterPage() {
           pfas={getCityPfasData(resolveCityPwsid('san-antonio', CITIES['san-antonio'].pwsid, CITIES['san-antonio'].zip))}
           summary="San Antonio’s Edwards Aquifer supply is mineral-rich. This report shows historical monitoring and separately sourced hardness information. Check SAWS’s current report and notices for current compliance and household-specific guidance."
           stats={[
-            { label: 'Hardness', value: 'Very Hard', color: '#f97316' },
+            { label: 'Hardness', value: '~272 mg/L', color: '#f97316' },
           ]}
         />
 
         <div
           style={{
-            padding: '16px 20px',
-            background: '#0891b2',
-            borderRadius: 12,
-            marginBottom: 56,
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
             flexWrap: 'wrap',
-            gap: 12,
+            gap: 8,
+            margin: '0 0 18px',
           }}
         >
-          <div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Get your specific ZIP code report</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>78201, 78202, 78203 and all SA ZIP codes</div>
-          </div>
           <Link
             prefetch
-            href="/"
+            href="/blog/pfas-in-san-antonio-water"
             style={{
-              padding: '10px 20px',
-              background: '#fff',
-              borderRadius: 8,
-              color: '#0891b2',
-              fontWeight: 700,
-              textDecoration: 'none',
               fontSize: 14,
+              fontWeight: 800,
+              color: '#67e8f9',
+              textDecoration: 'none',
+              padding: '10px 14px',
+              background: 'rgba(8,145,178,0.16)',
+              border: '1px solid rgba(103,232,249,0.45)',
+              borderRadius: 10,
             }}
           >
-            Check My ZIP →
+            PFAS in San Antonio water →
+          </Link>
+          <Link
+            prefetch
+            href="/blog/best-water-filter-hard-water"
+            style={{
+              fontSize: 14,
+              fontWeight: 800,
+              color: '#67e8f9',
+              textDecoration: 'none',
+              padding: '10px 14px',
+              background: 'rgba(8,145,178,0.16)',
+              border: '1px solid rgba(103,232,249,0.45)',
+              borderRadius: 10,
+            }}
+          >
+            Hard-water filter guide →
           </Link>
         </div>
+
+        <ConversionNextStep
+          page="/water/san-antonio"
+          headingId="wc-san-antonio-next-top"
+          heading="Check your ZIP, then a hardness/PFAS filter"
+          intro="San Antonio water quality: 3 PFAS compounds in UCMR5 and about 272 mg/L hardness. Enter your ZIP for a free SAWS snapshot, then compare a hardness or PFAS filter. A ZIP report is not a tap test."
+          zipSearch={<WaterSearch variant="compact" idPrefix="wc-san-antonio" />}
+        />
 
         <PriorityCityEditorial slug="san-antonio" />
 

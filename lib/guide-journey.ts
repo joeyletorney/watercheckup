@@ -5,9 +5,9 @@ export const GUIDE_STARTING_POINTS: Record<string, { label: string; detail: stri
     { label: 'I want to reduce dissolved solids', detail: 'Compare ZeroWater and understand what the TDS meter measures.' },
   ],
   'best-water-filter-for-lead-removal': [
-    { label: 'I want a pitcher', detail: 'Compare a compatible cartridge with a specific lead-reduction claim.' },
-    { label: 'I am considering countertop RO', detail: 'Review its model evidence, feed-water limits and ongoing costs.' },
-    { label: 'I want an installed system', detail: 'Check the exact claim, fittings and installation requirements.' },
+    { label: 'I want the top-rated NSF 53 + PFAS pick', detail: 'Start with Waterdrop G3P600 under-sink RO.' },
+    { label: 'I want an affordable pitcher', detail: 'Compare Brita Elite OB06 or ZeroWater with a specific lead-reduction claim.' },
+    { label: 'I am considering countertop RO', detail: 'Review AquaTru Classic evidence, feed-water limits and ongoing costs.' },
   ],
   'best-countertop-water-filter': [
     { label: 'I prefer a pitcher', detail: 'Start with the pitcher option and its specific reduction claim.' },

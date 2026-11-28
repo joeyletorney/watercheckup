@@ -66,6 +66,7 @@ import { HowToTestYourWater } from '@/components/HowToTestYourWater';
 import { WellVsCityTesting } from '@/components/WellVsCityTesting';
 import { buildWellVsCityTestingGuide } from '@/lib/well-vs-city-testing';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
+import { WaterSearch } from '@/components/WaterSearch';
 import { breadcrumbListJsonLd } from '@/lib/breadcrumb-schema';
 
 const CITY_FAQS: Record<string, { question: string; answer: string }[]> = {
@@ -620,10 +621,17 @@ export default async function CityPage(props: { params: Promise<{ city: string }
                   Most in-town Gaithersburg addresses are on WSSC municipal water — the EPA/UCMR5 snapshot on this page.
                   Private wells on the rural edge of Montgomery County are not in that city data. Well owners should test
                   bacteria and nitrate yearly through a Maryland-certified lab (Montgomery County DPS: 240-777-0311 for
-                  permitting questions). WaterCheckup publishes public-supplier reports; it is not a lab or a
+                  permitting questions).                   WaterCheckup publishes public-supplier reports; it is not a lab or a
                   water-treatment company.
                 </p>
               </div>
+              <ConversionNextStep
+                page="/water/gaithersburg"
+                headingId="wc-gaithersburg-next-top"
+                heading="Get your Gaithersburg ZIP report or matching filter"
+                intro="City (WSSC) vs well is the first split. Enter your ZIP for a free report, then pick a matching filter — or use a Maryland-certified lab for a tap test. A ZIP report is not a test of your own tap."
+                zipSearch={<WaterSearch variant="compact" idPrefix="wc-gaithersburg" />}
+              />
             </>
           )}
 

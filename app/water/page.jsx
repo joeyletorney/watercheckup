@@ -231,7 +231,7 @@ export default function WaterDirectoryPage() {
             href="/water/gaithersburg"
             className="font-semibold text-blue-700 hover:text-blue-900 underline-offset-2 hover:underline"
           >
-            Gaithersburg water quality →
+            Gaithersburg well vs city water testing →
           </Link>
           <Link
             prefetch

@@ -24,9 +24,9 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
       'PFAS in San Antonio water: UCMR5 compounds for SAWS (TX0150018), how they compare with EPA limits, and NSF 58 filter options.',
   },
   '/blog/best-water-filter-for-lead-removal': {
-    title: 'Best Water Filter for Lead Removal (2026)',
+    title: 'Top-Rated Lead Filters (NSF 53) — Best Affordable Picks 2026',
     description:
-      'Best lead removal water filter for home in 2026: NSF/ANSI 53 picks, lead plus PFAS or chlorine, budget options, and verified annual filter costs.',
+      'Top-rated NSF 53 lead and PFAS water filters — affordable 2026 picks, certified comparison, and buy links. G3P600 is the under-sink top pick.',
   },
   '/blog/best-water-filter-hard-water': {
     title: 'Hard Water Filter vs Softener (2026 Guide)',
@@ -56,12 +56,12 @@ export const CTR_SERP_OVERRIDES: Record<string, CtrSerpCopy> = {
   '/water/gaithersburg': {
     title: 'Gaithersburg Water Testing: City vs Well Water (2026)',
     description:
-      'Gaithersburg water testing (WSSC): city vs well water in Montgomery County, MDE certified labs. Not a treatment company.',
+      'Gaithersburg well water testing vs WSSC city. Water testing Gaithersburg MD, Gaithersburg water quality, free ZIP report, Maryland-certified labs.',
   },
   '/water/san-antonio': {
     title: 'San Antonio Water Quality & Contamination (2026)',
     description:
-      'San Antonio water quality and contamination: SAWS hardness, PFAS in UCMR5, radium context. Free EPA snapshot — not a tap test. See the PFAS guide.',
+      'San Antonio water quality and contamination: 3 PFAS compounds, ~272 mg/L hardness. Free SAWS snapshot — PFAS guide and hard-water filter guide.',
   },
   '/water/baltimore': {
     title: 'Baltimore Water Testing: Free & Certified Options (2026)',

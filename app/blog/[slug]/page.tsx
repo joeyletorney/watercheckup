@@ -4,6 +4,7 @@ import { articleNextSteps, isShoppingGuide } from '@/lib/blog-next-steps';
 import { ConversionNextStep } from '@/components/ConversionNextStep';
 import { BlogCommercialComparison } from '@/components/BlogCommercialComparison';
 import { COMMERCIAL_GUIDES } from '../commercial-guide-data';
+import { LeadGuideTopPick } from '../lead-guide-content';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -173,6 +174,8 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         </header>
 
         {params.slug === 'best-water-filter-pitcher-2025' && <PitcherCartridgeVideo />}
+
+        {params.slug === 'best-water-filter-for-lead-removal' ? <LeadGuideTopPick /> : null}
 
         {/* Check ZIP CTA — top (slug-specific copy for high-impression posts) */}
         <BlogCommercialComparison slug={params.slug} />
