@@ -7,6 +7,7 @@ import { quizHrefFromReport, shouldEmphasizeLabTest } from '@/lib/results-quiz-l
 import { TestVsFilterCta } from '@/components/TestVsFilterCta';
 import { resolveProductBuyLink } from '@/lib/product-buy-url';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
+import { trackEvent, trackNewsletterSignup } from '@/lib/track-event';
 import { getPfasCoverageNotice } from '@/lib/pfas-monitoring';
 import { ReportNextSteps } from '@/components/ReportNextSteps';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
@@ -396,18 +397,18 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
     } catch { /* storage unavailable */ }
     if (pending?.zip === zip && typeof pending.startedAt === 'number' && Date.now() - pending.startedAt < 300000) {
       const epaDown = data?.lookupStatus === 503 || /temporarily unavailable/i.test(String(data?.lookupError || ''));
-      window.gtag?.('event', 'water_search_result', {
+      trackEvent('water_search_result', {
         result_status: !data || data.lookupError ? (epaDown ? 'epa_unavailable' : 'no_match') : 'report_displayed',
         elapsed_ms: Math.max(0, Date.now() - pending.startedAt),
       });
     }
     if (!data || data.lookupError) {
       if (data?.lookupStatus === 503 || /temporarily unavailable/i.test(String(data?.lookupError || ''))) {
-        window.gtag?.('event', 'epa_data_fetch', { fetch_status: 'failed', page: 'zip-report' });
+        trackEvent('epa_data_fetch', { fetch_status: 'failed', page: 'zip-report' });
       }
       return;
     }
-    window.gtag?.('event', 'water_report_view', { report_status: data.violationCoverage === 'unavailable' ? 'historical_only' : 'current_records_available', page: 'zip-report' });
+    trackEvent('water_report_view', { report_status: data.violationCoverage === 'unavailable' ? 'historical_only' : 'current_records_available', page: 'zip-report' });
   }, [data]);
 
   const retryCurrentRecords = async () => {
@@ -416,19 +417,19 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
     setRetryMessage('');
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 20_000);
-    window.gtag?.('event', 'water_report_retry', { retry_status: 'started', page: 'zip-report' });
+      trackEvent('water_report_retry', { retry_status: 'started', page: 'zip-report' });
     try {
       const response = await fetch(`/api/water?zip=${encodeURIComponent(zip)}&refresh=1`, { cache: 'no-store', signal: controller.signal });
       if (!response.ok) throw new Error(response.status === 429 ? 'Too many requests. Please wait a minute and retry.' : 'The report service is temporarily unavailable.');
       const updated = await response.json();
       if (updated.lookupError || updated.error) throw new Error(updated.lookupError || updated.error);
       setData(updated);
-      window.gtag?.('event', 'water_report_retry', { retry_status: updated.violationCoverage === 'unavailable' ? 'historical_only' : 'recovered', page: 'zip-report' });
+      trackEvent('water_report_retry', { retry_status: updated.violationCoverage === 'unavailable' ? 'historical_only' : 'recovered', page: 'zip-report' });
       if (updated.violationCoverage === 'unavailable') setRetryMessage('The EPA is still not providing current violation records. Historical information remains available. Please try later.');
     } catch (error) {
       const timedOut = controller.signal.aborted;
       setRetryMessage(timedOut ? 'This check took too long. Your existing report is still available. Please try again shortly.' : error instanceof Error ? error.message : 'Unable to refresh current records.');
-      window.gtag?.('event', 'water_report_retry', { retry_status: timedOut ? 'timeout' : 'failed', page: 'zip-report' });
+      trackEvent('water_report_retry', { retry_status: timedOut ? 'timeout' : 'failed', page: 'zip-report' });
     } finally {
       clearTimeout(timeout);
       setRetrying(false);
@@ -448,7 +449,7 @@ export default function ResultsClient({ zip, initialData, cityReport }: { zip: s
       const result = await response.json();
       if (!response.ok || !result.success) throw new Error(result.error || 'Subscription failed. Please try again.');
       setAlertSent(true);
-      window.gtag?.('event', 'newsletter_signup', { source: 'zip-report', method: 'newsletter_form' });
+      trackNewsletterSignup('zip-report');
     } catch (error) { setAlertError(error instanceof Error ? error.message : 'Could not subscribe. Please try again.'); }
     finally { setAlertSending(false); }
   };

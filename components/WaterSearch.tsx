@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useTransition, type FormEvent } from 'reac
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { resolveWaterSearch } from '@/lib/water-search';
+import { trackEvent } from '@/lib/track-event';
 
 type Variant = 'hero' | 'compact';
 
@@ -45,7 +46,7 @@ export function WaterSearch({
     }
     if (started.current) return;
     started.current = true;
-    window.gtag?.('event', 'form_start', {
+    trackEvent('form_start', {
       form_id: 'water_search',
       form_name: 'zip_search',
       form_destination: '/results',
@@ -58,7 +59,7 @@ export function WaterSearch({
     const match = resolveWaterSearch(String(new FormData(event.currentTarget).get('q') || ''));
     if (!match) {
       setError('Enter a 5-digit US ZIP code. City names work on a full keyboard if the ZIP is unknown.');
-      window.gtag?.('event', 'water_search_invalid', { input_type: 'city_or_incomplete_zip' });
+      trackEvent('water_search_invalid', { input_type: 'city_or_incomplete_zip' });
       inputRef.current?.focus();
       return;
     }
@@ -68,7 +69,7 @@ export function WaterSearch({
     } catch {
       /* storage unavailable */
     }
-    window.gtag?.('event', 'water_search_submitted', { input_type: match.inputType });
+    trackEvent('water_search_submitted', { input_type: match.inputType, transport_type: 'beacon' });
     startTransition(() => router.push(`/results/${match.zip}`));
   }
 

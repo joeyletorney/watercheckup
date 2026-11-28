@@ -32,7 +32,12 @@ export function AffiliateLink({
       {...rest}
       href={href}
       data-wc-affiliate-tracked="true"
+      data-product={product}
+      data-affiliate-href={typeof href === 'string' ? href : undefined}
       onClick={(e) => {
+        const resolvedHref =
+          (typeof href === 'string' && href) ||
+          (e.currentTarget instanceof HTMLAnchorElement ? e.currentTarget.href : undefined);
         trackAffiliateClick({
           product,
           destination,
@@ -41,7 +46,8 @@ export function AffiliateLink({
           city,
           zip,
           productId,
-          href: typeof href === 'string' ? href : undefined,
+          href: resolvedHref,
+          linkUrl: resolvedHref,
         });
         onClick?.(e);
       }}

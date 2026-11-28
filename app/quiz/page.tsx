@@ -8,12 +8,10 @@ import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { preferredAmazonPurchaseUrl } from '@/lib/home-shopping';
 import { trackAffiliateClick } from '@/lib/affiliate-tracking';
 import { quizEntryContext } from '@/lib/quiz-entry';
+import { trackEvent } from '@/lib/track-event';
 
 import { getQuizRecommendation as getRec, type QuizPick as AltPick } from '@/lib/quiz-recommendations';
 
-function trackEvent(name: string, params: Record<string, string>) {
-  if (typeof window !== 'undefined' && window.gtag) window.gtag('event', name, params);
-}
 function showBuyDirectForBrand(brand: string) {
   return brand === 'Waterdrop' || brand === 'Clearly Filtered';
 }

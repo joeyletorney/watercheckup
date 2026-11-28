@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackNewsletterSignup } from '@/lib/track-event';
 
 type Props = {
   source: string;
@@ -44,7 +45,7 @@ export function NewsletterSignup({
       const data = await res.json();
       if (res.ok && data.success) {
         setSent(true);
-        window.gtag?.('event', 'newsletter_signup', { source, method: 'newsletter_form' });
+        trackNewsletterSignup(source);
       }
       else setErr(data.error || 'Could not subscribe. Try again.');
     } catch {

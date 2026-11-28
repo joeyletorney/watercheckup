@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
 import { clearlyFilteredAmazonUrl, isClearlyFilteredBrand } from '@/lib/waterdrop-buy';
 
@@ -237,14 +238,14 @@ export default function PfasPage() {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                     {f.brand === 'Waterdrop' && f.directLink ? (
-                      <a href={f.directLink} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>Waterdrop.com →</a>
+                      <AffiliateLink href={f.directLink} product={f.name} brand={f.brand} destination="direct" page="pfas" target="_blank" rel="noopener noreferrer sponsored"
+                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>Waterdrop.com →</AffiliateLink>
                     ) : isClearlyFilteredBrand(f.brand) ? (
-                      <a href={clearlyFilteredAmazonUrl()} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#059669,#10b981)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>Check price on Amazon →</a>
+                      <AffiliateLink href={clearlyFilteredAmazonUrl()} product={f.name} brand={f.brand} destination="amazon" page="pfas" target="_blank" rel="noopener noreferrer sponsored"
+                        style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#059669,#10b981)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none' }}>Check price on Amazon →</AffiliateLink>
                     ) : (
-                      <a href={normalizeAmazonUrl(f.amazon) ?? f.amazon} target="_blank" rel="noopener noreferrer sponsored"
-                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</a>
+                      <AffiliateLink href={normalizeAmazonUrl(f.amazon) ?? f.amazon} product={f.name} brand={f.brand} destination="amazon" page="pfas" target="_blank" rel="noopener noreferrer sponsored"
+                        style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#cbd5e1', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #1a3a5c' }}>Amazon →</AffiliateLink>
                     )}
                   </div>
                 </div>

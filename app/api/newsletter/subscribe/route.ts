@@ -141,21 +141,22 @@ export async function POST(req: NextRequest) {
     </div>
     </body></html>`;
 
-    const sendRes = await fetch(`${BREVO}/smtp/email`, {
-      method: 'POST',
-      headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        sender: { name: senderName, email: senderEmail },
-        to: [{ email: email.trim() }],
-        bcc: [{ email: getSiteNotifyEmail() }],
-        subject: 'Welcome to the WaterCheckup weekly newsletter',
-        htmlContent: html,
-      }),
-    });
-
-    if (!sendRes.ok) {
-      const err = await sendRes.json().catch(() => ({}));
-      return NextResponse.json({ error: (err as { message?: string }).message || 'Email could not be sent' }, { status: 502, headers: CORS });
+    // Welcome email is best-effort: the contact is already on the list. Failing the
+    // HTTP response here used to skip the client-side newsletter_signup GA event.
+    try {
+      await fetch(`${BREVO}/smtp/email`, {
+        method: 'POST',
+        headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sender: { name: senderName, email: senderEmail },
+          to: [{ email: email.trim() }],
+          bcc: [{ email: getSiteNotifyEmail() }],
+          subject: 'Welcome to the WaterCheckup weekly newsletter',
+          htmlContent: html,
+        }),
+      });
+    } catch {
+      /* contact already saved */
     }
 
     return NextResponse.json({ success: true }, { headers: CORS });

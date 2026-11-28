@@ -142,7 +142,8 @@ test('shower filter SERP copy and affiliate picks keep tracking fields', () => {
   assert.match(picksSource, /page=\{page\}/);
   const affiliateLink = readFileSync(join(process.cwd(), 'components/AffiliateLink.tsx'), 'utf8');
   assert.match(affiliateLink, /data-wc-affiliate-tracked="true"/);
-  assert.match(affiliateLink, /href: typeof href === 'string' \? href : undefined/);
+  assert.match(affiliateLink, /href: resolvedHref/);
+  assert.match(affiliateLink, /data-product=\{product\}/);
 
   const payload = buildAffiliateClickEvent({
     product: TOP_SHOWER[0].product,

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../components/SiteHeader';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { SIMPLELAB_WELL_TESTS_URL } from '@/lib/simplelab-links';
 import { isAmazonSearch } from '@/lib/product-availability';
 import { normalizeAmazonUrl } from '@/lib/amazon-affiliate';
@@ -341,10 +342,10 @@ export default function WellWaterPage() {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href={SIMPLELAB_WELL_TESTS_URL} target="_blank" rel="noopener noreferrer sponsored"
+            <AffiliateLink href={SIMPLELAB_WELL_TESTS_URL} product="SimpleLab Well Water Test" destination="simplelab" page="well" brand="Tap Score" target="_blank" rel="noopener noreferrer sponsored"
               style={{ padding: '12px 20px', background: 'linear-gradient(135deg,#7c3aed,#6d28d9)', borderRadius: 8, color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
               SimpleLab Well Water Test — from $99 →
-            </a>
+            </AffiliateLink>
             <a href="https://www.epa.gov/dwlabcert/contact-information-certification-programs-and-certified-laboratories-drinking-water" target="_blank" rel="noopener noreferrer"
               style={{ padding: '12px 20px', background: '#0d2240', border: '1px solid #2d4a6c', borderRadius: 8, color: '#e2e8f0', fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
               EPA certified lab finder →
@@ -398,15 +399,15 @@ export default function WellWaterPage() {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
                     {p.brand === 'Waterdrop' && 'directLink' in p && p.directLink ? (
-                      <a href={p.directLink} target="_blank" rel="noopener noreferrer sponsored"
+                      <AffiliateLink href={p.directLink} product={p.name} brand={p.brand} destination="direct" page="well" target="_blank" rel="noopener noreferrer sponsored"
                         style={{ display: 'block', padding: '9px 16px', background: 'linear-gradient(135deg,#0891b2,#06b6d4)', color: '#fff', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: 'none', whiteSpace: 'nowrap' }}>
                         Waterdrop.com →
-                      </a>
+                      </AffiliateLink>
                     ) : (
-                      <a href={normalizeAmazonUrl(p.amazon) ?? p.amazon} target="_blank" rel="noopener noreferrer sponsored"
+                      <AffiliateLink href={normalizeAmazonUrl(p.amazon) ?? p.amazon} product={p.name} brand={p.brand} destination="amazon" page="well" target="_blank" rel="noopener noreferrer sponsored"
                         style={{ display: 'block', padding: '9px 16px', background: '#0d2240', color: '#e2e8f0', textDecoration: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700, textAlign: 'center', border: '1px solid #2d4a6c', whiteSpace: 'nowrap' }}>
                         {isAmazonSearch(p.amazon) ? "Browse Amazon results →" : "Check price on Amazon →"}
-                      </a>
+                      </AffiliateLink>
                     )}
                   </div>
                 </div>

@@ -1,15 +1,6 @@
 'use client';
 import { useState } from 'react';
-
-function trackNewsletterSignup(pagePath: string, source: string) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'newsletter_signup', {
-      method: 'inline_form',
-      page_path: pagePath,
-      source,
-    });
-  }
-}
+import { trackNewsletterSignup } from '@/lib/track-event';
 
 type EmailCaptureProps = {
   cityName: string;
@@ -54,7 +45,7 @@ export default function EmailCapture({ cityName, slug, inline, stateScope, utili
       });
       const data = await res.json();
       if (data.success) {
-        trackNewsletterSignup(pagePathForGtag, newsletterSource);
+        trackNewsletterSignup(newsletterSource, { page_path: pagePathForGtag, method: 'inline_form' });
         setStatus('success');
         setMsg('');
       } else {

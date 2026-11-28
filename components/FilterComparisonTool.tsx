@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { estimateOwnershipCost, COUNTERTOP_COST_SCHEDULES } from '@/lib/filter-ownership-cost';
 import { AffiliateLink } from './AffiliateLink';
 import { JourneyLink } from './JourneyLink';
+import { trackEvent } from '@/lib/track-event';
 
 type Product = {
   id: 'brita' | 'aquatru'; name: string; fit: string; constraint: string; source: string; costSource: string;
@@ -36,7 +37,7 @@ export function FilterComparisonTool({ products }: { products: Product[] }) {
         setError('Check your water use and prices, then calculate again.'); return;
       }
       setSubmitted(next); setCalculated(true); setError('');
-      window.gtag?.('event', 'comparison_calculate', { page: PAGE, comparison: 'brita_elite_aquatru_classic', transport_type: 'beacon' });
+      trackEvent('comparison_calculate', { page: PAGE, comparison: 'brita_elite_aquatru_classic', transport_type: 'beacon' });
     }}>
       <label className="wc-cost-usage" htmlFor="cost-daily-use">Household drinking and cooking water (US gallons/day)
         <input id="cost-daily-use" type="number" disabled={!ready} inputMode="decimal" min="0.1" max="10" step="0.1" required value={usage} onChange={e => setUsage(e.target.value)} aria-describedby="cost-usage-help" />

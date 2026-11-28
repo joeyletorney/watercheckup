@@ -15,15 +15,27 @@ export function AffiliateClickFallback() {
       try { url = new URL(anchor.href); } catch { return; }
       if (url.protocol !== 'https:' || url.origin === window.location.origin) return;
       const card = anchor.closest('article, li') || anchor.parentElement?.parentElement;
-      const product = card?.querySelector('h3, h2')?.textContent?.trim() || anchor.getAttribute('aria-label') || anchor.textContent?.trim() || 'Sponsored link';
+      const labeled = (anchor.getAttribute('data-product') || card?.querySelector('[data-product]')?.getAttribute('data-product') || '').trim();
+      const heading = card?.querySelector('h3, h2, strong')?.textContent?.trim() || '';
+      const product = (
+        labeled
+        || heading
+        || anchor.getAttribute('aria-label')?.trim()
+        || anchor.textContent?.trim()
+        || url.pathname.split('/').filter(Boolean).pop()?.replace(/[-_]+/g, ' ')
+        || url.hostname.replace(/^www\./, '')
+        || 'unknown'
+      ).slice(0, 100);
+      const linkUrl = (anchor.getAttribute('data-affiliate-href') || '').trim() || url.href;
       const amazon = /(^|\.)amazon\.com$/.test(url.hostname);
       const simplelab = /(^|\.)(mytapscore\.com|simplelab\.com)$/.test(url.hostname) || (url.hostname.endsWith('awin1.com') && url.searchParams.get('awinmid') === '92253');
       trackAffiliateClick({
-        product: product.slice(0, 100),
+        product,
         destination: amazon ? 'amazon' : simplelab ? 'simplelab' : 'direct',
         brand: amazon ? 'Amazon' : simplelab ? 'Tap Score' : url.hostname,
         page: window.location.pathname,
-        linkUrl: url.href,
+        href: linkUrl,
+        linkUrl,
         linkDomain: url.hostname,
       });
     };
